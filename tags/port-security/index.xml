@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Port security on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/port-security/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/port-security/</link>
     <description>Recent content in Port security on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 31 Mar 2011 16:00:31 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/port-security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 31 Mar 2011 16:00:31 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/port-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuring Port Security</title>
-      <link>https://ciscoskills.net/2011/03/configuring-port-security/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/03/configuring-port-security/</link>
       <pubDate>Thu, 31 Mar 2011 16:00:31 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/03/configuring-port-security/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/03/configuring-port-security/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/03/lock.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/lock.png&#34; alt=&#34;&#34; title=&#34;Secure&#34;&gt;&lt;/a&gt;Today this tutorial is going to be talking about how to configure &lt;a href=&#34;http://en.wikipedia.org/wiki/Port_security&#34; title=&#34;Port security&#34;&gt;port security&lt;/a&gt; on a Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Catalyst_switch&#34; title=&#34;Catalyst switch&#34;&gt;Catalyst switch&lt;/a&gt;. Port security is one of the first things you can do to keep your network secure from unauthorized access. Port security can restrict devices so only devices you allow are granted access to network resources. If and when an unauthorized device is connected to a port you can decide what you want the switch to do. Let&#39;s get started!  There are three different settings you can configure with port security:&lt;/p&gt;

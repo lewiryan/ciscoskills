@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Elasticsearch on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/elasticsearch/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/elasticsearch/</link>
     <description>Recent content in Elasticsearch on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 21 Jun 2019 18:05:55 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Jun 2019 18:05:55 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Graylog with AWS Elasticsearch</title>
-      <link>https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/06/graylog-with-aws-elasticsearch/</link>
       <pubDate>Fri, 21 Jun 2019 18:05:55 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/06/graylog-with-aws-elasticsearch/</guid>
       <description>
         
           &lt;p&gt;Graylog has been through some changes last time I talked about them, hitting version 3.0 in February is awesome and one of things that make Graylog run well is Elasticsearch backend. Although Elasticsearch is not too hard to setup it usually runs better on bare metal, so there is cost of that as well as maintenance of the cluster is important, updates and upgrades. Depending your team experience you may not have time to learn it or run it the way it should be. That last thing you want is your logging setup to go down because of poor maintenance. So in this post we will walk though setting up a Graylog Server and using AWS Elasticsearch service for our backend. Without having a quick Elasticsearch cluster Graylog experience suffers, so let&#39;s get started.&lt;/p&gt;
@@ -22,7 +22,7 @@
 &lt;p&gt;If you want more information about Elasticsearch service that AWS provides go ahead and read AWS Developer Guide - &lt;a href=&#34;https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/what-is-amazon-elasticsearch-service.html&#34;&gt;Amazon Elasticsearch Service.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Once your cluster is up and running, keep note of the Endpoint URL you will need that for Graylog. In this example I&#39;m using Centos 7 for the Graylog Server and depending on the operating system you are using for the Graylog server follow the instructions on &lt;a href=&#34;http://docs.graylog.org/en/latest/pages/installation/operating_system_packages.html&#34;&gt;Graylog&#39;s Read the Docs&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;No need for me to repeat installation steps, in this example I&#39;m using Centos 7 and followed the &lt;a href=&#34;http://docs.graylog.org/en/latest/pages/installation/os/centos.html&#34;&gt;documentation&lt;/a&gt;. Since we have an Elasticsearch cluster provided by AWS you don&#39;t need to anything related to Elasticsearch when installing Graylog, so skip it. Once you have Graylog installed go ahead and start it up to make sure you get the webpage and can login. This just verifies you have a working Graylog server ready to go. You might see some errors related to indexing but that is expected, we have not told Graylog about our AWS Elasticsearch resource.
-&lt;img src=&#34;https://ciscoskills.net/images/2019/04/graylog-es-aws.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2019/04/graylog-es-aws.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Login into your Graylog server and with your favorite text editor open the Graylog server configuration file /etc/graylog/server/server.conf We are looking to modify the Elasticsearch hosts by default its local host to the Endpoint URL that is in your AWS Elasticsearch resource.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;# List of Elasticsearch hosts Graylog should connect to.
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;# Need to be specified as a comma-separated list of valid URIs for the http ports of your elasticsearch nodes.
@@ -34,7 +34,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Restart the Graylog server service&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;systemctl restart graylog-server
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You now have Graylog server backed by an AWS Elasticsearch Cluster, log away :)
-&lt;img src=&#34;https://ciscoskills.net/images/2019/04/graylog-es-aws-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2019/04/graylog-es-aws-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;AWS makes deploying Graylog even easier if you don&#39;t want to have your own Elasticsearch cluster. Although you can&#39;t stop the AWS ES Cluster you can snapshot the data to an S3 bucket and import it back into a new ES cluster and connect Graylog back to it. This makes it so you don&#39;t have this running 24x7, maybe useful for temporary debugging logs or run it 24x7. Well that&#39;s all I got for a Friday, and its the first day of summer &amp;quot;officially&amp;quot; so time enjoy it! I do hope this information is helpful but also enjoy your summer! 8-)&lt;/p&gt;
 
         

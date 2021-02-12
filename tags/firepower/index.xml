@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Firepower on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/firepower/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/firepower/</link>
     <description>Recent content in Firepower on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 07 Sep 2018 14:00:47 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/firepower/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Sep 2018 14:00:47 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/firepower/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Verifying DNS Lists - FMC</title>
-      <link>https://ciscoskills.net/2018/09/verifying-dns-lists-fmc/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/09/verifying-dns-lists-fmc/</link>
       <pubDate>Fri, 07 Sep 2018 14:00:47 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/09/verifying-dns-lists-fmc/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/09/verifying-dns-lists-fmc/</guid>
       <description>
         
           &lt;p&gt;We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.&lt;/p&gt;
 &lt;p&gt;So this post is already assuming that you have an Access Control Policy deployed on a Firepower Module (ASA) or a FTD. We also are assuming that you have a DNS policy applied to the FM/FTD. These lists get downloaded about every two hours from Cisco and are updated regularly, best to keep it that way. :) However like everything there is always someone, some system, some program that fails to connect and more often than not it&#39;s usually this critical process that worked yesterday but doesn&#39;t today, so how do we check if we are hitting this?&lt;/p&gt;
 &lt;p&gt;There are two ways to check this we can look at the connection events (if you are logging which by default is yes) it will show DNS the events and depending on your policy you&#39;ll see the action taken. In this example we selected to use Domain Not Found for the action. In this example we can see Domain Not Found and we can also see the DNS category its hitting which is DNS Dga.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/07/fmc-dnfee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/07/fmc-dnfee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; I have edited this screenshot to show example.com instead of the malicious domain&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -58,23 +58,23 @@
     
     <item>
       <title>Cisco FTD Standalone</title>
-      <link>https://ciscoskills.net/2018/07/cisco-ftd-standalone/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/07/cisco-ftd-standalone/</link>
       <pubDate>Wed, 18 Jul 2018 13:30:00 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/07/cisco-ftd-standalone/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/07/cisco-ftd-standalone/</guid>
       <description>
         
           &lt;p&gt;No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!&lt;/p&gt;
 &lt;p&gt;You are still recommended to have a management network connected to this appliance, here is the topology for this example, thanks GNS3 ;)
-&lt;img src=&#34;https://ciscoskills.net/images/2018/06/ftdv-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/06/ftdv-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;On first boot you must give the appliance some minutes to boot up when you first turn it on. It starts a first boot process which goes through building and setting up everything it needs. Once the unit is primed and ready you should see a login prompt, login with the default username and password which is admin/Admin123 the appliance will go ahead and display a EULA, agree to it and then the system will want you to change the password. You will then be walked through the initial setup of setting up your management IP address, gateway, DNS servers and after that you will be asked if you want to manage the device locally, since we are not using a FMC make sure to answer YES.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/files/2018/06/qemu-ftdv.mp4&#34;&gt;MP4 FTDv&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/files/2018/06/qemu-ftdv.mp4&#34;&gt;MP4 FTDv&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Once the device is ready to go, connect via HTTPS to the management IP address of the appliance with a web browser, and login into the system with the password you configured.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/fdm-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/06/fdm-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;When you first login the setup wizard will walk you through setting up two zones, and inside zone and an outside zone. Or you could skip this step if you scroll down to the bottom of the page. This is helpful if you don’t have internet connection or if you simply want to configure this yourself. In this example I accepted all the defaults. Once you are done with the initial setup screen you will be directed to the main dashboard.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/fdm-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/06/fdm-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Believe it or not your now are ready to configure this appliance, if you used the FMC before this has the same wordage so it’ll be familiar to you. If you never worked with FMC or any of these newer Firepower Threat Defense firewalls it might be a learning curve but the built-in help on this is useful, and it’s a good starting point. You can also tie this into the Cisco Defense Orchestrator which is a cloud-based paid tool to help you apply polices to multiple devices. This is nice, so you don’t have to manually configure each device, kind of like a slimmed down version of the FMC.&lt;/p&gt;
-&lt;p&gt;If you have worked with Cisco ASAs you’ll notice that you can’t just copy the running-config and paste it on new device. These things are complicated underneath the GUI, which is also why you can only use a GUI. They have everything, but the kitchen sink essentially, basic firewall rules, URL filtering, IPS, identify policies, security intelligence feeds, file polices and SSL Decryption. That stuff just doesn’t work with a static config file and really can’t be configured via CLI like our old friend &lt;a href=&#34;https://ciscoskills.net/files/2018/06/datacomm_jan_1995.pdf&#34; title=&#34;Data Communications Jan 1995&#34;&gt;ASA/PIX&lt;/a&gt;. Although sometimes annoying it is the direction the industry has moved into, however, if you are still having a hard time and need to reminisce this appliance does offer a CLI pop-up, but it only offers packet-tracer, ping, some show commands are available and trace route. It&#39;s not much but it may be enough to move forward, good luck. ;)&lt;/p&gt;
+&lt;p&gt;If you have worked with Cisco ASAs you’ll notice that you can’t just copy the running-config and paste it on new device. These things are complicated underneath the GUI, which is also why you can only use a GUI. They have everything, but the kitchen sink essentially, basic firewall rules, URL filtering, IPS, identify policies, security intelligence feeds, file polices and SSL Decryption. That stuff just doesn’t work with a static config file and really can’t be configured via CLI like our old friend &lt;a href=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/files/2018/06/datacomm_jan_1995.pdf&#34; title=&#34;Data Communications Jan 1995&#34;&gt;ASA/PIX&lt;/a&gt;. Although sometimes annoying it is the direction the industry has moved into, however, if you are still having a hard time and need to reminisce this appliance does offer a CLI pop-up, but it only offers packet-tracer, ping, some show commands are available and trace route. It&#39;s not much but it may be enough to move forward, good luck. ;)&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
@@ -103,10 +103,10 @@
     
     <item>
       <title>Factory Reset Firepower 2100</title>
-      <link>https://ciscoskills.net/2017/12/factory-reset-firepower-2100/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/12/factory-reset-firepower-2100/</link>
       <pubDate>Fri, 01 Dec 2017 16:00:49 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/12/factory-reset-firepower-2100/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/12/factory-reset-firepower-2100/</guid>
       <description>
         
           &lt;p&gt;In this short guide I wanted to walk through the steps to do a factory reset for the Cisco Firepower 2100 series. When doing these resets all configuration and the administrative password are removed, as well as the FTD (Firepower Threat Defense) app-instance. When the unit starts to boot it will reinstall the FTD app-instance to default configuration.&lt;/p&gt;
@@ -163,10 +163,10 @@
     
     <item>
       <title>Enter Cisco Firepower CLI (Read-Only)</title>
-      <link>https://ciscoskills.net/2017/09/enter-cisco-firepower-cli-read-only/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/09/enter-cisco-firepower-cli-read-only/</link>
       <pubDate>Wed, 20 Sep 2017 11:45:41 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/09/enter-cisco-firepower-cli-read-only/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/09/enter-cisco-firepower-cli-read-only/</guid>
       <description>
         
           &lt;p&gt;You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:&lt;/p&gt;
@@ -247,10 +247,10 @@
     
     <item>
       <title>Update Firepower Devices - Manually</title>
-      <link>https://ciscoskills.net/2017/07/update-firepower-devices-manually/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/07/update-firepower-devices-manually/</link>
       <pubDate>Wed, 12 Jul 2017 14:15:38 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/07/update-firepower-devices-manually/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/07/update-firepower-devices-manually/</guid>
       <description>
         
           &lt;p&gt;This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:&lt;/p&gt;
@@ -334,10 +334,10 @@
     
     <item>
       <title>Cisco FTDv in Cisco VIRL</title>
-      <link>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/06/cisco-ftdv-in-cisco-virl/</link>
       <pubDate>Wed, 14 Jun 2017 13:05:11 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/06/cisco-ftdv-in-cisco-virl/</guid>
       <description>
         
           &lt;p&gt;Cisco is actively pushing their Firepower Threat Defense software with the new Firepower 2100 units on their way this summer in effort to eventually replace the ASA5525-X, ASA5545-X and ASA5555-X platforms. When using FTD you must also have the Firepower Management Center (FMC) available to manage and configure these devices. This gets difficult especially if you want to test things out because not everyone has Cisco Firepower lying around unused. How are you supposed to test and learn the depths of this product? &lt;em&gt;(Hint: Cisco VIRL)&lt;/em&gt;&lt;/p&gt;
@@ -350,15 +350,15 @@
 &lt;/ul&gt;
 &lt;p&gt;To understand how this is works, you must setup the FMC as a separate virtual machine in VMware Workstation and configure a static IP address for the FMC. You’ll want to use an IP address that is in VIRL’s shared flat network. This is usually the 172.16.1.0/24 network. In this example, I configured the FMC with the IP address of 172.16.1.15. If you have installed VIRL in VMware Workstation and followed the VIRL installation guide you’ll want to put the FMC in VMnet 1. Basically, you’ll want the FMC and FTDv to be on the same broadcast domain in the management network within VIRL for your FMC to be able to manage the FTDv image. If you are using VIRL on a bare metal server and have VMware Workstation installed on a different system use VIRL’s OpenVPN connection settings. To understand how this works you can reference the following video (Credit goes to &lt;a href=&#34;https://www.youtube.com/channel/UC41WuzXlJCGY5qLsuZ8aHkQ&#34;&gt;Cisco VIRL Youtube Channel&lt;/a&gt;):&lt;/p&gt;
 &lt;p&gt;Once your computer has the OpenVPN client installed and you can successfully connect to VIRL, you also can map VMware Workstation to the OpenVPN network adapter under the virtual network editor.
-&lt;img src=&#34;https://ciscoskills.net/images/2017/06/virl-openvpn.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/06/virl-openvpn.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This gives your FMC direct access to VIRL’s shared flat network while using the OpenVPN client.
 Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/security/firepower/quick_start/vmware/fmcv/FMCv-quick/setup-mcvirtual.html&#34;&gt;Cisco Firepower Management Center Virtual for VMware Deployment Quick Start Guide&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The process in pretty simple login into the FMC CLI and run the following command and follow the prompts.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;sudo /usr/local/sf/bin/configure-network
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If all is well you should see the initial configuration wizard, and once you have completed the initial setup wizard you should be able to login using the password you recently created.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/06/virl-fmc-login.png&#34; alt=&#34;FMC Login Page&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/06/virl-fmc-login.png&#34; alt=&#34;FMC Login Page&#34;&gt;&lt;/p&gt;
 &lt;p&gt;You now have a FMC ready and primed to manage FTDv devices, like I mention earlier you can enable the evaluation license which is only available in the 6.2.0 or higher releases. Go to System-&amp;gt;Licenses-&amp;gt;Smart Licenses which gives you 90 days to kick in the tires.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/06/fmc-eval.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/06/fmc-eval.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; You also could use VMware snapshots to set up a vanilla FMC with no devices, and no evaluation license enabled, that way you could always revert to that FMC you originally started with, also helps if you really got carried away :)&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -497,10 +497,10 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
     
     <item>
       <title>Factory Reset Firepower 4100 &amp; 9300</title>
-      <link>https://ciscoskills.net/2016/10/factory-reset-firepower-4100-9300/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/10/factory-reset-firepower-4100-9300/</link>
       <pubDate>Wed, 19 Oct 2016 00:45:07 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2016/10/factory-reset-firepower-4100-9300/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/10/factory-reset-firepower-4100-9300/</guid>
       <description>
         
           &lt;p&gt;I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy. (Edit: 7-21-17) After Gabriele made this &lt;a href=&#34;http://ciscoskills.net/2016/10/18/factory-reset-firepower-4100-9300/#comment-2869&#34;&gt;comment&lt;/a&gt; it looks like you can. You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:&lt;/p&gt;

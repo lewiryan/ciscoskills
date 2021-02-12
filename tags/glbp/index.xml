@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GLBP on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/glbp/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/glbp/</link>
     <description>Recent content in GLBP on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 17 Aug 2017 14:15:23 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/glbp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Aug 2017 14:15:23 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/glbp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GLBP Load Balancing</title>
-      <link>https://ciscoskills.net/2017/08/glbp-load-balancing/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/08/glbp-load-balancing/</link>
       <pubDate>Thu, 17 Aug 2017 14:15:23 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/08/glbp-load-balancing/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/08/glbp-load-balancing/</guid>
       <description>
         
           &lt;p&gt;We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.2(14)S, please welcome and &amp;quot;slow clap&amp;quot; the Gateway Load Balancing protocol, who has been around since 2002!&lt;/p&gt;
@@ -20,7 +20,7 @@
 &lt;p&gt;Note: The AVG is also an AVF When a PC/server makes an ARP request to reach the default gateway each router in the GLBP group share the load by default one client will get a MAC address from one router, while the other client will get an address from another router but both clients point to the same IP address for the default gateway.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;In this example I have two different GLBP networks, the 192.168.1.0/24 and the 192.168.2.0/24 with three routers in each LAN. I also have a routing protocol running  between the routers (&lt;a href=&#34;http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/&#34;&gt;Named EIGRP&lt;/a&gt;) to better handle the multiple paths as well as recover from failed links.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/07/glbp.png&#34; alt=&#34;GLBP network with three routers&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/07/glbp.png&#34; alt=&#34;GLBP network with three routers&#34;&gt;&lt;/p&gt;
 &lt;p&gt;To configure GLBP let&#39;s start on the 192.168.1.0/24 network, we have to configure the following on each router that belongs to the 192.168.1.0/24, which would be R1, R2, and R3, this configuration is under the interface that belongs to the 192.168.1.0/24 network. (Gigabit0/1)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 ip 192.168.1.1 glbp 1 preempt glbp 1 authentication md5 key-string cisco123
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we care which router is the AVG and which one is in succession we would have to configure the priority, higher is better. In this example we want R1 the AVG, R2 and R3 are backup AVGs. We also want to do the same thing for R4, R5, and R6 with R4 the AVG, R5 and R6 backup AVGs. On R1 and R4 under interface (Gigabit0/1):&lt;/p&gt;

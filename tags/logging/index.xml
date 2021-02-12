@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>logging on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/logging/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/logging/</link>
     <description>Recent content in logging on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 01 Jan 2016 07:01:00 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/logging/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Jan 2016 07:01:00 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/logging/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Installing Graylog on Centos 7</title>
-      <link>https://ciscoskills.net/2016/01/installing-graylog-on-centos-7/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/01/installing-graylog-on-centos-7/</link>
       <pubDate>Fri, 01 Jan 2016 07:01:00 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2016/01/installing-graylog-on-centos-7/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/01/installing-graylog-on-centos-7/</guid>
       <description>
         
           &lt;p&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/12/graylog-logo.png?w=150&#34; alt=&#34;Graylog-logo&#34;&gt;Let&#39;s start out 2016 with setting up a logging system called Graylog. If you have not used Graylog before then I encourage you to check it out. This is an open source log management system and is pretty flexible as it can capture, index and analyze almost anything. Once up and running this system can be scaled out for an enterprise wide log management system. High availability, clustered, and replicated is what Graylog thrives on. In this demo I am going to have two systems. One is the Graylog server, web server and will also have a Mongo database. The other system will be an Elasticsearch node which is what will have the actual data stored in and indexed. For bigger “production” ready setups you just scale this out to separate systems. Documentation is key here and Graylog has done an excellent job of it so here it is in case you need it: &lt;a href=&#34;http://docs.graylog.org/en/1.3/index.html&#34;&gt;http://docs.graylog.org/en/1.3/index.html&lt;/a&gt; I’m already assuming that you have CentOS 7 minimal installed if not you can pick up the latest CentOS at &lt;a href=&#34;http://www.centos.org/&#34;&gt;http://www.centos.org/&lt;/a&gt; .The Centos systems also need a connection to the internet, and have just the root account. I&#39;m using two systems for this tutorial so keep that in mind, here are the names of each system and what their role is:&lt;/p&gt;

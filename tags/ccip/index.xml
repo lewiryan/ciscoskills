@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CCIP on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/ccip/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/ccip/</link>
     <description>Recent content in CCIP on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 13 Apr 2011 14:15:53 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ccip/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Apr 2011 14:15:53 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/ccip/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cisco Learning Labs is Live!</title>
-      <link>https://ciscoskills.net/2011/04/cisco-learning-labs-is-live/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/04/cisco-learning-labs-is-live/</link>
       <pubDate>Wed, 13 Apr 2011 14:15:53 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/04/cisco-learning-labs-is-live/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/04/cisco-learning-labs-is-live/</guid>
       <description>
         
           &lt;p&gt;Yesterday was kind of exciting at least for me when I got an e-mail in the morning about &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; Learning Labs. Studying for the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt;, CCNP or CCIP is in itself changeling, but getting that hands-on experience is a another problem! When money is short that last thing you want to do is spend it on routers and switches, and most of them on &lt;a href=&#34;http://en.wikipedia.org/wiki/EBay&#34; title=&#34;EBay&#34;&gt;eBay&lt;/a&gt; are used and the risk of failing devices makes it a scary choice. The Cisco Learning Labs which started yesterday runs the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;Cisco IOS&lt;/a&gt; software on &lt;a href=&#34;http://en.wikipedia.org/wiki/Unix&#34; title=&#34;Unix&#34;&gt;UNIX&lt;/a&gt;, this makes it a real configuration and provides people the ability to use the Cisco IOS software on their PC with an internet connection. What it the difference between simulators like &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_Tracer&#34; title=&#34;Packet Tracer&#34;&gt;Packet Tracer&lt;/a&gt; and GNS3? We know that Packet Tracer does not support all the commands, but is enough for the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Networking_Academy&#34; title=&#34;Cisco Networking Academy&#34;&gt;Cisco Networking Academy&lt;/a&gt;. Packet Tracer does a great job, but if you ever wanted to really explore the router or switch you will need to have access to real equipment. GNS3 does an excellent job for routers but fails on switches and takes some &lt;a href=&#34;http://en.wikipedia.org/wiki/Central_processing_unit&#34; title=&#34;Central processing unit&#34;&gt;CPU&lt;/a&gt; power. You also need the real Cisco IOS and the only &amp;quot;legal&amp;quot; way to get one is from the router that you bought. Cisco Learning Labs have multiple labs that are available when you buy a lab bundle; these labs are available for 90 days and up to 25 hours whichever comes first. The timer only counts down when you actually use it by signing in. You can also buy more lab time in increments of five hours. Currently the Cisco Learning Labs support the following &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco Certifications&lt;/a&gt;:&lt;/p&gt;

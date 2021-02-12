@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>WAN optimization on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/wan-optimization/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/wan-optimization/</link>
     <description>Recent content in WAN optimization on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 19 Oct 2011 16:30:04 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/wan-optimization/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Oct 2011 16:30:04 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/wan-optimization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Types of WAN Links</title>
-      <link>https://ciscoskills.net/2011/10/types-of-wan-links/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/10/types-of-wan-links/</link>
       <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/10/types-of-wan-links/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/10/types-of-wan-links/</guid>
       <description>
         
           &lt;p&gt;I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization. If we have an office in &lt;a href=&#34;http://en.wikipedia.org/wiki/New_York&#34; title=&#34;New York&#34;&gt;New York&lt;/a&gt; and another office in &lt;a href=&#34;http://en.wikipedia.org/wiki/Wyoming&#34; title=&#34;Wyoming&#34;&gt;Wyoming&lt;/a&gt;  we need these offices to be connected to each other so that they seem to be on the same network even though they are miles away these types of WAN connections and protocols  would do it.&lt;/p&gt;

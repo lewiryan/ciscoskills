@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CCNP on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/ccnp/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/ccnp/</link>
     <description>Recent content in CCNP on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 25 May 2017 12:30:53 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ccnp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 May 2017 12:30:53 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/ccnp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuring EIGRP - Named Mode</title>
-      <link>https://ciscoskills.net/2017/05/configuring-eigrp-named-mode/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/05/configuring-eigrp-named-mode/</link>
       <pubDate>Thu, 25 May 2017 12:30:53 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/05/configuring-eigrp-named-mode/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/05/configuring-eigrp-named-mode/</guid>
       <description>
         
           &lt;p&gt;From its older brother IGRP which was developed in 1980s to overcome the limitations of RIP, EIGRP was an &amp;quot;Enhanced&amp;quot; IGRP protocol. The main purpose of EIGRP was to  overcome the limitations of classful networks and make EIGRP a classless routing protocol. During designing of this protocol a different convergence algorithm was used making EIGRP that &amp;quot;hybrid&amp;quot; between distance-vector and link-state routing protocols. In this post we&#39;ll go over a basic design and setup for EIGRP, however instead of using the &amp;quot;classic way&amp;quot; let&#39;s look at configuring EIGRP using named mode which is available in Cisco IOS starting in version 15.2&lt;/p&gt;
 &lt;p&gt;This topology is pretty simple, I have three routers and each them is connected to the other two routers.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/05/eigrp-named1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/05/eigrp-named1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;All routers have been setup with their local addresses and can ping any network that is locally attached to them. There are two ways to configure EIGRP we could configure it the &amp;quot;classic way&amp;quot; or use named mode. Nothing has changed with EIGRP itself so you could have one router use classic and another router use named mode and the protocol would exchange routing information between the two. The change is to simplify the configuration into one spot, which is under the router EIGRP process instead of having some EIGRP configuration under each interface. Let&#39;s get started.&lt;/p&gt;
 &lt;p&gt;Create a named EIGRP process on all routers:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#router eigrp CISCOSKILLS
@@ -221,10 +221,10 @@
     
     <item>
       <title>Cisco VIRL is out ... for a price</title>
-      <link>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/12/cisco-virl-is-out-...-for-a-price/</link>
       <pubDate>Fri, 05 Dec 2014 03:45:43 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/12/cisco-virl-is-out-...-for-a-price/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34; alt=&#34;virl-logo&#34;&gt;&lt;/a&gt;Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)&lt;/p&gt;
@@ -241,10 +241,10 @@
     
     <item>
       <title>Some QoS Guidelines</title>
-      <link>https://ciscoskills.net/2014/08/some-qos-guidelines/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/08/some-qos-guidelines/</link>
       <pubDate>Wed, 06 Aug 2014 02:15:54 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/08/some-qos-guidelines/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/08/some-qos-guidelines/</guid>
       <description>
         
           &lt;p&gt;When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared but it always something being tested on so we know it was there, somewhere… QoS can be a little boring and it does get a reputation of being difficult to understand, like where and how do I implement QoS? Most of the time QoS is not configured which causes applications to suffer in the end have an impact of end user performance. Throwing bandwidth to fix the problem is usually a costly risk, and remember you still may have the same performance problems. What also makes it interesting is you may have an environment that runs fine without QoS, so why do you need it? Well there&#39;s no easy button to fix or find these unanswered questions about QoS. In this post I&#39;m referencing guidelines of where to start looking which will hopefully help answer some of those unanswered questions. :) A good place to start is at RFC 4594, (&lt;a href=&#34;http://tools.ietf.org/html/rfc4594&#34;&gt;Configuration Guidelines for DiffServ Service Classes&lt;/a&gt;) which provides an industry best practice on QoS. These are not standards that the RFC published but a good FYI. One of the reasons why RFC 4594 is not a standard is to work with what the individual business requires. For example VoIP/Video may not be the number one priority in the network for some businesses. Cisco has even made a slight change with RFC 4594 by switching the Call-Signaling and Broadcast Video markings to CS3 and CS5. &lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/08/cisco-modified-rfc-4594.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/08/cisco-modified-rfc-4594.jpg&#34; alt=&#34;Cisco-Modified-RFC-4594&#34;&gt;&lt;/a&gt; Crawl, walk, run is the method Cisco recognizes as not all enterprises are ready for such a complex QoS design. Starting from a phased approach is often more successful than an all-in one approach. (Rome wasn’t built in a day) Looking at the three different classes below, it would be much simpler to start at a 4-Class model and work our way up if the business needs demand it. &lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/08/cisco-qos-class-model.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/08/cisco-qos-class-model.png&#34; alt=&#34;Cisco-QoS-Class-model&#34;&gt;&lt;/a&gt; Keep in mind that depending on the hardware you are running there are different types QoS syntax, like MLS QoS, MQC, and C3PL. These all have different QoS capabilities depending on the type of QoS syntax you&#39;re using. Catalyst 2960/3560/3750 are the last platforms to use MLS QoS.&lt;/p&gt;
@@ -281,10 +281,10 @@
     
     <item>
       <title>CCNP Security Refresh</title>
-      <link>https://ciscoskills.net/2014/02/ccnp-security-refresh/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/02/ccnp-security-refresh/</link>
       <pubDate>Mon, 03 Feb 2014 14:30:27 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/02/ccnp-security-refresh/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/02/ccnp-security-refresh/</guid>
       <description>
         
           &lt;p&gt;Cisco recently published its &lt;a href=&#34;http://www.cisco.com/web/offers/lp/2014-annual-security-report/index.html&#34;&gt;2014 Annual Security Report&lt;/a&gt;, and some interesting data was captured in 2013. One of the details was a talent gap in network security and because of this gap Cisco has a major revision in the CCNP Security certification starting in April. Its estimated that in short term or already present is shortage of more than a million security professionals worldwide! Like mentioned because of this Cisco is reworking the CCNP Security track. Let&#39;s get into the details of the changes coming in April 22nd 2014. One thing I noticed is the exam names themselves such as the old exams are specifying Cisco&#39;s own technologies to solve these security issues.&lt;/p&gt;
@@ -318,10 +318,10 @@
     
     <item>
       <title>Why Go Professional with Cisco Certs?</title>
-      <link>https://ciscoskills.net/2013/09/why-go-professional-with-cisco-certs/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/09/why-go-professional-with-cisco-certs/</link>
       <pubDate>Sat, 14 Sep 2013 18:09:46 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2013/09/why-go-professional-with-cisco-certs/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/09/why-go-professional-with-cisco-certs/</guid>
       <description>
         
           &lt;p&gt;I have had the opportunity to take and thankfully pass &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco certifications&lt;/a&gt; at the associate levels and there is one more associate exam, the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; which hopefully I will get later next year.  While looking at the CCNA Data Center exam I also glanced over the professional arena that Cisco offers and if you’re like me I always like learning new things especially in technical field. Getting those “aha moments” once in a while makes it worth it, but beyond just over all knowledge of additional technologies why would you go on taking a professional Cisco cert? I find these type of questions all over web, “Is CCNP worth it?” My answer is it depends on your current job situation. Let’s say you are in dead-end entry-level technical position, you’ve been there for a couple of years and for the most part your job hasn’t change. Would getting a CCNP automatically move you up those ranks? Probably not. You also have to look at the company you’re working for, is this just an average company, and all that is needed is a technical person or team depending on the size to support the environment? Would getting a CCNP be worth it, are you actually going to be using that knowledge you learned to better help the company? Or would that be wasted time and money? Let’s say you don’t have your foot in the door and you are right out of college or even high school would getting a CCNP get you noticed? Absolutely however I would not recommend getting a CCNP and then looking for a job. Start out with &lt;a href=&#34;http://en.wikipedia.org/wiki/CompTIA&#34; title=&#34;CompTIA&#34;&gt;Network+&lt;/a&gt; or CCENT get an entry-level position and start getting that experience that employers often look for. I know its easier said than done but for both of these situations and in my opinion if you can longer move up the ladder or the company is not focused or in need of CCNP knowledge, find a company that is before you start studying in the professional arena. I also think it depends on where you live physically are there actual companies in your area that are in need of CCNP candidates? Or would you have to move, and most importantly do you want to move? Unfortunately these are all questions that I would need answered before I would even start looking in the professional arena personally. Not to say CCNP is not rewarding, there usually is higher pay, and these professional certs have a proven track record in career advancements, gaining additional knowledge and finally staying up to date with current network technologies. You may even find yourself being contacted by company recruiters if your name is out there. In my opinion any body that passes any Cisco Certification has definitely made themselves noticeable but there has to be balance. Where do I stand? I think eventually I&#39;ll get there, but with my current position I&#39;m pretty happy where I am. :) When putting this post together I was also reading a published a white paper that Cisco put out recently looking at the value of Cisco Certified Employees take a look at the linked PDF and like always I hope this information is helpful, comment below of what you think about of professional certs? Do you have any, have they helped out and are they worth it? &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/09/cisco_employervalue.pdf&#34;&gt;What Is the Value of a Cisco Certified Employee?&lt;/a&gt;&lt;/p&gt;
@@ -337,10 +337,10 @@
     
     <item>
       <title>Cisco Learning Labs is Live!</title>
-      <link>https://ciscoskills.net/2011/04/cisco-learning-labs-is-live/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/04/cisco-learning-labs-is-live/</link>
       <pubDate>Wed, 13 Apr 2011 14:15:53 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/04/cisco-learning-labs-is-live/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/04/cisco-learning-labs-is-live/</guid>
       <description>
         
           &lt;p&gt;Yesterday was kind of exciting at least for me when I got an e-mail in the morning about &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; Learning Labs. Studying for the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt;, CCNP or CCIP is in itself changeling, but getting that hands-on experience is a another problem! When money is short that last thing you want to do is spend it on routers and switches, and most of them on &lt;a href=&#34;http://en.wikipedia.org/wiki/EBay&#34; title=&#34;EBay&#34;&gt;eBay&lt;/a&gt; are used and the risk of failing devices makes it a scary choice. The Cisco Learning Labs which started yesterday runs the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;Cisco IOS&lt;/a&gt; software on &lt;a href=&#34;http://en.wikipedia.org/wiki/Unix&#34; title=&#34;Unix&#34;&gt;UNIX&lt;/a&gt;, this makes it a real configuration and provides people the ability to use the Cisco IOS software on their PC with an internet connection. What it the difference between simulators like &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_Tracer&#34; title=&#34;Packet Tracer&#34;&gt;Packet Tracer&lt;/a&gt; and GNS3? We know that Packet Tracer does not support all the commands, but is enough for the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Networking_Academy&#34; title=&#34;Cisco Networking Academy&#34;&gt;Cisco Networking Academy&lt;/a&gt;. Packet Tracer does a great job, but if you ever wanted to really explore the router or switch you will need to have access to real equipment. GNS3 does an excellent job for routers but fails on switches and takes some &lt;a href=&#34;http://en.wikipedia.org/wiki/Central_processing_unit&#34; title=&#34;Central processing unit&#34;&gt;CPU&lt;/a&gt; power. You also need the real Cisco IOS and the only &amp;quot;legal&amp;quot; way to get one is from the router that you bought. Cisco Learning Labs have multiple labs that are available when you buy a lab bundle; these labs are available for 90 days and up to 25 hours whichever comes first. The timer only counts down when you actually use it by signing in. You can also buy more lab time in increments of five hours. Currently the Cisco Learning Labs support the following &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco Certifications&lt;/a&gt;:&lt;/p&gt;

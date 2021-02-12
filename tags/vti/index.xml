@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VTI on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/vti/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/vti/</link>
     <description>Recent content in VTI on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 08 Aug 2020 15:41:06 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/vti/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Aug 2020 15:41:06 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/vti/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VTIs with ASA</title>
-      <link>https://ciscoskills.net/2020/08/vtis-with-asa/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2020/08/vtis-with-asa/</link>
       <pubDate>Sat, 08 Aug 2020 15:41:06 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2020/08/vtis-with-asa/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2020/08/vtis-with-asa/</guid>
       <description>
         
           &lt;p&gt;I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago! We only got introduced into this technology with ASA when version 9.7 (2017) and above arrived....&lt;/p&gt;
 &lt;p&gt;In the old days, which wasn&#39;t that long ago.... We were stuck with cryptomaps to interfaces and dealing with &amp;quot;interesting&amp;quot; traffic when working with ASAs...Well time for change no more defining interesting traffic, we route these bits instead! Any traffic we want to go over the tunnel is routed over, we can apply ACLs on the inbound interface just like we do with physical interfaces, so simple...&lt;/p&gt;
 &lt;p&gt;Here is the topology I&#39;m working with:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2020/07/vti-asa.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2020/07/vti-asa.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This is a pretty standard setup, basically we have two sites and want a tunnel between them. We can setup a VTI Tunnel and route via the next hop address. You can also run a routing protocol over this so this can scale out easy.&lt;/p&gt;
 &lt;p&gt;In this example I got two Cisco ASAs using version 9.12(2), just like the old days, things have to match in order to get a tunnel up. In this example I&#39;m using IKEv2 this policy has to match on both ends:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto ikev2 policy 1

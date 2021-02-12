@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Uncategorized on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/uncategorized/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized/</link>
     <description>Recent content in Uncategorized on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 19 Oct 2016 00:45:07 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/uncategorized/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Oct 2016 00:45:07 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Factory Reset Firepower 4100 &amp; 9300</title>
-      <link>https://ciscoskills.net/2016/10/factory-reset-firepower-4100-9300/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/10/factory-reset-firepower-4100-9300/</link>
       <pubDate>Wed, 19 Oct 2016 00:45:07 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2016/10/factory-reset-firepower-4100-9300/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/10/factory-reset-firepower-4100-9300/</guid>
       <description>
         
           &lt;p&gt;I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy. (Edit: 7-21-17) After Gabriele made this &lt;a href=&#34;http://ciscoskills.net/2016/10/18/factory-reset-firepower-4100-9300/#comment-2869&#34;&gt;comment&lt;/a&gt; it looks like you can. You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:&lt;/p&gt;
@@ -72,10 +72,10 @@
     
     <item>
       <title>640-911 (Chapter 5)</title>
-      <link>https://ciscoskills.net/2014/02/640-911-chapter-5/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/02/640-911-chapter-5/</link>
       <pubDate>Thu, 13 Feb 2014 19:25:55 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/02/640-911-chapter-5/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/02/640-911-chapter-5/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt;Last week we covered chapter four which talked about the TCP/IP and the DoD models and what role they cover in networking as we learned that every application like FTP, DNS, DHCP depend on it. Like always post questions if you have any about the book &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. I&#39;ll continue to cover  topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. Let&#39;s go over chapter five. **Overview: **I think we knew it was on the way, in this chapter we opened the door to IPv4 addressing. If this is your first time understanding IP addresses go over it carefully, this exam will cover it. Know the ranges of a Class A, B and C networks, where&#39;s the loopback? Also know the private IP class ranges of A, B and C. (RFC1918) Know the difference between broadcasts, unicast, and multicast addresses. We also got introduced into IPv6, know the address format, the short hand way to write an IPv6 address as well as the types of IPv6 addresses. (link-local, unicast, global unicast addresses, and unique local address) &lt;strong&gt;My thoughts:&lt;/strong&gt; If you have been around IPv4 addresses you might be good on this chapter, towards the end of the chapter I would look at IPv6, we don&#39;t talk about subnetting yet that&#39;s next week. :) Pretty short chapter this week post questions below if you have any on this chapter.&lt;/p&gt;
@@ -86,10 +86,10 @@
     
     <item>
       <title>Cisco Discovery Protocol</title>
-      <link>https://ciscoskills.net/2011/07/cisco-discovery-protocol/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/07/cisco-discovery-protocol/</link>
       <pubDate>Wed, 06 Jul 2011 15:45:45 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/07/cisco-discovery-protocol/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/07/cisco-discovery-protocol/</guid>
       <description>
         
           &lt;p&gt;In today&#39;s post let&#39;s talk about CDP the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Discovery_Protocol&#34; title=&#34;Cisco Discovery Protocol&#34;&gt;Cisco Discovery Protocol&lt;/a&gt;. This protocol helps us in two ways, it first helps us verify that a connection between &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;router&lt;/a&gt; or switch is set up correctly  at least up to layer two in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt;. This also helps us discover &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; devices that are in are network and which &lt;a href=&#34;http://en.wikipedia.org/wiki/Interface_%28computing%29&#34; title=&#34;Interface (computing)&#34;&gt;interfaces&lt;/a&gt; these devices are connected too and from are Cisco equipment. The Cisco discovery protocol is Cisco proprietary  and before I go any further let me mention that CDP is a security risk because of the detailed &lt;a href=&#34;http://en.wikipedia.org/wiki/Information&#34; title=&#34;Information&#34;&gt;information&lt;/a&gt; CDP gives out which helps you has a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_administrator&#34; title=&#34;Network administrator&#34;&gt;network administrator&lt;/a&gt; build a current network infrastructure, this can also hurt you because this information can easily be sniffed by programs that are easily searched on the internet. So what is the purpose of CDP? CDP can gather device information from neighboring switches and routers without the need for a password. Like mentioned before this is great for troubleshooting a problem, discovering new devices that are not documented in your &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_topology&#34; title=&#34;Network topology&#34;&gt;network topology&lt;/a&gt;, and verifying that each device is physically connected to the correct interfaces according to network documentation. CDP can discover the following details from neighboring devices that support CDP:&lt;/p&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>EtherChannel on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/etherchannel/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/etherchannel/</link>
     <description>Recent content in EtherChannel on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 07 May 2018 13:15:02 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/etherchannel/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 May 2018 13:15:02 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/etherchannel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuring Layer Three EtherChannel</title>
-      <link>https://ciscoskills.net/2018/05/configuring-layer-three-etherchannel/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/05/configuring-layer-three-etherchannel/</link>
       <pubDate>Mon, 07 May 2018 13:15:02 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/05/configuring-layer-three-etherchannel/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/05/configuring-layer-three-etherchannel/</guid>
       <description>
         
           &lt;p&gt;When you want more speed all you need is EtherChannel, EtherChannel can be configured as a layer three logical interface instead of just sitting at layer two. This is very helpful if we are running layer three down to the access layer switches, instead of at the distribution layer. You also could see this in a collapsed core design, we also don’t have to worry too much about STP when we configure EtherChannel’s. The only requirements to use layer three EtherChannels is your switch need is support layer three “routed” interfaces, so with that let&#39;s get started!&lt;/p&gt;
 &lt;p&gt;This is pretty much the same as configuring a &lt;a href=&#34;https://ciscoskills.net/2013/10/12/configuring-etherchannel-pagb/&#34;&gt;layer two EtherChannel&lt;/a&gt; with one exception, in this example I’ve got three switches one access layer switch and two distribution/core switches. We are running layer three all the way down to the access layer, so we don’t have worry about STP between the two distribution/core switches and remember VLANs/Networks are locally significant to each access layer switch in this design.
-&lt;img src=&#34;https://ciscoskills.net/images/2018/05/etherchannel-l3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/05/etherchannel-l3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I have already configured SW1 and SW2 links between them as well as the network that SW3 has for the access layer, on SW1 and SW2 we need to create port-channels going to SW3.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# interface ethernet2/1-2
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-if-range)# channel-group 11 mode active
@@ -49,10 +49,10 @@
     
     <item>
       <title>Configuring EtherChannel (PAgb)</title>
-      <link>https://ciscoskills.net/2013/10/configuring-etherchannel-pagb/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/10/configuring-etherchannel-pagb/</link>
       <pubDate>Sat, 12 Oct 2013 15:56:48 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2013/10/configuring-etherchannel-pagb/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/10/configuring-etherchannel-pagb/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png&#34; alt=&#34;NetworkSwitches&#34;&gt;&lt;/a&gt;Bundling physical links into one logical link is a common practice to up the bandwidth between switches, you may have this also configured on a server to bundle connections as well. In this tutorial I have two 2960 switches both of them trunking all &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; on two gigabit ports. So in the end game is get 2gbps instead of 1gbps between switches while using Cisco’s &lt;a href=&#34;http://en.wikipedia.org/wiki/Proprietary_protocol&#34; title=&#34;Proprietary protocol&#34;&gt;proprietary protocol&lt;/a&gt; PAgb.   It is important to remember that both of these protocols (PAgb and &lt;a href=&#34;http://en.wikipedia.org/wiki/Link_aggregation&#34; title=&#34;Link aggregation&#34;&gt;LACP&lt;/a&gt;) are link aggregation protocols only, their job is to make sure that &lt;a href=&#34;http://en.wikipedia.org/wiki/EtherChannel&#34; title=&#34;EtherChannel&#34;&gt;EtherChannel&lt;/a&gt; is setup correctly by negotiating. This helps prevent EtherChannel mismatches and loops. You could manually set the etherchannel mode to &amp;quot;on&amp;quot; instead of using either of these aggregation protocols. However this is considered best practice to use one of these link aggregation protocols. Here are some Guidelines for Configuring EtherChannel:&lt;/p&gt;
@@ -99,10 +99,10 @@
     
     <item>
       <title>Basic Understanding of EtherChannel</title>
-      <link>https://ciscoskills.net/2012/01/basic-understanding-of-etherchannel/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2012/01/basic-understanding-of-etherchannel/</link>
       <pubDate>Wed, 04 Jan 2012 17:00:21 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/01/basic-understanding-of-etherchannel/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2012/01/basic-understanding-of-etherchannel/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/01/network-cables.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/network-cables.png&#34; alt=&#34;&#34; title=&#34;network cables&#34;&gt;&lt;/a&gt;Let&#39;s start the New Year with understanding &lt;a href=&#34;http://en.wikipedia.org/wiki/EtherChannel&#34; title=&#34;EtherChannel&#34;&gt;EtherChannel&lt;/a&gt; which is having more than one link connected to a server, switch, or router and treating it like one logical link. This is a fault-tolerant technique that is becoming a common setup in highly available, core devices. Cisco has come up with their own proprietary version call EtherChannel. The &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_standard&#34; title=&#34;Open standard&#34;&gt;open standard&lt;/a&gt; that &lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt; approved is 802.3ad which works with other venders and is often called &lt;a href=&#34;http://en.wikipedia.org/wiki/Link_aggregation&#34; title=&#34;Link aggregation&#34;&gt;LAG&lt;/a&gt; for short. Why would I use EtherChannel? One big benefit is bandwidth you can combine up to eight parallel links and depending on the port speed and the physical cable you could in theory get up to 80 Gbit/s per second! (Using &lt;a href=&#34;http://en.wikipedia.org/wiki/SFP_transceiver&#34; title=&#34;Small form-factor Pluggable Transceiver&#34;&gt;SPF&lt;/a&gt;+ links which can get up 10G a piece in theory) Etherchannel aggregates traffic across all available active ports which make it look like one logical cable. &lt;a href=&#34;http://ciscoskills.net/2012/01/04/basic-understanding-of-etherchannel/etherchannele-2/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/etherchannele1.png&#34; alt=&#34;EtherChannel between Switches&#34; title=&#34;EtherChannel&#34;&gt;&lt;/a&gt; Although this sounds wonderful and it is there are some things to keep in mind. EtherChannel does not always distribute the traffic equally across all available links it depends on the number of links you have connected but even that does not always guarantee equal traffic. EtherChannel hands-out values 0-7 (that&#39;s why you can only have up to eight links) on each link. Some of those links may have more than one value assigned to them this makes balancing the traffic not always equal. So looking at the table below if we were using five physical links and every link was in theory in perfect distribution three of those links would be receiving twice as much traffic than the other two links. &lt;a href=&#34;http://ciscoskills.net/2012/01/04/basic-understanding-of-etherchannel/etherchannel-tablee/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/etherchannel-tablee.png&#34; alt=&#34;EtherChannel Physical Link Balancing&#34; title=&#34;EtherChannel Table&#34;&gt;&lt;/a&gt; If every link was in perfect distribution you could have physical links of two, four, or eight. But this depends on the usage of a particular device because Etherchannel does not load balance between physical links if one link becomes oversaturated it will drop packets. Etherchannel can look at the following methods to decide which &lt;a href=&#34;http://en.wikipedia.org/wiki/Physical_Layer&#34; title=&#34;Physical Layer&#34;&gt;physical link&lt;/a&gt; to send data over.&lt;/p&gt;

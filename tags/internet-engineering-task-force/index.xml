@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Internet Engineering Task Force on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/internet-engineering-task-force/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/internet-engineering-task-force/</link>
     <description>Recent content in Internet Engineering Task Force on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 02 Nov 2011 18:15:36 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/internet-engineering-task-force/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Nov 2011 18:15:36 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/internet-engineering-task-force/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OSPF...What a Protocol!</title>
-      <link>https://ciscoskills.net/2011/11/ospf...what-a-protocol/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/11/ospf...what-a-protocol/</link>
       <pubDate>Wed, 02 Nov 2011 18:15:36 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/11/ospf...what-a-protocol/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/11/ospf...what-a-protocol/</guid>
       <description>
         
           &lt;p&gt;For today let&#39;s discuss a routing protocol that was being thought of in 1987 by the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Engineering_Task_Force&#34; title=&#34;Internet Engineering Task Force&#34;&gt;Internet Engineering Task Force (IETF)&lt;/a&gt;. OSPF currently has three versions and the first version was in the 1980s when the internet was still being used for research. What is interesting about the first version of OSPF is although one version ran on routers the other type of version ran on UNIX computers. When OSPFv2 come out in the 1990s the &lt;a href=&#34;http://en.wikipedia.org/wiki/International_Organization_for_Standardization&#34; title=&#34;International Organization for Standardization&#34;&gt;International Organization for Standardization (ISO)&lt;/a&gt; was working on another routing protocol called IS-IS (&lt;a href=&#34;http://en.wikipedia.org/wiki/IS-IS&#34; title=&#34;IS-IS&#34;&gt;Intermediate System-to-Intermediate System&lt;/a&gt;). OSPF is considered to be an interior gateway protocol which is like IS-IS but unlike OSPF IS-IS runs on the data-link layer while OSPF runs at layer three the network layer. OSPF is considered to be a &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;link-state protocol&lt;/a&gt;, unlike &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt;, RIPv2 and &lt;a href=&#34;http://en.wikipedia.org/wiki/Interior_Gateway_Routing_Protocol&#34; title=&#34;Interior Gateway Routing Protocol&#34;&gt;IGRP&lt;/a&gt; , this protocol is what OSPF shines on. Instead of looking at hop-count like RIP, OSPF looks at the cost of the link. Take for example the picture below, two routes are available to the destination. One is one hop away while the other is two hops away. If we are using RIP then the route with the least amount of hops is the preferred route. However if OSPF was running it would look at the cost of the link like the bandwidth of the link.  In this example the link with the lowest hop count is also the slowest of the two links. So OSPF would use the link with the highest hop count but in this example that link is also the fastest out of the two.&lt;/p&gt;

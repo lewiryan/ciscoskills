@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Server (computing) on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/server-computing/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/server-computing/</link>
     <description>Recent content in Server (computing) on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 17 Mar 2011 16:30:41 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/server-computing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Mar 2011 16:30:41 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/server-computing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Common Network Attacks</title>
-      <link>https://ciscoskills.net/2011/03/common-network-attacks/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/03/common-network-attacks/</link>
       <pubDate>Thu, 17 Mar 2011 16:30:41 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/03/common-network-attacks/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/03/common-network-attacks/</guid>
       <description>
         
           &lt;p&gt;Network attacks have always been around but they are getting more advanced every day. These attacks are also easy to set up and use. In the past these types of attacks would have to be pulled off by someone who really knew about computers and to know what they are doing. That&#39;s a true hacker, now there are programs that do the same damage and sometimes more with a couple clicks of a mouse, so now anybody can bring down a network. The only thing that changes is the motivation of the person. Some People that run scripts or programs don&#39;t always know what the program does, so they click on some buttons and the program does its thing, if it fails sometimes the person stops there and gives up. But there are people who want to do some real damage to a company these people usually have organizations like the Anonymous group. So what are some of the common attacks people or organizations do? Well in a company the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_administrator&#34; title=&#34;Network administrator&#34;&gt;network administrators&lt;/a&gt; might focus on the outside of the network, but have their inside network unsecure or extremely weak. So if somebody on the inside was able to execute and attack it could have a huge effect on the network. So attacks that could occur:&lt;/p&gt;
@@ -47,10 +47,10 @@
     
     <item>
       <title>WordPress.com Hit by a DoS Attack</title>
-      <link>https://ciscoskills.net/2011/03/wordpress.com-hit-by-a-dos-attack/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/03/wordpress.com-hit-by-a-dos-attack/</link>
       <pubDate>Fri, 04 Mar 2011 15:30:53 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/03/wordpress.com-hit-by-a-dos-attack/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/03/wordpress.com-hit-by-a-dos-attack/</guid>
       <description>
         
           &lt;p&gt;Yesterday, (March 3rd 2011) there was a massive &lt;a href=&#34;http://en.wikipedia.org/wiki/Denial-of-service_attack&#34; title=&#34;Denial-of-service attack&#34;&gt;DoS attack&lt;/a&gt; that hit &lt;a href=&#34;http://wordpress.com/&#34; title=&#34;WordPress.com&#34;&gt;WordPress.com&lt;/a&gt;. Cisco Skill&#39;s uses WordPress.com has a hosting provider but is not believed to one of the sites hit. There still is no word on who or why they targeted WordPress.com but goes to show that Denial of Service is still a popular type of attack and although simple to set up they can still bring down enterprise networks. So what exactly is denial of service? To make it simple a denial of service can be a range of things but the main goal of a DoS attack is to slow the network down so real traffic can&#39;t get access or is extremely unresponsive. One example is using the one of the TCP services and do a &lt;a href=&#34;http://en.wikipedia.org/wiki/SYN_flood&#34; title=&#34;SYN flood&#34;&gt;SYN flood&lt;/a&gt;, which a host or thousands of hosts send thousands of &lt;a href=&#34;http://en.wikipedia.org/wiki/Transmission_Control_Protocol&#34; title=&#34;Transmission Control Protocol&#34;&gt;SYN packets&lt;/a&gt; to the &lt;a href=&#34;http://en.wikipedia.org/wiki/Server_%28computing%29&#34; title=&#34;Server (computing)&#34;&gt;server&lt;/a&gt;. The server sends a SYN ACK but the host does not respond leaving the session open until a timeout occurs. By having all these fake sessions open the server may not be able to handle additional traffic making it seem the service is unavailable. There are many more types of denial of service attacks and the SYN flood is just one example. [caption id=&amp;quot;attachment_840&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;300&amp;quot; caption=&amp;quot;Credit: Cisco Inc.&amp;quot;]&lt;a href=&#34;http://ciscoskills.net/2011/03/04/wordpress-com-hit-by-a-dos-attack/syn-attack/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/syn-attack.jpg?w=300&#34; alt=&#34;SYN Flood Attack&#34; title=&#34;SYN Attack&#34;&gt;&lt;/a&gt;[/caption] These DoS attacks have been around for a while and they are relatively easy to set up and configure. An attacker could infect machines with a virus that the user or anti-software is unaware of its existence. The virus waits until it has been activated by the remote attacker. This virus could have spread to hundreds of thousands of machines and are waiting for the attacker to start the attack once activated the denial of service starts and the attacker can pick which target to bring down. &lt;a href=&#34;http://en.wikipedia.org/wiki/Matt_Mullenweg&#34; title=&#34;Matt Mullenweg&#34;&gt;Matt Mullenweg&lt;/a&gt; the founder of WordPress.com wrote an e-mail sent to CNET.com and said the following:&lt;/p&gt;

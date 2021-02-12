@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FAQs Help and Tutorials on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/faqs-help-and-tutorials/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/faqs-help-and-tutorials/</link>
     <description>Recent content in FAQs Help and Tutorials on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 15 Apr 2011 18:00:28 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/faqs-help-and-tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Apr 2011 18:00:28 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/faqs-help-and-tutorials/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Troubleshooting Process</title>
-      <link>https://ciscoskills.net/2011/04/troubleshooting-process/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/04/troubleshooting-process/</link>
       <pubDate>Fri, 15 Apr 2011 18:00:28 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/04/troubleshooting-process/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/04/troubleshooting-process/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/thinking.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/thinking.png&#34; alt=&#34;&#34; title=&#34;Troubleshooting&#34;&gt;&lt;/a&gt;Today&#39;s post is going to be talking about &lt;a href=&#34;http://en.wikipedia.org/wiki/Troubleshooting&#34; title=&#34;Troubleshooting&#34;&gt;troubleshooting&lt;/a&gt; and where to start the troubleshooting process. Yes there is an actual process that every technician should be aware of. You can also use this troubleshooting process at home, you may not know how to fix it but at least you know where the issue is and find someone who can.  Before we begin if you haven&#39;t seen yet, let me introduce to you the troubleshooting process:&lt;/p&gt;

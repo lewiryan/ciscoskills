@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CDP on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/cdp/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/cdp/</link>
     <description>Recent content in CDP on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 06 Jul 2011 15:45:45 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/cdp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jul 2011 15:45:45 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/cdp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cisco Discovery Protocol</title>
-      <link>https://ciscoskills.net/2011/07/cisco-discovery-protocol/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/07/cisco-discovery-protocol/</link>
       <pubDate>Wed, 06 Jul 2011 15:45:45 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/07/cisco-discovery-protocol/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/07/cisco-discovery-protocol/</guid>
       <description>
         
           &lt;p&gt;In today&#39;s post let&#39;s talk about CDP the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Discovery_Protocol&#34; title=&#34;Cisco Discovery Protocol&#34;&gt;Cisco Discovery Protocol&lt;/a&gt;. This protocol helps us in two ways, it first helps us verify that a connection between &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;router&lt;/a&gt; or switch is set up correctly  at least up to layer two in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt;. This also helps us discover &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; devices that are in are network and which &lt;a href=&#34;http://en.wikipedia.org/wiki/Interface_%28computing%29&#34; title=&#34;Interface (computing)&#34;&gt;interfaces&lt;/a&gt; these devices are connected too and from are Cisco equipment. The Cisco discovery protocol is Cisco proprietary  and before I go any further let me mention that CDP is a security risk because of the detailed &lt;a href=&#34;http://en.wikipedia.org/wiki/Information&#34; title=&#34;Information&#34;&gt;information&lt;/a&gt; CDP gives out which helps you has a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_administrator&#34; title=&#34;Network administrator&#34;&gt;network administrator&lt;/a&gt; build a current network infrastructure, this can also hurt you because this information can easily be sniffed by programs that are easily searched on the internet. So what is the purpose of CDP? CDP can gather device information from neighboring switches and routers without the need for a password. Like mentioned before this is great for troubleshooting a problem, discovering new devices that are not documented in your &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_topology&#34; title=&#34;Network topology&#34;&gt;network topology&lt;/a&gt;, and verifying that each device is physically connected to the correct interfaces according to network documentation. CDP can discover the following details from neighboring devices that support CDP:&lt;/p&gt;

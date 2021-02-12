@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cisco IOU on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/cisco-iou/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/cisco-iou/</link>
     <description>Recent content in Cisco IOU on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 10 May 2014 01:29:14 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/cisco-iou/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 May 2014 01:29:14 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/cisco-iou/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GNS3 Alpha – Install and Setup</title>
-      <link>https://ciscoskills.net/2014/05/gns3-alpha-install-and-setup/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/05/gns3-alpha-install-and-setup/</link>
       <pubDate>Sat, 10 May 2014 01:29:14 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/05/gns3-alpha-install-and-setup/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/05/gns3-alpha-install-and-setup/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png?w=150&#34; alt=&#34;GNS3-logo&#34;&gt;&lt;/a&gt;So Alpha 3 came out last week with a bunch updates and I decided to give it run this week. I&#39;m not doing anything that difficult with the program so maybe I&#39;m not breaking it in all the way but I also was looking at some installation notes for Ubuntu and other Linux flavors, I figured I’ll try to install it on a Windows machine and not Linux (call me lazy) feel free to follow this guide.   To install GNS3, here is what I had&lt;/p&gt;

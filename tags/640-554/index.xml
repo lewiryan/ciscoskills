@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>640-554 on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/640-554/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/640-554/</link>
     <description>Recent content in 640-554 on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 May 2012 16:39:21 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/640-554/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 May 2012 16:39:21 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/640-554/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CCNA Security - 640-554</title>
-      <link>https://ciscoskills.net/2012/05/ccna-security-640-554/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2012/05/ccna-security-640-554/</link>
       <pubDate>Mon, 28 May 2012 16:39:21 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/05/ccna-security-640-554/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2012/05/ccna-security-640-554/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/05/network-security-lock.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/05/network-security-lock.png&#34; alt=&#34;&#34; title=&#34;network-security-lock&#34;&gt;&lt;/a&gt;Out with the old and in with new Cisco is updating its well-known certification &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Security&lt;/a&gt;. Candidates that are studying for the older exam (640-553) are suggested to take it on or before September 30th 2012. What has changed in the exam? For the most part Cisco SDM is no longer covered, as it has reached its &amp;quot;End of Life&amp;quot; and in fact Cisco Engineering stopped covering the product from developing and testing on February 26th 2012. You can still renew the product for support (Cisco SmartNet) until March 24th of 2013 and the last date the product will get support will be February 28th of 2014 after that it will become an old friend :). Let&#39;s compare these two CCNA Security Exams and see what has changed, removed and added. (640-553 &amp;amp; 640-554)  I have compared these two exams side-by-side. If you take look at these two exams, the red on the older exam means it is no longer covered on the (640-554 exam) and the blue on the new exam is new material that is not covered on the (640-553 exam). For the most part Cisco SDM is no longer available instead it is the Cisco Configuration Professional along with that the new exam mentions the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_ASA&#34; title=&#34;Cisco ASA&#34;&gt;Cisco ASA&lt;/a&gt; system and walking you into the ASDM along with the different products and services the ASA system offers.&lt;/p&gt;

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>National Broadband Plan on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/national-broadband-plan/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/national-broadband-plan/</link>
     <description>Recent content in National Broadband Plan on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 04 Apr 2011 15:55:39 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/national-broadband-plan/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Apr 2011 15:55:39 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/national-broadband-plan/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basic Wireless Concepts</title>
-      <link>https://ciscoskills.net/2011/04/basic-wireless-concepts/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/04/basic-wireless-concepts/</link>
       <pubDate>Mon, 04 Apr 2011 15:55:39 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/04/basic-wireless-concepts/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/04/basic-wireless-concepts/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/wireless-connection-icon.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/wireless-connection-icon.png&#34; alt=&#34;&#34; title=&#34;wireless-connection-icon&#34;&gt;&lt;/a&gt;Mobility is now a common thing in a business environment, you no longer are fixed to specific cubicle in the work place anymore. What is also amazing is it will continue to change and become easier for employees to get work done, with their phone, tablet, and laptop computer. But what makes this possible? What is the underlying component? The internet is becoming more available in more locations, coffee shops, airports, and your cell phone service provider, with 3G and 4G speeds. Along with the United States of America which is also moving forward with the &lt;a href=&#34;http://broadband.gov/&#34; title=&#34;National Broadband Plan&#34;&gt;National Broadband Plan&lt;/a&gt;. So today let&#39;s explore the wireless concepts!  Wireless can be a scary as you can&#39;t control it. The signal is transmitted in radio waves and if set up insecurely the WLAN (&lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;Wireless Local Area Network&lt;/a&gt;) can easily be your weakest link compared to Ethernet &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LANs&lt;/a&gt;. There are four organizations that deal with the wireless standards and products:&lt;/p&gt;

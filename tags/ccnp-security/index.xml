@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CCNP Security on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/ccnp-security/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/ccnp-security/</link>
     <description>Recent content in CCNP Security on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 03 Feb 2014 14:30:27 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ccnp-security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Feb 2014 14:30:27 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/ccnp-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CCNP Security Refresh</title>
-      <link>https://ciscoskills.net/2014/02/ccnp-security-refresh/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/02/ccnp-security-refresh/</link>
       <pubDate>Mon, 03 Feb 2014 14:30:27 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/02/ccnp-security-refresh/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/02/ccnp-security-refresh/</guid>
       <description>
         
           &lt;p&gt;Cisco recently published its &lt;a href=&#34;http://www.cisco.com/web/offers/lp/2014-annual-security-report/index.html&#34;&gt;2014 Annual Security Report&lt;/a&gt;, and some interesting data was captured in 2013. One of the details was a talent gap in network security and because of this gap Cisco has a major revision in the CCNP Security certification starting in April. Its estimated that in short term or already present is shortage of more than a million security professionals worldwide! Like mentioned because of this Cisco is reworking the CCNP Security track. Let&#39;s get into the details of the changes coming in April 22nd 2014. One thing I noticed is the exam names themselves such as the old exams are specifying Cisco&#39;s own technologies to solve these security issues.&lt;/p&gt;

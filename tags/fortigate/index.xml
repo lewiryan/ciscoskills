@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fortigate on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/fortigate/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/fortigate/</link>
     <description>Recent content in Fortigate on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 11 Oct 2020 18:13:30 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/fortigate/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Oct 2020 18:13:30 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/fortigate/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fortigate ECMP with BGP</title>
-      <link>https://ciscoskills.net/2020/10/fortigate-ecmp-with-bgp/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2020/10/fortigate-ecmp-with-bgp/</link>
       <pubDate>Sun, 11 Oct 2020 18:13:30 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2020/10/fortigate-ecmp-with-bgp/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2020/10/fortigate-ecmp-with-bgp/</guid>
       <description>
         
           &lt;p&gt;It&#39;s like clock work...around this time the seasons are changing..autumn colors are out, and the colder air reminds us that things are changing around here, embrace it! One thing that I&#39;ve been working with is AWS Transit gateways, a common theme this year is all cloud! AWS Transit Gateways make it easier to move towards that!&lt;/p&gt;

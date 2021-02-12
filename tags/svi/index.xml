@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SVI on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/svi/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/svi/</link>
     <description>Recent content in SVI on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 14 May 2019 19:00:40 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/svi/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 May 2019 19:00:40 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/svi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SVIs and &#34;Routed&#34; Ports</title>
-      <link>https://ciscoskills.net/2019/05/svis-and-routed-ports/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/05/svis-and-routed-ports/</link>
       <pubDate>Tue, 14 May 2019 19:00:40 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2019/05/svis-and-routed-ports/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/05/svis-and-routed-ports/</guid>
       <description>
         
           &lt;p&gt;So you have a this nice multiplayer switch, and want to take advantages of all of the features it has to offer. Well there are two different types interface ports on these type of switches. SVIs (Switched Virtual Interface) and &amp;quot;routed&amp;quot; ports, fundamentally they are same and clients/users wouldn&#39;t be able to tell if you were using/going through an SVI or a &amp;quot;routed&amp;quot; port. However they are different and in this post we&#39;ll talk about these two and when and were it would be recommended to place an SVI or a routed port.&lt;/p&gt;
 &lt;p&gt;In order to pass traffic between networks we need a router. Switches work in layer two and routers work in layer three, this separation of duties between devices works well. Doing something like &lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34;&gt;Configuring Router on Stick&lt;/a&gt;, is easier to troubleshoot and usually cheaper to implement. It only becomes a problem when we run out of resources like bandwidth.&lt;/p&gt;
-&lt;p&gt;Looking on the example below, we have three different networks all branching off of this router. The router has three networks configured on this interface the red network, teal network and the blue network. In order for PC1 to reach PC2 it has use the router even through they are plugged on the same switch, they are on different VLANs, different networks. If PC1 was transferring a lot of data between PC2 it could easily tap out that router&#39;s interface. Other devices on those networks like PC3 would become bandwidth starved and struggle to get a good connection for inter-vlan connectivity. &lt;img src=&#34;https://ciscoskills.net/images/2018/07/router-on-a-stickee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Looking on the example below, we have three different networks all branching off of this router. The router has three networks configured on this interface the red network, teal network and the blue network. In order for PC1 to reach PC2 it has use the router even through they are plugged on the same switch, they are on different VLANs, different networks. If PC1 was transferring a lot of data between PC2 it could easily tap out that router&#39;s interface. Other devices on those networks like PC3 would become bandwidth starved and struggle to get a good connection for inter-vlan connectivity. &lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/07/router-on-a-stickee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;However a multilayered switch which has usually plenty of bandwidth on its back plane and would be able to handle this easily and in this example this would be great use case  to create and SVI interface for each network. To create an SVI:&lt;/p&gt;
 &lt;p&gt;We have to have a VLAN created first, in this example lets use 105.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(config)# vlan 105

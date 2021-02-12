@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Servers on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/servers/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/servers/</link>
     <description>Recent content in Servers on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 11 May 2011 16:30:14 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/servers/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 May 2011 16:30:14 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/servers/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding VTP</title>
-      <link>https://ciscoskills.net/2011/05/understanding-vtp/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/05/understanding-vtp/</link>
       <pubDate>Wed, 11 May 2011 16:30:14 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/05/understanding-vtp/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/05/understanding-vtp/</guid>
       <description>
         
           &lt;p&gt;Some people hate it, some people love it. It&#39;s the Cisco proprietary &lt;a href=&#34;http://en.wikipedia.org/wiki/VLAN_Trunking_Protocol&#34; title=&#34;VLAN Trunking Protocol&#34;&gt;VLAN Trunking Protocol&lt;/a&gt; (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt;. I also suggest if you don&#39;t know what a VLAN is check out the post &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34; title=&#34;Creating VLANs&#34;&gt;Creating VLANs&lt;/a&gt; Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information. Take for example if you had 20 switches that need the same VLANs you could do it manually but this runs the risk of human error, with VTP if you configure one switch as a server and all other switches as clients then you can configure all of them. VTP uses Layer two messages to exchange information if a server switch changes or removes VLANS VTP will synchronize all switches so all switches have the same VLANs. &lt;a href=&#34;http://ciscoskills.net/2011/05/11/understanding-vtp/vlan_trunking_protocol_/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/vlan_trunking_protocol_.gif?w=300&#34; alt=&#34;VLAN Trunking Protocol&#34; title=&#34;VLAN_Trunking_Protocol&#34;&gt;&lt;/a&gt; The VTP server distributes VLAN configuration changes through VTP messages, sent over &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;ISL&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.1Q&#34; title=&#34;IEEE 802.1Q&#34;&gt;802.1Q&lt;/a&gt; trunks.&lt;/p&gt;

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VirtualBox on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/virtualbox/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/virtualbox/</link>
     <description>Recent content in VirtualBox on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 10 May 2014 01:29:14 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 May 2014 01:29:14 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GNS3 Alpha – Install and Setup</title>
-      <link>https://ciscoskills.net/2014/05/gns3-alpha-install-and-setup/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/05/gns3-alpha-install-and-setup/</link>
       <pubDate>Sat, 10 May 2014 01:29:14 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/05/gns3-alpha-install-and-setup/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/05/gns3-alpha-install-and-setup/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png?w=150&#34; alt=&#34;GNS3-logo&#34;&gt;&lt;/a&gt;So Alpha 3 came out last week with a bunch updates and I decided to give it run this week. I&#39;m not doing anything that difficult with the program so maybe I&#39;m not breaking it in all the way but I also was looking at some installation notes for Ubuntu and other Linux flavors, I figured I’ll try to install it on a Windows machine and not Linux (call me lazy) feel free to follow this guide.   To install GNS3, here is what I had&lt;/p&gt;
@@ -70,10 +70,10 @@
     
     <item>
       <title>Look at GNS3 - New Version</title>
-      <link>https://ciscoskills.net/2013/07/look-at-gns3-new-version/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/07/look-at-gns3-new-version/</link>
       <pubDate>Sat, 06 Jul 2013 18:41:22 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2013/07/look-at-gns3-new-version/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/07/look-at-gns3-new-version/</guid>
       <description>
         
           &lt;p&gt;&lt;strong&gt;Look at GNS3 - New Version:&lt;/strong&gt; A new version of GNS3 released on July 5th 2013 is available for download. You can download GNS3 v0.8.4 at &lt;a href=&#34;http://www.gns3.net&#34; title=&#34;GNS3: Graphical Network Simulator&#34;&gt;gns3.net&lt;/a&gt;. This release includes improvements and new features. Some of the important one are:&lt;/p&gt;
@@ -108,10 +108,10 @@
     
     <item>
       <title>Windows 8 Developer Preview</title>
-      <link>https://ciscoskills.net/2011/10/windows-8-developer-preview/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/10/windows-8-developer-preview/</link>
       <pubDate>Wed, 12 Oct 2011 17:15:43 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/10/windows-8-developer-preview/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/10/windows-8-developer-preview/</guid>
       <description>
         
           &lt;p&gt;Changing topics for today, I want to talk about the Windows 8 Developer Preview which was released on September 13th. I had the time to install it under &lt;a href=&#34;http://en.wikipedia.org/wiki/VirtualBox&#34; title=&#34;VirtualBox&#34;&gt;virtual box&lt;/a&gt; and was pleasantly surprised! About how fast it installed the easy to understand install prompts and the new &amp;quot;&lt;a href=&#34;http://en.wikipedia.org/wiki/Metro_Design_Language&#34; title=&#34;Metro Design Language&#34;&gt;Metro&lt;/a&gt;&amp;quot; &lt;a href=&#34;http://en.wikipedia.org/wiki/User_interface&#34; title=&#34;User interface&#34;&gt;UI&lt;/a&gt; which is aimed at touched devices. Also the ability to switch to the standard &lt;a href=&#34;http://en.wikipedia.org/wiki/Microsoft_Windows&#34; title=&#34;Microsoft Windows&#34;&gt;Windows operating system&lt;/a&gt;. This is an &lt;a href=&#34;http://en.wikipedia.org/wiki/Software_release_life_cycle&#34; title=&#34;Software release life cycle&#34;&gt;alpha build&lt;/a&gt; so it&#39;s not even on at the beta stages yet, Take a look for yourself! [slideshow] Want to try it for yourself check out &lt;a href=&#34;http://msdn.microsoft.com/en-us/windows/apps/br229516&#34; title=&#34;Windows 8 Developer Preview downloads&#34;&gt;Windows 8 Developer Preview downloads&lt;/a&gt;. This is an alpha build and can be unstable. I would use a &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_machine&#34; title=&#34;Virtual machine&#34;&gt;virtual machine&lt;/a&gt; to test it. Although short to the point that&#39;s all I have so check back for other posts. What do like about Windows 8 DP? What don&#39;t you like? Comment below.&lt;/p&gt;

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>binary on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/binary/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/binary/</link>
     <description>Recent content in binary on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 15 Feb 2011 17:30:58 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/binary/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Feb 2011 17:30:58 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/binary/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Wonders of Binary</title>
-      <link>https://ciscoskills.net/2011/02/the-wonders-of-binary/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/02/the-wonders-of-binary/</link>
       <pubDate>Tue, 15 Feb 2011 17:30:58 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/02/the-wonders-of-binary/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/02/the-wonders-of-binary/</guid>
       <description>
         
           &lt;p&gt;When working with IP addresses and subnet masks you need to have an understanding of how binary works. Binary is still used in computers today, when computers use numbers and letters they use them in a binary format. This guide will be going over numbers, and focusing on the IP addresses in how a computer sees that decimal number. Binary is a relatively easy in understanding and is just another way of looking at numbers. You can do the same basic math in binary as with decimal numbers like adding and multiplying them. The first thing in understanding how binary works is that in binary there is only two digits zeros (0) and ones (1). Working with these two numbers seems easy but if the number is large, it does take some time in converting to binary and from binary. Binary works in the power of twos so with that said let&#39;s look at how to convert binary into a decimal number.&lt;/p&gt;

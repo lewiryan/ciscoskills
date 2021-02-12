@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Automation on Cisco Skills</title>
-    <link>https://ciscoskills.net/tags/automation/</link>
+    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/automation/</link>
     <description>Recent content in Automation on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 13 Nov 2018 15:55:19 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Nov 2018 15:55:19 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/automation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automation Dance</title>
-      <link>https://ciscoskills.net/2018/11/automation-dance/</link>
+      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/11/automation-dance/</link>
       <pubDate>Tue, 13 Nov 2018 15:55:19 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/11/automation-dance/</guid>
+      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/11/automation-dance/</guid>
       <description>
         
           &lt;p&gt;I keep doing the automation dance, (yeah...that&#39;s me) there are a lot of different tooling products out there. I have been trying to understand a use case around using it with network automation. Recently I have been dancing around with Ansible. My personal belief is that using any type of these tools would be helpful but it can be a steep learning curve if you really don&#39;t have any programming knowledge. This is not something that is relatively easy to use or understand, don&#39;t expect to have a working network automated tool in production on day one. I think this is great for learning, and using this in a network sandbox. If you don&#39;t have programming mindset it might make your job harder on day one before it gets easier, but just like learning to dance you have to learn the steps, the moves, and maintain the rhythm. So with that let&#39;s at least figure out the starting points, and begin learning the steps of the automation dance. ;)&lt;/p&gt;
