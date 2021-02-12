@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VIRL on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/virl/</link>
+    <description>Recent content in VIRL on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 14 Jun 2017 13:05:11 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/virl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco FTDv in Cisco VIRL</title>
+      <link>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</link>
+      <pubDate>Wed, 14 Jun 2017 13:05:11 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</guid>
+      <description>
+        
+          &lt;p&gt;Cisco is actively pushing their Firepower Threat Defense software with the new Firepower 2100 units on their way this summer in effort to eventually replace the ASA5525-X, ASA5545-X and ASA5555-X platforms. When using FTD you must also have the Firepower Management Center (FMC) available to manage and configure these devices. This gets difficult especially if you want to test things out because not everyone has Cisco Firepower lying around unused. How are you supposed to test and learn the depths of this product? &lt;em&gt;(Hint: Cisco VIRL)&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; There is a catch to this, as of this post Cisco does not included the FMC or FTDv images with Cisco VIRL by itself. You’ll have to be with a company or organization that has already purchased this product. Keep in mind during the initial configuration of FMC there will be a spot to install some licensing but you can skip this step as it&#39;s not required to get to the initial login screen. The images I’m working with in this post are the following:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;FMC: 6.2.0.2 (updated from 6.2.0)&lt;/li&gt;
+&lt;li&gt;FTDv: 6.2.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To understand how this is works, you must setup the FMC as a separate virtual machine in VMware Workstation and configure a static IP address for the FMC. You’ll want to use an IP address that is in VIRL’s shared flat network. This is usually the 172.16.1.0/24 network. In this example, I configured the FMC with the IP address of 172.16.1.15. If you have installed VIRL in VMware Workstation and followed the VIRL installation guide you’ll want to put the FMC in VMnet 1. Basically, you’ll want the FMC and FTDv to be on the same broadcast domain in the management network within VIRL for your FMC to be able to manage the FTDv image. If you are using VIRL on a bare metal server and have VMware Workstation installed on a different system use VIRL’s OpenVPN connection settings. To understand how this works you can reference the following video (Credit goes to &lt;a href=&#34;https://www.youtube.com/channel/UC41WuzXlJCGY5qLsuZ8aHkQ&#34;&gt;Cisco VIRL Youtube Channel&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;Once your computer has the OpenVPN client installed and you can successfully connect to VIRL, you also can map VMware Workstation to the OpenVPN network adapter under the virtual network editor.
+&lt;img src=&#34;https://ciscoskills.net/images/2017/06/virl-openvpn.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This gives your FMC direct access to VIRL’s shared flat network while using the OpenVPN client.
+Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/security/firepower/quick_start/vmware/fmcv/FMCv-quick/setup-mcvirtual.html&#34;&gt;Cisco Firepower Management Center Virtual for VMware Deployment Quick Start Guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The process in pretty simple login into the FMC CLI and run the following command and follow the prompts.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;sudo /usr/local/sf/bin/configure-network
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If all is well you should see the initial configuration wizard, and once you have completed the initial setup wizard you should be able to login using the password you recently created.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/06/virl-fmc-login.png&#34; alt=&#34;FMC Login Page&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You now have a FMC ready and primed to manage FTDv devices, like I mention earlier you can enable the evaluation license which is only available in the 6.2.0 or higher releases. Go to System-&amp;gt;Licenses-&amp;gt;Smart Licenses which gives you 90 days to kick in the tires.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/06/fmc-eval.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; You also could use VMware snapshots to set up a vanilla FMC with no devices, and no evaluation license enabled, that way you could always revert to that FMC you originally started with, also helps if you really got carried away :)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We now need a FTDv image to install within VIRL. When you look at Cisco&#39;s support &lt;a href=&#34;https://software.cisco.com/download/release.html?mdfid=286306503&amp;amp;softwareid=286306337&amp;amp;release=6.2.0&amp;amp;relind=AVAILABLE&amp;amp;rellifecycle=&amp;amp;reltype=latest&#34;&gt;download page&lt;/a&gt; you&#39;ll want to use the QEMU format (qcow2) if you are importing this into Cisco VIRL. A couple of house keeping items first before we can import this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;First:&lt;/strong&gt; Create a flavor to specify run time parameters in VIRL, you can find this under Node Resources-&amp;gt;Flavors. &lt;strong&gt;FTDv requires 8GB of RAM, 4 virtual CPU cores and 4 interfaces to run, this includes the Management and Diagnostic ports that VIRL puts in automatically. You can also leave disk space at 0&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Second:&lt;/strong&gt; Create a copy of the ASAv subtype, under Node Resources-&amp;gt;Subtypes, find the ASAv subtype and click on the “stethoscope” icon also called specialize and fill in the following:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of plugin - FTDv&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Description of plugin - Firepower Threat Defense&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of management interface - Management0/0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Names of dummy interfaces - Diagnostic0/0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pattern for data interface names - GigabitEthernet0/{0}&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;First data interface number - 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Max count of data interfaces - 10&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Number of interfaces per LC - 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Number of serial interfaces - 1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Protocol for network CLI - telnet&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make VNC access available - True&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of icon for GUI - asav&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Show subtype on GUI palette - True&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configuration disk type - cdrom&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ISO 9660 level in cdrom disk - 4&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of file for config drive - /day0-config&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Virtual interface model - virtio&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Main disk bus model - virtio&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RAM (MB) allocated per node - 8192&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Number of CPUs allocated per node - 4&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Require HW acceleration in kvm - True&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of default image - FTDv&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Third:&lt;/strong&gt; Import the image, Node Resources-&amp;gt;Images-&amp;gt;Add:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find and select the FTDv Subtype&lt;/li&gt;
+&lt;li&gt;Name/Version – 6.2 (I just picked the main version)&lt;/li&gt;
+&lt;li&gt;Release - 6.2.0&lt;/li&gt;
+&lt;li&gt;Source – File on server&lt;/li&gt;
+&lt;li&gt;Image path – /home/virl/VMs/&lt;em&gt;image of FTDv image&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Save the image. We are almost there!&lt;/p&gt;
+&lt;p&gt;To review we have a FMC ready, we have the evaluation license enabled so that we can manage FTDv devices and this FMC is statically configured to use an IP address that is in VIRL&#39;s shared flat network. We just went over the settings required to get the FTDv to boot up in Cisco VIRL.&lt;/p&gt;
+&lt;p&gt;So what&#39;s next? Well if you wanted to register and configure the FTDv manually you are all set to go just start-up the device and you can walk through the initial prompts to get it registered to the FMC and start deploying your configurations. However one the neat features that VIRL offers is pre-configuration of the device while the device starts up, also called Day0 configuration. That way you can to skip all of those initial prompts and just register the device from FMC when the FTDv image is fully booted. To do that you will be using the AutoNetKit in VM Maestro, use the following Day0 configuration before starting your FTDv image.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;EULA&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;accept&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;Hostname&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;ftdv-VIRL&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;AdminPassword&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Admin123&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;FirewallMode&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;routed&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;DNS1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;DNS2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;DNS3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv4Mode&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;dhcp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv4Addr&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv4Mask&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv4Gw&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv6Mode&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;disabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv6Addr&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv6Mask&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv6Gw&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;FmcIp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;172.16.1.15&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;FmcRegKey&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cisco1234&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;FmcNatId&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The fields are pretty self-explanatory the only thing that could be different is if you used a different FMC IP and registration key. When the image boots it will grab an IP address from VIRL&#39;s shared network and already be pending a registration. The only thing you have to do is register your device from FMC and deploy your configuration. This now makes it pretty easy and quickly to test deployments and configuration within VIRL. In my testing it took about 15 to 20 minutes for the FTDv device to become online and to be registered within FMC. That&#39;s all I got for now like always I hope this information helpful as alawys!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22aisforabbott@gmail.com%22&#34;&gt;Shaun&lt;/a&gt; - &lt;time datetime=&#34;2017-07-06 22:21:45&#34;&gt;Jul 4, 2017&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Figured it out, just needed to select the topology management network to be in the Shared Flat network. This has helped me out tremendously, thank you.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;%22aisforabbott@gmail.com%22&#34;&gt;Shaun&lt;/a&gt; - &lt;time datetime=&#34;2017-07-05 08:30:04&#34;&gt;Jul 3, 2017&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;How and which interface did you use to get the FTDv working on the FLAT network? Can you show a working sample topology you used?&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://karmicgeezer.wordpress.com&#34; title=&#34;andy.taylor@mail.com&#34;&gt;karmicgeezer&lt;/a&gt; - &lt;time datetime=&#34;2018-01-08 09:22:27&#34;&gt;Jan 8, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Many thanks for the tutorial - when I follow this I consistently get the same issue: Virtual FTD requires at least 4 network interfaces to complete system initialization. System initialization in progress. Please stand by. The bar turns but will sit there indefinitely. Any ideas?&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2018-01-08 19:04:47&#34;&gt;Jan 9, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey Karmicgeezer, That is expected. You can&#39;t just run the VM without it connected to anything in VIRL. Make sure your subtype in VIRL has a management and diagnostic interface. You also have to connect up to two interfaces on the FTDv in VIRL in order for it to start correctly. Hope that Helps, Ryan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://karmicgeezer.wordpress.com&#34; title=&#34;andy.taylor@mail.com&#34;&gt;karmicgeezer&lt;/a&gt; - &lt;time datetime=&#34;2018-01-09 10:37:38&#34;&gt;Jan 9, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Ryan, Fantastic, this would explain why it works natively in ESXi but not deployed in VIRL without sufficient interfaces. Much appreciated!! All the best, Andy&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2018-01-09 21:05:28&#34;&gt;Jan 9, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Glad I could help Andy! Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco VIRL and Windows VMs</title>
+      <link>https://ciscoskills.net/2017/01/cisco-virl-and-windows-vms/</link>
+      <pubDate>Sun, 08 Jan 2017 01:53:55 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/01/cisco-virl-and-windows-vms/</guid>
+      <description>
+        
+          &lt;p&gt;One of the neat features of Cisco VIRL is it runs on an open platform, with OpenStack as the orchestration program running on top of an Ubuntu operating system. This gives VIRL additional flexibly by being able to run third-party VMs with KVM begin the hypervisor. In this guide I’ll walk through some of the steps I took to get Windows XP up and running in VIRL. :) If you have a more recent version of Windows that&#39;s in the current decade following this guide is pretty much the same just adjust the disk space and RAM to fit the requirements. I picked Windows XP is because its light weight, and with an average RAM usage under 100MB it makes easy to add multiple instances if you needed all without wasting too much resources on VIRL host. To get started:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You’ll need to have a copy of Windows XP.&lt;/li&gt;
+&lt;li&gt;I also found an unofficial service pack for Windows XP &lt;a href=&#34;https://ryanvm.net/forum/viewtopic.php?f=5&amp;amp;t=10321&#34;&gt;SP4 (unofficial)&lt;/a&gt; - Optional&lt;/li&gt;
+&lt;li&gt;Copy of the &lt;a href=&#34;http://fedoraproject.org/wiki/Windows_Virtio_Drivers&#34;&gt;Windows Virtio Drivers from Fedora&lt;/a&gt;. (VFD Floppy image when installing Windows XP on KVM)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I’m running Cisco VIRL 1.2.83 on bare metal for this example, but this would also work if VIRL is virtualized. Let’s first edit the nova.conf file in VIRL, we need change a value in the nova configuration file which helps us control the mouse better when we use VNC to view the virtual machine in VIRL.&lt;code&gt;\[code\]nano /etc/nova/nova.conf\[/code\]&lt;/code&gt;Find &lt;strong&gt;use_usb_tablet = False&lt;/strong&gt; and change it to &lt;strong&gt;use_usb_tablet = True&lt;/strong&gt; save the changes, and restart VIRL. Once VIRL comes back up we now need to create folder under the home/virl directory to store our Windows XP installation, drivers and the virtual machine, I’m calling it VMs in this example. Once the folder is created move into that folder using terminal and type the following:&lt;code&gt;\[code\]sudo qemu-img create -f qcow2 wsxp-SP3.qcow2 15G\[/code\]&lt;/code&gt;This will create a virtual disk in qcow2 format and the size will be 15G, this next command will create all the necessary settings needed to start the installation of Windows.```
+[code]sudo virt-install --connect qemu:///system --name wsxp-SP3 --ram 512 --vcpus 1 --network network=default,model=virtio --disk path=/home/virl/VMs/wsxp-SP3.qcow2,format=qcow2,device=disk,bus=virtio --cdrom /home/virl/VMs/xp.iso --disk path=/home/virl/VMs/virtio-win.vfd,device=floppy --vnc --os-type windows --os-variant winxp[/code]&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;*   Subtype - Windows
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;*   Desciption of plugin - VM of Windows
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;*   Pattern for data interface names - eth{0}
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;*   First data interface number - 0
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;*   Max count of data interfaces - 5
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;*   Number of interface per LC - 0
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;*   Number of serial interfaces - 0
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;*   Protocol for network CLI - none
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;*   Make VNC access available - (Checked)
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;*   Name of icon for GUI - unknow
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;*   Show subtype on GUI palette (unchecked)
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;*   Configuration disk type - disk
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;*   ISO 9660 level in cdrom disk - 2
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;*   Virtual interface model - virtio
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;*   Main disk bus model - ide
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;*   RAM (MB) allocter per node - 512
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;*   Number of CPUs allocated per node - 1
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;*   Name of default image - Windows-XPSP3
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;Create the subtype. Once the subtype is created go to Node Resources-&amp;gt;Images-&amp;gt;Add:
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;*   Find and select the Windows Subtype
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;*   Release - 5.1 (I just picked the Windows NT version)
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;*   Source - File on server
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;*   Image path - /home/virl/VMs/_image of xp clone_
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;Create the image. Once the image has been created you now have imported Windows XP within VIRL and should be able to launch it within VM Maestro. You can take similar steps and import additional VMs like Juniper, Palo Alto, and Fortinet are just some examples more information how to import those and other are on [3rd Party VMs in VIRL page](https://learningnetwork.cisco.com/docs/DOC-30476) on the Cisco Learning Network. I hope this information is helpful, Ryan.
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;---
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;### Comments:
+&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;#### 
+&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;[Configuring EIGRP &amp;amp;#8211; Named Mode &amp;amp;#8211; Cisco Skills](http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/ &amp;#34;&amp;#34;) - &amp;lt;time datetime=&amp;#34;2017-05-25 06:31:29&amp;#34;&amp;gt;May 4, 2017&amp;lt;/time&amp;gt;
+&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;\[…\] That’s all I got for now for a basic configuration of EIGRP name mode and I hope this helpful. If you are using Cisco VIRL you can find the project I was referencing using this link Github. There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs \[…\]
+&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;&amp;lt;hr /&amp;gt;
+&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;#### 
+&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;[ASA Site to Site VPN (DHCP) &amp;amp;#8211; Cisco Skills](http://ciscoskills.net/2017/04/19/asa-site-to-site-vpn-dhcp/ &amp;#34;&amp;#34;) - &amp;lt;time datetime=&amp;#34;2017-04-19 06:01:13&amp;#34;&amp;gt;Apr 3, 2017&amp;lt;/time&amp;gt;
+&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;39&lt;/span&gt;\[…\] There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs \[…\]
+&lt;span class=&#34;ln&#34;&gt;40&lt;/span&gt;&amp;lt;hr /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco VIRL – Update</title>
+      <link>https://ciscoskills.net/2015/11/cisco-virl-update/</link>
+      <pubDate>Wed, 18 Nov 2015 13:15:24 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2015/11/cisco-virl-update/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/11/virl-logo-e.png&#34; alt=&#34;VIRL-logo-e&#34;&gt;Cisco released VIRL almost a year ago and it’s not at the 1.0 version yet but it’s getting close as they have done some good work towards the product since it first lunched. Cisco VIRL is like GNS3 which is simulation platform that runs Cisco’s current operating systems so instead of buying used Cisco hardware you can run this program on your computer. This software is geared towards proof-of-concept designs, for personal and training on Cisco Certifications. Let’s talk about it!    Here are the links: &lt;a href=&#34;http://virl.cisco.com/&#34;&gt;http://virl.cisco.com/&lt;/a&gt; - Main Website &lt;a href=&#34;http://community.dev-innovate.com/c/virl&#34;&gt;http://community.dev-innovate.com/c/virl&lt;/a&gt; - Community Form &lt;a href=&#34;http://virl-dev-innovate.cisco.com/&#34;&gt;http://virl-dev-innovate.cisco.com/&lt;/a&gt; - Documentation So in my opinion Cisco has done a good job if you decided purchase this product at documentation, product upgrades, and new features. You need to look at the requirements before you buy as this is not your grandma’s packet tracer program. This can be a little overwhelming when you first get it but you’ll get used it when you use it more and as a bonus you get familiar with Ubuntu and Linux commands if you don’t have that under your hat already. :)  &lt;strong&gt;How Does it work?&lt;/strong&gt; The VIRL system can run on a hypervisor like VMware Workstation/Fusion/Player or bare-metal if you have it available. You would download a OVA template if you are using VMware product line, if you go bare-metal you’ll use an ISO format. The system is Ubuntu 14.04 LTS as of right now and uses some open source products like KVM/QEMU which is another hypervisor under Ubuntu. This hypervisor is able run IOS XRv, NX-OSv, CSR100v, IOSv, ASAv and even 3rd party VMs like Windows, Ubuntu, Tinycore! VIRL is also using Openstack and AutoNetKit. Openstack helps to create, link and delete compute and network resources with APIs and AutoNetKit is used to help build initial configurations on devices so you don’t have to do it manually. In the end there is some very cool open source projects in this VIRL system and it’s kind of weird because I’m actually getting more familiar with these open source projects because of this VIRL software and might have to look at them separately. This product is a subscription based product and cost $200 a year and can handle 20 Cisco nodes at once. (Used to be 15 nodes but they bumped that up to 20) Cisco also offers some other pricing models if you want 30 nodes or if you affiliated with an academic institution. You can find all that out on the main VIRL page. So in my experience with this product so far I have found it very easy to use once you get everything worked out. It really is amazing to continue where I left off on network topology or if I’m just playing around with OSPF on a Friday night, who doesn’t right? :)&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco VIRL is out ... for a price</title>
+      <link>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</link>
+      <pubDate>Fri, 05 Dec 2014 03:45:43 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34; alt=&#34;virl-logo&#34;&gt;&lt;/a&gt;Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CML is Cisco TAC supported so you can call Cisco.  With VIRL you have community to help you out.&lt;/li&gt;
+&lt;li&gt;You have cap of 15 devices with VIRL. The CML version capacity is dependent on the hardware its running on.&lt;/li&gt;
+&lt;li&gt;CML is  for the &amp;quot;Big Guys&amp;quot;, and way more expensive. VIRL is just for personal/training use. (i.e CCNA, CCNP, CCIE)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To be upfront I have not purchased VIRL so I can&#39;t tell you my thoughts on the product itself but personally I think this is great way to learn and study Cisco certifications when looking at CCNP and even CCIE. This is way cheaper than buying hardware or renting rack space. The price is $199.99 a year and I would assume this would cover any updates the product has. Cisco is also selling an Academic Version for $79.99 a year with some extra terms attached to it. I&#39;m curious if anybody has any thoughts on VIRL, what advantages do you think this network simulation program (VIRL) has compared to GNS3? What do you think VIRL&#39;s target audience is? Is this price too high? Finally do you think the product is too green? Are you going to buy it or wait and see? Comment below. Links: &lt;a href=&#34;http://virl.cisco.com/&#34;&gt;http://virl.cisco.com/&lt;/a&gt; &lt;a href=&#34;http://community.dev-innovate.com/c/virl&#34;&gt;http://community.dev-innovate.com/c/virl&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Modeling Labs … Waiting</title>
+      <link>https://ciscoskills.net/2014/06/cisco-modeling-labs-waiting/</link>
+      <pubDate>Sat, 28 Jun 2014 20:49:34 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/06/cisco-modeling-labs-waiting/</guid>
+      <description>
+        
+          &lt;p&gt;Just waiting for CML, (Cisco Modeling Labs) it’s been little over a month since going to Cisco Live in San Francisco and with all the information of next-generation hardware and security with Source Fire I was pretty beat with a lot of note taking and PowerPoint slides. However the last session on the last day of the Cisco Live talked about Cisco’s Modeling Lab program. I also tried it out in the Cisco DevNet area earlier in the week during Cisco Live and I was impressed with the product. When does CML release? Well during the session it was said to wait for about 60 days, which would put this release towards the end of July/August time frame hopefully. ;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Product is an OVF template that support Windows and MAC computers using VMware’s Player or Fusion depending if you are on a Windows PC or Mac computer. (I would guess VMware Workstation would also work :) )&lt;/li&gt;
+&lt;li&gt;For the personal/developer edition Joel Obstfeld who was the presenter in this session said the product will be available for free under the Cisco DevNet Program with community support and an unlimited number of devices. (Depends on the hardware you have) I also came across some information on CLN and &lt;a href=&#34;http://www.mostlynetworks.com/&#34; title=&#34;Mostly Networks&#34;&gt;Mostly Networks&lt;/a&gt; that under the DevNet program the software would stay to be called VIRL, but under the corporate version this product would be called Cisco Model Labs 1.0.&lt;/li&gt;
+&lt;li&gt;The personal edition will collect data like what kinds of devices are lunching and features you are activating as well as statistics all of which would be sent over plain text. Joel did mention that configuration information would not be sent over.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What are your thoughts on CML? Links:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cisco.com/web/learning/learning_services/cml.html&#34; title=&#34;Cisco Modeling Labs&#34;&gt;Cisco Modeling Labs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.cisco.com/site/devnet/home/index.gsp&#34; title=&#34;Cisco DevNet&#34;&gt;Cisco DevNet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.mostlynetworks.com/2014/05/cisco-live-2014-day-1/&#34; title=&#34;Mostly Networks -- Cisco Live 2014 Day 1&#34;&gt;Cisco Live Day 1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;EDIT: As of 9/25/14:&lt;/strong&gt; I have not been able find much information about CML/VIRL and it seemed like it dropped off. :( However for corporate customers CML is alive and available if you want to pay for it. I was able find some information from Shaun who is a Systems Engineer for Cisco. (&lt;a href=&#34;http://www.4g1vn.com/2014/09/cml-1-0-first-impressions-getting-started/&#34; title=&#34;Cisco Modeling Labs 1.0: First Impressions &amp;amp; Getting Started&#34;&gt;Cisco Modeling Labs 1.0: First Impressions &amp;amp; Getting Started&lt;/a&gt;)In his post he mentions VIRL but does not have official date and it would most likely be released with the &lt;a href=&#34;https://developer.cisco.com/site/devnet/home/index.gsp&#34;&gt;Cisco DEVNET&lt;/a&gt; program.... Good things come for those who wait :)&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

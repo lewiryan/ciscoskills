@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Catalyst switch on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/catalyst-switch/</link>
+    <description>Recent content in Catalyst switch on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 30 Nov 2011 17:33:03 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/catalyst-switch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Color Code Your Routers</title>
+      <link>https://ciscoskills.net/2011/11/color-code-your-routers/</link>
+      <pubDate>Wed, 30 Nov 2011 17:33:03 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/11/color-code-your-routers/</guid>
+      <description>
+        
+          &lt;p&gt;I came across an interesting idea, what if you could color code your devices in command line? So such as if you were operating routers at a core level you could color code the &lt;a href=&#34;http://en.wikipedia.org/wiki/Command-line_interface&#34; title=&#34;Command-line interface&#34;&gt;CLI&lt;/a&gt; to the color red, and the branch routers green and etc. I wasn&#39;t sure if this would possible but doing some searching through the internet I found a guy Ivan Pepelnjak who wrote how to do this  a couple years ago and wrote a couple books as well, check out his blog/website at &lt;a href=&#34;http://www.ipspace.net&#34;&gt;http://www.ipspace.net&lt;/a&gt; there is tons of helpful information along with his original guide &lt;a href=&#34;http://blog.ioshints.info/2007/05/change-telnet-font-color-from-cisco.html&#34; title=&#34;Change the Telnet font color from a Cisco router&#34;&gt;here&lt;/a&gt;.  Being able to color the text output when connecting to a device, and having each different color have a different meaning to it makes it easier to understand which devices are part of the critical network. So now core devices can have a red text to them , branch devices can have a green color and redundant devices blue etc. This makes it easier to know what you are connecting to and anybody else that is authorized to do so. To make this process happen there has to be escape sequences somewhere in the router to change the color of the text. There is not a command on the router itself to change the color the text, so how would you change the color? What Ivan pointed out was the MOTD banner (Message-of-the-day) therefore when you connect to the device either with console, telnet, or &lt;a href=&#34;http://en.wikipedia.org/wiki/Secure_Shell&#34; title=&#34;Secure Shell&#34;&gt;SSH&lt;/a&gt; the color of the text will change to the color you specified right when you log into the device. To change the color of the CLI text output in a router go into &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt; and type banner motd and then your delimiting character. (For this example I used &amp;quot;*&amp;quot;) [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#banner motd *[/code] The next step is to press CTRL+V, release then the &lt;a href=&#34;http://en.wikipedia.org/wiki/Esc_key&#34; title=&#34;Esc key&#34;&gt;ESC key&lt;/a&gt;. This is the &lt;a href=&#34;http://en.wikipedia.org/wiki/Escape_sequence&#34; title=&#34;Escape sequence&#34;&gt;escape sequence&lt;/a&gt; and looks like this in CLI &lt;strong&gt;^[&lt;/strong&gt; . The next setup is to add another &lt;a href=&#34;http://en.wikipedia.org/wiki/Bracket&#34; title=&#34;Bracket&#34;&gt;left bracket&lt;/a&gt; &lt;strong&gt;[&lt;/strong&gt; then the number 3 followed by the number that represents the color:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Intensity&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;0&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;7&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Normal&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Black&lt;/p&gt;
+&lt;p&gt;Red&lt;/p&gt;
+&lt;p&gt;Green&lt;/p&gt;
+&lt;p&gt;Yellow&lt;/p&gt;
+&lt;p&gt;Blue&lt;/p&gt;
+&lt;p&gt;Magenta&lt;/p&gt;
+&lt;p&gt;Cyan&lt;/p&gt;
+&lt;p&gt;White&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bright&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Black&lt;/p&gt;
+&lt;p&gt;Red&lt;/p&gt;
+&lt;p&gt;Green&lt;/p&gt;
+&lt;p&gt;Yellow&lt;/p&gt;
+&lt;p&gt;Blue&lt;/p&gt;
+&lt;p&gt;Magenta&lt;/p&gt;
+&lt;p&gt;Cyan&lt;/p&gt;
+&lt;p&gt;White&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&#34;http://en.wikipedia.org/wiki/ANSI_escape_code#cite_ref-5&#34;&gt;http://en.wikipedia.org/wiki/ANSI_escape_code#cite_ref-5&lt;/a&gt; So if I wanted to change the color to a green color the output would look something like this: [code]^[[32;[/code] Although we are close we need to add the letters &amp;quot;1m&amp;quot; which is an ASCI code sequence, after the number and then the text of banner. So the output would look something like this below: [code]^[[32;1mThis is a test only, don&#39;t panic!*[/code] That&#39;s it! You can test this by logging off the router and your text output should be the color you specified in the login banner and the same color below the login banner. &lt;a href=&#34;http://ciscoskills.net/2011/11/30/color-code-your-routers/color-code-g/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/11/color-code-g.png&#34; alt=&#34;&#34; title=&#34;Color Code G&#34;&gt;&lt;/a&gt; I am still a trying to figure out a way to change the color of just the banner only and not the device text, but I&#39;m a novice with the escape sequences and control codes. Feel free to post below with ideas. I have tested this with a Cisco IOS router but not a switch, I would take a guess in saying it is the same commands to change the color. Like always I hope this information is helpful and if you have an idea that deals with either ICND1 or ICND2 comment below, also feel free to ask questions.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/08/24/the-codes-of-icmp/&#34;&gt;The Codes of ICMP&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://therouters.wordpress.com/2011/10/11/cli-editor-features/&#34;&gt;CLI Editor Features&lt;/a&gt; (therouters.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wiki.answers.com/Q/How_do_you_recover_the_password_for_a_cisco_2501_router&#34;&gt;How do you recover the password for a cisco 2501 router&lt;/a&gt; (wiki.answers.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://arthurmehamat.wordpress.com/2010/10/30/changing-a-routers-configuration/&#34;&gt;Changing A Router&#39;s Configuration&lt;/a&gt; (arthurmehamat.wordpress.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Beginnings of Layer Two Redundancy</title>
+      <link>https://ciscoskills.net/2011/08/the-beginnings-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/08/the-beginnings-of-layer-two-redundancy/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34; alt=&#34;&#34; title=&#34;network-diagram&#34;&gt;&lt;/a&gt;In a perfect world we would never need redundancy on a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network&lt;/a&gt; infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network. But in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt; there is one layer that can&#39;t have redundancy at least logically and that is &lt;a href=&#34;http://en.wikipedia.org/wiki/Abstraction_layer&#34; title=&#34;Abstraction layer&#34;&gt;Layer&lt;/a&gt; two of the OSI model. If you follow this blog way back when I talked about the OSI model, layer two belongs to the switches and by design the ethernet frame does not support a TTL (&lt;a href=&#34;http://en.wikipedia.org/wiki/Time_to_live&#34; title=&#34;Time to live&#34;&gt;Time-To-Live&lt;/a&gt;) like the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP packet&lt;/a&gt;. So bring forth STP, the &lt;a href=&#34;http://en.wikipedia.org/wiki/Spanning_Tree_Protocol&#34; title=&#34;Spanning Tree Protocol&#34;&gt;Spanning Tree Protocol&lt;/a&gt; which works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until active link is unavailable (shutdown, disabled, etc.) So although there are multiple links connected physically to offer redundancy, logically the switches in the network only see one path that ethernet frame can travel. &lt;strong&gt;Your Thought:&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Wait...I have plugged into multiple Cisco switches before to create a redundant path and I did not notice anything wrong?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That&#39;s because by default STP is enabled, to the average person they can plug away and create redundant paths with switches and cause no harm to the network. But if STP has been disabled on those switches or switches that don&#39;t support STP (dumb switches), a Layer 2 loop can occur. A Layer 2 loop is a nightmare if this happens in a production network and can happen in seconds. Loops result in high &lt;a href=&#34;http://en.wikipedia.org/wiki/Central_processing_unit&#34; title=&#34;Central processing unit&#34;&gt;CPU&lt;/a&gt; load on all switches caught in the loop. Because the same frames are constantly being forwarded back and forth between all switches in the loop, the CPU of the switch ends up having to process a lot of data. This slows down performance on the switch when legitimate traffic arrives.  A host caught in a network loop is not accessible to other hosts on the network. Because the &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt; table is constantly changing with the updates from the broadcast frames, the switch does not know which port to send the unicast frames out to reach the destination. The unicast frames end up looping around the network as well. As more and more frames end up looping on the network, a &lt;a href=&#34;http://en.wikipedia.org/wiki/Broadcast_radiation&#34; title=&#34;Broadcast radiation&#34;&gt;broadcast storm&lt;/a&gt; occurs. What makes this even more fun is if you try connecting to the switches to solve this problem, good luck :). Most of the time you have to physically turn off the switches to kill the broadcast storm and if it happened once expect it to happen again. To make things worse if any end-devices are connected to the switch ports that are experiencing a broadcast storm they too have a hard time keeping up with the mountain of broadcast frames being sent and sometimes malfunction. Usually you would have to disconnect the switch from the redundant links and apply STP to it and then re-connect the redundant links in order for your network to be broadcast storm free. Although I&#39;m just getting started I think by just introducing this topic will help you better understand it later, I will get into more of this STP magic and how this really helps us design a hierarchy network. Like always I hope this information was informative and if you can&#39;t wait a simple search about STP will help. You can also go right to the source for more STP information at &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&#39;s&lt;/a&gt; Support and Documentation. Have an idea of the next topic either ICND1 or ICND2 let me know about it.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34;&gt;Cisco Discovery Protocol&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/get-data-to-its-destination-faster/&#34;&gt;Get Data to Its Destination Faster&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/01/17/the-osi-layer/&#34; title=&#34;The OSI Layer&#34;&gt;The OSI Layer&lt;/a&gt;  (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2011/06/16/network_tuning/&#34;&gt;When tuning the server, don&#39;t forget the network&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/&#34; title=&#34;&#34;&gt;The Middle of Layer Two Redundancy | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-09-07 12:08:56&#34;&gt;Sep 3, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] The Beginnings of Layer Two Redundancy (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Creating VLANs</title>
+      <link>https://ciscoskills.net/2011/04/creating-vlans/</link>
+      <pubDate>Fri, 01 Apr 2011 17:00:08 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/creating-vlans/</guid>
+      <description>
+        
+          &lt;p&gt;Today this tutorial is going to be talking about creating VLANs (Virtual &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;Local Area Networks&lt;/a&gt;) with a Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Catalyst_switch&#34; title=&#34;Catalyst switch&#34;&gt;Catalyst switch&lt;/a&gt;. By creating a VLAN you are separating the network, why would you do this? There are some several reasons, like separating your production network from a guest network, and separating a test environment from a production network. This all adds security to your network. You can separate core critical network components from the rest of the production network for added security, easier troubleshooting along with separating or segmenting your network. This is breaking up the broadcast domains into smaller chucks, which will improve your &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_performance&#34; title=&#34;Network performance&#34;&gt;network performance&lt;/a&gt;. Let&#39;s get started! By default if no configuration is applied to a switch, you just turned it on and plugged in networking devices, all of them are in a VLAN already, called VLAN 1. This is great if you know nothing about switch configuration and want something that works out of the box. But this also provides a security risk and if enough devices are connected this will slow down your network performance. VLANs separate the network so in order for &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; to communicate a layer three device (router) is needed in order for VLAN communication. When you dive into VLANs there is a lot of information! For this tutorial we are just going to be creating a VLAN and that&#39;s it. So let&#39;s create a VLAN on a single switch.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For this tutorial we are going to put the ports fa0/1 – 10 into an access mode&lt;/li&gt;
+&lt;li&gt;Then apply a VLAN 2 on ports fa0/1 – 10.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(Sample Output)  [code] Switch&amp;gt;enable Switch#configure terminal Switch(config)#interface range fastEthernet 0/1 - 10 Switch(config-if-range)#switchport mode access Switch(config-if-range)#switchport access vlan 2 %LINK-5-CHANGED: Interface Vlan2, changed state to up % Access VLAN does not exist. Creating vlan 2 Switch(config-if-range)#exit[/code] If we issue the command &lt;strong&gt;show vlan&lt;/strong&gt; in privilege EXEC mode we can see that VLAN 2 has been created and the interfaces VLAN 2 is configured to (Sample Output)  [code] Switch#show vlan VLAN Name                             Status    Ports ---- -------------------------------- --------- ------------------------------- 1    default                          active    Fa0/11, Fa0/12, Fa0/13, Fa0/14                                                 Fa0/15, Fa0/16, Fa0/17, Fa0/18                                                 Fa0/19, Fa0/20, Fa0/21, Fa0/22                                                 Fa0/23, Fa0/24 2    VLAN0002                         active    Fa0/1, Fa0/2, Fa0/3, Fa0/4                                                 Fa0/5, Fa0/6, Fa0/7, Fa0/8                                                 Fa0/9, Fa0/10 1002 fddi-default                     act/unsup 1003 token-ring-default               act/unsup 1004 fddinet-default                  act/unsup 1005 trnet-default                    act/unsup VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2 ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------ 1    enet  100001     1500  -      -      -        -    -        0      0 2    enet  100002     1500  -      -      -        -    -        0      0 1002 fddi  101002     1500  -      -      -        -    -        0      0   1003 tr    101003     1500  -      -      -        -    -        0      0   1004 fdnet 101004     1500  -      -      -        ieee -        0      0   1005 trnet 101005     1500  -      -      -        ibm  -        0      0   Remote SPAN VLANs ------------------------------------------------------------------------------ Primary Secondary Type              Ports ------- --------- ----------------- ------------------------------------------ Switch#[/code] Although numbers are ok, let&#39;s create a named VLAN. A named VLAN helps us remember what the purpose of that VLAN does. The steps are almost the same here is the following, you could also change VLAN 2 into a named VLAN as well by doing lines 3 and 6.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For this tutorial we are going to put ports fa0/11 -20 into access mode.&lt;/li&gt;
+&lt;li&gt;Then apply a name VLAN called Support on ports fa0/11 – 20.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(Sample Output) [code] Switch(config)#interface vlan 3 Switch(config-if)#exit Switch(config)#vlan 3 %LINK-5-CHANGED: Interface Vlan3, changed state to up Switch(config-vlan)#name Support Switch(config-vlan)#exit Switch(config)#interface range fa0/11 - 20 Switch(config-if-range)#switchport mode access Switch(config-if-range)#switchport access vlan 3 Switch(config-if-range)#exit Switch(config)#exit[/code] If we issue the command &lt;strong&gt;show vlan&lt;/strong&gt; in privilege EXEC mode we can see that VLAN 3 (Support) has been created and the interfaces VLAN 3 (Support) is configured to. (Sample Output) [code] Switch#show vlan VLAN Name                             Status    Ports ---- -------------------------------- --------- ------------------------------- 1    default                          active    Fa0/21, Fa0/22, Fa0/23, Fa0/24 2    VLAN0002                         active    Fa0/1, Fa0/2, Fa0/3, Fa0/4                                                 Fa0/5, Fa0/6, Fa0/7, Fa0/8                                                 Fa0/9, Fa0/10 3    Support                          active    Fa0/11, Fa0/12, Fa0/13, Fa0/14                                                 Fa0/15, Fa0/16, Fa0/17, Fa0/18                                                 Fa0/19, Fa0/20 1002 fddi-default                     act/unsup 1003 token-ring-default               act/unsup 1004 fddinet-default                  act/unsup 1005 trnet-default                    act/unsup VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2 ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------ 1    enet  100001     1500  -      -      -        -    -        0      0 2    enet  100002     1500  -      -      -        -    -        0      0 3    enet  100003     1500  -      -      -        -    -        0      0 1002 fddi  101002     1500  -      -      -        -    -        0      0   1003 tr    101003     1500  -      -      -        -    -        0      0   1004 fdnet 101004     1500  -      -      -        ieee -        0      0   1005 trnet 101005     1500  -      -      -        ibm  -        0      0   Remote SPAN VLANs ------------------------------------------------------------------------------ Primary Secondary Type              Ports ------- --------- ----------------- ------------------------------------------ Switch#[/code] So in the end we have three VLANs on this switch, VLAN 1, VLAN 2, VLAN 3 (Support). If we connected PCs to these three different VLANs none of them would be able to communicate, because each VLAN is like a different network. So you would need to configure a router in order for inter-vlan commutation to work also called &lt;a href=&#34;http://en.wikipedia.org/wiki/One-armed_router&#34; title=&#34;One-armed router&#34;&gt;router on a stick&lt;/a&gt;. I hope this tutorial was helpful if you have questions, comment below.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Port Security</title>
+      <link>https://ciscoskills.net/2011/03/configuring-port-security/</link>
+      <pubDate>Thu, 31 Mar 2011 16:00:31 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/03/configuring-port-security/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/03/lock.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/lock.png&#34; alt=&#34;&#34; title=&#34;Secure&#34;&gt;&lt;/a&gt;Today this tutorial is going to be talking about how to configure &lt;a href=&#34;http://en.wikipedia.org/wiki/Port_security&#34; title=&#34;Port security&#34;&gt;port security&lt;/a&gt; on a Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Catalyst_switch&#34; title=&#34;Catalyst switch&#34;&gt;Catalyst switch&lt;/a&gt;. Port security is one of the first things you can do to keep your network secure from unauthorized access. Port security can restrict devices so only devices you allow are granted access to network resources. If and when an unauthorized device is connected to a port you can decide what you want the switch to do. Let&#39;s get started!  There are three different settings you can configure with port security:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Protect which discards the traffic but keeps the port up and does not send a &lt;a href=&#34;http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol&#34; title=&#34;Simple Network Management Protocol&#34;&gt;SNMP&lt;/a&gt; message.&lt;/li&gt;
+&lt;li&gt;Restrict which discards the traffic and sends a SNMP message but keeps the port up&lt;/li&gt;
+&lt;li&gt;Shutdown which discards the traffic sends a SNMP message and disables the port. (This is the default behavior is no setting is specified.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Before setting up port security some steps need to be completed before we can set it up correctly:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Must make the switch interface an access interface by using the &lt;strong&gt;switchport mode access&lt;/strong&gt; command. This can be applied in a range of the interfaces on a switch or individual interfaces.&lt;/li&gt;
+&lt;li&gt;You must enable port security by using the &lt;strong&gt;switchport port-security&lt;/strong&gt; command. This can be applied in a range of the interfaces on a switch or individual interfaces.&lt;/li&gt;
+&lt;li&gt;This step is optional, but you can specify how many &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC addresses&lt;/a&gt; the switch can have on one interface at a time. If this setting is not applied the default of one MAC address is used. The command to configure this is as follows, &lt;strong&gt;swithcport port-security maximum&lt;/strong&gt; &lt;em&gt;X&lt;/em&gt; (where X can be from 1 to 6272) Keep in mind the range the number of maximum MAC address depends on the hardware and &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;Cisco IOS&lt;/a&gt; you use.&lt;/li&gt;
+&lt;li&gt;This step is optional, but you can define the action to take when a violation occurs on that interface or interfaces. The default is to shut down the interface or interfaces. The command to configure this is as follows &lt;strong&gt;switch port-security violation&lt;/strong&gt; &lt;strong&gt;{ protect | restrict | shutdown }&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;You can specify the MAC address that is allowed to access the network resources manually by using the command &lt;strong&gt;switchport port-security mac-address&lt;/strong&gt; &lt;em&gt;value of MAC address&lt;/em&gt;. Use this command multiple times if you want more than one MAC address.&lt;/li&gt;
+&lt;li&gt;If you want to be lazy and not enter every single MAC address in your organization then you can have the switch learn the MAC address by learning it with the sticky command. You would use this command as follows &lt;strong&gt;switchport port-security mac-address sticky&lt;/strong&gt;. This will learn the first MAC address that comes into on the interface or interfaces.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The below output is an example of configuring port security on a range of ports fa0/1 - 10, for this example the maximum MAC addresses I want on one port is two, I also want the violation to change from the default setting to restrict. Finally instead of manually configuring the ports with a MAC addresses I am going to have the switch learn them with the sticky command. [code]Switch&amp;gt;enable Switch#configure terminal Switch(config)#interface range fastEthernet 0/1 - 10 Switch(config-if-range)#switchport port-security maximum 2 Switch(config-if-range)#switchport port-security violation restrict Switch(config-if-range)#switchport port-security mac-address sticky Switch(config-if-range)#exit Switch(config)#exit Switch# %SYS-5-CONFIG_I: Configured from console by console[/code] That&#39;s it! Port security is a good step in keeping only authorized devices connected to the network, but keep in mind there are plenty more security options that need to be taken into consideration. To find more information about port security like a web search will do, along with checking with Cisco documentation at Cisco.com. I hope this tutorial is helpful and please comment below for suggestions.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

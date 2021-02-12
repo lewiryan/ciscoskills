@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Source port on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/source-port/</link>
+    <description>Recent content in Source port on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 04 Jan 2012 17:00:21 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/source-port/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic Understanding of EtherChannel</title>
+      <link>https://ciscoskills.net/2012/01/basic-understanding-of-etherchannel/</link>
+      <pubDate>Wed, 04 Jan 2012 17:00:21 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/01/basic-understanding-of-etherchannel/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/01/network-cables.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/network-cables.png&#34; alt=&#34;&#34; title=&#34;network cables&#34;&gt;&lt;/a&gt;Let&#39;s start the New Year with understanding &lt;a href=&#34;http://en.wikipedia.org/wiki/EtherChannel&#34; title=&#34;EtherChannel&#34;&gt;EtherChannel&lt;/a&gt; which is having more than one link connected to a server, switch, or router and treating it like one logical link. This is a fault-tolerant technique that is becoming a common setup in highly available, core devices. Cisco has come up with their own proprietary version call EtherChannel. The &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_standard&#34; title=&#34;Open standard&#34;&gt;open standard&lt;/a&gt; that &lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt; approved is 802.3ad which works with other venders and is often called &lt;a href=&#34;http://en.wikipedia.org/wiki/Link_aggregation&#34; title=&#34;Link aggregation&#34;&gt;LAG&lt;/a&gt; for short. Why would I use EtherChannel? One big benefit is bandwidth you can combine up to eight parallel links and depending on the port speed and the physical cable you could in theory get up to 80 Gbit/s per second! (Using &lt;a href=&#34;http://en.wikipedia.org/wiki/SFP_transceiver&#34; title=&#34;Small form-factor Pluggable Transceiver&#34;&gt;SPF&lt;/a&gt;+ links which can get up 10G a piece in theory) Etherchannel aggregates traffic across all available active ports which make it look like one logical cable. &lt;a href=&#34;http://ciscoskills.net/2012/01/04/basic-understanding-of-etherchannel/etherchannele-2/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/etherchannele1.png&#34; alt=&#34;EtherChannel between Switches&#34; title=&#34;EtherChannel&#34;&gt;&lt;/a&gt; Although this sounds wonderful and it is there are some things to keep in mind. EtherChannel does not always distribute the traffic equally across all available links it depends on the number of links you have connected but even that does not always guarantee equal traffic. EtherChannel hands-out values 0-7 (that&#39;s why you can only have up to eight links) on each link. Some of those links may have more than one value assigned to them this makes balancing the traffic not always equal. So looking at the table below if we were using five physical links and every link was in theory in perfect distribution three of those links would be receiving twice as much traffic than the other two links. &lt;a href=&#34;http://ciscoskills.net/2012/01/04/basic-understanding-of-etherchannel/etherchannel-tablee/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/etherchannel-tablee.png&#34; alt=&#34;EtherChannel Physical Link Balancing&#34; title=&#34;EtherChannel Table&#34;&gt;&lt;/a&gt; If every link was in perfect distribution you could have physical links of two, four, or eight. But this depends on the usage of a particular device because Etherchannel does not load balance between physical links if one link becomes oversaturated it will drop packets. Etherchannel can look at the following methods to decide which &lt;a href=&#34;http://en.wikipedia.org/wiki/Physical_Layer&#34; title=&#34;Physical Layer&#34;&gt;physical link&lt;/a&gt; to send data over.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The source &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The destination MAC address&lt;/li&gt;
+&lt;li&gt;The source and destination MAC address&lt;/li&gt;
+&lt;li&gt;The source &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The destination IP address&lt;/li&gt;
+&lt;li&gt;The source and destination IP address&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;http://en.wikipedia.org/wiki/Source_port&#34; title=&#34;Source port&#34;&gt;source port&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The destination port&lt;/li&gt;
+&lt;li&gt;The source and destination port&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of these methods depend on the hardware and software you are running but they will put a value between 0-7 on each connected link. Remember each link can have more than one value assigned to it. I hope this information is helpful and you are welcome to ask questions or comment. Also post some ideas that you would like to see posted that deals with either ICND1 or ICND2.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://techbookshelf.com/2011/08/31/cisco-nexus-vpc-configuration-and-spanning-tree-elimination/&#34;&gt;Cisco Nexus vPC Configuration and Spanning-Tree Elimination&lt;/a&gt; (techbookshelf.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://learnnetworkingwithme.wordpress.com/2011/12/30/span-port-configuration/&#34;&gt;SPAN Port Configuration&lt;/a&gt; (learnnetworkingwithme.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://hazima.wordpress.com/2011/10/20/stp-loop-prevention-protocol/&#34;&gt;STP loop prevention protocol&lt;/a&gt; (hazima.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mungauwamaseghe.wordpress.com/2011/09/05/journey-to-ccie-lab-exam-part-20-etherchannels/&#34;&gt;Journey to CCIE LAB Exam - Part 20 - EtherChannels&lt;/a&gt; (mungauwamaseghe.wordpress.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://na.com&#34; title=&#34;vijayscsa@gmail.com&#34;&gt;VJ&lt;/a&gt; - &lt;time datetime=&#34;2012-01-05 06:11:48&#34;&gt;Jan 4, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hi Thanks for the informative article. Would be really helpful, if you start little basics about cisco&#39;s nexus switches world also. Thanks VJ&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-01-05 21:30:17&#34;&gt;Jan 4, 2012&lt;/time&gt;
+&lt;p&gt;Your Welcome VJ, I have only been reading about them recently, if I find some basic information about them I&#39;ll post it. Thanks for the suggestion, Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VirtualBox on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/virtualbox/</link>
+    <description>Recent content in VirtualBox on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 10 May 2014 01:29:14 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GNS3 Alpha – Install and Setup</title>
+      <link>https://ciscoskills.net/2014/05/gns3-alpha-install-and-setup/</link>
+      <pubDate>Sat, 10 May 2014 01:29:14 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/05/gns3-alpha-install-and-setup/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png?w=150&#34; alt=&#34;GNS3-logo&#34;&gt;&lt;/a&gt;So Alpha 3 came out last week with a bunch updates and I decided to give it run this week. I&#39;m not doing anything that difficult with the program so maybe I&#39;m not breaking it in all the way but I also was looking at some installation notes for Ubuntu and other Linux flavors, I figured I’ll try to install it on a Windows machine and not Linux (call me lazy) feel free to follow this guide.   To install GNS3, here is what I had&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows 7 Professional x64 bit with the latest Microsoft updates&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://members.gns3.net/&#34; title=&#34;GNS3 Early Release Members Area&#34;&gt;Downloaded GNS3 Early Release 1.0&lt;/a&gt; – Alpha 3 (Must be a member)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; title=&#34;Download VirtualBox&#34;&gt;Oracle VM Virtual Box installed&lt;/a&gt; (latest version 4.3.10 and only if you are going to use IOU)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://sourceforge.net/projects/gns-3/files/IOU%20VMs/GNS3-1.0-alpha3%20IOU%20VM.ova/download&#34;&gt;Downloaded GNS3-1.0-alpha3&lt;/a&gt; IOU VM (Only if you are going to use IOU)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since this is an all and one installer it was pretty easy to install, and I decided to install all the components that the all-in-one had to offer.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;WinPCAP 4.1.3&lt;/li&gt;
+&lt;li&gt;Wireshark 1.10.7&lt;/li&gt;
+&lt;li&gt;Dynamips 0.2.12&lt;/li&gt;
+&lt;li&gt;VPCS 0.4b2&lt;/li&gt;
+&lt;li&gt;GNS3&lt;/li&gt;
+&lt;li&gt;SuperPutty 1.4.0.4 beta&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I accepted the default destination folder and installed it, once installed I used by GNS3 membership to activate the software. That&#39;s it you now are running the Alpha version of GNS3. If you wanted to try IOU that is where it can get tricky, remember GNS3 is a platform that can support IOU and Dynampis. IOU are images that Cisco created to run on Unix, the reason IOU is popular is because it supports layer two (switching) functionally. Before GNS3 1.0 only supported layer three (Routing) and very limited layer two (switching) functions. However IOU is not available to the public. Dynampis is an emulation technology that older Cisco router images can run on but you are still in the same situation as you were before which is Cisco does not give public access to these images. The GNS3 team are working on trying to get an IOU image for GNS3 before the end of the year when GNS3 goes public, but since this is an alpha version of GNS3 and only available to members its currently only a problem for members that are testing out IOU. I would suspect towards the end of the year this won&#39;t be an issue. If you have an IOU image feel free to continue the steps below. :) We now need to import the GNS3 IOU VM that we downloaded into virtual box.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Start virtual box&lt;/li&gt;
+&lt;li&gt;Go to File-&amp;gt; Import Appliance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Browse to the OVF file that you downloaded and select next and accept the defaults by selecting import.  When you first start the VM you may get an error about the network interface accept the warning and make sure the VM is only using the &lt;strong&gt;host-only adapter&lt;/strong&gt;. Once the VM is online we need to do some verification, for the username you will use &lt;strong&gt;root&lt;/strong&gt; and the password is &lt;strong&gt;cisco&lt;/strong&gt;. When at the shell type &lt;strong&gt;ifconfig eth0&lt;/strong&gt; to get the IP address of the VM. Keep note of the IP address. The next step is to import your IOU image into the GNS3 IOU VM.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Type the IP address of the VM into your browser followed by the 8000 port number. (&lt;em&gt;Example http://192.168.1.1:8000/upload&lt;/em&gt; )&lt;/li&gt;
+&lt;li&gt;Browse your local computer for the IOU image file and select upload.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You should get a message of where the file is stored on the Linix VM when the upload is successful, keep note of that location. Open up GNS3 and in the preferences.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to Server-&amp;gt;Remote Servers and add the GNS3 IOU VM to the list, the default port number is 8000&lt;/li&gt;
+&lt;li&gt;Select the IOS on UNIX option and browse to the path of your license key (Path to IOURC) which is needed to activate the IOU image.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally we need to set the IOU image path that was uploaded to the GNS3 IOU VM.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Select the IOU devices option in the GNS3 preferences and in the IOU path type in the path of the IOU device that you keep note of and select save. (&lt;em&gt;Example:  /home/gns3/Documents/GNS3/images/linux-iou.bin&lt;/em&gt; )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;you-now-have-a-working-iou-in-gns3-go-ahead-and-try-it-out-if-you-want-moreinformationabout-gns3-or-if-you-are-a-member-and-havingsome-issues-go-check-out-the-gns3-formshttpforumgns3neti-hope-this-information-that-i-provided-helps-as-well&#34;&gt;You now have a working IOU in GNS3, Go ahead and try it out. If you want more information about GNS3 or if you are a member and having some issues go check out the &lt;a href=&#34;http://forum.gns3.net/&#34;&gt;GNS3 forms&lt;/a&gt;. I hope this information that I provided helps as well.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;lewiryan@isu.edu&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2014-10-31 21:00:10&#34;&gt;Oct 5, 2014&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey Guellord, Did you check to make sure you have the network settings setup in Virtualbox? Not sure what you are using but edit the machine and make sure you are using a host-only adapter. You should not have to login to get an IP address it should be in the login banner if you are using the latest GNS3 IOU. Hope that Helps. Also might want to try looking at this post: &lt;a href=&#34;http://ciscoskills.net/2014/10/28/setting-up-gns3-1-1-on-ubuntu/&#34;&gt;http://ciscoskills.net/2014/10/28/setting-up-gns3-1-1-on-ubuntu/&lt;/a&gt; &lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/10/gns3-iou-virtual-box.png&#34; alt=&#34;VirtualBox-GNS3 1.1 IOU Network Settings&#34;&gt;&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[GNS3 1.0 Public is Out &amp;laquo; Cisco Skills](http://ciscoskills.net/2014/10/21/gns3-1-0-public-is-out/ &#34;&#34;) - &lt;time datetime=&#34;2014-10-21 14:31:44&#34;&gt;Oct 2, 2014&lt;/time&gt;
+&lt;p&gt;[…] of 2014, which was about getting GNS3 Alpha 3 working on Windows, you can see the full post here: GNS3 Alpha – Install and Setup. I have followed the GNS3 releases throughout the six months of them releasing Alpha and beta […]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Guellord]( &#34;guellokama@gmail.com&#34;) - &lt;time datetime=&#34;2014-10-31 19:45:29&#34;&gt;Oct 5, 2014&lt;/time&gt;
+&lt;p&gt;Hi, i try to use IOU image on gns3 1.1 I follow all these steps as mentioned above,and i log in GNS3 IOU VM as well but i don&#39;t get an IP address when i type ifconfig eth0 i don&#39;t get an IP address, what will be the issue?&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Look at GNS3 - New Version</title>
+      <link>https://ciscoskills.net/2013/07/look-at-gns3-new-version/</link>
+      <pubDate>Sat, 06 Jul 2013 18:41:22 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2013/07/look-at-gns3-new-version/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;strong&gt;Look at GNS3 - New Version:&lt;/strong&gt; A new version of GNS3 released on July 5th 2013 is available for download. You can download GNS3 v0.8.4 at &lt;a href=&#34;http://www.gns3.net&#34; title=&#34;GNS3: Graphical Network Simulator&#34;&gt;gns3.net&lt;/a&gt;. This release includes improvements and new features. Some of the important one are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lots of &lt;a href=&#34;http://en.wikipedia.org/wiki/Graphical_user_interface&#34; title=&#34;Graphical user interface&#34;&gt;GUI&lt;/a&gt; improvements.&lt;/li&gt;
+&lt;li&gt;New hub device.&lt;/li&gt;
+&lt;li&gt;New Idlemax and Idlesleep settings (advanced manipulation of IDLE &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PC&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;IOS image and settings test button.&lt;/li&gt;
+&lt;li&gt;New Tool menu to start external scripts/tools.&lt;/li&gt;
+&lt;li&gt;Drag &amp;amp; drop of multiple devices when pressing SHIFT.&lt;/li&gt;
+&lt;li&gt;Temporary projects are created by default.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/VirtualBox&#34; title=&#34;VirtualBox&#34;&gt;VirtualBox&lt;/a&gt; interface numbering starts at 0 (e.g. e0 = VirtualBox interface 1 = eth0 on &lt;a href=&#34;http://en.wikipedia.org/wiki/Linux&#34; title=&#34;Linux&#34;&gt;Linux&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Support for 36 network cards in VirtualBox (using ICH9 chipset)&lt;/li&gt;
+&lt;li&gt;New option to save traffic captures in project directories.&lt;/li&gt;
+&lt;li&gt;Experimental auto IDLE PC calculation feature (requires &lt;a href=&#34;http://en.wikipedia.org/wiki/Dynamips&#34; title=&#34;Dynamips&#34;&gt;Dynamips&lt;/a&gt; greater than 0.2.8-RC5, which is included in Windows all-in-one and &lt;a href=&#34;http://en.wikipedia.org/wiki/OS_X&#34; title=&#34;OS X&#34;&gt;OSX&lt;/a&gt; DMG).&lt;/li&gt;
+&lt;li&gt;Added entries to have Dynamips/Qemu/VirtualBox hypervisors bind/listen to all available IP/host addresses (optional).&lt;/li&gt;
+&lt;li&gt;AW+ router support by &lt;a href=&#34;http://en.wikipedia.org/wiki/Allied_Telesis&#34; title=&#34;Allied Telesis&#34;&gt;Allied Telesis&lt;/a&gt; from &lt;a href=&#34;http://en.wikipedia.org/wiki/New_Zealand&#34; title=&#34;New Zealand&#34;&gt;New Zealand&lt;/a&gt; (educational version of their OS to be released).&lt;/li&gt;
+&lt;li&gt;Removed the “Save IOS configs option” in project settings. IOS configs are always saved.&lt;/li&gt;
+&lt;li&gt;Qemu FLASH files are automatically saved in a directory named ‘qemu-flash-drives’ (in the project directory).&lt;/li&gt;
+&lt;li&gt;Dynamips version 0.2.8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can also read the &lt;a href=&#34;http://code.gns3.net/gns3-devel/raw-file/94a2358b0b55/CHANGELOG&#34; title=&#34;GNS3 - Change Log&#34;&gt;changelog&lt;/a&gt; for a full list of changes! I have used GNS3 off and on with my certification studies, it has always been a great program for that &amp;quot;what if question.&amp;quot; Currently I am using if for some &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt; routing redundancy checks and some proof of concept designs. What are some good topologies for GNS3 have you seen? Post some links! I have just downloaded the new version and I will get back with you :) Have questions about GNS3? Post them on the &lt;a href=&#34;http://forum.gns3.net/&#34; title=&#34;Forum - GNS3&#34;&gt;GNS3 Forum.&lt;/a&gt;&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://rednectar.net/2013/07/06/gns3-0-8-4-released-today-here-are-the-highlights/&#34;&gt;GNS3 0.8.4 released today here are the highlights&lt;/a&gt; (rednectar.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://rednectar.net/2013/07/06/how-the-gns3-hypervisor-manager-works/&#34;&gt;How the GNS3 Hypervisor Manager Works&lt;/a&gt; (rednectar.net)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Windows 8 Developer Preview</title>
+      <link>https://ciscoskills.net/2011/10/windows-8-developer-preview/</link>
+      <pubDate>Wed, 12 Oct 2011 17:15:43 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/10/windows-8-developer-preview/</guid>
+      <description>
+        
+          &lt;p&gt;Changing topics for today, I want to talk about the Windows 8 Developer Preview which was released on September 13th. I had the time to install it under &lt;a href=&#34;http://en.wikipedia.org/wiki/VirtualBox&#34; title=&#34;VirtualBox&#34;&gt;virtual box&lt;/a&gt; and was pleasantly surprised! About how fast it installed the easy to understand install prompts and the new &amp;quot;&lt;a href=&#34;http://en.wikipedia.org/wiki/Metro_Design_Language&#34; title=&#34;Metro Design Language&#34;&gt;Metro&lt;/a&gt;&amp;quot; &lt;a href=&#34;http://en.wikipedia.org/wiki/User_interface&#34; title=&#34;User interface&#34;&gt;UI&lt;/a&gt; which is aimed at touched devices. Also the ability to switch to the standard &lt;a href=&#34;http://en.wikipedia.org/wiki/Microsoft_Windows&#34; title=&#34;Microsoft Windows&#34;&gt;Windows operating system&lt;/a&gt;. This is an &lt;a href=&#34;http://en.wikipedia.org/wiki/Software_release_life_cycle&#34; title=&#34;Software release life cycle&#34;&gt;alpha build&lt;/a&gt; so it&#39;s not even on at the beta stages yet, Take a look for yourself! [slideshow] Want to try it for yourself check out &lt;a href=&#34;http://msdn.microsoft.com/en-us/windows/apps/br229516&#34; title=&#34;Windows 8 Developer Preview downloads&#34;&gt;Windows 8 Developer Preview downloads&lt;/a&gt;. This is an alpha build and can be unstable. I would use a &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_machine&#34; title=&#34;Virtual machine&#34;&gt;virtual machine&lt;/a&gt; to test it. Although short to the point that&#39;s all I have so check back for other posts. What do like about Windows 8 DP? What don&#39;t you like? Comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://obieosobalu.wordpress.com/2011/10/07/microsoft-releases-white-papers-for-windows-8-developer-preview-edition-for-developers/&#34;&gt;Microsoft releases White papers for Windows 8 Developer Preview Edition for Developers&lt;/a&gt; (obieosobalu.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.edugeek.net/forums/windows-8/82759-windows-8-developer-preview-available-download-microsoft.html&#34;&gt;Windows 8 Developer preview is available to download by Microsoft&lt;/a&gt; (edugeek.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://thegeekpost.wordpress.com/2011/09/21/windows-8-developer-preview-available-now/&#34;&gt;Windows 8 - Developer Preview Available Now!&lt;/a&gt; (thegeekpost.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.winrumors.com/microsoft-provides-virtualization-recommendations-for-windows-8-developer-preview/&#34;&gt;Microsoft provides virtualization recommendations for Windows 8 developer preview&lt;/a&gt; (winrumors.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.winrumors.com/microsoft-begins-distributing-windows-8-developer-preview-updates/&#34;&gt;Microsoft begins distributing Windows 8 developer preview updates&lt;/a&gt; (winrumors.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://plavc.wordpress.com/2011/10/19/windows-8-developer-preview/&#34; title=&#34;&#34;&gt;Windows 8 Developer Preview « Memory leak&lt;/a&gt; - &lt;time datetime=&#34;2011-10-19 06:27:33&#34;&gt;Oct 3, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Windows 8 Developer Preview (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

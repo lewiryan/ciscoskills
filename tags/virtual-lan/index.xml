@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Virtual LAN on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/virtual-lan/</link>
+    <description>Recent content in Virtual LAN on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 08 Sep 2012 01:52:38 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/virtual-lan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco Lab Setup</title>
+      <link>https://ciscoskills.net/2012/09/cisco-lab-setup/</link>
+      <pubDate>Sat, 08 Sep 2012 01:52:38 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/09/cisco-lab-setup/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/09/cisco-ccie-video-practice-lab.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/cisco-ccie-video-practice-lab.jpg?w=300&#34; alt=&#34;&#34; title=&#34;A Cisco Lab&#34;&gt;&lt;/a&gt;When it comes to learning and getting started with &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; there are some tools that will help out a lot like &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_Tracer&#34; title=&#34;Packet Tracer&#34;&gt;Packet Tracer&lt;/a&gt;, GNS3 and other emulators. These are great tools for that &amp;quot;simulation&amp;quot; of hands on learning, but you can&#39;t always stay in that area. I find it best to get hands on with &amp;quot;real&amp;quot; Cisco Gear and so with this post I&#39;ll go through my current setup of what I have and ask that question when it is a good time to get a lab? Just because you may want to get a lab that does not guarantee you&#39;ll actually learn and or pass.   I&#39;ll cut right to it and break it down; I have the following items:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1 x Tripp Lite SRW9U 9U Wall Mount Rack&lt;/li&gt;
+&lt;li&gt;2 x Cisco 2811 Routers with IOS Security&lt;/li&gt;
+&lt;li&gt;1x  Cisco 1841 Router with IOS SP Services&lt;/li&gt;
+&lt;li&gt;1 x Cisco Catalyst 2960 Switch 48 ports (&lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LAN&lt;/a&gt; Base)&lt;/li&gt;
+&lt;li&gt;1 x &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_ASA&#34; title=&#34;Cisco ASA&#34;&gt;Cisco ASA&lt;/a&gt; 5505 – Base&lt;/li&gt;
+&lt;li&gt;1 x Cisco AS2509-RJ – Used as an access server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of these devices are connected via a console cable to the Cisco 2509 and then a single console cable from the 2509 to my machine. This runs &lt;a href=&#34;http://en.wikipedia.org/wiki/VMware&#34; title=&#34;VMware&#34;&gt;VMware&lt;/a&gt; Workstation 9 which I just upgraded by the way :) and these virtual machines connect directly to one of the three NICs I have on my machine. These then connect to a Cisco Switch which has four different &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; (counting the default native VLAN) each assigned to a different range of ports which is seen in the code below: [code]Switch#show vlan VLAN Name Status Ports ---- -------------------------------- --------- ------------------------------- 1 default active Fa0/37, Fa0/38, Fa0/39, Fa0/40 Fa0/41, Fa0/42, Fa0/43, Fa0/44 Fa0/45, Fa0/46, Fa0/47, Fa0/48 Gi0/1, Gi0/2 20 ONE-12 active Fa0/1, Fa0/2, Fa0/3, Fa0/4 Fa0/5, Fa0/6, Fa0/7, Fa0/8 Fa0/9, Fa0/10, Fa0/11, Fa0/12 30 12-24 active Fa0/13, Fa0/14, Fa0/15, Fa0/16 Fa0/17, Fa0/18, Fa0/19, Fa0/20 Fa0/21, Fa0/22, Fa0/23, Fa0/24 40 25-36 active Fa0/25, Fa0/26, Fa0/27, Fa0/28 Fa0/29, Fa0/30, Fa0/31, Fa0/32 Fa0/33, Fa0/34, Fa0/35, Fa0/36 1002 fddi-default act/unsup 1003 token-ring-default act/unsup 1004 fddinet-default act/unsup 1005 trnet-default act/unsup VLAN Type SAID MTU Parent RingNo BridgeNo Stp BrdgMode Trans1 Trans2 ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------ VLAN Type SAID MTU Parent RingNo BridgeNo Stp BrdgMode Trans1 Trans2 ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------ 1 enet 100001 1500 - - - - - 0 0 20 enet 100020 1500 - - - - - 0 0 30 enet 100030 1500 - - - - - 0 0 40 enet 100040 1500 - - - - - 0 0 1002 fddi 101002 1500 - - - - - 0 0 1003 tr 101003 1500 - - - - - 0 0 1004 fdnet 101004 1500 - - - ieee - 0 0 1005 trnet 101005 1500 - - - ibm - 0 0 Remote SPAN VLANs ------------------------------------------------------------------------------ Primary Secondary Type Ports ------- --------- ----------------- ------------------------------------------ Switch#[/code] The three NICs on my machine that I use for VMs are not useable to my machine locally. As I have disabled IPv4 and only left the VMware Bridge Protocol selected under the adapter properties, from there I have also edited the VMware Virtual Network Editor as follows and pictured below:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;VMnet1 – Is bridged to my motherboard &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_interface_controller&#34; title=&#34;Network interface controller&#34;&gt;NIC&lt;/a&gt; and directly connected to a &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_machine&#34; title=&#34;Virtual machine&#34;&gt;VM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;VMnet2 – Is bridged to an Intel Gigabit &lt;a href=&#34;http://en.wikipedia.org/wiki/PCI_Express&#34; title=&#34;PCI Express&#34;&gt;PCI express card&lt;/a&gt; and directly connected to VM&lt;/li&gt;
+&lt;li&gt;VMnet3 – Is bridged to an Intel Gigabit PCI express card and directly connected to VM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is a picture of my current setup (The ASA is not in this picture): &lt;a href=&#34;http://ciscoskills.net/2012/09/07/cisco-lab-setup/imag0007/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/imag0007.jpg?w=1024&#34; alt=&#34;My Current Cisco Lab&#34; title=&#34;Cisco Lab&#34;&gt;&lt;/a&gt; Second Picture of the Rack with the door closed: &lt;a href=&#34;http://ciscoskills.net/2012/09/07/cisco-lab-setup/imag0009/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/imag0009.jpg?w=1024&#34; alt=&#34;My Current Lab with the door closed&#34; title=&#34;Cisco Lab-2&#34;&gt;&lt;/a&gt; Here is a screenshot of the one the NICs Properties: &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-nic.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-nic.png?w=239&#34; alt=&#34;&#34; title=&#34;NIC-Properties-VMWare&#34;&gt;&lt;/a&gt; Here is a screenshot of the VMware Virtual Network Editor and how each NIC is bridged and directly connected to a VM: &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-net3.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-net3.png?w=300&#34; alt=&#34;&#34; title=&#34;VMware-Network-Editor&#34;&gt;&lt;/a&gt; When I want a machine to use a NIC I just select one of the VMnet profiles as captured below: &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-nic2.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-nic2.png?w=300&#34; alt=&#34;&#34; title=&#34;VMware-Virtual-Machine-Settings-Network&#34;&gt;&lt;/a&gt; So I talked about my current lab setup which will always continue to grow and be upgraded in time just like a &amp;quot;real&amp;quot; environment but there is another question when do you need lab? I would only setup a lab on at least one of these three conditions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You have money to burn. This lab although small cost around $1,000 bucks.&lt;/li&gt;
+&lt;li&gt;You see yourself going to higher certification levels CCNA Security, Wireless, Voice, CCNP, CCIE and not just the CCNA.&lt;/li&gt;
+&lt;li&gt;You absolutely love this stuff!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For me it was option three that sold me, not only do I see myself working to higher certs but having that physical gear in hand is always the best type of learning (I think). When you go through your studies instead of just believing the answer, prove it by setting up the example physically instead of a point and click setup through simulation/emulation. I hope this information is helpful and if you have any questions about my lab and or other questions comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/the-next-evolution-of-ciscos-nexus-1000v-virtual-switch-to-be-featured-at-vmworld/&#34;&gt;The Next Evolution of Cisco&#39;s Nexus 1000V Virtual Switch to be Featured at VMworld&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://longwhiteclouds.com/2012/07/15/the-good-the-great-and-the-gotcha-with-multi-nic-vmotion-in-vsphere-5/&#34;&gt;The Good, The Great, and the Gotcha with Multi-NIC vMotion in vSphere 5&lt;/a&gt; (longwhiteclouds.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.remibergsma.com/2012/08/30/going-beyond-cloudstack-advanced-networking-how-i-replaced-the-virtual-router-with-my-own-physical-linux-router/&#34;&gt;Going beyond CloudStack Advanced Networking: How I replaced the Virtual Router with my own physical Linux router&lt;/a&gt; (remibergsma.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/cisco-cvds-on-vspex-giddy-up/&#34;&gt;Cisco CVD&#39;s on VSPEX...Giddy &#39;UP!&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22adamsiewert@gmail.com%22&#34;&gt;adam&lt;/a&gt; - &lt;time datetime=&#34;2012-09-17 14:46:39&#34;&gt;Sep 1, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Where did you get your lab?&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-09-17 18:52:03&#34;&gt;Sep 1, 2012&lt;/time&gt;
+&lt;p&gt;Hey Adam, The equipment for this lab I put together from Ebay. Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Trunking Administrative Modes</title>
+      <link>https://ciscoskills.net/2012/02/trunking-administrative-modes/</link>
+      <pubDate>Sat, 11 Feb 2012 22:45:50 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/02/trunking-administrative-modes/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/02/cisco-switch.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/02/cisco-switch.jpg&#34; alt=&#34;&#34; title=&#34;cisco-switch-blade&#34;&gt;&lt;/a&gt;When looking at the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; it is good idea to get a hold of trunking between switches along with that there are a couple of administrative modes that each physical &lt;a href=&#34;http://en.wikipedia.org/wiki/Interface_%28computing%29&#34; title=&#34;Interface (computing)&#34;&gt;interface&lt;/a&gt; on &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_switch&#34; title=&#34;Network switch&#34;&gt;switch&lt;/a&gt; can be when you are trunking between them. Remember that when we are trunking it usually carries all &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; (This can be changed) but there are different ways to make trunking between links happen. When you are in an interface on a Cisco switch you can change the operational mode of that interface by issuing the switchport mode command. There are four commands that can be issued: [code]Switch(config-if)#switchport mode ? access Set trunking mode to ACCESS unconditionally dynamic Set trunking mode to dynamically negotiate access or trunk mode trunk Set trunking mode to TRUNK unconditionally[/code]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Switchport mode access –&lt;/strong&gt; Which prevents the interface from trunking, this interface would always act as an access port.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switchport mode trunk –&lt;/strong&gt; Which puts the interface in trunking&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switchport mode dynamic auto –&lt;/strong&gt; The interface waits to receive a trunk negotiation message, at which point the switch would respond and negotiate whether to use trunking. If so which type of trunking.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switchport mode dynamic desirable –&lt;/strong&gt; Initiates negotiation messages and responds to negotiation messages to dynamically choose whether to start using trunking. This also decides which type of trunking to use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The best security practice I always use is &lt;a href=&#34;http://en.wikipedia.org/wiki/Hard_coding&#34; title=&#34;Hard coding&#34;&gt;hard code&lt;/a&gt; these interface (either access or trunk), there is no need for these to negotiate trunking behaviors. If somebody plugged in a switch or used a tool to trick the switch in believing it is a trunk port they now can listen to all traffic in your network! That is really it for the different types of trunking modes, if I have two switches together and both of them are in dynamic auto, what would the interface operational mode be? Would it be a &lt;a href=&#34;http://en.wikipedia.org/wiki/Trunking&#34; title=&#34;Trunking&#34;&gt;Trunk&lt;/a&gt; or an access? The answer would be an access, because of they are both waiting for a trunk negotiation message. I hope this information is helpful and if you have a question post it below also see if you can figure out if the interface would be trunking or if it would be in an access port.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Access + Access =?&lt;/li&gt;
+&lt;li&gt;Trunk + Auto =?&lt;/li&gt;
+&lt;li&gt;Trunk + Trunk =?&lt;/li&gt;
+&lt;li&gt;Auto + Auto =?&lt;/li&gt;
+&lt;li&gt;Desirable + Auto =?&lt;/li&gt;
+&lt;li&gt;Access + Desirable =?&lt;/li&gt;
+&lt;li&gt;Desirable + Trunk =?&lt;/li&gt;
+&lt;li&gt;Desirable + Desirable=?&lt;/li&gt;
+&lt;li&gt;Access + Trunk =?&lt;/li&gt;
+&lt;li&gt;Access + Auto =?&lt;/li&gt;
+&lt;li&gt;Trunk + Access =?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34;&gt;Configure Router on a Stick&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://learnnetworkingwithme.wordpress.com/2012/02/02/vlan-trunking-methods/&#34;&gt;VLAN Trunking Methods&lt;/a&gt; (learnnetworkingwithme.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://datacenterhawk.wordpress.com/2011/12/05/nexus-1000v-dmz-private-vlan-config-example/&#34;&gt;Nexus 1000v - DMZ Private VLAN config example&lt;/a&gt; (datacenterhawk.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.ioshints.info/2012/02/nicira-open-vswitch-inside-vsphereesx.html&#34;&gt;Nicira Open vSwitch inside vSphere/ESX&lt;/a&gt; (ioshints.info)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Router on a Stick</title>
+      <link>https://ciscoskills.net/2012/02/configure-router-on-a-stick/</link>
+      <pubDate>Wed, 01 Feb 2012 03:45:09 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/02/configure-router-on-a-stick/</guid>
+      <description>
+        
+          &lt;p&gt;A while ago I talked about putting different &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; on a switch, remember a VLAN is virtual network that although physically it may look like on the same network that does not always mean the case. By having VLANs you are segmenting the network and the only way to get to the other side is having a router. I have already configured the Cisco switch as posted in &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34; title=&#34;Creating VLANs&#34;&gt;Creating VLANs&lt;/a&gt; but in summary I have three VLANs total VLAN 1 which is the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;native VLAN&lt;/a&gt;, VLAN 2 and VLAN 3 (which is called support. If you like to understand how create VLANs on a switch follow the post above. If you look at the network topology below you can see where Cisco came up with the name &amp;quot;Router on Stick&amp;quot; each PC is on its own network and needs the router in order for traffic to pass between the networks. Like before I have three VLANs total. VLAN 1 which is the native VLAN, VLAN 2 and VLAN 3 (which is called &amp;quot;Support&amp;quot;). &lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/router-on-a-sticke/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/router-on-a-sticke.png&#34; alt=&#34;&#34; title=&#34;Router-On-A-Stick&#34;&gt;&lt;/a&gt; You have to create sub-interfaces on the router to route between different VLANs these sub-interfaces do not correspond to the VLANs so you could put any number but for manageability usually people use the same sub-interface has the VLAN ID. To create a sub-interface start typing the interface that will be physically connected to the switch at the end add a period and number. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0.2 Router(config-subif)#[/code] You are now in the sub-interface configuration, we want to tell the router which VLAN this interface will be a part of. In this example I am typing &amp;quot;&lt;strong&gt;encapsulation dot1Q 2&amp;quot;&lt;/strong&gt; dot1Q is an IEEE standard 802.1Q , the number &amp;quot;two&amp;quot; is the VLAN this interface will be a part of. Just like a real interface this interface must have an IP address for end devices to reach it. In this example we are using 192.168.2.1 with a Class C subnet mask. (i.e 255.255.255.0) [code]Router(config-subif)#encapsulation dot1Q 2 Router(config-subif)#ip address 192.168.2.1 255.255.255.0 Router(config-subif)#no shut[/code] We do the same for VLAN 3 (Support) in which we will create a new sub-interface in this example I am using sub-interface 3, and I&#39;m going to be putting this sub-interface in VLAN 3 by using &amp;quot;&lt;strong&gt;encapsulation dot1Q 3&amp;quot;.&lt;/strong&gt; Remember the sub-interface number has no effect on which VLAN this interface is a part of. I&#39;m also adding a IP address of 192.168.3.1 with a Class C subnet mask. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0.3 Router(config-subif)# Router(config-subif)#encapsulation dot1Q 3 Router(config-subif)#ip address 192.168.3.1 255.255.255.0 Router(config-subif)#no shut[/code] The last VLAN is the native VLAN and by default is VLAN 1, for this configuration go to the physical interface and add an IP address for this example we are using 192.168.1.1 with a Class C subnet mask. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0 Router(config-if)#ip address 192.168.1.1 255.255.255.0 Router(config-if)#no shut[/code] The last thing we have to setup is on the Cisco Switch in which we have to specify which interface on the switch will pass all the VLANs, this is known as the trunking port. Go into configuration mode and for this example we selected FastEthernet0/1 apply the &amp;quot;&lt;strong&gt;switchport mode trunk&amp;quot;&lt;/strong&gt; command and since we are using the default native VLAN which is not always recommended that&#39;s all the configuration needed. We now have three different networks separated by VLANs, if you issue a &amp;quot;&lt;strong&gt;show ip route&amp;quot;&lt;/strong&gt; on the router we will see each sub-interface and route to each of them. All devices should be able to ping each other. [code]Switch&amp;gt;en Switch#config t Enter configuration commands, one per line. End with CNTL/Z. Switch(config)#interface fastEthernet 0/1 Switch(config-if)#switchport mode trunk[/code] [code]Router#show ip route Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2 E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area * - candidate default, U - per-user static route, o - ODR P - periodic downloaded static route Gateway of last resort is not set C 192.168.1.0/24 is directly connected, FastEthernet0/0 C 192.168.2.0/24 is directly connected, FastEthernet0/0.2 C 192.168.3.0/24 is directly connected, FastEthernet0/0.3[/code] I hope this information is helpful I have also attached a PDF of the running-config of both devices to give you an example of the configuration. (&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/01/router-on-stick-example-runconfig.pdf&#34;&gt;Router-On-Stick-Example-RunConfig&lt;/a&gt;) If you have any questions post them below. Like always if you an idea of the next topic let me hear it.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/11/02/ospf-what-a-protocol/&#34;&gt;OSPF...What a Protocol!&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ipv6area.wordpress.com/2011/12/08/what-is-ipv6-an-introduction-to-ipv6/&#34;&gt;What is IPv6 ? An introduction to IPV6&lt;/a&gt; (ipv6area.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.edugeek.net/forums/networks/89609-guest-vlans-guest-wifi-different-ip-range-out-filtered-internet.html&#34;&gt;Guest VLANS + Guest Wifi - Different IP Range, Out to Filtered Internet&lt;/a&gt; (edugeek.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mungauwamaseghe.wordpress.com/2012/01/31/journey-to-the-ccie-lab-part-44-bgp-link-bandwidth/&#34;&gt;Journey to the CCIE LAB - Part 44 - BGP Link Bandwidth&lt;/a&gt; (mungauwamaseghe.wordpress.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://gravatar.com/aslan77777&#34; title=&#34;ciscodaze@live.com&#34;&gt;Theophilus&lt;/a&gt; - &lt;time datetime=&#34;2012-06-08 17:11:20&#34;&gt;Jun 5, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;I saw your comment on not having to use the encap command when using the actual interface (fa0/0), but I was wondering, (since you typically see books and tutorials NOT using the actual interface, but instead, typically fa0/0.1), are there any other ramifications to using one as opposed to the other?? Fa0/0 as opposed to Fa0/0.1?? Thanks, Kevin&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Theophilus](http://aslan77777.wordpress.com &#34;ciscodaze@live.com&#34;) - &lt;time datetime=&#34;2012-06-08 17:17:52&#34;&gt;Jun 5, 2012&lt;/time&gt;
+&lt;p&gt;Besided the encapsulation command, are there any ramifications to using Fa0/0 for vlan 1 (instead of Fa0/0.1, as typically shown in ROAS configs)? Thanks, Kevin&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;&#34;) - &lt;time datetime=&#34;2012-06-08 18:13:58&#34;&gt;Jun 5, 2012&lt;/time&gt;
+&lt;p&gt;Hey Kevin, The only reason this is set on the physical interface is because it is using un-tagged traffic also know as the native VLAN. You can&#39;t set the encapsulation dot1q on a physical interface only sub-interfaces. A better way to do this is use a sub-interface followed by: encapsulation dot1Q [VLAN-ID] native I don&#39;t see any problems with this method besides security and monitoring. For example If you wanted to see all traffic passing in and out of the physical interface using Netflow or SNMP you would not see that in this example, you would only see the native VLAN traffic. For security you should not use the native VLAN in production so this example it is not using best practices therefore I would not recommend it. This post goes along with another post I did about creating VLANs on a switch: &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34;&gt;http://ciscoskills.net/2011/04/01/creating-vlans/&lt;/a&gt; Hope that Helps, Ryan&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Part 1 &amp;#8211; The Joys of Subnetting! | Cisco Skills](http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/ &#34;&#34;) - &lt;time datetime=&#34;2012-04-01 15:03:41&#34;&gt;Apr 0, 2012&lt;/time&gt;
+&lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Part 2 – The Joys of Subnetttting – VLSM! | Cisco Skills](http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/ &#34;&#34;) - &lt;time datetime=&#34;2012-04-23 21:08:49&#34;&gt;Apr 1, 2012&lt;/time&gt;
+&lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[How to configure a Catalyst 3750/3750-E/3750-X Series Switches Using LLDP (Link Layer Discovery Protocol) &amp;laquo; Pete&amp;#039;s Packet](http://petespacket.com/2012/03/08/how-to-configure-a-catalyst-37503750-e3750-x-series-switches-using-lldp-link-layer-discovery-protocol/ &#34;&#34;) - &lt;time datetime=&#34;2012-03-08 14:00:56&#34;&gt;Mar 4, 2012&lt;/time&gt;
+&lt;p&gt;[...] Configure Router on a Stick [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-01-31 22:34:25&#34;&gt;Jan 2, 2012&lt;/time&gt;
+&lt;p&gt;If you are talking about the trunk link between the switch and the router it will pass up to the router and then be forwarded back down to the switch. So if you had a lot of traffic being forwarded between networks you could run into some bandwidth limits. To fix that you could configure a switch that does layer 3 routing and skip the router all together that way you would not be dependent on that one link to forward all of your traffic back and forth. The native VLAN by default is VLAN 1 and that can be changed. The only difference between a native VLAN and a regular VLAN is it passes un-tagged traffic. If you look at the router configuration I&#39;ve setup, the physical interface (fa0/0) notice how I don&#39;t have to put the encapsulation, because this is traffic is not tagged with a VLAN. To answer you question you can put everything on a VLAN and forget about the default/native VLAN. A good practice to use is to change it to a non-default number something other than 1 and a VLAN that you are not using in your network. However make sure every switch has the correct native VLAN or you will get messages about native VLAN mismatched. Ryan&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Philip](http://www.studio1250.com &#34;philip@studio1250.com&#34;) - &lt;time datetime=&#34;2012-02-23 13:58:30&#34;&gt;Feb 4, 2012&lt;/time&gt;
+&lt;p&gt;Great article! Thanks for the info. I was talking to my friend about this last night and when I got into packet tracer I couldn&#39;t quite figure out how to assign multiple ip addresses to a single interface. I&#39;m glad you took the time to write up this example.&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-02-23 20:32:32&#34;&gt;Feb 4, 2012&lt;/time&gt;
+&lt;p&gt;Glad I could help. :) The configuration is pretty straight forward.&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Theophilus](http://gravatar.com/aslan77777 &#34;ciscodaze@live.com&#34;) - &lt;time datetime=&#34;2012-06-10 14:34:04&#34;&gt;Jun 0, 2012&lt;/time&gt;
+&lt;p&gt;Thanks Ryan&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Trunking Administrative Modes | Cisco Skills](http://ciscoskills.net/2012/02/11/trunking-administrative-modes/ &#34;&#34;) - &lt;time datetime=&#34;2012-02-11 16:05:33&#34;&gt;Feb 6, 2012&lt;/time&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[EIGRP… The Basics | Cisco Skills](http://ciscoskills.net/2012/02/28/eigrp-the-basics/ &#34;&#34;) - &lt;time datetime=&#34;2012-02-28 19:53:58&#34;&gt;Feb 2, 2012&lt;/time&gt;
+&lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[ITforMe](http://gravatar.com/pedrok00 &#34;peter.gavin@live.com&#34;) - &lt;time datetime=&#34;2012-01-31 21:21:36&#34;&gt;Jan 2, 2012&lt;/time&gt;
+&lt;p&gt;Good post. Thanks for sharing. Can you confirm that with intervlan routing, that one would not run into the bandwidth limitations imposed by a traditional upstream router? (e.g. say, 50 ports feeding upstream to a physical router only to pipe back down into the switch). In other words, is a router on a stick configuration smart enough to know that if it needs to route across two VLANs that happen to live on the same port, that it isolates the flow of traffic to just that port? I&#39;m also interested in what your thoughts are on the default VLAN 1. It seems that it is often more than just the factory VLAN, but that it may hold special characteristics and limitations (e.g. routing, etc.). If that is the case, would you suggest taking a new stack of switches, and making all of the untagged ports to the systems/workstations on something like VLAN101, with a PVID of 101, so as to prevent any traffic from going across the default VLAN?&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Three Tiers</title>
+      <link>https://ciscoskills.net/2012/01/the-three-tiers/</link>
+      <pubDate>Sat, 21 Jan 2012 19:30:48 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/01/the-three-tiers/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/01/network_switch.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/network_switch.jpg?w=150&#34; alt=&#34;&#34; title=&#34;network_switch&#34;&gt;&lt;/a&gt;Working towards the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; talks about a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_topology&#34; title=&#34;Network topology&#34;&gt;hierarchical network&lt;/a&gt; there are three layers to this design. Access Layer, distribution layer and the core layer. Each of them have their own set of functions and is also considered to be a best practice when the network continues to grow and for redundancy along with just a better way to manage it. &lt;strong&gt;The Access layer&lt;/strong&gt; is the layer that devices connect to, such as &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PCs&lt;/a&gt;, printers, and &lt;a href=&#34;http://en.wikipedia.org/wiki/VoIP_phone&#34; title=&#34;VoIP phone&#34;&gt;IP Phones&lt;/a&gt;. The access layer can include routers, switches, bridges, hubs, &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_access_point&#34; title=&#34;Wireless access point&#34;&gt;wireless access points&lt;/a&gt;, etc. The main purpose is providing a means of connecting devices to the network, this is also your first line of defense of controlling who is on your network. &lt;strong&gt;The Distribution Layer&lt;/strong&gt; aggregates the data received from the access layer before it is transmitted to the core for routing to its destination. The distribution layer is like a traffic cop to which it controls the flow of network traffic using policies like routing between broadcast domains by having &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; which are setup on the access layer. VLANs let you segment traffic on a switch into separate subnetworks. Why would you segment traffic? The main reason is for security you should not have sensitive data on a public network because anybody can reach it, by separating it you also have more control over it on who can get access to it. &lt;strong&gt;The Core Layer&lt;/strong&gt; of the hierarchical design is the high-speed backbone of the network. The core layer is critical for interconnectivity between the distribution layer devices. The core must be highly available and should be redundant. The core can also connect to internet resources, because the core aggregates the traffic from the entire distribution layer it must be able to handle high data traffic. &lt;a href=&#34;http://ciscoskills.net/2012/01/21/the-three-tiers/hierarchical-layerse/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/hierarchical-layerse.png&#34; alt=&#34;The Hierarchical Layer&#34; title=&#34;Hierarchical Layers&#34;&gt;&lt;/a&gt; In small networks it is a common practice to use a collapsed core model to where the distribution layer and core are merged into one layer. If the network grows it is fairly easy to add the core layer. Because you are in hierarchical network you have many benefits which I&#39;ll hold off for another day but in summary they are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Scalability&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Redundancy_%28engineering%29&#34; title=&#34;Redundancy (engineering)&#34;&gt;Redundancy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Performance&lt;/li&gt;
+&lt;li&gt;Security&lt;/li&gt;
+&lt;li&gt;Manageability&lt;/li&gt;
+&lt;li&gt;Maintainability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Like always I hope this information is helpful in at least having a better idea of Cisco&#39;s hierarchical network design. One of the hardest things when designing this type of network is if you are trying to change the original one because of poor performance and degradation. Like always if you have an idea of the next topic that looks at ICND1 or ICND2 let me hear it by posting below, or if you have questions feel free to post them as well.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2011/09/21/flatter_networks/&#34;&gt;No more tiers for flatter networks&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.ioshints.info/2011/10/l2-or-l3-switching-in-campus-networks.html&#34;&gt;L2 or L3 switching in campus networks?&lt;/a&gt; (ioshints.info)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/vxlan-deep-dive-part-2-looking-at-the-options/&#34;&gt;VXLAN Deep Dive, Part 2: Looking at the Options&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/digging-deeper-into-vxlan/&#34;&gt;Digging Deeper into VXLAN, Part 1&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Beginnings of Layer Two Redundancy</title>
+      <link>https://ciscoskills.net/2011/08/the-beginnings-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/08/the-beginnings-of-layer-two-redundancy/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34; alt=&#34;&#34; title=&#34;network-diagram&#34;&gt;&lt;/a&gt;In a perfect world we would never need redundancy on a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network&lt;/a&gt; infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network. But in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt; there is one layer that can&#39;t have redundancy at least logically and that is &lt;a href=&#34;http://en.wikipedia.org/wiki/Abstraction_layer&#34; title=&#34;Abstraction layer&#34;&gt;Layer&lt;/a&gt; two of the OSI model. If you follow this blog way back when I talked about the OSI model, layer two belongs to the switches and by design the ethernet frame does not support a TTL (&lt;a href=&#34;http://en.wikipedia.org/wiki/Time_to_live&#34; title=&#34;Time to live&#34;&gt;Time-To-Live&lt;/a&gt;) like the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP packet&lt;/a&gt;. So bring forth STP, the &lt;a href=&#34;http://en.wikipedia.org/wiki/Spanning_Tree_Protocol&#34; title=&#34;Spanning Tree Protocol&#34;&gt;Spanning Tree Protocol&lt;/a&gt; which works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until active link is unavailable (shutdown, disabled, etc.) So although there are multiple links connected physically to offer redundancy, logically the switches in the network only see one path that ethernet frame can travel. &lt;strong&gt;Your Thought:&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Wait...I have plugged into multiple Cisco switches before to create a redundant path and I did not notice anything wrong?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That&#39;s because by default STP is enabled, to the average person they can plug away and create redundant paths with switches and cause no harm to the network. But if STP has been disabled on those switches or switches that don&#39;t support STP (dumb switches), a Layer 2 loop can occur. A Layer 2 loop is a nightmare if this happens in a production network and can happen in seconds. Loops result in high &lt;a href=&#34;http://en.wikipedia.org/wiki/Central_processing_unit&#34; title=&#34;Central processing unit&#34;&gt;CPU&lt;/a&gt; load on all switches caught in the loop. Because the same frames are constantly being forwarded back and forth between all switches in the loop, the CPU of the switch ends up having to process a lot of data. This slows down performance on the switch when legitimate traffic arrives.  A host caught in a network loop is not accessible to other hosts on the network. Because the &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt; table is constantly changing with the updates from the broadcast frames, the switch does not know which port to send the unicast frames out to reach the destination. The unicast frames end up looping around the network as well. As more and more frames end up looping on the network, a &lt;a href=&#34;http://en.wikipedia.org/wiki/Broadcast_radiation&#34; title=&#34;Broadcast radiation&#34;&gt;broadcast storm&lt;/a&gt; occurs. What makes this even more fun is if you try connecting to the switches to solve this problem, good luck :). Most of the time you have to physically turn off the switches to kill the broadcast storm and if it happened once expect it to happen again. To make things worse if any end-devices are connected to the switch ports that are experiencing a broadcast storm they too have a hard time keeping up with the mountain of broadcast frames being sent and sometimes malfunction. Usually you would have to disconnect the switch from the redundant links and apply STP to it and then re-connect the redundant links in order for your network to be broadcast storm free. Although I&#39;m just getting started I think by just introducing this topic will help you better understand it later, I will get into more of this STP magic and how this really helps us design a hierarchy network. Like always I hope this information was informative and if you can&#39;t wait a simple search about STP will help. You can also go right to the source for more STP information at &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&#39;s&lt;/a&gt; Support and Documentation. Have an idea of the next topic either ICND1 or ICND2 let me know about it.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34;&gt;Cisco Discovery Protocol&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/get-data-to-its-destination-faster/&#34;&gt;Get Data to Its Destination Faster&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/01/17/the-osi-layer/&#34; title=&#34;The OSI Layer&#34;&gt;The OSI Layer&lt;/a&gt;  (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2011/06/16/network_tuning/&#34;&gt;When tuning the server, don&#39;t forget the network&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/&#34; title=&#34;&#34;&gt;The Middle of Layer Two Redundancy | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-09-07 12:08:56&#34;&gt;Sep 3, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] The Beginnings of Layer Two Redundancy (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding VTP</title>
+      <link>https://ciscoskills.net/2011/05/understanding-vtp/</link>
+      <pubDate>Wed, 11 May 2011 16:30:14 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/05/understanding-vtp/</guid>
+      <description>
+        
+          &lt;p&gt;Some people hate it, some people love it. It&#39;s the Cisco proprietary &lt;a href=&#34;http://en.wikipedia.org/wiki/VLAN_Trunking_Protocol&#34; title=&#34;VLAN Trunking Protocol&#34;&gt;VLAN Trunking Protocol&lt;/a&gt; (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt;. I also suggest if you don&#39;t know what a VLAN is check out the post &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34; title=&#34;Creating VLANs&#34;&gt;Creating VLANs&lt;/a&gt; Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information. Take for example if you had 20 switches that need the same VLANs you could do it manually but this runs the risk of human error, with VTP if you configure one switch as a server and all other switches as clients then you can configure all of them. VTP uses Layer two messages to exchange information if a server switch changes or removes VLANS VTP will synchronize all switches so all switches have the same VLANs. &lt;a href=&#34;http://ciscoskills.net/2011/05/11/understanding-vtp/vlan_trunking_protocol_/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/vlan_trunking_protocol_.gif?w=300&#34; alt=&#34;VLAN Trunking Protocol&#34; title=&#34;VLAN_Trunking_Protocol&#34;&gt;&lt;/a&gt; The VTP server distributes VLAN configuration changes through VTP messages, sent over &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;ISL&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.1Q&#34; title=&#34;IEEE 802.1Q&#34;&gt;802.1Q&lt;/a&gt; trunks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ISL is an older technology along with being Cisco proprietary. ISL also fully encapsulates the &lt;a href=&#34;http://en.wikipedia.org/wiki/Ethernet&#34; title=&#34;Ethernet&#34;&gt;original Ethernet&lt;/a&gt; frame inside the ISL header remain unchanged. Along with using the source and destination &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC addresses&lt;/a&gt; in the ISL header to send and receiving to a switch.&lt;/li&gt;
+&lt;li&gt;802.1Q is an open-standard created by IEEE and uses a different header than ISL to tag frames, with the VLAN number. 802.1Q does not encapsulate the original frame into another &lt;a href=&#34;http://en.wikipedia.org/wiki/Ethernet_frame&#34; title=&#34;Ethernet frame&#34;&gt;Ethernet header&lt;/a&gt; and trailer. 802.1Q inserts and extra 4-byte VLAN header into the original frame&#39;s Ethernet header. The frame still has the original source and destination MAC address unlike ISL. Also because the original header has been expanded 802.1Q forces a FCS (&lt;a href=&#34;http://en.wikipedia.org/wiki/Frame_check_sequence&#34; title=&#34;Frame check sequence&#34;&gt;Frame check sequence&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By default when a switch is powered on the VTP mode is server, VTP servers and clients can choose whether to react to the received VTP update, by either update their VLAN configuration or ignore it. This is based on the VLAN database configuration revision number. Each time the VTP server modifies its VLAN configuration the VTP server increments the current configuration revision number by 1. If the revision number increases and is higher than a client switch or server switch, it will update its VLAN database. This is where VTP can destroy your network if set up incorrectly or not securely. If you have a &amp;quot;rouge&amp;quot; VTP server that has a higher revision number then the other VTP server, all switches in the domain including the VTP server will change and update the VLAN configuration based on the &amp;quot;rouge&amp;quot; VTP server. There are three VTP Modes&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Server Mode, Servers can create VLANs and distribute VLAN configuration changes through VTP messages.&lt;/li&gt;
+&lt;li&gt;Client Mode, Clients cannot be used to configure VLAN information they only learn about VLANs by VTP servers and only forward VTP messages.&lt;/li&gt;
+&lt;li&gt;Transparent Mode, &lt;a href=&#34;http://en.wikipedia.org/wiki/Transparency_%28computing%29&#34; title=&#34;Transparency (computing)&#34;&gt;Transparent mode&lt;/a&gt; switches never update their VLAN database on incoming VTP messages. Like servers they can however create VLANs, they also will send VTP messages to help out other switches in server or client.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;VTP defines three message types&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Summary advertisements - list the revision number, domain name, and other information but no VLAN information. These are summary advertisements that occur every 5 minutes.&lt;/li&gt;
+&lt;li&gt;Subset advertisements - occur when a new a larger revision number is introduced which is some subset of the VLAN database.&lt;/li&gt;
+&lt;li&gt;Request message - Allows the switch to immediately request VTP messages from a neighboring switch as soon as a trunk comes up.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;VTP does have some other features like VTP Pruning, passwords protection and domains but that all in the configuration side. An interesting side note is that VTP cannot be turned off. There is no disable command in the switch IOS, if you want to turn off VTP on a switch change the mode to transparent. You can find additional information about VTP at Cisco.com along with a web search. Like always I hope this information was informative and if you have a topic that deals with either ICND1 or ICND2 material let me know by commenting below.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Creating VLANs</title>
+      <link>https://ciscoskills.net/2011/04/creating-vlans/</link>
+      <pubDate>Fri, 01 Apr 2011 17:00:08 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/creating-vlans/</guid>
+      <description>
+        
+          &lt;p&gt;Today this tutorial is going to be talking about creating VLANs (Virtual &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;Local Area Networks&lt;/a&gt;) with a Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Catalyst_switch&#34; title=&#34;Catalyst switch&#34;&gt;Catalyst switch&lt;/a&gt;. By creating a VLAN you are separating the network, why would you do this? There are some several reasons, like separating your production network from a guest network, and separating a test environment from a production network. This all adds security to your network. You can separate core critical network components from the rest of the production network for added security, easier troubleshooting along with separating or segmenting your network. This is breaking up the broadcast domains into smaller chucks, which will improve your &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_performance&#34; title=&#34;Network performance&#34;&gt;network performance&lt;/a&gt;. Let&#39;s get started! By default if no configuration is applied to a switch, you just turned it on and plugged in networking devices, all of them are in a VLAN already, called VLAN 1. This is great if you know nothing about switch configuration and want something that works out of the box. But this also provides a security risk and if enough devices are connected this will slow down your network performance. VLANs separate the network so in order for &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; to communicate a layer three device (router) is needed in order for VLAN communication. When you dive into VLANs there is a lot of information! For this tutorial we are just going to be creating a VLAN and that&#39;s it. So let&#39;s create a VLAN on a single switch.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For this tutorial we are going to put the ports fa0/1 – 10 into an access mode&lt;/li&gt;
+&lt;li&gt;Then apply a VLAN 2 on ports fa0/1 – 10.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(Sample Output)  [code] Switch&amp;gt;enable Switch#configure terminal Switch(config)#interface range fastEthernet 0/1 - 10 Switch(config-if-range)#switchport mode access Switch(config-if-range)#switchport access vlan 2 %LINK-5-CHANGED: Interface Vlan2, changed state to up % Access VLAN does not exist. Creating vlan 2 Switch(config-if-range)#exit[/code] If we issue the command &lt;strong&gt;show vlan&lt;/strong&gt; in privilege EXEC mode we can see that VLAN 2 has been created and the interfaces VLAN 2 is configured to (Sample Output)  [code] Switch#show vlan VLAN Name                             Status    Ports ---- -------------------------------- --------- ------------------------------- 1    default                          active    Fa0/11, Fa0/12, Fa0/13, Fa0/14                                                 Fa0/15, Fa0/16, Fa0/17, Fa0/18                                                 Fa0/19, Fa0/20, Fa0/21, Fa0/22                                                 Fa0/23, Fa0/24 2    VLAN0002                         active    Fa0/1, Fa0/2, Fa0/3, Fa0/4                                                 Fa0/5, Fa0/6, Fa0/7, Fa0/8                                                 Fa0/9, Fa0/10 1002 fddi-default                     act/unsup 1003 token-ring-default               act/unsup 1004 fddinet-default                  act/unsup 1005 trnet-default                    act/unsup VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2 ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------ 1    enet  100001     1500  -      -      -        -    -        0      0 2    enet  100002     1500  -      -      -        -    -        0      0 1002 fddi  101002     1500  -      -      -        -    -        0      0   1003 tr    101003     1500  -      -      -        -    -        0      0   1004 fdnet 101004     1500  -      -      -        ieee -        0      0   1005 trnet 101005     1500  -      -      -        ibm  -        0      0   Remote SPAN VLANs ------------------------------------------------------------------------------ Primary Secondary Type              Ports ------- --------- ----------------- ------------------------------------------ Switch#[/code] Although numbers are ok, let&#39;s create a named VLAN. A named VLAN helps us remember what the purpose of that VLAN does. The steps are almost the same here is the following, you could also change VLAN 2 into a named VLAN as well by doing lines 3 and 6.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For this tutorial we are going to put ports fa0/11 -20 into access mode.&lt;/li&gt;
+&lt;li&gt;Then apply a name VLAN called Support on ports fa0/11 – 20.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(Sample Output) [code] Switch(config)#interface vlan 3 Switch(config-if)#exit Switch(config)#vlan 3 %LINK-5-CHANGED: Interface Vlan3, changed state to up Switch(config-vlan)#name Support Switch(config-vlan)#exit Switch(config)#interface range fa0/11 - 20 Switch(config-if-range)#switchport mode access Switch(config-if-range)#switchport access vlan 3 Switch(config-if-range)#exit Switch(config)#exit[/code] If we issue the command &lt;strong&gt;show vlan&lt;/strong&gt; in privilege EXEC mode we can see that VLAN 3 (Support) has been created and the interfaces VLAN 3 (Support) is configured to. (Sample Output) [code] Switch#show vlan VLAN Name                             Status    Ports ---- -------------------------------- --------- ------------------------------- 1    default                          active    Fa0/21, Fa0/22, Fa0/23, Fa0/24 2    VLAN0002                         active    Fa0/1, Fa0/2, Fa0/3, Fa0/4                                                 Fa0/5, Fa0/6, Fa0/7, Fa0/8                                                 Fa0/9, Fa0/10 3    Support                          active    Fa0/11, Fa0/12, Fa0/13, Fa0/14                                                 Fa0/15, Fa0/16, Fa0/17, Fa0/18                                                 Fa0/19, Fa0/20 1002 fddi-default                     act/unsup 1003 token-ring-default               act/unsup 1004 fddinet-default                  act/unsup 1005 trnet-default                    act/unsup VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2 ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------ 1    enet  100001     1500  -      -      -        -    -        0      0 2    enet  100002     1500  -      -      -        -    -        0      0 3    enet  100003     1500  -      -      -        -    -        0      0 1002 fddi  101002     1500  -      -      -        -    -        0      0   1003 tr    101003     1500  -      -      -        -    -        0      0   1004 fdnet 101004     1500  -      -      -        ieee -        0      0   1005 trnet 101005     1500  -      -      -        ibm  -        0      0   Remote SPAN VLANs ------------------------------------------------------------------------------ Primary Secondary Type              Ports ------- --------- ----------------- ------------------------------------------ Switch#[/code] So in the end we have three VLANs on this switch, VLAN 1, VLAN 2, VLAN 3 (Support). If we connected PCs to these three different VLANs none of them would be able to communicate, because each VLAN is like a different network. So you would need to configure a router in order for inter-vlan commutation to work also called &lt;a href=&#34;http://en.wikipedia.org/wiki/One-armed_router&#34; title=&#34;One-armed router&#34;&gt;router on a stick&lt;/a&gt;. I hope this tutorial was helpful if you have questions, comment below.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

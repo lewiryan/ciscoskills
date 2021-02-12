@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Trunking on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/trunking/</link>
+    <description>Recent content in Trunking on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 11 Feb 2012 22:45:50 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/trunking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trunking Administrative Modes</title>
+      <link>https://ciscoskills.net/2012/02/trunking-administrative-modes/</link>
+      <pubDate>Sat, 11 Feb 2012 22:45:50 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/02/trunking-administrative-modes/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/02/cisco-switch.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/02/cisco-switch.jpg&#34; alt=&#34;&#34; title=&#34;cisco-switch-blade&#34;&gt;&lt;/a&gt;When looking at the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; it is good idea to get a hold of trunking between switches along with that there are a couple of administrative modes that each physical &lt;a href=&#34;http://en.wikipedia.org/wiki/Interface_%28computing%29&#34; title=&#34;Interface (computing)&#34;&gt;interface&lt;/a&gt; on &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_switch&#34; title=&#34;Network switch&#34;&gt;switch&lt;/a&gt; can be when you are trunking between them. Remember that when we are trunking it usually carries all &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; (This can be changed) but there are different ways to make trunking between links happen. When you are in an interface on a Cisco switch you can change the operational mode of that interface by issuing the switchport mode command. There are four commands that can be issued: [code]Switch(config-if)#switchport mode ? access Set trunking mode to ACCESS unconditionally dynamic Set trunking mode to dynamically negotiate access or trunk mode trunk Set trunking mode to TRUNK unconditionally[/code]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Switchport mode access –&lt;/strong&gt; Which prevents the interface from trunking, this interface would always act as an access port.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switchport mode trunk –&lt;/strong&gt; Which puts the interface in trunking&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switchport mode dynamic auto –&lt;/strong&gt; The interface waits to receive a trunk negotiation message, at which point the switch would respond and negotiate whether to use trunking. If so which type of trunking.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switchport mode dynamic desirable –&lt;/strong&gt; Initiates negotiation messages and responds to negotiation messages to dynamically choose whether to start using trunking. This also decides which type of trunking to use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The best security practice I always use is &lt;a href=&#34;http://en.wikipedia.org/wiki/Hard_coding&#34; title=&#34;Hard coding&#34;&gt;hard code&lt;/a&gt; these interface (either access or trunk), there is no need for these to negotiate trunking behaviors. If somebody plugged in a switch or used a tool to trick the switch in believing it is a trunk port they now can listen to all traffic in your network! That is really it for the different types of trunking modes, if I have two switches together and both of them are in dynamic auto, what would the interface operational mode be? Would it be a &lt;a href=&#34;http://en.wikipedia.org/wiki/Trunking&#34; title=&#34;Trunking&#34;&gt;Trunk&lt;/a&gt; or an access? The answer would be an access, because of they are both waiting for a trunk negotiation message. I hope this information is helpful and if you have a question post it below also see if you can figure out if the interface would be trunking or if it would be in an access port.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Access + Access =?&lt;/li&gt;
+&lt;li&gt;Trunk + Auto =?&lt;/li&gt;
+&lt;li&gt;Trunk + Trunk =?&lt;/li&gt;
+&lt;li&gt;Auto + Auto =?&lt;/li&gt;
+&lt;li&gt;Desirable + Auto =?&lt;/li&gt;
+&lt;li&gt;Access + Desirable =?&lt;/li&gt;
+&lt;li&gt;Desirable + Trunk =?&lt;/li&gt;
+&lt;li&gt;Desirable + Desirable=?&lt;/li&gt;
+&lt;li&gt;Access + Trunk =?&lt;/li&gt;
+&lt;li&gt;Access + Auto =?&lt;/li&gt;
+&lt;li&gt;Trunk + Access =?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34;&gt;Configure Router on a Stick&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://learnnetworkingwithme.wordpress.com/2012/02/02/vlan-trunking-methods/&#34;&gt;VLAN Trunking Methods&lt;/a&gt; (learnnetworkingwithme.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://datacenterhawk.wordpress.com/2011/12/05/nexus-1000v-dmz-private-vlan-config-example/&#34;&gt;Nexus 1000v - DMZ Private VLAN config example&lt;/a&gt; (datacenterhawk.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.ioshints.info/2012/02/nicira-open-vswitch-inside-vsphereesx.html&#34;&gt;Nicira Open vSwitch inside vSphere/ESX&lt;/a&gt; (ioshints.info)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

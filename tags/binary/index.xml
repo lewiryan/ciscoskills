@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>binary on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/binary/</link>
+    <description>Recent content in binary on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 15 Feb 2011 17:30:58 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/binary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Wonders of Binary</title>
+      <link>https://ciscoskills.net/2011/02/the-wonders-of-binary/</link>
+      <pubDate>Tue, 15 Feb 2011 17:30:58 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/02/the-wonders-of-binary/</guid>
+      <description>
+        
+          &lt;p&gt;When working with IP addresses and subnet masks you need to have an understanding of how binary works. Binary is still used in computers today, when computers use numbers and letters they use them in a binary format. This guide will be going over numbers, and focusing on the IP addresses in how a computer sees that decimal number. Binary is a relatively easy in understanding and is just another way of looking at numbers. You can do the same basic math in binary as with decimal numbers like adding and multiplying them. The first thing in understanding how binary works is that in binary there is only two digits zeros (0) and ones (1). Working with these two numbers seems easy but if the number is large, it does take some time in converting to binary and from binary. Binary works in the power of twos so with that said let&#39;s look at how to convert binary into a decimal number.&lt;/p&gt;
+&lt;p&gt;01101&lt;/p&gt;
+&lt;p&gt;Alright we have a number in binary format how can we tell what that number that is? Well remember that binary works in the power of twos. So what I do is I count the number of digits (ones and zeros) in the binary number (five for this example) I then write down the powers of two and continue to write them down until I have five numbers start always start with 1 and work from right to left (example)&lt;/p&gt;
+&lt;p&gt;16 8 4 2 1&lt;/p&gt;
+&lt;p&gt;Now we just have to line up these together and add only the numbers that have a one (1). So for this example I would add 8+4+1= 13 thirteen is my answer! You will do the same thing no matter how long the binary number is so let&#39;s do one more&lt;/p&gt;
+&lt;p&gt;1100101011&lt;/p&gt;
+&lt;p&gt;This binary number has ten (10) digits so we will put also put ten (10) numbers each the power of two. Remember to start from one (1) and work right to left. (Example)&lt;/p&gt;
+&lt;p&gt;512 256 128 64 32 16 8 4 2 1&lt;/p&gt;
+&lt;p&gt;Again line these numbers up with the binary and add only the numbers that have a one (1) so I would add 512+256+32+8+2+1=811 eight-hundred and eleven is my answer. Ok we can convert from binary to decimal but can we convert from decimal to binary? If we do the opposite we will be to do just that. So let&#39;s continue. The number will be sixty-seven&lt;/p&gt;
+&lt;p&gt;67&lt;/p&gt;
+&lt;p&gt;You now put the same powers of two chart up, but you will start at the highest number first so for this example I would start at 128 (left to right), I know I would not use 128 but it is always a good idea to have a number higher than the one you are trying to convert to binary. (Example)&lt;/p&gt;
+&lt;p&gt;128 64 32 16 8 4 2 1&lt;/p&gt;
+&lt;p&gt;Alright I have the chart up and now I will just say is this number higher or lower than the number I am trying to convert? (67 for this example) I start at 128 and say the number is lower so I will add a zero (0) bit and move to the next digit. I am at 64 and the number is now higher so I will add a (1) bit and subtract that from 67 (67-64=3 three for this example) I will then use the number three (3) until I finish completing the binary conversion. Continuing I move to 32 and say is the number three (3) higher or lower than 32? It is lower so I add another zero (0) bit. Move to the next digit which is 16 and say is the number three (3) higher or lower than 16? It is lower so I add another zero (0) bit. I do the same thing for the next digit which is 4, is number three (3) higher or lower than 4? It is lower so I add another zero (0) bit. Moving to the next digit which is 2, is the number three (3) higher or lower than 2? It is higher than 2 I then will add a one (1) bit. I will also subtract 2 from 3 (3-2=1 which is now one (1). I now have the last number which is one (1) and since my new number that I subtracted is also a one (1) I will add a one (1) bit to the binary number. (Subtract 1-1=0)&lt;/p&gt;
+&lt;p&gt;01000011&lt;/p&gt;
+&lt;p&gt;Again you can use this format for larger numbers as well so if we use 156 (one-hundred-and fifty-six) we put up the chart.&lt;/p&gt;
+&lt;p&gt;256 128 64 32 16 8 4 2 1&lt;/p&gt;
+&lt;p&gt;I start at 256 and say is this number higher or lower than 156? It is lower so I add a zero. I will continue down the chart until my total is zero. The answer to this problem which is converting a decimal into binary is below.&lt;/p&gt;
+&lt;p&gt;10011100&lt;/p&gt;
+&lt;p&gt;You can always drop the zeros from left to right before the first one (1) bit but not from right to left. That&#39;s it! Understanding how to convert to binary and from binary is an important for network professionals and even programmers. I hope this tutorial was helpful.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

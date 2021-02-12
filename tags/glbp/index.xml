@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GLBP on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/glbp/</link>
+    <description>Recent content in GLBP on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 17 Aug 2017 14:15:23 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/glbp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GLBP Load Balancing</title>
+      <link>https://ciscoskills.net/2017/08/glbp-load-balancing/</link>
+      <pubDate>Thu, 17 Aug 2017 14:15:23 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/08/glbp-load-balancing/</guid>
+      <description>
+        
+          &lt;p&gt;We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.2(14)S, please welcome and &amp;quot;slow clap&amp;quot; the Gateway Load Balancing protocol, who has been around since 2002!&lt;/p&gt;
+&lt;p&gt;So the way this protocol works is you must have at least two devices (makes sense) in a GLBP group. The GLBP group has one AVG (Active Virtual Gateway) and multiple AVFs (Active Virtual Forwarders) if you have more than two devices. The AVG is the master of the group and assigns virtual MAC address to each AVF member. Remember each AVF is responsible for forwarding packets sent to their virtual MAC address, they act independently from the AVG.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: The AVG is also an AVF When a PC/server makes an ARP request to reach the default gateway each router in the GLBP group share the load by default one client will get a MAC address from one router, while the other client will get an address from another router but both clients point to the same IP address for the default gateway.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In this example I have two different GLBP networks, the 192.168.1.0/24 and the 192.168.2.0/24 with three routers in each LAN. I also have a routing protocol running  between the routers (&lt;a href=&#34;http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/&#34;&gt;Named EIGRP&lt;/a&gt;) to better handle the multiple paths as well as recover from failed links.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/07/glbp.png&#34; alt=&#34;GLBP network with three routers&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To configure GLBP let&#39;s start on the 192.168.1.0/24 network, we have to configure the following on each router that belongs to the 192.168.1.0/24, which would be R1, R2, and R3, this configuration is under the interface that belongs to the 192.168.1.0/24 network. (Gigabit0/1)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 ip 192.168.1.1 glbp 1 preempt glbp 1 authentication md5 key-string cisco123
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we care which router is the AVG and which one is in succession we would have to configure the priority, higher is better. In this example we want R1 the AVG, R2 and R3 are backup AVGs. We also want to do the same thing for R4, R5, and R6 with R4 the AVG, R5 and R6 backup AVGs. On R1 and R4 under interface (Gigabit0/1):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 200
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On R2 and R5 under interface (Gigabit0/1):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 175
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On R3 and R6 under interface (Gigabit0/1):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 150
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can verify if everything works by issuing the command show glbp brief&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show glbp brief
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Gi0/1       1    -   200 Active   192.168.1.1     local           192.168.1.12
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Gi0/1       1    1   -   Active   0007.b400.0101  local           -
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Gi0/1       1    2   -   Listen   0007.b400.0102  192.168.1.12    -
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Gi0/1       1    3   -   Listen   0007.b400.0103  192.168.1.13    -
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;R4#show glbp brief
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Gi0/1       1    -   200 Active   192.168.2.1     local           192.168.2.15
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Gi0/1       1    1   -   Active   0007.b400.0101  local           -
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Gi0/1       1    2   -   Listen   0007.b400.0102  192.168.2.15    -
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Gi0/1       1    3   -   Listen   0007.b400.0103  192.168.2.16    -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we look at PC1 we can ping PC3 which tells us routing is working as well as GLBP. Looking at the ARP table on PC1 we notice that the default gateway MAC address is 00:07:b4:00:01:01&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;ping 192.168.1.21
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Pinging 192.168.1.21 with 32 bytes of data:
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time&amp;lt;1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time&amp;lt;1ms TTL=126 
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;Ping statistics for 192.168.1.21:      
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss), 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Approximate round trip times in milli-seconds:  
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    Minimum = 0ms, Maximum = 1ms, Average = 0ms 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;arp -a
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Interface: 192.168.2.22 --- 0x10003
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  Internet Address      Physical Address      Type
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  192.168.2.1           00-07-b4-00-01-01     dynamic   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Looking on PC2 we can ping PC4, looking at the ARP table notice that MAC address is different from what PC1 has, which is exactly how GLBP works :)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;ping 192.168.1.22
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Pinging 192.168.1.22 with 32 bytes of data:
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Ping statistics for 192.168.1.22:
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Approximate round trip times in milli-seconds:
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;    Minimum = 1ms, Maximum = 1ms, Average = 1ms
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;arp -a
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;Interface: 192.168.2.21 --- 0x10003
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  Internet Address      Physical Address      Type
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  192.168.2.1           00-07-b4-00-01-03     dynamic
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  192.168.2.22          fa-16-3e-2d-9c-a5     dynamic   
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is a traceroute from PC3 going to PC1 notice the hops.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;tracert 192.168.2.21
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Tracing route to 192.168.2.21 over a maximum of 30 hops
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  1    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.1.12
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  2    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  172.16.0.18
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  3     1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.2.21  
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;Trace complete.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is a traceroute from PC4 going to PC2 notice the hops, a little different from PC3.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;tracert 192.168.2.22
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Tracing route to 192.168.2.22 over a maximum of 30 hops
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  1    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.1.13
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  2     1 ms    &amp;lt;1 ms    &amp;lt;1 ms  172.16.0.34
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  3     4 ms     1 ms    &amp;lt;1 ms  192.168.2.22 
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;Trace complete.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all I got for this one, if you want to continue reading about GLBP you go right to source &lt;a href=&#34;http://www.cisco.com/en/US/docs/ios/12_2t/12_2t15/feature/guide/ft_glbp.html#wp1043699&#34;&gt;GLBP - Gateway Load Balancing Protocol&lt;/a&gt;. This is a pretty simple and personally a neat little protocol and with the added benefit of using all of your hardware. Like always I hope this helps. - Ryan&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

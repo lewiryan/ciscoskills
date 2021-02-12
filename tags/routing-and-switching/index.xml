@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Routing and Switching on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/routing-and-switching/</link>
+    <description>Recent content in Routing and Switching on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 01 Oct 2013 00:34:35 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/routing-and-switching/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CCNA 2.0 What&#39;s New?</title>
+      <link>https://ciscoskills.net/2013/10/ccna-2.0-whats-new/</link>
+      <pubDate>Tue, 01 Oct 2013 00:34:35 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2013/10/ccna-2.0-whats-new/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34; alt=&#34;Cisco-Network&#34;&gt;&lt;/a&gt;I brought this topic up in March of this year &lt;a href=&#34;http://ciscoskills.net/2013/03/26/ccna-version-2-0-refresh/&#34; title=&#34;CCNA Version 2.0 Refresh&#34;&gt;(See original post)&lt;/a&gt; but I wanted to re-post it to add some information because as of today this was your last day to pass the older &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; exams. &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has a refreshed all the CCNA Routing and Switching exams. That includes the ICND1 (640-822), the ICND2 (640-816), and the all in wonder exam (640-816). You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track. Starting at the CCNA the refreshed exams are the following, 100-101 ICND1 &lt;strong&gt;(which replaces 640-822 exam)&lt;/strong&gt;, 200-101 ICND2 &lt;strong&gt;(which replaces 640-816 exam)&lt;/strong&gt;, and the all in wonder 200-120 CCNA &lt;strong&gt;(which replaces the all in wonder 640-802 exam)&lt;/strong&gt;. Like I mentioned earlier the last day to take these older exams are September 30th of 2013 so good luck :) What has changed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The certification was formerly called CCNA  is now called CCNA Routing and Switching with no prerequisites (Like before)&lt;/li&gt;
+&lt;li&gt;If you wish to have advanced technology certifications like the CCNA Security, CCNA Voice, &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Wireless&lt;/a&gt; you must have at least a CCENT or CCNA R&amp;amp;S &lt;strong&gt;(Before you had to have CCNA)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Expect these exams to have Router IOS version 15 instead of versions 12.4, expect more IPv6 &lt;a href=&#34;http://en.wikipedia.org/wiki/Information&#34; title=&#34;Information&#34;&gt;information&lt;/a&gt; as IPv4 is depleted , and IOS licensing.&lt;/li&gt;
+&lt;li&gt;No &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt; version 1 or version 2 :(&lt;/li&gt;
+&lt;li&gt;No &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;WLAN&lt;/a&gt; information&lt;/li&gt;
+&lt;li&gt;Some of the information that was in the ICND2 has shifted to the new ICND1 100-101.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also check out this MircoNugget with Jeremy Cioara to see some other detail about the new exams: &lt;a href=&#34;http://www.youtube.com/watch?v=Ym3zBF4-2J0&#34;&gt;http://www.youtube.com/watch?v=Ym3zBF4-2J0&lt;/a&gt; You can find more information at &lt;a href=&#34;http://newsroom.cisco.com/press-release-content?type=webcontent&amp;amp;articleId=1156334http://&#34; title=&#34;Cisco Evolves Associate-Level Certifications, Redesigns CCNA Routing and Switching Certification to Support Next-Generation Job Roles&#34;&gt;Cisco&#39;s Newsroom&lt;/a&gt;, along with going to &lt;a href=&#34;http://www.cisco.com/web/learning/certifications/index.html&#34; title=&#34;Training &amp;amp; Certifications&#34;&gt;Cisco&#39;s Training &amp;amp; Certifications site&lt;/a&gt; and looking at the &lt;a href=&#34;http://www.cisco.com/web/learning/certifications/associate/index.html&#34; title=&#34;Associate Certifications&#34;&gt;Associate Certifications area&lt;/a&gt;. What do you think of these changes? I also hope this information is helpful and good luck on the new exams! &lt;strong&gt;Reading material:&lt;/strong&gt; ICND1 100-101 - &lt;a href=&#34;http://www.amazon.com/Cisco-CCENT-ICND1-100-101-Official/dp/1587143852/ref=sr_1_5?ie=UTF8&amp;amp;qid=1373125508&amp;amp;sr=8-5&amp;amp;keywords=CCNA&#34; title=&#34;Cisco CCENT/CCNA ICND1 100-101 Official Cert Guide&#34;&gt;Cisco CCENT/CCNA ICND1 100-101 Official Cert Guide&lt;/a&gt; &lt;strong&gt;Reading material:&lt;/strong&gt; ICND2 200-101 - &lt;a href=&#34;http://www.amazon.com/Cisco-Routing-Switching-200-101-Official/dp/1587143739/ref=sr_1_2?s=books&amp;amp;ie=UTF8&amp;amp;qid=1373126056&amp;amp;sr=1-2&amp;amp;keywords=ICND2&#34; title=&#34;Cisco CCNA Routing and Switching ICND2 200-101 Official Cert Guide&#34;&gt;Cisco CCNA Routing and Switching ICND2 200-101 Official Cert Guide&lt;/a&gt; &lt;strong&gt;Reading material:&lt;/strong&gt; CCNA 200-120, includes ICND1 material and ICND2 material - &lt;a href=&#34;http://www.amazon.com/Routing-Switching-200-120-Official-Library/dp/1587143879/ref=sr_1_4?s=books&amp;amp;ie=UTF8&amp;amp;qid=1373125854&amp;amp;sr=1-4&amp;amp;keywords=CCNA&#34; title=&#34;Cisco CCNA Routing and Switching 200-120 Official Cert Guide Library&#34;&gt;Cisco CCNA Routing and Switching 200-120 Official Cert Guide Library&lt;/a&gt;&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.net-security.org/secworld.php?id=14662&#34;&gt;Cisco redesigns CCNA routing and switching certification&lt;/a&gt; (net-security.org)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2013/03/10/introduction-into-cisco-configuration-professional/&#34;&gt;Introduction into Cisco Configuration Professional&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2013/06/29/passed-640-554/&#34;&gt;Passed 640-554!&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2014/02/03/ccnp-security-refresh/&#34; title=&#34;&#34;&gt;CCNP Security Refresh « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2014-02-03 07:31:29&#34;&gt;Feb 1, 2014&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[…] alignment goes together with the new material of the Associate level exam (CCNA 2.0 Is what I’m calling it ) What is also interesting is Cisco is retiring alot of the Security […]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

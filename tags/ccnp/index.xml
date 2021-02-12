@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CCNP on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/ccnp/</link>
+    <description>Recent content in CCNP on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 25 May 2017 12:30:53 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ccnp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring EIGRP - Named Mode</title>
+      <link>https://ciscoskills.net/2017/05/configuring-eigrp-named-mode/</link>
+      <pubDate>Thu, 25 May 2017 12:30:53 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/05/configuring-eigrp-named-mode/</guid>
+      <description>
+        
+          &lt;p&gt;From its older brother IGRP which was developed in 1980s to overcome the limitations of RIP, EIGRP was an &amp;quot;Enhanced&amp;quot; IGRP protocol. The main purpose of EIGRP was to  overcome the limitations of classful networks and make EIGRP a classless routing protocol. During designing of this protocol a different convergence algorithm was used making EIGRP that &amp;quot;hybrid&amp;quot; between distance-vector and link-state routing protocols. In this post we&#39;ll go over a basic design and setup for EIGRP, however instead of using the &amp;quot;classic way&amp;quot; let&#39;s look at configuring EIGRP using named mode which is available in Cisco IOS starting in version 15.2&lt;/p&gt;
+&lt;p&gt;This topology is pretty simple, I have three routers and each them is connected to the other two routers.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/05/eigrp-named1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;All routers have been setup with their local addresses and can ping any network that is locally attached to them. There are two ways to configure EIGRP we could configure it the &amp;quot;classic way&amp;quot; or use named mode. Nothing has changed with EIGRP itself so you could have one router use classic and another router use named mode and the protocol would exchange routing information between the two. The change is to simplify the configuration into one spot, which is under the router EIGRP process instead of having some EIGRP configuration under each interface. Let&#39;s get started.&lt;/p&gt;
+&lt;p&gt;Create a named EIGRP process on all routers:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#router eigrp CISCOSKILLS
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R2(config)#router eigrp CISCOSKILLS
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R3(config)#router eigrp CISCOSKILLS
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Note: The named EIGRP process does not have match on all routers to exchange routes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Create an autonomous system for all routers:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config-router)# address-family ipv4 unicast autonomous-system 1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R2(config-router)# address-family ipv4 unicast autonomous-system 1
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R3(config-router)# address-family ipv4 unicast autonomous-system 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Note: This has to match on all routers if you want EIGRP to exchange routes with.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We&#39;ll want to configure a passive interface on the LAN side of each router so we don&#39;t send EIGRP neighbor adjacencies into LAN side of the network.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1(config-router-af)#af-interface GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;R1(config-router-af-interface)#passive-interface
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;R1(config-router-af-interface)#exit-af-interface
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;R2(config-router-af)#af-interface GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;R2(config-router-af-interface)#passive-interface
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;R2(config-router-af-interface)#exit-af-interface
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;R3(config-router-af)#af-interface GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;R3(config-router-af-interface)#passive-interface
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R3(config-router-af-interface)#exit-af-interface
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next we need to configure what networks we want EIGRP to advertise as well as the router-id this configuration will depend on each router:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1(config-router-af)#network 10.0.1.2 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;R1(config-router-af)#network 10.0.1.10 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;R1(config-router-af)#network 10.1.1.1 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;R1(config-router-af)#eigrp router-id 10.1.1.1
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;R1(config-router-af)#exit-address-family
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;R2(config-router-af)#network 10.0.1.6 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;R2(config-router-af)#network 10.0.1.9 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;R2(config-router-af)#network 10.2.1.1 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;R2(config-router-af)#eigrp router-id 10.2.1.1
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R2(config-router-af)#exit-address-family
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;R3(config-router-af)#network 10.0.1.1 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;R3(config-router-af)#network 10.0.1.5 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;R3(config-router-af)#network 10.3.1.1 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;R3(config-router-af)#eigrp router-id 10.3.1.1
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;R3(config-router-af)#exit-address-family
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If everything went to plan we should have some log messages notifying us that adjacencies have been made on each router and we should be able ping/connect to each PC in this network. Using the command show ip route confirms this on all three routers:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show ip route
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;       E1 - OSPF external type 1, E2 - OSPF external type 2
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;       ia - IS-IS inter area, * - candidate default, U - per-user static route
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;       a - application route
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;       + - replicated route, % - next hop override, p - overrides from PfR
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Gateway of last resort is not set
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;      10.0.0.0/8 is variably subnetted, 9 subnets, 3 masks
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;C        10.0.1.0/30 is directly connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;L        10.0.1.2/32 is directly connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;D        10.0.1.4/30 [90/15360] via 10.0.1.9, 01:08:45, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;                     [90/15360] via 10.0.1.1, 01:08:45, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;C        10.0.1.8/30 is directly connected, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;L        10.0.1.10/32 is directly connected, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;C        10.1.1.0/24 is directly connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;L        10.1.1.1/32 is directly connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;D        10.2.1.0/24 [90/15360] via 10.0.1.9, 01:08:45, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;D        10.3.1.0/24 [90/15360] via 10.0.1.1, 01:08:45, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;R1#
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;R2#show ip route
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;       E1 - OSPF external type 1, E2 - OSPF external type 2
+&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;       ia - IS-IS inter area, * - candidate default, U - per-user static route
+&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;       a - application route
+&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;       + - replicated route, % - next hop override, p - overrides from PfR
+&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;Gateway of last resort is not set
+&lt;span class=&#34;ln&#34;&gt;39&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;40&lt;/span&gt;      10.0.0.0/8 is variably subnetted, 9 subnets, 3 masks
+&lt;span class=&#34;ln&#34;&gt;41&lt;/span&gt;D        10.0.1.0/30 [90/15360] via 10.0.1.10, 01:08:35, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;42&lt;/span&gt;                     [90/15360] via 10.0.1.5, 01:08:35, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;43&lt;/span&gt;C        10.0.1.4/30 is directly connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;44&lt;/span&gt;L        10.0.1.6/32 is directly connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;45&lt;/span&gt;C        10.0.1.8/30 is directly connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;46&lt;/span&gt;L        10.0.1.9/32 is directly connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;47&lt;/span&gt;D        10.1.1.0/24 [90/15360] via 10.0.1.10, 01:08:35, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;48&lt;/span&gt;C        10.2.1.0/24 is directly connected, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;49&lt;/span&gt;L        10.2.1.1/32 is directly connected, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;50&lt;/span&gt;D        10.3.1.0/24 [90/15360] via 10.0.1.5, 01:08:35, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;51&lt;/span&gt;R2#
+&lt;span class=&#34;ln&#34;&gt;52&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;53&lt;/span&gt;R3#show ip route
+&lt;span class=&#34;ln&#34;&gt;54&lt;/span&gt;Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+&lt;span class=&#34;ln&#34;&gt;55&lt;/span&gt;       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+&lt;span class=&#34;ln&#34;&gt;56&lt;/span&gt;       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+&lt;span class=&#34;ln&#34;&gt;57&lt;/span&gt;       E1 - OSPF external type 1, E2 - OSPF external type 2
+&lt;span class=&#34;ln&#34;&gt;58&lt;/span&gt;       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+&lt;span class=&#34;ln&#34;&gt;59&lt;/span&gt;       ia - IS-IS inter area, * - candidate default, U - per-user static route
+&lt;span class=&#34;ln&#34;&gt;60&lt;/span&gt;       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+&lt;span class=&#34;ln&#34;&gt;61&lt;/span&gt;       a - application route
+&lt;span class=&#34;ln&#34;&gt;62&lt;/span&gt;       + - replicated route, % - next hop override, p - overrides from PfR
+&lt;span class=&#34;ln&#34;&gt;63&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;64&lt;/span&gt;Gateway of last resort is not set
+&lt;span class=&#34;ln&#34;&gt;65&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;66&lt;/span&gt;      10.0.0.0/8 is variably subnetted, 9 subnets, 3 masks
+&lt;span class=&#34;ln&#34;&gt;67&lt;/span&gt;C        10.0.1.0/30 is directly connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;68&lt;/span&gt;L        10.0.1.1/32 is directly connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;69&lt;/span&gt;C        10.0.1.4/30 is directly connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;70&lt;/span&gt;L        10.0.1.5/32 is directly connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;71&lt;/span&gt;D        10.0.1.8/30 [90/15360] via 10.0.1.6, 01:08:14, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;72&lt;/span&gt;                     [90/15360] via 10.0.1.2, 01:08:14, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;73&lt;/span&gt;D        10.1.1.0/24 [90/15360] via 10.0.1.2, 01:08:14, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;74&lt;/span&gt;D        10.2.1.0/24 [90/15360] via 10.0.1.6, 01:08:14, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;75&lt;/span&gt;C        10.3.1.0/24 is directly connected, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;76&lt;/span&gt;L        10.3.1.1/32 is directly connected, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;77&lt;/span&gt;R3#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see by default in the routing table that EIGRP has already calculated the best route to each LAN and has only put in one route to reach them. If we show the EIGRP topology we notice that EIGRP has these routes ready in case if the primary route to reach these LANs fail.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show ip eigrp topology all-links
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;EIGRP-IPv4 VR(CISCOSKILLS) Topology Table for AS(1)/ID(10.1.1.1)
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Codes: P - Passive, A - Active, U - Update, Q - Query, R - Reply,
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;      r - reply Status, s - sia Status 
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;P 10.0.1.0/30, 1 successors, FD is 1310720, serno 1
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;       via Connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;P 10.0.1.4/30, 2 successors, FD is 1966080, serno 6
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;       via 10.0.1.1 (1966080/1310720), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;       via 10.0.1.9 (1966080/1310720), GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;P 10.0.1.8/30, 1 successors, FD is 1310720, serno 5
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;       via Connected, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;P 10.2.1.0/24, 1 successors, FD is 1966080, serno 7
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;       via 10.0.1.9 (1966080/1310720), GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;       via 10.0.1.1 (2621440/1966080), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;P 10.1.1.0/24, 1 successors, FD is 1310720, serno 8
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;       via Connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;P 10.3.1.0/24, 1 successors, FD is 1966080, serno 3
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;       via 10.0.1.1 (1966080/1310720), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;       via 10.0.1.9 (2621440/1966080), GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;R2#show ip eigrp topology all-links
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;EIGRP-IPv4 VR(CISCOSKILLS) Topology Table for AS(1)/ID(10.2.1.1)
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;Codes: P - Passive, A - Active, U - Update, Q - Query, R - Reply,
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;      r - reply Status, s - sia Status 
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;P 10.0.1.0/30, 2 successors, FD is 1966080, serno 16
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;       via 10.0.1.5 (1966080/1310720), GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;       via 10.0.1.10 (1966080/1310720), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;P 10.0.1.4/30, 1 successors, FD is 1310720, serno 1
+&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;       via Connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;P 10.0.1.8/30, 1 successors, FD is 1310720, serno 2
+&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;       via Connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;P 10.2.1.0/24, 1 successors, FD is 1310720, serno 3
+&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;       via Connected, GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;P 10.1.1.0/24, 1 successors, FD is 1966080, serno 17
+&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;       via 10.0.1.10 (1966080/1310720), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;       via 10.0.1.5 (2621440/1966080), GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;39&lt;/span&gt;P 10.3.1.0/24, 1 successors, FD is 1966080, serno 7
+&lt;span class=&#34;ln&#34;&gt;40&lt;/span&gt;       via 10.0.1.5 (1966080/1310720), GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;41&lt;/span&gt;       via 10.0.1.10 (2621440/1966080), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;42&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;43&lt;/span&gt;R3#show ip eigrp topology all-links
+&lt;span class=&#34;ln&#34;&gt;44&lt;/span&gt;EIGRP-IPv4 VR(CISCOSKILLS) Topology Table for AS(1)/ID(10.3.1.1)
+&lt;span class=&#34;ln&#34;&gt;45&lt;/span&gt;Codes: P - Passive, A - Active, U - Update, Q - Query, R - Reply,
+&lt;span class=&#34;ln&#34;&gt;46&lt;/span&gt;      r - reply Status, s - sia Status 
+&lt;span class=&#34;ln&#34;&gt;47&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;48&lt;/span&gt;P 10.0.1.0/30, 1 successors, FD is 1310720, serno 1
+&lt;span class=&#34;ln&#34;&gt;49&lt;/span&gt;       via Connected, GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;50&lt;/span&gt;P 10.0.1.4/30, 1 successors, FD is 1310720, serno 2
+&lt;span class=&#34;ln&#34;&gt;51&lt;/span&gt;       via Connected, GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;52&lt;/span&gt;P 10.0.1.8/30, 2 successors, FD is 1966080, serno 17
+&lt;span class=&#34;ln&#34;&gt;53&lt;/span&gt;       via 10.0.1.2 (1966080/1310720), GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;54&lt;/span&gt;       via 10.0.1.6 (1966080/1310720), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;55&lt;/span&gt;P 10.2.1.0/24, 1 successors, FD is 1966080, serno 8
+&lt;span class=&#34;ln&#34;&gt;56&lt;/span&gt;       via 10.0.1.6 (1966080/1310720), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;57&lt;/span&gt;       via 10.0.1.2 (2621440/1966080), GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;58&lt;/span&gt;P 10.1.1.0/24, 1 successors, FD is 1966080, serno 18
+&lt;span class=&#34;ln&#34;&gt;59&lt;/span&gt;       via 10.0.1.2 (1966080/1310720), GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt;60&lt;/span&gt;       via 10.0.1.6 (2621440/1966080), GigabitEthernet0/2
+&lt;span class=&#34;ln&#34;&gt;61&lt;/span&gt;P 10.3.1.0/24, 1 successors, FD is 1310720, serno 3
+&lt;span class=&#34;ln&#34;&gt;62&lt;/span&gt;       via Connected, GigabitEthernet0/3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all I got for now for a basic configuration of EIGRP name mode and I hope this helpful. If you are using Cisco VIRL you can find the project I was referencing using this &lt;a href=&#34;https://github.com/lewiryan/VIRL/blob/master/Completed/EIGRP-Basic-Named-Mode.virl&#34;&gt;link Github&lt;/a&gt;. There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: &lt;a href=&#34;https://ciscoskills.net/2017/01/07/cisco-virl-and-windows-vms/&#34;&gt;Cisco VIRL and Windows VMs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;What about if you are already running the classic mode of EIGRP and want to migrate over to EIGRP name mode? First check your IOS release and if its 15.4 or higher you likely have a command available that will do the migration for you, instead of removing the classic configuration manaully. Go into your existing EIGRP configuration and type eigrp upgrade-cli followed by the name you want. Voila!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3(config)#router eigrp 30
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R3(config-router)#eigrp upgrade-cli ?
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  WORD  EIGRP Virtual-Instance Name
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2017/08/17/glbp-load-balancing/&#34; title=&#34;&#34;&gt;GLBP Load Balancing – Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2017-08-17 08:15:44&#34;&gt;Aug 4, 2017&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[…] with three routers in each LAN. I also have a routing protocol running  between the routers (Named EIGRP) to better handle the multiple paths as well as recover from failed […]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco VIRL is out ... for a price</title>
+      <link>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</link>
+      <pubDate>Fri, 05 Dec 2014 03:45:43 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34; alt=&#34;virl-logo&#34;&gt;&lt;/a&gt;Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CML is Cisco TAC supported so you can call Cisco.  With VIRL you have community to help you out.&lt;/li&gt;
+&lt;li&gt;You have cap of 15 devices with VIRL. The CML version capacity is dependent on the hardware its running on.&lt;/li&gt;
+&lt;li&gt;CML is  for the &amp;quot;Big Guys&amp;quot;, and way more expensive. VIRL is just for personal/training use. (i.e CCNA, CCNP, CCIE)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To be upfront I have not purchased VIRL so I can&#39;t tell you my thoughts on the product itself but personally I think this is great way to learn and study Cisco certifications when looking at CCNP and even CCIE. This is way cheaper than buying hardware or renting rack space. The price is $199.99 a year and I would assume this would cover any updates the product has. Cisco is also selling an Academic Version for $79.99 a year with some extra terms attached to it. I&#39;m curious if anybody has any thoughts on VIRL, what advantages do you think this network simulation program (VIRL) has compared to GNS3? What do you think VIRL&#39;s target audience is? Is this price too high? Finally do you think the product is too green? Are you going to buy it or wait and see? Comment below. Links: &lt;a href=&#34;http://virl.cisco.com/&#34;&gt;http://virl.cisco.com/&lt;/a&gt; &lt;a href=&#34;http://community.dev-innovate.com/c/virl&#34;&gt;http://community.dev-innovate.com/c/virl&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Some QoS Guidelines</title>
+      <link>https://ciscoskills.net/2014/08/some-qos-guidelines/</link>
+      <pubDate>Wed, 06 Aug 2014 02:15:54 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/08/some-qos-guidelines/</guid>
+      <description>
+        
+          &lt;p&gt;When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared but it always something being tested on so we know it was there, somewhere… QoS can be a little boring and it does get a reputation of being difficult to understand, like where and how do I implement QoS? Most of the time QoS is not configured which causes applications to suffer in the end have an impact of end user performance. Throwing bandwidth to fix the problem is usually a costly risk, and remember you still may have the same performance problems. What also makes it interesting is you may have an environment that runs fine without QoS, so why do you need it? Well there&#39;s no easy button to fix or find these unanswered questions about QoS. In this post I&#39;m referencing guidelines of where to start looking which will hopefully help answer some of those unanswered questions. :) A good place to start is at RFC 4594, (&lt;a href=&#34;http://tools.ietf.org/html/rfc4594&#34;&gt;Configuration Guidelines for DiffServ Service Classes&lt;/a&gt;) which provides an industry best practice on QoS. These are not standards that the RFC published but a good FYI. One of the reasons why RFC 4594 is not a standard is to work with what the individual business requires. For example VoIP/Video may not be the number one priority in the network for some businesses. Cisco has even made a slight change with RFC 4594 by switching the Call-Signaling and Broadcast Video markings to CS3 and CS5. &lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/08/cisco-modified-rfc-4594.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/08/cisco-modified-rfc-4594.jpg&#34; alt=&#34;Cisco-Modified-RFC-4594&#34;&gt;&lt;/a&gt; Crawl, walk, run is the method Cisco recognizes as not all enterprises are ready for such a complex QoS design. Starting from a phased approach is often more successful than an all-in one approach. (Rome wasn’t built in a day) Looking at the three different classes below, it would be much simpler to start at a 4-Class model and work our way up if the business needs demand it. &lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/08/cisco-qos-class-model.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/08/cisco-qos-class-model.png&#34; alt=&#34;Cisco-QoS-Class-model&#34;&gt;&lt;/a&gt; Keep in mind that depending on the hardware you are running there are different types QoS syntax, like MLS QoS, MQC, and C3PL. These all have different QoS capabilities depending on the type of QoS syntax you&#39;re using. Catalyst 2960/3560/3750 are the last platforms to use MLS QoS.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QoS is disabled by default and must be globally enabled with the mls qos command.&lt;/li&gt;
+&lt;li&gt;Once enabled, all ports are set to an untrusted port-state.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Catalyst 3650/3850 and 4500 are using MQC (Modular QoS Command Line)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QoS is enabled by default.&lt;/li&gt;
+&lt;li&gt;All ports trust at layer 2 and layer 3 by default.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Catalyst 6500/6880 is using the Cisco Common Classification Policy Language (C3PL)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QoS is enabled by default (Sup2T) – Disabled by default (Sup720)&lt;/li&gt;
+&lt;li&gt;All ports trust at layer 2 and layer 3 by default.&lt;/li&gt;
+&lt;li&gt;C3PL presents queuing policies similar to MQC.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some key points:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The primary role of QoS in campus networks is &lt;strong&gt;not&lt;/strong&gt; to control latency or jitter (as it is in the WAN/VPN), but to manage packet loss.&lt;/li&gt;
+&lt;li&gt;In GE/10GE campus networks, it takes only a few milliseconds of congestion to cause instantaneous buffer overruns resulting in packet drops.&lt;/li&gt;
+&lt;li&gt;Rich media applications, particularly HD video applications are extremely sensitive to packet drops, to the point where even 1 packet dropped in 10,000 is visible by the end-user.&lt;/li&gt;
+&lt;li&gt;Always perform QoS in hardware and not software when the choice exists.&lt;/li&gt;
+&lt;li&gt;Classify and mark applications as close to their sources as technically and administratively possible.&lt;/li&gt;
+&lt;li&gt;Police unwanted traffic flows as close to their sources as possible.&lt;/li&gt;
+&lt;li&gt;Enable queuing policies at every node where the potential for congestion exists.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope this information is helpful in at least getting started in QoS. Feel free to post any questions or your experience in QoS. I have also linked some Cisco references about QoS. &lt;a href=&#34;http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qosmrn.html&#34;&gt;QoS Design Strategy At-A-Glance&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampusaag.html&#34;&gt;Campus QoS Design At-A-Glance&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat3xxxaag.html&#34;&gt;Cisco Catalyst 3560/3750 QoS Design At-A-Glance&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat3x50aag.html&#34;&gt;Cisco Catalyst 3650/3850 QoS Design At-A-Glance&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat4500aag.html&#34;&gt;Cisco Catalyst 4500 QoS Design At-A-Glance&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat6500sup2taag.html&#34;&gt;Cisco Catalyst 6500 QoS Design At-A-Glance&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/c/dam/en/us/td/docs/solutions/Enterprise/Video/autoqosmediacampus.pdf&#34;&gt;Cisco Campus AutoQoS SRND4 At-A-Glance&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/solutions/Enterprise/WAN_and_MAN/QoS_SRND_40/QoSIntro_40.html&#34;&gt;Enterprise Quality of Service Design 4.0&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/solutions/Enterprise/WAN_and_MAN/QoS_SRND_40/QoSCampus_40.html&#34;&gt;Campus QoS Design 4.0&lt;/a&gt; Reading Material: &lt;a href=&#34;http://www.ciscopress.com/store/end-to-end-qos-network-design-quality-of-service-for-9781587143694&#34;&gt;End-to-End QoS Network Design: Quality of Service for Rich-Media &amp;amp; Cloud Networks, 2nd Edition&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNP Security Refresh</title>
+      <link>https://ciscoskills.net/2014/02/ccnp-security-refresh/</link>
+      <pubDate>Mon, 03 Feb 2014 14:30:27 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/02/ccnp-security-refresh/</guid>
+      <description>
+        
+          &lt;p&gt;Cisco recently published its &lt;a href=&#34;http://www.cisco.com/web/offers/lp/2014-annual-security-report/index.html&#34;&gt;2014 Annual Security Report&lt;/a&gt;, and some interesting data was captured in 2013. One of the details was a talent gap in network security and because of this gap Cisco has a major revision in the CCNP Security certification starting in April. Its estimated that in short term or already present is shortage of more than a million security professionals worldwide! Like mentioned because of this Cisco is reworking the CCNP Security track. Let&#39;s get into the details of the changes coming in April 22nd 2014. One thing I noticed is the exam names themselves such as the old exams are specifying Cisco&#39;s own technologies to solve these security issues.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;642-637 (SECURE) Securing Networks with Cisco Routers and Switches.&lt;/li&gt;
+&lt;li&gt;642-618 (FIREWALL) Deploying Cisco ASA Firewall Solutions.&lt;/li&gt;
+&lt;li&gt;642-648 (VPN) Deploying Cisco ASA VPN Solutions.&lt;/li&gt;
+&lt;li&gt;642-627 (IPS) Implementing Cisco Intrusion Prevention System.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The refreshed exam looks at the overall picture of security instead of throwing in a specific box to solve your problem along with knowing how to administrate the device. The new exam names are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;300-208 (SISAS) Implementing Cisco Secure Access Solutions&lt;/li&gt;
+&lt;li&gt;300-206 (SENSS) Implementing Cisco Edge Network Security Solutions .&lt;/li&gt;
+&lt;li&gt;300-209 (SIMOS) Implementing Cisco Secure Mobility Solutions.&lt;/li&gt;
+&lt;li&gt;300-207 (SITCS) Implementing Cisco Threat Control Solutions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This alignment goes together with the new material of the Associate level exam (&lt;a href=&#34;http://ciscoskills.net/2013/09/30/ccna-2-0-whats-new/&#34; title=&#34;CCNA 2.0 What’s New?&#34;&gt;CCNA 2.0&lt;/a&gt; Is what I&#39;m calling it :) ) What is also interesting is Cisco is retiring alot of the Security Specialist exams on April 22nd 2014, below is a list of exams and their last day to test.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cisco ASA Specialist  - April 21st 2014&lt;/li&gt;
+&lt;li&gt;Cisco Firewall Security Specialist - April 21st 2014&lt;/li&gt;
+&lt;li&gt;Cisco IOS Security Specialist - April 21st 2014&lt;/li&gt;
+&lt;li&gt;Cisco IPS Security Specialist - April 21st 2014&lt;/li&gt;
+&lt;li&gt;Cisco Network Admission Control Specialist - April 21st 2014&lt;/li&gt;
+&lt;li&gt;Cisco VPN Security Specialist - Aprial 21st 2014&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In return Cisco is offering training for these specific products, I was unable to tell if completing these training courses tied to any new certifications. My guess is since Cisco is retiring these types of specialist certifications, these are just training materials to help you better understand Cisco&#39;s product line along with administrating the product. All of this is still pretty new information, the Cisco Learning Network will be having CCNP Tech Seminars stating February 4th and going through April 1st. All of this free to access by registering which would be incredibility helpful. &lt;a href=&#34;https://learningnetwork.cisco.com/community/certifications/ccnpsecurity/senss/ccnp_security_tech_seminars&#34; title=&#34;CCNP Security Tech Seminars&#34;&gt;CCNP Security Tech Seminars&lt;/a&gt; Like always I hope the above information is helpful. If you have any questions or if you currently studying for the CCNP Security comment below on what you think about these changes.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Why Go Professional with Cisco Certs?</title>
+      <link>https://ciscoskills.net/2013/09/why-go-professional-with-cisco-certs/</link>
+      <pubDate>Sat, 14 Sep 2013 18:09:46 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2013/09/why-go-professional-with-cisco-certs/</guid>
+      <description>
+        
+          &lt;p&gt;I have had the opportunity to take and thankfully pass &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco certifications&lt;/a&gt; at the associate levels and there is one more associate exam, the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; which hopefully I will get later next year.  While looking at the CCNA Data Center exam I also glanced over the professional arena that Cisco offers and if you’re like me I always like learning new things especially in technical field. Getting those “aha moments” once in a while makes it worth it, but beyond just over all knowledge of additional technologies why would you go on taking a professional Cisco cert? I find these type of questions all over web, “Is CCNP worth it?” My answer is it depends on your current job situation. Let’s say you are in dead-end entry-level technical position, you’ve been there for a couple of years and for the most part your job hasn’t change. Would getting a CCNP automatically move you up those ranks? Probably not. You also have to look at the company you’re working for, is this just an average company, and all that is needed is a technical person or team depending on the size to support the environment? Would getting a CCNP be worth it, are you actually going to be using that knowledge you learned to better help the company? Or would that be wasted time and money? Let’s say you don’t have your foot in the door and you are right out of college or even high school would getting a CCNP get you noticed? Absolutely however I would not recommend getting a CCNP and then looking for a job. Start out with &lt;a href=&#34;http://en.wikipedia.org/wiki/CompTIA&#34; title=&#34;CompTIA&#34;&gt;Network+&lt;/a&gt; or CCENT get an entry-level position and start getting that experience that employers often look for. I know its easier said than done but for both of these situations and in my opinion if you can longer move up the ladder or the company is not focused or in need of CCNP knowledge, find a company that is before you start studying in the professional arena. I also think it depends on where you live physically are there actual companies in your area that are in need of CCNP candidates? Or would you have to move, and most importantly do you want to move? Unfortunately these are all questions that I would need answered before I would even start looking in the professional arena personally. Not to say CCNP is not rewarding, there usually is higher pay, and these professional certs have a proven track record in career advancements, gaining additional knowledge and finally staying up to date with current network technologies. You may even find yourself being contacted by company recruiters if your name is out there. In my opinion any body that passes any Cisco Certification has definitely made themselves noticeable but there has to be balance. Where do I stand? I think eventually I&#39;ll get there, but with my current position I&#39;m pretty happy where I am. :) When putting this post together I was also reading a published a white paper that Cisco put out recently looking at the value of Cisco Certified Employees take a look at the linked PDF and like always I hope this information is helpful, comment below of what you think about of professional certs? Do you have any, have they helped out and are they worth it? &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/09/cisco_employervalue.pdf&#34;&gt;What Is the Value of a Cisco Certified Employee?&lt;/a&gt;&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.pluralsight.com/2013/09/11/vmware-vca-certification/&#34;&gt;VMware&#39;s new VCA: fab or flop?&lt;/a&gt; (pluralsight.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.pluralsight.com/2013/09/10/best-it-certifications/&#34;&gt;Best IT certifications for all levels of expertise&lt;/a&gt; (pluralsight.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Learning Labs is Live!</title>
+      <link>https://ciscoskills.net/2011/04/cisco-learning-labs-is-live/</link>
+      <pubDate>Wed, 13 Apr 2011 14:15:53 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/cisco-learning-labs-is-live/</guid>
+      <description>
+        
+          &lt;p&gt;Yesterday was kind of exciting at least for me when I got an e-mail in the morning about &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; Learning Labs. Studying for the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt;, CCNP or CCIP is in itself changeling, but getting that hands-on experience is a another problem! When money is short that last thing you want to do is spend it on routers and switches, and most of them on &lt;a href=&#34;http://en.wikipedia.org/wiki/EBay&#34; title=&#34;EBay&#34;&gt;eBay&lt;/a&gt; are used and the risk of failing devices makes it a scary choice. The Cisco Learning Labs which started yesterday runs the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;Cisco IOS&lt;/a&gt; software on &lt;a href=&#34;http://en.wikipedia.org/wiki/Unix&#34; title=&#34;Unix&#34;&gt;UNIX&lt;/a&gt;, this makes it a real configuration and provides people the ability to use the Cisco IOS software on their PC with an internet connection. What it the difference between simulators like &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_Tracer&#34; title=&#34;Packet Tracer&#34;&gt;Packet Tracer&lt;/a&gt; and GNS3? We know that Packet Tracer does not support all the commands, but is enough for the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Networking_Academy&#34; title=&#34;Cisco Networking Academy&#34;&gt;Cisco Networking Academy&lt;/a&gt;. Packet Tracer does a great job, but if you ever wanted to really explore the router or switch you will need to have access to real equipment. GNS3 does an excellent job for routers but fails on switches and takes some &lt;a href=&#34;http://en.wikipedia.org/wiki/Central_processing_unit&#34; title=&#34;Central processing unit&#34;&gt;CPU&lt;/a&gt; power. You also need the real Cisco IOS and the only &amp;quot;legal&amp;quot; way to get one is from the router that you bought. Cisco Learning Labs have multiple labs that are available when you buy a lab bundle; these labs are available for 90 days and up to 25 hours whichever comes first. The timer only counts down when you actually use it by signing in. You can also buy more lab time in increments of five hours. Currently the Cisco Learning Labs support the following &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco Certifications&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CCNA/ICND2 Virtualized Lab for $50&lt;/li&gt;
+&lt;li&gt;CCNP ROUTE/SWITCH/TSHOOT (each $75)&lt;/li&gt;
+&lt;li&gt;CCIP and &lt;a href=&#34;http://en.wikipedia.org/wiki/Multiprotocol_Label_Switching&#34; title=&#34;Multiprotocol Label Switching&#34;&gt;MPLS&lt;/a&gt; for $75&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;for-more-information-i-recommend-you-check-out-wwwciscocomgolearninglabshttpwwwciscocomgolearninglabs-youtubehttpwwwyoutubecomwatchvi4ujuklvaiw&#34;&gt;For more information I recommend you check out &lt;a href=&#34;http://www.cisco.com/go/learninglabs&#34;&gt;www.cisco.com/go/learninglabs&lt;/a&gt; [youtube=http://www.youtube.com/watch?v=i4UjuklvAiw]&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/18/configure-cisco-sdm/&#34; title=&#34;&#34;&gt;Configure Cisco SDM | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-18 10:28:16&#34;&gt;Apr 1, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Cisco Learning Labs is Live! (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

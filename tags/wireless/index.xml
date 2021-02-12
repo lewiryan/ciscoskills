@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wireless on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/wireless/</link>
+    <description>Recent content in wireless on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 16 Apr 2018 13:30:10 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/wireless/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wireless VLANs</title>
+      <link>https://ciscoskills.net/2018/04/wireless-vlans/</link>
+      <pubDate>Mon, 16 Apr 2018 13:30:10 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2018/04/wireless-vlans/</guid>
+      <description>
+        
+          &lt;p&gt;It’s been fun four months of 2018 so far and I’m back to talk about Wireless VLANs. With 802.11ax around the corner (2019) I think we all can agree that “weird” connections although less likely have interference isn’t as mobile as a wireless LAN. Also, with 802.11ax the maximum theoretical throughput is 10Gbps! We’re going to need some serious backend infrastructure available to be able to support that type of bandwidth. So, let’s look at configuring a wireless VLANs for our mobile users!&lt;/p&gt;
+&lt;p&gt;Just like regular weird LANs, we want to separate traffic to be able to have a secure network, because it&#39;s usually not only your employees that will use the wireless network, we could have guest networks, department networks and even infrastructure/IoT networks. Like for security cameras, motion sensors, thermostats, lights, and so much more, just within that list you have at least three wireless networks if not four if you needed to have further separation. So how do you configure wireless to have multiple VLANs attached to it? First you must look at the wireless hardware you are working with. That hardware at least needs to support a trunk link, that’s what makes this magic happen. If supports VLAN trunks, then chances are it comes in two flavors:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Wireless Controller with “lightweight” access points, which essentially tunnel the traffic back to the controller. The controller has a trunk link with all the Wireless VLANs connected to it. The access points don’t need access to all those wireless VLANs, they can join a management network and route/tunnel the traffic back to the controller.&lt;/li&gt;
+&lt;li&gt;Autonomous access points which as the name suggest act on their own they don’t join a controller and therefore would need access to all wireless VLANs that are configured in the network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Next, if your wireless hardware supports multiple VLANs then it can probably support multiple networks and broadcast multiple SSIDs, which is how you can get multiple wireless networks on the same hardware. Each network can have different restrictions as well as different authentication methods to get on the network. Like using 802.1x (WPA2 Enterprise), WPA2 Personal, and even WPA3 which was certified this year. Once you have all that information and know what type of access point you have the last thing to do is configuring the switchport which is probably the simplest thing when it comes to WLANs. So in this example we have four networks that we want to put on the airwaves.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(410) - GUEST-WLAN&lt;/li&gt;
+&lt;li&gt;(420) - MARKET-DEPT-WLAN&lt;/li&gt;
+&lt;li&gt;(430) - DEFUALT-EMPLOYEE-WLAN&lt;/li&gt;
+&lt;li&gt;(440) - SECURITY-WLAN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If we look at &lt;strong&gt;show vlan&lt;/strong&gt; output we can see I have the VLANs created on this switch.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;VLAN Name                             Status    Ports
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;---- -------------------------------- --------- -------------------------------
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;1    default                          active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;                                                Eth2/5
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;410  GUEST-WLAN                       active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;                                                Eth2/5
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;420  MARKET-DEPT-WLAN                 active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;                                                Eth2/5
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;430  DEFUALT-EMPLOYEE-WLAN            active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;                                                Eth2/5
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;440  SECURITY-WLAN                    active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this example I have a wireless controller connected to ethernet 2/10. I simply need to add a trunk link and only allow these VLANs to the port.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW01(config)# interface ethernet 2/10
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW01(config-if)# switchport mode trunk
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW01(config-if)# switchport trunk allowed vlan 410,420,430,440
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;SW01(config-if)# no shutdown
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I would do the same configuration if I was using an autonomous access point, I would also probably add a management VLAN as well. This configuration would need to be applied to every access point that is connected within the organization. Wireless is going to continue to grow and this is just another side of how much bandwidth wireless is going to take up. I find it hard to imagine that weird networks might be the thing of the past for end-users but it’s moving into the direction, especially when you can get more than 1Gbps out of a wireless connection, that changes things. You now must look at getting switches that support either NBASE-T or even just 10GBASE-T otherwise what’s the point of buying that 802.11ax access point? The silver lining in all of this is it gets cheaper on the switching side :) That’s all I got for now, I hope this information is helpful.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://loopedback.com&#34; title=&#34;ande0255@gmail.com&#34;&gt;Loopy&lt;/a&gt; - &lt;time datetime=&#34;2018-08-04 06:13:52&#34;&gt;Aug 4, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;With the 2500 WLCs, are two physical interfaces REALLY required to securely separate Guest from Internal corporate traffic? I seem to find this a lot in production networks I work on, and it seems to defy the logic of separating networks with VLANs. Could you expand upon the reasoning or benefit of using separate interfaces, or if its necessary at all given your experience? The thing I really don&#39;t get is these traffic flows meet on the switched network anyways, it is beyond me why someone would use two trunks vs a single trunk link in an Active / Active setup to separate traffic from WLC and the wireless network from the wired LAN? I will follow your blog here, look forward to your wireless posts, keep at it :)&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2018-08-06 18:20:07&#34;&gt;Aug 1, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey Loopy, The benefit I see when using an separate interface for guest traffic is if you actually have a separate ISP for your guest network. If you are using the same network as internal people there&#39;s not really a reason to use another interface. Maybe if you are tapping out the bandwidth of that single trunk interface but that would probably be be the only reason for separation. Personally if I did not have an option to run a separate ISP for the guest network and I wasn&#39;t worried about bandwidth, I would just use a single interface until it becomes a problem with bandwidth. Thanks Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Welcome Super WiFi</title>
+      <link>https://ciscoskills.net/2011/07/welcome-super-wifi/</link>
+      <pubDate>Fri, 29 Jul 2011 15:15:42 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/07/welcome-super-wifi/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/07/wifi_logo.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/07/wifi_logo.png&#34; alt=&#34;&#34; title=&#34;WiFi_Logo&#34;&gt;&lt;/a&gt;Wow July is almost over and I only posted one topic! Before August comes up I wanted to post at least one more topic which deals with the wireless side of the networking world. Ever heard of &lt;a href=&#34;http://en.wikipedia.org/wiki/Super_Wi-Fi&#34; title=&#34;Super Wi-Fi&#34;&gt;Super WiFi&lt;/a&gt;? The &lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt; has published this standard recently its official number is 802.22. What does Super WiFi bring to the table compared to other &lt;a href=&#34;http://en.wikipedia.org/wiki/Wi-Fi&#34; title=&#34;Wi-Fi&#34;&gt;WiFi&lt;/a&gt; Standards? Well according to IEEE these speeds can bring up to 22Mbps to devices as far has 62 miles! How is this range possible? Well ever since the &lt;a href=&#34;http://en.wikipedia.org/wiki/United_States&#34; title=&#34;United States&#34;&gt;United States&lt;/a&gt; made the switch to digital over the air broadcasts there was this &amp;quot;extra space&amp;quot; This space was at first used for &lt;a href=&#34;http://en.wikipedia.org/wiki/Microsoft&#34; title=&#34;Microsoft&#34;&gt;Microsoft&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Google&#34; title=&#34;Google&#34;&gt;Google&lt;/a&gt; and other big companies to experiment this &amp;quot;extra space&amp;quot; or also called white space. In September of 2010 the &lt;a href=&#34;http://en.wikipedia.org/wiki/Federal_Communications_Commission&#34; title=&#34;Federal Communications Commission&#34;&gt;FCC&lt;/a&gt; approved this and it is now been standardized by the IEEE. The Wireless Regional Area Network (WRAN) is expected to use a point-to-&lt;a href=&#34;http://en.wikipedia.org/wiki/Fuel_injection&#34; title=&#34;Fuel injection&#34;&gt;multi-point&lt;/a&gt; system (P2MP) You can get more information by doing a simple search in your favorite search engine about this Super WiFi. I thought I posted about this way back in January but I guess not. What do you think? Do you think this technology will take off? In what parts of the country do you think this would be more popular? Personally I feel this would be excellent in rural areas of the United States. Also if you have an idea about any ICND1 or ICND2 material let me know.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/236829/super_wi_fi_has_100km_range_iscoming_to_save_the_day.html&#34;&gt;Super Wi-Fi Has 100km Range, Is Coming to Save the Day&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/236784/Networking.html&#34;&gt;IEEE Sets Standard for &#39;White Spaces&#39;&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.engadget.com/2011/07/27/ieee-brings-white-space-internet-one-step-closer-we-almost-felt/&#34;&gt;IEEE brings white space Internet one step closer, we almost felt a twinge&lt;/a&gt; (engadget.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://marshallstanton.com/2011/07/28/super-wifi-is-coming-to-rural-communitie/&#34; title=&#34;&#34;&gt;Super WiFi is coming to rural communities | The Road Not Taken&lt;/a&gt; - &lt;time datetime=&#34;2011-07-29 20:18:24&#34;&gt;Jul 5, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Welcome Super WiFi (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Wireless LAN Security</title>
+      <link>https://ciscoskills.net/2011/05/basic-wireless-lan-security/</link>
+      <pubDate>Wed, 18 May 2011 16:50:52 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/05/basic-wireless-lan-security/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/wirelesssecurity.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/wirelesssecurity.png&#34; alt=&#34;&#34; title=&#34;Wireless-Security-Icon&#34;&gt;&lt;/a&gt;Although having a wireless LAN sounds like a wonderful idea, there are things that need to be implemented like security. A wireless LAN can be uncontrollable has it is just radio waves and anybody can receive them. Having and using good security practices can help you be under control of your wireless LAN.  Not having any security in a wireless LAN environment will cause anybody to have access to the network. Some threats that lead to &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;wireless LANs&lt;/a&gt; can be the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;War Drivers – These are people who &amp;quot;drive&amp;quot; around to find open networks that are not secure and looking for free internet access.&lt;/li&gt;
+&lt;li&gt;Hackers – These types of people usually have malicious ideas in mind; this can be anything to entering unauthorized systems and stealing data or even harming the physical system.&lt;/li&gt;
+&lt;li&gt;Employees –Although we may have an excellent defense on the outside of our network, we sometimes forget that the inside of our network needs to be secure as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the original 802.11 standard there were two types of authentication:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open authentication, which as the name implies has no authentication and will allow anybody to use the network.&lt;/li&gt;
+&lt;li&gt;Shared authentication, which used &lt;a href=&#34;http://en.wikipedia.org/wiki/Wired_Equivalent_Privacy&#34; title=&#34;Wired Equivalent Privacy&#34;&gt;WEP&lt;/a&gt; and is now flawed, The WEP algorithm was weak and WEP was also not very scalable. (See post &lt;a href=&#34;http://ciscoskills.net/2011/03/14/cracking-wep/&#34; title=&#34;Cracking WEP&#34;&gt;Cracking WEP&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Currently there are two enterprise-level encryption methods which are specified in the 802.11i and are certified as &lt;a href=&#34;http://en.wikipedia.org/wiki/Wi-Fi_Protected_Access&#34; title=&#34;Wi-Fi Protected Access&#34;&gt;WPA&lt;/a&gt; and WPA2:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Temporal_Key_Integrity_Protocol&#34; title=&#34;Temporal Key Integrity Protocol&#34;&gt;TKIP&lt;/a&gt; is an encryption method certified has WPA, TKIP supports for legacy WLAN equipment by fixing the flaws with the original 802.11 WEP encryption. TKIP encrypts at the layer 2 (Data Link) payloads and carries a message of integrity check (&lt;a href=&#34;http://en.wikipedia.org/wiki/Message_authentication_code&#34; title=&#34;Message authentication code&#34;&gt;Message Integrity Check&lt;/a&gt;) in the encrypted packet. This helps to make sure the message or packet was not tampered with.&lt;/li&gt;
+&lt;li&gt;AES is an encryption method certified has WPA2, AES has the same functions as TKIP but does use additional data from the MAC header to recognize if the data has been tampered with.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some steps to check when setting up a wireless LAN is the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Check the wired network, like &lt;a href=&#34;http://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol&#34; title=&#34;Dynamic Host Configuration Protocol&#34;&gt;DHCP&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_access&#34; title=&#34;Internet access&#34;&gt;Internet access&lt;/a&gt; before setting up a &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_access_point&#34; title=&#34;Wireless access point&#34;&gt;wireless access point&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Next install the access point but by keeping it away from devices that could case greater interference .&lt;/li&gt;
+&lt;li&gt;Configure the &lt;a href=&#34;http://en.wikipedia.org/wiki/Service_set_%28802.11_network%29&#34; title=&#34;Service set (802.11 network)&#34;&gt;SSID&lt;/a&gt; on the access point. Don&#39;t put security on the access point yet.&lt;/li&gt;
+&lt;li&gt;Configure or install one or two wireless clients. Don&#39;t put security on these devices yet.&lt;/li&gt;
+&lt;li&gt;Verify wireless network operation within the clients. Check to make sure you can get access to network resources and outside the network.&lt;/li&gt;
+&lt;li&gt;Configure &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_security&#34; title=&#34;Wireless security&#34;&gt;wireless security&lt;/a&gt;. Such as WPA2 with PSK .&lt;/li&gt;
+&lt;li&gt;Verify network operation again to make sure that the wireless clients can get access to network resources.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For now that&#39;s my summary for the basic wireless security, this really goes over the concepts but not the configuration. There are a lot of online guides that can go into the configuration aspect of the wireless client and the access point. Like always I hope this information was informative and if you come up with any other ideas that deal with either ICND1 or ICND2 let me know by posting a comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/does-your-small-business-need-a-wireless-lan-controller/&#34;&gt;Does Your Small Business Need a Wireless LAN Controller?&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/&#34;&gt;Basic Wireless Concepts&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/securing-remote-locations-in-3-steps/&#34;&gt;Securing Remote Locations in 3 Steps&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/226857/Home_WiFi_Network_Security_4_Ways_to_Avoid_Big_Trouble.html&#34;&gt;Home Wi-Fi Security: 4 Steps to Avoid Trouble&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.brighthub.com/computing/smb-security/articles/78216.aspx&#34;&gt;Advantages/Disadvantages: WEP/WPA Network Security&lt;/a&gt; (brighthub.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://cartesianproduct.wordpress.com/2011/06/11/wired-to-wireless-bridge-in-ubuntu-linux/&#34; title=&#34;&#34;&gt;Wired to wireless bridge in Ubuntu Linux | cartesian product&lt;/a&gt; - &lt;time datetime=&#34;2011-06-11 10:08:04&#34;&gt;Jun 6, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Basic Wireless LAN Security (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11n</title>
+      <link>https://ciscoskills.net/2011/04/802.11n/</link>
+      <pubDate>Mon, 11 Apr 2011 15:00:18 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/802.11n/</guid>
+      <description>
+        
+          &lt;p&gt;On this Monday let&#39;s wrap up the 802.11 wireless standards, Friday I talked about the &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11g-2003&#34; title=&#34;IEEE 802.11g-2003&#34;&gt;802.11g&lt;/a&gt; (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/08/802-11g/&#34; title=&#34;802.11g&#34;&gt;802.11g&lt;/a&gt;) and before that I talked about the &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11b-1999&#34; title=&#34;IEEE 802.11b-1999&#34;&gt;802.11b&lt;/a&gt; (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/07/802-11b/&#34; title=&#34;802.11b&#34;&gt;802.11b&lt;/a&gt; ) I also talked about &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11a-1999&#34; title=&#34;IEEE 802.11a-1999&#34;&gt;802.11a&lt;/a&gt;, (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/06/802-11a/&#34; title=&#34;802.11a&#34;&gt;802.11a&lt;/a&gt;) I even talked about the 802.11 –Legacy (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/05/802-11-legacy/&#34; title=&#34;802.11 -Legacy&#34;&gt;802.11 –Legacy&lt;/a&gt;) and in the beginning of last week I talked about the basic wireless concepts. (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/&#34; title=&#34;Basic Wireless Concepts&#34;&gt;Basic Wireless Concepts&lt;/a&gt;) So let&#39;s end the discussion and talk about the &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11n-2009&#34; title=&#34;IEEE 802.11n-2009&#34;&gt;802.11n&lt;/a&gt; standard! You could say that the 802.11n standard is the best of both worlds in the 802.11 wireless standards. 802.11n was officially released in October of 2009 and can run in the &lt;a href=&#34;http://en.wikipedia.org/wiki/ISM_band&#34; title=&#34;ISM band&#34;&gt;2.4GHz&lt;/a&gt; range and use the 5GHz range. Something that is special in the 802.11n standard is the use of multiple-input multiple-output (&lt;a href=&#34;http://en.wikipedia.org/wiki/MIMO&#34; title=&#34;MIMO&#34;&gt;MIMO&lt;/a&gt;). MIMO is a technology which uses multiple antennas to gather more information essentially. It uses SDM Spatial Division Multiplexing to significantly increase the data throughput. Because of this technology 802.11n can in theory transfer speeds up to 300 &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_rate_units&#34; title=&#34;Data rate units&#34;&gt;Mbps&lt;/a&gt;. 802.11n is also backwards compatible like the 802.11g standard it can also work with the 802.11b standard. 802.11n can also work with the 802.11a standard in the 5GHz range. Currently 802.11n is the fastest and has the longest range compared to the earlier 802.11 standards. 802.11n indoors has a range of about 230 feet, in outdoor environments the 802.11n has range of about 800 feet. We all know technology changes and a while ago I posted about the 802.11ac standard which does have the potential to travel in speeds up to 1Gbps! (See the post &lt;a href=&#34;http://ciscoskills.net/2011/02/21/802-11ac-standard/&#34; title=&#34;802.11ac Standard&#34;&gt;802.11ac Standard&lt;/a&gt;) For now that&#39;s my summary version of the 802.11n standard, like always I hope this information was informative and let me know if you have any ideas on the next topic that deal with either ICND1 or ICND2.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11g</title>
+      <link>https://ciscoskills.net/2011/04/802.11g/</link>
+      <pubDate>Fri, 08 Apr 2011 16:30:53 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/802.11g/</guid>
+      <description>
+        
+          &lt;h2 id=&#34;well-again-we-are-continuing-the-discussion-about-the-wireless-standards-yesterday-i-talked-about-80211bhttpenwikipediaorgwikiieee_80211b-1999-ieee-80211b-1999-see-the-post-80211bhttpciscoskillsnet20110407802-11b-80211b-and-before-that-i-talked-about-80211ahttpenwikipediaorgwikiieee_80211a-1999-ieee-80211a-1999see-the-post-80211ahttpciscoskillsnet20110406802-11a-80211a-i-even-talked-about-the-80211-legacy-see-the-post-80211-legacyhttpciscoskillsnet20110405802-11-legacy-80211--legacy-and-in-the-beginning-of-the-week-i-talked-about-the-basic-wireless-concepts-see-the-post-basic-wireless-standardshttpciscoskillsnet20110404basic-wireless-concepts-basic-wireless-concepts-so-on-this-friday-lets-talk-about-the-80211ghttpenwikipediaorgwikiieee_80211g-2003-ieee-80211g-2003-standard-the-80211g-standard-was-ratified-in-june-of-2003-and-like-80211b-it-operates-in-the-24ghzhttpenwikipediaorgwikiism_band-ism-bandrange-also-just-like-the-80211b-standard-other-devices-that-runin-24ghz-range-like-cordless-phones-microwaves-can-cause-interference-with-the-wireless-signal-the-80211g-can-work-in-two-encoding-classes-the-direct-sequence-spectrum-dssshttpenwikipediaorgwikidirect-sequence_spread_spectrum-direct-sequence-spread-spectrum-which-is-like-the-80211b-standard-it-does-have-benefits-of-resistance-to-jamming-you-could-share-the-signal-channel-among-other-users-it-reduced-the-signal-and-noise-level-which-helped-in-interception-in-addition-to-dsss-the-80211g-standard-can-also-use-the-orthogonal-frequency-division-multiplexinghttpenwikipediaorgwikiorthogonal_frequency-division_multiplexing-orthogonal-frequency-division-multiplexingofdm-which-does-have-an-advantage-to-still-operateunder-severe-channel-conditions-like-attenuation-and-interference-the-maximumdata-rate-in-theory-is-54-mbits-this-speed-is-exactly-what-the-80211a-standard-gets-another-benefit-of-the-80211g-is-the-fact-it-is-backwards-compatible-to-the-80211b-standard-so-in-your-wireless-network-you-could-have-a-mix-of-wireless-standards-80211b-and-80211g-however-this-does-add-some-latency-in-your-network-and-can-slow-it-down-because-the-80211g-is-backwards-compatible-the-standard-was-rapidly-adopted-by-manufactures-and-consumers-but-this-does-have-its-drawbacks-because-like-the-80211b-standard-80211g-only-has-three-channels-that-dont-overlap-and-it-is-best-practice-not-to-have-these-channels-overlap-thats-it-for-this-summary-of-the-80211g-standard-check-back-on-monday-and-ill-have-the-80211n-standard-posted-like-always-i-hope-this-information-was-informative-and-let-me-know-if-you-have-any-ideas-on-the-next-topic-that-deal-with-either-icnd1or-icnd2&#34;&gt;Well again we are continuing the discussion about the wireless standards. Yesterday I talked about &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11b-1999&#34; title=&#34;IEEE 802.11b-1999&#34;&gt;802.11b&lt;/a&gt; (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/07/802-11b/&#34; title=&#34;802.11b&#34;&gt;802.11b&lt;/a&gt;), and before that I talked about &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11a-1999&#34; title=&#34;IEEE 802.11a-1999&#34;&gt;802.11a&lt;/a&gt;,(See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/06/802-11a/&#34; title=&#34;802.11a&#34;&gt;802.11a&lt;/a&gt;) I even talked about the 802.11 –Legacy (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/05/802-11-legacy/&#34; title=&#34;802.11 -Legacy&#34;&gt;802.11 –Legacy&lt;/a&gt;) and in the beginning of the week I talked about the basic wireless concepts. (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/&#34; title=&#34;Basic Wireless Concepts&#34;&gt;Basic Wireless Standards&lt;/a&gt;) So on this Friday let&#39;s talk about the &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11g-2003&#34; title=&#34;IEEE 802.11g-2003&#34;&gt;802.11g&lt;/a&gt; standard! The 802.11g standard was ratified in June of 2003, and like 802.11b it operates in the &lt;a href=&#34;http://en.wikipedia.org/wiki/ISM_band&#34; title=&#34;ISM band&#34;&gt;2.4GHz&lt;/a&gt; range. Also just like the 802.11b standard other devices that run in 2.4GHz range like cordless phones, microwaves can cause interference with the wireless signal. The 802.11g can work in two encoding classes, the Direct Sequence Spectrum (&lt;a href=&#34;http://en.wikipedia.org/wiki/Direct-sequence_spread_spectrum&#34; title=&#34;Direct-sequence spread spectrum&#34;&gt;DSSS&lt;/a&gt;) which is like the 802.11b standard it does have benefits of resistance to jamming, you could share the signal channel among other users, it reduced the signal and noise level which helped in interception. In addition to DSSS the 802.11g standard can also use the &lt;a href=&#34;http://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing&#34; title=&#34;Orthogonal frequency-division multiplexing&#34;&gt;Orthogonal Frequency Division Multiplexing&lt;/a&gt; (OFDM) which does have an advantage to still operate under severe channel conditions, like attenuation, and interference. The maximum data rate in theory is 54 Mbit/s  this speed is exactly what the 802.11a standard gets. Another benefit of the 802.11g is the fact it is backwards compatible to the 802.11b standard. So in your wireless network you could have a mix of wireless standards 802.11b and 802.11g. However this does add some latency in your network and can slow it down. Because the 802.11g is backwards compatible the standard was rapidly adopted by manufactures and consumers. But this does have its drawbacks because like the 802.11b standard, 802.11g only has three channels that don&#39;t overlap and it is best practice not to have these channels overlap. That&#39;s it for this summary of the 802.11g standard, check back on Monday and I&#39;ll have the 802.11n standard posted. Like always I hope this information was informative and let me know if you have any ideas on the next topic that deal with either ICND1 or ICND2.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/11/802-11n/&#34; title=&#34;&#34;&gt;802.11n | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-11 09:02:52&#34;&gt;Apr 1, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ann]( &#34;jxay@mail.com&#34;) - &lt;time datetime=&#34;2011-04-27 13:25:17&#34;&gt;Apr 3, 2011&lt;/time&gt;
+&lt;p&gt;Thank you. It was helpful. You made it short and sweet; easy to digest.&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11b</title>
+      <link>https://ciscoskills.net/2011/04/802.11b/</link>
+      <pubDate>Thu, 07 Apr 2011 17:18:38 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/802.11b/</guid>
+      <description>
+        
+          &lt;h2 id=&#34;continuing-where-we-left-off-the-discussion-todays-post-will-be-talking-about-80211bhttpenwikipediaorgwikiieee_80211b-1999-ieee-80211b-1999wireless-standard-that-was-developed-by-ieeehttpenwikipediaorgwikiinstitute_of_electrical_and_electronics_engineers-institute-of-electrical-and-electronics-engineers-yesterdays-post-we-talked-about-the-80211ahttpenwikipediaorgwikiieee_80211a-1999-ieee-80211a-1999-standard-see-the-post-80211ahttpciscoskillsnet20110406802-11a-80211a-we-also-we-talked-about-the-80211--legacy-standard-see-the-post-80211--legacyhttpciscoskillsnet20110405802-11-legacy-80211---legacy-and-in-the-beginning-of-the-week-i-went-over-some-basic-wirelesshttpenwikipediaorgwikiwireless_lan-wireless-lan-concepts-see-the-post-basic-wireless-conceptshttpciscoskillsnet20110404basic-wireless-concepts-basic-wireless-concepts-so-now-that-we-are-up-to-speed-lets-learn-about-the-80211b-standard-the-80211b-standard-was-developed-the-same-time-80211a-went-out-which-was-in-1999-some-key-differences-are-that-80211b-works-in-the-24ghzhttpenwikipediaorgwikiism_band-ism-bandrange-and-only-has-a-maximumbandwidth-of-11-mbits-along-with-only-using-the-direct-sequence-spread-spectrumhttpenwikipediaorgwikidirect-sequence_spread_spectrum-direct-sequence-spread-spectrumdsss-like-in-the-80211--legacy-the-dsss-had-the-benefits-of-resistance-to-jamming-you-could-share-the-signal-channel-among-other-users-it-reduced-the-signal-and-noise-level-which-helped-in-interception-since-the-80211b-standard-is-in-the-24ghz-range-there-are-only-three-out-of-the-eleven-channels-that-dont-overlap-also-remember-that-there-are-other-devices-that-use-the-24ghz-range-so-80211b-devices-can-suffer-interference-from-other-products-like-cordless-phones-microwaves-etc-80211b-products-were-on-the-market-pretty-quickly-in-early-2000-because-of-the-cheap-material-to-make-them-and-the-wide-acceptance-of-the-productstandard-thats-it-for-today-check-back-tomorrow-and-ill-be-posting-about-the-80211g-standard-like-before-i-hope-this-information-was-informative-and-let-me-know-if-you-have-any-ideas-on-the-next-topic-that-deal-with-either-icnd1or-icnd2&#34;&gt;Continuing where we left off the discussion, todays post will be talking about &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11b-1999&#34; title=&#34;IEEE 802.11b-1999&#34;&gt;802.11b&lt;/a&gt; wireless standard that was developed by &lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt;. Yesterday&#39;s post we talked about the &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11a-1999&#34; title=&#34;IEEE 802.11a-1999&#34;&gt;802.11a&lt;/a&gt; standard. (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/06/802-11a/&#34; title=&#34;802.11a&#34;&gt;802.11a&lt;/a&gt;) We also we talked about the 802.11 – Legacy standard (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/05/802-11-legacy/&#34; title=&#34;802.11 - Legacy&#34;&gt;802.11 – Legacy&lt;/a&gt;) and in the beginning of the week I went over some Basic &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;Wireless&lt;/a&gt; Concepts (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/&#34; title=&#34;Basic Wireless Concepts&#34;&gt;Basic Wireless Concepts&lt;/a&gt;) So now that we are up to speed lets learn about the 802.11b standard. The 802.11b standard was developed the same time 802.11a went out, which was in 1999. Some key differences are that 802.11b works in the &lt;a href=&#34;http://en.wikipedia.org/wiki/ISM_band&#34; title=&#34;ISM band&#34;&gt;2.4GHz&lt;/a&gt; range and only has a maximum bandwidth of 11 (Mbit/s). Along with only using the &lt;a href=&#34;http://en.wikipedia.org/wiki/Direct-sequence_spread_spectrum&#34; title=&#34;Direct-sequence spread spectrum&#34;&gt;Direct Sequence Spread Spectrum&lt;/a&gt; (DSSS) Like in the 802.11 – Legacy the DSSS had the benefits of Resistance to jamming, you could share the signal channel among other users, it reduced the signal and noise level which helped in interception. Since the 802.11b standard is in the 2.4GHz range there are only three out of the eleven channels that don&#39;t overlap. Also remember that there are other devices that use the 2.4GHz range so 802.11b devices can suffer interference from other products, like cordless phones, microwaves, etc. 802.11b products were on the market pretty quickly in early 2000 because of the cheap material to make them and the wide acceptance of the product/standard. That&#39;s it for today, check back tomorrow and I&#39;ll be posting about the 802.11g standard. Like before I hope this information was informative and let me know if you have any ideas on the next topic that deal with either ICND1 or ICND2.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/08/802-11g/&#34; title=&#34;&#34;&gt;802.11g | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-08 10:38:30&#34;&gt;Apr 5, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11n | Cisco Skills](http://ciscoskills.net/2011/04/11/802-11n/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-11 09:02:55&#34;&gt;Apr 1, 2011&lt;/time&gt;
+&lt;p&gt;[...] about the 802.11g (See the post 802.11g) and before that I talked about the 802.11b (See the post 802.11b ) I also talked about 802.11a, (See the post 802.11a) I even talked about the 802.11 –Legacy (See [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11a</title>
+      <link>https://ciscoskills.net/2011/04/802.11a/</link>
+      <pubDate>Wed, 06 Apr 2011 18:00:22 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/802.11a/</guid>
+      <description>
+        
+          &lt;h2 id=&#34;continuing-the-discussion-about-wirelesshttpenwikipediaorgwikiwireless-wireless-standards-we-talked-about-the-80211--legacy-standard-see-the-post-80211--legacyhttpciscoskillsnet20110405802-11-legacy-80211---legacy-todays-post-will-be-talking-about-the-ieee-80211ahttpenwikipediaorgwikiieee_80211a-1999-ieee-80211a-1999-standard-on-monday-i-talked-about-the-basic-wireless-concepts-see-the-post-basic-wireless-conceptshttpciscoskillsnet20110404basic-wireless-concepts-basic-wireless-concepts-in-that-post-i-mentioned-the-wireless-standards-but-did-not-go-further-into-detail-this-post-will-be-going-over-the-second-standard-80211a-out-of-the-five-standards-that-make-up-the-80211-the-80211a-was-published-in-1999-and-operates-in-the-5ghz-band-instead-of-the-24ghz-bandhttpenwikipediaorgwikiism_band-ism-band-because-of-this-80211a-uses-only-the-orthogonal-frequency-division-multiplexinghttpenwikipediaorgwikiorthogonal_frequency-division_multiplexing-orthogonal-frequency-division-multiplexingofdm-which-does-have-an-advantage-to-still-operate-under-severe-channel-conditions-like-attenuation-and-interference-the-80211a-in-theory-has-maximumraw-data-rate-of-54mbits-however-because-of-the-varied-conditions-you-should-expect-80211a-to-have-a-maximum-speed-around-20mbits-what-is-different-between-the-80211a-and-other-80211-standards-is-the-fact-that-the-80211a-standard-has-12-channels-that-are-not-overlapping-each-other-since-the-80211a-standard-only-operates-in-the-5ghz-band-it-does-not-get-has-much-interference-compared-to-the-24ghz-range-thats-it-for-this-summary-for-the-80211a-standard-check-back-tomorrow-and-ill-be-posting-the-80211b-standard-i-hope-this-information-was-informative-and-let-me-know-if-you-have-any-ideas-on-the-next-topic-that-deal-with-either-icnd1or-icnd2&#34;&gt;Continuing the discussion about &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless&#34; title=&#34;Wireless&#34;&gt;wireless&lt;/a&gt; standards we talked about the 802.11 – Legacy standard (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/05/802-11-legacy/&#34; title=&#34;802.11 - Legacy&#34;&gt;802.11 – Legacy&lt;/a&gt;) Today&#39;s post will be talking about the &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11a-1999&#34; title=&#34;IEEE 802.11a-1999&#34;&gt;IEEE 802.11a&lt;/a&gt; standard. On Monday I talked about the Basic Wireless Concepts (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/&#34; title=&#34;Basic Wireless Concepts&#34;&gt;Basic Wireless Concepts&lt;/a&gt;) in that post I mentioned the wireless standards but did not go further into detail. This post will be going over the second standard 802.11a out of the five standards that make up the 802.11. The 802.11a was published in 1999 and operates in the 5GHz band instead of the &lt;a href=&#34;http://en.wikipedia.org/wiki/ISM_band&#34; title=&#34;ISM band&#34;&gt;2.4GHz band&lt;/a&gt; because of this 802.11a uses only the &lt;a href=&#34;http://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing&#34; title=&#34;Orthogonal frequency-division multiplexing&#34;&gt;Orthogonal Frequency Division Multiplexing&lt;/a&gt; (OFDM) which does have an advantage to still operate under severe channel conditions, like attenuation, and interference. The 802.11a in theory has maximum raw data rate of 54Mbit/s however because of the varied conditions you should expect 802.11a to have a maximum speed around 20Mbit/s. What is different between the 802.11a and other 802.11 standards is the fact that the 802.11a standard has 12 channels that are not overlapping each other. Since the 802.11a standard only operates in the 5GHz band it does not get has much interference compared to the 2.4GHz range. That&#39;s it for this summary for the 802.11a standard. Check back tomorrow and I&#39;ll be posting the 802.11b standard. I hope this information was informative and let me know if you have any ideas on the next topic that deal with either ICND1 or ICND2.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/07/802-11b/&#34; title=&#34;&#34;&gt;802.11b | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-07 11:34:41&#34;&gt;Apr 4, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11g | Cisco Skills](http://ciscoskills.net/2011/04/08/802-11g/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-08 10:38:34&#34;&gt;Apr 5, 2011&lt;/time&gt;
+&lt;p&gt;[...] I talked about 802.11b (See the post 802.11b), and before that I talked about 802.11a,(See the post 802.11a) I even talked about the 802.11 –Legacy (See the post 802.11 –Legacy) and in the beginning of [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11n | Cisco Skills](http://ciscoskills.net/2011/04/11/802-11n/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-11 09:02:58&#34;&gt;Apr 1, 2011&lt;/time&gt;
+&lt;p&gt;[...] that I talked about the 802.11b (See the post 802.11b ) I also talked about 802.11a, (See the post 802.11a) I even talked about the 802.11 –Legacy (See the post 802.11 –Legacy) and in the beginning of [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11 - Legacy</title>
+      <link>https://ciscoskills.net/2011/04/802.11-legacy/</link>
+      <pubDate>Tue, 05 Apr 2011 15:15:06 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/802.11-legacy/</guid>
+      <description>
+        
+          &lt;h2 id=&#34;yesterday-we-talked-about-the-wirelesshttpenwikipediaorgwikiwireless-wireless-concepts-see-the-post-basic-wireless-conceptshttpciscoskillsnet20110404basic-wireless-concepts-basic-wirelessconcepts-in-that-post-i-mentioned-the-wireless-standards-but-did-not-go-further-into-detail-this-post-one-of-the-five-standards-that-make-up-the-80211-the-80211--legacy-has-its-called-now-and-is-not-in-use-anymore-by-manufactures-and-is-now-obsolete-was-the-first-wireless-standard-available-for-consumer-laptops-when-the-80211---legacy-came-out-in-1997-you-could-expect-speeds-up-to-2-megabits-per-secondhttpenwikipediaorgwikidata_rate_units-data-rate-unitsmbits-this-standard-was-replaced-quickly-when-80211bhttpenwikipediaorgwikiieee_80211b-1999-ieee-80211b-1999was-released-the-legacy-standard-range-was-about-70-feet-indoors-and-around-330-feet-outdoors-at-the-time-that-was-huge-currently-the-80211-legacy-standard-is-the-only-standard-that-used-the-frequency-hopping-spread-spectrumhttpenwikipediaorgwikifrequency-hopping_spread_spectrum-frequency-hopping-spread-spectrum-what-this-means-is-the-device-would-switch-frequencies-to-a-different-channel-at-random-this-helped-the-signals-become-harder-to-intercept-the-obsolete-standard-also-could-use-the-direct-sequence-spread-spectrumhttpenwikipediaorgwikidirect-sequence_spread_spectrum-direct-sequence-spread-spectrumdsss-which-had-the-benefits-of-resistance-to-jamming-you-could-share-the-signal-channel-among-other-users-it-reduced-the-signal-and-noise-level-which-helped-in-interception-although-this-standard-is-not-in-use-anymore-you-could-say-that-the-wireless-explosion-was-on-the-way-and-this-is-what-started-it-check-back-tomorrow-and-ill-be-posting-the-80211a-standard-i-hope-this-information-was-informative-and-let-me-know-if-you-have-any-ideas-on-the-next-topic-i-should-do-that-deal-with-any-icnd1and-icnd2-material&#34;&gt;Yesterday we talked about the &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless&#34; title=&#34;Wireless&#34;&gt;wireless&lt;/a&gt; concepts (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/&#34; title=&#34;Basic Wireless Concepts&#34;&gt;Basic Wireless Concepts&lt;/a&gt;) in that post I mentioned the wireless standards but did not go further into detail. This post one of the five standards that make up the 802.11. The 802.11 – Legacy has its called now and is not in use anymore by manufactures and is now obsolete was the first wireless standard available for consumer laptops. When the 802.11 - Legacy came out in 1997 you could expect speeds up to 2 &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_rate_units&#34; title=&#34;Data rate units&#34;&gt;megabits per second&lt;/a&gt; (Mbit/s) This standard was replaced quickly when &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11b-1999&#34; title=&#34;IEEE 802.11b-1999&#34;&gt;802.11b&lt;/a&gt; was released. The legacy standard range was about 70 feet indoors and around 330 feet outdoors at the time that was huge! Currently the 802.11 legacy standard is the only standard that used the &lt;a href=&#34;http://en.wikipedia.org/wiki/Frequency-hopping_spread_spectrum&#34; title=&#34;Frequency-hopping spread spectrum&#34;&gt;Frequency-hopping spread spectrum&lt;/a&gt;. What this means is the device would switch frequencies to a different channel at random. This helped the signals become harder to intercept. The obsolete standard also could use the &lt;a href=&#34;http://en.wikipedia.org/wiki/Direct-sequence_spread_spectrum&#34; title=&#34;Direct-sequence spread spectrum&#34;&gt;Direct-sequence spread spectrum&lt;/a&gt; (DSSS) which had the benefits of Resistance to jamming, you could share the signal channel among other users, it reduced the signal and noise level which helped in interception. Although this standard is not in use anymore you could say that the wireless explosion was on the way and this is what started it. Check back tomorrow and I&#39;ll be posting the 802.11a standard. I hope this information was informative and let me know if you have any ideas on the next topic I should do that deal with any ICND1 and ICND2 material.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/07/802-11b/&#34; title=&#34;&#34;&gt;802.11b | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-07 11:34:29&#34;&gt;Apr 4, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] (See the post 802.11a) We also we talked about the 802.11 – Legacy standard (See the post 802.11 – Legacy) and in the beginning of the week I went over some Basic Wireless Concepts (See the post Basic [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11a | Cisco Skills](http://ciscoskills.net/2011/04/06/802-11a/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-06 12:14:44&#34;&gt;Apr 3, 2011&lt;/time&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11g | Cisco Skills](http://ciscoskills.net/2011/04/08/802-11g/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-08 10:38:53&#34;&gt;Apr 5, 2011&lt;/time&gt;
+&lt;p&gt;[...] talked about 802.11a,(See the post 802.11a) I even talked about the 802.11 –Legacy (See the post 802.11 –Legacy) and in the beginning of the week I talked about the basic wireless concepts. (See the post Basic [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11n | Cisco Skills](http://ciscoskills.net/2011/04/11/802-11n/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-11 09:03:01&#34;&gt;Apr 1, 2011&lt;/time&gt;
+&lt;p&gt;[...] talked about 802.11a, (See the post 802.11a) I even talked about the 802.11 –Legacy (See the post 802.11 –Legacy) and in the beginning of last week I talked about the basic wireless concepts. (See the post Basic [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Wireless Concepts</title>
+      <link>https://ciscoskills.net/2011/04/basic-wireless-concepts/</link>
+      <pubDate>Mon, 04 Apr 2011 15:55:39 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/basic-wireless-concepts/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/wireless-connection-icon.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/wireless-connection-icon.png&#34; alt=&#34;&#34; title=&#34;wireless-connection-icon&#34;&gt;&lt;/a&gt;Mobility is now a common thing in a business environment, you no longer are fixed to specific cubicle in the work place anymore. What is also amazing is it will continue to change and become easier for employees to get work done, with their phone, tablet, and laptop computer. But what makes this possible? What is the underlying component? The internet is becoming more available in more locations, coffee shops, airports, and your cell phone service provider, with 3G and 4G speeds. Along with the United States of America which is also moving forward with the &lt;a href=&#34;http://broadband.gov/&#34; title=&#34;National Broadband Plan&#34;&gt;National Broadband Plan&lt;/a&gt;. So today let&#39;s explore the wireless concepts!  Wireless can be a scary as you can&#39;t control it. The signal is transmitted in radio waves and if set up insecurely the WLAN (&lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;Wireless Local Area Network&lt;/a&gt;) can easily be your weakest link compared to Ethernet &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LANs&lt;/a&gt;. There are four organizations that deal with the wireless standards and products:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt; develops the wireless standards (802.11) The IEEE also develops other standards as well.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/ITU-R&#34; title=&#34;ITU-R&#34;&gt;ITU-R&lt;/a&gt; is the worldwide standardization and communications that use and assign different frequencies. This helps you as a consumer if you moved/travel around the world. You are still able to use the 802.11 standard worldwide. Without the need of different devices.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Wi-Fi_Alliance&#34; title=&#34;Wi-Fi Alliance&#34;&gt;Wi-Fi Alliance&lt;/a&gt; is an industry that is worldwide that encourages interoperability of products that use WLAN standards to be certified under the Wi-Fi Alliance program.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Federal_Communications_Commission&#34; title=&#34;Federal Communications Commission&#34;&gt;Federal Communications Commission (FCC)&lt;/a&gt; is the U.S government agency that regulates the usage of various communication frequencies in the U.S.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Currently there are several wireless standards within the 802.11 standard: 802.11a, 802.11b, 802.11g, or 802.11n At least for today this post won&#39;t be going over these standards. There is also encryption and security which in not covered in today&#39;s post but will be covered later on. The wireless 802.11 standard can run in two modes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ad Hoc which uses the &lt;a href=&#34;http://en.wikipedia.org/wiki/Service_set_%28802.11_network%29&#34; title=&#34;Service set (802.11 network)&#34;&gt;independent Basic Service Set&lt;/a&gt; (IBSS) this allows more than two devices to communicate directly with no access point needed or network needed.&lt;/li&gt;
+&lt;li&gt;Infrastructure mode which uses either Basic Service Set (BSS) which uses a single wireless LAN created by one access point and all devices use that access point. Or Extended Service Set (ESS) which uses multiple access points to create one wireless LAN, this allows devices to roam between access points and this covers a larger area compared to the BSS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;this-is-an-example-of-an-ad-hoc-networkhttpenwikipediaorgwikiwireless_ad_hoc_network-wireless-ad-hoc-network-notice-how-there-is-no-access-point-or-routernetwork-needed-ad-hoc-networkhttpsystemstechblogfileswordpresscom201103ad-hocpng-ad-hochttpciscoskillsnet20110404basic-wireless-conceptsad-hoc-this-is-an-example-of-an-infrastructure-mode-that-uses-bss-notice-how-there-can-only-be-one-access-point-if-you-are-using-the-bss-service-set-basic-service-sethttpsystemstechblogfileswordpresscom201103bsspngw300-bsshttpciscoskillsnet20110404basic-wireless-conceptsbss-this-is-an-example-of-an-infrastructure-mode-that-uses-ess-notice-how-multiple-access-points-can-be-configured-to-allow-roaming-and-a-lager-coverage-area-extended-service-sethttpsystemstechblogfileswordpresscom201103esspngw300-esshttpciscoskillsnet20110404basic-wireless-conceptsess-remember-that-when-using-wireless-it-uses-the-csmaca-algorithm-the-devices-must-listen-to-make-surethat-nobody-is-transmitting-it-will-then-set-a-random-timer-to-reducethe-change-of-a-collision-when-the-timer-expires-the-device-will-listen-again-if-there-is-nobody-transmitting-the-device-will-send-the-frame-when-the-frame-is-sentthe-device-will-listen-of-an-acknowledgment-fromthe-access-point-if-no-acknowledgment-is-receivedthen-the-device-will-resend-the-frame-but-use-the-csmaca-logic-thats-it-at-least-for-now-check-back-later-and-ill-talk-about-the-different-standards-of-80211a-80211b-80211g-or-80211n-i-will-also-go-over-encryption-and-some-best-security-practices-for-wireless-lan-networks-i-hope-this-information-was-informative-and-if-you-have-any-questions-comments-or-other-icnd1or-icnd2-suggestions-let-me-know&#34;&gt;This is an example of an &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_ad_hoc_network&#34; title=&#34;Wireless ad hoc network&#34;&gt;Ad Hoc network&lt;/a&gt;, notice how there is no access point or router/network needed. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/ad-hoc/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/ad-hoc.png&#34; alt=&#34;Ad Hoc Network&#34; title=&#34;Ad Hoc&#34;&gt;&lt;/a&gt; This is an example of an infrastructure mode that uses BSS. Notice how there can only be one access point if you are using the BSS service set. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/bss/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/bss.png?w=300&#34; alt=&#34;Basic Service Set&#34; title=&#34;BSS&#34;&gt;&lt;/a&gt; This is an example of an infrastructure mode that uses ESS. Notice how multiple access points can be configured to allow roaming and a lager coverage area. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/ess/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/ess.png?w=300&#34; alt=&#34;Extended Service Set&#34; title=&#34;ESS&#34;&gt;&lt;/a&gt; Remember that when using wireless it uses the CSMA/CA algorithm the devices must listen to make sure that nobody is transmitting. It will then set a random timer to reduce the change of a collision, when the timer expires the device will listen again, if there is nobody transmitting the device will send the frame. When the frame is sent the device will listen of an acknowledgment from the access point, if no acknowledgment is received then the device will resend the frame but use the CSMA/CA logic. That&#39;s it! At least for now check back later and I&#39;ll talk about the different standards of 802.11a, 802.11b, 802.11g, or 802.11n. I will also go over encryption and some best security practices for wireless LAN networks. I hope this information was informative and if you have any questions, comments or other ICND1 or ICND2 suggestions let me know.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/05/802-11-legacy/&#34; title=&#34;&#34;&gt;802.11 – Legacy | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-05 15:47:23&#34;&gt;Apr 2, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11a | Cisco Skills](http://ciscoskills.net/2011/04/06/802-11a/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-06 12:14:48&#34;&gt;Apr 3, 2011&lt;/time&gt;
+&lt;p&gt;[...] about the IEEE 802.11a standard. On Monday I talked about the Basic Wireless Concepts (See the post Basic Wireless Concepts) in that post I mentioned the wireless standards but did not go further into detail. This post will [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11b | Cisco Skills](http://ciscoskills.net/2011/04/07/802-11b/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-07 11:34:48&#34;&gt;Apr 4, 2011&lt;/time&gt;
+&lt;p&gt;[...] – Legacy) and in the beginning of the week I went over some Basic Wireless Concepts (See the post Basic Wireless Concepts) So now that we are up to speed lets learn about the 802.11b [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11g | Cisco Skills](http://ciscoskills.net/2011/04/08/802-11g/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-08 10:38:41&#34;&gt;Apr 5, 2011&lt;/time&gt;
+&lt;p&gt;[...] and in the beginning of the week I talked about the basic wireless concepts. (See the post Basic Wireless Standards) So on this Friday let’s talk about the 802.11g [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11n | Cisco Skills](http://ciscoskills.net/2011/04/11/802-11n/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-11 09:02:50&#34;&gt;Apr 1, 2011&lt;/time&gt;
+&lt;p&gt;[...] and in the beginning of last week I talked about the basic wireless concepts. (See the post Basic Wireless Concepts) So let’s end the discussion and talk about the 802.11n [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cracking WEP</title>
+      <link>https://ciscoskills.net/2011/03/cracking-wep/</link>
+      <pubDate>Mon, 14 Mar 2011 12:00:29 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/03/cracking-wep/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/BackTrack&#34; title=&#34;BackTrack&#34;&gt;BackTrack&lt;/a&gt; is Linux  &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_security&#34; title=&#34;Network security&#34;&gt;network security&lt;/a&gt; audit tool for security professionals. This tool is used for testing and penetrating networks. That being said** This tutorial is for educational use only. This is meant only to teach that WEP is an insecure option, and is recommend to use a harder encryption. Using this tutorial on a network that you do not have permission to access or is not yours, could be illegal! ** This was tested on BackTrack version 4 and the steps outlined in this tutorial were successful. (this tutorial is assuming that you have BackTrack 4 installed and are ready with a shell prompt)  The first thing you want to do is start your wireless interface in most cases this is wlan0 [code]airmon-ng start wlan0[/code] In the output look for the monitor interface in most cases this is mon0   The next thing you want to do is copy down the target AP&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Service_set_%28802.11_network%29&#34; title=&#34;Service set (802.11 network)&#34;&gt;ESSID&lt;/a&gt;, the &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt; of the AP,  also copy down the channel of the target AP.  [code]airodump-ng mon0[/code] There must be a client or clients using the AP if not you can&#39;t crack it. Match the MAC address of the AP to the available clients you have listed.   Next only output what you want (for example I have an AP on channel 8 and that MAC address of the AP is 00:dd:aa:cc:88:33 and it&#39;s out monitor 0) the command would be:       [code]airodump-ng --channel 8 --write output --bssid 00:dd:aa:cc:88:33 mon0[/code] (Open a new shell prompt) The next step is you want to associate your wireless card with the AP(for example I have the AP&#39;s MAC and ESSID (which is test) and my wireless MAC address (which is aa:00:55:bb:DD:FF) the command would look like:       [code]aireplay-ng -1 0 -e test -a 00:dd:aa:cc:88:33 -h aa:00:55:bb:DD:FF[/code]   (Open a new shell prompt) The next step is start the &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_injection&#34; title=&#34;Packet injection&#34;&gt;packet injection&lt;/a&gt; (for example you will need the target AP&#39;s MAC address (which is 00:dd:aa:cc:88:33 and my(yours) wireless MAC address (which is 00:55:bb:DD:FF) the command would look like:       [code]aireplay-ng -3 -b 00:dd:aa:cc:88:33 -h 00:55:bb:DD:FF mon0[/code]   (Open a new shell prompt) The final step depends were the outputs are saved and the name of the output (for this example they were on /root and the name of the file was output-01.cap) so the command would look like:     [code]aircrack-ng output-01.cap[/code] Again this depends were the file was saved it could be in a different location. But after that command aircrack will attempt to crack the &lt;a href=&#34;http://en.wikipedia.org/wiki/Wired_Equivalent_Privacy&#34; title=&#34;Wired Equivalent Privacy&#34;&gt;WEP key&lt;/a&gt; it will tell you that it either failed or if it was able to find it. (If it does fail wait for more packets and try again.)   The way aircrack works is that it reads the packet injection file, (this file is continues to update as packets move across the network) aircrack then finds the common key because that key is sent back and forth in the network. Depending on how active the network is aircrack is able to find the key in less than a minute!   Keep in mind when I was setting this up on a test AP I did run into some difficulties, although cracking a WEP key is relatively easy it still took me some time in troubleshooting. I hope this tutorial is helpful, you can find more information at &lt;a href=&#34;http://www.backtrack-linux.org/&#34;&gt;http://www.backtrack-linux.org/&lt;/a&gt; Also check my tutorial on &lt;a href=&#34;http://systemstechblog.wordpress.com/2011/03/01/install-backtrack/&#34; title=&#34;Install BackTrack&#34;&gt;Installing BackTrack&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11ac Standard</title>
+      <link>https://ciscoskills.net/2011/02/802.11ac-standard/</link>
+      <pubDate>Mon, 21 Feb 2011 18:00:55 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/02/802.11ac-standard/</guid>
+      <description>
+        
+          &lt;p&gt;Some things are making news in the wireless world, the &lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt; wants another wireless standard in the mix called the  802.11ac, now the fastest standard they have is the &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11n-2009&#34; title=&#34;IEEE 802.11n-2009&#34;&gt;802.11n&lt;/a&gt;(&lt;a href=&#34;http://en.wikipedia.org/wiki/Speed&#34; title=&#34;Speed&#34;&gt;speeds&lt;/a&gt; up to 300 &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_rate_units&#34; title=&#34;Data rate units&#34;&gt;Mbps&lt;/a&gt;), which was recently published in October of 2009. What is so great about the 802.11ac development? Well one thing is the speed, it is estimated that it will be able to carry up to 1 gigabit per second! The IEEE has been working on 802.11ac in 2009 and wants to put up a draft on it soon (this year). Products are not yet ready but could be around 2012. It is estimated that a billion 802.11ac devices could be expected in 2015. The standard will be using the existing &lt;a href=&#34;http://en.wikipedia.org/wiki/Radio_spectrum&#34; title=&#34;Radio spectrum&#34;&gt;radio spectrum&lt;/a&gt; in ranges below 6GHz and reports say it will have &lt;a href=&#34;http://en.wikipedia.org/wiki/Backward_compatibility&#34; title=&#34;Backward compatibility&#34;&gt;backwards compatibility&lt;/a&gt; for older devices. Frank Dickson said, “The goal of 802.11ac is to provide data speeds faster than 802.11n, with speeds of around 1Gbps,&amp;quot; he continued and said, “The timing for 802.11ac approval is to have a draft standard created by 2011 and have the first 802.11ac products out by the end of 2012.&amp;quot; So what does this mean to the average person? Well for the home user they probably would not see a difference if they were browsing online since &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_service_provider&#34; title=&#34;Internet service provider&#34;&gt;ISP&lt;/a&gt; connection speeds are usually slower than LAN (&lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;Local Area Network&lt;/a&gt;) speeds. If the average person was &lt;a href=&#34;http://en.wikipedia.org/wiki/Streaming_media&#34; title=&#34;Streaming media&#34;&gt;streaming videos&lt;/a&gt; from another computer within his home or transferring large files they would see a difference. This would be more towards businesses that don’t want to run cables to each computer, and would be more geared to &lt;a href=&#34;http://en.wikipedia.org/wiki/Mobile_device&#34; title=&#34;Mobile device&#34;&gt;mobile devices&lt;/a&gt; like tablets, phones, laptops etc. Not much information is available as the 802.11ac is still under development. Which makes room for changing, but if you want to check out more information you can head over to the IEEE site at &lt;a href=&#34;http://www.ieee.org/&#34;&gt;http://www.ieee.org&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

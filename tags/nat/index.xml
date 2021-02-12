@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NAT on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/nat/</link>
+    <description>Recent content in NAT on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 21 Jan 2011 16:15:08 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/nat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring NAT (One to One Mapping)</title>
+      <link>https://ciscoskills.net/2011/01/configuring-nat-one-to-one-mapping/</link>
+      <pubDate>Fri, 21 Jan 2011 16:15:08 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/01/configuring-nat-one-to-one-mapping/</guid>
+      <description>
+        
+          &lt;p&gt;In this simple tutorial we are going to be configuring a static NAT which is a one-to-one mapping between an inside IP address and an outside IP address. (One private to one permanent address) Using this type of NAT would be helpful for outside devices accessing your inside devices. (Like a web server) Let&#39;s get started!!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/01/nat_static1.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/01/nat_static1.png?w=600&#34; alt=&#34;NAT One to One&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Looking at the topology above you can see that we have a server inside of are network and want people to access this server outside of are network. Using NAT will help us accomplish this task! (This tutorial is assuming that all configurations, like basic router configurations and IP addresses are in place and working before NAT is enabled for the above topology) In order for one to one mapping to work we first need to make an IP route that forwards the public IP address or addresses out towards the ISP. So on the router we would make an IP route to forward that IP address to the ISP router or the internet cloud. [code]Router(config)#ip route 209.200.210.5 255.255.255.252 s0/0/1[/code] The above command tells us that if the router sees this IP address (209.200.210.5 which is the public IP address assigned to us by the ISP) it will forward the packet out the serial interface of s0/0/1. The ISP will then forward the information to the destination. The next thing to do is create a static mapping on the router. This static mapping will be permanently assigned to an inside IP address and mapped to an outside IP address. You can make more than one, one to one mapping but remember you will also need additional public IP addresses from the ISP for each private address you want to translate. So the command to translate the server IP address into a  public IP address would look like: [code]Router(config)#ip nat inside source static 192.168.5.254 209.200.210.5[/code] This command tells us that the IP address of 192.168.5.254 will be translated to 209.200.210.5. So any device outside of are network will be able to reach the server by using the 209.200.210.5 IP address. Then you want to define the &amp;quot;inside&amp;quot; of your network and the &amp;quot;outside&amp;quot; of your network. So for this example the router&#39;s fastethernet 0/0 interface would be the inside of are network.  (We have control over it) Move to the interface and use the &lt;em&gt;ip nat inside&lt;/em&gt; command. [code]Router(config)#interface fastEthernet 0/0 Router(config-if)#ip nat inside[/code] This command tells us that the fast ethernet interface 0/0 is in the inside of are network. You can also assign or have more than one ip nat inside interface. You also want to define the &amp;quot;outside&amp;quot; of your network. So for example the router&#39;s serial interface s0/0/1 would be the outside network. Move to the interface and use the &lt;em&gt;ip nat outside&lt;/em&gt; command. [code]Router(config)#interface s0/0/1 Router(config-if)#ip nat outside[/code] This command tells us that the serial interface of s0/0/1 and anything connected to it is the outside network (We don&#39;t have control over it.) You can also assign or have more than one ip nat outside interface. That&#39;s it!! You now have a one to one mapping to a public IP address. Remember that this tutorial is assuming that the ISP router (internet cloud for this topology) has a way back to the NAT router. If not than your device will be able to send information however any information trying to travel back to your device will fail. (So if you have control of the ISP router like in lab environments than just apply a static route back to the NAT router.) Hope this tutorial was Helpful&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>640-911 on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/640-911/</link>
+    <description>Recent content in 640-911 on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 14 May 2015 01:55:45 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/640-911/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Passed the 640-911 DCICN</title>
+      <link>https://ciscoskills.net/2015/05/passed-the-640-911-dcicn/</link>
+      <pubDate>Thu, 14 May 2015 01:55:45 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2015/05/passed-the-640-911-dcicn/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2015/05/dc_640-911.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/05/dc_640-911.png?w=300&#34; alt=&#34;&#34;&gt;&lt;/a&gt; Cisco started this exam back in 2012 and I have thought/semi-studied about this test for about over a year now, just did not feel comfy about it until recently. I took the test last week and passed, however there were some questions on the exam I noticed that weren&#39;t on the exam blueprint so that kind of surprised me. I was happy to still be able to pass the exam but I was caught off guard. So with that I’ll let you know what I used to study and what areas I think might help so you won&#39;t be as &amp;quot;surprised&amp;quot; as I was. Overall the exam did a good job of testing on the NX-OS software and the overall basic networking fundamentals (ICND1 material with touch of Nexus) which is what this test is supposed to be about. However there are questions that surprised me and was not ready because of the lack of information about the test. When I started studying for this exam I read the exam blueprint for the &lt;a href=&#34;https://learningnetwork.cisco.com/community/certifications/ccna_data_center/dcicn/exam-topics&#34;&gt;640-911&lt;/a&gt; to get an idea of what to expect but I feel that some things are missing from that blueprint. What also is interesting is of all the material I read and watched there was no mention of it. So here are some areas that I think you should look at before you take the exam:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Know the models of all the Nexus switches like the 2000, 3000, 5000, 6000, 7000, and 9000 portfolios. Know the basics of what each offers and their limitations. It’s also helpful to know what the popular type of connections to use between servers and these switches. (&lt;strong&gt;Read the data sheets&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Link: &lt;a href=&#34;http://www.cisco.com/c/en/us/products/switches/data-center-switches/index.html#~products-services&#34;&gt;http://www.cisco.com/c/en/us/products/switches/data-center-switches/index.html#~products-services&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Look at buying the CCNA Data Center 640-916 Official Cert Guide, or the &lt;a href=&#34;http://www.amazon.com/Center-Official-Guide-Library-Certification/dp/1587205688/ref=sr_1_2?ie=UTF8&amp;amp;qid=1431488432&amp;amp;sr=8-2&amp;amp;keywords=ccna+data+center&#34;&gt;Cert Library&lt;/a&gt; which includes the 640-911 and 640-916 books because in chapter two of the 640-916 book it talks about the hardware of Nexus switches which is very valuable considering some this is on the 640-911 exam. I noticed this after the fact!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The material I have read/watched: &lt;a href=&#34;http://www.amazon.com/Center-DCICN-640-911-Official-Guide/dp/1587204541/ref=sr_1_1?ie=UTF8&amp;amp;qid=1431488432&amp;amp;sr=8-1&amp;amp;keywords=ccna+data+center&#34;&gt;CCNA Data DCICT 640-911 Offical Cert Guide&lt;/a&gt; - Odom &lt;a href=&#34;http://www.cbtnuggets.com&#34;&gt;CBT Nuggets&lt;/a&gt; - Anthony Sequeira &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/ref=sr_1_4?ie=UTF8&amp;amp;qid=1431487215&amp;amp;sr=8-4&amp;amp;keywords=ccna+data+center&#34;&gt;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide&lt;/a&gt; - Todd Lammle &lt;a href=&#34;https://learningnetwork.cisco.com/groups/ccna-data-center-study-group&#34;&gt;Cisco Learning Network&lt;/a&gt; (CCNA Data Center) I hope this information is helpful and good luck on this exam you’ve been warned :)&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Converting Hexadecimal to Decimal and Binary</title>
+      <link>https://ciscoskills.net/2015/04/converting-hexadecimal-to-decimal-and-binary/</link>
+      <pubDate>Wed, 22 Apr 2015 02:22:45 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2015/04/converting-hexadecimal-to-decimal-and-binary/</guid>
+      <description>
+        
+          &lt;p&gt;The purpose of this post is to reference the CCNA Data Center (640-911) exam. This exam starts the conversation of IPv6 and since IPv6 is hexadecimal this post starts the talk about how we look at a hexadecimal values and learn how to convert them to binary and decimal. If you know subnetting skills then this won’t be that difficult. If you are new then check out &lt;a href=&#34;http://ciscoskills.net/2011/02/15/the-wonders-of-binary/&#34; title=&#34;The Wonders of Binary&#34;&gt;The Wonders of Binary&lt;/a&gt; post as well as &lt;a href=&#34;http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/&#34; title=&#34;Part 1 – The Joys of Subnetting!&#34;&gt;Part 1&lt;/a&gt; and &lt;a href=&#34;http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/&#34; title=&#34;Part 2 – The Joys of Subnetttting – VLSM!&#34;&gt;Part 2&lt;/a&gt; of subnetting. Let’s get started! Jumping right into it if we look at this hexadecimal value 0x56A we know it’s hexadecimal because the “0x” is the prefix for a hexadecimal number so we really don’t need to do anything with the “0x”. Let’s focus on the 56A value. So where do we start? Remember that 0-9 are normal decimal values so &amp;quot;5&amp;quot; actually means &amp;quot;5&amp;quot;. We want to convert these values into binary. Followed by converting them into a decimal value. So what does the value 5 look like in binary? We then move  to the next digit &amp;quot;6&amp;quot; what does that look like in binary? Then the last value is &amp;quot;A&amp;quot;, what does that look like in binary? &lt;em&gt;Hint: A-F would be 10-15 in decimal.&lt;/em&gt; Reference chart below.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HEXADECIMAL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DECIMAL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BINARY&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;0&lt;/p&gt;
+&lt;p&gt;0&lt;/p&gt;
+&lt;p&gt;0000&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;0001&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;0010&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;p&gt;0011&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;0100&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;0101&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;0110&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;0111&lt;/p&gt;
+&lt;p&gt;8&lt;/p&gt;
+&lt;p&gt;8&lt;/p&gt;
+&lt;p&gt;1000&lt;/p&gt;
+&lt;p&gt;9&lt;/p&gt;
+&lt;p&gt;9&lt;/p&gt;
+&lt;p&gt;1001&lt;/p&gt;
+&lt;p&gt;A&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;1010&lt;/p&gt;
+&lt;p&gt;B&lt;/p&gt;
+&lt;p&gt;11&lt;/p&gt;
+&lt;p&gt;1011&lt;/p&gt;
+&lt;p&gt;C&lt;/p&gt;
+&lt;p&gt;12&lt;/p&gt;
+&lt;p&gt;1100&lt;/p&gt;
+&lt;p&gt;D&lt;/p&gt;
+&lt;p&gt;13&lt;/p&gt;
+&lt;p&gt;1101&lt;/p&gt;
+&lt;p&gt;E&lt;/p&gt;
+&lt;p&gt;14&lt;/p&gt;
+&lt;p&gt;1110&lt;/p&gt;
+&lt;p&gt;F&lt;/p&gt;
+&lt;p&gt;15&lt;/p&gt;
+&lt;p&gt;1111&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Looking at the value 56A we would want to combine all the single values into one binary string. (Example 5 in binary is: &lt;strong&gt;0101&lt;/strong&gt;, 6 in binary is: &lt;strong&gt;0110&lt;/strong&gt;, A in binary is: &lt;strong&gt;1010&lt;/strong&gt;) Combine these together and the the answer would be: &lt;strong&gt;01010110101&lt;/strong&gt; (You can drop leading zeros) &lt;strong&gt;1010110101&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;What does that value look like in decimal? Write it out and remember the power of 2s and always start with &amp;quot;1&amp;quot;. The answer comes out as: &lt;strong&gt;1,386.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[caption id=&amp;quot;attachment_3223&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;600&amp;quot;]&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2015/04/binarye.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/04/binarye.png?w=600&#34; alt=&#34;Add up the 1s&#34;&gt;&lt;/a&gt; Add up the 1s[/caption] Of course you can reverse engineer this if you were given a decimal value and needed to convert it into hexadecimal.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For example convert the following decimal 187 into hexadecimal. Write out 187 into binary so that answer looks like: &lt;strong&gt;10111011.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2015/04/dec-binary2.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/04/dec-binary2.png?w=600&#34; alt=&#34;Decimal To Binary&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You also want to split the binary string into equal parts, so the answer would be: &lt;strong&gt;1011:1011&lt;/strong&gt; comparing the chart or doing this yourself convert this binary into hexadecimal. Since binary strings are the same our hexadecimal is: &lt;strong&gt;BB.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;decimal-to-hexadecimalhttpssystemstechblogfileswordpresscom201504dec-to-hex2pngw600httpssystemstechblogfileswordpresscom201504dec-to-hex2png-thats-it-understanding-how-to-convert-hex-to-decimal-and-back-starts-to-get-important-when-ipv6-shows-up-at-the-door-although-this-is-a-fundamental-level-topic-thats-exactly-why-its-important-to-understand-it-just-like-subnetting-i-would-use-a-calculator-if-you-ever-find-yourself-converting-these-values-its-always-a-good-idea-to-double-check-your-work-however-on-the-exam-you-dont-have-that-pleasure-so-learning-it-the-manual-way-is-this-only-way-&#34;&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2015/04/dec-to-hex2.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/04/dec-to-hex2.png?w=600&#34; alt=&#34;Decimal To Hexadecimal&#34;&gt;&lt;/a&gt; That&#39;s it! Understanding how to convert hex to decimal and back starts to get important when IPv6 shows up at the door. Although this is a fundamental level topic that&#39;s exactly why its important to understand it. Just like subnetting, I would use a calculator if you ever find yourself converting these values. It&#39;s always a good idea to double-check your work. However on the exam you don&#39;t have that pleasure so learning it the manual way is this only way. :)&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22pwgy.lhynds1@gmail.com%22&#34;&gt;larry hynds&lt;/a&gt; - &lt;time datetime=&#34;2015-04-21 20:39:34&#34;&gt;Apr 2, 2015&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;this is fantastic information and i truly thank you for this. i am planning to take my eame this summer. if you have any more suggestion dor the exm i would apprechiate it. regards, storm&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2015-04-21 20:40:57&#34;&gt;Apr 2, 2015&lt;/time&gt;
+&lt;p&gt;I&#39;m glad this is going to help, Good Luck on the exam :)&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>640-911 (Chapter 10 &amp; 11)</title>
+      <link>https://ciscoskills.net/2014/04/640-911-chapter-10-11/</link>
+      <pubDate>Wed, 16 Apr 2014 01:29:52 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/04/640-911-chapter-10-11/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt;Just like before if you have followed, I have gone over the CCNA Data Center Study Guide from Todd Lammle and in this post we cover two chapters. Feel free to comment below if you have any questions on either of these two chapters. &lt;strong&gt;Chapter 10 Overview&lt;/strong&gt;: Chapter 10 starts us back in the book, before we do any configuring and we learn about routing protocols, and remember the difference between static and dynamic routing (name implies it) Also know the default administrate distances of the different routing protocols (starts on page 297). We also got a crash course in distance vector, link-state and hybrid routing protocols. Out of RIP, RIPv2, EIGRP and OSPF where does each protocol belong? Know the differences between RIP and RIPv2 (there is a couple of them) Know what EIGRP does and it available features it offers as well as OSPF. &lt;strong&gt;My thoughts&lt;/strong&gt;: This chapter went over the dynamic routing protocols and at a fundamental level but in important one to remember not to just pass the exam but to also go further. There was a lot of good information in Chapter 10 about dynamic protocols. If you have never used/learned about dynamic routing protocols make sure you understand the chapter and go over the review questions. &lt;strong&gt;Chapter 11 Overview&lt;/strong&gt;: Chapter 11 looks at layer two switching technologies, we get to learn about frame tagging or also called VLANs, make sure you understand how 802.1Q works. We also looked into some configuration options like learning how to set up a trunk link, VTP options and SVIs. Know what the type of modes VTP offers, and what is required when setting up VTP what needs to match? With SVIs know how to enable them and what they are used for because it’s not just a management port. (Hint: &lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34; title=&#34;Configure Router on a Stick&#34;&gt;Router on a Stick&lt;/a&gt;) &lt;strong&gt;My thoughts&lt;/strong&gt;: We went from Layer 3 in the OSI back to Layer 2, we need to know the difference between VLANs as we start to blur the lines when using Router on a Stick configurations. This chapter covered the basics of VLANs an important step to make sure you understand the fundamentals. Same things goes with this chapter, if you have never used/learned about VLANs, VTP, SVIs make sure to go over the chapter and review questions. Short and sweet, please post any questions if you have any about this chapter, I hope this information is helpful.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>640-911 (Chapter 7)</title>
+      <link>https://ciscoskills.net/2014/02/640-911-chapter-7/</link>
+      <pubDate>Thu, 27 Feb 2014 18:00:54 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/02/640-911-chapter-7/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt;If you made it past the earlier chapters this one should be interesting, like before I am going through each chapter of the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. Comment below if you have questions in this chapter, last week we learned about subnetting and in this chapter we will learn about the NX-OS which is Cisco&#39;s Data Center switches. Let&#39;s begin! &lt;strong&gt;Overview&lt;/strong&gt;: This was short chapter in introducing the NX-OS product line and into the virtualized enviroments that data centers are now becoming. In this chapter you will discover that Cisco wants all traffic both SAN and LAN unified on one switch instead of being separate devices. The NX-OS is a Linux system with some pretty neat isolation features with the data and control plane separated and the ability to offload crunching to dedicated CPUs instead of sharing the load. I also liked how the system manger worked, it reminds me of a watchdog making sure everything is running in par and the ability to restart processes with automatic restart thanks to PSS. (Persistent Storage Service) Being able to upgrade the software and still being able to forwarded traffic is also very cool, thanks ISSU (No downtime around here :) ) I hinted on an &lt;a href=&#34;http://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/&#34; title=&#34;Connecting FEX (5k to 2k)&#34;&gt;earlier post&lt;/a&gt; that the Nexus runs on efficiency and only loads what it needs or configured, why load up NTP if you are not going to use it? Know some common process that can run on the NX-OS like STP, CDP, and HSRP. All of these have to be turned on before you can use them. Some other cool things you can do is VRF which separates the routing table for multi-tenancy or for security requirements. Finally being able to a VDC (virtualized dedicated device) which is able run another copy of the NX-OS on the same hardware and depending the model of Nexus hardware you are using you can run up to eight different systems! **My thoughts: **Very cool stuff going on in the Cisco world, if you never heard of the Nexus and this is first time reading this chapter what does this remind you of? We know that servers took a huge movement into virtualization to combat server sprawl. The Nexus is attempting a similar approach to add to their portfolio. What is interesting to me is the Nexus was first introduced in the beginning of 2008, which makes the NX-OS product six years old. For the exam go over the chapter and review questions as always ask questions if you have any by commenting below.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>640-911 (Chapter 6)</title>
+      <link>https://ciscoskills.net/2014/02/640-911-chapter-6/</link>
+      <pubDate>Thu, 20 Feb 2014 19:10:47 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/02/640-911-chapter-6/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt;Let&#39;s start chapter six of the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;, feel free to post questions if you have any. Like before I have covered the topics of the each chapter. Last week we learned about the different IP classes and today we get a course in subnetting. Let&#39;s go over what you should know if you want to pass the exam. **Overview: **It seems I have talked subnetting to death on this blog, repetition, repetition, repetition. So known the advantages of subnetting why would you use it along with knowing what IP subnet zero is. You also should be able to take a classful network and break it into smaller networks some math is involved but it&#39;s not rocket science, if you get lost go over it again you&#39;ll start seeing pattern when subnetting. Since we are subnetting, know the purpose of the subnet mask that&#39;s associated with the IP address. Also be sure you can explain what CIDR is and the difference between a classful network. &lt;strong&gt;My thoughts:&lt;/strong&gt; If you have been around with subnetting you can probably glance over this chapter but I would go over the labs that start on page 190. There is also some more information about subnetting on this blog you can find &lt;a href=&#34;http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/&#34; title=&#34;Part 1 – The Joys of Subnetting!&#34;&gt;Part 1&lt;/a&gt; and &lt;a href=&#34;http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/&#34; title=&#34;Part 2 – The Joys of Subnetttting – VLSM!&#34;&gt;Part 2&lt;/a&gt;. Also another good site for sharping subneting skills is &lt;a href=&#34;http://www.subnettingquestions.com/&#34;&gt;subnettingquestions.com &lt;/a&gt;. Believe it or not we have finished the back story to finally get to what we want to know which is Cisco&#39;s data center switches the NX-OS product line. I have mention this before at the start of the series, if you know the material have a CCNA or just been around routing and switching you could have glanced over these earlier chapters. This exam starts at the beginning and if you want to move into CCNP you must have passed the 640-911 and the 940-916. Let&#39;s continue to see what the 640-911 exam topics have to offer.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>640-911 (Chapter 4)</title>
+      <link>https://ciscoskills.net/2014/02/640-911-chapter-4/</link>
+      <pubDate>Thu, 06 Feb 2014 18:15:27 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/02/640-911-chapter-4/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt;Continuing where we left off on Chapter 3 on &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. Like before feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter three we discussed about Ethernet Technologies and in chapter four we will learn about the TCP/IP protocol which is fundamentally the protocol that makes the Internet work. &lt;strong&gt;Overview&lt;/strong&gt;: The chapter started talking about the DoD model and comparing it to the OSI model, remember this and a little history behind it as well as the layers the DoD model shows its relevance with the OSI model. We start talking about applications like Telnet, FTP, SMTP what are these? Know the common applications and their port numbers. The chapter also talked about host-to-host layer protocols like TCP and UDP, know the difference between these two, and some memorization of what the TCP and UDP header looks like. (Which one is unreliable and which one uses acknowledgments and flow control?) We also looked into the Internet layer Protocols, do you know them all and their functions? Also know what the IP header looks like. (What does it include?) &lt;strong&gt;Personal Story&lt;/strong&gt;: I wanted to jump in and talk about my personal experience with TCP/IP protocol mainly the ICMP management of it. I was contracted with a company that had a Cisco Phone System and a 2900 router using SiP as well as Internet on top it. They had this time clock system that would send punches over a VPN to a corporate office and it was setup and working for a while until of course it eventually stopped sending time punches. This took about a week to figure out as the VPN was online and you could contact the device from corporate. With a SPAN port I could see traffic hitting the time clock as well as it coming back. The issue was when the 2900 router was setup, it was set to disregard ICMP (For general network security) because of the way the time clock is designed it would use ICMP to decide the acceptable MTU size before sending time punches. Since it never got a reply it would fail on sending time punches, in the end I enabled the router to accept ICMP to fix the issue. Long story short, ICMP is a management protocol for IP and although it can be used against you, it&#39;s a balancing act between security and functionally and in this case the time clock used ICMP legitimately, lesson learned. :) &lt;strong&gt;My thoughts:&lt;/strong&gt; Personally I liked going over this chapter it starts to put some pieces together, I would read it over if you have seen this before just lock down any missing parts. Also post any questions about this chapter below. Could be Helpful? &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911_dcicn.pdf&#34;&gt;640-911 Exam Topics&lt;/a&gt; (PDF) &lt;a href=&#34;http://ciscoskills.net/2011/02/25/understanding-tcp/&#34; title=&#34;Understanding TCP&#34;&gt;Understanding TCP&lt;/a&gt; &lt;a href=&#34;http://ciscoskills.net/2011/03/28/understanding-udp/&#34; title=&#34;Understanding UDP&#34;&gt;Understanding UDP&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>640-911 (Chapter 2)</title>
+      <link>https://ciscoskills.net/2014/01/640-911-chapter-2/</link>
+      <pubDate>Thu, 23 Jan 2014 19:15:41 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/01/640-911-chapter-2/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt; I am continuing the ongoing of series of blog posts that follow the CCNA Data Center Study Guide from Todd Lammle. I figured that this type of post would help me and anybody else looking at studying for the exam. Feel free to post questions below as if  on a study group, In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. Continuing where we left off from &lt;a href=&#34;http://ciscoskills.net/2014/01/16/640-911-chapter-1/&#34; title=&#34;640-911 (Chapter 1)&#34;&gt;chapter one&lt;/a&gt; let’s begin chapter 2. &lt;strong&gt;Overview:&lt;/strong&gt; Chapter 2 goes over the difference between a broadcast domains and collision domains and how to find them. What does the &amp;quot;Router&amp;quot; do for us when using it in a LAN? What are the advantages of it and the functions it offers? We also were introduced into the OSI model. What is it and what are the advantages of it? Todd also went over each layer of the model with more detail on the Transport layer, Network layer and the Data Link layer. For example in the Transport layer we learned about the TCP and UDP and the difference between those two protocols. Along with understanding TCP&#39;s connection-oriented process, the three-way handshake.  We also looked other features that TCP offers like what does flow control do for us? Along with understanding what windowing and acknowledgments are. Going from layer 4 to layer 3 we were introduced into the network addresses and what they do along with knowing some terminology like routing tables, interfaces, and metrics.  Going down from layer 3 to layer 2 what is a frame vs. a packet and what is the difference between the Media Access Control (802.3) and the Logical Link Control (802.2) Finally at layer 1 this chapter talked a bit about the cabling standards but it lets you know why hubs are a layer 1 device and the difference between switch and a hub. &lt;strong&gt;My thoughts&lt;/strong&gt;: This chapter goes over a lot of material that was somewhat introduced in chapter one but goes further into details. I would study the OSI model and its different layers if you have never used it before. Like on chapter one I would go over the review questions starting on page 54 before skipping this chapter. Like before if you have questions on chapter two comment below and the check back next week for chapter three! I have posted before on this blog some items that would go along with this chapter:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/30/collision-domains-vs-broadcast-domains/&#34; title=&#34;Collision Domains vs. Broadcast Domains&#34;&gt;Collision Domains vs. Broadcast Domains&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/01/17/the-osi-layer/&#34; title=&#34;The OSI Layer&#34;&gt;The OSI Layer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/02/25/understanding-tcp/&#34; title=&#34;Understanding TCP&#34;&gt;Understanding TCP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/28/understanding-udp/&#34; title=&#34;Understanding UDP&#34;&gt;Understanding UDP&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>640-911 (Chapter 1)</title>
+      <link>https://ciscoskills.net/2014/01/640-911-chapter-1/</link>
+      <pubDate>Thu, 16 Jan 2014 17:30:45 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/01/640-911-chapter-1/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt;So I bought the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/ref=sr_1_1?ie=UTF8&amp;amp;qid=1389461666&amp;amp;sr=8-1&amp;amp;keywords=ccna+data+center&#34; title=&#34;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide: Exam 640-911&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. I have decided it would be a good idea to go over the topics of each chapter of this book in series of  blog posts. The idea of this is to work together if on a study group, go over the topics in each chapter of the book, talk about examples and to get an idea of what the exam would cover. Below are my thoughts about chapter one. &lt;strong&gt;Overview:&lt;/strong&gt; So when I read chapter one I had to remind myself this is an introduction into the CCNA Data Center exam, as I have &lt;a href=&#34;http://ciscoskills.net/2012/11/21/ccna-data-center/&#34; title=&#34;CCNA Data Center&#34;&gt;talked before&lt;/a&gt; the 640-911 exam has no perquisites so we started at the beginning. Asking ourselves “What is a Network?” Todd does a good job in introducing us into these technologies, like understanding what a LAN, WAN is and the difference between these types of logical topologies. We also covered the most common types of network devices such as a workstations, servers, and printers and what function they do on the network. As well as understanding what a peer-to-peer network is and client/server network, when would you use these type of network architectures? We then finally jumped into the type of physical topologies like what a bus, star, ring, are and what are the pros and cons of each? At the end of this chapter you should understand the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Know the types of network topologies. For example what is the difference between a logical topology and a physical topology?&lt;/li&gt;
+&lt;li&gt;Know the pros and cons of each topology. For example a Mesh topology vs. a Star topology?&lt;/li&gt;
+&lt;li&gt;Understand the difference between a LANs and WANs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;my-thoughts-for-this-chapter-its-a-review-if-you-went-over-some-ccentccna-study-materials-or-have-a-ccent-however-dont-skip-over-this-chapter-instead-i-would-check-the-review-questions-on-page-23-if-you-do-pretty-well-go-over-to-chapter-two-i-have-of-hinted-on-this-before-if-you-have-a-ccna-or-higher-it-may-seem-like-a-review-but-there-are-flakes-of-new-material-scattered-into-the-exam-and-just-enough-to-fail-you-if-you-decide-to-skip-it--i-hope-this-information-will-be-helpful-and-if-you-have-any-questions-on-chapter-one-comment-below&#34;&gt;&lt;strong&gt;My thoughts:&lt;/strong&gt; For this chapter it&#39;s a review if you went over some CCENT/CCNA study materials or have a CCENT, however don’t skip over this chapter. Instead I would check the review questions on page 23, if you do pretty well go over to chapter two. I have of hinted on this before if you have a CCNA or higher it may seem like a review but there are flakes of new material scattered into the exam and just enough to fail you if you decide to skip it. :) I hope this information will be helpful and if you have any questions on chapter one comment below.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22chamambom@gmail.com%22&#34;&gt;Martin&lt;/a&gt; - &lt;time datetime=&#34;2014-01-16 13:55:08&#34;&gt;Jan 4, 2014&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;looking forward to the new cert ,im CCNA certified and didnt want to tek the steep CCNP route just yet as im too busy at work ,this will definitely work for me&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2014-01-16 17:52:36&#34;&gt;Jan 4, 2014&lt;/time&gt;
+&lt;p&gt;Hey Martin, You an me are in the same boat :) Ryan&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[640-911 (Chapter 2) &amp;laquo; Cisco Skills](http://ciscoskills.net/2014/01/23/640-911-chapter-2/ &#34;&#34;) - &lt;time datetime=&#34;2014-01-23 12:15:53&#34;&gt;Jan 4, 2014&lt;/time&gt;
+&lt;p&gt;[…] offers and to get an idea of what the Cisco exam would cover. Continuing where we left off from chapter one let’s begin chapter […]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

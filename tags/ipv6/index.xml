@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ipv6 on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/ipv6/</link>
+    <description>Recent content in ipv6 on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 22 Apr 2015 02:22:45 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ipv6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Converting Hexadecimal to Decimal and Binary</title>
+      <link>https://ciscoskills.net/2015/04/converting-hexadecimal-to-decimal-and-binary/</link>
+      <pubDate>Wed, 22 Apr 2015 02:22:45 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2015/04/converting-hexadecimal-to-decimal-and-binary/</guid>
+      <description>
+        
+          &lt;p&gt;The purpose of this post is to reference the CCNA Data Center (640-911) exam. This exam starts the conversation of IPv6 and since IPv6 is hexadecimal this post starts the talk about how we look at a hexadecimal values and learn how to convert them to binary and decimal. If you know subnetting skills then this won’t be that difficult. If you are new then check out &lt;a href=&#34;http://ciscoskills.net/2011/02/15/the-wonders-of-binary/&#34; title=&#34;The Wonders of Binary&#34;&gt;The Wonders of Binary&lt;/a&gt; post as well as &lt;a href=&#34;http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/&#34; title=&#34;Part 1 – The Joys of Subnetting!&#34;&gt;Part 1&lt;/a&gt; and &lt;a href=&#34;http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/&#34; title=&#34;Part 2 – The Joys of Subnetttting – VLSM!&#34;&gt;Part 2&lt;/a&gt; of subnetting. Let’s get started! Jumping right into it if we look at this hexadecimal value 0x56A we know it’s hexadecimal because the “0x” is the prefix for a hexadecimal number so we really don’t need to do anything with the “0x”. Let’s focus on the 56A value. So where do we start? Remember that 0-9 are normal decimal values so &amp;quot;5&amp;quot; actually means &amp;quot;5&amp;quot;. We want to convert these values into binary. Followed by converting them into a decimal value. So what does the value 5 look like in binary? We then move  to the next digit &amp;quot;6&amp;quot; what does that look like in binary? Then the last value is &amp;quot;A&amp;quot;, what does that look like in binary? &lt;em&gt;Hint: A-F would be 10-15 in decimal.&lt;/em&gt; Reference chart below.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HEXADECIMAL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DECIMAL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BINARY&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;0&lt;/p&gt;
+&lt;p&gt;0&lt;/p&gt;
+&lt;p&gt;0000&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;0001&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;0010&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;p&gt;0011&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;0100&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;0101&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;0110&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;0111&lt;/p&gt;
+&lt;p&gt;8&lt;/p&gt;
+&lt;p&gt;8&lt;/p&gt;
+&lt;p&gt;1000&lt;/p&gt;
+&lt;p&gt;9&lt;/p&gt;
+&lt;p&gt;9&lt;/p&gt;
+&lt;p&gt;1001&lt;/p&gt;
+&lt;p&gt;A&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;1010&lt;/p&gt;
+&lt;p&gt;B&lt;/p&gt;
+&lt;p&gt;11&lt;/p&gt;
+&lt;p&gt;1011&lt;/p&gt;
+&lt;p&gt;C&lt;/p&gt;
+&lt;p&gt;12&lt;/p&gt;
+&lt;p&gt;1100&lt;/p&gt;
+&lt;p&gt;D&lt;/p&gt;
+&lt;p&gt;13&lt;/p&gt;
+&lt;p&gt;1101&lt;/p&gt;
+&lt;p&gt;E&lt;/p&gt;
+&lt;p&gt;14&lt;/p&gt;
+&lt;p&gt;1110&lt;/p&gt;
+&lt;p&gt;F&lt;/p&gt;
+&lt;p&gt;15&lt;/p&gt;
+&lt;p&gt;1111&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Looking at the value 56A we would want to combine all the single values into one binary string. (Example 5 in binary is: &lt;strong&gt;0101&lt;/strong&gt;, 6 in binary is: &lt;strong&gt;0110&lt;/strong&gt;, A in binary is: &lt;strong&gt;1010&lt;/strong&gt;) Combine these together and the the answer would be: &lt;strong&gt;01010110101&lt;/strong&gt; (You can drop leading zeros) &lt;strong&gt;1010110101&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;What does that value look like in decimal? Write it out and remember the power of 2s and always start with &amp;quot;1&amp;quot;. The answer comes out as: &lt;strong&gt;1,386.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[caption id=&amp;quot;attachment_3223&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;600&amp;quot;]&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2015/04/binarye.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/04/binarye.png?w=600&#34; alt=&#34;Add up the 1s&#34;&gt;&lt;/a&gt; Add up the 1s[/caption] Of course you can reverse engineer this if you were given a decimal value and needed to convert it into hexadecimal.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For example convert the following decimal 187 into hexadecimal. Write out 187 into binary so that answer looks like: &lt;strong&gt;10111011.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2015/04/dec-binary2.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/04/dec-binary2.png?w=600&#34; alt=&#34;Decimal To Binary&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You also want to split the binary string into equal parts, so the answer would be: &lt;strong&gt;1011:1011&lt;/strong&gt; comparing the chart or doing this yourself convert this binary into hexadecimal. Since binary strings are the same our hexadecimal is: &lt;strong&gt;BB.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;decimal-to-hexadecimalhttpssystemstechblogfileswordpresscom201504dec-to-hex2pngw600httpssystemstechblogfileswordpresscom201504dec-to-hex2png-thats-it-understanding-how-to-convert-hex-to-decimal-and-back-starts-to-get-important-when-ipv6-shows-up-at-the-door-although-this-is-a-fundamental-level-topic-thats-exactly-why-its-important-to-understand-it-just-like-subnetting-i-would-use-a-calculator-if-you-ever-find-yourself-converting-these-values-its-always-a-good-idea-to-double-check-your-work-however-on-the-exam-you-dont-have-that-pleasure-so-learning-it-the-manual-way-is-this-only-way-&#34;&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2015/04/dec-to-hex2.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/04/dec-to-hex2.png?w=600&#34; alt=&#34;Decimal To Hexadecimal&#34;&gt;&lt;/a&gt; That&#39;s it! Understanding how to convert hex to decimal and back starts to get important when IPv6 shows up at the door. Although this is a fundamental level topic that&#39;s exactly why its important to understand it. Just like subnetting, I would use a calculator if you ever find yourself converting these values. It&#39;s always a good idea to double-check your work. However on the exam you don&#39;t have that pleasure so learning it the manual way is this only way. :)&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22pwgy.lhynds1@gmail.com%22&#34;&gt;larry hynds&lt;/a&gt; - &lt;time datetime=&#34;2015-04-21 20:39:34&#34;&gt;Apr 2, 2015&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;this is fantastic information and i truly thank you for this. i am planning to take my eame this summer. if you have any more suggestion dor the exm i would apprechiate it. regards, storm&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2015-04-21 20:40:57&#34;&gt;Apr 2, 2015&lt;/time&gt;
+&lt;p&gt;I&#39;m glad this is going to help, Good Luck on the exam :)&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Why IPv6?</title>
+      <link>https://ciscoskills.net/2012/08/why-ipv6/</link>
+      <pubDate>Thu, 23 Aug 2012 01:03:46 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/08/why-ipv6/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-i-love.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-i-love.png&#34; alt=&#34;&#34; title=&#34;I-Love-IPv6&#34;&gt;&lt;/a&gt;Although this protocol has been around since 1996 it has been anticipated that IPv4 would one day be exhausted. In February 2011 the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; title=&#34;Internet Assigned Numbers Authority&#34;&gt;Internet Assigned Numbers Authority&lt;/a&gt; (IANA) assigned the last /8 address blocks to the &lt;a href=&#34;http://en.wikipedia.org/wiki/Regional_Internet_registry&#34; title=&#34;Regional Internet registry&#34;&gt;Regional Internet Registries&lt;/a&gt; so time is getting close but you have heard this warning before right? Let&#39;s go over IPv6 at least just an overview some the features and changes compared to IPv4 because one day it will happen it&#39;s just a matter of when. :) So the first thing to understand about IPv6 is that it&#39;s a 128-bit binary value, which is displayed as 32 hexadecimal digits. What does this mean in the size or scope of the addresses?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Well it has been suggested that if you were to give everyone in the world the entire IPv4 scope (4,294,267,295 addresses), you still would have more than enough IPv6 address!&lt;/li&gt;
+&lt;li&gt;You could give everyone on the planet trillions of IPv6 addresses and still have leftovers!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many enhancements that IPv6 offers compared to IPv4 like such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Enhanced &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP addressing&lt;/a&gt; – Improved global reachability and flexibility along with better &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;IP prefixes&lt;/a&gt; announced in routing tables.&lt;/li&gt;
+&lt;li&gt;Say goodbye to broadcasts because there&#39;s none in IPv6 and no threat of broadcast storms.&lt;/li&gt;
+&lt;li&gt;Multi-homed hosts a technique to increase reliability of the internet, because each host can have multiple IP addresses with one physical link. This makes it easier to have this host be connected to different ISP at the same time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&#39;s compare the &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv4&#34; title=&#34;IPv4&#34;&gt;IPv4 header&lt;/a&gt; with IPV6. There less junk in the IPv6 header and because  of that less overhead when compared to IPv4, we have better routing within the network and no checksums. &lt;a href=&#34;http://ciscoskills.net/2012/08/22/why-ipv6/ipv4-headw/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv4-headw.png&#34; alt=&#34;An IPv4 Header&#34; title=&#34;IPv4 Header&#34;&gt;&lt;/a&gt; As you can see the IPv6 header looks simpler and although it is 40 octets compared to the IPv4 header which is 20 octets. IPv6 has to have &lt;a href=&#34;http://en.wikipedia.org/wiki/IPsec&#34; title=&#34;IPsec&#34;&gt;IPsec&lt;/a&gt; which is a mandatory part for IPv6 unlike IPv4 which is an option. (Security, Security, Security) &lt;a href=&#34;http://ciscoskills.net/2012/08/22/why-ipv6/ipv6-headw/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-headw.png&#34; alt=&#34;An IPv6 Header&#34; title=&#34;IPv6 Header&#34;&gt;&lt;/a&gt; Since IPv6 and IPv4 don&#39;t work together directly how can we ever switch over? There are transition solutions like Dual Stacking, 6to4 tunneling and &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv6_transition_mechanisms&#34; title=&#34;IPv6 transition mechanisms&#34;&gt;NAT-PT&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/ISATAP&#34; title=&#34;ISATAP&#34;&gt;ISATAP&lt;/a&gt; tunneling and &lt;a href=&#34;http://en.wikipedia.org/wiki/Teredo_tunneling&#34; title=&#34;Teredo tunneling&#34;&gt;Teredo tunneling&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dual Stacking – is a method of basically running both IPv4 and IPv6 in the network environment and using IPv6 as the preferred protocol.&lt;/li&gt;
+&lt;li&gt;6to4 tunneling – which automatically establishes connections to IPv6 networks through IPv4 network, like the internet. It applies a valid IPv6 prefix to each &amp;quot;island&amp;quot; thus enables a fast deployment of IPv6 in corporate without having the ISP to be involved.&lt;/li&gt;
+&lt;li&gt;Intra-Site Automatic Tunnel Addressing Protocol (ISATAP) tunneling - which is another tunneling option which uses the IPv4 network as the link layer of IPv6.&lt;/li&gt;
+&lt;li&gt;Teredo Tunneling – this provides host-to-host automatic tunneling instead of relying on the gateway. This passes IPv6 traffic when dual-stacked hosts (Systems that are running IPv4 and IPv6 are located behind one or multiple IPv4 &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_address_translation&#34; title=&#34;Network address translation&#34;&gt;NATs&lt;/a&gt;. (By default this is already running on Windows Vista and Windows 7 if you do the command &amp;quot;ipconfig&amp;quot; in command you&#39;ll see it)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;IPv6 is not new and some countries already have it in place. We the United States just wanted to delay it because no body likes to change, but the awesome part about this is to the average user nobody should know and the internet lives on. That&#39;s really the rundown of IPv6 of course there&#39;s more but for an overview of IPv6 it is not a bad start. I hope this information is helpful and if you have questions let&#39;s see if I can answer them or if anybody else can.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/borderless/ipv6-peering-part-2-the-next-steps-for-isp-interfacing/&#34;&gt;IPv6 Peering, Part 2: The Next Steps for ISP Interfacing&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.circleid.com/posts/20120719_ipv6_subnetting_the_paradigm_shift/&#34;&gt;IPv6 Subnetting - The Paradigm Shift&lt;/a&gt; (circleid.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2012/08/21/verity_stob_ipv6/&#34;&gt;How I Learned to Stop Worrying and Love IPv6&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.slumpedoverkeyboarddead.com/2012/09/03/what-is-a-class-abc-ip-address/&#34; title=&#34;&#34;&gt;Slumped Over Keyboard Dead | That�s how they�ll find me one day… » What Is A Class A,B,C IP Address?&lt;/a&gt; - &lt;time datetime=&#34;2012-09-03 08:55:51&#34;&gt;Sep 1, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Why IPv6? (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>World IPv6 Day!!</title>
+      <link>https://ciscoskills.net/2011/06/world-ipv6-day/</link>
+      <pubDate>Wed, 08 Jun 2011 18:10:36 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/06/world-ipv6-day/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/06/ipv6.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/06/ipv6.png&#34; alt=&#34;Are we ready for IPv6?&#34; title=&#34;IPv6&#34;&gt;&lt;/a&gt;So what is &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv6&#34; title=&#34;IPv6&#34;&gt;IPv6&lt;/a&gt; day? Today major companies like &lt;a href=&#34;http://en.wikipedia.org/wiki/Google&#34; title=&#34;Google&#34;&gt;Google&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Facebook&#34; title=&#34;Facebook&#34;&gt;Facebook&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Yahoo%21&#34; title=&#34;Yahoo!&#34;&gt;Yahoo&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_service_provider&#34; title=&#34;Internet service provider&#34;&gt;ISPs&lt;/a&gt; (Internet Service Providers) test their IPv6 deployments. Why is this important? Well if you follow IPv4 news you might already know that &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv4&#34; title=&#34;IPv4&#34;&gt;IPv4 addresses&lt;/a&gt; have been exhausted and the need to move to different &lt;a href=&#34;http://en.wikipedia.org/wiki/Address_space&#34; title=&#34;Address space&#34;&gt;address space&lt;/a&gt; is critical, if new web services are to be deployed. The question is can we run both? Although running two different &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP addressing&lt;/a&gt; protocols is likely, by &amp;quot;stacking&amp;quot; them that is one reason the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Society&#34; title=&#34;Internet Society&#34;&gt;Internet Society&lt;/a&gt; wanted major sites and ISPs to test out the IPv6 address space. One of the main goals the Internet Society wants companies to look at is if there are potential issues, these issues are in controlled environments and can be addressed as soon as possible. So what should the average user see on Wednesday June 8th? Well if everything goes to plan the user should not noticed any difference. That&#39;s the amazing thing these configurations, testing and deployments are in the backend of the internet. A good tool to test to your internet connection to see if it can handle IPv6 traffic is the IPv6 Eye Chart which is the link below. &lt;a href=&#34;http://ipv6eyechart.ripe.net/&#34; title=&#34;IPv6 Eye Chart&#34;&gt;IPv6 Eye Chart&lt;/a&gt; I hope this information was informative and if you have an idea for a topic that deals with either ICND1 or ICND2 let me know about it, also check out my earlier topics that I have posted.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.winrumors.com/bing-starts-testing-ipv6-version-in-preparation-for-world-ipv6-day/&#34;&gt;Bing starts testing IPv6 version in preparation for World IPv6 day&lt;/a&gt; (winrumors.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>IPv4 Meet IPv6</title>
+      <link>https://ciscoskills.net/2011/02/ipv4-meet-ipv6/</link>
+      <pubDate>Thu, 03 Feb 2011 13:50:47 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/02/ipv4-meet-ipv6/</guid>
+      <description>
+        
+          &lt;p&gt;IPv4 maybe on its last leg with only a few blocks of IPv4 addresses available, computer estimates say that the IANA address depletion was January 27, 2011. Also the calculations for all central IPv4 pool addresses will be depleted by July 25, 2012. These are estimates and may change as of writing this post. I&#39;ll be sure to update if needed, but the thing to understand is that IPv4 won&#39;t be available within weeks if not months. So what happens then? Well we move into IPv6 which has the capacity to hold 2^128th addresses that number is  340,282,366,920,938,463,463,374,607,431,768,211,456. If you want to know what that number is called it is 340 undecillion, 282 decillion, 366 nonillion, 920 octillion, 938 septillion, 463 sextillion, 463 quintillion, 374 quadrillion, 607 trillion, 431 billion, 768 million, 211 thousand and 456 addresses. These address are in hexadecimal form and are 128 bits in length compared to IPv4 which is in a 32 bits in length. One problem with IPv4 and IPv6 is they don&#39;t get along, they are not backwards compatible. You can either go to IPv6, IPv4 or dual stack the technology. This can be a problem if computer industries did not make a plan beforehand and are now scrambling to implement IPv6. Experts have known that the IPv4 address space would run out the only issue was &amp;quot;when&amp;quot;. That&#39;s why IPv6 was design in the 1990s. To help companies test and configure IPv6 the Internet Society is helping to organize the World IPv6 Day. On June 8, companies like Google and Yahoo and distributors like Akamai and Limelight Networks will offer their services over IPv6 for 24 hours for evaluation and troubleshooting sessions. What about users? Well if you have a recent operating system like Windows XP, Vista and 7 IPv6 is ready to go, if not already running on your computer. So your computer can handle it. The only problem is your Internet Service Provider and or DSL and cable modem. One test you can do is at this site &lt;a href=&#34;http://www.test-ipv6.com/&#34;&gt;http://www.test-ipv6.com/&lt;/a&gt;. It will be able to tell you if you can access both IPv4 and IPv6 sites or only IPv4 or IPv6. Today at 9:30am Eastern Standard Time the Number Resource Organization (NRO), along with the Internet Corporation for Assigned Names and Numbers, the Internet Society (ISOC) and the Internet Architecture Board (IAB) will be holding a ceremony and press conference to make a significant announcement and to discuss the global transition to the next generation of Internet addresses. You can check out the live webcast at &lt;a href=&#34;http://www.nro.net/news/icann-nro-live-stream&#34;&gt;http://www.nro.net/news/icann-nro-live-stream&lt;/a&gt;  Personally I can&#39;t wait for IPv6 it really is a totally different internet protocol and does have benefits in moving from IPv4 to IPv6. Like less overhead in the packet format and forwarding, and introduces a mandatory Internet Protocol Security (IPsec) which is optional in IPv4. These are some of the many improvements that IPv6 has in comparison to IPv4. Sure there might be problems with customers and service providers but if you ISP did their job you as a user should not even notice a difference.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ASA IOS on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/asa-ios/</link>
+    <description>Recent content in ASA IOS on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 29 Jun 2012 01:20:32 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/asa-ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Upgrade ASA IOS via ASDM</title>
+      <link>https://ciscoskills.net/2012/06/upgrade-asa-ios-via-asdm/</link>
+      <pubDate>Fri, 29 Jun 2012 01:20:32 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/06/upgrade-asa-ios-via-asdm/</guid>
+      <description>
+        
+          &lt;p&gt;In this short but helpful post, I&#39;ll go through the process of upgrading the ASA IOS via the ASDM. This is a pretty painless method if all goes well the only thing you have to do schedule downtime if this box is in production, and grab the ASA IOS image from Cisco. For this post all have been covered let&#39;s get started! First things first is always backup your configuration before upgrading and I always read the release notes that Cisco provides when I download the IOS image, it&#39;s good reading and important because usually new features are introduced and sometime the ASDM can&#39;t paraphrase and parse the new configuration which way I usually upgrade the ASDM first. There are couple ways of backing the configuration this example is with the ASDM. In this example open up the ASDM client and go to file and select &amp;quot;Show Running Configuration in New Window&amp;quot; this will open up the current running-config in a &lt;a href=&#34;http://en.wikipedia.org/wiki/Web_browser&#34; title=&#34;Web browser&#34;&gt;browser window&lt;/a&gt; and from there you can either save the page or copy it to a &lt;a href=&#34;http://en.wikipedia.org/wiki/Text_editor&#34; title=&#34;Text editor&#34;&gt;text editor&lt;/a&gt;. &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-run-config.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-run-config.png?w=300&#34; alt=&#34;Show Running-Config in ASDM&#34; title=&#34;ASDM-Run-Config&#34;&gt;&lt;/a&gt; Once the configuration is saved you are ready to go for the upgrade. Select &amp;quot;Tools&amp;quot; and you have two options. If this ASA can go online you can select the first option (Check for ASA/ASDM Updates)  which will ask for your Cisco account that is tied with SmartNet,  which downloads the IOS or ASDM or both images automatically and installs them with very little effort on your part. For this post we have to one more extra setup to install this IOS we&#39;ll select the &amp;quot;&lt;a href=&#34;http://en.wikipedia.org/wiki/Upgrade&#34; title=&#34;Upgrade&#34;&gt;Upgrade&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Application_software&#34; title=&#34;Application software&#34;&gt;Software&lt;/a&gt; from Local Computer&amp;quot; &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-tools.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-tools.png?w=300&#34; alt=&#34;The ASDM Tools File Menu&#34; title=&#34;ASDM-Tools&#34;&gt;&lt;/a&gt; A window comes select what image you are uploading the to the ASA, notice this is also the same method of installing/upgrading the ASDM along with helpful tools like the Cisco AnyConnect &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_private_network&#34; title=&#34;Virtual private network&#34;&gt;VPN&lt;/a&gt; Client. This example we selected the ASA image and have browsed our local computer to the ASA image that we downloaded from Cisco our next move is to uploading the image.&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-upload-ios.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-upload-ios.png?w=300&#34; alt=&#34;&#34; title=&#34;ASDM-Upload-IOS&#34;&gt;&lt;/a&gt; &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/uploading.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/uploading.png?w=300&#34; alt=&#34;&#34; title=&#34;uploading&#34;&gt;&lt;/a&gt; Finally another window will show letting you know that the image is setup and goes through the process of telling you how to reload the ASA. Also it reminds you to make sure the ASDM version will work with this new IOS image which would be in the release notes Cisco puts out, from there reload the ASA. Once the ASA reboots open up the ASDM and you&#39;ll notice that we now have the ASA version of 8.4(3)!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asa-uploaded.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asa-uploaded.png&#34; alt=&#34;&#34; title=&#34;ASA-uploaded&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asa-version.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asa-version.png&#34; alt=&#34;&#34; title=&#34;ASA-version&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Keeping up with versions of the ASA is important but you have to weigh the risks of updating, take this upgrade for example from 8.2 to 8.4 a lot of configurations have changed which is why it is really important to look at the release notes. I hope this information is helpful and if you have any questions or comments let me know.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/06/24/basic-cisco-asa-overview/&#34;&gt;Basic Cisco ASA Overview&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/05/28/ccna-security-640-554/&#34;&gt;CCNA Security - 640-554&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ethernuno.wordpress.com/2012/04/05/auto-backup-cisco-routerswitch-using-kron-and-vsftpd-ftp/&#34;&gt;Auto Backup Cisco router/switch using Kron and vsftpd FTP.&lt;/a&gt; (ethernuno.wordpress.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/07/21/password-recovery-cisco-ios-routers/&#34; title=&#34;&#34;&gt;Password Recovery – Cisco IOS Routers | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-07-21 11:04:27&#34;&gt;Jul 6, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

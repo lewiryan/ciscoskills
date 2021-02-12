@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Packet Tracer on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/packet-tracer/</link>
+    <description>Recent content in Packet Tracer on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 08 Sep 2012 01:52:38 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/packet-tracer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco Lab Setup</title>
+      <link>https://ciscoskills.net/2012/09/cisco-lab-setup/</link>
+      <pubDate>Sat, 08 Sep 2012 01:52:38 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/09/cisco-lab-setup/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/09/cisco-ccie-video-practice-lab.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/cisco-ccie-video-practice-lab.jpg?w=300&#34; alt=&#34;&#34; title=&#34;A Cisco Lab&#34;&gt;&lt;/a&gt;When it comes to learning and getting started with &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; there are some tools that will help out a lot like &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_Tracer&#34; title=&#34;Packet Tracer&#34;&gt;Packet Tracer&lt;/a&gt;, GNS3 and other emulators. These are great tools for that &amp;quot;simulation&amp;quot; of hands on learning, but you can&#39;t always stay in that area. I find it best to get hands on with &amp;quot;real&amp;quot; Cisco Gear and so with this post I&#39;ll go through my current setup of what I have and ask that question when it is a good time to get a lab? Just because you may want to get a lab that does not guarantee you&#39;ll actually learn and or pass.   I&#39;ll cut right to it and break it down; I have the following items:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1 x Tripp Lite SRW9U 9U Wall Mount Rack&lt;/li&gt;
+&lt;li&gt;2 x Cisco 2811 Routers with IOS Security&lt;/li&gt;
+&lt;li&gt;1x  Cisco 1841 Router with IOS SP Services&lt;/li&gt;
+&lt;li&gt;1 x Cisco Catalyst 2960 Switch 48 ports (&lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LAN&lt;/a&gt; Base)&lt;/li&gt;
+&lt;li&gt;1 x &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_ASA&#34; title=&#34;Cisco ASA&#34;&gt;Cisco ASA&lt;/a&gt; 5505 – Base&lt;/li&gt;
+&lt;li&gt;1 x Cisco AS2509-RJ – Used as an access server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of these devices are connected via a console cable to the Cisco 2509 and then a single console cable from the 2509 to my machine. This runs &lt;a href=&#34;http://en.wikipedia.org/wiki/VMware&#34; title=&#34;VMware&#34;&gt;VMware&lt;/a&gt; Workstation 9 which I just upgraded by the way :) and these virtual machines connect directly to one of the three NICs I have on my machine. These then connect to a Cisco Switch which has four different &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; (counting the default native VLAN) each assigned to a different range of ports which is seen in the code below: [code]Switch#show vlan VLAN Name Status Ports ---- -------------------------------- --------- ------------------------------- 1 default active Fa0/37, Fa0/38, Fa0/39, Fa0/40 Fa0/41, Fa0/42, Fa0/43, Fa0/44 Fa0/45, Fa0/46, Fa0/47, Fa0/48 Gi0/1, Gi0/2 20 ONE-12 active Fa0/1, Fa0/2, Fa0/3, Fa0/4 Fa0/5, Fa0/6, Fa0/7, Fa0/8 Fa0/9, Fa0/10, Fa0/11, Fa0/12 30 12-24 active Fa0/13, Fa0/14, Fa0/15, Fa0/16 Fa0/17, Fa0/18, Fa0/19, Fa0/20 Fa0/21, Fa0/22, Fa0/23, Fa0/24 40 25-36 active Fa0/25, Fa0/26, Fa0/27, Fa0/28 Fa0/29, Fa0/30, Fa0/31, Fa0/32 Fa0/33, Fa0/34, Fa0/35, Fa0/36 1002 fddi-default act/unsup 1003 token-ring-default act/unsup 1004 fddinet-default act/unsup 1005 trnet-default act/unsup VLAN Type SAID MTU Parent RingNo BridgeNo Stp BrdgMode Trans1 Trans2 ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------ VLAN Type SAID MTU Parent RingNo BridgeNo Stp BrdgMode Trans1 Trans2 ---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------ 1 enet 100001 1500 - - - - - 0 0 20 enet 100020 1500 - - - - - 0 0 30 enet 100030 1500 - - - - - 0 0 40 enet 100040 1500 - - - - - 0 0 1002 fddi 101002 1500 - - - - - 0 0 1003 tr 101003 1500 - - - - - 0 0 1004 fdnet 101004 1500 - - - ieee - 0 0 1005 trnet 101005 1500 - - - ibm - 0 0 Remote SPAN VLANs ------------------------------------------------------------------------------ Primary Secondary Type Ports ------- --------- ----------------- ------------------------------------------ Switch#[/code] The three NICs on my machine that I use for VMs are not useable to my machine locally. As I have disabled IPv4 and only left the VMware Bridge Protocol selected under the adapter properties, from there I have also edited the VMware Virtual Network Editor as follows and pictured below:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;VMnet1 – Is bridged to my motherboard &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_interface_controller&#34; title=&#34;Network interface controller&#34;&gt;NIC&lt;/a&gt; and directly connected to a &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_machine&#34; title=&#34;Virtual machine&#34;&gt;VM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;VMnet2 – Is bridged to an Intel Gigabit &lt;a href=&#34;http://en.wikipedia.org/wiki/PCI_Express&#34; title=&#34;PCI Express&#34;&gt;PCI express card&lt;/a&gt; and directly connected to VM&lt;/li&gt;
+&lt;li&gt;VMnet3 – Is bridged to an Intel Gigabit PCI express card and directly connected to VM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is a picture of my current setup (The ASA is not in this picture): &lt;a href=&#34;http://ciscoskills.net/2012/09/07/cisco-lab-setup/imag0007/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/imag0007.jpg?w=1024&#34; alt=&#34;My Current Cisco Lab&#34; title=&#34;Cisco Lab&#34;&gt;&lt;/a&gt; Second Picture of the Rack with the door closed: &lt;a href=&#34;http://ciscoskills.net/2012/09/07/cisco-lab-setup/imag0009/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/imag0009.jpg?w=1024&#34; alt=&#34;My Current Lab with the door closed&#34; title=&#34;Cisco Lab-2&#34;&gt;&lt;/a&gt; Here is a screenshot of the one the NICs Properties: &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-nic.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-nic.png?w=239&#34; alt=&#34;&#34; title=&#34;NIC-Properties-VMWare&#34;&gt;&lt;/a&gt; Here is a screenshot of the VMware Virtual Network Editor and how each NIC is bridged and directly connected to a VM: &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-net3.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-net3.png?w=300&#34; alt=&#34;&#34; title=&#34;VMware-Network-Editor&#34;&gt;&lt;/a&gt; When I want a machine to use a NIC I just select one of the VMnet profiles as captured below: &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-nic2.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/09/vm-nic2.png?w=300&#34; alt=&#34;&#34; title=&#34;VMware-Virtual-Machine-Settings-Network&#34;&gt;&lt;/a&gt; So I talked about my current lab setup which will always continue to grow and be upgraded in time just like a &amp;quot;real&amp;quot; environment but there is another question when do you need lab? I would only setup a lab on at least one of these three conditions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You have money to burn. This lab although small cost around $1,000 bucks.&lt;/li&gt;
+&lt;li&gt;You see yourself going to higher certification levels CCNA Security, Wireless, Voice, CCNP, CCIE and not just the CCNA.&lt;/li&gt;
+&lt;li&gt;You absolutely love this stuff!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For me it was option three that sold me, not only do I see myself working to higher certs but having that physical gear in hand is always the best type of learning (I think). When you go through your studies instead of just believing the answer, prove it by setting up the example physically instead of a point and click setup through simulation/emulation. I hope this information is helpful and if you have any questions about my lab and or other questions comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/the-next-evolution-of-ciscos-nexus-1000v-virtual-switch-to-be-featured-at-vmworld/&#34;&gt;The Next Evolution of Cisco&#39;s Nexus 1000V Virtual Switch to be Featured at VMworld&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://longwhiteclouds.com/2012/07/15/the-good-the-great-and-the-gotcha-with-multi-nic-vmotion-in-vsphere-5/&#34;&gt;The Good, The Great, and the Gotcha with Multi-NIC vMotion in vSphere 5&lt;/a&gt; (longwhiteclouds.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.remibergsma.com/2012/08/30/going-beyond-cloudstack-advanced-networking-how-i-replaced-the-virtual-router-with-my-own-physical-linux-router/&#34;&gt;Going beyond CloudStack Advanced Networking: How I replaced the Virtual Router with my own physical Linux router&lt;/a&gt; (remibergsma.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/cisco-cvds-on-vspex-giddy-up/&#34;&gt;Cisco CVD&#39;s on VSPEX...Giddy &#39;UP!&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22adamsiewert@gmail.com%22&#34;&gt;adam&lt;/a&gt; - &lt;time datetime=&#34;2012-09-17 14:46:39&#34;&gt;Sep 1, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Where did you get your lab?&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-09-17 18:52:03&#34;&gt;Sep 1, 2012&lt;/time&gt;
+&lt;p&gt;Hey Adam, The equipment for this lab I put together from Ebay. Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Learning Labs is Live!</title>
+      <link>https://ciscoskills.net/2011/04/cisco-learning-labs-is-live/</link>
+      <pubDate>Wed, 13 Apr 2011 14:15:53 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/cisco-learning-labs-is-live/</guid>
+      <description>
+        
+          &lt;p&gt;Yesterday was kind of exciting at least for me when I got an e-mail in the morning about &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; Learning Labs. Studying for the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt;, CCNP or CCIP is in itself changeling, but getting that hands-on experience is a another problem! When money is short that last thing you want to do is spend it on routers and switches, and most of them on &lt;a href=&#34;http://en.wikipedia.org/wiki/EBay&#34; title=&#34;EBay&#34;&gt;eBay&lt;/a&gt; are used and the risk of failing devices makes it a scary choice. The Cisco Learning Labs which started yesterday runs the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;Cisco IOS&lt;/a&gt; software on &lt;a href=&#34;http://en.wikipedia.org/wiki/Unix&#34; title=&#34;Unix&#34;&gt;UNIX&lt;/a&gt;, this makes it a real configuration and provides people the ability to use the Cisco IOS software on their PC with an internet connection. What it the difference between simulators like &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_Tracer&#34; title=&#34;Packet Tracer&#34;&gt;Packet Tracer&lt;/a&gt; and GNS3? We know that Packet Tracer does not support all the commands, but is enough for the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Networking_Academy&#34; title=&#34;Cisco Networking Academy&#34;&gt;Cisco Networking Academy&lt;/a&gt;. Packet Tracer does a great job, but if you ever wanted to really explore the router or switch you will need to have access to real equipment. GNS3 does an excellent job for routers but fails on switches and takes some &lt;a href=&#34;http://en.wikipedia.org/wiki/Central_processing_unit&#34; title=&#34;Central processing unit&#34;&gt;CPU&lt;/a&gt; power. You also need the real Cisco IOS and the only &amp;quot;legal&amp;quot; way to get one is from the router that you bought. Cisco Learning Labs have multiple labs that are available when you buy a lab bundle; these labs are available for 90 days and up to 25 hours whichever comes first. The timer only counts down when you actually use it by signing in. You can also buy more lab time in increments of five hours. Currently the Cisco Learning Labs support the following &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco Certifications&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CCNA/ICND2 Virtualized Lab for $50&lt;/li&gt;
+&lt;li&gt;CCNP ROUTE/SWITCH/TSHOOT (each $75)&lt;/li&gt;
+&lt;li&gt;CCIP and &lt;a href=&#34;http://en.wikipedia.org/wiki/Multiprotocol_Label_Switching&#34; title=&#34;Multiprotocol Label Switching&#34;&gt;MPLS&lt;/a&gt; for $75&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;for-more-information-i-recommend-you-check-out-wwwciscocomgolearninglabshttpwwwciscocomgolearninglabs-youtubehttpwwwyoutubecomwatchvi4ujuklvaiw&#34;&gt;For more information I recommend you check out &lt;a href=&#34;http://www.cisco.com/go/learninglabs&#34;&gt;www.cisco.com/go/learninglabs&lt;/a&gt; [youtube=http://www.youtube.com/watch?v=i4UjuklvAiw]&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/18/configure-cisco-sdm/&#34; title=&#34;&#34;&gt;Configure Cisco SDM | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-18 10:28:16&#34;&gt;Apr 1, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Cisco Learning Labs is Live! (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

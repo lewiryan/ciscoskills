@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fast-Ethernet on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/fast-ethernet/</link>
+    <description>Recent content in Fast-Ethernet on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 12 Oct 2013 15:56:48 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/fast-ethernet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring EtherChannel (PAgb)</title>
+      <link>https://ciscoskills.net/2013/10/configuring-etherchannel-pagb/</link>
+      <pubDate>Sat, 12 Oct 2013 15:56:48 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2013/10/configuring-etherchannel-pagb/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png&#34; alt=&#34;NetworkSwitches&#34;&gt;&lt;/a&gt;Bundling physical links into one logical link is a common practice to up the bandwidth between switches, you may have this also configured on a server to bundle connections as well. In this tutorial I have two 2960 switches both of them trunking all &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; on two gigabit ports. So in the end game is get 2gbps instead of 1gbps between switches while using Cisco’s &lt;a href=&#34;http://en.wikipedia.org/wiki/Proprietary_protocol&#34; title=&#34;Proprietary protocol&#34;&gt;proprietary protocol&lt;/a&gt; PAgb.   It is important to remember that both of these protocols (PAgb and &lt;a href=&#34;http://en.wikipedia.org/wiki/Link_aggregation&#34; title=&#34;Link aggregation&#34;&gt;LACP&lt;/a&gt;) are link aggregation protocols only, their job is to make sure that &lt;a href=&#34;http://en.wikipedia.org/wiki/EtherChannel&#34; title=&#34;EtherChannel&#34;&gt;EtherChannel&lt;/a&gt; is setup correctly by negotiating. This helps prevent EtherChannel mismatches and loops. You could manually set the etherchannel mode to &amp;quot;on&amp;quot; instead of using either of these aggregation protocols. However this is considered best practice to use one of these link aggregation protocols. Here are some Guidelines for Configuring EtherChannel:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can configure the port in two ways:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Port_Aggregation_Protocol&#34; title=&#34;Port Aggregation Protocol&#34;&gt;PAgp&lt;/a&gt; which is Cisco proprietary protocol.&lt;/li&gt;
+&lt;li&gt;LACP which is an industry standard 802.3ad.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;You can combine from two links to eight links.&lt;/li&gt;
+&lt;li&gt;All ports &lt;strong&gt;MUST&lt;/strong&gt; be identical such as:
+&lt;ul&gt;
+&lt;li&gt;Same speed that also includes duplex.&lt;/li&gt;
+&lt;li&gt;Cannot mix and match Fast Ethernet and Gigabit ports.&lt;/li&gt;
+&lt;li&gt;Cannot throw in PAgp and LACP in the same “channel”.&lt;/li&gt;
+&lt;li&gt;Must be either all trunking or non-trunking.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;All links in the channel must be either in Layer 2 or Layer 3.&lt;/li&gt;
+&lt;li&gt;If you want to use PAgp each side must be one of the two settings for the channel to come up.
+&lt;ul&gt;
+&lt;li&gt;Auto-Desirable&lt;/li&gt;
+&lt;li&gt;Desirable-Desirable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If you would like to use LACP then each side must be one of the two settings for the channel to come up.
+&lt;ul&gt;
+&lt;li&gt;Active-Active&lt;/li&gt;
+&lt;li&gt;Active-Passive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So for this example I have a two Cisco 2960 switches, one switch is a 24-port while the other one is a 48-port switch. I have already done some pre-configuring for the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;native VLAN&lt;/a&gt; (not using VLAN1) and I have also created an additional VLAN for data traffic on both of these switches. The two switches I am working with both have two gigabit trunk uplinks to each other, by default of STP one link will be in blocking state. To allow both of these links in a forwarding state follow the configuration below. On the 24-port switch under both gigabit interfaces: [code highlight=&amp;quot;3,4,5&amp;quot;] 24-SW3#configure t Enter configuration commands, one per line. End with CNTL/Z. 24-SW3(config)#interface range gigabitEthernet 0/1 -2 24-SW3(config-if-range)#channel-group 1 mode desirable Creating a port-channel interface Port-channel 1 *Mar 2 22:53:06.895: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down *Mar 2 22:53:06.920: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down *Mar 2 22:53:09.688: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up *Mar 2 22:53:09.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up [/code] On the 48-port switch under both gigabit interfaces: [code highlight=&amp;quot;3,4,10,11&amp;quot;] 48-SW1#configure t Enter configuration commands, one per line. End with CNTL/Z. 48-SW1(config)#interface range gigabitEthernet 0/1 - 2 48-SW1(config-if-range)#channel-group 1 mode auto Creating a port-channel interface Port-channel 1 *Mar 2 09:56:03.907: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down *Mar 2 09:56:03.940: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down *Mar 2 09:56:13.327: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up *Mar 2 09:56:13.797: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up *Mar 2 09:56:27.235: %LINK-3-UPDOWN: Interface Port-channel1, changed state to up *Mar 2 09:56:28.242: %LINEPROTO-5-UPDOWN: Line protocol on Interface Port-channel1, changed state to up[/code] To verify that port-channel is working as expected (Notice line 4) [code highlight=&amp;quot;1,4&amp;quot;] 24-SW3#show interfaces port-channel 1 Port-channel1 is up, line protocol is up (connected) Hardware is EtherChannel, address is 001a.6d44.0c1a (bia 001a.6d44.0c1a) MTU 1500 bytes, BW 2000000 Kbit, DLY 10 usec, reliability 255/255, txload 1/255, rxload 1/255 Encapsulation ARPA, loopback not set Keepalive set (10 sec) Full-duplex, 1000Mb/s, link type is auto, media type is unknown --- Omitted ---[/code] You can also verify EtherChannel with the following command, several options are available. [code highlight=&amp;quot;1&amp;quot;] 24-SW3#show etherchannel 1 ? detail Detail information port Port information port-channel Port-channel information protocol protocol enabled summary One-line summary per channel-group [/code] We now have a 2gbps unlink between these two switches, if we looked at spanning-tree we would see the port-channel interface (Po1) is in a forwading state and the two gigabit links are not listed as active interfaces. If you would like more information about EtherChannel look at the post I did some time ago about &lt;a href=&#34;http://ciscoskills.net/2012/01/04/basic-understanding-of-etherchannel/&#34; title=&#34;Basic Understanding of EtherChannel&#34;&gt;Understanding EtherChannel&lt;/a&gt;.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://datacenteroverlords.com/2013/09/02/link-aggregation/&#34;&gt;Link Aggregation&lt;/a&gt; (datacenteroverlords.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.thegeekstuff.com/2013/09/cisco-vlan-trunk/&#34;&gt;How to Create VLAN Trunking on Cisco Catalyst Switch&lt;/a&gt; (thegeekstuff.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Zone Based Firewalls via SDM</title>
+      <link>https://ciscoskills.net/2011/04/configuring-zone-based-firewalls-via-sdm/</link>
+      <pubDate>Wed, 20 Apr 2011 15:45:38 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/configuring-zone-based-firewalls-via-sdm/</guid>
+      <description>
+        
+          &lt;p&gt;Last month I talked about the fundamentals for understanding zone based &lt;a href=&#34;http://en.wikipedia.org/wiki/Firewall_%28computing%29&#34; title=&#34;Firewall (computing)&#34;&gt;firewalls&lt;/a&gt; (See the post &lt;a href=&#34;http://ciscoskills.net/2011/03/18/understanding-zone-based-firewalls/&#34; title=&#34;Understanding Zone Based Firewalls&#34;&gt;Understanding Zone Based Firewalls&lt;/a&gt;). So for today&#39;s post I want to go ahead and talk about configuring the zone based firewalls but with the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; SDM (Security Device Manger). The Cisco SDM is a &lt;a href=&#34;http://en.wikipedia.org/wiki/World_Wide_Web&#34; title=&#34;World Wide Web&#34;&gt;Web&lt;/a&gt;-based device management tool a &lt;a href=&#34;http://en.wikipedia.org/wiki/Graphical_user_interface&#34; title=&#34;Graphical user interface&#34;&gt;GUI&lt;/a&gt; for Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;routers&lt;/a&gt; this can simplify router deployments and reduce ownership costs. (See the post &lt;a href=&#34;http://ciscoskills.net/2011/04/14/configure-cisco-sdm/&#34; title=&#34;Configure Cisco SDM&#34;&gt;Configure Cisco SDM&lt;/a&gt;) Instead of talking about what is zone based firewalls lets jump into the configuration of them. This &lt;a href=&#34;http://en.wikipedia.org/wiki/Tutorial&#34; title=&#34;Tutorial&#34;&gt;tutorial&lt;/a&gt; is assuming that the configurations to set up Cisco SDM have already been completed. For this tutorial all we want to focus on is configuring zone based firewalls. Since this using Cisco SDM the firewall wizard is pretty effortless. Before we get started I like to have the Cisco SDM preview the commands before I deliver them to the router. To do that at the top of the menu bar click &lt;em&gt;Edit&lt;/em&gt; and select &lt;em&gt;Preferences&lt;/em&gt; a new window will appear (Like below) and verify that the &lt;em&gt;Preview commands before delivering to the router&lt;/em&gt; is checked.  &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/preview_commandse.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/preview_commandse.png?w=300&#34; alt=&#34;SDM Preferences&#34; title=&#34;Preview_Commands&#34;&gt;&lt;/a&gt; Now that we are ready to go, the first thing we need to do is select the Configure button at the top, and to the left hand-side under tasks select the Firewall and ACL option. &lt;a href=&#34;http://ciscoskills.net/2011/04/20/configuring-zone-based-firewalls-via-sdm/firewall-acle/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/firewall-acle.png?w=300&#34; alt=&#34;Firewall and ACL Page&#34; title=&#34;Firewall ACL&#34;&gt;&lt;/a&gt; You now have to decide what type of firewall you want to configure and launch the wizard, the main difference between the basic firewall option and the advanced firewall option is you have the option to support a &lt;a href=&#34;http://en.wikipedia.org/wiki/DMZ_%28computing%29&#34; title=&#34;DMZ (computing)&#34;&gt;DMZ&lt;/a&gt; zone. The basic firewall set up does not support DMZ. (For this tutorial we are going to be using the basic firewall option) &lt;a href=&#34;http://ciscoskills.net/2011/04/20/configuring-zone-based-firewalls-via-sdm/firewall_wizarde/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/firewall_wizarde.png?w=300&#34; alt=&#34;Basic Firewall Wizard&#34; title=&#34;Firewall_Wizard&#34;&gt;&lt;/a&gt; A new window will show, the Firewall Wizard and will explain what the selected firewall option will do. Click on the next button. The next area is going to be asking what interface is considered to be the outside (untrusted network) and the inside (trusted network). In the advanced firewall wizard you have an extra option the DMZ. For this tutorial we are using the basic firewall wizard and are selecting the serial interface has the untrusted (outside) network. The &lt;a href=&#34;http://en.wikipedia.org/wiki/Fast_Ethernet&#34; title=&#34;Fast Ethernet&#34;&gt;Fast-Ethernet&lt;/a&gt; interface has the trusted (inside) network. Click Next. &lt;a href=&#34;http://ciscoskills.net/2011/04/20/configuring-zone-based-firewalls-via-sdm/firewall_wizard_interfacee/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/firewall_wizard_interfacee.png?w=300&#34; alt=&#34;Basic Firewall Interface Wizard&#34; title=&#34;Firewall_Wizard_Interface&#34;&gt;&lt;/a&gt; In the basic firewall wizard the nest section is the security configuration, depending on your type of security. Move the slider to the choice that best fits, you can also preview the commands by selecting the Preview Commands button to verify the commands before choosing them. (For this tutorial I selected the Low Security option) Click Next &lt;a href=&#34;http://ciscoskills.net/2011/04/20/configuring-zone-based-firewalls-via-sdm/firewall_wizard_securitye/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/firewall_wizard_securitye.png?w=300&#34; alt=&#34;Basic Firewall Wizard Security&#34; title=&#34;Firewall_Wizard_Security&#34;&gt;&lt;/a&gt; The final section is the summary for the basic firewall configuration, here you can look over the summary to verify the configuration. Click Finish. &lt;a href=&#34;http://ciscoskills.net/2011/04/20/configuring-zone-based-firewalls-via-sdm/firewall_wizard_summarye/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/firewall_wizard_summarye.png?w=300&#34; alt=&#34;Basic Firewall Summary&#34; title=&#34;Firewall_Wizard_Summary&#34;&gt;&lt;/a&gt; If you&#39;ve selected the option to preview commands before delivering them to the router, a final window will appear. In this window you can see the real commands the SDM program will attempt to deliver. You have the option to save the running-configuration to the startup-configuration after the commands complete. You also have the option to save the configuration as a file and finally you can deliver them to the router.&lt;a href=&#34;http://ciscoskills.net/2011/04/20/configuring-zone-based-firewalls-via-sdm/firewall_wizard_deliverye/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/firewall_wizard_deliverye.png?w=300&#34; alt=&#34;Firewall Delivery&#34; title=&#34;Firewall_Wizard_Delivery&#34;&gt;&lt;/a&gt; Believe it or not that&#39;s the SDM configuration of a zone-based firewall you can get more information at Cisco&#39;s website about SDM and the configuration settings. Like always I hope this tutorial was informative and if you have a suggestion on the next topic that relates to ICND1 or ICND2 and even some &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Security&lt;/a&gt; comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/18/understanding-zone-based-firewalls/&#34;&gt;Understanding Zone Based Firewalls&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.brighthub.com/computing/smb-security/articles/63980.aspx&#34;&gt;Configuring Cisco Router Firewall through Command Prompt&lt;/a&gt; (brighthub.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/225115/firewall_vendors_challenge_findings_of_nss_labs_report.html&#34;&gt;Firewall Vendors Challenge Findings of NSS Labs Report&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://nsslabs.blogspot.com/2011/04/enterprise-network-firewalls-leak.html&#34;&gt;Enterprise Network Firewalls Leak&lt;/a&gt; (nsslabs.blogspot.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/225136/firewall_security_issue_raised_in_report_ignites_vendors_ire.html&#34;&gt;Firewall Security Issue Raised in Report Angers Vendors&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.firemon.com/blog/security-management&#34; title=&#34;&#34;&gt;Security Needs Management | FireMon Blog&lt;/a&gt; - &lt;time datetime=&#34;2011-04-21 12:35:30&#34;&gt;Apr 4, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Configuring Zone Based Firewalls via SDM (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

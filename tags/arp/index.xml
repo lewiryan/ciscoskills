@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ARP on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/arp/</link>
+    <description>Recent content in ARP on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 16 Mar 2011 17:30:42 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/arp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How a Router Routes</title>
+      <link>https://ciscoskills.net/2011/03/how-a-router-routes/</link>
+      <pubDate>Wed, 16 Mar 2011 17:30:42 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/03/how-a-router-routes/</guid>
+      <description>
+        
+          &lt;p&gt;This tutorial will be going over the basic information of how a router routes &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP packets&lt;/a&gt;. Routers are used in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI layer&lt;/a&gt; three or the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network layer&lt;/a&gt;. These routers have IP addresses and forward IP packets to the proper destination. This guide is somewhat basic and is assuming you have some information of how &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP addressing&lt;/a&gt; works and along with what routing protocols are. So let&#39;s focus first on how a host or a computer forwards traffic and then look at how a router forwards traffic. Computers forward or send packets based on these two steps.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If the destination IP address is in the same network or subnet as PC-1 then send the packet directly to that host (without the routers help)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If PC-1 does not have the &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt; to the destination host (PC-2) then it will send an &lt;a href=&#34;http://en.wikipedia.org/wiki/Address_Resolution_Protocol&#34; title=&#34;Address Resolution Protocol&#34;&gt;ARP&lt;/a&gt; request to get the MAC address.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/16/how-a-router-routes/arp-message/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/02/arp-message.png?w=300&#34; alt=&#34;ARP Message (Broadcast)&#34; title=&#34;ARP-Message&#34;&gt;&lt;/a&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/02/arp-message.png&#34;&gt;&lt;/a&gt; For example PC-1 (192.168.1.1) is trying to send to PC-2 (192.1681.2) since both of these computers are on the same network, (PC-1 checks the destination &lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;subnet mask&lt;/a&gt; and IP address to see if they are on the same network which they are) if PC-1 knows the MAC address of PC-2 it will put the IP address of PC-2 in the destination address field along with other information not related to this tutorial and forward the packet. If PC-1 does not know the MAC address it will send and ARP request, what this request does is send a broadcast message to all other &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PCs&lt;/a&gt; and devices connected on the 192.168.1.0 network. This message wants to find the MAC address of the host connected to 192.168.1.2, once PC-2 gets the message it will send its MAC address to PC-1. PC-1 will then forward the packet to PC-2.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If the destination IP address is not in the same subnet or network has PC-1 then PC-1 will send the packet to its default gateway.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If PC-1 does not have the MAC address to the default gateway (R1) then send a ARP request to get the MAC address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example PC-1 (192.168.1.1) is trying to send to R1 (192.168.1.254) because the packet is not in the same network, PC-1&#39;s main goal is to send to a webserver (154.63.2.1) (PC-1 checks the destination subnet mask and IP address to see if they are on the same network which they are not) if PC-1 knows the MAC address of R1 it will put the IP address of R1 in the destination address field along with other information not related to this tutorial, and forward the packet. If PC-1 does not know the MAC address it will send and ARP request, what this request does is send a broadcast message to all other PCs and devices connected on the 192.168.1.0 network. This message wants to find the MAC address of the host connected to 192.168.1.254, once R1 gets the message it will send its MAC address to PC-1. PC-1 will then forward the packet/frame. Once the frame is received by R1 the router will first check the data-link FCS field. If the frame received errors the router will drop the packet. If the frame has no errors the router will rip off the old data link header and trailer and then look at the IP packet. The router then compares the IP packet&#39;s destination address. If the router has the IP address in its routing table the router will encapsulate the IP packet inside a new data link layer header and trailer and forward it out the correct interface, thus forwarding the frame. Confusued? Let&#39;s go into some more detail of what happened. &lt;a href=&#34;http://ciscoskills.net/2011/03/16/how-a-router-routes/route-example/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/02/route-example.png?w=300&#34; alt=&#34;&#34; title=&#34;Route-Example&#34;&gt;&lt;/a&gt; Looking at the topology PC-1 wants to send a packet to the web server. Since the web server is not on PC-1&#39;s network it will need to send the packet to its default gateway which is R1. PC-1 will build an IP packet with the destination IP address of the web server (154.63.2.1). PC-1 sends this has an &lt;a href=&#34;http://en.wikipedia.org/wiki/Ethernet_frame&#34; title=&#34;Ethernet frame&#34;&gt;Ethernet frame&lt;/a&gt; with the destination IP address of R1 and has the MAC address of R1. R1 receives the frame and because the MAC address matches R1, the router will copy the frame and process it. R1 checks the FCS and no errors have occurred, next the router will then discard the old Ethernet header and trailer. R1 will compare the address and see if it has a match in its routing table; if there is not match the router will drop the frame. However the router finds an entry in its table to (154.63.2.1) the frame is forwarded out the router serial interface. The router encapsulates the packet and forwards out serial interface in an HDLC frame towards the next router. This will repeat the same steps in each router as along as the routers have a route to that destination it will then eventually be received by the router connected to the web server. This router will send an ARP message that wants to know who is 154.63.2.1? That broadcast message will be received by all devices connected to the 154.63.2.0 network. The web server will respond and send the MAC address to the router and the router will then forward the packet to the web server. That&#39;s the basic understanding of how routers forward traffic, this tutorial only scratched the surface with how routers route along with keeping it simple some things were skipped in this tutorial. If you would like to find more information take a look at Cisco.com which is a great place to get started. Questions or comments are also welcomed.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cisco Modeling Labs on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/cisco-modeling-labs/</link>
+    <description>Recent content in Cisco Modeling Labs on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 05 Dec 2014 03:45:43 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/cisco-modeling-labs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco VIRL is out ... for a price</title>
+      <link>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</link>
+      <pubDate>Fri, 05 Dec 2014 03:45:43 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34; alt=&#34;virl-logo&#34;&gt;&lt;/a&gt;Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CML is Cisco TAC supported so you can call Cisco.  With VIRL you have community to help you out.&lt;/li&gt;
+&lt;li&gt;You have cap of 15 devices with VIRL. The CML version capacity is dependent on the hardware its running on.&lt;/li&gt;
+&lt;li&gt;CML is  for the &amp;quot;Big Guys&amp;quot;, and way more expensive. VIRL is just for personal/training use. (i.e CCNA, CCNP, CCIE)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To be upfront I have not purchased VIRL so I can&#39;t tell you my thoughts on the product itself but personally I think this is great way to learn and study Cisco certifications when looking at CCNP and even CCIE. This is way cheaper than buying hardware or renting rack space. The price is $199.99 a year and I would assume this would cover any updates the product has. Cisco is also selling an Academic Version for $79.99 a year with some extra terms attached to it. I&#39;m curious if anybody has any thoughts on VIRL, what advantages do you think this network simulation program (VIRL) has compared to GNS3? What do you think VIRL&#39;s target audience is? Is this price too high? Finally do you think the product is too green? Are you going to buy it or wait and see? Comment below. Links: &lt;a href=&#34;http://virl.cisco.com/&#34;&gt;http://virl.cisco.com/&lt;/a&gt; &lt;a href=&#34;http://community.dev-innovate.com/c/virl&#34;&gt;http://community.dev-innovate.com/c/virl&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Modeling Labs … Waiting</title>
+      <link>https://ciscoskills.net/2014/06/cisco-modeling-labs-waiting/</link>
+      <pubDate>Sat, 28 Jun 2014 20:49:34 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/06/cisco-modeling-labs-waiting/</guid>
+      <description>
+        
+          &lt;p&gt;Just waiting for CML, (Cisco Modeling Labs) it’s been little over a month since going to Cisco Live in San Francisco and with all the information of next-generation hardware and security with Source Fire I was pretty beat with a lot of note taking and PowerPoint slides. However the last session on the last day of the Cisco Live talked about Cisco’s Modeling Lab program. I also tried it out in the Cisco DevNet area earlier in the week during Cisco Live and I was impressed with the product. When does CML release? Well during the session it was said to wait for about 60 days, which would put this release towards the end of July/August time frame hopefully. ;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Product is an OVF template that support Windows and MAC computers using VMware’s Player or Fusion depending if you are on a Windows PC or Mac computer. (I would guess VMware Workstation would also work :) )&lt;/li&gt;
+&lt;li&gt;For the personal/developer edition Joel Obstfeld who was the presenter in this session said the product will be available for free under the Cisco DevNet Program with community support and an unlimited number of devices. (Depends on the hardware you have) I also came across some information on CLN and &lt;a href=&#34;http://www.mostlynetworks.com/&#34; title=&#34;Mostly Networks&#34;&gt;Mostly Networks&lt;/a&gt; that under the DevNet program the software would stay to be called VIRL, but under the corporate version this product would be called Cisco Model Labs 1.0.&lt;/li&gt;
+&lt;li&gt;The personal edition will collect data like what kinds of devices are lunching and features you are activating as well as statistics all of which would be sent over plain text. Joel did mention that configuration information would not be sent over.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What are your thoughts on CML? Links:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cisco.com/web/learning/learning_services/cml.html&#34; title=&#34;Cisco Modeling Labs&#34;&gt;Cisco Modeling Labs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.cisco.com/site/devnet/home/index.gsp&#34; title=&#34;Cisco DevNet&#34;&gt;Cisco DevNet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.mostlynetworks.com/2014/05/cisco-live-2014-day-1/&#34; title=&#34;Mostly Networks -- Cisco Live 2014 Day 1&#34;&gt;Cisco Live Day 1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;EDIT: As of 9/25/14:&lt;/strong&gt; I have not been able find much information about CML/VIRL and it seemed like it dropped off. :( However for corporate customers CML is alive and available if you want to pay for it. I was able find some information from Shaun who is a Systems Engineer for Cisco. (&lt;a href=&#34;http://www.4g1vn.com/2014/09/cml-1-0-first-impressions-getting-started/&#34; title=&#34;Cisco Modeling Labs 1.0: First Impressions &amp;amp; Getting Started&#34;&gt;Cisco Modeling Labs 1.0: First Impressions &amp;amp; Getting Started&lt;/a&gt;)In his post he mentions VIRL but does not have official date and it would most likely be released with the &lt;a href=&#34;https://developer.cisco.com/site/devnet/home/index.gsp&#34;&gt;Cisco DEVNET&lt;/a&gt; program.... Good things come for those who wait :)&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

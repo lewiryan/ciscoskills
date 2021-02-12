@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Password Authentication Protocol on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/password-authentication-protocol/</link>
+    <description>Recent content in Password Authentication Protocol on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 22 Feb 2012 03:09:12 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/password-authentication-protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HDLC vs. PPP</title>
+      <link>https://ciscoskills.net/2012/02/hdlc-vs.-ppp/</link>
+      <pubDate>Wed, 22 Feb 2012 03:09:12 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/02/hdlc-vs.-ppp/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/High-Level_Data_Link_Control&#34; title=&#34;High-Level Data Link Control&#34;&gt;HDLC&lt;/a&gt; and PPP are considered to be in layer 2 of the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt;. There are some differences between which will be describe in this post, If you would like to learn more about at least the basic configuration of PPP including PAP and CHAP check out the post I wrote about year ago. (&lt;a href=&#34;http://ciscoskills.net/2011/01/18/basic-ppp-configuration/&#34; title=&#34;Basic PPP Configuration&#34;&gt;Basic PPP Configuration&lt;/a&gt;) HDLC was first developed by the ISO Cisco tweaked the protocol sometimes called &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_HDLC&#34; title=&#34;Cisco HDLC&#34;&gt;cHDLC&lt;/a&gt; and because of this it only works with Cisco equipment. PPP is defined by RFC 1968 which is an open standard and is able to work on multi-vender equipment. The default setting of a Cisco serial interfaces is to use HDLC encapsulation, You generally don&#39;t have to change this unless you are working with multivendor environments. Then you are going to have to change that encapsulation type to PPP or if you want some of the features that PPP offers. PPP offers many features that HDLC does not including the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Authentication through the &lt;a href=&#34;http://en.wikipedia.org/wiki/Password_authentication_protocol&#34; title=&#34;Password authentication protocol&#34;&gt;Password Authentication Protocol&lt;/a&gt; (PAP) and the &lt;a href=&#34;http://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol&#34; title=&#34;Challenge-Handshake Authentication Protocol&#34;&gt;Challenge-Handshake Authentication Protocol&lt;/a&gt; (CHAP)&lt;/li&gt;
+&lt;li&gt;Compression capabilities with Stacker or Predictor&lt;/li&gt;
+&lt;li&gt;PPP Multilink, the ability to bundle physical channels into a single logical channel.&lt;/li&gt;
+&lt;li&gt;Support for &lt;a href=&#34;http://en.wikipedia.org/wiki/Error_detection_and_correction&#34; title=&#34;Error detection and correction&#34;&gt;Error detection&lt;/a&gt; and error recovery features&lt;/li&gt;
+&lt;li&gt;Encapsulation for multiple routed protocols, including IP, Novell &lt;a href=&#34;http://en.wikipedia.org/wiki/Internetwork_Packet_Exchange&#34; title=&#34;Internetwork Packet Exchange&#34;&gt;IPX&lt;/a&gt;, and &lt;a href=&#34;http://en.wikipedia.org/wiki/AppleTalk&#34; title=&#34;AppleTalk&#34;&gt;AppleTalk&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;also-note-that-passwords-are-case-sensitive-when-using-pap-and-chap-multilink-ppphttpenwikipediaorgwikipoint-to-point_protocol-point-to-point-protocol-mppp-basically-allows-us-to-bundle-multiple-physical-wan-links-into-one-logical-link-there-are-some-different-reasons-for-doing-this-and-they-generally-depend-on-the-network-topology-but-the-common-reason-is-using-it-over-isdnhttpenwikipediaorgwikiintegrated_services_digital_network-integrated-services-digital-network-links-to-allow-the-data-packets-to-be-broken-up-into-fragments-in-turn-this-fragmentation-allows-for-greater-load-balancing-where-the-physical-links-will-carry-a-similar-load-than-one-link-carry-most-of-the-load-this-is-like-etherchannelhttpenwikipediaorgwikietherchannel-etherchannel-ppp-also-allows-us-to-enable-one-of-two-compression-techniques-stacker-or-predictor-both-are-enabled-with-the-interface-level-command-_compress_-the-differences-between-the-two-are-beyond-the-ccna-but-a-simple-web-search-would-do-if-you-are-itching-for-an-answer-like-always-i-hope-this-short-and-sweet-post-is-helpful-and-if-you-have-questions-feel-free-to-post-them-also-give-me-some-other-ideas-that-deal-with-either-icnd1-or-icnd2-check-back-later-as-i-want-to-bring-up-a-more-in-depth-look-about-ppp&#34;&gt;Also note that Passwords are case sensitive when using PAP and CHAP. &lt;a href=&#34;http://en.wikipedia.org/wiki/Point-to-Point_Protocol&#34; title=&#34;Point-to-Point Protocol&#34;&gt;Multilink PPP&lt;/a&gt; (MPPP) basically allows us to bundle multiple physical WAN links into one logical link. There are some different reasons for doing this and they generally depend on the network topology, but the common reason is using it over &lt;a href=&#34;http://en.wikipedia.org/wiki/Integrated_Services_Digital_Network&#34; title=&#34;Integrated Services Digital Network&#34;&gt;ISDN&lt;/a&gt; links to allow the data packets to be broken up into fragments. In turn this fragmentation allows for greater load balancing, where the physical links will carry a similar load than one link carry most of the load. (This is like &lt;a href=&#34;http://en.wikipedia.org/wiki/EtherChannel&#34; title=&#34;EtherChannel&#34;&gt;EtherChannel&lt;/a&gt; ). PPP also allows us to enable one of two compression techniques, Stacker or Predictor. Both are enabled with the interface-level command &amp;quot;&lt;em&gt;compress&amp;quot;&lt;/em&gt; The differences between the two are beyond the CCNA but a simple web search would do if you are itching for an answer. Like always I hope this short and sweet post is helpful and if you have questions feel free to post them, also give me some other ideas that deal with either ICND1 or ICND2. Check back later as I want to bring up a more in depth look about PPP.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/05/14/icnd2-passed/&#34; title=&#34;&#34;&gt;ICND2 – Passed! | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-05-14 20:33:01&#34;&gt;May 1, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] HDLC vs. PPP (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

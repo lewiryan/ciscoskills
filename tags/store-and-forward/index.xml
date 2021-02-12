@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Store and forward on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/store-and-forward/</link>
+    <description>Recent content in Store and forward on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 05 Oct 2011 16:10:00 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/store-and-forward/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Store-and-Forward vs. Cut-Through Switching</title>
+      <link>https://ciscoskills.net/2011/10/store-and-forward-vs.-cut-through-switching/</link>
+      <pubDate>Wed, 05 Oct 2011 16:10:00 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/10/store-and-forward-vs.-cut-through-switching/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/10/network-cable-color.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/10/network-cable-color.png&#34; alt=&#34;&#34; title=&#34;Network-Cable-Color&#34;&gt;&lt;/a&gt;Switching in the network can happen in two ways, these layer-two devices send frames but they can forward them in different ways. These different modes have positive and negative effects which depend on the type of network environment that runs through them! Store-and-forward is just like the name suggests, the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_switch&#34; title=&#34;Network switch&#34;&gt;switch&lt;/a&gt; receives a frame on a port and stores the frame in it&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_buffer&#34; title=&#34;Data buffer&#34;&gt;memory buffer&lt;/a&gt; until the frame has been completely received. The switch analyzes the frame for information about its destination and uses &lt;a href=&#34;http://en.wikipedia.org/wiki/Cyclic_redundancy_check&#34; title=&#34;Cyclic redundancy check&#34;&gt;CRC&lt;/a&gt; (cyclic redundancy check) a mathematical formula based on the number  of 1 bits in the frame to decide whether the frame has an error. After confirming its integrity the frame is forward out the correct port and toward its destination. If a frame is corrupted the switch discards it and less bandwidth is wasted on the unusable frame. Some other useful information about store and forward switching is it is required for &lt;a href=&#34;http://en.wikipedia.org/wiki/Quality_of_service&#34; title=&#34;Quality of service&#34;&gt;QoS (Quality of  Service)&lt;/a&gt;. Cut-through switching acts on the data as soon as it is received, even if the transmission is not complete! The switch only buffers enough of the frame to read the destination &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt; so that it can then decide were to  send the frame. This is located in the first 6 &lt;a href=&#34;http://en.wikipedia.org/wiki/Byte&#34; title=&#34;Byte&#34;&gt;bytes&lt;/a&gt; of the frame. The switch looks at the MAC address in its own MAC address table and starts to forward the frame.  The switch does not perform any &lt;a href=&#34;http://en.wikipedia.org/wiki/Error_detection_and_correction&#34; title=&#34;Error detection and correction&#34;&gt;error checking&lt;/a&gt; on the frame because it can start forwarding the frame immediately after the first 6 bytes. Cut-through switching is faster than &lt;a href=&#34;http://en.wikipedia.org/wiki/Store_and_forward&#34; title=&#34;Store and forward&#34;&gt;store-and-forward&lt;/a&gt; but because there is no error checking if there is corrupt frames the switch forwards them into the network using up bandwidth the end device would eventually discard the frame. There is also another type of &lt;a href=&#34;http://en.wikipedia.org/wiki/Cut-through_switching&#34; title=&#34;Cut-through switching&#34;&gt;cut-through switching&lt;/a&gt; which is &lt;a href=&#34;http://en.wikipedia.org/wiki/Fragment_free&#34; title=&#34;Fragment free&#34;&gt;fragment-free&lt;/a&gt; switching.  This is the best of both worlds, it stores the first 64 bytes of the frame Why only 64 bytes? Most problems occur at the first 64 bytes of the frame like collisions. The switch tries to enhance cut-through by using a small error check and then forwards the frame. That&#39;s my post about these methods of switching both are good and bad depending on the network environment. Like always I hope this information is helpful and ff you have an idea of the next topic either ICND1 or ICND2  let me know by posting a comment below. Questions? go ahead and post them!&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/&#34;&gt;The Beginnings of Layer Two Redundancy&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/&#34;&gt;The Middle of Layer Two Redundancy&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mungauwamaseghe.wordpress.com/2011/09/07/journey-to-ccie-lab-exam-part-22-stp-bridge-election/&#34;&gt;Journey to CCIE LAB EXAM - Part 22 - STP Bridge Election&lt;/a&gt; (mungauwamaseghe.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/digging-deeper-into-vxlan/&#34;&gt;Digging Deeper into VXLAN, Part 1&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wiki.answers.com/Q/What_is_fragment-free_switching&#34;&gt;What is fragment-free switching&lt;/a&gt; (wiki.answers.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22enod2008@gmail.com%22&#34;&gt;KevinOelen&lt;/a&gt; - &lt;time datetime=&#34;2011-10-05 20:56:53&#34;&gt;Oct 3, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Ahhh now I understand difference between them. Thank you!, keep posting bro! I&#39;m you new reader ;-)&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[eda wanjiru]( &#34;edawanjiru1@gmail.com&#34;) - &lt;time datetime=&#34;2012-03-27 03:26:33&#34;&gt;Mar 2, 2012&lt;/time&gt;
+&lt;p&gt;It&#39;s clear and concise,i like it.&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-03-28 18:58:11&#34;&gt;Mar 3, 2012&lt;/time&gt;
+&lt;p&gt;Thanks, :)&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2011-10-08 12:21:37&#34;&gt;Oct 6, 2011&lt;/time&gt;
+&lt;p&gt;Glad it helped :)&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

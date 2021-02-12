@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Regional Internet registry on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/regional-internet-registry/</link>
+    <description>Recent content in Regional Internet registry on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 23 Aug 2012 01:03:46 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/regional-internet-registry/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why IPv6?</title>
+      <link>https://ciscoskills.net/2012/08/why-ipv6/</link>
+      <pubDate>Thu, 23 Aug 2012 01:03:46 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/08/why-ipv6/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-i-love.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-i-love.png&#34; alt=&#34;&#34; title=&#34;I-Love-IPv6&#34;&gt;&lt;/a&gt;Although this protocol has been around since 1996 it has been anticipated that IPv4 would one day be exhausted. In February 2011 the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; title=&#34;Internet Assigned Numbers Authority&#34;&gt;Internet Assigned Numbers Authority&lt;/a&gt; (IANA) assigned the last /8 address blocks to the &lt;a href=&#34;http://en.wikipedia.org/wiki/Regional_Internet_registry&#34; title=&#34;Regional Internet registry&#34;&gt;Regional Internet Registries&lt;/a&gt; so time is getting close but you have heard this warning before right? Let&#39;s go over IPv6 at least just an overview some the features and changes compared to IPv4 because one day it will happen it&#39;s just a matter of when. :) So the first thing to understand about IPv6 is that it&#39;s a 128-bit binary value, which is displayed as 32 hexadecimal digits. What does this mean in the size or scope of the addresses?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Well it has been suggested that if you were to give everyone in the world the entire IPv4 scope (4,294,267,295 addresses), you still would have more than enough IPv6 address!&lt;/li&gt;
+&lt;li&gt;You could give everyone on the planet trillions of IPv6 addresses and still have leftovers!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many enhancements that IPv6 offers compared to IPv4 like such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Enhanced &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP addressing&lt;/a&gt; – Improved global reachability and flexibility along with better &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;IP prefixes&lt;/a&gt; announced in routing tables.&lt;/li&gt;
+&lt;li&gt;Say goodbye to broadcasts because there&#39;s none in IPv6 and no threat of broadcast storms.&lt;/li&gt;
+&lt;li&gt;Multi-homed hosts a technique to increase reliability of the internet, because each host can have multiple IP addresses with one physical link. This makes it easier to have this host be connected to different ISP at the same time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&#39;s compare the &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv4&#34; title=&#34;IPv4&#34;&gt;IPv4 header&lt;/a&gt; with IPV6. There less junk in the IPv6 header and because  of that less overhead when compared to IPv4, we have better routing within the network and no checksums. &lt;a href=&#34;http://ciscoskills.net/2012/08/22/why-ipv6/ipv4-headw/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv4-headw.png&#34; alt=&#34;An IPv4 Header&#34; title=&#34;IPv4 Header&#34;&gt;&lt;/a&gt; As you can see the IPv6 header looks simpler and although it is 40 octets compared to the IPv4 header which is 20 octets. IPv6 has to have &lt;a href=&#34;http://en.wikipedia.org/wiki/IPsec&#34; title=&#34;IPsec&#34;&gt;IPsec&lt;/a&gt; which is a mandatory part for IPv6 unlike IPv4 which is an option. (Security, Security, Security) &lt;a href=&#34;http://ciscoskills.net/2012/08/22/why-ipv6/ipv6-headw/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-headw.png&#34; alt=&#34;An IPv6 Header&#34; title=&#34;IPv6 Header&#34;&gt;&lt;/a&gt; Since IPv6 and IPv4 don&#39;t work together directly how can we ever switch over? There are transition solutions like Dual Stacking, 6to4 tunneling and &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv6_transition_mechanisms&#34; title=&#34;IPv6 transition mechanisms&#34;&gt;NAT-PT&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/ISATAP&#34; title=&#34;ISATAP&#34;&gt;ISATAP&lt;/a&gt; tunneling and &lt;a href=&#34;http://en.wikipedia.org/wiki/Teredo_tunneling&#34; title=&#34;Teredo tunneling&#34;&gt;Teredo tunneling&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dual Stacking – is a method of basically running both IPv4 and IPv6 in the network environment and using IPv6 as the preferred protocol.&lt;/li&gt;
+&lt;li&gt;6to4 tunneling – which automatically establishes connections to IPv6 networks through IPv4 network, like the internet. It applies a valid IPv6 prefix to each &amp;quot;island&amp;quot; thus enables a fast deployment of IPv6 in corporate without having the ISP to be involved.&lt;/li&gt;
+&lt;li&gt;Intra-Site Automatic Tunnel Addressing Protocol (ISATAP) tunneling - which is another tunneling option which uses the IPv4 network as the link layer of IPv6.&lt;/li&gt;
+&lt;li&gt;Teredo Tunneling – this provides host-to-host automatic tunneling instead of relying on the gateway. This passes IPv6 traffic when dual-stacked hosts (Systems that are running IPv4 and IPv6 are located behind one or multiple IPv4 &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_address_translation&#34; title=&#34;Network address translation&#34;&gt;NATs&lt;/a&gt;. (By default this is already running on Windows Vista and Windows 7 if you do the command &amp;quot;ipconfig&amp;quot; in command you&#39;ll see it)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;IPv6 is not new and some countries already have it in place. We the United States just wanted to delay it because no body likes to change, but the awesome part about this is to the average user nobody should know and the internet lives on. That&#39;s really the rundown of IPv6 of course there&#39;s more but for an overview of IPv6 it is not a bad start. I hope this information is helpful and if you have questions let&#39;s see if I can answer them or if anybody else can.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/borderless/ipv6-peering-part-2-the-next-steps-for-isp-interfacing/&#34;&gt;IPv6 Peering, Part 2: The Next Steps for ISP Interfacing&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.circleid.com/posts/20120719_ipv6_subnetting_the_paradigm_shift/&#34;&gt;IPv6 Subnetting - The Paradigm Shift&lt;/a&gt; (circleid.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2012/08/21/verity_stob_ipv6/&#34;&gt;How I Learned to Stop Worrying and Love IPv6&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.slumpedoverkeyboarddead.com/2012/09/03/what-is-a-class-abc-ip-address/&#34; title=&#34;&#34;&gt;Slumped Over Keyboard Dead | That�s how they�ll find me one day… » What Is A Class A,B,C IP Address?&lt;/a&gt; - &lt;time datetime=&#34;2012-09-03 08:55:51&#34;&gt;Sep 1, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Why IPv6? (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

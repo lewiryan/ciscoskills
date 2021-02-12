@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Routing on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/routing/</link>
+    <description>Recent content in Routing on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 14 May 2019 19:00:40 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/routing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SVIs and &#34;Routed&#34; Ports</title>
+      <link>https://ciscoskills.net/2019/05/svis-and-routed-ports/</link>
+      <pubDate>Tue, 14 May 2019 19:00:40 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2019/05/svis-and-routed-ports/</guid>
+      <description>
+        
+          &lt;p&gt;So you have a this nice multiplayer switch, and want to take advantages of all of the features it has to offer. Well there are two different types interface ports on these type of switches. SVIs (Switched Virtual Interface) and &amp;quot;routed&amp;quot; ports, fundamentally they are same and clients/users wouldn&#39;t be able to tell if you were using/going through an SVI or a &amp;quot;routed&amp;quot; port. However they are different and in this post we&#39;ll talk about these two and when and were it would be recommended to place an SVI or a routed port.&lt;/p&gt;
+&lt;p&gt;In order to pass traffic between networks we need a router. Switches work in layer two and routers work in layer three, this separation of duties between devices works well. Doing something like &lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34;&gt;Configuring Router on Stick&lt;/a&gt;, is easier to troubleshoot and usually cheaper to implement. It only becomes a problem when we run out of resources like bandwidth.&lt;/p&gt;
+&lt;p&gt;Looking on the example below, we have three different networks all branching off of this router. The router has three networks configured on this interface the red network, teal network and the blue network. In order for PC1 to reach PC2 it has use the router even through they are plugged on the same switch, they are on different VLANs, different networks. If PC1 was transferring a lot of data between PC2 it could easily tap out that router&#39;s interface. Other devices on those networks like PC3 would become bandwidth starved and struggle to get a good connection for inter-vlan connectivity. &lt;img src=&#34;https://ciscoskills.net/images/2018/07/router-on-a-stickee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;However a multilayered switch which has usually plenty of bandwidth on its back plane and would be able to handle this easily and in this example this would be great use case  to create and SVI interface for each network. To create an SVI:&lt;/p&gt;
+&lt;p&gt;We have to have a VLAN created first, in this example lets use 105.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(config)# vlan 105
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;switch(config-vlan)# name RED-NETWORK
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;switch(config-vlan)# exit switch(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We then create an interface VLAN, referencing  the VLAN we created in step one and apply an IP address and subnet mask on VLAN interface.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(config)# interface vlan 105
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;switch(config-if)# ip address 192.168.150.1 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;switch(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;switch(config-if)# exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On the interfaces that belong to that VLAN in this example PC1 apply the VLAN and verify the interface is in switchport mode.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(config)# interface ethernet 1/1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;switch(config-if)# switchport
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;switch(config-if)# switchport mode access
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;switch(config-if)# switchport access vlan 105
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;switch(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;switch(config-if)# exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is the configuration for the TEAL Network, if we wanted to configure the BLUE network just put it into a different VLAN and separate IP network.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;switch(config)# vlan 110
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;switch(config-vlan)# name TEAL-NETWORK
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;switch(config-vlan)# exit
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;switch(config)# interface vlan 110
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;switch(config-if)# ip address 192.168.160.1 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;switch(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;switch(config-if)# exit
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;switch(config)# interface ethernet 1/2
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;switch(config-if)# switchport
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;switch(config-if)# switchport mode access
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;switch(config-if)# switchport access vlan 110
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;switch(config-if)# exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can then verify that the switch has a routing table by issuing show ip route and if we also run the command show ip interface brief and you can see the interface-vlans&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;switch# show ip route
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;IP Route Table for VRF &amp;#34;default&amp;#34;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&amp;#39;*&amp;#39; denotes best ucast next-hop
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&amp;#39;**&amp;#39; denotes best mcast next-hop
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;&amp;#39;[x/y]&amp;#39; denotes [preference/metric]
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;&amp;#39;%&amp;#39; in via output denotes VRF
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;192.168.150.0/24, ubest/mbest: 1/0, attached
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;*via 192.168.150.1, Vlan105, [0/0], 00:06:03, direct
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;192.168.150.1/32, ubest/mbest: 1/0, attached
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;*via 192.168.150.1, Vlan105, [0/0], 00:06:03, local
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;192.168.160.0/24, ubest/mbest: 1/0, attached
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;*via 192.168.160.1, Vlan110, [0/0], 00:01:59, direct
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;192.168.160.1/32, ubest/mbest: 1/0, attached
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;*via 192.168.160.1, Vlan110, [0/0], 00:01:59, local
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;switch# show ip interface brief
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;IP Interface Status for VRF &amp;#34;default&amp;#34;(1)
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Interface            IP Address      Interface Status
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;Vlan105              192.168.150.1   protocol-up/link-up/admin-up
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;Vlan110              192.168.160.1   protocol-up/link-up/admin-up
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;switch#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can also verify that PC1 and PC2 can ping each other. PC2 pinging PC1&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;PC-2&amp;gt; ping 192.168.150.10
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;192.168.150.10 icmp_seq=1 timeout
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;192.168.150.10 icmp_seq=2 timeout
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;84 bytes from 192.168.150.10 icmp_seq=3 ttl=63 time=15.258 ms
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;84 bytes from 192.168.150.10 icmp_seq=4 ttl=63 time=19.669 ms
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;84 bytes from 192.168.150.10 icmp_seq=5 ttl=63 time=19.113 ms
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;PC1 pinging PC2&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;PC-1&amp;gt; ping 192.168.160.10
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;84 bytes from 192.168.160.10 icmp_seq=1 ttl=63 time=17.825 ms
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;84 bytes from 192.168.160.10 icmp_seq=2 ttl=63 time=19.710 ms
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;84 bytes from 192.168.160.10 icmp_seq=3 ttl=63 time=18.503 ms
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;84 bytes from 192.168.160.10 icmp_seq=4 ttl=63 time=18.577 ms
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;84 bytes from 192.168.160.10 icmp_seq=5 ttl=63 time=9.817 ms
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;SVI&#39;s are great for inter-vlan connectivity and for devices that are &amp;quot;physically&amp;quot; close to each other. I would shy away using an SVI when we are connecting different buildings/sites, and if we a using a some type of transit network to get from point A to point B. Using a routed port is not only easier to configure its easier to troubleshoot, we don&#39;t have worry about the problems layer two brings us, like for example redundancy and spanning-tree we just focus on layer three and the redundancies that layer three can offer us.  In this example this switch is connected to another switch with multiple links using routed ports. To create a routed port:&lt;/p&gt;
+&lt;p&gt;Go into the interface and turn off switchport and add an IP address&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(config)# interface ethernet 1/4
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;switch(config-if)# no switchport
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;switch(config-if)# ip address 192.168.253.1 255.255.255.252
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;switch(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;switch(config-if)# exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you have multiple routed ports for redundancy, add another routed port with a different network.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(config)# interface ethernet 1/5
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;switch(config-if)# no switchport
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;switch(config-if)# ip add 192.168.253.5 255.255.255.252
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;switch(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;switch(config-if)# exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We would do the same thing on the other side of the link and make sure our networks match so that each switch can reach other out of the two routed ports we created and in this example they can.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;switch(config)# show ip interface brief
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;IP Interface Status for VRF &amp;#34;default&amp;#34;(1)
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Interface            IP Address      Interface Status
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Eth1/4               192.168.253.2   protocol-up/link-up/admin-up
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Eth1/5               192.168.253.6   protocol-up/link-up/admin-up
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;switch(config)#
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;switch(config)# ping 192.168.253.1
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;PING 192.168.253.1 (192.168.253.1): 56 data bytes
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;64 bytes from 192.168.253.1: icmp_seq=0 ttl=254 time=1.368 ms
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;64 bytes from 192.168.253.1: icmp_seq=1 ttl=254 time=1.205 ms
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;64 bytes from 192.168.253.1: icmp_seq=2 ttl=254 time=2.099 ms
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;64 bytes from 192.168.253.1: icmp_seq=3 ttl=254 time=1.166 ms
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;64 bytes from 192.168.253.1: icmp_seq=4 ttl=254 time=1.353 ms
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;--- 192.168.253.1 ping statistics ---
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;5 packets transmitted, 5 packets received, 0.00% packet loss
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;round-trip min/avg/max = 1.166/1.438/2.099 ms
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;switch(config)# ping 192.168.253.5
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;PING 192.168.253.5 (192.168.253.5): 56 data bytes
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;64 bytes from 192.168.253.5: icmp_seq=0 ttl=254 time=1.45 ms
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;64 bytes from 192.168.253.5: icmp_seq=1 ttl=254 time=1.28 ms
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;64 bytes from 192.168.253.5: icmp_seq=2 ttl=254 time=0.995 ms
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;64 bytes from 192.168.253.5: icmp_seq=3 ttl=254 time=1.408 ms
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;64 bytes from 192.168.253.5: icmp_seq=4 ttl=254 time=1.303 ms
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;--- 192.168.253.5 ping statistics ---
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;5 packets transmitted, 5 packets received, 0.00% packet loss
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;round-trip min/avg/max = 0.995/1.287/1.45 ms
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;switch(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Although you could have created an SVI for these point to point links, I don&#39;t think there&#39;s a reason. We can configure multiple static routes or using a routing protocol to handle the links if they go down and we only deal with layer three, which is keeping it simple. Like always I hope this information is helpful. -Ryan&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>GLBP Load Balancing</title>
+      <link>https://ciscoskills.net/2017/08/glbp-load-balancing/</link>
+      <pubDate>Thu, 17 Aug 2017 14:15:23 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/08/glbp-load-balancing/</guid>
+      <description>
+        
+          &lt;p&gt;We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.2(14)S, please welcome and &amp;quot;slow clap&amp;quot; the Gateway Load Balancing protocol, who has been around since 2002!&lt;/p&gt;
+&lt;p&gt;So the way this protocol works is you must have at least two devices (makes sense) in a GLBP group. The GLBP group has one AVG (Active Virtual Gateway) and multiple AVFs (Active Virtual Forwarders) if you have more than two devices. The AVG is the master of the group and assigns virtual MAC address to each AVF member. Remember each AVF is responsible for forwarding packets sent to their virtual MAC address, they act independently from the AVG.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: The AVG is also an AVF When a PC/server makes an ARP request to reach the default gateway each router in the GLBP group share the load by default one client will get a MAC address from one router, while the other client will get an address from another router but both clients point to the same IP address for the default gateway.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In this example I have two different GLBP networks, the 192.168.1.0/24 and the 192.168.2.0/24 with three routers in each LAN. I also have a routing protocol running  between the routers (&lt;a href=&#34;http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/&#34;&gt;Named EIGRP&lt;/a&gt;) to better handle the multiple paths as well as recover from failed links.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/07/glbp.png&#34; alt=&#34;GLBP network with three routers&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To configure GLBP let&#39;s start on the 192.168.1.0/24 network, we have to configure the following on each router that belongs to the 192.168.1.0/24, which would be R1, R2, and R3, this configuration is under the interface that belongs to the 192.168.1.0/24 network. (Gigabit0/1)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 ip 192.168.1.1 glbp 1 preempt glbp 1 authentication md5 key-string cisco123
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we care which router is the AVG and which one is in succession we would have to configure the priority, higher is better. In this example we want R1 the AVG, R2 and R3 are backup AVGs. We also want to do the same thing for R4, R5, and R6 with R4 the AVG, R5 and R6 backup AVGs. On R1 and R4 under interface (Gigabit0/1):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 200
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On R2 and R5 under interface (Gigabit0/1):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 175
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On R3 and R6 under interface (Gigabit0/1):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 150
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can verify if everything works by issuing the command show glbp brief&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show glbp brief
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Gi0/1       1    -   200 Active   192.168.1.1     local           192.168.1.12
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Gi0/1       1    1   -   Active   0007.b400.0101  local           -
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Gi0/1       1    2   -   Listen   0007.b400.0102  192.168.1.12    -
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Gi0/1       1    3   -   Listen   0007.b400.0103  192.168.1.13    -
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;R4#show glbp brief
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Gi0/1       1    -   200 Active   192.168.2.1     local           192.168.2.15
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Gi0/1       1    1   -   Active   0007.b400.0101  local           -
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Gi0/1       1    2   -   Listen   0007.b400.0102  192.168.2.15    -
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Gi0/1       1    3   -   Listen   0007.b400.0103  192.168.2.16    -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we look at PC1 we can ping PC3 which tells us routing is working as well as GLBP. Looking at the ARP table on PC1 we notice that the default gateway MAC address is 00:07:b4:00:01:01&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;ping 192.168.1.21
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Pinging 192.168.1.21 with 32 bytes of data:
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time&amp;lt;1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time&amp;lt;1ms TTL=126 
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;Ping statistics for 192.168.1.21:      
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss), 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Approximate round trip times in milli-seconds:  
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    Minimum = 0ms, Maximum = 1ms, Average = 0ms 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;arp -a
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Interface: 192.168.2.22 --- 0x10003
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  Internet Address      Physical Address      Type
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  192.168.2.1           00-07-b4-00-01-01     dynamic   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Looking on PC2 we can ping PC4, looking at the ARP table notice that MAC address is different from what PC1 has, which is exactly how GLBP works :)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;ping 192.168.1.22
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Pinging 192.168.1.22 with 32 bytes of data:
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Ping statistics for 192.168.1.22:
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Approximate round trip times in milli-seconds:
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;    Minimum = 1ms, Maximum = 1ms, Average = 1ms
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;arp -a
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;Interface: 192.168.2.21 --- 0x10003
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  Internet Address      Physical Address      Type
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  192.168.2.1           00-07-b4-00-01-03     dynamic
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  192.168.2.22          fa-16-3e-2d-9c-a5     dynamic   
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is a traceroute from PC3 going to PC1 notice the hops.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;tracert 192.168.2.21
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Tracing route to 192.168.2.21 over a maximum of 30 hops
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  1    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.1.12
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  2    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  172.16.0.18
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  3     1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.2.21  
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;Trace complete.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is a traceroute from PC4 going to PC2 notice the hops, a little different from PC3.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;tracert 192.168.2.22
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Tracing route to 192.168.2.22 over a maximum of 30 hops
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  1    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.1.13
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  2     1 ms    &amp;lt;1 ms    &amp;lt;1 ms  172.16.0.34
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  3     4 ms     1 ms    &amp;lt;1 ms  192.168.2.22 
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;Trace complete.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all I got for this one, if you want to continue reading about GLBP you go right to source &lt;a href=&#34;http://www.cisco.com/en/US/docs/ios/12_2t/12_2t15/feature/guide/ft_glbp.html#wp1043699&#34;&gt;GLBP - Gateway Load Balancing Protocol&lt;/a&gt;. This is a pretty simple and personally a neat little protocol and with the added benefit of using all of your hardware. Like always I hope this helps. - Ryan&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Inter-VLAN Routing on the Nexus 5k.</title>
+      <link>https://ciscoskills.net/2014/03/inter-vlan-routing-on-the-nexus-5k./</link>
+      <pubDate>Thu, 13 Mar 2014 15:45:41 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2014/03/inter-vlan-routing-on-the-nexus-5k./</guid>
+      <description>
+        
+          &lt;p&gt;I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let&#39;s go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.  In this example I have already configured a FEX port with a 2k check out the my earlier post &lt;a href=&#34;http://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/&#34; title=&#34;Connecting FEX (5k to 2k)&#34;&gt;Connecting FEX (5k to 2k)&lt;/a&gt; so let&#39;s start right after that and login into the 5k.&lt;code&gt;\[code\]User Access Verification demo5k login: admin Password: Cisco Nexus Operating System (NX-OS) Software TAC support: http://www.cisco.com/tac Copyright (c) 2002-2013, Cisco Systems, Inc. All rights reserved. The copyrights to certain works contained in this software are owned by other third parties and used and distributed under license. Certain components of this software are licensed under the GNU General Public License (GPL) version 2.0 or the GNU Lesser General Public License (LGPL) Version 2.1. A copy of each such license is available at http://www.opensource.org/licenses/gpl-2.0.php and http://www.opensource.org/licenses/lgpl-2.1.php demo5k# config t\[/code\]&lt;/code&gt;Now in configuration mode we have to turn on a feature in the NX-OS to enable VLAN Routing, we do this by issuing the “&lt;strong&gt;feature interface-vlan&lt;/strong&gt;” command. The Nexus runs on efficiency and only loads what it needs or configured. This is familiar approach that Linux uses which loads what is installed and nothing else. In the output below we can see all the features that the NX-OS supports followed by the command to turn on Inter-VLAN Routing.```
+[code]demo5k(config)# feature ?
+bgp             Enable/Disable Border Gateway Protocol (BGP)
+cts             Enable/Disable CTS
+dhcp            Enable/Disable DHCP Snooping
+dot1x           Enable/Disable dot1x
+eigrp           Enable/Disable Enhanced Interior Gateway Routing Protocol
+(EIGRP)
+fcoe            Enable/Disable FCoE/FC feature
+fcoe-npv        Enable/Disable FCoE NPV feature
+fex             Enable/Disable FEX
+flexlink        Enable/Disable Flexlink
+hsrp            Enable/Disable Hot Standby Router Protocol (HSRP)
+http-server     Enable/Disable http-server
+interface-vlan  Enable/Disable interface vlan
+lacp            Enable/Disable LACP
+msdp            Enable/Disable Multicast Source Discovery Protocol (MSDP)
+ntp             Enable/Disable NTP
+ospf            Enable/Disable Open Shortest Path First Protocol (OSPF)
+ospfv3          Enable/Disable Open Shortest Path First Version 3 Protocol
+(OSPFv3)
+pim             Enable/Disable Protocol Independent Multicast (PIM)
+port-security   Enable/Disable port-security
+private-vlan    Enable/Disable private-vlan
+privilege       Enable/Disable IOS type privilege level support
+ptp             Enable/Disable PTP
+rip             Enable/Disable Routing Information Protocol (RIP)
+scp-server      Enable/Disable SCP server
+sftp-server     Enable/Disable SFTP server
+ssh             Enable/Disable ssh
+tacacs+         Enable/Disable tacacs+
+telnet          Enable/Disable telnet
+udld            Enable/Disable UDLD
+vpc             Enable/Disable VPC (Virtual Port Channel)
+vrrp            Enable/Disable Virtual Router Redundancy Protocol (VRRP)
+vtp             Enable/Disable Vlan Trunking Protocol (VTP)&lt;/p&gt;
+&lt;p&gt;demo5k(config)# feature interface-vlan
+demo5k(config)#[/code]
+&lt;code&gt;Just like the Catalyst line we are in configuration mode and let&#39;s create two vlans 50 and 60 with IP addresses.&lt;/code&gt;
+[code highlight=&amp;quot;9&amp;quot;]demo5k(config)# vlan 50
+demo5k(config-vlan)# name SERVER-A-VLAN
+demo5k(config-vlan)# exit
+demo5k(config)# interface vlan 50
+demo5k(config-if)# description SERVER-A-NETWORK
+demo5k(config-if)# ip address 192.168.50.1 255.255.255.0
+demo5k(config-if)# no shutdown
+demo5k(config-if)# exit
+! Create another Interface VLAN!
+demo5k(config)# interface vlan 60
+demo5k(config-if)# description SERVER-B-NETWORK
+demo5k(config-if)# ip address 192.168.60.1 255.255.255.0
+demo5k(config-if)# no shutdown
+demo5k(config-if)# exit
+demo5k(config)#exit[/code]
+&lt;code&gt;Let&#39;s verify our creation by doing a **show interface vlan** 60&lt;/code&gt;
+[code]demo5k# show interface vlan 60
+Vlan60 is down (VLAN does not exist), line protocol is down
+Hardware is EtherSVI, address is  547f.ee59.a2c1
+Description: SERVER-B-NETWORK
+Internet Address is 192.168.60.1/24
+MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec[/code]
+&lt;code&gt;Let&#39;s look at VLAN 50:&lt;/code&gt;
+[code]demo5k# show interface vlan 50
+Vlan60 is down (VLAN is down), line protocol is down
+Hardware is EtherSVI, address is  547f.ee59.a2c1
+Description: SERVER-A-NETWORK
+Internet Address is 192.168.50.1/24
+MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec[/code]
+&lt;code&gt;We can also look at the interface brief:&lt;/code&gt;
+[code]demo5k# show ip interface brief
+IP Interface Status for VRF &amp;quot;default&amp;quot;(1)
+Interface            IP Address      Interface Status
+Vlan50               192.168.50.1    protocol-down/link-down/admin-up
+Vlan60               192.168.60.1    protocol-down/link-down/admin-up[/code]
+&lt;code&gt;VLANs have been created and IP addresses assigned to the interfaces, now let&#39;s configure the 2k. In this example I&#39;ve configured two access ports on the 2k one is in VLAN 50 and another is in VLAN 60. Starting with VLAN 50 on port 1 on the 2k.&lt;/code&gt;
+[code]demo5k(config)# interface ethernet 100/1/1
+demo5k(config-if)# switchport access vlan 50
+demo5k(config-if)# spanning-tree port type edge
+Warning: Edge port type (portfast) should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
+Use with CAUTION&lt;/p&gt;
+&lt;p&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/1 but will only
+have effect when the interface is in a non-trunking mode.
+demo5k(config-if)# no shutdown
+demo5k(config-if)# exit[/code]
+&lt;code&gt;You&#39;ll notice the warning when we configure the port as an edge port, in the Catalyst world this is the same as spanning-tree portfast. Let&#39;s next configure port 25 on the same 2k into VLAN 60.&lt;/code&gt;
+[code]demo5k(config)# interface ethernet 100/1/25
+demo5k(config-if)# switchport access vlan 60
+demo5k(config-if)# spanning-tree port type edge
+Warning: Edge port type (portfast) should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
+Use with CAUTION&lt;/p&gt;
+&lt;p&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/25 but will only
+have effect when the interface is in a non-trunking mode.
+demo5k(config-if)# no shutdown
+demo5k(config-if)# exit[/code]&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>HDLC vs. PPP</title>
+      <link>https://ciscoskills.net/2012/02/hdlc-vs.-ppp/</link>
+      <pubDate>Wed, 22 Feb 2012 03:09:12 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/02/hdlc-vs.-ppp/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/High-Level_Data_Link_Control&#34; title=&#34;High-Level Data Link Control&#34;&gt;HDLC&lt;/a&gt; and PPP are considered to be in layer 2 of the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt;. There are some differences between which will be describe in this post, If you would like to learn more about at least the basic configuration of PPP including PAP and CHAP check out the post I wrote about year ago. (&lt;a href=&#34;http://ciscoskills.net/2011/01/18/basic-ppp-configuration/&#34; title=&#34;Basic PPP Configuration&#34;&gt;Basic PPP Configuration&lt;/a&gt;) HDLC was first developed by the ISO Cisco tweaked the protocol sometimes called &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_HDLC&#34; title=&#34;Cisco HDLC&#34;&gt;cHDLC&lt;/a&gt; and because of this it only works with Cisco equipment. PPP is defined by RFC 1968 which is an open standard and is able to work on multi-vender equipment. The default setting of a Cisco serial interfaces is to use HDLC encapsulation, You generally don&#39;t have to change this unless you are working with multivendor environments. Then you are going to have to change that encapsulation type to PPP or if you want some of the features that PPP offers. PPP offers many features that HDLC does not including the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Authentication through the &lt;a href=&#34;http://en.wikipedia.org/wiki/Password_authentication_protocol&#34; title=&#34;Password authentication protocol&#34;&gt;Password Authentication Protocol&lt;/a&gt; (PAP) and the &lt;a href=&#34;http://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol&#34; title=&#34;Challenge-Handshake Authentication Protocol&#34;&gt;Challenge-Handshake Authentication Protocol&lt;/a&gt; (CHAP)&lt;/li&gt;
+&lt;li&gt;Compression capabilities with Stacker or Predictor&lt;/li&gt;
+&lt;li&gt;PPP Multilink, the ability to bundle physical channels into a single logical channel.&lt;/li&gt;
+&lt;li&gt;Support for &lt;a href=&#34;http://en.wikipedia.org/wiki/Error_detection_and_correction&#34; title=&#34;Error detection and correction&#34;&gt;Error detection&lt;/a&gt; and error recovery features&lt;/li&gt;
+&lt;li&gt;Encapsulation for multiple routed protocols, including IP, Novell &lt;a href=&#34;http://en.wikipedia.org/wiki/Internetwork_Packet_Exchange&#34; title=&#34;Internetwork Packet Exchange&#34;&gt;IPX&lt;/a&gt;, and &lt;a href=&#34;http://en.wikipedia.org/wiki/AppleTalk&#34; title=&#34;AppleTalk&#34;&gt;AppleTalk&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;also-note-that-passwords-are-case-sensitive-when-using-pap-and-chap-multilink-ppphttpenwikipediaorgwikipoint-to-point_protocol-point-to-point-protocol-mppp-basically-allows-us-to-bundle-multiple-physical-wan-links-into-one-logical-link-there-are-some-different-reasons-for-doing-this-and-they-generally-depend-on-the-network-topology-but-the-common-reason-is-using-it-over-isdnhttpenwikipediaorgwikiintegrated_services_digital_network-integrated-services-digital-network-links-to-allow-the-data-packets-to-be-broken-up-into-fragments-in-turn-this-fragmentation-allows-for-greater-load-balancing-where-the-physical-links-will-carry-a-similar-load-than-one-link-carry-most-of-the-load-this-is-like-etherchannelhttpenwikipediaorgwikietherchannel-etherchannel-ppp-also-allows-us-to-enable-one-of-two-compression-techniques-stacker-or-predictor-both-are-enabled-with-the-interface-level-command-_compress_-the-differences-between-the-two-are-beyond-the-ccna-but-a-simple-web-search-would-do-if-you-are-itching-for-an-answer-like-always-i-hope-this-short-and-sweet-post-is-helpful-and-if-you-have-questions-feel-free-to-post-them-also-give-me-some-other-ideas-that-deal-with-either-icnd1-or-icnd2-check-back-later-as-i-want-to-bring-up-a-more-in-depth-look-about-ppp&#34;&gt;Also note that Passwords are case sensitive when using PAP and CHAP. &lt;a href=&#34;http://en.wikipedia.org/wiki/Point-to-Point_Protocol&#34; title=&#34;Point-to-Point Protocol&#34;&gt;Multilink PPP&lt;/a&gt; (MPPP) basically allows us to bundle multiple physical WAN links into one logical link. There are some different reasons for doing this and they generally depend on the network topology, but the common reason is using it over &lt;a href=&#34;http://en.wikipedia.org/wiki/Integrated_Services_Digital_Network&#34; title=&#34;Integrated Services Digital Network&#34;&gt;ISDN&lt;/a&gt; links to allow the data packets to be broken up into fragments. In turn this fragmentation allows for greater load balancing, where the physical links will carry a similar load than one link carry most of the load. (This is like &lt;a href=&#34;http://en.wikipedia.org/wiki/EtherChannel&#34; title=&#34;EtherChannel&#34;&gt;EtherChannel&lt;/a&gt; ). PPP also allows us to enable one of two compression techniques, Stacker or Predictor. Both are enabled with the interface-level command &amp;quot;&lt;em&gt;compress&amp;quot;&lt;/em&gt; The differences between the two are beyond the CCNA but a simple web search would do if you are itching for an answer. Like always I hope this short and sweet post is helpful and if you have questions feel free to post them, also give me some other ideas that deal with either ICND1 or ICND2. Check back later as I want to bring up a more in depth look about PPP.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/05/14/icnd2-passed/&#34; title=&#34;&#34;&gt;ICND2 – Passed! | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-05-14 20:33:01&#34;&gt;May 1, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] HDLC vs. PPP (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Types of WAN Links</title>
+      <link>https://ciscoskills.net/2011/10/types-of-wan-links/</link>
+      <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/10/types-of-wan-links/</guid>
+      <description>
+        
+          &lt;p&gt;I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization. If we have an office in &lt;a href=&#34;http://en.wikipedia.org/wiki/New_York&#34; title=&#34;New York&#34;&gt;New York&lt;/a&gt; and another office in &lt;a href=&#34;http://en.wikipedia.org/wiki/Wyoming&#34; title=&#34;Wyoming&#34;&gt;Wyoming&lt;/a&gt;  we need these offices to be connected to each other so that they seem to be on the same network even though they are miles away these types of WAN connections and protocols  would do it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Option&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Advantages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disadvantages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sample Protocols&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Leased_line&#34; title=&#34;Leased line&#34;&gt;Leased Line&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Point-to-point_%28telecommunications%29&#34; title=&#34;Point-to-point (telecommunications)&#34;&gt;Point-to-point&lt;/a&gt; connection between two computers &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LANs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Most Secure&lt;/p&gt;
+&lt;p&gt;Expensive&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Purchasing_power_parity&#34; title=&#34;Purchasing power parity&#34;&gt;PPP&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/High-Level_Data_Link_Control&#34; title=&#34;High-Level Data Link Control&#34;&gt;HDLC&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Synchronous_Data_Link_Control&#34; title=&#34;Synchronous Data Link Control&#34;&gt;SDLC&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Circuit_switching&#34; title=&#34;Circuit switching&#34;&gt;Circuit Switching&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A dedicated circuit path is created between endpoints. Best example is dialup connections&lt;/p&gt;
+&lt;p&gt;Less expensive&lt;/p&gt;
+&lt;p&gt;Call Setup&lt;/p&gt;
+&lt;p&gt;PPP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Integrated_Services_Digital_Network&#34; title=&#34;Integrated Services Digital Network&#34;&gt;ISDN&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_switch&#34; title=&#34;Packet switch&#34;&gt;Packet Switch&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Devices transport packets via a shared single point-to-point or point-to-multipoint link across. Variable length packets are transmitted over PVCs or SVCs&lt;/p&gt;
+&lt;p&gt;Highly efficient use of bandwidth&lt;/p&gt;
+&lt;p&gt;Shared media across link&lt;/p&gt;
+&lt;p&gt;X.25, Frame Relay&lt;/p&gt;
+&lt;p&gt;Cell Relay&lt;/p&gt;
+&lt;p&gt;Similar to packet switching, but uses fixed-length packets. Data is divided into fixed length cells and then transported across virtual circuits&lt;/p&gt;
+&lt;p&gt;Best for simultaneous use of voice and data&lt;/p&gt;
+&lt;p&gt;Overhead can be considerable&lt;/p&gt;
+&lt;p&gt;ATM&lt;/p&gt;
+&lt;p&gt;Internet&lt;/p&gt;
+&lt;p&gt;Connectionless packet switching using the internet as the WAN infrastructure. Uses network addressing to deliver packets. Because of security issues VPN technology must be used.&lt;/p&gt;
+&lt;p&gt;Least expensive, globally available&lt;/p&gt;
+&lt;p&gt;Least secure&lt;/p&gt;
+&lt;p&gt;VPN, DSL, cable modem, wireless&lt;/p&gt;
+&lt;p&gt;I hope this table is helpful and like always if you have an idea of the next topic that deals with either ICND1 or ICND2 let me know about. If you have any questions about this table feel free to comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.zdnet.com/blog/gardner/as-cloud-and-mobile-trends-drive-user-expectations-higher-networks-must-now-deliver-applications-faster-safer-cheaper/4385&#34;&gt;As cloud and mobile trends drive user expectations higher, networks must now deliver applications faster, safer, cheaper&lt;/a&gt; (zdnet.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://r.zemanta.com/?u=http%3A//www.infoworld.com/d/networking/cisco-upgrades-wan-optimizers-175346&amp;amp;a=57572126&amp;amp;rid=00000125-1caa-000F-0000-00000000059b&amp;amp;e=10593a4b8ca51901986b11ace1fe73f5&#34;&gt;Cisco upgrades WAN optimizers&lt;/a&gt; (infoworld.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Link-State Protocols</title>
+      <link>https://ciscoskills.net/2011/08/link-state-protocols/</link>
+      <pubDate>Wed, 31 Aug 2011 13:00:26 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/08/link-state-protocols/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-cables.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-cables.png&#34; alt=&#34;&#34; title=&#34;Network-Cables&#34;&gt;&lt;/a&gt;Weeks ago and maybe months :), I talked about distance vector protocols and with that you probably got the feeling that when using a distance vector protocol it does not give a full network graphical representation of the entire network. Only the directly connected routes can&#39;t remember? Check out this post &lt;a href=&#34;http://ciscoskills.net/2011/06/15/distance-vector-routing/&#34; title=&#34;Distance Vector Routing&#34;&gt;Distance Vector Routing&lt;/a&gt;. Link state protocols are faster to converge network changes compared to distance vector however when compared to distance vector setup they can be harder to set up, maintain, and troubleshoot when problems arise. Although the core design of a link-state protocol is like distance vector, meaning it will send updates to neighboring &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;routers&lt;/a&gt;, it does this in an entirely different way. Routers that use link-state advertise every possible route in the network. This process is called flooding which means every router in the network has the same information. This information is stored in RAM and called the link-state database (LSDB). The link-state protocol uses this information for other process, like to calculate the &amp;quot;best routes&amp;quot; to each subnet. You can probably guess that when using a link-state protocol it will use more resources like CPU and memory compared to distance vector, Your&#39; right. The link-state protocols relay on LSAs (&lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;Link-state&lt;/a&gt; advertisements) which are broken down in two main types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Router &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_advertisement&#34; title=&#34;Link-state advertisement&#34;&gt;LSA&lt;/a&gt; - Includes the a number to identify the router called the router ID. The router&#39;s interface &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt;, subnet masks, the state of link (Up or Down), and the cost of the interface.&lt;/li&gt;
+&lt;li&gt;Link LSA- Which identifies each link the subnet and the routers that are attached to that link. It also identifies if the link is either up or down.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These LSAs are created by the router and then floods the LSA to other routers their neighbors. The thing that makes link-state protocol a topic starter is that they look at the &amp;quot;Link&amp;quot; of the connection and advertise each interface even if the connection is up or down. The LSDB has information about not only the up and working routers, interfaces, and networks, but all routers and interfaces even if the interfaces are down. With link-state protocols it creates a complete network topology in each router unlike distance vector.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Which &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_protocol&#34; title=&#34;Routing protocol&#34;&gt;Routing Protocols&lt;/a&gt; use Link-State? Take a guess!&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RIPv1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RIPv2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/IS-IS&#34; title=&#34;IS-IS&#34;&gt;IS-IS&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Classless&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Supports &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Send Subnet Mask&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Distance Vector&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;No *&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;*EIGRP is considered a hybrid routing protocol (Uses the best of both Distance Vector and Link-State protocols) In some Cisco documentation EIGRP is also referred to as an advance distance vector protocol. Link-State Protocols converge much quickly than distance vector, they do consume more RAM and CPU when compared to distance vector. They avoid routing loops by default unlike with distance vector which requires more features like split horizon. Distance vector is easier to set up when compared to link-state which requires more thought when configuring it correctly. I have opened another door towards the ICND2 path, so let&#39;s stop for now and let it sink-in. Like always you have power of the internet at your hands if you can&#39;t wait a simple search will do. As I always say I hope this information is helpful and if you have an idea of the next topic that I should talk about that deals with ether ICND1 or ICND2 let&#39;s hear it!&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/15/distance-vector-routing/&#34;&gt;Distance Vector Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34;&gt;Cisco Discovery Protocol&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/237312/black_hat_routers_using_ospf_open_to_attacks.html&#34;&gt;Black Hat: Routers Using OSPF Open to Attacks&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://thinkup.waldenu.edu/technology/networking/item/11465-why-are-routed-protocols-important-to-networking&amp;amp;sa=U&amp;amp;ei=L-plTeSGEYOEtgfOl8CWDQ&amp;amp;ved=0CIMDEBYwUjjYBA&amp;amp;usg=AFQjCNFeYACbEdz8vyrBwykpHsfhPgZQJw&#34;&gt;Why Are Routed Protocols Important to Networking?&lt;/a&gt; (thinkup.waldenu.edu)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/01/classful-vs-classless-routing/&#34;&gt;Classful vs. Classless Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/21/welcome-cct-cisco-certified-technician/&#34; title=&#34;&#34;&gt;Welcome CCT (Cisco Certified Technician Certification) | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-09-21 20:44:41&#34;&gt;Sep 3, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Link-State Protocols (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-02-26 19:21:19&#34;&gt;Feb 0, 2012&lt;/time&gt;
+&lt;p&gt;Glad I could Help :)&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Nan]( &#34;nancy3d@yahoo.com&#34;) - &lt;time datetime=&#34;2012-02-26 12:00:56&#34;&gt;Feb 0, 2012&lt;/time&gt;
+&lt;p&gt;Thanks for your hard work, I&#39;m studying Cisco and just needed to understand a little bit more about LS. I&#39;ll do let it sink first before going to other topic lol.&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Distance Vector Routing</title>
+      <link>https://ciscoskills.net/2011/06/distance-vector-routing/</link>
+      <pubDate>Wed, 15 Jun 2011 16:30:08 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/06/distance-vector-routing/</guid>
+      <description>
+        
+          &lt;p&gt;Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;router&lt;/a&gt; learns about a route to a different &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network&lt;/a&gt; (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric. The router also knows the next-hop router along with the outgoing interface to use when sending a packet destined to that network and that&#39;s it. You could say that a distance vector protocol does not give a graphical representation of the entire network. Look at the picture below R1 has two routes two the network 192.168.3.0. For distance vector the router chooses the lowest metric if this example was using &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt; the routers metric would be using &lt;a href=&#34;http://en.wikipedia.org/wiki/Hop_count&#34; title=&#34;Hop count&#34;&gt;hop count&lt;/a&gt; and pick the path with the lowest hop count/metric. So although we have multiple routers between R1 and R3, for R1 it only knows and pretty much only cares about the routers that are directly connected to R1 (the red routers) and those are routers are advertising that they have a route reach to R3 (the 192.168.3.0 network.) &lt;a href=&#34;http://ciscoskills.net/2011/06/15/distance-vector-routing/distance-vector/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/05/distance-vector.png?w=300&#34; alt=&#34;Distance Vector Protocol&#34; title=&#34;Distance Vector&#34;&gt;&lt;/a&gt; &lt;em&gt;Which &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_protocol&#34; title=&#34;Routing protocol&#34;&gt;Routing Protocols&lt;/a&gt; use &lt;a href=&#34;http://en.wikipedia.org/wiki/Distance-vector_routing_protocol&#34; title=&#34;Distance-vector routing protocol&#34;&gt;Distance Vector&lt;/a&gt;?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RIPv1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RIPv2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/IS-IS&#34; title=&#34;IS-IS&#34;&gt;IS-IS&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Classless&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Supports &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Send Subnet Mask&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Distance Vector&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;Yes&lt;/p&gt;
+&lt;p&gt;No *&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;*EIGRP is considered a hybrid routing protocol (Uses the best of both Distance Vector and Link-State protocols) In some Cisco documentation EIGRP is also referred to as an advance distance vector protocol. That&#39;s my summary of at least Distance Vector routing protocols, there is a lot of other helpful information about distance vector and if you would like to learn simple web search would do. Also check out Cisco.com as they do have this and much more helpful documentation. I hope this information was informative and if you have an idea of the next topic that either deals with ICND1 or ICND2 let me know.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/&#34;&gt;Dynamic Routing Protocols&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34;&gt;Configure Static Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/01/classful-vs-classless-routing/&#34;&gt;Classful vs. Classless Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34; title=&#34;&#34;&gt;Cisco Discovery Protocol | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-07-06 09:47:24&#34;&gt;Jul 3, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[jjrinehart]( &#34;joe.rinehart@seacug.com&#34;) - &lt;time datetime=&#34;2011-06-20 23:30:52&#34;&gt;Jun 1, 2011&lt;/time&gt;
+&lt;p&gt;I was reading earlier that you passed the ICND1 and that you would be working on ICND2, how is that going?&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2011-06-21 17:52:40&#34;&gt;Jun 2, 2011&lt;/time&gt;
+&lt;p&gt;I&#39;m getting there, like with everything in life things get in the way but in the end I&#39;ll find time.&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dynamic Routing Protocols</title>
+      <link>https://ciscoskills.net/2011/05/dynamic-routing-protocols/</link>
+      <pubDate>Wed, 04 May 2011 16:40:24 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/05/dynamic-routing-protocols/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/networking.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/networking.png&#34; alt=&#34;&#34; title=&#34;Dynamic Routing&#34;&gt;&lt;/a&gt;If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PCs&lt;/a&gt;, printers, and other network equipment. That&#39;s where &lt;a href=&#34;http://en.wikipedia.org/wiki/Adaptive_routing&#34; title=&#34;Adaptive routing&#34;&gt;dynamic routing&lt;/a&gt; protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post &lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34; title=&#34;Configure Static Routing&#34;&gt;Configure Static Routing&lt;/a&gt;) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it. (RIP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;, and &lt;a href=&#34;http://en.wikipedia.org/wiki/Border_Gateway_Protocol&#34; title=&#34;Border Gateway Protocol&#34;&gt;BGP&lt;/a&gt; are all examples of routing protocols! When using a dynamic routing protocol routers learn &amp;quot;dynamically&amp;quot; about other remote networks and automatically add these networks to its routing table. However keep in mind that when compared to static routing, dynamic routing require less administrator overhead but they will use the routers resources like, more RAM, more processing time (CPU), and even the network bandwidth&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/routing_updates/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/routing_updates.png?w=300&#34; alt=&#34;&#34; title=&#34;Routing_Updates&#34;&gt;&lt;/a&gt;Although there are several routing protocols each of them have their benefits but they all focus on these key things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn about networks from other neighboring routers and maintain up-to-date routing information.&lt;/li&gt;
+&lt;li&gt;Advertise routing information to neighboring routers and thus discovering remote networks.&lt;/li&gt;
+&lt;li&gt;If more than route is possible the router will pick the best route based on its metric.&lt;/li&gt;
+&lt;li&gt;If the any one part of the network fails, react by advertising the bad routes and advertise the best available route. (Convergence)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Before we go any further about dynamic routing protocols remember there are two type of routing protocols used today:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Interior_gateway_protocol&#34; title=&#34;Interior gateway protocol&#34;&gt;IGP&lt;/a&gt; (Interior Gateway Protocols) A routing protocol that is designed for a single autonomous system. Some common routing protocols classified under IGP are RIP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Interior_Gateway_Routing_Protocol&#34; title=&#34;Interior Gateway Routing Protocol&#34;&gt;IGRP&lt;/a&gt;, EIGRP, OSPF, IS-IS.&lt;/li&gt;
+&lt;li&gt;EGP (Exterior Gateway Protocols) A routing protocol that is designed for use in between autonomous systems. A common routing protocol classified under EGP is BGP.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/igp-and-egp/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/igp-and-egp.png?w=300&#34; alt=&#34;&#34; title=&#34;IGP and EGP&#34;&gt;&lt;/a&gt;Interior Gateway Protocols are used within a company or organization, once that information leaves the company or organization it moves towards the ISP which would use an &lt;a href=&#34;http://en.wikipedia.org/wiki/Exterior_Gateway_Protocol&#34; title=&#34;Exterior Gateway Protocol&#34;&gt;Exterior Gateway Protocol&lt;/a&gt; EGP. So for the picture above think of the clouds to be the inside of a company or organization and outside of that company or organization the routing protocol would change. For now let&#39;s stop there because the dynamic routing protocols open another door, like &lt;a href=&#34;http://en.wikipedia.org/wiki/Distance-vector_routing_protocol&#34; title=&#34;Distance-vector routing protocol&#34;&gt;Distance Vector&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;Link-state routing protocols&lt;/a&gt;, and the difference between classful and classless routing protocols along with the different type of administrative distances and metrics, these discussions for another day. :) Like always I hope this information was informative and if you have a topic that deals with either ICND1 or ICND2 material let me know by commenting below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34;&gt;Configure Static Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/01/classful-vs-classless-routing/&#34; title=&#34;&#34;&gt;Classful vs. Classless Routing | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-06-01 10:53:15&#34;&gt;Jun 3, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Static Routing</title>
+      <link>https://ciscoskills.net/2011/05/configure-static-routing/</link>
+      <pubDate>Mon, 02 May 2011 16:15:32 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/05/configure-static-routing/</guid>
+      <description>
+        
+          &lt;p&gt;Plugging Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;routers&lt;/a&gt; together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;routing&lt;/a&gt; protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change. A good example of using a &lt;a href=&#34;http://en.wikipedia.org/wiki/Static_routing&#34; title=&#34;Static routing&#34;&gt;static route&lt;/a&gt; is with a &lt;a href=&#34;http://en.wikipedia.org/wiki/Stub_network&#34; title=&#34;Stub network&#34;&gt;stub network&lt;/a&gt;. A stub network is only accessed by a single router and no other routes are configured so there is only one path the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_traffic_measurement&#34; title=&#34;Network traffic measurement&#34;&gt;network traffic&lt;/a&gt; can take. Notice the picture below and how any traffic going towards the network cloud from the 192.168.1.0 network will always pass the 172.16.5.0 network. Why waste putting a routing protocol here?) &lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/static_default_route.png?w=300&#34; alt=&#34;&#34; title=&#34;Stub Network&#34;&gt;In order to configure a static route you must be in the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt;, the ip route command complete &lt;a href=&#34;http://en.wikipedia.org/wiki/Syntax&#34; title=&#34;Syntax&#34;&gt;syntax&lt;/a&gt; is the following: &lt;strong&gt;ip route&lt;/strong&gt; &lt;em&gt;prefix mask&lt;/em&gt; {&lt;em&gt;ip-address&lt;/em&gt;} | &lt;em&gt;interface-type interface-number&lt;/em&gt; [&lt;em&gt;ip-address&lt;/em&gt;]} [&lt;strong&gt;dhcp&lt;/strong&gt;] [&lt;em&gt;distance&lt;/em&gt;] [&lt;strong&gt;name&lt;/strong&gt; &lt;em&gt;next-hop-name&lt;/em&gt;] [&lt;strong&gt;permanent&lt;/strong&gt; | &lt;strong&gt;track&lt;/strong&gt; &lt;em&gt;number&lt;/em&gt;] [&lt;strong&gt;tag&lt;/strong&gt; &lt;em&gt;tag&lt;/em&gt;] For the CCENT/CCNA the complete syntax is not relevant, let&#39;s use a simpler version of the ip route syntax: &lt;strong&gt;ip route&lt;/strong&gt; &lt;em&gt;network-address&lt;/em&gt; &lt;em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;subnet-mask&lt;/a&gt;&lt;/em&gt; {&lt;em&gt;ip address&lt;/em&gt; | &lt;em&gt;exit interface&lt;/em&gt;} The &lt;em&gt;network address&lt;/em&gt; is the destination network or the remote address that will be added in the routing table. (For the complete syntax this follows on the prefix parameter) The &lt;em&gt;subnet mask&lt;/em&gt; is the subnet mask of the remote network that will be added in the routing table. (For the complete syntax this follows on the mask parameter) One or both of the following commands must be configured: The &lt;em&gt;ip-address&lt;/em&gt; in the syntax is usually called the next-hop router&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; The &lt;em&gt;exit-interface&lt;/em&gt; is the outgoing interface that would be used in forwarding the packets io the destination network (For the complete syntax this follows on the &lt;strong&gt;interface-type&lt;/strong&gt; &lt;em&gt;interface-number&lt;/em&gt; parameter) Looking at the picture above we need to have a static route on R2, we can do these in two ways the first example is using the next hop IP address. (For this example the next hop IP address is 172.16.5.1 R1&#39;s serial 0/0/0 interface. The next example is using the exit interface out of R2. [code]R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.5.1[/code]   [code]R2(config)#ip route 192.168.1.0 255.255.255.0 serial 0/0/1[/code] The last thing we need to do in order for this stub network to work is put a &lt;a href=&#34;http://en.wikipedia.org/wiki/Default_route&#34; title=&#34;Default route&#34;&gt;default route&lt;/a&gt; on R1 because R2 is going to the cloud the (internet or network) any traffic like a web request going to the internet needs to be forwarded to R2. A default route is a route that will match every IP address. Remember that a router does not have every single possible route on the internet or network usually these can be summary routes and default routes. Like on R2 we can do this in two ways, the first example is using the next hop IP address. (For this example the next hop IP address is 172.16.5.2 R2&#39;s serial 0/0/1 interface. The next example is using the exit interface out of R1. [code]R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.5.2[/code]   [code]R1(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0/0[/code] That&#39;s my tutorial for configuring static routes. Static routes do need some overhead but once you get them working you don&#39;t need to even touch it again. You can find more information at Cisco.com and the Cisco Learning Network. Like always I hope this information/tutorial was informative if you have any ideas on the next topic I should cover in the ICND1 or ICND2 area let me know by commenting below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://joernfranz.net/2011/01/12/configuring-static-dynamic-ip-address-under-ubuntu/&#34;&gt;Configuring static / dynamic IP address under Ubuntu&lt;/a&gt; (joernfranz.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.makeuseof.com/tag/static-ip-address-advantages-disadvantages/&#34;&gt;What Is A Static IP Address, How Do I Get One &amp;amp; Its Advantages / Disadvantages&lt;/a&gt; (makeuseof.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.brighthub.com/internet/web-development/articles/113397.aspx&#34;&gt;How to Find Your IP Address&lt;/a&gt; (brighthub.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/27/configure-a-site-to-site-vpn-via-sdm/&#34;&gt;Configure a Site-to-Site VPN via SDM&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.ghacks.net/2011/04/29/why-your-home-router-is-192-168-1-1/&#34;&gt;Why Your Home Router is 192.168.1.1&lt;/a&gt; (ghacks.net)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/&#34; title=&#34;&#34;&gt;Dynamic Routing Protocols | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-05-04 11:07:03&#34;&gt;May 3, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

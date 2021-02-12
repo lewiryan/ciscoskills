@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RIPv2 on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/ripv2/</link>
+    <description>Recent content in RIPv2 on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 09 Feb 2011 17:30:42 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ripv2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring RIPv2</title>
+      <link>https://ciscoskills.net/2011/02/configuring-ripv2/</link>
+      <pubDate>Wed, 09 Feb 2011 17:30:42 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/02/configuring-ripv2/</guid>
+      <description>
+        
+          &lt;p&gt;This guide will go over how to configure RIPv2 on Cisco routers. This guide follows a packet tracer activity that is posted at the end of this tutorial. RIPv2 configuration is pretty simple to understand with really only three required commands to use besides the network command which depends how many networks are connected to your router. &lt;a href=&#34;http://systemstechblog.wordpress.com/2011/02/09/configuring-ripv2/ripv2-layout/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/02/ripv2-layout.png?w=150&#34; alt=&#34;RIPv2 Layout&#34; title=&#34;RIPv2 Layout&#34;&gt;&lt;/a&gt; So following the packet tracer that is used with this tutorial the first step is to configure the hostname on the routers. Enter into the router and type the command &lt;em&gt;enable&lt;/em&gt; to move into privilege EXEC mode, then type &lt;em&gt;configure terminal&lt;/em&gt; to move into global configuration mode and type hostname then the name of the router. (this example is for R1) [code]Router&amp;gt;enable Router#configure terminal Router(config)#hostname R1[/code] The next thing you need to do is to configure the interfaces on R1, R2, and R3 and remember to put a clock rate on the serial interfaces of R1 and R2 (s0/0/1) the clock rate the packet tracer will accept is 64000. The following are the outputs for each router. R1&#39;s Interface Setup: [code]R1(config)#interface fa0/0 R1(config-if)#ip address 192.168.1.62 255.255.255.192 R1(config-if)#no shut R1(config-if)#exit R1(config)#interface s0/0/0 R1(config-if)#ip add 192.168.1.193 255.255.255.252 R1(config-if)#clock rate 64000 R1(config-if)#no shut R1(config-if)#exit R1(config)#interface s0/0/1 R1(config-if)#ip add 192.168.1.197 255.255.255.252 R1(config-if)#clock rate 64000 R1(config-if)#no shut[/code] R2&#39;s Interface Setup: [code]R2(config)#interface fa0/0 R2(config-if)#ip add 192.168.1.126 255.255.255.192 R2(config-if)#no shut R2(config-if)#exit R2(config)#interface s0/0/0 R2(config-if)#ip add 192.168.1.194 255.255.255.252 R2(config-if)#no shut R2(config-if)#exit R2(config)#interface s0/0/1 R2(config-if)#ip add 192.168.1.201 255.255.255.252 R2(config-if)#clock R2(config-if)#clock rate 64000 R2(config-if)#no shut[/code] R3&#39;s Interface Setup: [code]R3(config)#interface fa0/0 R3(config-if)#ip add 192.168.1.190 255.255.255.192 R3(config-if)#no shut R3(config-if)#exit R3(config)#interface s0/0/0 R3(config-if)#ip add 192.168.1.202 255.255.255.252 R3(config-if)#no shut R3(config-if)#exit R3(config)#interface s0/0/1 R3(config-if)#ip add 192.168.1.198 255.255.255.252 R3(config-if)#no shut[/code] The above commands have configured the interfaces for R1, R2, and R3. The next part of the step is to configure the PCs IP address and the default gateway. The default gateway is the router&#39;s fast ethernet interface. For example PC-A&#39;s default gateway would be 192.168.1.62. The next and final step is to configure RIPv2 on all the routers. You will use the same command for all the routers in this tutorial. [code]R1(config)#router rip R1(config-router)#version 2 R1(config-router)#network 192.168.1.0[/code] You may be wondering why you would use 192.168.1.0 network and not the different subnets connected to each router. This topology is using VLSM (variable-length subnet masking) so the router only needs the 192.168.1.0 network. You also should be at a 100 percent and able to ping every device. Download the Packet Tracer Activity &lt;a href=&#34;http://www.mediafire.com/?hjfxkz2r365ybmt&#34; title=&#34;Packet Tracer (RIPv2)&#34;&gt;RIPv2 PT&lt;/a&gt;  I hope this tutorial was helpful.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

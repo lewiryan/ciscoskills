@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>National Broadband Plan on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/national-broadband-plan/</link>
+    <description>Recent content in National Broadband Plan on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 04 Apr 2011 15:55:39 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/national-broadband-plan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic Wireless Concepts</title>
+      <link>https://ciscoskills.net/2011/04/basic-wireless-concepts/</link>
+      <pubDate>Mon, 04 Apr 2011 15:55:39 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/basic-wireless-concepts/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/wireless-connection-icon.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/wireless-connection-icon.png&#34; alt=&#34;&#34; title=&#34;wireless-connection-icon&#34;&gt;&lt;/a&gt;Mobility is now a common thing in a business environment, you no longer are fixed to specific cubicle in the work place anymore. What is also amazing is it will continue to change and become easier for employees to get work done, with their phone, tablet, and laptop computer. But what makes this possible? What is the underlying component? The internet is becoming more available in more locations, coffee shops, airports, and your cell phone service provider, with 3G and 4G speeds. Along with the United States of America which is also moving forward with the &lt;a href=&#34;http://broadband.gov/&#34; title=&#34;National Broadband Plan&#34;&gt;National Broadband Plan&lt;/a&gt;. So today let&#39;s explore the wireless concepts!  Wireless can be a scary as you can&#39;t control it. The signal is transmitted in radio waves and if set up insecurely the WLAN (&lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;Wireless Local Area Network&lt;/a&gt;) can easily be your weakest link compared to Ethernet &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LANs&lt;/a&gt;. There are four organizations that deal with the wireless standards and products:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt; develops the wireless standards (802.11) The IEEE also develops other standards as well.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/ITU-R&#34; title=&#34;ITU-R&#34;&gt;ITU-R&lt;/a&gt; is the worldwide standardization and communications that use and assign different frequencies. This helps you as a consumer if you moved/travel around the world. You are still able to use the 802.11 standard worldwide. Without the need of different devices.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Wi-Fi_Alliance&#34; title=&#34;Wi-Fi Alliance&#34;&gt;Wi-Fi Alliance&lt;/a&gt; is an industry that is worldwide that encourages interoperability of products that use WLAN standards to be certified under the Wi-Fi Alliance program.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Federal_Communications_Commission&#34; title=&#34;Federal Communications Commission&#34;&gt;Federal Communications Commission (FCC)&lt;/a&gt; is the U.S government agency that regulates the usage of various communication frequencies in the U.S.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Currently there are several wireless standards within the 802.11 standard: 802.11a, 802.11b, 802.11g, or 802.11n At least for today this post won&#39;t be going over these standards. There is also encryption and security which in not covered in today&#39;s post but will be covered later on. The wireless 802.11 standard can run in two modes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ad Hoc which uses the &lt;a href=&#34;http://en.wikipedia.org/wiki/Service_set_%28802.11_network%29&#34; title=&#34;Service set (802.11 network)&#34;&gt;independent Basic Service Set&lt;/a&gt; (IBSS) this allows more than two devices to communicate directly with no access point needed or network needed.&lt;/li&gt;
+&lt;li&gt;Infrastructure mode which uses either Basic Service Set (BSS) which uses a single wireless LAN created by one access point and all devices use that access point. Or Extended Service Set (ESS) which uses multiple access points to create one wireless LAN, this allows devices to roam between access points and this covers a larger area compared to the BSS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;this-is-an-example-of-an-ad-hoc-networkhttpenwikipediaorgwikiwireless_ad_hoc_network-wireless-ad-hoc-network-notice-how-there-is-no-access-point-or-routernetwork-needed-ad-hoc-networkhttpsystemstechblogfileswordpresscom201103ad-hocpng-ad-hochttpciscoskillsnet20110404basic-wireless-conceptsad-hoc-this-is-an-example-of-an-infrastructure-mode-that-uses-bss-notice-how-there-can-only-be-one-access-point-if-you-are-using-the-bss-service-set-basic-service-sethttpsystemstechblogfileswordpresscom201103bsspngw300-bsshttpciscoskillsnet20110404basic-wireless-conceptsbss-this-is-an-example-of-an-infrastructure-mode-that-uses-ess-notice-how-multiple-access-points-can-be-configured-to-allow-roaming-and-a-lager-coverage-area-extended-service-sethttpsystemstechblogfileswordpresscom201103esspngw300-esshttpciscoskillsnet20110404basic-wireless-conceptsess-remember-that-when-using-wireless-it-uses-the-csmaca-algorithm-the-devices-must-listen-to-make-surethat-nobody-is-transmitting-it-will-then-set-a-random-timer-to-reducethe-change-of-a-collision-when-the-timer-expires-the-device-will-listen-again-if-there-is-nobody-transmitting-the-device-will-send-the-frame-when-the-frame-is-sentthe-device-will-listen-of-an-acknowledgment-fromthe-access-point-if-no-acknowledgment-is-receivedthen-the-device-will-resend-the-frame-but-use-the-csmaca-logic-thats-it-at-least-for-now-check-back-later-and-ill-talk-about-the-different-standards-of-80211a-80211b-80211g-or-80211n-i-will-also-go-over-encryption-and-some-best-security-practices-for-wireless-lan-networks-i-hope-this-information-was-informative-and-if-you-have-any-questions-comments-or-other-icnd1or-icnd2-suggestions-let-me-know&#34;&gt;This is an example of an &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_ad_hoc_network&#34; title=&#34;Wireless ad hoc network&#34;&gt;Ad Hoc network&lt;/a&gt;, notice how there is no access point or router/network needed. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/ad-hoc/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/ad-hoc.png&#34; alt=&#34;Ad Hoc Network&#34; title=&#34;Ad Hoc&#34;&gt;&lt;/a&gt; This is an example of an infrastructure mode that uses BSS. Notice how there can only be one access point if you are using the BSS service set. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/bss/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/bss.png?w=300&#34; alt=&#34;Basic Service Set&#34; title=&#34;BSS&#34;&gt;&lt;/a&gt; This is an example of an infrastructure mode that uses ESS. Notice how multiple access points can be configured to allow roaming and a lager coverage area. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/ess/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/ess.png?w=300&#34; alt=&#34;Extended Service Set&#34; title=&#34;ESS&#34;&gt;&lt;/a&gt; Remember that when using wireless it uses the CSMA/CA algorithm the devices must listen to make sure that nobody is transmitting. It will then set a random timer to reduce the change of a collision, when the timer expires the device will listen again, if there is nobody transmitting the device will send the frame. When the frame is sent the device will listen of an acknowledgment from the access point, if no acknowledgment is received then the device will resend the frame but use the CSMA/CA logic. That&#39;s it! At least for now check back later and I&#39;ll talk about the different standards of 802.11a, 802.11b, 802.11g, or 802.11n. I will also go over encryption and some best security practices for wireless LAN networks. I hope this information was informative and if you have any questions, comments or other ICND1 or ICND2 suggestions let me know.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/05/802-11-legacy/&#34; title=&#34;&#34;&gt;802.11 – Legacy | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-05 15:47:23&#34;&gt;Apr 2, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11a | Cisco Skills](http://ciscoskills.net/2011/04/06/802-11a/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-06 12:14:48&#34;&gt;Apr 3, 2011&lt;/time&gt;
+&lt;p&gt;[...] about the IEEE 802.11a standard. On Monday I talked about the Basic Wireless Concepts (See the post Basic Wireless Concepts) in that post I mentioned the wireless standards but did not go further into detail. This post will [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11b | Cisco Skills](http://ciscoskills.net/2011/04/07/802-11b/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-07 11:34:48&#34;&gt;Apr 4, 2011&lt;/time&gt;
+&lt;p&gt;[...] – Legacy) and in the beginning of the week I went over some Basic Wireless Concepts (See the post Basic Wireless Concepts) So now that we are up to speed lets learn about the 802.11b [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11g | Cisco Skills](http://ciscoskills.net/2011/04/08/802-11g/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-08 10:38:41&#34;&gt;Apr 5, 2011&lt;/time&gt;
+&lt;p&gt;[...] and in the beginning of the week I talked about the basic wireless concepts. (See the post Basic Wireless Standards) So on this Friday let’s talk about the 802.11g [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[802.11n | Cisco Skills](http://ciscoskills.net/2011/04/11/802-11n/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-11 09:02:50&#34;&gt;Apr 1, 2011&lt;/time&gt;
+&lt;p&gt;[...] and in the beginning of last week I talked about the basic wireless concepts. (See the post Basic Wireless Concepts) So let’s end the discussion and talk about the 802.11n [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

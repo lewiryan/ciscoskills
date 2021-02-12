@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Laser Printing Process on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/laser-printing-process/</link>
+    <description>Recent content in Laser Printing Process on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 08 Mar 2011 14:45:26 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/laser-printing-process/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Laser Printing Process</title>
+      <link>https://ciscoskills.net/2011/03/laser-printing-process/</link>
+      <pubDate>Tue, 08 Mar 2011 14:45:26 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/03/laser-printing-process/</guid>
+      <description>
+        
+          &lt;p&gt;Let&#39;s move away from Cisco for at least a day, So this post will be talking about the six steps in the &lt;a href=&#34;http://en.wikipedia.org/wiki/Laser_printer&#34; title=&#34;Laser printer&#34;&gt;laser printing&lt;/a&gt; process, this is good for technicians who fix or repair printers along with a good learning experience. With my limited knowledge of printers I used this process to at least help diagnose the problem. If you have no idea how a printer works, I would not try to fix it. People have become hurt with these machines leave it to the professionals.   Step 1: Cleaning When an image has been deposited on the paper and the drum has separated from the paper, any remaining &lt;a href=&#34;http://en.wikipedia.org/wiki/Toner&#34; title=&#34;Toner&#34;&gt;toner&lt;/a&gt; must be removed from the drum. A printer may have a blade that scrapes all excess toner from the drum. Some printers use an &lt;a href=&#34;http://en.wikipedia.org/wiki/Alternating_current&#34; title=&#34;Alternating current&#34;&gt;AC&lt;/a&gt; voltage on a wire that removes the charge from the drum surface and allows the excess toner to fall away from the drum. The excess toner is stored in a used toner container that may be emptied or discarded. Step 2: Conditioning This step involves removing the old latent image from the drum and conditioning the drum for a new latent image. Conditioning is done by placing a special wire, grid, or roller that receives a negative charge of about – 600 volts &lt;a href=&#34;http://en.wikipedia.org/wiki/Direct_current&#34; title=&#34;Direct current&#34;&gt;DC&lt;/a&gt; uniformly across the surface of the drum. The charged wire or grid is called the primary corona. The roller is called a conditioning roller. &lt;a href=&#34;http://ciscoskills.net/2011/03/08/laser-printing-process/printing/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/02/printing.png?w=294&#34; alt=&#34;The Printing Steps&#34; title=&#34;Printing&#34;&gt;&lt;/a&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/02/printing.png&#34;&gt;&lt;/a&gt; Step 3: Writing The writing process involves scanning the photosensitive drum with the laser beam. Every part of the drum that is exposed to the light has the surface charge reduced to about – 100 volts DC. This &lt;a href=&#34;http://en.wikipedia.org/wiki/Electric_charge&#34; title=&#34;Electric charge&#34;&gt;electrical charge&lt;/a&gt; has a lower negative charge than the remainder of the drum. As the drum turns, an invisible latent image is created on the drum.   Step 4: Developing In the developing phase, the toner is applied to the latent image on the drum. The toner is a negatively-charged combination of plastic and metal particles. A control blade holds the toner at a microscopic distance from the drum. The toner then moves from the control blade to the more positively-charged latent image on the drum.   Step 5: Transferring In this step, the toner attached to the latent image is transferred to the paper. The transfer, or secondary corona, places a positive charge on the paper. Because the drum was charged negatively, the toner on the drum is attracted to the paper. The image is now on the paper and is held in place by the positive charge.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/08/laser-printing-process/printingp/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/02/printingp.png?w=300&#34; alt=&#34;The Printing Process&#34; title=&#34;Printing Process&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Step 6: Fusing In this step, the toner is permanently fused to the paper. The printing paper is rolled between a heated roller and a pressure roller. As the paper moves through the heated roller and the pressure roller, the loose toner is melted and fused with the fibers in the paper. The paper is then moved to the output tray as a printed page. That&#39;s the laser printer process! If you took anything from this you should now at least  know the steps of how a laser printer works and that could be a topic starter!&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FTD on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/ftd/</link>
+    <description>Recent content in FTD on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 18 Jul 2018 13:30:00 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ftd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco FTD Standalone</title>
+      <link>https://ciscoskills.net/2018/07/cisco-ftd-standalone/</link>
+      <pubDate>Wed, 18 Jul 2018 13:30:00 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2018/07/cisco-ftd-standalone/</guid>
+      <description>
+        
+          &lt;p&gt;No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!&lt;/p&gt;
+&lt;p&gt;You are still recommended to have a management network connected to this appliance, here is the topology for this example, thanks GNS3 ;)
+&lt;img src=&#34;https://ciscoskills.net/images/2018/06/ftdv-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;On first boot you must give the appliance some minutes to boot up when you first turn it on. It starts a first boot process which goes through building and setting up everything it needs. Once the unit is primed and ready you should see a login prompt, login with the default username and password which is admin/Admin123 the appliance will go ahead and display a EULA, agree to it and then the system will want you to change the password. You will then be walked through the initial setup of setting up your management IP address, gateway, DNS servers and after that you will be asked if you want to manage the device locally, since we are not using a FMC make sure to answer YES.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/files/2018/06/qemu-ftdv.mp4&#34;&gt;MP4 FTDv&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once the device is ready to go, connect via HTTPS to the management IP address of the appliance with a web browser, and login into the system with the password you configured.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/fdm-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;When you first login the setup wizard will walk you through setting up two zones, and inside zone and an outside zone. Or you could skip this step if you scroll down to the bottom of the page. This is helpful if you don’t have internet connection or if you simply want to configure this yourself. In this example I accepted all the defaults. Once you are done with the initial setup screen you will be directed to the main dashboard.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/fdm-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Believe it or not your now are ready to configure this appliance, if you used the FMC before this has the same wordage so it’ll be familiar to you. If you never worked with FMC or any of these newer Firepower Threat Defense firewalls it might be a learning curve but the built-in help on this is useful, and it’s a good starting point. You can also tie this into the Cisco Defense Orchestrator which is a cloud-based paid tool to help you apply polices to multiple devices. This is nice, so you don’t have to manually configure each device, kind of like a slimmed down version of the FMC.&lt;/p&gt;
+&lt;p&gt;If you have worked with Cisco ASAs you’ll notice that you can’t just copy the running-config and paste it on new device. These things are complicated underneath the GUI, which is also why you can only use a GUI. They have everything, but the kitchen sink essentially, basic firewall rules, URL filtering, IPS, identify policies, security intelligence feeds, file polices and SSL Decryption. That stuff just doesn’t work with a static config file and really can’t be configured via CLI like our old friend &lt;a href=&#34;https://ciscoskills.net/files/2018/06/datacomm_jan_1995.pdf&#34; title=&#34;Data Communications Jan 1995&#34;&gt;ASA/PIX&lt;/a&gt;. Although sometimes annoying it is the direction the industry has moved into, however, if you are still having a hard time and need to reminisce this appliance does offer a CLI pop-up, but it only offers packet-tracer, ping, some show commands are available and trace route. It&#39;s not much but it may be enough to move forward, good luck. ;)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22ragnarok_sage2000@yahoo.com%22&#34;&gt;PrimeUser&lt;/a&gt; - &lt;time datetime=&#34;2019-06-25 23:20:07&#34;&gt;Jun 25, 2019&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hi, have you experience when you sub-interface the inside port, you cannot do any intervlan routing?&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2019-06-26 19:37:39&#34;&gt;Jun 26, 2019&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;I believe you can do inter-vlan routing you just have to create a sub-interface first and then you would be able to use it.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://gravatar.com/danchocska&#34; title=&#34;danchocska@gmail.com&#34;&gt;RemoteYordan&lt;/a&gt; - &lt;time datetime=&#34;2020-01-12 11:55:59&#34;&gt;Jan 12, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hi Guys, i have this problem. I am trying to reach the gui interface on my virtual FTD and on browser i am able to see only this Service Unavailable The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later. any idea? br Yordan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2020-01-13 07:46:38&#34;&gt;Jan 13, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey RemoteYordan, I have seen this before if I remember correctly I had to re image it..which was annoying, but that was on physical hardware not FTDv If you are using the FTDv do you have enough resources on that VM? I have also seen this if resources are taxed or if its just starting up... In my case the Firewall was still up and at least passing and blocking traffic but I had to re-image it... Also I think if you are using the FMC this is normal behavior you won&#39;t be able to locally configure it, if you have configured the FTDv to use the Firepower Management Center. Some ideas, hope those help Ryan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;%22fdsa@fdsa.fdsa%22&#34;&gt;RALPH NADER&lt;/a&gt; - &lt;time datetime=&#34;2020-01-09 12:17:44&#34;&gt;Jan 9, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Using FTDv 6.2.0 - don&#39;t have the option to choose locally managed. Requires FMCv :(&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2020-01-11 18:49:59&#34;&gt;Jan 11, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey Ralph, I thought 6.2.0 had that option? I know later versions have it, I played around 6.4.0 and it supported local mode. Thanks Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Factory Reset Firepower 2100</title>
+      <link>https://ciscoskills.net/2017/12/factory-reset-firepower-2100/</link>
+      <pubDate>Fri, 01 Dec 2017 16:00:49 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/12/factory-reset-firepower-2100/</guid>
+      <description>
+        
+          &lt;p&gt;In this short guide I wanted to walk through the steps to do a factory reset for the Cisco Firepower 2100 series. When doing these resets all configuration and the administrative password are removed, as well as the FTD (Firepower Threat Defense) app-instance. When the unit starts to boot it will reinstall the FTD app-instance to default configuration.&lt;/p&gt;
+&lt;p&gt;There are two ways to factory reset these Firepower 2100 units. If you can get into the device you can simply use these commands: &lt;code&gt;connect local-mgmt erase configuration&lt;/code&gt; The other method is used for if you are unable to get into the unit because either you don&#39;t know the password or something else has happened to make this appliance unstable enough that a factory reset is needed.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: You have to be able to view the console port and power off the device in order to do the following:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Connect to the console of the device&lt;/li&gt;
+&lt;li&gt;Power off the system and turn it back on&lt;/li&gt;
+&lt;li&gt;When the system is booting you have to go into ROMMON mode, to do that press ESC or CTRL+L to interrupt the boot process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;*********************************************************************
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Cisco System ROMMON, Version 1.0.00, RELEASE SOFTWARE
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Copyright (c) 1994-2017  by Cisco Systems, Inc.
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Compiled Tue 01/03/2017 23:55:11.41 by builder
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;*********************************************************************
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Current image running: Boot ROM0
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;Last reset cause: PowerCycleRequest
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;DIMM_1/1 : Present
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;DIMM_2/1 : Absent
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Platform FPR-2110 with 16384 MBytes of main memory
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;BIOS has been successfully locked !!
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;MAC Address: 00:27:e3:f6:e6:c8
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Use BREAK or ESC to interrupt boot.
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;Use SPACE to begin boot immediately.
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;Boot interrupted.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You will now be at the ROMMOM prompt&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;rommon 1 &amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To preform a recovery type the following&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;rommon 1 &amp;gt; password_reset
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;WARNING: User configurations will be lost with this operation
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Are you sure ? yes/no [no]: yes
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Enabling password reset..
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;Please continue to boot the image
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The system will now boot into FXOS and attempt to reinstall the FTD application, the username and passwords are now at default settings and the FTD app-instance would also reinstall. Depending on the version of FTD that is installed by default you may have to reinstall any patches to get your unit up to update.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22nathan.timberlake@gucu.org%22&#34;&gt;Nathan Timberlake&lt;/a&gt; - &lt;time datetime=&#34;2019-02-15 13:54:22&#34;&gt;Feb 15, 2019&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;I am wondering how to recover if you are running ASA code on a 2110. I have accidentally added TACACS commands while playing around, and locked myself out. This would be really bad if I had written mem!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2019-02-15 21:10:26&#34;&gt;Feb 155, 2019&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey Nathan, I really have not played with ASA code on 2100 hardware, but I would think it is the same process since you are going into ROMmon mode anyway. I&#39;m guessing since you have ASA code instead of FTD it would just reinstall the ASA application just like it does with FTD, total guess... Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Update Firepower Devices - Manually</title>
+      <link>https://ciscoskills.net/2017/07/update-firepower-devices-manually/</link>
+      <pubDate>Wed, 12 Jul 2017 14:15:38 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/07/update-firepower-devices-manually/</guid>
+      <description>
+        
+          &lt;p&gt;This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can manually update this by either connecting to the console or ssh into the sensor.&lt;/li&gt;
+&lt;li&gt;Once in you&#39;ll need to the bash shell so type the command &amp;quot;expert&amp;quot; to get into it.&lt;/li&gt;
+&lt;li&gt;Next, you need to evaluate to the root account by using &lt;strong&gt;sudo su&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;SCP copy the update to the &lt;strong&gt;/var/sf/updates&lt;/strong&gt; folder, you can either copy from the FMC or something else that has the update you are looking for.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;scp admin@192.168.1.5:/image.sh /var/sf/updates
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the update is on the FMC the path is &lt;strong&gt;/var/sf/updates&lt;/strong&gt; and it would look something like this, we are pulling from the FMC and copying to the sensor to /var/sf/updates folder.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;scp admin@192.168.1.5:/var/sf/updates/Cisco/FTD/Patch-6.2.0.2-51.sh /var/sf/updates
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Install the update via &lt;strong&gt;install_update.pl /var/sf/updates/image.sh&lt;/strong&gt; and watch the console when the upgrade completes your sensor will reboot and no action is needed on the FMC it will automatically detect the new version.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Below is an omitted copy of the console output when upgrading Cisco Firepower devices, keep in mind this session has to stay active don&#39;t close or disconnect while updating, let&#39;s just say hitting CTRL+C during this process is an instant killjoy, and although it can be fixed I wouldn&#39;t advise it!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&amp;gt; expert
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;admin@host-172-16-1-110:~$ sudo su
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;We trust you have received the usual lecture from the local System
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Administrator. It usually boils down to these three things:
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;    #1) Respect the privacy of others.
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;    #2) Think before you type.
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;    #3) With great power comes great responsibility.
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Password:
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;root@host-172-16-1-110:~#scp admin@172.16.1.15:/var/sf/updates/Cisco_FTD_Patch-6.2.0.2-51.sh /var/sf/updates
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Cisco_FTD_Patch-6.2.0.2-51.sh                 100%  319MB   6.0MB/s   00:53
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;root@host-172-16-1-110:~#install_update.pl /var/sf/updates/Cisco_FTD_Patch-6.2.0.2-51.sh
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;ARGV[0] = /var/sf/updates/Cisco_FTD_Patch-6.2.0.2-51.sh
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;TODO:: Need to check Sybase Database is running in Standby Mode at /ngfw/usr/local/sf/bin/install_update.pl line 246.
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Verifying archive integrity... All good.
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Uncompressing Cisco FTD Patch / Fri May 26 23:33:01 UTC 2017.............
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;[170621 01:01:52] #####################################
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;[170621 01:01:52] # UPGRADE  STARTING
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;[170621 01:01:52] #####################################
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;[170621 01:01:52] BEGIN  000_start/000_check_update.sh
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;[170621 01:01:53] BEGIN  000_start/100_start_messages.sh
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;[170621 01:01:53] BEGIN  000_start/100_zz_verify_bundle.sh
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;[170621 01:01:53] BEGIN  000_start/101_run_pruning.pl
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;[170621 01:01:58] BEGIN  000_start/102_check_sru_install_running.pl
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;[170621 01:01:58] BEGIN  000_start/105_check_model_number.sh
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;[170621 01:01:58] BEGIN  000_start/106_check_HA_sync.pl
+&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;[170621 01:01:59] BEGIN  000_start/106_check_HA_updates.pl
+&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;[170621 01:01:59] BEGIN  000_start/107_version_check.sh
+&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;[170621 01:01:59] BEGIN  000_start/108_check_sensors_ver.pl
+&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;[170621 01:02:00] BEGIN  000_start/109_check_HA_MDC_status.pl
+&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;[170621 01:02:00] BEGIN  000_start/110_DB_integrity_check.sh
+&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;[170621 01:02:02] BEGIN  000_start/111_FS_integrity_check.sh
+&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;[170621 01:02:02] BEGIN  000_start/112_CF_check.sh
+&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;-- omitted --
+&lt;span class=&#34;ln&#34;&gt;39&lt;/span&gt;[170621 01:08:14] BEGIN 999_finish/999_y_must_be_next_to_last_to_generate_integrity_data.sh
+&lt;span class=&#34;ln&#34;&gt;40&lt;/span&gt;[170621 01:08:15] BEGIN 999_finish/999_z_must_remain_last_finalize_boot.sh
+&lt;span class=&#34;ln&#34;&gt;41&lt;/span&gt;[170621 01:08:15] BEGIN 999_finish/999_zz_install_bundle.sh
+&lt;span class=&#34;ln&#34;&gt;42&lt;/span&gt;Cleaning up.
+&lt;span class=&#34;ln&#34;&gt;43&lt;/span&gt;shutdown PM on whitebox systems except Readiness package, sample patch and RNA redhat
+&lt;span class=&#34;ln&#34;&gt;44&lt;/span&gt;about to remove upgrade lock
+&lt;span class=&#34;ln&#34;&gt;45&lt;/span&gt;removed &amp;#39;/ngfw/tmp/upgrade.lock/main_upgrade_script.log&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;46&lt;/span&gt;removed &amp;#39;/ngfw/tmp/upgrade.lock/status_log&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;47&lt;/span&gt;removed &amp;#39;/ngfw/tmp/upgrade.lock/PID&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;48&lt;/span&gt;removed &amp;#39;/ngfw/tmp/upgrade.lock/LSM&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;49&lt;/span&gt;removed directory: &amp;#39;/ngfw/tmp/upgrade.lock&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;50&lt;/span&gt;[170621 01:08:48] Attempting to remove upgrade lock
+&lt;span class=&#34;ln&#34;&gt;51&lt;/span&gt;[170621 01:08:48] Success, removed upgrade lock
+&lt;span class=&#34;ln&#34;&gt;52&lt;/span&gt;Upgrade lock /ngfw/tmp/upgrade.lock removed successfully.
+&lt;span class=&#34;ln&#34;&gt;53&lt;/span&gt;[170621 01:08:48]
+&lt;span class=&#34;ln&#34;&gt;54&lt;/span&gt;[170621 01:08:48] #######################################################
+&lt;span class=&#34;ln&#34;&gt;55&lt;/span&gt;[170621 01:08:48] # UPGRADE COMPLETE #
+&lt;span class=&#34;ln&#34;&gt;56&lt;/span&gt;[170621 01:08:48] #######################################################
+&lt;span class=&#34;ln&#34;&gt;57&lt;/span&gt;Process 1061 exited.I am going away.
+&lt;span class=&#34;ln&#34;&gt;58&lt;/span&gt;RC: 0
+&lt;span class=&#34;ln&#34;&gt;59&lt;/span&gt;Update package reports success: almost finished...
+&lt;span class=&#34;ln&#34;&gt;60&lt;/span&gt;Scheduling a reboot to occur in 60 seconds...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

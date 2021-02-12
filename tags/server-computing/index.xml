@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Server (computing) on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/server-computing/</link>
+    <description>Recent content in Server (computing) on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 17 Mar 2011 16:30:41 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/server-computing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Common Network Attacks</title>
+      <link>https://ciscoskills.net/2011/03/common-network-attacks/</link>
+      <pubDate>Thu, 17 Mar 2011 16:30:41 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/03/common-network-attacks/</guid>
+      <description>
+        
+          &lt;p&gt;Network attacks have always been around but they are getting more advanced every day. These attacks are also easy to set up and use. In the past these types of attacks would have to be pulled off by someone who really knew about computers and to know what they are doing. That&#39;s a true hacker, now there are programs that do the same damage and sometimes more with a couple clicks of a mouse, so now anybody can bring down a network. The only thing that changes is the motivation of the person. Some People that run scripts or programs don&#39;t always know what the program does, so they click on some buttons and the program does its thing, if it fails sometimes the person stops there and gives up. But there are people who want to do some real damage to a company these people usually have organizations like the Anonymous group. So what are some of the common attacks people or organizations do? Well in a company the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_administrator&#34; title=&#34;Network administrator&#34;&gt;network administrators&lt;/a&gt; might focus on the outside of the network, but have their inside network unsecure or extremely weak. So if somebody on the inside was able to execute and attack it could have a huge effect on the network. So attacks that could occur:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Reconnaissance Attacks: Gather information about the network, this could be anything from ping sweeps, to port scanners, &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt; scanners, etc. The goal of this type of attack to gather information on the network and exploit its weak areas.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Access Attacks: Try to steal or attempt to steal data. Financial information, &lt;a href=&#34;http://en.wikipedia.org/wiki/Classified_information&#34; title=&#34;Classified information&#34;&gt;classified information&lt;/a&gt;, critical information and even international espionage.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Denial of service (DoS) attacks. Which has three types of DoS types&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Destroyers: which harm computers, by erasing data and software&lt;/li&gt;
+&lt;li&gt;Crashers: cause harm by causing computers to fail or causing the machine to be unable to commutate with the network or connect to the network.&lt;/li&gt;
+&lt;li&gt;Flooders: Flood the network with packets to make the network unusable and preventing any useful communication making the service appear unavailable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Computer viruses are one of the many tools that could be used to carry out these types of attacks. Along with access to unsecured wireless networks. This makes the network weak if the computer or host is able to access ever device on that network. Infected laptops if the user brings the computer home from the office, that computer could get infected and exposing classified information and even have the potential to infect other computers. Employees could with or without knowing that what they download or save on USBs could cause harm to the company. A good security policy is recommended along with some helpful network access tools and components. These security tools can always stop attacks but they can slow somebody down and maybe be alerted to higher authority. Viruses are a common thing to get on a computer that is not protected with antivirus software or that virus could be a &lt;a href=&#34;http://en.wikipedia.org/wiki/Zero-day_attack&#34; title=&#34;Zero-day attack&#34;&gt;zero-day attack&lt;/a&gt; so the software does not have the virus in its signature database. But there are more than just viruses out there like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Scanners: Are a tool that sends connection requests to a different &lt;a href=&#34;http://en.wikipedia.org/wiki/Transmission_Control_Protocol&#34; title=&#34;Transmission Control Protocol&#34;&gt;TCP&lt;/a&gt; or &lt;a href=&#34;http://en.wikipedia.org/wiki/User_Datagram_Protocol&#34; title=&#34;User Datagram Protocol&#34;&gt;UDP port&lt;/a&gt;, different applications. This attempt tries to discover which hosts or computers have IP services and possibly the operating system.&lt;/li&gt;
+&lt;li&gt;Spyware: A virus that looks for private or &lt;a href=&#34;http://en.wikipedia.org/wiki/Information_sensitivity&#34; title=&#34;Information sensitivity&#34;&gt;sensitive information&lt;/a&gt;, like tracking websites the user visits. What the user does with the computer, and passing that information back to the attacker.&lt;/li&gt;
+&lt;li&gt;Worm: A self-propagating program that can quickly spread and copy itself around the network or even the internet. This type of program also can do &lt;a href=&#34;http://en.wikipedia.org/wiki/Denial-of-service_attack&#34; title=&#34;Denial-of-service attack&#34;&gt;DoS attacks&lt;/a&gt; on servers and computers.&lt;/li&gt;
+&lt;li&gt;Keystroke Loggers: A virus that logs all keystrokes, capturing your username and passwords to secure sites. Giving the attacker access to your personal information.&lt;/li&gt;
+&lt;li&gt;Phishing: The attacker sets up a fake website that looks exactly like a legitimate website often from banks and or credit card companies. Sometimes the user will get an e-mail and a link to the website, the user clicks on the link and is directed to the fake website. The user then puts in login information or personal information. Giving the attack access to the user&#39;s bank or personal information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Although this is brief it gives you an overview of the different types of security attacks network and host based. This can go into a lot more information and if you want to find more information about an attack and the ways to stop or slow down the attack a simple web search will be able to point you in the right direction. If you have any questions or comments feel to comment below.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>WordPress.com Hit by a DoS Attack</title>
+      <link>https://ciscoskills.net/2011/03/wordpress.com-hit-by-a-dos-attack/</link>
+      <pubDate>Fri, 04 Mar 2011 15:30:53 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/03/wordpress.com-hit-by-a-dos-attack/</guid>
+      <description>
+        
+          &lt;p&gt;Yesterday, (March 3rd 2011) there was a massive &lt;a href=&#34;http://en.wikipedia.org/wiki/Denial-of-service_attack&#34; title=&#34;Denial-of-service attack&#34;&gt;DoS attack&lt;/a&gt; that hit &lt;a href=&#34;http://wordpress.com/&#34; title=&#34;WordPress.com&#34;&gt;WordPress.com&lt;/a&gt;. Cisco Skill&#39;s uses WordPress.com has a hosting provider but is not believed to one of the sites hit. There still is no word on who or why they targeted WordPress.com but goes to show that Denial of Service is still a popular type of attack and although simple to set up they can still bring down enterprise networks. So what exactly is denial of service? To make it simple a denial of service can be a range of things but the main goal of a DoS attack is to slow the network down so real traffic can&#39;t get access or is extremely unresponsive. One example is using the one of the TCP services and do a &lt;a href=&#34;http://en.wikipedia.org/wiki/SYN_flood&#34; title=&#34;SYN flood&#34;&gt;SYN flood&lt;/a&gt;, which a host or thousands of hosts send thousands of &lt;a href=&#34;http://en.wikipedia.org/wiki/Transmission_Control_Protocol&#34; title=&#34;Transmission Control Protocol&#34;&gt;SYN packets&lt;/a&gt; to the &lt;a href=&#34;http://en.wikipedia.org/wiki/Server_%28computing%29&#34; title=&#34;Server (computing)&#34;&gt;server&lt;/a&gt;. The server sends a SYN ACK but the host does not respond leaving the session open until a timeout occurs. By having all these fake sessions open the server may not be able to handle additional traffic making it seem the service is unavailable. There are many more types of denial of service attacks and the SYN flood is just one example. [caption id=&amp;quot;attachment_840&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;300&amp;quot; caption=&amp;quot;Credit: Cisco Inc.&amp;quot;]&lt;a href=&#34;http://ciscoskills.net/2011/03/04/wordpress-com-hit-by-a-dos-attack/syn-attack/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/syn-attack.jpg?w=300&#34; alt=&#34;SYN Flood Attack&#34; title=&#34;SYN Attack&#34;&gt;&lt;/a&gt;[/caption] These DoS attacks have been around for a while and they are relatively easy to set up and configure. An attacker could infect machines with a virus that the user or anti-software is unaware of its existence. The virus waits until it has been activated by the remote attacker. This virus could have spread to hundreds of thousands of machines and are waiting for the attacker to start the attack once activated the denial of service starts and the attacker can pick which target to bring down. &lt;a href=&#34;http://en.wikipedia.org/wiki/Matt_Mullenweg&#34; title=&#34;Matt Mullenweg&#34;&gt;Matt Mullenweg&lt;/a&gt; the founder of WordPress.com wrote an e-mail sent to CNET.com and said the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There&#39;s an ongoing DDoS attack that was large enough to impact all three of our data centers in Chicago, San Antonio, and Dallas--it&#39;s currently been neutralized but it&#39;s possible it could flare up again later, which we&#39;re taking proactive steps to implement. This is the largest and most sustained attack we&#39;ve seen in our six-year history. We suspect it may have been politically motivated against one of our non-English blogs but we&#39;re still investigating and have no definitive evidence yet.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;check-out-my-recent-post-of-understanding-tcphttpciscoskillsnet20110225understanding-tcp-understandingtcp-to-learn-how-the-tcp-protocol-works-in-a-simplified-form-you-can-also-find-more-information-about-how-a-denial-of-service-works-do-a-simple-web-search-to-find-more-information&#34;&gt;Check out my recent post of &lt;a href=&#34;http://ciscoskills.net/2011/02/25/understanding-tcp/&#34; title=&#34;Understanding TCP&#34;&gt;Understanding TCP&lt;/a&gt; to learn how the TCP protocol works in a simplified form. You can also find more information about how a denial of service works do a simple web search to find more information.&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/07/wordpress-com-still-having-some-dos-attacks/&#34; title=&#34;&#34;&gt;WordPress.com still having some DoS Attacks | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-03-07 10:07:36&#34;&gt;Mar 1, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Temporal Key Integrity Protocol on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/temporal-key-integrity-protocol/</link>
+    <description>Recent content in Temporal Key Integrity Protocol on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 18 May 2011 16:50:52 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/temporal-key-integrity-protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic Wireless LAN Security</title>
+      <link>https://ciscoskills.net/2011/05/basic-wireless-lan-security/</link>
+      <pubDate>Wed, 18 May 2011 16:50:52 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/05/basic-wireless-lan-security/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/wirelesssecurity.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/wirelesssecurity.png&#34; alt=&#34;&#34; title=&#34;Wireless-Security-Icon&#34;&gt;&lt;/a&gt;Although having a wireless LAN sounds like a wonderful idea, there are things that need to be implemented like security. A wireless LAN can be uncontrollable has it is just radio waves and anybody can receive them. Having and using good security practices can help you be under control of your wireless LAN.  Not having any security in a wireless LAN environment will cause anybody to have access to the network. Some threats that lead to &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;wireless LANs&lt;/a&gt; can be the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;War Drivers – These are people who &amp;quot;drive&amp;quot; around to find open networks that are not secure and looking for free internet access.&lt;/li&gt;
+&lt;li&gt;Hackers – These types of people usually have malicious ideas in mind; this can be anything to entering unauthorized systems and stealing data or even harming the physical system.&lt;/li&gt;
+&lt;li&gt;Employees –Although we may have an excellent defense on the outside of our network, we sometimes forget that the inside of our network needs to be secure as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the original 802.11 standard there were two types of authentication:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open authentication, which as the name implies has no authentication and will allow anybody to use the network.&lt;/li&gt;
+&lt;li&gt;Shared authentication, which used &lt;a href=&#34;http://en.wikipedia.org/wiki/Wired_Equivalent_Privacy&#34; title=&#34;Wired Equivalent Privacy&#34;&gt;WEP&lt;/a&gt; and is now flawed, The WEP algorithm was weak and WEP was also not very scalable. (See post &lt;a href=&#34;http://ciscoskills.net/2011/03/14/cracking-wep/&#34; title=&#34;Cracking WEP&#34;&gt;Cracking WEP&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Currently there are two enterprise-level encryption methods which are specified in the 802.11i and are certified as &lt;a href=&#34;http://en.wikipedia.org/wiki/Wi-Fi_Protected_Access&#34; title=&#34;Wi-Fi Protected Access&#34;&gt;WPA&lt;/a&gt; and WPA2:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Temporal_Key_Integrity_Protocol&#34; title=&#34;Temporal Key Integrity Protocol&#34;&gt;TKIP&lt;/a&gt; is an encryption method certified has WPA, TKIP supports for legacy WLAN equipment by fixing the flaws with the original 802.11 WEP encryption. TKIP encrypts at the layer 2 (Data Link) payloads and carries a message of integrity check (&lt;a href=&#34;http://en.wikipedia.org/wiki/Message_authentication_code&#34; title=&#34;Message authentication code&#34;&gt;Message Integrity Check&lt;/a&gt;) in the encrypted packet. This helps to make sure the message or packet was not tampered with.&lt;/li&gt;
+&lt;li&gt;AES is an encryption method certified has WPA2, AES has the same functions as TKIP but does use additional data from the MAC header to recognize if the data has been tampered with.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some steps to check when setting up a wireless LAN is the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Check the wired network, like &lt;a href=&#34;http://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol&#34; title=&#34;Dynamic Host Configuration Protocol&#34;&gt;DHCP&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_access&#34; title=&#34;Internet access&#34;&gt;Internet access&lt;/a&gt; before setting up a &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_access_point&#34; title=&#34;Wireless access point&#34;&gt;wireless access point&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Next install the access point but by keeping it away from devices that could case greater interference .&lt;/li&gt;
+&lt;li&gt;Configure the &lt;a href=&#34;http://en.wikipedia.org/wiki/Service_set_%28802.11_network%29&#34; title=&#34;Service set (802.11 network)&#34;&gt;SSID&lt;/a&gt; on the access point. Don&#39;t put security on the access point yet.&lt;/li&gt;
+&lt;li&gt;Configure or install one or two wireless clients. Don&#39;t put security on these devices yet.&lt;/li&gt;
+&lt;li&gt;Verify wireless network operation within the clients. Check to make sure you can get access to network resources and outside the network.&lt;/li&gt;
+&lt;li&gt;Configure &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_security&#34; title=&#34;Wireless security&#34;&gt;wireless security&lt;/a&gt;. Such as WPA2 with PSK .&lt;/li&gt;
+&lt;li&gt;Verify network operation again to make sure that the wireless clients can get access to network resources.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For now that&#39;s my summary for the basic wireless security, this really goes over the concepts but not the configuration. There are a lot of online guides that can go into the configuration aspect of the wireless client and the access point. Like always I hope this information was informative and if you come up with any other ideas that deal with either ICND1 or ICND2 let me know by posting a comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/does-your-small-business-need-a-wireless-lan-controller/&#34;&gt;Does Your Small Business Need a Wireless LAN Controller?&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/&#34;&gt;Basic Wireless Concepts&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/securing-remote-locations-in-3-steps/&#34;&gt;Securing Remote Locations in 3 Steps&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/226857/Home_WiFi_Network_Security_4_Ways_to_Avoid_Big_Trouble.html&#34;&gt;Home Wi-Fi Security: 4 Steps to Avoid Trouble&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.brighthub.com/computing/smb-security/articles/78216.aspx&#34;&gt;Advantages/Disadvantages: WEP/WPA Network Security&lt;/a&gt; (brighthub.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://cartesianproduct.wordpress.com/2011/06/11/wired-to-wireless-bridge-in-ubuntu-linux/&#34; title=&#34;&#34;&gt;Wired to wireless bridge in Ubuntu Linux | cartesian product&lt;/a&gt; - &lt;time datetime=&#34;2011-06-11 10:08:04&#34;&gt;Jun 6, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Basic Wireless LAN Security (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

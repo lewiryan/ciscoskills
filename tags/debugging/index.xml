@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debugging on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/debugging/</link>
+    <description>Recent content in Debugging on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 15 Apr 2011 18:00:28 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/debugging/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Troubleshooting Process</title>
+      <link>https://ciscoskills.net/2011/04/troubleshooting-process/</link>
+      <pubDate>Fri, 15 Apr 2011 18:00:28 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/04/troubleshooting-process/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/thinking.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/thinking.png&#34; alt=&#34;&#34; title=&#34;Troubleshooting&#34;&gt;&lt;/a&gt;Today&#39;s post is going to be talking about &lt;a href=&#34;http://en.wikipedia.org/wiki/Troubleshooting&#34; title=&#34;Troubleshooting&#34;&gt;troubleshooting&lt;/a&gt; and where to start the troubleshooting process. Yes there is an actual process that every technician should be aware of. You can also use this troubleshooting process at home, you may not know how to fix it but at least you know where the issue is and find someone who can.  Before we begin if you haven&#39;t seen yet, let me introduce to you the troubleshooting process:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You want to gather information about the problem. (What happened?)&lt;/li&gt;
+&lt;li&gt;Keep it simple, verify the obvious issues FIRST! (Is the device powered on?)&lt;/li&gt;
+&lt;li&gt;Try some quick solutions first (restart, reinstall, verify connections)&lt;/li&gt;
+&lt;li&gt;Gather information from the device (Device Manger, if you are in routers or switches use &amp;quot;Show&amp;quot; commands and &amp;quot;Debug&amp;quot; commands)&lt;/li&gt;
+&lt;li&gt;Use your research skills! Evaluate the problem and try possible solutions. (&lt;a href=&#34;http://en.wikipedia.org/wiki/Internet&#34; title=&#34;Internet&#34;&gt;Internet&lt;/a&gt; searches, &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_forum&#34; title=&#34;Internet forum&#34;&gt;Online Forums&lt;/a&gt;, past experiences etc.)&lt;/li&gt;
+&lt;li&gt;Finally keep note of what you did even if you did not fix the issue. (Keep an engineer notebook!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This may look simple, and it is! This is the exact method I use when troubleshooting a problem. Troubleshooting is a hard skill to have, as you really can&#39;t learn from it in a book. You have to have experience with the type of technology you&#39;re working with. One thing I use all the time is my research skills this can be a life saver if you know what to look for, use key details! The internet can be helpful but putting generic terms like &amp;quot;&lt;a href=&#34;http://en.wikipedia.org/wiki/Windows_XP&#34; title=&#34;Windows XP&#34;&gt;windows XP&lt;/a&gt; is not working&amp;quot; will not help you but instead waste your time. Use the key terms when have an issue like an error code, type the error message, describe what you can&#39;t do, etc. Chances are somebody somewhere has had the same problem or at least something like it and decided to post it. Another thing I like to do when checking on a problem is going to the source! Although there are helpful places around web like forums, and chat systems I usually use this last. If I am having a problem with &lt;a href=&#34;http://en.wikipedia.org/wiki/Microsoft_Windows&#34; title=&#34;Microsoft Windows&#34;&gt;Windows&lt;/a&gt; for example I&#39;ll go to &lt;a href=&#34;http://en.wikipedia.org/wiki/Microsoft&#34; title=&#34;Microsoft&#34;&gt;Microsoft&lt;/a&gt; Support. Same thing if I have an issue with a Cisco product I&#39;ll go to &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&#39;s&lt;/a&gt; Support webpage before I go and search my problem around the web. Finally remember ask other technicians if they have seen the problem. By using these steps and guidelines will be able to become better at troubleshooting like before it&#39;s something you can&#39;t learn from a book you must have experience with technology before you can even start troubleshooting. My last word of advice is keeping a record! Write down the steps you did, why did them and what where the solutions to the problem? If you couldn&#39;t figure it still write it down. That way if the issue occurs again you and other people know exactly how to fix the problem or also know what solutions not work last time and not waste any of your time, like always I hope this information was informative and if you have an idea about the next ICND1 or ICND2 topic comment below.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

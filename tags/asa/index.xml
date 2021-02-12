@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ASA on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/asa/</link>
+    <description>Recent content in ASA on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 08 Aug 2020 15:41:06 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/asa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VTIs with ASA</title>
+      <link>https://ciscoskills.net/2020/08/vtis-with-asa/</link>
+      <pubDate>Sat, 08 Aug 2020 15:41:06 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2020/08/vtis-with-asa/</guid>
+      <description>
+        
+          &lt;p&gt;I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago! We only got introduced into this technology with ASA when version 9.7 (2017) and above arrived....&lt;/p&gt;
+&lt;p&gt;In the old days, which wasn&#39;t that long ago.... We were stuck with cryptomaps to interfaces and dealing with &amp;quot;interesting&amp;quot; traffic when working with ASAs...Well time for change no more defining interesting traffic, we route these bits instead! Any traffic we want to go over the tunnel is routed over, we can apply ACLs on the inbound interface just like we do with physical interfaces, so simple...&lt;/p&gt;
+&lt;p&gt;Here is the topology I&#39;m working with:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2020/07/vti-asa.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This is a pretty standard setup, basically we have two sites and want a tunnel between them. We can setup a VTI Tunnel and route via the next hop address. You can also run a routing protocol over this so this can scale out easy.&lt;/p&gt;
+&lt;p&gt;In this example I got two Cisco ASAs using version 9.12(2), just like the old days, things have to match in order to get a tunnel up. In this example I&#39;m using IKEv2 this policy has to match on both ends:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto ikev2 policy 1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; encryption 3des
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; integrity sha
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; group 2
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; prf sha
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; lifetime seconds 86400
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;:!: Please use a higher encryption than what I have, this is just for demonstration. :) I also found out that NIST will not allow 3DES starting in 2024. &lt;a href=&#34;https://www.comparitech.com/blog/information-security/3des-encryption/#What_is_3DES&#34;&gt;More Information about the 3DES and history&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We got match a group policy this is configured on both ends, (name could be different)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;group-policy P2P-VPN internal
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;group-policy P2P-VPN attributes
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; vpn-idle-timeout 30
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; vpn-session-timeout none
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; vpn-filter none
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; vpn-tunnel-protocol ikev2 
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; periodic-authentication certificate none
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next we we create the IPSEC part of the tunnel, again these have to match on both ends:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto ipsec ikev2 ipsec-proposal VPN-P2P
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; protocol esp encryption aes-256
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; protocol esp integrity sha-256
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Phase Two of the tunnel for IPSEC Proposal, match them on both ends ;)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto ipsec profile VPN-P2P-IPSEC
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; set ikev2 ipsec-proposal VPN-P2P
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; set pfs group2
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; set security-association lifetime seconds 84600
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On the site one we create a tunnel group to site two. (preshared keys have to match) In this example I&#39;m using local and remote keys, just like you would expect remote key would match the local key on the remote end, and vise versa.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tunnel-group 203.0.113.2 type ipsec-l2l
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;tunnel-group 203.0.113.2 general-attributes
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; default-group-policy P2P-VPN
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;tunnel-group 203.0.113.2 ipsec-attributes
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; ikev2 remote-authentication pre-shared-key *****
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; ikev2 local-authentication pre-shared-key *****
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On site two we do the same thing, flipping the IP addresses.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tunnel-group 198.51.100.2 type ipsec-l2l
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;tunnel-group 198.51.100.2 general-attributes
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; default-group-policy P2P-VPN
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;tunnel-group 198.51.100.2 ipsec-attributes
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; ikev2 remote-authentication pre-shared-key *****
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; ikev2 local-authentication pre-shared-key *****
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Tunnel is created but in order to bring it up and use we need to create VTI interface on the ASA&#39;s. Here is how site one looks for the the tunnel interface. (tunnel source interface is the direction of how to get to the other site, in this case I&#39;m using the internet)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface Tunnel80
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; nameif VPN-P2P
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; ip address 10.15.161.253 255.255.255.252 
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; tunnel source interface ISP
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; tunnel destination 203.0.113.2
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; tunnel mode ipsec ipv4
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; tunnel protection ipsec profile VPN-P2P-IPSEC
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we jump over to site two for that tunnel interface configuration (tunnel interfaces don&#39;t have to match in this case)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface Tunnel80
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; nameif VPN-P2P
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; ip address 10.15.161.254 255.255.255.254 
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; tunnel source interface ISP
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; tunnel destination 198.51.100.2
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; tunnel mode ipsec ipv4
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; tunnel protection ipsec profile VPN-P2P-CPHX-IPSEC
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see that we created a little point to point network within the tunnel and if we wanted traffic over this tunnel a simple route statement is all we need :)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;route VPN-P2P 172.22.1.0 255.255.255.0 10.15.161.254 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;A simple show command verifies that the tunnel is up (show crypto isakmp)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;There are no IKEv1 SAs
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;IKEv2 SAs:
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Session-id:1, Status:UP-ACTIVE, IKE count:1, CHILD count:1
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Tunnel-id Local                                               Remote                                                  Status         Role
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  3991227 198.51.100.2/500                                    203.0.113.2/500                                          READY    INITIATOR
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;      Encr: 3DES, Hash: SHA96, DH Grp:2, Auth sign: PSK, Auth verify: PSK
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;      Life/Active Time: 86400/3180 sec
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Child sa: local selector  0.0.0.0/0 - 255.255.255.255/65535
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;          remote selector 0.0.0.0/0 - 255.255.255.255/65535
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;          ESP spi in/out: 0x8e25a2bf/0x90b25811 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Just like that you got yourself a flexible tunnel interface that you can send routes down it, don&#39;t need to deal with crypto maps anymore put those next to the history of 3DES ;) These VTIs make it a breeze to configure.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/2020/05/21/the-world-keeps-turning/&#34;&gt;The World Keeps Turning&lt;/a&gt; and we&#39;ll continue to navigate the times as technology plays such a critical piece in making sure communication between people and or systems goes uninterrupted. We as engineers are right in the middle of it... like always I hope this information is helpful, stay calm and carry on!&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dual ISP - Cisco ASA HA Active/Standby</title>
+      <link>https://ciscoskills.net/2019/03/dual-isp-cisco-asa-ha-active/standby/</link>
+      <pubDate>Tue, 12 Mar 2019 12:45:56 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2019/03/dual-isp-cisco-asa-ha-active/standby/</guid>
+      <description>
+        
+          &lt;p&gt;So a single ISP isn&#39;t cutting it anymore you need a backup just in case the primary fails and might as well add a second ASA into this design, more redundancy equals more up-time, right? On paper it sounds good but in the &amp;quot;real&amp;quot; world there probably is tipping point, more redundancy increases complexity. In this post we&#39;ll aim to keep it simple, with setting up a Cisco ASA HA active/standby pair and then add in the second ISP. Let&#39;s get started!
+So this is what our topology will look like all said and done, we have two firewalls and two different ISPs. The primary ISP is ISP-1 and the secondary ISP is ISP-2. We will always be using ISP-1 as the primary and won&#39;t be load balancing between the two. ISP-2 will only be used when ISP-1 goes offline. When ISP-1 comes back online we will switch back over to ISP-1.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/09/asa-ha2.png&#34; alt=&#34;ASA-HA&#34;&gt;&lt;/p&gt;
+&lt;p&gt;So let&#39;s first look at getting the ASA HA pair setup. In this example I have two ASA&#39;s that are the same hardware and software version, For the HA I have to be able to use two interfaces for the LAN failover and State link interface. I need to choose one ASA that will be the primary and one that is secondary. If you already have a configuration on one ASA, choose that as the primary. The secondary ASA just needs enough configuration so that you can get into it as the configuration gets overwritten on the secondary ASA from the primary.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# failover
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;ASA-HA-1(config)# failover lan unit primary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Move to the secondary ASA&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# failover
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;ASA-HA-1(config)# failover lan unit secondary
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now I need to configure the interfaces each ASA will be using two interfaces and they are connected directly to each other. Configuration is the same across the two ASAs with the exception of the IP address make sure they are different and are in the same network. I like to use a completely different range of IP addresses that are not in my network or public IP networks, otherwise you get into trouble. ;) In this example I&#39;m using the link local address RFC 3927.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# failover lan interface FAILOVER GigabitEthernet0/3
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;ASA-HA-1(config)# failover key password
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;ASA-HA-1(config)# failover link STATELINK GigabitEthernet0/4
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;ASA-HA-1(config)# failover interface ip FAILOVER 169.254.255.1 255.255.255.252 standby 169.254.255.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once you have configured both ASAs the primary will sync its configuration to the secondary and you will now have an active/standby pair of ASAs. You can verify the status by issuing the command show failover. We now need to switch gears and configure our secondary ISP and modify the primary ISP interface (OUTSIDE-ISP-1). On the primary ISP we need to configure a standby IP address on the interface and it needs to be on the same network. So in this example the standby IP is going to be 198.51.100.5 which was available to use from our primary ISP. We also need to do the same thing on the our secondary ISP interface (OUTSIDE-ISP-2. In this example the IP address is 198.51.100.140. Below is running configuration for that, this would be synced to both firewalls since they are now in an HA pair.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface GigabitEthernet0/0
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;nameif OUTSIDE-ISP-1
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;security-level 0
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;ip address 198.51.100.10 255.255.255.128 standby 198.51.100.5
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;!
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;interface GigabitEthernet0/1
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;nameif OUTSIDE-ISP-2
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;security-level 0
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;ip address 198.51.100.135 255.255.255.128 standby 198.51.100.140
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once that is done we now need to configure these ASA&#39;s to only use the primary ISP. If the primary ISP fails we switch over to the secondary ISP, we are not load balancing between the two, its one or the other. To do that we need to track the route. On this network we have a default static route that points to the primary ISP&#39;s next hop address. In this example that is 198.51.100.1 the command to track that route.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# route OUTSIDE-ISP-1 0.0.0.0 0.0.0.0 198.51.100.1 1 track 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This does not do anything yet, we are close but we also need to add another default route and point that to the secondary ISP.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# route OUTSIDE-ISP-2 0.0.0.0 0.0.0.0 198.51.100.129 254
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Notice that I&#39;m putting a distance metric on this route, this has a higher metric than the first default route so it won&#39;t be used until the primary route fails.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The track command will remove the primary route if it fails and then the ASA will install this the route in the routing table to switch over to the secondary ISP. We still have to configure some additional settings in order for this to work. We need to create an SLA on the ASA, in this example I&#39;m using Google&#39;s Public DNS as a reachability test. If this was production setup I would probably use a system that I own instead of relaying one somebody else.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# sla monitor 10
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;ASA-HA-1(config)# type echo protocol ipIcmpEcho 8.8.8.8 interface OUTSIDE-ISP-1 
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;ASA-HA-1(config)# num-packets 5
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;ASA-HA-1(config)# frequency 10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the schedule and reference the sla monitor number. We want this run forever (as long as the hardware lives) and we want to start it now.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# sla monitor schedule 10 life forever start-time now
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We finally can create a track on this route&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# track 1 rtr 10 reachability
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we look at show route we can see we are using the primary ISP&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;show  route
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;E1 - OSPF external type 1, E2 - OSPF external type 2, V - VPN
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;ia - IS-IS inter area, * - candidate default, U - per-user static route
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;o - ODR, P - periodic downloaded static route, + - replicated route
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Gateway of last resort is 198.51.100.1 to network 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;S*       0.0.0.0 0.0.0.0 [1/0] via 198.51.100.1, OUTSIDE-ISP-1
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;C        169.254.255.0 255.255.255.252 is directly connected, FAILOVER
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;L        169.254.255.1 255.255.255.255 is directly connected, FAILOVER
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;C        192.168.2.0 255.255.255.0 is directly connected, INSIDE
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;L        192.168.2.50 255.255.255.255 is directly connected, INSIDE
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;C        198.51.100.0 255.255.255.128 is directly connected, OUTSIDE-ISP-1
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;L        198.51.100.10 255.255.255.255 is directly connected, OUTSIDE-ISP-1
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;C        198.51.100.128 255.255.255.128 is directly connected, OUTSIDE-ISP-2
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;L        198.51.100.135 255.255.255.255 is directly connected, OUTSIDE-ISP-2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If that link fails or if the reachability fails the ASA will change over to the secondary ISP. Looking at the show route confirms this&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;ASA-HA-1# show route
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;E1 - OSPF external type 1, E2 - OSPF external type 2, V - VPN
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;ia - IS-IS inter area, * - candidate default, U - per-user static route
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;o - ODR, P - periodic downloaded static route, + - replicated route
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Gateway of last resort is 198.51.100.129 to network 0.0.0.0
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;S*       0.0.0.0 0.0.0.0 [254/0] via 198.51.100.129, OUTSIDE-ISP-2
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;C        169.254.255.0 255.255.255.252 is directly connected, FAILOVER
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;L        169.254.255.1 255.255.255.255 is directly connected, FAILOVER
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;C        192.168.2.0 255.255.255.0 is directly connected, INSIDE
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;L        192.168.2.50 255.255.255.255 is directly connected, INSIDE
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;C        198.51.100.0 255.255.255.128 is directly connected, OUTSIDE-ISP-1
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;L        198.51.100.10 255.255.255.255 is directly connected, OUTSIDE-ISP-1
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;C        198.51.100.128 255.255.255.128 is directly connected, OUTSIDE-ISP-2
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;L        198.51.100.135 255.255.255.255 is directly connected, OUTSIDE-ISP-2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all I got for this one, being able to switch between ISP automatically depending on reachability is an easy way to add additional redundancy, we don&#39;t have to have to two ASA&#39;s you could do this if you only had one ASA with two ISPs. I hope this information is helpful&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22gs@plusline.de%22&#34;&gt;gs@plusline.de&lt;/a&gt; - &lt;time datetime=&#34;2019-08-20 10:25:00&#34;&gt;Aug 2020, 2019&lt;/time&gt;
+That&#39;s just the routing part. You will have to do the source NAT of your inside prefix depending on the currently used ISP interface. But this is easy. Now try to set up the redundancy with native IPv6 from both providers.... no chance (regardless which method you might chose, DHCPv6-PD for inside, static prefix with 6to6NAT for inside, ...), you will hate the ASA for this.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2019-08-21 07:38:39&#34;&gt;Aug 21, 2019&lt;/time&gt;
+Yes your right and that was implied PAT/NAT would be enabled on this for this work on the outside interfaces, since its active/standby each ASA has both ISP interfaces on both of them so this is pretty easy setup. Never tired IPv6 on ASA ever! So I&#39;ll have to take your word ;) Might play around with that for.... fun. :| Ryan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://barbadosmuslimdirectory.wordpress.com&#34;&gt;bmdfisa101&lt;/a&gt; - &lt;time datetime=&#34;2020-05-04 13:37:47&#34;&gt;May 1, 2020&lt;/time&gt;
+Thanks Ryan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4 id=&#34;heading-3&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22fisa101@hotmail.com%22&#34;&gt;Jay&lt;/a&gt; - &lt;time datetime=&#34;2020-05-03 12:13:12&#34;&gt;May 3, 2020&lt;/time&gt;
+Hi how would you achieve this on Cisco Firepower 1122 with HA enabled. not using FCM only FDM&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4 id=&#34;heading-4&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2020-05-03 18:32:13&#34;&gt;May 3, 2020&lt;/time&gt;
+Hey Jay, It would be the same process, it looks like Cisco only recently introduced this feature in 6.5 for Firepower (Service Level Agreement (SLA) Monitor for static routes.) &lt;a href=&#34;https://www.cisco.com/c/en/us/td/docs/security/firepower/650/fdm/fptd-fdm-config-guide-650/fptd-fdm-get-started.html&#34;&gt;https://www.cisco.com/c/en/us/td/docs/security/firepower/650/fdm/fptd-fdm-config-guide-650/fptd-fdm-get-started.html&lt;/a&gt; Hope this Helps. Ryan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4 id=&#34;heading-5&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22cciehemant@gmail.com%22&#34;&gt;Hemant&lt;/a&gt; - &lt;time datetime=&#34;2020-05-31 14:08:16&#34;&gt;May 31, 2020&lt;/time&gt;
+Hi Ryan, Need to know what happens to the connectivity for the devices which were using NAT from primary ISP, if primary ISP link goes down. Manually NAT to secondary ISP IP or what ? Thanks&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4 id=&#34;heading-6&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2020-05-31 18:37:31&#34;&gt;May 31, 2020&lt;/time&gt;
+Hey Hemant, If the primary link goes down and it fails over to the secondary link your NATed IP will be from the secondary ISP, You would just create a NAT/PAT rule, So when you use the secondary ISP it will use that IP instead of the primary. OUTSIDE-ISP-2 would be the interface you would configure the NAT/PAT rule, just like you would with the OUTSIDE-ISP-1 interface. Hope that Helps Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Enable a RESTful ASA API</title>
+      <link>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</link>
+      <pubDate>Mon, 08 Oct 2018 13:00:21 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</guid>
+      <description>
+        
+          &lt;p&gt;Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he &lt;a href=&#34;https://blog.ipspace.net/2018/09/infrastructure-as-code-netconf-and-rest.html&#34;&gt;points out&lt;/a&gt; there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC. In this post we&#39;ll go through the steps to enable it and you can be the judge, does this RESTful API help?&lt;/p&gt;
+&lt;p&gt;So the first thing we need to grab the RESTful API application and by default is not included so we&#39;ll need to go to cisco.com and download it.  You need look for the Adaptive Security Appliance REST API Plugin and depending on your version of ASA there might be some gotchas on which versions to use so read the release notes. Once we you have the correct version downloaded you need to upload it to the ASA flash. Once uploaded you have to specify the location of the REST API Plugin:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;ASA-HA-1(config)# rest-api image flash:asa-restapi-132325-lfbff-k8.SPA
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Computed Hash   SHA2: 2106d6ac8c4e3c181c4820fb46588b8c
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;                      e104712e13fb783ad8f051e905c21330
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;                      0ad66d0e96a6f050805e1e7dc173f187
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;                      211c87db0c2d440da2e2d8614a210e4c
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Embedded Hash   SHA2: 2106d6ac8c4e3c181c4820fb46588b8c
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;                      e104712e13fb783ad8f051e905c21330
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;                      0ad66d0e96a6f050805e1e7dc173f187
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;                      211c87db0c2d440da2e2d8614a210e4c
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Digital signature validated successfully
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;ASA-HA-1(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After that you can enable the REST API:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# rest-api agent\[/code\]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once enabled if you have ASDM enabled then the HTTP service is running if not you have to enable the HTTP server as well as configure a management rule to tell what interface you will be connecting to.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;http server enable
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;http 0.0.0.0 0.0.0.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After that you can browse to the following link: https://ASAIP/doc/&lt;/p&gt;
+&lt;p&gt;You will get prompt to login with a username and password, so make sure the authentication is configured on the ASA. If you have login successfully you will see a webpage like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/10/asa-api.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;From here you can explore the different HTTP requests that are available and you essentially have another way of configuring and monitoring your ASA. So back my question does this type of RESTful API help you? I have explored this and have used Postman for my poor mans &amp;quot;IaC&amp;quot; but does that count, I feel something is missing? In the end it&#39;s still a process that runs and instead of running this via CLI its a CRUD API... - Ryan&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>ASA Site to Site VPN (DHCP)</title>
+      <link>https://ciscoskills.net/2017/04/asa-site-to-site-vpn-dhcp/</link>
+      <pubDate>Wed, 19 Apr 2017 12:00:46 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/04/asa-site-to-site-vpn-dhcp/</guid>
+      <description>
+        
+          &lt;p&gt;If you don’t already know, site to site VPNs can be a cost-effective way for remote sites to connect to HQ resources instead of a lease line like using MPLS or Metro-E circuits. We can instead use a standard internet connection with a static IP, this is usually cheaper than a dedicated circuit. Our next steps are purchasing a firewall for the remote site (assuming you already have one at HQ) and setup a site to site VPN connection to make the connection. In this guide, I’ll demo a site to site VPN with a pair of ASAs as well as some additional commands to allow DHCP across the tunnel so that your HQ DHCP server can hand out addresses instead of configuring a local DHCP server at the remote site.&lt;/p&gt;
+&lt;p&gt;The table below goes over the agreed settings and what networks are protected. Also note that the “public” IP addresses listed in this example are from RFC 5737 and are not publicly available. Since this is a VPN connection we must agree on some common settings before traffic is allowed across it. We will be tunneling the entire address range for both sites and no need to NAT anything because its Acme’s network. Reference the table below:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Acme Corp&lt;/th&gt;
+&lt;th&gt;Acme Branch&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Peer IP Address: 192.0.2.10&lt;/td&gt;
+&lt;td&gt;Peer IP Address: 203.0.113.10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Phase 1: AES 256 SHA (Group 2)&lt;/td&gt;
+&lt;td&gt;Phase 1: AES 256 SHA (Group 2)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Phase 2: AES 128 SHA&lt;/td&gt;
+&lt;td&gt;Phase 2: AES 128 SHA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;PFS: No&lt;/td&gt;
+&lt;td&gt;PFS: No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Protected Networks: 10.1.1.0/24&lt;/td&gt;
+&lt;td&gt;Protected Networks: 10.1.2.0/24&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Preshared Key: cisco&lt;/td&gt;
+&lt;td&gt;Preshared Key: cisco&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Here is the topology below for reference:
+&lt;img src=&#34;https://ciscoskills.net/images/2017/04/site-site-vpn-dhcp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let&#39;s start building the tunnel on the Acme Corp side first by creating object groups:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;object network VPN-REMOTE-ACME-BRANCH-NET-1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; subnet 10.1.2.0 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;object network VPN-REMOTE-ACME-BRANCH-NET-2
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt; subnet 10.1.3.0 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;object network ACME-CORP-NET
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; subnet 10.1.1.0 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;object network VPN-REMOTE-ACORP-BRANCH-NET-1
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; subnet 10.1.2.0 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;object network VPN-REMOTE-ACORP-BRANCH-NET-2
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; subnet 10.1.3.0 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;object-group network VPN-LOCAL-ACMECORP-NET
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; network-object object ACME-CORP-NET
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;object-group network VPN-LOCAL-ACORP
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt; network-object object ACME-CORP-NET
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;object-group network VPN-REMOTE-ACORP-BRANCH
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt; network-object object VPN-REMOTE-ACORP-BRANCH-NET-1
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt; network-object object VPN-REMOTE-ACORP-BRANCH-NET-2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next we need to create an access control list to match the traffic we want protected over the tunnel.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;access-list ACL-VPN-ACORP-ACORP-BRANCH extended permit ip object-group VPN-LOCAL-ACORP object-group VPN-REMOTE-ACORP-BRANCH
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We have to create some NAT exemption rules as we don&#39;t want to NAT these networks when we are crossing over the VPN. On line one (1) I’m creating a single static NAT entry to reference Acme&#39;s Branch networks going to Acme&#39;s local networks.In line two (2) just reversing so that Acme&#39;s local network can reach Acme&#39;s Branch.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Notice:&lt;/strong&gt; I&#39;m not changing the source or destination address for these NAT rules.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;nat (Outside,Inside) source static VPN-REMOTE-ACORP-BRANCH VPN-REMOTE-ACORP-BRANCH destination static VPN-LOCAL-ACORP VPN-LOCAL-ACORP no-proxy-arp
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;nat (Inside,Outside) source static VPN-LOCAL-ACMECORP-NET VPN-LOCAL-ACMECORP-NET destination static VPN-REMOTE-ACORP-BRANCH VPN-REMOTE-ACORP-BRANCH no-proxy-arp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a VPN Group Policy for Acme and Acme&#39;s Branch VPN connection&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;group-policy GP-VPN-ACORP-ACORP-BRANCH internal
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;group-policy GP-VPN-ACORP-ACORP-BRANCH attributes
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; vpn-tunnel-protocol ikev1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the tunnel&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tunnel-group 203.0.113.10 type ipsec-l2l
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;tunnel-group 203.0.113.10 general-attributes
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; default-group-policy GP-VPN-ACORP-ACORP-BRANCH
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;tunnel-group 203.0.113.10 ipsec-attributes
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; ikev1 pre-shared-key cisco
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; isakmp keepalive disable
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Build the cryptomap:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto map CM-ACORP-ACORP-BRANCH 1 match address ACL-VPN-ACORP-ACORP-BRANCH
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;crypto map CM-ACORP-ACORP-BRANCH 1 set peer 203.0.113.10
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;crypto map CM-ACORP-ACORP-BRANCH 1 set ikev1 transform-set ESP-AES-128-SHA
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;crypto map CM-ACORP-ACORP-BRANCH interface Outside
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s jump to Acme&#39;s Branch ASA and configure it to get this tunnel up. Let&#39;s create some object-groups.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;object network ACME-BRANCH-NET-1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; subnet 10.1.2.0 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;object network ACME-BRANCH-NET-2
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt; subnet 10.1.3.0 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;object network VPN-REMOTE-ACME
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; subnet 10.1.1.0 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;object-group network VPN-LOCAL-ACME-BRANCH
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; network-object object ACME-BRANCH-NET-1
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; network-object object ACME-BRANCH-NET-2
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;object-group network VPN-REMOTE-ACORP
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; network-object object VPN-REMOTE-ACME
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the access control list to match the traffic we want protected on Acme&#39;s branch.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;access-list ACL-VPN-ACORP-BRANCH-ACORP extended permit ip object-group VPN-LOCAL-ACME-BRANCH object-group VPN-REMOTE-ACORP
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Just like before we have to create some NAT exemption rules, Acme&#39;s Branch has two networks that need to go over the tunnel so we&#39;ll add them here. Line one (1) and two (2) is one network of Acme&#39;s Branch. Line three (3) and four (4) is another network that Acme&#39;s Branch has and with these two networks we are allowing both an inbound and outbound connection from the VPN.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;nat (Inside,Outside) source static ACME-BRANCH-NET-1 ACME-BRANCH-NET-1 destination static VPN-REMOTE-ACORP VPN-REMOTE-ACORP no-proxy-arp
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;nat (Outside,Inside) source static VPN-REMOTE-ACORP VPN-REMOTE-ACORP destination static ACME-BRANCH-NET-1 ACME-BRANCH-NET-1 no-proxy-arp
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;nat (Outside,Inside-2) source static VPN-REMOTE-ACORP VPN-REMOTE-ACORP destination static ACME-BRANCH-NET-2 ACME-BRANCH-NET-2 no-proxy-arp
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;nat (Inside-2,Outside) source static ACME-BRANCH-NET-2 ACME-BRANCH-NET-2 destination static VPN-REMOTE-ACORP VPN-REMOTE-ACORP no-proxy-arp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a VPN Group Policy for Acme&#39;s Branch and Acme Corp VPN connection:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;group-policy GP-VPN-ACORP-BRANCH-ACORP internal
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;group-policy GP-VPN-ACORP-BRANCH-ACORP attributes
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; vpn-tunnel-protocol ikev1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the tunnel:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tunnel-group 192.0.2.10 type ipsec-l2l
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;tunnel-group 192.0.2.10 general-attributes
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; default-group-policy GP-VPN-ACORP-BRANCH-ACORP
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;tunnel-group 192.0.2.10 ipsec-attributes
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; ikev1 pre-shared-key cisco
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; isakmp keepalive disable
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Build the cryptomap:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto map CM-ACORP-BRANCH-ACORP 1 match address ACL-VPN-ACORP-BRANCH-ACORP
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;crypto map CM-ACORP-BRANCH-ACORP 1 set peer 192.0.2.10
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;crypto map CM-ACORP-BRANCH-ACORP 1 set ikev1 transform-set ESP-AES-128-SHA
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;crypto map CM-ACORP-BRANCH-ACORP interface Outside
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We now have configured everything for the tunnel to come up but we are missing DHCP, in this example since I don&#39;t have Windows DHCP server available I have configured an IOS router to do DHCP, which is on the Acme Corp network (10.1.1.20). To make DHCP available over the tunnel we only have to focus on Acme&#39;s Branch ASA and add in the following configuration:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;dhcprelay server 10.1.1.20 Outside
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;dhcprelay enable Inside
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;dhcprelay enable Inside-2
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;dhcprelay timeout 60
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We should be able to get an IP adderess from Acme&#39;s DHCP server, if I jump over to one of the Windows hosts on the Acme Branch and issue &lt;em&gt;ipconfig /all&lt;/em&gt; we can see that this windows host was able to reach the DHCP server 10.1.1.20 which is over the VPN:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;ipconfig /all
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Windows IP Configuration
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;        Host Name . . . . . . . . . . . . : VIRL-D3D4EE00AA
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;        Primary Dns Suffix  . . . . . . . :
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;        Node Type . . . . . . . . . . . . : Unknown
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;        IP Routing Enabled. . . . . . . . : No
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;        WINS Proxy Enabled. . . . . . . . : No
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Ethernet adapter Local Area Connection:
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;        Connection-specific DNS Suffix  . :
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;        Description . . . . . . . . . . . : Red Hat VirtIO Ethernet Adapter
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;        Physical Address. . . . . . . . . : FA-16-3E-59-67-A3
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;        Dhcp Enabled. . . . . . . . . . . : Yes
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;        Autoconfiguration Enabled . . . . : Yes
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;        IP Address. . . . . . . . . . . . : 10.1.2.61
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;        Subnet Mask . . . . . . . . . . . : 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;        Default Gateway . . . . . . . . . : 10.1.2.1
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;        DHCP Server . . . . . . . . . . . : 10.1.1.20
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;        Lease Obtained. . . . . . . . . . : Sunday, April 09, 2017 5:29:25 PM
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;        Lease Expires . . . . . . . . . . : Monday, April 10, 2017 5:29:25 PM
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you want to try this out I have attached the running-configs of both firewalls at the end of this post. If you are using Cisco VIRL here is a &lt;a href=&#34;https://github.com/lewiryan/VIRL/blob/master/Completed/ASA-Site-To-Site-DHCP.virl&#34;&gt;link on GitHub&lt;/a&gt; to the file I was working with.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; When working with this file I noticed sometimes that the network switches on both sides don&#39;t always hold a MAC address table when we first start them. The workaround I found is you just copy the configuration delete the switch and add it back and plug everything back in order.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: &lt;a href=&#34;http://ciscoskills.net/2017/01/07/cisco-virl-and-windows-vms/&#34;&gt;Cisco VIRL and Windows VMs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/files/2017/04/running-config-firewalls.docx&#34; title=&#34;Running-Config-Firewalls&#34;&gt;Running-Config-Firewalls&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As always I hope this is helpful! :)&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Upgrade ASA IOS via ASDM</title>
+      <link>https://ciscoskills.net/2012/06/upgrade-asa-ios-via-asdm/</link>
+      <pubDate>Fri, 29 Jun 2012 01:20:32 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/06/upgrade-asa-ios-via-asdm/</guid>
+      <description>
+        
+          &lt;p&gt;In this short but helpful post, I&#39;ll go through the process of upgrading the ASA IOS via the ASDM. This is a pretty painless method if all goes well the only thing you have to do schedule downtime if this box is in production, and grab the ASA IOS image from Cisco. For this post all have been covered let&#39;s get started! First things first is always backup your configuration before upgrading and I always read the release notes that Cisco provides when I download the IOS image, it&#39;s good reading and important because usually new features are introduced and sometime the ASDM can&#39;t paraphrase and parse the new configuration which way I usually upgrade the ASDM first. There are couple ways of backing the configuration this example is with the ASDM. In this example open up the ASDM client and go to file and select &amp;quot;Show Running Configuration in New Window&amp;quot; this will open up the current running-config in a &lt;a href=&#34;http://en.wikipedia.org/wiki/Web_browser&#34; title=&#34;Web browser&#34;&gt;browser window&lt;/a&gt; and from there you can either save the page or copy it to a &lt;a href=&#34;http://en.wikipedia.org/wiki/Text_editor&#34; title=&#34;Text editor&#34;&gt;text editor&lt;/a&gt;. &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-run-config.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-run-config.png?w=300&#34; alt=&#34;Show Running-Config in ASDM&#34; title=&#34;ASDM-Run-Config&#34;&gt;&lt;/a&gt; Once the configuration is saved you are ready to go for the upgrade. Select &amp;quot;Tools&amp;quot; and you have two options. If this ASA can go online you can select the first option (Check for ASA/ASDM Updates)  which will ask for your Cisco account that is tied with SmartNet,  which downloads the IOS or ASDM or both images automatically and installs them with very little effort on your part. For this post we have to one more extra setup to install this IOS we&#39;ll select the &amp;quot;&lt;a href=&#34;http://en.wikipedia.org/wiki/Upgrade&#34; title=&#34;Upgrade&#34;&gt;Upgrade&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Application_software&#34; title=&#34;Application software&#34;&gt;Software&lt;/a&gt; from Local Computer&amp;quot; &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-tools.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-tools.png?w=300&#34; alt=&#34;The ASDM Tools File Menu&#34; title=&#34;ASDM-Tools&#34;&gt;&lt;/a&gt; A window comes select what image you are uploading the to the ASA, notice this is also the same method of installing/upgrading the ASDM along with helpful tools like the Cisco AnyConnect &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_private_network&#34; title=&#34;Virtual private network&#34;&gt;VPN&lt;/a&gt; Client. This example we selected the ASA image and have browsed our local computer to the ASA image that we downloaded from Cisco our next move is to uploading the image.&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-upload-ios.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-upload-ios.png?w=300&#34; alt=&#34;&#34; title=&#34;ASDM-Upload-IOS&#34;&gt;&lt;/a&gt; &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/uploading.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/uploading.png?w=300&#34; alt=&#34;&#34; title=&#34;uploading&#34;&gt;&lt;/a&gt; Finally another window will show letting you know that the image is setup and goes through the process of telling you how to reload the ASA. Also it reminds you to make sure the ASDM version will work with this new IOS image which would be in the release notes Cisco puts out, from there reload the ASA. Once the ASA reboots open up the ASDM and you&#39;ll notice that we now have the ASA version of 8.4(3)!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asa-uploaded.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asa-uploaded.png&#34; alt=&#34;&#34; title=&#34;ASA-uploaded&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asa-version.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asa-version.png&#34; alt=&#34;&#34; title=&#34;ASA-version&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Keeping up with versions of the ASA is important but you have to weigh the risks of updating, take this upgrade for example from 8.2 to 8.4 a lot of configurations have changed which is why it is really important to look at the release notes. I hope this information is helpful and if you have any questions or comments let me know.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/06/24/basic-cisco-asa-overview/&#34;&gt;Basic Cisco ASA Overview&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/05/28/ccna-security-640-554/&#34;&gt;CCNA Security - 640-554&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ethernuno.wordpress.com/2012/04/05/auto-backup-cisco-routerswitch-using-kron-and-vsftpd-ftp/&#34;&gt;Auto Backup Cisco router/switch using Kron and vsftpd FTP.&lt;/a&gt; (ethernuno.wordpress.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/07/21/password-recovery-cisco-ios-routers/&#34; title=&#34;&#34;&gt;Password Recovery – Cisco IOS Routers | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-07-21 11:04:27&#34;&gt;Jul 6, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Cisco ASA Overview</title>
+      <link>https://ciscoskills.net/2012/06/basic-cisco-asa-overview/</link>
+      <pubDate>Sun, 24 Jun 2012 17:14:43 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2012/06/basic-cisco-asa-overview/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/firewall.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/firewall.png&#34; alt=&#34;&#34; title=&#34;Firewall&#34;&gt;&lt;/a&gt;The Cisco 5500 Series Adaptive Security Appliances are of course an excellent firewall but the ASA also offers (depending on the model) other security services as well, like IPS systems, &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_private_network&#34; title=&#34;Virtual private network&#34;&gt;VPN&lt;/a&gt;, content security, unified communications and remote access. These ASA&#39;s can be used as a standalone appliance&#39; that can handle the need for branch offices to enterprise data centers. Or they can be included in high-performance blades that work together with the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Catalyst&#34; title=&#34;Cisco Catalyst&#34;&gt;Cisco Catalyst&lt;/a&gt; 6500 Series, and recently new they can also run in a virtual instance which provides tenant isolation for public and private clouds! For now let&#39;s focus on the basics of the ASA like the ASDM. The ASDM is a pretty good &lt;a href=&#34;http://en.wikipedia.org/wiki/Graphical_user_interface&#34; title=&#34;Graphical user interface&#34;&gt;GUI&lt;/a&gt; tool that helps make the ASA a simpler process of maintaining and configuring the device, instead of doing &lt;a href=&#34;http://en.wikipedia.org/wiki/Command-line_interface&#34; title=&#34;Command-line interface&#34;&gt;CLI&lt;/a&gt; commando style. In this example I have an ASA 5505 with default configuration (I did a &amp;quot;write erase&amp;quot; to clear the &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP addressing&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol&#34; title=&#34;Dynamic Host Configuration Protocol&#34;&gt;DHCP&lt;/a&gt; settings) when you reload the device I decided to use the ASA&#39;s pre-configure wizard which really just makes the ASA useable by giving the inside interface an IP address along with the correct time and the &amp;quot;enable password&amp;quot; Here are the current settings: [code]The following configuration will be used: Enable password: cisco Allow password recovery: yes Clock (UTC): 11:04:11 Jun 23 2012 Firewall Mode: Routed Inside IP address: 192.168.5.1 Inside network mask: 255.255.255.0 Host name: ASA Domain name: ciscoskills.net IP address of host running Device Manager: 192.168.5.10 Use this configuration and write to flash? yes INFO: Security level for &amp;quot;inside&amp;quot; set to 100 by default. WARNING: http server is not yet enabled to allow ASDM access. Cryptochecksum: a2692f1b 31b2d847 6abf71e4 b9c1bcfb 1641 bytes copied in 1.730 secs (1641 bytes/sec) Type help or &#39;?&#39; for a list of available commands. ASA&amp;gt;en ASA#config t ASA(config)#http server enable[/code] Notice to use the ASDM you must put it one more command for the ASA to listen on port 443 which is &amp;quot;http server enable&amp;quot; from that open up your browser and type the IP address of the ASA in this example it is &amp;quot;192.168.5.1&amp;quot; you can either run the ASDM from the ASA or install it on your system for a faster experience it&#39;s your choice, but it does add additional memory and &lt;a href=&#34;http://en.wikipedia.org/wiki/Central_processing_unit&#34; title=&#34;Central processing unit&#34;&gt;CPU&lt;/a&gt; if the ASDM runs on the ASA. &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-main.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-main.png&#34; alt=&#34;Browser Page for ASA&#34; title=&#34;ASDM-BROWSER&#34;&gt;&lt;/a&gt; For this example I installed the ASDM on my system and by default the username is blank and the password is &amp;quot;cisco&amp;quot; which is what I configured in the beginning. &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-login.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-login.png&#34; alt=&#34;The ASDM Login Screen&#34; title=&#34;ASDM-LOGIN&#34;&gt;&lt;/a&gt; From there opens up the ASDM the home page displays some device information like the hostname, ASA version and ASADM version, the runtime, total RAM and flash. It also gives you some traffic stats along with CPU and memory from there to configure the device you would click the configuration button and configure a way! &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-home.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/06/asdm-home.png&#34; alt=&#34;The ASDM Home Page&#34; title=&#34;ASDM-HOME&#34;&gt;&lt;/a&gt; You have to have some hands-on experience with this product to really understand it and get the overall feeling of where things in the ASDM. Cisco does offer some ASDM demos that can be searchable on the internet and you can download directly from Cisco however you must have a Cisco ID to use it. If you &lt;a href=&#34;http://www.mediafire.com/download.php?rwfhxjdy9zznan3&#34; title=&#34;ASDM 6.4(9) Install and Demo Files&#34;&gt;download this link&lt;/a&gt; it will install the latest (May 2012) ASDM demo settings so you can at least get a feeling of the ASDM. I hope this information is helpful and if you have any questions are comments be sure to post them below, also check back often I&#39;ll see if I can post some additional content about the ASA like &lt;a href=&#34;http://ciscoskills.net/2012/06/29/upgrade-asa-ios-via-asdm/&#34; title=&#34;Upgrade ASA IOS via ASDM&#34;&gt;upgrading the ASA IOS version with the ASDM&lt;/a&gt;. :)&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/05/28/ccna-security-640-554/&#34;&gt;CCNA Security - 640-554&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/businesscenter/article/258103/cisco_patches_vulnerabilities_in_vpn_client_security_appliances.html&#34;&gt;Cisco Patches Vulnerabilities in VPN Client, Security Appliances&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.prweb.com/releases/prweb2010/10/prweb4598974.htm&#34;&gt;New Cisco ASA Step-by-Step Guide Simplifies Configuration&lt;/a&gt; (prweb.com)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/06/28/upgrade-asa-ios-via-asdm/&#34; title=&#34;&#34;&gt;Upgrade ASA IOS via ASDM | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-06-28 19:25:03&#34;&gt;Jun 4, 2012&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Password Recovery – Cisco IOS Routers | Cisco Skills](http://ciscoskills.net/2012/07/21/password-recovery-cisco-ios-routers/ &#34;&#34;) - &lt;time datetime=&#34;2012-07-21 11:04:27&#34;&gt;Jul 6, 2012&lt;/time&gt;
+&lt;p&gt;[...] Basic Cisco ASA Overview (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

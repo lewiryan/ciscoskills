@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VxLAN on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/vxlan/</link>
+    <description>Recent content in VxLAN on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 02 Jan 2019 15:30:45 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/vxlan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oh...Spanning Tree</title>
+      <link>https://ciscoskills.net/2019/01/oh...spanning-tree/</link>
+      <pubDate>Wed, 02 Jan 2019 15:30:45 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2019/01/oh...spanning-tree/</guid>
+      <description>
+        
+          &lt;p&gt;It&#39;s the &amp;quot;S&amp;quot; word we don&#39;t like to hear, and often times it has degraded networks or even took them down entirely.  (&lt;a href=&#34;https://ciscoskills.net/files/2019/01/All-Systems-Down.pdf/&#34;&gt;All Systems Down&lt;/a&gt; - an older but classic story) It&#39;s also one of those things that nobody really likes, we even had network companies, as well as IEEE &lt;strong&gt;try&lt;/strong&gt; to replace it with something else. Remember the names like TRILL, and IEEE 802.1aq (SPB) or Cisco&#39;s FabicPath technologies? You had all of these different flavors that showed a lot progress, but they never really took off for one reason or another. The funny part is this protocol we are all trying kill off is still alive and doing well, so let&#39;s look at spanning tree in the meantime because you will likely run into it.&lt;/p&gt;
+&lt;p&gt;Remember there are multiple types of spanning tree protocols but they all have a common theme to them and in this post we are going to be focusing on those common themes. If you need a refresher about the reasons and basic functions of spanning tree you can check out these posts I did quite a while ago.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/&#34;&gt;The Beginnings of Layer Two Redundancy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/&#34;&gt;The Middle of Layer Two Redundancy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ciscoskills.net/2011/09/14/the-%e2%80%9cending%e2%80%9d-of-layer-two-redundancy//&#34;&gt;The “Ending” of Layer Two Redundancy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So we should already know that by default spanning tree is enabled on all ports when the switch has blank config. There are of course tweaks we can do to adjust convergence times like using RSTP, if thirty seconds is too long, using portfast when there is not another switch downstream, lots of customization. Here is a simple topology, two switches two links, one of links will be blocked otherwise expect loops and network inconsistency.
+&lt;img src=&#34;https://ciscoskills.net/images/2018/12/simple-switch.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Out of the box STP will protect you from loops, and a simple way to figure what type of spanning tree protocol is running as well as to figure out who is root you can use this command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;SW2#show spanning-tree 
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;VLAN0001
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Spanning tree enabled protocol rstp
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  Root ID    Priority    32769
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;             Address     aabb.cc00.0200
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;             This bridge is the root
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;             Address     aabb.cc00.0200
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;             Aging Time  300 sec
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;Interface           Role Sts Cost      Prio.Nbr Type
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;------------------- ---- --- --------- -------- ----------------------
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;Et0/0               Desg FWD 100       128.1    P2p
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;Et0/1               Desg FWD 100       128.2    P2p
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Et0/2               Desg FWD 100       128.3    P2p
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Et0/3               Desg FWD 100       128.4    P2p
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see that we are on the root bridge, by looking at &lt;strong&gt;Root ID&lt;/strong&gt; information. This shows information about who is root and in this case we are on the root switch, seeing the message &lt;em&gt;This bridge is the root&lt;/em&gt;, confirms that. We can also see the type of spanning tree protocol we are running, which is RSTP. Running the command on the other switch, that is not root we can the BLK status on one of its ports (Et0/1) which is what we are expecting. We can also see who is root. If we look at the &lt;strong&gt;Bridge ID&lt;/strong&gt; that&#39;s the local switch we are on. Notice when you are the root switch both the Root ID and Bridge match. So our topology looks like something like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/12/simple-switch-blk-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;SW1#show spanning-tree 
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;VLAN0001
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Spanning tree enabled protocol rstp
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  Root ID    Priority    32769
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;             Address     aabb.cc00.0200
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;             Cost        100
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;             Port        1 (Ethernet0/0)
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;             Address     aabb.cc00.0300
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;             Aging Time  300 sec
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Interface           Role Sts Cost      Prio.Nbr Type
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;------------------- ---- --- --------- -------- ----------------------
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;Et0/0               Root FWD 100       128.1    P2p
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Et0/1               Altn BLK 100       128.2    P2p
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Et0/2               Desg FWD 100       128.3    P2p
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;Et0/3               Desg FWD 100       128.4    P2p
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So by default spanning tree helped us block a redundant path without us really doing anything. So why bother with it? Well there is always fine tuning like turning on portfast which is used for edge devices, timers for STP to make it converge faster. There are also some protections that should be enabled like using BPDU guard which help guard the spanning tree topology from introducing unauthorized devices from sending BPDUs and usually used on access ports. Another one is Root guard which is used to help protect the root bridge from changing. Root guard is similar to BPDU guard but I like to think this protection is for us network engineers for when we introduce a switch into the network that somehow as a lower priority than the existing root bridge we can protect the network from changing the STP topology.&lt;/p&gt;
+&lt;h2 id=&#34;failures&#34;&gt;Failures&lt;/h2&gt;
+&lt;p&gt;Am I doing a good job of making this protocol shine? Well like everything there is always another side of it and I would say some of the failures can be a misconfiguration, software incompatibilities/bugs (which is more common than you would think) and overgrowth of the STP design. When this happens the STP topology can become disruptive to the entire layer two design while trying to reconverge into a new shape, meanwhile switch CPUs hit all time highs and network availability hits all zeros. Another valid point is its a waste of money, you buy two of everything but you can&#39;t use both at the same time because you can&#39;t have multiple L2 paths. Sure you can add MLAGs/vPCs but spanning tree is still running and if that protocol becomes unstable, or changes the topology it has the potential to still be disruptive. ...and this is why a lot people dislike this technology, It really wasn&#39;t designed for high-availability, multi-path, layer two domains.&lt;/p&gt;
+&lt;h2 id=&#34;move-up-a-layer&#34;&gt;Move up a layer?&lt;/h2&gt;
+&lt;p&gt;Traditionally L2/L3 boundary is at the distribution/aggregation layer of the network, but this traditional design is changing to IP routing at the access layer (Routed Access Layer) to remove spanning tree However this may work well for client/end-user access, this type of design fails at the data center. You may have racks of servers in your data center, you want the maximum amount a flexibility to move hardware around as well as add additional hardware in the future.  If you did a routed access layer at the data center, you start to lock yourself in and although its 2019 a lot applications still operate at a layer two level and even if the apps you are running don&#39;t have that problem you run into scalability issues.&lt;/p&gt;
+&lt;h2 id=&#34;smoke-and-mirrors&#34;&gt;Smoke and Mirrors?&lt;/h2&gt;
+&lt;p&gt;So where&#39;s the magic? How do you use a reliable layer three network like you did in on the client/end-user side but put it in a data center? Think network overlays like VxLAN or BGP EVPN, (EVPN BGP),  (order does not matter, they&#39;re the same thing) ;) . Basically these are network overlay technologies, you have you underlayer network that is running and you put this technology on top of that network, I call it network virtualization but you may have also heard SDN, (Software Define Networking). Whatever you want to call it this is how you kill spanning tree. Spanning tree by default just runs on a layer two network, we saw that from the beginning. So you remove layer two from the entire stack and then overlay an additional network on top of that. Using these type of technologies your applications don&#39;t know the difference. Another helpful post I saw when reading about overlay networks was from David Varnum&#39;s post about how Arista Networks uses BGP EVPN, pretty neat technology, if interested.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://overlaid.net/2018/08/27/arista-bgp-evpn-overview-and-concepts/&#34;&gt;Arista BGP EVPN – Overview and Concepts&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

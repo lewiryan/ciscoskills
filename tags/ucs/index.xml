@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UCS on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/ucs/</link>
+    <description>Recent content in UCS on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 16 Jul 2016 20:16:39 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ucs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco UCS Emulator 3.1(1ePE1)</title>
+      <link>https://ciscoskills.net/2016/07/cisco-ucs-emulator-3.11epe1/</link>
+      <pubDate>Sat, 16 Jul 2016 20:16:39 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2016/07/cisco-ucs-emulator-3.11epe1/</guid>
+      <description>
+        
+          &lt;p&gt;If you are studying any Cisco Data Center certs this tool might come in handy for some hands on learning. The Cisco UCS emulator is a VM you can spin up in VMware Workstation,Fusion or in ESXi. This emulator can be helpful in understanding the UCS platform and UCS manager. You are able to push policies and alter configurations and even import/export these configurations into and out of the &amp;quot;real&amp;quot; world to apply them/test them. You can download this emulator from Cisco&#39;s Community site: &lt;a href=&#34;https://communities.cisco.com/docs/DOC-67121&#34;&gt;Cisco UCS Platform Emulator 3.1(1ePE1) Downloads&lt;/a&gt; All you need is a Cisco ID to sign in which is free to register and download. Its pretty easy to set up if you are deploying and OVA once the VM is online you just browse to the IP address of the VM . Watch the console of the VM for the IP address and it does take 5 to 10 minutes to boot up before you can hit the emulator. When the system boots it look for a DHCP server if your setup does not have DHCP you can manually add an IP address from the console screen. Follow the prompts its pretty easy to figure out, once you have a valid IP address you can just type that into your browser. You should see the UCS Platform Emulator. This is where you can modify your hardware before going into the UCS Manager. [caption id=&amp;quot;attachment_4591&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;1349&amp;quot;]&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2016/07/ucs-e-1.png&#34; alt=&#34;UCS-E-1&#34;&gt; UCS Platform Emulator[/caption] [caption id=&amp;quot;attachment_4592&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;1350&amp;quot;]&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2016/07/ucs-e-2.png&#34; alt=&#34;UCS-E-2&#34;&gt; UCS Manager[/caption] To login into the UCS manager, I&#39;m using the defualt username and password which is &lt;strong&gt;ucspe&lt;/strong&gt; this is also the same username and password to login into the console of the them VM. Be sure to check out the release notes and user guide information on how to set this up if you need more information. I hope this information is helpful, I&#39;m pretty green to UCS (still a rookie) but this emulator should at least help with some hands on learning with the product just in case you don&#39;t have any real UCS hardware. Main Download page with different versions of UCS. &lt;a href=&#34;https://communities.cisco.com/docs/DOC-37827&#34;&gt;https://communities.cisco.com/docs/DOC-37827&lt;/a&gt;&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

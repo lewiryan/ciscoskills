@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Link-state advertisement on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/link-state-advertisement/</link>
+    <description>Recent content in Link-state advertisement on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 02 Nov 2011 18:15:36 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/link-state-advertisement/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OSPF...What a Protocol!</title>
+      <link>https://ciscoskills.net/2011/11/ospf...what-a-protocol/</link>
+      <pubDate>Wed, 02 Nov 2011 18:15:36 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/11/ospf...what-a-protocol/</guid>
+      <description>
+        
+          &lt;p&gt;For today let&#39;s discuss a routing protocol that was being thought of in 1987 by the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Engineering_Task_Force&#34; title=&#34;Internet Engineering Task Force&#34;&gt;Internet Engineering Task Force (IETF)&lt;/a&gt;. OSPF currently has three versions and the first version was in the 1980s when the internet was still being used for research. What is interesting about the first version of OSPF is although one version ran on routers the other type of version ran on UNIX computers. When OSPFv2 come out in the 1990s the &lt;a href=&#34;http://en.wikipedia.org/wiki/International_Organization_for_Standardization&#34; title=&#34;International Organization for Standardization&#34;&gt;International Organization for Standardization (ISO)&lt;/a&gt; was working on another routing protocol called IS-IS (&lt;a href=&#34;http://en.wikipedia.org/wiki/IS-IS&#34; title=&#34;IS-IS&#34;&gt;Intermediate System-to-Intermediate System&lt;/a&gt;). OSPF is considered to be an interior gateway protocol which is like IS-IS but unlike OSPF IS-IS runs on the data-link layer while OSPF runs at layer three the network layer. OSPF is considered to be a &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;link-state protocol&lt;/a&gt;, unlike &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt;, RIPv2 and &lt;a href=&#34;http://en.wikipedia.org/wiki/Interior_Gateway_Routing_Protocol&#34; title=&#34;Interior Gateway Routing Protocol&#34;&gt;IGRP&lt;/a&gt; , this protocol is what OSPF shines on. Instead of looking at hop-count like RIP, OSPF looks at the cost of the link. Take for example the picture below, two routes are available to the destination. One is one hop away while the other is two hops away. If we are using RIP then the route with the least amount of hops is the preferred route. However if OSPF was running it would look at the cost of the link like the bandwidth of the link.  In this example the link with the lowest hop count is also the slowest of the two links. So OSPF would use the link with the highest hop count but in this example that link is also the fastest out of the two.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/11/02/ospf-what-a-protocol/ospf-hop/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/10/ospf-hop.png?w=300&#34; alt=&#34;&#34; title=&#34;OSPF Hop vs Bandwidth&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;What makes OSPF also a feature is it supports multiple venders instead of Cisco. OSPF is recognized by RFC 2328 and RFC 2740 (IPv6). Compared to RIP OSPF is fast to converge and is able to scale better to larger networks unlike RIP which can only scale to 16 hops and converges slowly compared to OSPF. OSPF has different packet types or LSPs (Link-State Packets) which help OSPF function like it should:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hello packets Like the name suggest these packets are like keep-alives and maintain adjacent with other OSPF routers. The meaning of a hello packet is to discover OSPF neighbors and set up adjacencies. In order for each router to form a neighbor the routers must agree on hello interval, dead timer and network type.&lt;/li&gt;
+&lt;li&gt;DBD - Database description which has a short list of the sending router&#39;s link state database which is checked against the local link state database.&lt;/li&gt;
+&lt;li&gt;LSR - &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;Routers&lt;/a&gt; receiving OSPF information can ask more information about any entry in the DBD by sending a link-state request (LSR)&lt;/li&gt;
+&lt;li&gt;LSU - (Link-state update) Packets used to reply to LSRs and to announce new information. These packets contain seven different types of link-state advertisements (&lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_advertisement&#34; title=&#34;Link-state advertisement&#34;&gt;LSA&lt;/a&gt;). This goes into a deeper topic that is aimed at the CCNP level, in short LSA and LSUs can be used interchangeably. A LSU has one or more LSAs and a LSA contains route information for destination routes, just remember at the CCNA level their are different types of LSAs which fall under LSUs. Confused? I&#39;ll stop :)&lt;/li&gt;
+&lt;li&gt;LSAck- When an LSU is recived, the router sends a link-state acknowledgment to confirm the router received the LSU.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;OSPF does elect a DR (Designated Router) and a BDR (&lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;Backup Designated Router&lt;/a&gt;) The DR&#39;s job is to update all other OSPF routers which a called DROthers. when a change happens when using the multiaccess network the BDR monitors the DR and takes over as the DR if the current DR fails. That&#39;s my introduction in to OSPF and it is a somewhat complex protocol that needs a complete understanding before going deeper into the beast! Like always I hope this information helps if you have an idea of the next topic I should cover either with ICND1 or ICND2 comment below. Questions about OSPF? let me hear it!&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;&lt;strong&gt;Related articles&lt;/strong&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/08/31/link-state-protocols/&#34;&gt;Link-State Protocols&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/237312/black_hat_routers_using_ospf_open_to_attacks.html&#34;&gt;Black Hat: Routers Using OSPF Open to Attacks&lt;/a&gt; (pcworld.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mycciepursuit.wordpress.com/2011/10/22/route-redistribution/&#34;&gt;Route Redistribution&lt;/a&gt; (mycciepursuit.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://houstonchannels.wordpress.com/2011/06/22/incremental-spf-option-for-ospf/&#34;&gt;Incremental SPF option for OSPF&lt;/a&gt; (houstonchannels.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://cciethebeginning.wordpress.com/2011/10/17/routing-protocol-redistribution-and-path-optimization/&#34;&gt;Routing Protocol Redistribution and Path optimization&lt;/a&gt; (cciethebeginning.wordpress.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

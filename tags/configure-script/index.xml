@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Configure script on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/configure-script/</link>
+    <description>Recent content in Configure script on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 30 Nov 2011 17:33:03 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/configure-script/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Color Code Your Routers</title>
+      <link>https://ciscoskills.net/2011/11/color-code-your-routers/</link>
+      <pubDate>Wed, 30 Nov 2011 17:33:03 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/11/color-code-your-routers/</guid>
+      <description>
+        
+          &lt;p&gt;I came across an interesting idea, what if you could color code your devices in command line? So such as if you were operating routers at a core level you could color code the &lt;a href=&#34;http://en.wikipedia.org/wiki/Command-line_interface&#34; title=&#34;Command-line interface&#34;&gt;CLI&lt;/a&gt; to the color red, and the branch routers green and etc. I wasn&#39;t sure if this would possible but doing some searching through the internet I found a guy Ivan Pepelnjak who wrote how to do this  a couple years ago and wrote a couple books as well, check out his blog/website at &lt;a href=&#34;http://www.ipspace.net&#34;&gt;http://www.ipspace.net&lt;/a&gt; there is tons of helpful information along with his original guide &lt;a href=&#34;http://blog.ioshints.info/2007/05/change-telnet-font-color-from-cisco.html&#34; title=&#34;Change the Telnet font color from a Cisco router&#34;&gt;here&lt;/a&gt;.  Being able to color the text output when connecting to a device, and having each different color have a different meaning to it makes it easier to understand which devices are part of the critical network. So now core devices can have a red text to them , branch devices can have a green color and redundant devices blue etc. This makes it easier to know what you are connecting to and anybody else that is authorized to do so. To make this process happen there has to be escape sequences somewhere in the router to change the color of the text. There is not a command on the router itself to change the color the text, so how would you change the color? What Ivan pointed out was the MOTD banner (Message-of-the-day) therefore when you connect to the device either with console, telnet, or &lt;a href=&#34;http://en.wikipedia.org/wiki/Secure_Shell&#34; title=&#34;Secure Shell&#34;&gt;SSH&lt;/a&gt; the color of the text will change to the color you specified right when you log into the device. To change the color of the CLI text output in a router go into &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt; and type banner motd and then your delimiting character. (For this example I used &amp;quot;*&amp;quot;) [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#banner motd *[/code] The next step is to press CTRL+V, release then the &lt;a href=&#34;http://en.wikipedia.org/wiki/Esc_key&#34; title=&#34;Esc key&#34;&gt;ESC key&lt;/a&gt;. This is the &lt;a href=&#34;http://en.wikipedia.org/wiki/Escape_sequence&#34; title=&#34;Escape sequence&#34;&gt;escape sequence&lt;/a&gt; and looks like this in CLI &lt;strong&gt;^[&lt;/strong&gt; . The next setup is to add another &lt;a href=&#34;http://en.wikipedia.org/wiki/Bracket&#34; title=&#34;Bracket&#34;&gt;left bracket&lt;/a&gt; &lt;strong&gt;[&lt;/strong&gt; then the number 3 followed by the number that represents the color:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Intensity&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;0&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;7&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Normal&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Black&lt;/p&gt;
+&lt;p&gt;Red&lt;/p&gt;
+&lt;p&gt;Green&lt;/p&gt;
+&lt;p&gt;Yellow&lt;/p&gt;
+&lt;p&gt;Blue&lt;/p&gt;
+&lt;p&gt;Magenta&lt;/p&gt;
+&lt;p&gt;Cyan&lt;/p&gt;
+&lt;p&gt;White&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bright&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Black&lt;/p&gt;
+&lt;p&gt;Red&lt;/p&gt;
+&lt;p&gt;Green&lt;/p&gt;
+&lt;p&gt;Yellow&lt;/p&gt;
+&lt;p&gt;Blue&lt;/p&gt;
+&lt;p&gt;Magenta&lt;/p&gt;
+&lt;p&gt;Cyan&lt;/p&gt;
+&lt;p&gt;White&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href=&#34;http://en.wikipedia.org/wiki/ANSI_escape_code#cite_ref-5&#34;&gt;http://en.wikipedia.org/wiki/ANSI_escape_code#cite_ref-5&lt;/a&gt; So if I wanted to change the color to a green color the output would look something like this: [code]^[[32;[/code] Although we are close we need to add the letters &amp;quot;1m&amp;quot; which is an ASCI code sequence, after the number and then the text of banner. So the output would look something like this below: [code]^[[32;1mThis is a test only, don&#39;t panic!*[/code] That&#39;s it! You can test this by logging off the router and your text output should be the color you specified in the login banner and the same color below the login banner. &lt;a href=&#34;http://ciscoskills.net/2011/11/30/color-code-your-routers/color-code-g/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/11/color-code-g.png&#34; alt=&#34;&#34; title=&#34;Color Code G&#34;&gt;&lt;/a&gt; I am still a trying to figure out a way to change the color of just the banner only and not the device text, but I&#39;m a novice with the escape sequences and control codes. Feel free to post below with ideas. I have tested this with a Cisco IOS router but not a switch, I would take a guess in saying it is the same commands to change the color. Like always I hope this information is helpful and if you have an idea that deals with either ICND1 or ICND2 comment below, also feel free to ask questions.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/08/24/the-codes-of-icmp/&#34;&gt;The Codes of ICMP&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://therouters.wordpress.com/2011/10/11/cli-editor-features/&#34;&gt;CLI Editor Features&lt;/a&gt; (therouters.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wiki.answers.com/Q/How_do_you_recover_the_password_for_a_cisco_2501_router&#34;&gt;How do you recover the password for a cisco 2501 router&lt;/a&gt; (wiki.answers.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://arthurmehamat.wordpress.com/2010/10/30/changing-a-routers-configuration/&#34;&gt;Changing A Router&#39;s Configuration&lt;/a&gt; (arthurmehamat.wordpress.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

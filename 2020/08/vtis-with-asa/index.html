@@ -1,0 +1,2107 @@
+
+<!DOCTYPE html>
+<html lang="en" data-figures="" class="page">
+  <head>
+<title>VTIs with ASA | Cisco Skills</title>
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'XXXXXXXXXX');
+</script>
+<meta property="og:locale" content="en" />
+
+<meta property="og:type" content="article">
+<meta name="description" content="I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &quot;tunnel&quot; mode for …">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:creator" content="@lewiryan">
+<meta name="twitter:title" content="VTIs with ASA" />
+<meta property="og:url" content="https://ciscoskills.net/2020/08/vtis-with-asa/" />
+<meta property="og:title" content="VTIs with ASA" />
+<meta property="og:description" content="I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &quot;tunnel&quot; mode for …" />
+<meta property="og:image" content="https://ciscoskills.net/images/2020/07/mvimg_20200721_210328.jpg" />
+<link rel="apple-touch-icon" sizes="180x180" href='https://ciscoskills.net/icons/apple-touch-icon.png'>
+<link rel="icon" type="image/png" sizes="32x32" href='https://ciscoskills.net/icons/favicon-32x32.png'>
+<link rel="manifest" href='https://ciscoskills.net/icons/site.webmanifest'>
+<link rel="mask-icon" href='https://ciscoskills.net/safari-pinned-tab.svg' color="#002538">
+<meta name="msapplication-TileColor" content="#002538">
+<meta name="theme-color" content="#002538">
+
+<link rel="canonical" href="https://ciscoskills.net/2020/08/vtis-with-asa/">
+
+    
+
+    
+    
+    <link rel="preload" href="https://ciscoskills.net/css/styles.37cea41fe2c1b43e2a17095e01eb999e8701c9f0ba06d4df0a9db514a215e26dfbdb8a606a36c9d3b54bb1c09fd4a9ce41ee8f6788a8c6b17067830f34396135.css" integrity = "sha512-N86kH&#43;LBtD4qFwleAeuZnocByfC6BtTfCp21FKIV4m3724pgajbJ07VLscCf1KnOQe6PZ4ioxrFwZ4MPNDlhNQ==" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://ciscoskills.net/js/bundle.min.502983de88d5f6d80fdf85602a28c6f008ec40f76b64dfa16a04f65ae5f0bfff8195bc35d48f76e79bbc77f23c30fbd7d94c51c33c89253fe017320f6b305680.js" as="script" integrity=
+    "sha512-UCmD3ojV9tgP34VgKijG8AjsQPdrZN&#43;hagT2WuXwv/&#43;Blbw11I9255u8d/I8MPvX2UxRwzyJJT/gFzIPazBWgA==" crossorigin="anonymous">
+
+    
+    <link rel="stylesheet" type="text/css" href="https://ciscoskills.net/css/styles.37cea41fe2c1b43e2a17095e01eb999e8701c9f0ba06d4df0a9db514a215e26dfbdb8a606a36c9d3b54bb1c09fd4a9ce41ee8f6788a8c6b17067830f34396135.css" integrity="sha512-N86kH&#43;LBtD4qFwleAeuZnocByfC6BtTfCp21FKIV4m3724pgajbJ07VLscCf1KnOQe6PZ4ioxrFwZ4MPNDlhNQ==" crossorigin="anonymous">
+    
+  </head>
+  
+  
+    
+  
+  <body data-code="7" data-lines="false" id="documentTop">
+
+<header class="nav_header" >
+  <nav class="nav">
+    <a href='https://ciscoskills.net/' class="nav_brand nav_item">
+      <img src="https://ciscoskills.net/logos/logo.png" class="logo">
+      <div class="nav_close">
+        <div>
+          <svg class="icon">
+  <use xlink:href="#open-menu"></use>
+</svg>
+          <svg class="icon">
+  <use xlink:href="#closeme"></use>
+</svg>
+        </div>
+      </div>
+    </a>
+    <div class='nav_body nav_body_left'>
+      
+      
+      
+        
+
+  <div class="nav_parent">
+    <a href="https://ciscoskills.net/" class="nav_item">Home </a>
+  </div>
+  <div class="nav_parent">
+    <a href="https://ciscoskills.net/about/" class="nav_item">About </a>
+  </div>
+  <div class="nav_parent">
+    <a href="https://ciscoskills.net/" class="nav_item">Blogroll <img src='https://ciscoskills.net/icons/caret-icon.svg' alt="icon" class="nav_icon"></a>
+    <div class="nav_sub">
+      <span class="nav_child"></span>
+        <a href="https://learningnetwork.cisco.com/s" class="nav_child nav_item">Cisco Learning Network</a>
+        <a href="https://www.reddit.com/r/networking/" class="nav_child nav_item">Enterprise Networking – Reddit</a>
+        <a href="https://www.gns3.com/" class="nav_child nav_item">GNS3: Graphical Network Simulator</a>
+        <a href="https://blog.ipspace.net/" class="nav_child nav_item">Internetworking Perspectives – Ivan Pepelnjak</a>
+        <a href="http://packetpushers.net/" class="nav_child nav_item">Packet Pushers</a>
+        <a href="https://packetlife.net/" class="nav_child nav_item">PacketLife.net</a>
+        <a href="https://networkingnerd.net/" class="nav_child nav_item">The Networking Nerd</a>
+    </div>
+  </div>
+      
+<div class='follow'>
+  <a href="https://github.com/lewiryan">
+    <svg class="icon">
+  <use xlink:href="#github"></use>
+</svg>
+  </a>
+  <a href="https://twitter.com/lewiryan">
+    <svg class="icon">
+  <use xlink:href="#twitter"></use>
+</svg>
+  </a>
+  <a href="https://www.linkedin.com/in/lewiryan">
+    <svg class="icon">
+  <use xlink:href="#linkedin"></use>
+</svg>
+  </a>
+<div class="color_mode">
+  <input type="checkbox" class="color_choice" id="mode">
+</div>
+
+</div>
+
+    </div>
+  </nav>
+</header>
+
+    <main>
+  
+<div class="grid-inverse wrap content">
+  <article class="post_content">
+    <h1 class="post_title">VTIs with ASA</h1><div class="post_meta">
+  
+    <svg class="icon">
+  <use xlink:href="#calendar"></use>
+</svg>
+    <span class="post_date">
+      Aug 8, 2020</span>
+      <a href='https://ciscoskills.net/tags/asa' class="post_tag button button_translucent">ASA
+      </a>
+      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
+      </a>
+      <a href='https://ciscoskills.net/tags/cisco-asa' class="post_tag button button_translucent">Cisco ASA
+      </a>
+      <a href='https://ciscoskills.net/tags/network' class="post_tag button button_translucent">Network
+      </a>
+      <a href='https://ciscoskills.net/tags/security' class="post_tag button button_translucent">Security
+      </a>
+      <a href='https://ciscoskills.net/tags/vpn' class="post_tag button button_translucent">VPN
+      </a>
+      <a href='https://ciscoskills.net/tags/vti' class="post_tag button button_translucent">VTI
+      </a>
+</div>
+
+    
+  <div class="post_share">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=VTIs%20with%20ASA&url=https%3a%2f%2fciscoskills.net%2f2020%2f08%2fvtis-with-asa%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#twitter"></use>
+</svg>
+    </a>
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fciscoskills.net%2f2020%2f08%2fvtis-with-asa%2f&t=VTIs%20with%20ASA" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#facebook"></use>
+</svg>
+    </a>
+    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#linkedin"></use>
+</svg>
+    </a>
+    <a href="https://ciscoskills.net/2020/08/vtis-with-asa/" title="Copy Link" class="link link_yank">
+      <svg class="icon">
+  <use xlink:href="#copy"></use>
+</svg>
+    </a>
+  </div>
+
+    
+    <img src="/images/2020/07/mvimg_20200721_210328.jpg" class="image_featured">
+    
+    <p>I've been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I'm in &quot;tunnel&quot; mode for most part. Most of these projects I'm working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago! We only got introduced into this technology with ASA when version 9.7 (2017) and above arrived....</p>
+<p>In the old days, which wasn't that long ago.... We were stuck with cryptomaps to interfaces and dealing with &quot;interesting&quot; traffic when working with ASAs...Well time for change no more defining interesting traffic, we route these bits instead! Any traffic we want to go over the tunnel is routed over, we can apply ACLs on the inbound interface just like we do with physical interfaces, so simple...</p>
+<p>Here is the topology I'm working with:</p>
+<p><img src="/images/2020/07/vti-asa.png" alt=""></p>
+<p>This is a pretty standard setup, basically we have two sites and want a tunnel between them. We can setup a VTI Tunnel and route via the next hop address. You can also run a routing protocol over this so this can scale out easy.</p>
+<p>In this example I got two Cisco ASAs using version 9.12(2), just like the old days, things have to match in order to get a tunnel up. In this example I'm using IKEv2 this policy has to match on both ends:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>crypto ikev2 policy 1
+<span class="ln">2</span> encryption 3des
+<span class="ln">3</span> integrity sha
+<span class="ln">4</span> group 2
+<span class="ln">5</span> prf sha
+<span class="ln">6</span> lifetime seconds 86400
+</code></pre></div><p>:!: Please use a higher encryption than what I have, this is just for demonstration. :) I also found out that NIST will not allow 3DES starting in 2024. <a href="https://www.comparitech.com/blog/information-security/3des-encryption/#What_is_3DES">More Information about the 3DES and history</a></p>
+<p>We got match a group policy this is configured on both ends, (name could be different)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>group-policy P2P-VPN internal
+<span class="ln">2</span>group-policy P2P-VPN attributes
+<span class="ln">3</span> vpn-idle-timeout 30
+<span class="ln">4</span> vpn-session-timeout none
+<span class="ln">5</span> vpn-filter none
+<span class="ln">6</span> vpn-tunnel-protocol ikev2 
+<span class="ln">7</span> periodic-authentication certificate none
+</code></pre></div><p>Next we we create the IPSEC part of the tunnel, again these have to match on both ends:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>crypto ipsec ikev2 ipsec-proposal VPN-P2P
+<span class="ln">2</span> protocol esp encryption aes-256
+<span class="ln">3</span> protocol esp integrity sha-256
+</code></pre></div><p>Phase Two of the tunnel for IPSEC Proposal, match them on both ends ;)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>crypto ipsec profile VPN-P2P-IPSEC
+<span class="ln">2</span> set ikev2 ipsec-proposal VPN-P2P
+<span class="ln">3</span> set pfs group2
+<span class="ln">4</span> set security-association lifetime seconds 84600
+</code></pre></div><p>On the site one we create a tunnel group to site two. (preshared keys have to match) In this example I'm using local and remote keys, just like you would expect remote key would match the local key on the remote end, and vise versa.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>tunnel-group 203.0.113.2 type ipsec-l2l
+<span class="ln">2</span>tunnel-group 203.0.113.2 general-attributes
+<span class="ln">3</span> default-group-policy P2P-VPN
+<span class="ln">4</span>tunnel-group 203.0.113.2 ipsec-attributes
+<span class="ln">5</span> ikev2 remote-authentication pre-shared-key *****
+<span class="ln">6</span> ikev2 local-authentication pre-shared-key *****
+</code></pre></div><p>On site two we do the same thing, flipping the IP addresses.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>tunnel-group 198.51.100.2 type ipsec-l2l
+<span class="ln">2</span>tunnel-group 198.51.100.2 general-attributes
+<span class="ln">3</span> default-group-policy P2P-VPN
+<span class="ln">4</span>tunnel-group 198.51.100.2 ipsec-attributes
+<span class="ln">5</span> ikev2 remote-authentication pre-shared-key *****
+<span class="ln">6</span> ikev2 local-authentication pre-shared-key *****
+</code></pre></div><p>Tunnel is created but in order to bring it up and use we need to create VTI interface on the ASA's. Here is how site one looks for the the tunnel interface. (tunnel source interface is the direction of how to get to the other site, in this case I'm using the internet)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>interface Tunnel80
+<span class="ln">2</span> nameif VPN-P2P
+<span class="ln">3</span> ip address 10.15.161.253 255.255.255.252 
+<span class="ln">4</span> tunnel source interface ISP
+<span class="ln">5</span> tunnel destination 203.0.113.2
+<span class="ln">6</span> tunnel mode ipsec ipv4
+<span class="ln">7</span> tunnel protection ipsec profile VPN-P2P-IPSEC
+</code></pre></div><p>If we jump over to site two for that tunnel interface configuration (tunnel interfaces don't have to match in this case)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>interface Tunnel80
+<span class="ln">2</span> nameif VPN-P2P
+<span class="ln">3</span> ip address 10.15.161.254 255.255.255.254 
+<span class="ln">4</span> tunnel source interface ISP
+<span class="ln">5</span> tunnel destination 198.51.100.2
+<span class="ln">6</span> tunnel mode ipsec ipv4
+<span class="ln">7</span> tunnel protection ipsec profile VPN-P2P-CPHX-IPSEC
+</code></pre></div><p>We can see that we created a little point to point network within the tunnel and if we wanted traffic over this tunnel a simple route statement is all we need :)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>route VPN-P2P 172.22.1.0 255.255.255.0 10.15.161.254 1
+</code></pre></div><p>A simple show command verifies that the tunnel is up (show crypto isakmp)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>There are no IKEv1 SAs
+<span class="ln"> 2</span>
+<span class="ln"> 3</span>IKEv2 SAs:
+<span class="ln"> 4</span>
+<span class="ln"> 5</span>Session-id:1, Status:UP-ACTIVE, IKE count:1, CHILD count:1
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>Tunnel-id Local                                               Remote                                                  Status         Role
+<span class="ln"> 8</span>  3991227 198.51.100.2/500                                    203.0.113.2/500                                          READY    INITIATOR
+<span class="ln"> 9</span>      Encr: 3DES, Hash: SHA96, DH Grp:2, Auth sign: PSK, Auth verify: PSK
+<span class="ln">10</span>      Life/Active Time: 86400/3180 sec
+<span class="ln">11</span>Child sa: local selector  0.0.0.0/0 - 255.255.255.255/65535
+<span class="ln">12</span>          remote selector 0.0.0.0/0 - 255.255.255.255/65535
+<span class="ln">13</span>          ESP spi in/out: 0x8e25a2bf/0x90b25811 
+</code></pre></div><p>Just like that you got yourself a flexible tunnel interface that you can send routes down it, don't need to deal with crypto maps anymore put those next to the history of 3DES ;) These VTIs make it a breeze to configure.</p>
+<p><a href="https://ciscoskills.net/2020/05/21/the-world-keeps-turning/">The World Keeps Turning</a> and we'll continue to navigate the times as technology plays such a critical piece in making sure communication between people and or systems goes uninterrupted. We as engineers are right in the middle of it... like always I hope this information is helpful, stay calm and carry on!</p>
+
+    
+      
+    
+  </article>
+<aside class="sidebar">
+  <section class="sidebar_inner">
+    
+      <h2>Ryan Lewis</h2>
+      <div>
+        A human with a passion and career within technology. Who is also discovering himself along the way
+      </div>
+      <a href='https://ciscoskills.net/about/' class="button mt-1" role="button">Read More</a>
+    <h2 class="mt-4">Recent Posts</h2>
+    <ul class="flex-column">
+      <li>
+        <a href="https://ciscoskills.net/2021/01/ten-years/" class="nav-link">Ten Years</a>
+      </li>
+      <li>
+        <a href="https://ciscoskills.net/2020/10/fortigate-ecmp-with-bgp/" class="nav-link">Fortigate ECMP with BGP</a>
+      </li>
+      <li>
+        <a href="https://ciscoskills.net/2020/08/its-always-changing/" class="nav-link">It&#39;s Always Changing</a>
+      </li>
+      <li>
+        <a href="https://ciscoskills.net/2020/05/the-world-keeps-turning/" class="nav-link">The World Keeps Turning</a>
+      </li>
+      <li>
+        <a href="https://ciscoskills.net/2020/01/goals/" class="nav-link">Goals</a>
+      </li>
+      <li>
+        <a href="https://ciscoskills.net/2019/10/fmcv-change-ip-address/" class="nav-link">FMCv - Change IP Address</a>
+      </li>
+      <li>
+        <a href="https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/" class="nav-link">Graylog with AWS Elasticsearch</a>
+      </li>
+      <li>
+        <a href="https://ciscoskills.net/2019/06/changes-on-the-horizon-cisco/" class="nav-link">Changes on the Horizon - Cisco</a>
+      </li>
+    </ul>
+    <div>
+      <h2 class="mt-4 taxonomy" id="tags-section">Tags</h2>
+      <nav class="tags_nav">
+        <a href='https://ciscoskills.net/tags/cisco/' class="post_tag button button_translucent">
+          CISCO
+          <span class="button_tally">141</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/technology/' class="post_tag button button_translucent">
+          TECHNOLOGY
+          <span class="button_tally">130</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/networking/' class="post_tag button button_translucent">
+          NETWORKING
+          <span class="button_tally">118</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/ccna/' class="post_tag button button_translucent">
+          CCNA
+          <span class="button_tally">71</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/tutorials/' class="post_tag button button_translucent">
+          TUTORIALS
+          <span class="button_tally">67</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/general/' class="post_tag button button_translucent">
+          GENERAL
+          <span class="button_tally">61</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/tutorial/' class="post_tag button button_translucent">
+          TUTORIAL
+          <span class="button_tally">51</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/icnd2/' class="post_tag button button_translucent">
+          ICND2
+          <span class="button_tally">48</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/network/' class="post_tag button button_translucent">
+          NETWORK
+          <span class="button_tally">44</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/router/' class="post_tag button button_translucent">
+          ROUTER
+          <span class="button_tally">44</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/ccent/' class="post_tag button button_translucent">
+          CCENT
+          <span class="button_tally">42</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/software/' class="post_tag button button_translucent">
+          SOFTWARE
+          <span class="button_tally">42</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/security/' class="post_tag button button_translucent">
+          SECURITY
+          <span class="button_tally">40</span>
+        </a>
+        
+        <a href='https://ciscoskills.net/tags/icnd1/' class="post_tag button button_translucent">
+          ICND1
+          <span class="button_tally">39</span>
+        </a>
+        
+        
+        <br>
+        <div class="post_tags_toggle button">All Tags</div>
+        <div class="post_tags">
+          <div class="tags_list">
+            
+            <a href='https://ciscoskills.net/tags/300-115/' class=" post_tag button button_translucent" data-position=1>300-115<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/5596up/' class=" post_tag button button_translucent" data-position=1>5596UP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/640-554/' class=" post_tag button button_translucent" data-position=1>640-554<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/640-911/' class=" post_tag button button_translucent" data-position=8>640-911<span class="button_tally">8</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/640-916/' class=" post_tag button button_translucent" data-position=1>640-916<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/802.11/' class=" post_tag button button_translucent" data-position=2>802.11<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/802.11-legacy/' class=" post_tag button button_translucent" data-position=1>802.11-LEGACY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/802.11ac/' class=" post_tag button button_translucent" data-position=1>802.11AC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/802.11ax/' class=" post_tag button button_translucent" data-position=1>802.11AX<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/802.11n/' class=" post_tag button button_translucent" data-position=1>802.11N<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/aaa/' class=" post_tag button button_translucent" data-position=1>AAA<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/access-control/' class=" post_tag button button_translucent" data-position=2>ACCESS-CONTROL<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/access-control-list/' class=" post_tag button button_translucent" data-position=2>ACCESS-CONTROL-LIST<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/access-point/' class=" post_tag button button_translucent" data-position=1>ACCESS-POINT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/accounting/' class=" post_tag button button_translucent" data-position=1>ACCOUNTING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/acl/' class=" post_tag button button_translucent" data-position=2>ACL<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/addressing/' class=" post_tag button button_translucent" data-position=1>ADDRESSING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/advanced-encryption-standard/' class=" post_tag button button_translucent" data-position=1>ADVANCED-ENCRYPTION-STANDARD<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/aes/' class=" post_tag button button_translucent" data-position=1>AES<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/aircrack-ng/' class=" post_tag button button_translucent" data-position=1>AIRCRACK-NG<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/android/' class=" post_tag button button_translucent" data-position=1>ANDROID<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/api/' class=" post_tag button button_translucent" data-position=3>API<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/apple/' class=" post_tag button button_translucent" data-position=2>APPLE<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/archive/' class=" post_tag button button_translucent" data-position=1>ARCHIVE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/arp/' class=" post_tag button button_translucent" data-position=1>ARP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/asa/' class=" post_tag button button_translucent" data-position=6>ASA<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/asa-ios/' class=" post_tag button button_translucent" data-position=1>ASA-IOS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/asdm/' class=" post_tag button button_translucent" data-position=2>ASDM<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/aside/' class=" post_tag button button_translucent" data-position=1>ASIDE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/authentication/' class=" post_tag button button_translucent" data-position=2>AUTHENTICATION<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/authorization/' class=" post_tag button button_translucent" data-position=1>AUTHORIZATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/automation/' class=" post_tag button button_translucent" data-position=1>AUTOMATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/aws/' class=" post_tag button button_translucent" data-position=2>AWS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/backtrack/' class=" post_tag button button_translucent" data-position=2>BACKTRACK<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/backward-compatibility/' class=" post_tag button button_translucent" data-position=1>BACKWARD-COMPATIBILITY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/bandwidth/' class=" post_tag button button_translucent" data-position=1>BANDWIDTH<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/barracuda/' class=" post_tag button button_translucent" data-position=1>BARRACUDA<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/bgp/' class=" post_tag button button_translucent" data-position=2>BGP<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/binary/' class=" post_tag button button_translucent" data-position=1>BINARY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/border-gateway-protocol/' class=" post_tag button button_translucent" data-position=1>BORDER-GATEWAY-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/brain-dump/' class=" post_tag button button_translucent" data-position=1>BRAIN-DUMP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/broadcast-domain/' class=" post_tag button button_translucent" data-position=1>BROADCAST-DOMAIN<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/broadcast-domains/' class=" post_tag button button_translucent" data-position=1>BROADCAST-DOMAINS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/broadcast-radiation/' class=" post_tag button button_translucent" data-position=1>BROADCAST-RADIATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/business/' class=" post_tag button button_translucent" data-position=1>BUSINESS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/business-services/' class=" post_tag button button_translucent" data-position=1>BUSINESS-SERVICES<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/byte/' class=" post_tag button button_translucent" data-position=1>BYTE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cable/' class=" post_tag button button_translucent" data-position=1>CABLE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/careers/' class=" post_tag button button_translucent" data-position=1>CAREERS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/catalyst/' class=" post_tag button button_translucent" data-position=1>CATALYST<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/catalyst-switch/' class=" post_tag button button_translucent" data-position=4>CATALYST-SWITCH<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccda/' class=" post_tag button button_translucent" data-position=1>CCDA<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccent/' class=" post_tag button button_translucent" data-position=42>CCENT<span class="button_tally">42</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccip/' class=" post_tag button button_translucent" data-position=1>CCIP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccna/' class=" post_tag button button_translucent" data-position=71>CCNA<span class="button_tally">71</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccna-data-center/' class=" post_tag button button_translucent" data-position=12>CCNA-DATA-CENTER<span class="button_tally">12</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccna-exams/' class=" post_tag button button_translucent" data-position=1>CCNA-EXAMS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccna-security/' class=" post_tag button button_translucent" data-position=25>CCNA-SECURITY<span class="button_tally">25</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccnp/' class=" post_tag button button_translucent" data-position=6>CCNP<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccnp-data-center/' class=" post_tag button button_translucent" data-position=1>CCNP-DATA-CENTER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccnp-security/' class=" post_tag button button_translucent" data-position=1>CCNP-SECURITY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ccp/' class=" post_tag button button_translucent" data-position=1>CCP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cct/' class=" post_tag button button_translucent" data-position=1>CCT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cct-routing-amp-switching-certification/' class=" post_tag button button_translucent" data-position=1>CCT-ROUTING-AMP-SWITCHING-CERTIFICATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cdp/' class=" post_tag button button_translucent" data-position=1>CDP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/centos/' class=" post_tag button button_translucent" data-position=6>CENTOS<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/certification/' class=" post_tag button button_translucent" data-position=13>CERTIFICATION<span class="button_tally">13</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ces/' class=" post_tag button button_translucent" data-position=1>CES<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/challenge-handshake-authentication-protocol/' class=" post_tag button button_translucent" data-position=1>CHALLENGE-HANDSHAKE-AUTHENTICATION-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco/' class=" post_tag button button_translucent" data-position=141>CISCO<span class="button_tally">141</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-asa/' class=" post_tag button button_translucent" data-position=5>CISCO-ASA<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-career-certifications/' class=" post_tag button button_translucent" data-position=24>CISCO-CAREER-CERTIFICATIONS<span class="button_tally">24</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-certified-entry-networking-technician/' class=" post_tag button button_translucent" data-position=2>CISCO-CERTIFIED-ENTRY-NETWORKING-TECHNICIAN<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-certified-technician/' class=" post_tag button button_translucent" data-position=1>CISCO-CERTIFIED-TECHNICIAN<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-configuration/' class=" post_tag button button_translucent" data-position=1>CISCO-CONFIGURATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-discovery-protocol/' class=" post_tag button button_translucent" data-position=2>CISCO-DISCOVERY-PROTOCOL<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-inter-switch-link/' class=" post_tag button button_translucent" data-position=2>CISCO-INTER-SWITCH-LINK<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-ios/' class=" post_tag button button_translucent" data-position=25>CISCO-IOS<span class="button_tally">25</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-iou/' class=" post_tag button button_translucent" data-position=1>CISCO-IOU<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-labs/' class=" post_tag button button_translucent" data-position=1>CISCO-LABS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-modeling-labs/' class=" post_tag button button_translucent" data-position=2>CISCO-MODELING-LABS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-networking-academy/' class=" post_tag button button_translucent" data-position=2>CISCO-NETWORKING-ACADEMY<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-router/' class=" post_tag button button_translucent" data-position=3>CISCO-ROUTER<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-sdm/' class=" post_tag button button_translucent" data-position=3>CISCO-SDM<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-systems/' class=" post_tag button button_translucent" data-position=35>CISCO-SYSTEMS<span class="button_tally">35</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cisco-troubleshooting/' class=" post_tag button button_translucent" data-position=2>CISCO-TROUBLESHOOTING<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ciscosystems/' class=" post_tag button button_translucent" data-position=5>CISCOSYSTEMS<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/classful-network/' class=" post_tag button button_translucent" data-position=1>CLASSFUL-NETWORK<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/classless-inter-domain-routing/' class=" post_tag button button_translucent" data-position=2>CLASSLESS-INTER-DOMAIN-ROUTING<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cli/' class=" post_tag button button_translucent" data-position=1>CLI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cloud-computing/' class=" post_tag button button_translucent" data-position=1>CLOUD-COMPUTING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cml/' class=" post_tag button button_translucent" data-position=1>CML<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/collapsed-core/' class=" post_tag button button_translucent" data-position=1>COLLAPSED-CORE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/collision-domain/' class=" post_tag button button_translucent" data-position=1>COLLISION-DOMAIN<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/collision-domains/' class=" post_tag button button_translucent" data-position=1>COLLISION-DOMAINS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/command-line-interface/' class=" post_tag button button_translucent" data-position=4>COMMAND-LINE-INTERFACE<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/computer-network/' class=" post_tag button button_translucent" data-position=1>COMPUTER-NETWORK<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/computers/' class=" post_tag button button_translucent" data-position=29>COMPUTERS<span class="button_tally">29</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/configuration-backup/' class=" post_tag button button_translucent" data-position=1>CONFIGURATION-BACKUP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/configuration-file/' class=" post_tag button button_translucent" data-position=4>CONFIGURATION-FILE<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/configure-script/' class=" post_tag button button_translucent" data-position=1>CONFIGURE-SCRIPT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/crossover-cable/' class=" post_tag button button_translucent" data-position=1>CROSSOVER-CABLE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/customer-service/' class=" post_tag button button_translucent" data-position=1>CUSTOMER-SERVICE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cut-through-switching/' class=" post_tag button button_translucent" data-position=1>CUT-THROUGH-SWITCHING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/cyclic-redundancy-check/' class=" post_tag button button_translucent" data-position=1>CYCLIC-REDUNDANCY-CHECK<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/data-center/' class=" post_tag button button_translucent" data-position=12>DATA-CENTER<span class="button_tally">12</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/data-communications/' class=" post_tag button button_translucent" data-position=6>DATA-COMMUNICATIONS<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/data-link/' class=" post_tag button button_translucent" data-position=1>DATA-LINK<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/data-link-layer/' class=" post_tag button button_translucent" data-position=3>DATA-LINK-LAYER<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/debugging/' class=" post_tag button button_translucent" data-position=1>DEBUGGING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/default-gateway/' class=" post_tag button button_translucent" data-position=1>DEFAULT-GATEWAY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/default-route/' class=" post_tag button button_translucent" data-position=1>DEFAULT-ROUTE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/dell/' class=" post_tag button button_translucent" data-position=1>DELL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/denial-of-service-attack/' class=" post_tag button button_translucent" data-position=4>DENIAL-OF-SERVICE-ATTACK<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/dhcp/' class=" post_tag button button_translucent" data-position=1>DHCP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/direct-sequence-spread-spectrum/' class=" post_tag button button_translucent" data-position=2>DIRECT-SEQUENCE-SPREAD-SPECTRUM<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/distance-vector-routing-protocol/' class=" post_tag button button_translucent" data-position=4>DISTANCE-VECTOR-ROUTING-PROTOCOL<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/distribution-layer/' class=" post_tag button button_translucent" data-position=2>DISTRIBUTION-LAYER<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/domain-name-system/' class=" post_tag button button_translucent" data-position=1>DOMAIN-NAME-SYSTEM<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/dsss/' class=" post_tag button button_translucent" data-position=1>DSSS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/dynamic-auto/' class=" post_tag button button_translucent" data-position=1>DYNAMIC-AUTO<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/dynamic-host-configuration-protocol/' class=" post_tag button button_translucent" data-position=1>DYNAMIC-HOST-CONFIGURATION-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/dynamips/' class=" post_tag button button_translucent" data-position=2>DYNAMIPS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/e-mail/' class=" post_tag button button_translucent" data-position=1>E-MAIL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ecmp/' class=" post_tag button button_translucent" data-position=1>ECMP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/education/' class=" post_tag button button_translucent" data-position=2>EDUCATION<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/eigrp/' class=" post_tag button button_translucent" data-position=1>EIGRP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/elasticsearch/' class=" post_tag button button_translucent" data-position=1>ELASTICSEARCH<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/electric-charge/' class=" post_tag button button_translucent" data-position=1>ELECTRIC-CHARGE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/emulator/' class=" post_tag button button_translucent" data-position=1>EMULATOR<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/encryption/' class=" post_tag button button_translucent" data-position=2>ENCRYPTION<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/enhanced-interior-gateway-routing-protocol/' class=" post_tag button button_translucent" data-position=4>ENHANCED-INTERIOR-GATEWAY-ROUTING-PROTOCOL<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/etherchannel/' class=" post_tag button button_translucent" data-position=3>ETHERCHANNEL<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ethernet/' class=" post_tag button button_translucent" data-position=3>ETHERNET<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ethernet-crossover-cable/' class=" post_tag button button_translucent" data-position=1>ETHERNET-CROSSOVER-CABLE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ethernet-frame/' class=" post_tag button button_translucent" data-position=1>ETHERNET-FRAME<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/exam/' class=" post_tag button button_translucent" data-position=1>EXAM<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/exterior-gateway-protocol/' class=" post_tag button button_translucent" data-position=1>EXTERIOR-GATEWAY-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/fabric-computing/' class=" post_tag button button_translucent" data-position=1>FABRIC-COMPUTING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/faqs-help-and-tutorials/' class=" post_tag button button_translucent" data-position=1>FAQS-HELP-AND-TUTORIALS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/fast-ethernet/' class=" post_tag button button_translucent" data-position=2>FAST-ETHERNET<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/fcc/' class=" post_tag button button_translucent" data-position=1>FCC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/fdm/' class=" post_tag button button_translucent" data-position=1>FDM<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/federal-communications-commission/' class=" post_tag button button_translucent" data-position=1>FEDERAL-COMMUNICATIONS-COMMISSION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/fex/' class=" post_tag button button_translucent" data-position=2>FEX<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/file-transfer-protocol/' class=" post_tag button button_translucent" data-position=1>FILE-TRANSFER-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/firepower/' class=" post_tag button button_translucent" data-position=7>FIREPOWER<span class="button_tally">7</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/firewall/' class=" post_tag button button_translucent" data-position=9>FIREWALL<span class="button_tally">9</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/firewalls/' class=" post_tag button button_translucent" data-position=2>FIREWALLS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/fmc/' class=" post_tag button button_translucent" data-position=3>FMC<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/fortigate/' class=" post_tag button button_translucent" data-position=1>FORTIGATE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/fragment-free/' class=" post_tag button button_translucent" data-position=1>FRAGMENT-FREE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/frequency-hopping-spread-spectrum/' class=" post_tag button button_translucent" data-position=1>FREQUENCY-HOPPING-SPREAD-SPECTRUM<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ftd/' class=" post_tag button button_translucent" data-position=3>FTD<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ftp/' class=" post_tag button button_translucent" data-position=2>FTP<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/general/' class=" post_tag button button_translucent" data-position=61>GENERAL<span class="button_tally">61</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/glbp/' class=" post_tag button button_translucent" data-position=1>GLBP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/gns3/' class=" post_tag button button_translucent" data-position=7>GNS3<span class="button_tally">7</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/gns3-1.0/' class=" post_tag button button_translucent" data-position=4>GNS3-1.0<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/gns3-jungle/' class=" post_tag button button_translucent" data-position=1>GNS3-JUNGLE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/goals/' class=" post_tag button button_translucent" data-position=2>GOALS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/goodbye/' class=" post_tag button button_translucent" data-position=1>GOODBYE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/google/' class=" post_tag button button_translucent" data-position=1>GOOGLE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/graphical-user-interface/' class=" post_tag button button_translucent" data-position=5>GRAPHICAL-USER-INTERFACE<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/graylog/' class=" post_tag button button_translucent" data-position=3>GRAYLOG<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/gui/' class=" post_tag button button_translucent" data-position=1>GUI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/gui-tool/' class=" post_tag button button_translucent" data-position=1>GUI-TOOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/hardware/' class=" post_tag button button_translucent" data-position=7>HARDWARE<span class="button_tally">7</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/hdlc/' class=" post_tag button button_translucent" data-position=1>HDLC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/hdmi/' class=" post_tag button button_translucent" data-position=1>HDMI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/hierarchical-network/' class=" post_tag button button_translucent" data-position=1>HIERARCHICAL-NETWORK<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/hybrid-routing-protocol/' class=" post_tag button button_translucent" data-position=1>HYBRID-ROUTING-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/iac/' class=" post_tag button button_translucent" data-position=1>IAC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/icnd1/' class=" post_tag button button_translucent" data-position=39>ICND1<span class="button_tally">39</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/icnd2/' class=" post_tag button button_translucent" data-position=48>ICND2<span class="button_tally">48</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ieee/' class=" post_tag button button_translucent" data-position=5>IEEE<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ieee-802.11/' class=" post_tag button button_translucent" data-position=1>IEEE-802.11<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ieee-802.11a-1999/' class=" post_tag button button_translucent" data-position=4>IEEE-802.11A-1999<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ieee-802.11b-1999/' class=" post_tag button button_translucent" data-position=3>IEEE-802.11B-1999<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ieee-802.11g-2003/' class=" post_tag button button_translucent" data-position=2>IEEE-802.11G-2003<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ieee-802.11n-2009/' class=" post_tag button button_translucent" data-position=1>IEEE-802.11N-2009<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ieee-802.1d/' class=" post_tag button button_translucent" data-position=1>IEEE-802.1D<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ieee-802.1q/' class=" post_tag button button_translucent" data-position=3>IEEE-802.1Q<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/index/' class=" post_tag button button_translucent" data-position=1>INDEX<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/information/' class=" post_tag button button_translucent" data-position=3>INFORMATION<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/infrastructure/' class=" post_tag button button_translucent" data-position=1>INFRASTRUCTURE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/input-queue/' class=" post_tag button button_translucent" data-position=1>INPUT-QUEUE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/inspirational/' class=" post_tag button button_translucent" data-position=2>INSPIRATIONAL<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/installation/' class=" post_tag button button_translucent" data-position=1>INSTALLATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/institute-of-electrical-and-electronics-engineers/' class=" post_tag button button_translucent" data-position=4>INSTITUTE-OF-ELECTRICAL-AND-ELECTRONICS-ENGINEERS<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/intel/' class=" post_tag button button_translucent" data-position=1>INTEL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/intel-corporation/' class=" post_tag button button_translucent" data-position=1>INTEL-CORPORATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/interconnecting-cisco-network-devices-part-1/' class=" post_tag button button_translucent" data-position=2>INTERCONNECTING-CISCO-NETWORK-DEVICES-PART-1<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/interconnecting-cisco-networking-devices-part-1/' class=" post_tag button button_translucent" data-position=2>INTERCONNECTING-CISCO-NETWORKING-DEVICES-PART-1<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/interface-computing/' class=" post_tag button button_translucent" data-position=1>INTERFACE-COMPUTING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/interior-gateway-protocol/' class=" post_tag button button_translucent" data-position=1>INTERIOR-GATEWAY-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/internet/' class=" post_tag button button_translucent" data-position=26>INTERNET<span class="button_tally">26</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/internet-access/' class=" post_tag button button_translucent" data-position=1>INTERNET-ACCESS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/internet-assigned-numbers-authority/' class=" post_tag button button_translucent" data-position=1>INTERNET-ASSIGNED-NUMBERS-AUTHORITY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/internet-control-message-protocol/' class=" post_tag button button_translucent" data-position=2>INTERNET-CONTROL-MESSAGE-PROTOCOL<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/internet-engineering-task-force/' class=" post_tag button button_translucent" data-position=1>INTERNET-ENGINEERING-TASK-FORCE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/internet-protocol/' class=" post_tag button button_translucent" data-position=7>INTERNET-PROTOCOL<span class="button_tally">7</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/internet-service-provider/' class=" post_tag button button_translucent" data-position=2>INTERNET-SERVICE-PROVIDER<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/internet-society/' class=" post_tag button button_translucent" data-position=1>INTERNET-SOCIETY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/intrusion-detection-system/' class=" post_tag button button_translucent" data-position=2>INTRUSION-DETECTION-SYSTEM<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/intrusion-prevention-system/' class=" post_tag button button_translucent" data-position=3>INTRUSION-PREVENTION-SYSTEM<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ip/' class=" post_tag button button_translucent" data-position=2>IP<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ip-address/' class=" post_tag button button_translucent" data-position=19>IP-ADDRESS<span class="button_tally">19</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/iperf/' class=" post_tag button button_translucent" data-position=1>IPERF<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/iphone/' class=" post_tag button button_translucent" data-position=1>IPHONE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ipsec/' class=" post_tag button button_translucent" data-position=1>IPSEC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ipv4/' class=" post_tag button button_translucent" data-position=3>IPV4<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ipv6/' class=" post_tag button button_translucent" data-position=4>IPV6<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/is-is/' class=" post_tag button button_translucent" data-position=2>IS-IS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/isatap/' class=" post_tag button button_translucent" data-position=1>ISATAP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ism-band/' class=" post_tag button button_translucent" data-position=5>ISM-BAND<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/isr/' class=" post_tag button button_translucent" data-position=1>ISR<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/java/' class=" post_tag button button_translucent" data-position=1>JAVA<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/knowledge/' class=" post_tag button button_translucent" data-position=1>KNOWLEDGE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/kvm/' class=" post_tag button button_translucent" data-position=1>KVM<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/lan/' class=" post_tag button button_translucent" data-position=5>LAN<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/laser/' class=" post_tag button button_translucent" data-position=1>LASER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/laser-printer/' class=" post_tag button button_translucent" data-position=1>LASER-PRINTER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/laser-printing-process/' class=" post_tag button button_translucent" data-position=1>LASER-PRINTING-PROCESS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/lgbt/' class=" post_tag button button_translucent" data-position=1>LGBT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/life/' class=" post_tag button button_translucent" data-position=3>LIFE<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/light-peak/' class=" post_tag button button_translucent" data-position=1>LIGHT-PEAK<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/link-aggregation/' class=" post_tag button button_translucent" data-position=1>LINK-AGGREGATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/link-state-advertisement/' class=" post_tag button button_translucent" data-position=1>LINK-STATE-ADVERTISEMENT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/link-state-routing-protocol/' class=" post_tag button button_translucent" data-position=1>LINK-STATE-ROUTING-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/linux/' class=" post_tag button button_translucent" data-position=6>LINUX<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/load-balancer/' class=" post_tag button button_translucent" data-position=1>LOAD-BALANCER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/local-area-network/' class=" post_tag button button_translucent" data-position=6>LOCAL-AREA-NETWORK<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/loganalyzer/' class=" post_tag button button_translucent" data-position=1>LOGANALYZER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/logging/' class=" post_tag button button_translucent" data-position=1>LOGGING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/mac-address/' class=" post_tag button button_translucent" data-position=9>MAC-ADDRESS<span class="button_tally">9</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/macbook-pro/' class=" post_tag button button_translucent" data-position=1>MACBOOK-PRO<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/matt-mullenweg/' class=" post_tag button button_translucent" data-position=1>MATT-MULLENWEG<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/metro-design-language/' class=" post_tag button button_translucent" data-position=1>METRO-DESIGN-LANGUAGE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/microsoft/' class=" post_tag button button_translucent" data-position=2>MICROSOFT<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/microsoft-windows/' class=" post_tag button button_translucent" data-position=1>MICROSOFT-WINDOWS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/mimo/' class=" post_tag button button_translucent" data-position=1>MIMO<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/mobile-device/' class=" post_tag button button_translucent" data-position=1>MOBILE-DEVICE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/nat/' class=" post_tag button button_translucent" data-position=1>NAT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/national-broadband-plan/' class=" post_tag button button_translucent" data-position=1>NATIONAL-BROADBAND-PLAN<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/network/' class=" post_tag button button_translucent" data-position=44>NETWORK<span class="button_tally">44</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/network-administrator/' class=" post_tag button button_translucent" data-position=3>NETWORK-ADMINISTRATOR<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/network-layer/' class=" post_tag button button_translucent" data-position=4>NETWORK-LAYER<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/network-management/' class=" post_tag button button_translucent" data-position=1>NETWORK-MANAGEMENT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/network-performance/' class=" post_tag button button_translucent" data-position=2>NETWORK-PERFORMANCE<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/network-security/' class=" post_tag button button_translucent" data-position=1>NETWORK-SECURITY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/network-simulation/' class=" post_tag button button_translucent" data-position=1>NETWORK-SIMULATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/network-switch/' class=" post_tag button button_translucent" data-position=1>NETWORK-SWITCH<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=118>NETWORKING<span class="button_tally">118</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/networks/' class=" post_tag button button_translucent" data-position=2>NETWORKS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/new-year/' class=" post_tag button button_translucent" data-position=1>NEW-YEAR<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/nexus/' class=" post_tag button button_translucent" data-position=10>NEXUS<span class="button_tally">10</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ngfw/' class=" post_tag button button_translucent" data-position=1>NGFW<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/non-volatile-random-access-memory/' class=" post_tag button button_translucent" data-position=1>NON-VOLATILE-RANDOM-ACCESS-MEMORY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/nps/' class=" post_tag button button_translucent" data-position=1>NPS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/nx-os/' class=" post_tag button button_translucent" data-position=8>NX-OS<span class="button_tally">8</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/open-shortest-path-first/' class=" post_tag button button_translucent" data-position=6>OPEN-SHORTEST-PATH-FIRST<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/open-source/' class=" post_tag button button_translucent" data-position=4>OPEN-SOURCE<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/openssh/' class=" post_tag button button_translucent" data-position=1>OPENSSH<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/operating-system/' class=" post_tag button button_translucent" data-position=4>OPERATING-SYSTEM<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/operating-systems/' class=" post_tag button button_translucent" data-position=12>OPERATING-SYSTEMS<span class="button_tally">12</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/orthogonal-frequency-division-multiplexing/' class=" post_tag button button_translucent" data-position=2>ORTHOGONAL-FREQUENCY-DIVISION-MULTIPLEXING<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/osi/' class=" post_tag button button_translucent" data-position=1>OSI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/osi-model/' class=" post_tag button button_translucent" data-position=3>OSI-MODEL<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ospf/' class=" post_tag button button_translucent" data-position=2>OSPF<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/packet/' class=" post_tag button button_translucent" data-position=1>PACKET<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/packet-information-technology/' class=" post_tag button button_translucent" data-position=1>PACKET-INFORMATION-TECHNOLOGY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/packet-tracer/' class=" post_tag button button_translucent" data-position=2>PACKET-TRACER<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/paessler/' class=" post_tag button button_translucent" data-position=1>PAESSLER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/paper/' class=" post_tag button button_translucent" data-position=1>PAPER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/password/' class=" post_tag button button_translucent" data-position=1>PASSWORD<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/password-authentication-protocol/' class=" post_tag button button_translucent" data-position=1>PASSWORD-AUTHENTICATION-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/pat/' class=" post_tag button button_translucent" data-position=1>PAT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/pc-hardware/' class=" post_tag button button_translucent" data-position=1>PC-HARDWARE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/peripherals/' class=" post_tag button button_translucent" data-position=1>PERIPHERALS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/personal/' class=" post_tag button button_translucent" data-position=1>PERSONAL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/phones/' class=" post_tag button button_translucent" data-position=1>PHONES<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/pin/' class=" post_tag button button_translucent" data-position=1>PIN<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ping/' class=" post_tag button button_translucent" data-position=1>PING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/port-security/' class=" post_tag button button_translucent" data-position=1>PORT-SECURITY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/powerconnect/' class=" post_tag button button_translucent" data-position=1>POWERCONNECT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/powershell/' class=" post_tag button button_translucent" data-position=3>POWERSHELL<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ppp/' class=" post_tag button button_translucent" data-position=1>PPP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/printer/' class=" post_tag button button_translucent" data-position=1>PRINTER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/printers/' class=" post_tag button button_translucent" data-position=1>PRINTERS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/protocols/' class=" post_tag button button_translucent" data-position=6>PROTOCOLS<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/prtg/' class=" post_tag button button_translucent" data-position=1>PRTG<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/public-key-certificate/' class=" post_tag button button_translucent" data-position=1>PUBLIC-KEY-CERTIFICATE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/pvlans/' class=" post_tag button button_translucent" data-position=1>PVLANS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/qemu/' class=" post_tag button button_translucent" data-position=1>QEMU<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/qos/' class=" post_tag button button_translucent" data-position=1>QOS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/radius/' class=" post_tag button button_translucent" data-position=3>RADIUS<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/rancid/' class=" post_tag button button_translucent" data-position=3>RANCID<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/rbac/' class=" post_tag button button_translucent" data-position=1>RBAC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/redundancy/' class=" post_tag button button_translucent" data-position=1>REDUNDANCY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/redundancy-engineering/' class=" post_tag button button_translucent" data-position=1>REDUNDANCY-ENGINEERING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/reflection/' class=" post_tag button button_translucent" data-position=2>REFLECTION<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/regional-internet-registry/' class=" post_tag button button_translucent" data-position=1>REGIONAL-INTERNET-REGISTRY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/restful/' class=" post_tag button button_translucent" data-position=1>RESTFUL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/rfc-4594/' class=" post_tag button button_translucent" data-position=1>RFC-4594<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ripv2/' class=" post_tag button button_translucent" data-position=1>RIPV2<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/rj45/' class=" post_tag button button_translucent" data-position=1>RJ45<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/router/' class=" post_tag button button_translucent" data-position=44>ROUTER<span class="button_tally">44</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/routers/' class=" post_tag button button_translucent" data-position=1>ROUTERS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/routing/' class=" post_tag button button_translucent" data-position=9>ROUTING<span class="button_tally">9</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/routing-and-switching/' class=" post_tag button button_translucent" data-position=1>ROUTING-AND-SWITCHING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/routing-information-protocol/' class=" post_tag button button_translucent" data-position=2>ROUTING-INFORMATION-PROTOCOL<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/routing-protocol/' class=" post_tag button button_translucent" data-position=3>ROUTING-PROTOCOL<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/rsa/' class=" post_tag button button_translucent" data-position=1>RSA<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/rsyslog/' class=" post_tag button button_translucent" data-position=1>RSYSLOG<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/safety/' class=" post_tag button button_translucent" data-position=1>SAFETY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/scams/' class=" post_tag button button_translucent" data-position=1>SCAMS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/scripting/' class=" post_tag button button_translucent" data-position=2>SCRIPTING<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/sdn/' class=" post_tag button button_translucent" data-position=1>SDN<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/secure-shell/' class=" post_tag button button_translucent" data-position=3>SECURE-SHELL<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/security/' class=" post_tag button button_translucent" data-position=40>SECURITY<span class="button_tally">40</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/security-appliances/' class=" post_tag button button_translucent" data-position=1>SECURITY-APPLIANCES<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/security-device-manager/' class=" post_tag button button_translucent" data-position=2>SECURITY-DEVICE-MANAGER<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/server-computing/' class=" post_tag button button_translucent" data-position=2>SERVER-COMPUTING<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/servers/' class=" post_tag button button_translucent" data-position=1>SERVERS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/service-set-802.11-network/' class=" post_tag button button_translucent" data-position=2>SERVICE-SET-802.11-NETWORK<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/site-to-site/' class=" post_tag button button_translucent" data-position=1>SITE-TO-SITE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/software/' class=" post_tag button button_translucent" data-position=42>SOFTWARE<span class="button_tally">42</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/software-release-life-cycle/' class=" post_tag button button_translucent" data-position=1>SOFTWARE-RELEASE-LIFE-CYCLE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/source-port/' class=" post_tag button button_translucent" data-position=1>SOURCE-PORT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/spanning-tree-protocol/' class=" post_tag button button_translucent" data-position=4>SPANNING-TREE-PROTOCOL<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ssh/' class=" post_tag button button_translucent" data-position=4>SSH<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/static-routes/' class=" post_tag button button_translucent" data-position=1>STATIC-ROUTES<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/store-and-forward/' class=" post_tag button button_translucent" data-position=1>STORE-AND-FORWARD<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/stp/' class=" post_tag button button_translucent" data-position=3>STP<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/study-skills/' class=" post_tag button button_translucent" data-position=3>STUDY-SKILLS<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/subnet-masks/' class=" post_tag button button_translucent" data-position=1>SUBNET-MASKS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/subnetting/' class=" post_tag button button_translucent" data-position=1>SUBNETTING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/subnetwork/' class=" post_tag button button_translucent" data-position=6>SUBNETWORK<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/super-wi-fi/' class=" post_tag button button_translucent" data-position=1>SUPER-WI-FI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/svi/' class=" post_tag button button_translucent" data-position=1>SVI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/switch/' class=" post_tag button button_translucent" data-position=3>SWITCH<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/switching/' class=" post_tag button button_translucent" data-position=6>SWITCHING<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/syn-flood/' class=" post_tag button button_translucent" data-position=2>SYN-FLOOD<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/syslog/' class=" post_tag button button_translucent" data-position=2>SYSLOG<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/tablets/' class=" post_tag button button_translucent" data-position=2>TABLETS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/tacacs/' class=" post_tag button button_translucent" data-position=2>TACACS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/tcp/' class=" post_tag button button_translucent" data-position=2>TCP<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/technical-assistance-center/' class=" post_tag button button_translucent" data-position=1>TECHNICAL-ASSISTANCE-CENTER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/technology/' class=" post_tag button button_translucent" data-position=130>TECHNOLOGY<span class="button_tally">130</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/telecommunications/' class=" post_tag button button_translucent" data-position=2>TELECOMMUNICATIONS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/telnet/' class=" post_tag button button_translucent" data-position=2>TELNET<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/temporal-key-integrity-protocol/' class=" post_tag button button_translucent" data-position=1>TEMPORAL-KEY-INTEGRITY-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/teraterm/' class=" post_tag button button_translucent" data-position=1>TERATERM<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/test-assessment/' class=" post_tag button button_translucent" data-position=1>TEST-ASSESSMENT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/test-preparation/' class=" post_tag button button_translucent" data-position=1>TEST-PREPARATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/tftp/' class=" post_tag button button_translucent" data-position=1>TFTP<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/throughput/' class=" post_tag button button_translucent" data-position=1>THROUGHPUT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/thunderbolt/' class=" post_tag button button_translucent" data-position=1>THUNDERBOLT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/time-to-live/' class=" post_tag button button_translucent" data-position=1>TIME-TO-LIVE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/toner/' class=" post_tag button button_translucent" data-position=1>TONER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/transmission-control-protocol/' class=" post_tag button button_translucent" data-position=4>TRANSMISSION-CONTROL-PROTOCOL<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/transmission-protocols/' class=" post_tag button button_translucent" data-position=2>TRANSMISSION-PROTOCOLS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/trivial-file-transfer-protocol/' class=" post_tag button button_translucent" data-position=3>TRIVIAL-FILE-TRANSFER-PROTOCOL<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/troubleshoot/' class=" post_tag button button_translucent" data-position=2>TROUBLESHOOT<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/troubleshooting/' class=" post_tag button button_translucent" data-position=2>TROUBLESHOOTING<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/trunking/' class=" post_tag button button_translucent" data-position=1>TRUNKING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/tutorial/' class=" post_tag button button_translucent" data-position=51>TUTORIAL<span class="button_tally">51</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=67>TUTORIALS<span class="button_tally">67</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ubuntu/' class=" post_tag button button_translucent" data-position=1>UBUNTU<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/ucs/' class=" post_tag button button_translucent" data-position=1>UCS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/uncategorized/' class=" post_tag button button_translucent" data-position=3>UNCATEGORIZED<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/united-states/' class=" post_tag button button_translucent" data-position=1>UNITED-STATES<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/universal-serial-bus/' class=" post_tag button button_translucent" data-position=1>UNIVERSAL-SERIAL-BUS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/unix/' class=" post_tag button button_translucent" data-position=1>UNIX<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/user-computing/' class=" post_tag button button_translucent" data-position=1>USER-COMPUTING<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/user-datagram-protocol/' class=" post_tag button button_translucent" data-position=3>USER-DATAGRAM-PROTOCOL<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/user-interface/' class=" post_tag button button_translucent" data-position=1>USER-INTERFACE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vacl/' class=" post_tag button button_translucent" data-position=1>VACL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/viewvc/' class=" post_tag button button_translucent" data-position=1>VIEWVC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/virl/' class=" post_tag button button_translucent" data-position=5>VIRL<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/virtual-lan/' class=" post_tag button button_translucent" data-position=7>VIRTUAL-LAN<span class="button_tally">7</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/virtual-machine/' class=" post_tag button button_translucent" data-position=2>VIRTUAL-MACHINE<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/virtual-private-network/' class=" post_tag button button_translucent" data-position=5>VIRTUAL-PRIVATE-NETWORK<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/virtualbox/' class=" post_tag button button_translucent" data-position=3>VIRTUALBOX<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vlan/' class=" post_tag button button_translucent" data-position=2>VLAN<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vlan-trunking-protocol/' class=" post_tag button button_translucent" data-position=1>VLAN-TRUNKING-PROTOCOL<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vlans/' class=" post_tag button button_translucent" data-position=1>VLANS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vlsm/' class=" post_tag button button_translucent" data-position=2>VLSM<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vmware/' class=" post_tag button button_translucent" data-position=2>VMWARE<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vpc/' class=" post_tag button button_translucent" data-position=1>VPC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vpn/' class=" post_tag button button_translucent" data-position=6>VPN<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vti/' class=" post_tag button button_translucent" data-position=1>VTI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/vxlan/' class=" post_tag button button_translucent" data-position=1>VXLAN<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wan/' class=" post_tag button button_translucent" data-position=6>WAN<span class="button_tally">6</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wan-optimization/' class=" post_tag button button_translucent" data-position=1>WAN-OPTIMIZATION<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wendell-odom/' class=" post_tag button button_translucent" data-position=1>WENDELL-ODOM<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wi-fi/' class=" post_tag button button_translucent" data-position=4>WI-FI<span class="button_tally">4</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wi-fi-alliance/' class=" post_tag button button_translucent" data-position=1>WI-FI-ALLIANCE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wi-fi-protected-access/' class=" post_tag button button_translucent" data-position=1>WI-FI-PROTECTED-ACCESS<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wide-area-network/' class=" post_tag button button_translucent" data-position=2>WIDE-AREA-NETWORK<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/windows/' class=" post_tag button button_translucent" data-position=3>WINDOWS<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/windows-8/' class=" post_tag button button_translucent" data-position=2>WINDOWS-8<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wired-equivalent-privacy/' class=" post_tag button button_translucent" data-position=2>WIRED-EQUIVALENT-PRIVACY<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wireless/' class=" post_tag button button_translucent" data-position=11>WIRELESS<span class="button_tally">11</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wireless-access-point/' class=" post_tag button button_translucent" data-position=1>WIRELESS-ACCESS-POINT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wireless-lan/' class=" post_tag button button_translucent" data-position=5>WIRELESS-LAN<span class="button_tally">5</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wireless-network/' class=" post_tag button button_translucent" data-position=3>WIRELESS-NETWORK<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wireless-security/' class=" post_tag button button_translucent" data-position=1>WIRELESS-SECURITY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/wordpress.com/' class=" post_tag button button_translucent" data-position=1>WORDPRESS.COM<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='https://ciscoskills.net/tags/world-ipv6-day/' class=" post_tag button button_translucent" data-position=1>WORLD-IPV6-DAY<span class="button_tally">1</span>
+            </a>
+            
+            <div class="tags_sort"><span title="sort alphabetically">[A~Z]</span><span title="sort by count">[0~9]</span>
+            </div>
+            <span class="tags_hide"><svg class="icon">
+            <use xlink:href="#closeme"></use>
+          </svg></span>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
+</aside>
+
+</div>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.001 18.001" id="twitter">
+    <path d="M15.891 4.013c.808-.496 1.343-1.173 1.605-2.034a8.68 8.68 0 0 1-2.351.861c-.703-.756-1.593-1.14-2.66-1.14-1.043 0-1.924.366-2.643 1.078a3.56 3.56 0 0 0-1.076 2.605c0 .309.039.585.117.819-3.076-.105-5.622-1.381-7.628-3.837-.34.601-.51 1.213-.51 1.846 0 1.301.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 0 0 2.115 1.291c-.312.08-.641.118-.979.118-.312 0-.533-.026-.664-.083.23.757.664 1.371 1.291 1.841a3.652 3.652 0 0 0 2.152.743C4.148 14.173 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.649 5.676 1.649 2.139 0 4.029-.542 5.674-1.626 1.645-1.078 2.859-2.408 3.639-3.974a10.77 10.77 0 0 0 1.172-4.892v-.468a7.788 7.788 0 0 0 1.84-1.921 8.142 8.142 0 0 1-2.11.593z"
+      ></path>
+  </symbol>
+  <symbol aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="mail">
+    <path  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="calendar">
+    <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
+    <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
+    <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212 212" id="gitlab">
+    <path d="M12.3 74.7h54L43.3 3c-1-3.6-6.4-3.6-7.6 0L12.3 74.8z" />
+    <path d="M12.3 74.7L.5 111c-1 3.2 0 6.8 3 8.8l101.6 74-92.5-119z"/>
+    <path d="M105 193.7l-38.6-119h-54l92.7 119z"/>
+    <path d="M105 193.7l38.7-119H66.4l38.7 119z"/>
+    <path d="M105 193.7l38.7-119H198l-93 119z"/>
+    <path d="M198 74.7l11.6 36.2c1 3 0 6.6-3 8.6l-101.5 74 93-119z"/>
+    <path d="M198 74.7h-54.3L167 3c1.2-3.6 6.4-3.6 7.6 0L198 74.8z"/> 
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
+    <circle cx="3.429" cy="20.571" r="3.429"></circle>
+    <path d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+    <path d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="linkedin">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h362c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zM181 406h-60V196h60zm0-240h-60v-60h60zm210 240h-60V286c0-16.54-13.46-30-30-30s-30 13.46-30 30v120h-60V196h60v11.309C286.719 202.422 296.93 196 316 196c40.691.043 75 36.547 75 79.688zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" id="arrow">
+    <path d="M604.501 440.509L325.398 134.956c-5.331-5.357-12.423-7.627-19.386-7.27-6.989-.357-14.056 1.913-19.387 7.27L7.499 440.509c-9.999 10.024-9.999 26.298 0 36.323s26.223 10.024 36.222 0l262.293-287.164L568.28 476.832c9.999 10.024 26.222 10.024 36.221 0 9.999-10.023 9.999-26.298 0-36.323z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="carly">
+    <path d="M504.971 239.029L448 182.059V84c0-46.317-37.682-84-84-84h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c19.851 0 36 16.149 36 36v108c0 6.365 2.529 12.47 7.029 16.971L454.059 256l-47.029 47.029A24.002 24.002 0 0 0 400 320v108c0 19.851-16.149 36-36 36h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c46.318 0 84-37.683 84-84v-98.059l56.971-56.971c9.372-9.372 9.372-24.568 0-33.941zM112 192V84c0-19.851 16.149-36 36-36h44c13.255 0 24-10.745 24-24S205.255 0 192 0h-44c-46.318 0-84 37.683-84 84v98.059l-56.971 56.97c-9.373 9.373-9.373 24.568 0 33.941L64 329.941V428c0 46.317 37.682 84 84 84h44c13.255 0 24-10.745 24-24s-10.745-24-24-24h-44c-19.851 0-36-16.149-36-36V320c0-6.365-2.529-12.47-7.029-16.971L57.941 256l47.029-47.029A24.002 24.002 0 0 0 112 192z"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M23 2.75A2.75 2.75 0 0 0 20.25 0H8.75A2.75 2.75 0 0 0 6 2.75v13.5A2.75 2.75 0 0 0 8.75 19h11.5A2.75 2.75 0 0 0 23 16.25zM18.25 14.5h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5z"></path>
+    <path d="M8.75 20.5a4.255 4.255 0 0 1-4.25-4.25V2.75c0-.086.02-.166.025-.25H3.75A2.752 2.752 0 0 0 1 5.25v16A2.752 2.752 0 0 0 3.75 24h12a2.752 2.752 0 0 0 2.75-2.75v-.75z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
+    <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
+    <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id=youtube>
+    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="stackoverflow">
+    <path d="M21 27v-8h3v11H0V19h3v8h18z"></path><path d="M17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zm3.7 14.7L10.6 6.4l1.7-2 10.2 8.5-1.7 2zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm-1.8 6.8l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zM19 25H5v-3h14v3z"></path>
+  </symbol>
+</svg>
+
+<footer class="footer">
+  <div class="footer_inner wrap pale">
+    <img src='https://ciscoskills.net/icons/apple-touch-icon.png' class="icon icon_2 transparent">
+    <p>Copyright 2011-<span class="year"></span> CISCO SKILLS. All Rights Reserved</p><a class="to_top" href="#documentTop">
+  <svg class="icon">
+  <use xlink:href="#arrow"></use>
+</svg>
+</a>
+
+  </div>
+</footer>
+
+    <script type="text/javascript" src="https://ciscoskills.net/js/bundle.min.502983de88d5f6d80fdf85602a28c6f008ec40f76b64dfa16a04f65ae5f0bfff8195bc35d48f76e79bbc77f23c30fbd7d94c51c33c89253fe017320f6b305680.js" integrity="sha512-UCmD3ojV9tgP34VgKijG8AjsQPdrZN&#43;hagT2WuXwv/&#43;Blbw11I9255u8d/I8MPvX2UxRwzyJJT/gFzIPazBWgA==" crossorigin="anonymous"></script>
+    
+  </body>
+</html>

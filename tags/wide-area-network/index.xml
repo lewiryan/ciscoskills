@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wide area network on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/wide-area-network/</link>
+    <description>Recent content in Wide area network on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 19 Jul 2013 01:51:13 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/wide-area-network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Is Your Network Healthy?</title>
+      <link>https://ciscoskills.net/2013/07/is-your-network-healthy/</link>
+      <pubDate>Fri, 19 Jul 2013 01:51:13 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2013/07/is-your-network-healthy/</guid>
+      <description>
+        
+          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/07/heart-healthy-net.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/07/heart-healthy-net.png&#34; alt=&#34;heart-healthy-net&#34;&gt;&lt;/a&gt;Networks are becoming more &amp;quot;borderless&amp;quot; as &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; likes to call it and it&#39;s definitely true. Having the ability to get access to resources remotely without having to be at our office physically is a nice touch, you may even notice higher productivity and who doesn&#39;t want that! Networks have to be in a healthy state in order for people remotely and people at the office to get their work done. An unhealthy network at a business usually loses productivity and customers which in the end comes down to money. How do you know if your network is reaching its capacity along with the general health state of it? Let&#39;s look at some commands and general best practices! Your checklist to a healthy network is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;New areas of the organization should use switched technologies not hubs and shared bandwidth devices. &lt;strong&gt;(I would also look at replacing these)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;If your organization is using any WAN technology such as, T1s, T3s, Metro, etc. These WAN links should not be using more than 70 percent of network utilization.&lt;/li&gt;
+&lt;li&gt;Anywhere in the organization from point A to point B the response time should less than 100ms. (1/10 of a second)&lt;/li&gt;
+&lt;li&gt;In an organization&#39;s LAN response time should be less 2ms from point A to point B.&lt;/li&gt;
+&lt;li&gt;No segments in the organization should have no more than 20 percent of broadcasts or multicast traffic.&lt;/li&gt;
+&lt;li&gt;No segments in the organization have no more than one CRC (cyclic redundancy check) error per million bytes of data.&lt;/li&gt;
+&lt;li&gt;No &lt;a href=&#34;http://en.wikipedia.org/wiki/Networking_hardware&#34; title=&#34;Networking hardware&#34;&gt;network device&lt;/a&gt; in the organization should be at or over 75 percent CPU utilization in a 5 minute interval. If so this is likely due a network problem such as, routing loops, STP problems, oversaturation of links etc.&lt;/li&gt;
+&lt;li&gt;The number of output queue drops has not exceeded 100 in an hour on any Cisco router.&lt;/li&gt;
+&lt;li&gt;The number of input queue drops has not exceeded 100 in an hour on any Cisco router&lt;/li&gt;
+&lt;li&gt;The number of buffer misses has not exceeded 25 in an hour on any Cisco router&lt;/li&gt;
+&lt;li&gt;The number of ignored packets has not exceeded 10 in an hour on any interface on a Cisco router.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can get most of this information with one command the &lt;strong&gt;show interfaces&lt;/strong&gt; command on a Cisco router and or switch! Below is an example: [code highlight=&amp;quot;4,6,7,16,18,21,23,25,26,28,29,31,33,35,37,39,41,46,48,49,50,54,56,57,58,60,62&amp;quot;]GigabitEthernet0/0 is up, line protocol is up --omitted-- MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, reliability 255/255, txload 1/255, rxload 1/255 !! Notice above the txload and rxload divide this number to get a !! percent of network utilization. Encapsulation ARPA, loopback not set Keepalive set (10 sec) Full-duplex, 1000Mb/s, media type is RJ45 output flow-control is XON, input flow-control is XON ARP type: ARPA, ARP Timeout 04:00:00 Last input 00:00:00, output 00:00:00, output hang never Last clearing of &amp;quot;show interface&amp;quot; counters never Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0 !! Notice the Input queue no drops or queuing. Queueing strategy: fifo Output queue: 0/40 (size/max) !! Notice the Output queue no drops or queuing. 5 minute input rate 1652000 bits/sec, 371 packets/sec 5 minute output rate 2421000 bits/sec, 366 packets/sec !! Notice above this is 1000Mb/s link this is less than 1 percent of network !! utilization. 782953064 packets input, 284048322 bytes, 0 no buffer !! Notice above the amount of input packets and bytes. Received 1541471 broadcasts, 0 runts, 0 giants, 0 throttles !! Notice the amount of broadcasts, the percentage of this is 0.19 percent. 0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored !! Notice the above, zeros here are are good sign. 0 watchdog, 1661275 multicast, 0 pause input 0 input packets with dribble condition detected 798111721 packets output, 3946323159 bytes, 0 underruns 2 output errors, 0 collisions, 1 interface resets !! Notice the above had (2) output errors along with (1) interface rest !! this is sometimes called a flap on the interface these errors are not !! repeating most likely happened when the interface flapped. 0 unknown protocol drops 0 babbles, 0 late collision, 0 deferred 2 lost carrier, 0 no carrier, 0 pause output !! Notice above had (2) lost carrier counts which means lose of electric !! signal on the interface this probably related to the (2) output !! errors and the (1) interface reset 0 output buffer failures, 0 output buffers swapped out !! Looks good to me. [/code] To show CPU stats of the router or switch a simple a command that I like to use to display a simple one liner result is &lt;strong&gt;show processes cpu | include five&lt;/strong&gt; this basically cuts out the technical stuff because all I want to see is the CPU  utilization. I also have choice to deep dive into it if I feel like it :) [code]Router#show processes cpu | include five CPU utilization for five seconds: 0%/0%; one minute: 1%; five minutes: 1%[/code] These are good steps to take to find the status of your network,  you may find out that your network is good for years to come or you may find out and see problems with it. There&#39;s nothing wrong with refreshing your gear or changing up your &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_planning_and_design&#34; title=&#34;Network planning and design&#34;&gt;network design&lt;/a&gt; that&#39;s your job right? Like always I hope this information is helpful, feel free to comment below with questions. Also I would be interested in seeing what commands you use on routers and or switches to see if trouble is on the horizon, or if it&#39;s already here!&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ccieme.wordpress.com/2013/06/01/eigrp-advanced-concepts-eigrp-fundamentals-neighbor-relationship-review/&#34;&gt;EIGRP Advanced Concepts: EIGRP Fundamentals + Neighbor Relationship Review&lt;/a&gt; (ccieme.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://nchrissos.wordpress.com/2013/07/18/creating-a-site-to-site-vpn-ipsec-tunnel-with-a-palo-alto-networks-application-firewall-and-a-cisco-router/&#34;&gt;Creating a Site to Site IPSec VPN with a Palo Alto Networks Application Firewall and a Cisco Router&lt;/a&gt; (nchrissos.wordpress.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://professordkinney.com/2013/07/07/wan-technologies/&#34;&gt;WAN Technologies and Cablings&lt;/a&gt; (professordkinney.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://community.spiceworks.com/topic/354369-extremely-slow-network-speeds&#34;&gt;Extremely Slow Network Speeds&lt;/a&gt; (community.spiceworks.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Types of WAN Links</title>
+      <link>https://ciscoskills.net/2011/10/types-of-wan-links/</link>
+      <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/10/types-of-wan-links/</guid>
+      <description>
+        
+          &lt;p&gt;I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization. If we have an office in &lt;a href=&#34;http://en.wikipedia.org/wiki/New_York&#34; title=&#34;New York&#34;&gt;New York&lt;/a&gt; and another office in &lt;a href=&#34;http://en.wikipedia.org/wiki/Wyoming&#34; title=&#34;Wyoming&#34;&gt;Wyoming&lt;/a&gt;  we need these offices to be connected to each other so that they seem to be on the same network even though they are miles away these types of WAN connections and protocols  would do it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Option&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Advantages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disadvantages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sample Protocols&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Leased_line&#34; title=&#34;Leased line&#34;&gt;Leased Line&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Point-to-point_%28telecommunications%29&#34; title=&#34;Point-to-point (telecommunications)&#34;&gt;Point-to-point&lt;/a&gt; connection between two computers &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LANs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Most Secure&lt;/p&gt;
+&lt;p&gt;Expensive&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Purchasing_power_parity&#34; title=&#34;Purchasing power parity&#34;&gt;PPP&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/High-Level_Data_Link_Control&#34; title=&#34;High-Level Data Link Control&#34;&gt;HDLC&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Synchronous_Data_Link_Control&#34; title=&#34;Synchronous Data Link Control&#34;&gt;SDLC&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Circuit_switching&#34; title=&#34;Circuit switching&#34;&gt;Circuit Switching&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A dedicated circuit path is created between endpoints. Best example is dialup connections&lt;/p&gt;
+&lt;p&gt;Less expensive&lt;/p&gt;
+&lt;p&gt;Call Setup&lt;/p&gt;
+&lt;p&gt;PPP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Integrated_Services_Digital_Network&#34; title=&#34;Integrated Services Digital Network&#34;&gt;ISDN&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_switch&#34; title=&#34;Packet switch&#34;&gt;Packet Switch&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Devices transport packets via a shared single point-to-point or point-to-multipoint link across. Variable length packets are transmitted over PVCs or SVCs&lt;/p&gt;
+&lt;p&gt;Highly efficient use of bandwidth&lt;/p&gt;
+&lt;p&gt;Shared media across link&lt;/p&gt;
+&lt;p&gt;X.25, Frame Relay&lt;/p&gt;
+&lt;p&gt;Cell Relay&lt;/p&gt;
+&lt;p&gt;Similar to packet switching, but uses fixed-length packets. Data is divided into fixed length cells and then transported across virtual circuits&lt;/p&gt;
+&lt;p&gt;Best for simultaneous use of voice and data&lt;/p&gt;
+&lt;p&gt;Overhead can be considerable&lt;/p&gt;
+&lt;p&gt;ATM&lt;/p&gt;
+&lt;p&gt;Internet&lt;/p&gt;
+&lt;p&gt;Connectionless packet switching using the internet as the WAN infrastructure. Uses network addressing to deliver packets. Because of security issues VPN technology must be used.&lt;/p&gt;
+&lt;p&gt;Least expensive, globally available&lt;/p&gt;
+&lt;p&gt;Least secure&lt;/p&gt;
+&lt;p&gt;VPN, DSL, cable modem, wireless&lt;/p&gt;
+&lt;p&gt;I hope this table is helpful and like always if you have an idea of the next topic that deals with either ICND1 or ICND2 let me know about. If you have any questions about this table feel free to comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.zdnet.com/blog/gardner/as-cloud-and-mobile-trends-drive-user-expectations-higher-networks-must-now-deliver-applications-faster-safer-cheaper/4385&#34;&gt;As cloud and mobile trends drive user expectations higher, networks must now deliver applications faster, safer, cheaper&lt;/a&gt; (zdnet.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://r.zemanta.com/?u=http%3A//www.infoworld.com/d/networking/cisco-upgrades-wan-optimizers-175346&amp;amp;a=57572126&amp;amp;rid=00000125-1caa-000F-0000-00000000059b&amp;amp;e=10593a4b8ca51901986b11ace1fe73f5&#34;&gt;Cisco upgrades WAN optimizers&lt;/a&gt; (infoworld.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

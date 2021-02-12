@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Firepower on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/firepower/</link>
+    <description>Recent content in Firepower on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 07 Sep 2018 14:00:47 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/firepower/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Verifying DNS Lists - FMC</title>
+      <link>https://ciscoskills.net/2018/09/verifying-dns-lists-fmc/</link>
+      <pubDate>Fri, 07 Sep 2018 14:00:47 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2018/09/verifying-dns-lists-fmc/</guid>
+      <description>
+        
+          &lt;p&gt;We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.&lt;/p&gt;
+&lt;p&gt;So this post is already assuming that you have an Access Control Policy deployed on a Firepower Module (ASA) or a FTD. We also are assuming that you have a DNS policy applied to the FM/FTD. These lists get downloaded about every two hours from Cisco and are updated regularly, best to keep it that way. :) However like everything there is always someone, some system, some program that fails to connect and more often than not it&#39;s usually this critical process that worked yesterday but doesn&#39;t today, so how do we check if we are hitting this?&lt;/p&gt;
+&lt;p&gt;There are two ways to check this we can look at the connection events (if you are logging which by default is yes) it will show DNS the events and depending on your policy you&#39;ll see the action taken. In this example we selected to use Domain Not Found for the action. In this example we can see Domain Not Found and we can also see the DNS category its hitting which is DNS Dga.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/07/fmc-dnfee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; I have edited this screenshot to show example.com instead of the malicious domain&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We can verify the domain is in this list DNS Dga by connecting to the FMC via SSH and browse to the actual list which is located at /var/sf/sidns_download. When you browse to this location you&#39;ll see something like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;admin@FMC:/var/sf/sidns_download$ 
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;admin@FMC:/var/sf/sidns_download$ ls
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;032ba433-c295-11e4-a919-d4ae5275b77b  Cisco_DNS_Intelligence_Feed
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;1b117672-7453-478c-be31-b72e89ca2dde  IPRVersion.dat
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;23f2a124-8278-4c03-8c9d-d28fe08b71ab  abdc925f-4f85-4504-90a7-c891979ad82a
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;2CCDA18E-DDFF-4F5C-AF9A-F00985219707  b1df3aa8-2841-4c88-8e64-bfaacec7111f
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;2b15cb6f-a3fc-4e0e-a342-ccc5e5804576  d7d996a6-6b92-4a56-8f10-e8506e432fb8
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;30f9e69c-d64c-479c-821d-0e4edab8348d  health
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;3e2af68e-5fc8-4b1c-b5bc-b4e7cab5abcd  health_status
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;5a0b6d6b-e2c3-436f-b4a1-48248b331d39  health_statuslock
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;5f8148f1-e5e4-427a-aa3b-ee1c2745d663  peers
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;60f4e2ab-d96c-44a0-bd38-830252b65259  rep_dd.yaml
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;6ba968f4-7a25-4793-a2c8-7cc77f1f1074  tmp
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;A27C6AAE-8E52-4174-A81A-47C59FECd3a5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Each of these UIDs correspond to DNS feed. For example &lt;strong&gt;b1df3aa8-2841-4c88-8e64-bfaacec7111f&lt;/strong&gt; is for DNS Dga category. You can easily figure out which UID is tied to which DNS category by using the more command, notice the top of the file.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; I have replaced these domains with examples instead of the malicious domains&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;admin@FMC:/var/sf/sidns_download$ more b1df3aa8-2841-4c88-8e64-bfaacec7111f
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;#Cisco DNS and URL intelligence feed: DNS Dga
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;example.info
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;example.com
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;example.net
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see in this example that the domain we where trying to resolve is in this blacklist. Usually you&#39;ll have to grep the file to find the domain as these lists can be big, to find a domain follow this command, I&#39;m looking in the DNS Dga category.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;admin@FMC:/var/sf/sidns_download$ more b1df3aa8-2841-4c88-8e64-bfaacec7111f |grep example.com
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;example.com
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;admin@FMC:/var/sf/sidns_download$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This confirms it and we can can either whitelist it or drop the category and then redeploy polices, unless you run into a bug, which I have ran into with whitelisting as it does not seem to work with some older firepower code. Another upgrade is in the works, in the meantime I dropped the DNS category,  I hope this information is helpful, - Ryan&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco FTD Standalone</title>
+      <link>https://ciscoskills.net/2018/07/cisco-ftd-standalone/</link>
+      <pubDate>Wed, 18 Jul 2018 13:30:00 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2018/07/cisco-ftd-standalone/</guid>
+      <description>
+        
+          &lt;p&gt;No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!&lt;/p&gt;
+&lt;p&gt;You are still recommended to have a management network connected to this appliance, here is the topology for this example, thanks GNS3 ;)
+&lt;img src=&#34;https://ciscoskills.net/images/2018/06/ftdv-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;On first boot you must give the appliance some minutes to boot up when you first turn it on. It starts a first boot process which goes through building and setting up everything it needs. Once the unit is primed and ready you should see a login prompt, login with the default username and password which is admin/Admin123 the appliance will go ahead and display a EULA, agree to it and then the system will want you to change the password. You will then be walked through the initial setup of setting up your management IP address, gateway, DNS servers and after that you will be asked if you want to manage the device locally, since we are not using a FMC make sure to answer YES.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/files/2018/06/qemu-ftdv.mp4&#34;&gt;MP4 FTDv&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once the device is ready to go, connect via HTTPS to the management IP address of the appliance with a web browser, and login into the system with the password you configured.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/fdm-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;When you first login the setup wizard will walk you through setting up two zones, and inside zone and an outside zone. Or you could skip this step if you scroll down to the bottom of the page. This is helpful if you don’t have internet connection or if you simply want to configure this yourself. In this example I accepted all the defaults. Once you are done with the initial setup screen you will be directed to the main dashboard.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/fdm-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Believe it or not your now are ready to configure this appliance, if you used the FMC before this has the same wordage so it’ll be familiar to you. If you never worked with FMC or any of these newer Firepower Threat Defense firewalls it might be a learning curve but the built-in help on this is useful, and it’s a good starting point. You can also tie this into the Cisco Defense Orchestrator which is a cloud-based paid tool to help you apply polices to multiple devices. This is nice, so you don’t have to manually configure each device, kind of like a slimmed down version of the FMC.&lt;/p&gt;
+&lt;p&gt;If you have worked with Cisco ASAs you’ll notice that you can’t just copy the running-config and paste it on new device. These things are complicated underneath the GUI, which is also why you can only use a GUI. They have everything, but the kitchen sink essentially, basic firewall rules, URL filtering, IPS, identify policies, security intelligence feeds, file polices and SSL Decryption. That stuff just doesn’t work with a static config file and really can’t be configured via CLI like our old friend &lt;a href=&#34;https://ciscoskills.net/files/2018/06/datacomm_jan_1995.pdf&#34; title=&#34;Data Communications Jan 1995&#34;&gt;ASA/PIX&lt;/a&gt;. Although sometimes annoying it is the direction the industry has moved into, however, if you are still having a hard time and need to reminisce this appliance does offer a CLI pop-up, but it only offers packet-tracer, ping, some show commands are available and trace route. It&#39;s not much but it may be enough to move forward, good luck. ;)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22ragnarok_sage2000@yahoo.com%22&#34;&gt;PrimeUser&lt;/a&gt; - &lt;time datetime=&#34;2019-06-25 23:20:07&#34;&gt;Jun 25, 2019&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hi, have you experience when you sub-interface the inside port, you cannot do any intervlan routing?&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2019-06-26 19:37:39&#34;&gt;Jun 26, 2019&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;I believe you can do inter-vlan routing you just have to create a sub-interface first and then you would be able to use it.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://gravatar.com/danchocska&#34; title=&#34;danchocska@gmail.com&#34;&gt;RemoteYordan&lt;/a&gt; - &lt;time datetime=&#34;2020-01-12 11:55:59&#34;&gt;Jan 12, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hi Guys, i have this problem. I am trying to reach the gui interface on my virtual FTD and on browser i am able to see only this Service Unavailable The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later. any idea? br Yordan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2020-01-13 07:46:38&#34;&gt;Jan 13, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey RemoteYordan, I have seen this before if I remember correctly I had to re image it..which was annoying, but that was on physical hardware not FTDv If you are using the FTDv do you have enough resources on that VM? I have also seen this if resources are taxed or if its just starting up... In my case the Firewall was still up and at least passing and blocking traffic but I had to re-image it... Also I think if you are using the FMC this is normal behavior you won&#39;t be able to locally configure it, if you have configured the FTDv to use the Firepower Management Center. Some ideas, hope those help Ryan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;%22fdsa@fdsa.fdsa%22&#34;&gt;RALPH NADER&lt;/a&gt; - &lt;time datetime=&#34;2020-01-09 12:17:44&#34;&gt;Jan 9, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Using FTDv 6.2.0 - don&#39;t have the option to choose locally managed. Requires FMCv :(&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2020-01-11 18:49:59&#34;&gt;Jan 11, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey Ralph, I thought 6.2.0 had that option? I know later versions have it, I played around 6.4.0 and it supported local mode. Thanks Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Factory Reset Firepower 2100</title>
+      <link>https://ciscoskills.net/2017/12/factory-reset-firepower-2100/</link>
+      <pubDate>Fri, 01 Dec 2017 16:00:49 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/12/factory-reset-firepower-2100/</guid>
+      <description>
+        
+          &lt;p&gt;In this short guide I wanted to walk through the steps to do a factory reset for the Cisco Firepower 2100 series. When doing these resets all configuration and the administrative password are removed, as well as the FTD (Firepower Threat Defense) app-instance. When the unit starts to boot it will reinstall the FTD app-instance to default configuration.&lt;/p&gt;
+&lt;p&gt;There are two ways to factory reset these Firepower 2100 units. If you can get into the device you can simply use these commands: &lt;code&gt;connect local-mgmt erase configuration&lt;/code&gt; The other method is used for if you are unable to get into the unit because either you don&#39;t know the password or something else has happened to make this appliance unstable enough that a factory reset is needed.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: You have to be able to view the console port and power off the device in order to do the following:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Connect to the console of the device&lt;/li&gt;
+&lt;li&gt;Power off the system and turn it back on&lt;/li&gt;
+&lt;li&gt;When the system is booting you have to go into ROMMON mode, to do that press ESC or CTRL+L to interrupt the boot process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;*********************************************************************
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Cisco System ROMMON, Version 1.0.00, RELEASE SOFTWARE
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Copyright (c) 1994-2017  by Cisco Systems, Inc.
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Compiled Tue 01/03/2017 23:55:11.41 by builder
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;*********************************************************************
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Current image running: Boot ROM0
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;Last reset cause: PowerCycleRequest
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;DIMM_1/1 : Present
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;DIMM_2/1 : Absent
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Platform FPR-2110 with 16384 MBytes of main memory
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;BIOS has been successfully locked !!
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;MAC Address: 00:27:e3:f6:e6:c8
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Use BREAK or ESC to interrupt boot.
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;Use SPACE to begin boot immediately.
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;Boot interrupted.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You will now be at the ROMMOM prompt&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;rommon 1 &amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To preform a recovery type the following&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;rommon 1 &amp;gt; password_reset
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;WARNING: User configurations will be lost with this operation
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Are you sure ? yes/no [no]: yes
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Enabling password reset..
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;Please continue to boot the image
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The system will now boot into FXOS and attempt to reinstall the FTD application, the username and passwords are now at default settings and the FTD app-instance would also reinstall. Depending on the version of FTD that is installed by default you may have to reinstall any patches to get your unit up to update.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22nathan.timberlake@gucu.org%22&#34;&gt;Nathan Timberlake&lt;/a&gt; - &lt;time datetime=&#34;2019-02-15 13:54:22&#34;&gt;Feb 15, 2019&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;I am wondering how to recover if you are running ASA code on a 2110. I have accidentally added TACACS commands while playing around, and locked myself out. This would be really bad if I had written mem!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2019-02-15 21:10:26&#34;&gt;Feb 155, 2019&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey Nathan, I really have not played with ASA code on 2100 hardware, but I would think it is the same process since you are going into ROMmon mode anyway. I&#39;m guessing since you have ASA code instead of FTD it would just reinstall the ASA application just like it does with FTD, total guess... Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Enter Cisco Firepower CLI (Read-Only)</title>
+      <link>https://ciscoskills.net/2017/09/enter-cisco-firepower-cli-read-only/</link>
+      <pubDate>Wed, 20 Sep 2017 11:45:41 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/09/enter-cisco-firepower-cli-read-only/</guid>
+      <description>
+        
+          &lt;p&gt;You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Once logged into the Firepower default prompt type system support diagnostic-cli command.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&amp;gt; system support diagnostic-cli
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Attaching to Diagnostic CLI ... Press &amp;#39;Ctrl+a then d&amp;#39; to detach.
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Type help or &amp;#39;?&amp;#39; for a list of available commands.
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;firepower#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;The other way is to go into expert mode followed by using the sudo lina_cli command.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;host-172-16-1-187 login: admin
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Password:
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Last login: Sun Jul 23 17:30:34 UTC 2017 on ttyS0
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&amp;gt; expert
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;admin@host-172-16-1-187:~$ sudo lina_cli
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;We trust you have received the usual lecture from the local System
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;Administrator. It usually boils down to these three things:
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    #1) Respect the privacy of others.
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    #2) Think before you type.
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;    #3) With great power comes great responsibility.
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Password:
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;Attaching to Diagnostic CLI ... Press &amp;#39;Ctrl+a then d&amp;#39; to detach.
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Type help or &amp;#39;?&amp;#39; for a list of available commands.
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;firepower&amp;gt; en
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Password: ********
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Invalid password
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;Password:
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;firepower#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we look at the show version we can see in this example we are running ASA code with FXOS running with it.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;firepower# show version
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;---------------[ host-172-16-1-187 ]----------------
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Model                     : Cisco Firepower Threat Defense for KVM (75) Version 6.2.0.2 (Build 51)
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;UUID                      : 3b5ca718-6fc3-11e7-a879-c553f010958b
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Rules update version      : 2017-06-07-001-vrt
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;VDB version               : 281
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;----------------------------------------------------
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Cisco Adaptive Security Appliance Software Version 9.7(1)10
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Firepower Extensible Operating System Version 2.1(1.66)
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Compiled on Wed 10-May-17 09:41 PDT by builders
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;System image file is &amp;#34;(hd0,0)/asa971-4-smp-k8.bin&amp;#34;
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Config file at boot was &amp;#34;startup-config&amp;#34;
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;firepower up 37 mins 39 secs
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;Hardware:   ASAv, 8192 MB RAM, CPU Pentium II 3600 MHz, 1 CPU (4 cores)
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Model Id:   ASAv30
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;BIOS Flash Firmware Hub @ 0x0, 0KB
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt; 0: Int: Internal-Data0/0    : address is fa16.3ee6.43df, irq 11
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt; 1: Ext: GigabitEthernet0/0  : address is fa16.3ebf.f299, irq 10
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt; 2: Ext: GigabitEthernet0/1  : address is fa16.3e8b.53bc, irq 10
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt; 3: Int: Internal-Control0/0 : address is 0000.0001.0001, irq 0
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt; 4: Int: Internal-Data0/0    : address is 0000.0000.0000, irq 0
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt; 5: Ext: Management0/0       : address is fa16.3ee6.43df, irq 0
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt; 6: Int: Internal-Data0/1    : address is 0000.0000.0000, irq 0
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;Serial Number: 9AXESJTCR3F
+&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;Image type          : Release
+&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;Key version         : A
+&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;Configuration last modified by enable_1 at 18:24:33.151 UTC Sun Jul 23 2017
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you worked in the Cisco ASA world before you might find the CLI a refreshing memory because all of your debugs, show outputs and the packet tracer troubleshooting tool are all there. You might be asking well its good to see the configuration but how do I configure something that may not be in the FMC? Well we can use something called FlexConfig and is available from FMC 6.2.0 and onward.&lt;/p&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Update Firepower Devices - Manually</title>
+      <link>https://ciscoskills.net/2017/07/update-firepower-devices-manually/</link>
+      <pubDate>Wed, 12 Jul 2017 14:15:38 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/07/update-firepower-devices-manually/</guid>
+      <description>
+        
+          &lt;p&gt;This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can manually update this by either connecting to the console or ssh into the sensor.&lt;/li&gt;
+&lt;li&gt;Once in you&#39;ll need to the bash shell so type the command &amp;quot;expert&amp;quot; to get into it.&lt;/li&gt;
+&lt;li&gt;Next, you need to evaluate to the root account by using &lt;strong&gt;sudo su&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;SCP copy the update to the &lt;strong&gt;/var/sf/updates&lt;/strong&gt; folder, you can either copy from the FMC or something else that has the update you are looking for.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;scp admin@192.168.1.5:/image.sh /var/sf/updates
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the update is on the FMC the path is &lt;strong&gt;/var/sf/updates&lt;/strong&gt; and it would look something like this, we are pulling from the FMC and copying to the sensor to /var/sf/updates folder.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;scp admin@192.168.1.5:/var/sf/updates/Cisco/FTD/Patch-6.2.0.2-51.sh /var/sf/updates
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Install the update via &lt;strong&gt;install_update.pl /var/sf/updates/image.sh&lt;/strong&gt; and watch the console when the upgrade completes your sensor will reboot and no action is needed on the FMC it will automatically detect the new version.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Below is an omitted copy of the console output when upgrading Cisco Firepower devices, keep in mind this session has to stay active don&#39;t close or disconnect while updating, let&#39;s just say hitting CTRL+C during this process is an instant killjoy, and although it can be fixed I wouldn&#39;t advise it!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&amp;gt; expert
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;admin@host-172-16-1-110:~$ sudo su
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;We trust you have received the usual lecture from the local System
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Administrator. It usually boils down to these three things:
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;    #1) Respect the privacy of others.
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;    #2) Think before you type.
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;    #3) With great power comes great responsibility.
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Password:
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;root@host-172-16-1-110:~#scp admin@172.16.1.15:/var/sf/updates/Cisco_FTD_Patch-6.2.0.2-51.sh /var/sf/updates
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Cisco_FTD_Patch-6.2.0.2-51.sh                 100%  319MB   6.0MB/s   00:53
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;root@host-172-16-1-110:~#install_update.pl /var/sf/updates/Cisco_FTD_Patch-6.2.0.2-51.sh
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;ARGV[0] = /var/sf/updates/Cisco_FTD_Patch-6.2.0.2-51.sh
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;TODO:: Need to check Sybase Database is running in Standby Mode at /ngfw/usr/local/sf/bin/install_update.pl line 246.
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Verifying archive integrity... All good.
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Uncompressing Cisco FTD Patch / Fri May 26 23:33:01 UTC 2017.............
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;[170621 01:01:52] #####################################
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;[170621 01:01:52] # UPGRADE  STARTING
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;[170621 01:01:52] #####################################
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;[170621 01:01:52] BEGIN  000_start/000_check_update.sh
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;[170621 01:01:53] BEGIN  000_start/100_start_messages.sh
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;[170621 01:01:53] BEGIN  000_start/100_zz_verify_bundle.sh
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;[170621 01:01:53] BEGIN  000_start/101_run_pruning.pl
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;[170621 01:01:58] BEGIN  000_start/102_check_sru_install_running.pl
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;[170621 01:01:58] BEGIN  000_start/105_check_model_number.sh
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;[170621 01:01:58] BEGIN  000_start/106_check_HA_sync.pl
+&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;[170621 01:01:59] BEGIN  000_start/106_check_HA_updates.pl
+&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;[170621 01:01:59] BEGIN  000_start/107_version_check.sh
+&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;[170621 01:01:59] BEGIN  000_start/108_check_sensors_ver.pl
+&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;[170621 01:02:00] BEGIN  000_start/109_check_HA_MDC_status.pl
+&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;[170621 01:02:00] BEGIN  000_start/110_DB_integrity_check.sh
+&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;[170621 01:02:02] BEGIN  000_start/111_FS_integrity_check.sh
+&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;[170621 01:02:02] BEGIN  000_start/112_CF_check.sh
+&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;-- omitted --
+&lt;span class=&#34;ln&#34;&gt;39&lt;/span&gt;[170621 01:08:14] BEGIN 999_finish/999_y_must_be_next_to_last_to_generate_integrity_data.sh
+&lt;span class=&#34;ln&#34;&gt;40&lt;/span&gt;[170621 01:08:15] BEGIN 999_finish/999_z_must_remain_last_finalize_boot.sh
+&lt;span class=&#34;ln&#34;&gt;41&lt;/span&gt;[170621 01:08:15] BEGIN 999_finish/999_zz_install_bundle.sh
+&lt;span class=&#34;ln&#34;&gt;42&lt;/span&gt;Cleaning up.
+&lt;span class=&#34;ln&#34;&gt;43&lt;/span&gt;shutdown PM on whitebox systems except Readiness package, sample patch and RNA redhat
+&lt;span class=&#34;ln&#34;&gt;44&lt;/span&gt;about to remove upgrade lock
+&lt;span class=&#34;ln&#34;&gt;45&lt;/span&gt;removed &amp;#39;/ngfw/tmp/upgrade.lock/main_upgrade_script.log&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;46&lt;/span&gt;removed &amp;#39;/ngfw/tmp/upgrade.lock/status_log&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;47&lt;/span&gt;removed &amp;#39;/ngfw/tmp/upgrade.lock/PID&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;48&lt;/span&gt;removed &amp;#39;/ngfw/tmp/upgrade.lock/LSM&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;49&lt;/span&gt;removed directory: &amp;#39;/ngfw/tmp/upgrade.lock&amp;#39;
+&lt;span class=&#34;ln&#34;&gt;50&lt;/span&gt;[170621 01:08:48] Attempting to remove upgrade lock
+&lt;span class=&#34;ln&#34;&gt;51&lt;/span&gt;[170621 01:08:48] Success, removed upgrade lock
+&lt;span class=&#34;ln&#34;&gt;52&lt;/span&gt;Upgrade lock /ngfw/tmp/upgrade.lock removed successfully.
+&lt;span class=&#34;ln&#34;&gt;53&lt;/span&gt;[170621 01:08:48]
+&lt;span class=&#34;ln&#34;&gt;54&lt;/span&gt;[170621 01:08:48] #######################################################
+&lt;span class=&#34;ln&#34;&gt;55&lt;/span&gt;[170621 01:08:48] # UPGRADE COMPLETE #
+&lt;span class=&#34;ln&#34;&gt;56&lt;/span&gt;[170621 01:08:48] #######################################################
+&lt;span class=&#34;ln&#34;&gt;57&lt;/span&gt;Process 1061 exited.I am going away.
+&lt;span class=&#34;ln&#34;&gt;58&lt;/span&gt;RC: 0
+&lt;span class=&#34;ln&#34;&gt;59&lt;/span&gt;Update package reports success: almost finished...
+&lt;span class=&#34;ln&#34;&gt;60&lt;/span&gt;Scheduling a reboot to occur in 60 seconds...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco FTDv in Cisco VIRL</title>
+      <link>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</link>
+      <pubDate>Wed, 14 Jun 2017 13:05:11 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</guid>
+      <description>
+        
+          &lt;p&gt;Cisco is actively pushing their Firepower Threat Defense software with the new Firepower 2100 units on their way this summer in effort to eventually replace the ASA5525-X, ASA5545-X and ASA5555-X platforms. When using FTD you must also have the Firepower Management Center (FMC) available to manage and configure these devices. This gets difficult especially if you want to test things out because not everyone has Cisco Firepower lying around unused. How are you supposed to test and learn the depths of this product? &lt;em&gt;(Hint: Cisco VIRL)&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; There is a catch to this, as of this post Cisco does not included the FMC or FTDv images with Cisco VIRL by itself. You’ll have to be with a company or organization that has already purchased this product. Keep in mind during the initial configuration of FMC there will be a spot to install some licensing but you can skip this step as it&#39;s not required to get to the initial login screen. The images I’m working with in this post are the following:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;FMC: 6.2.0.2 (updated from 6.2.0)&lt;/li&gt;
+&lt;li&gt;FTDv: 6.2.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To understand how this is works, you must setup the FMC as a separate virtual machine in VMware Workstation and configure a static IP address for the FMC. You’ll want to use an IP address that is in VIRL’s shared flat network. This is usually the 172.16.1.0/24 network. In this example, I configured the FMC with the IP address of 172.16.1.15. If you have installed VIRL in VMware Workstation and followed the VIRL installation guide you’ll want to put the FMC in VMnet 1. Basically, you’ll want the FMC and FTDv to be on the same broadcast domain in the management network within VIRL for your FMC to be able to manage the FTDv image. If you are using VIRL on a bare metal server and have VMware Workstation installed on a different system use VIRL’s OpenVPN connection settings. To understand how this works you can reference the following video (Credit goes to &lt;a href=&#34;https://www.youtube.com/channel/UC41WuzXlJCGY5qLsuZ8aHkQ&#34;&gt;Cisco VIRL Youtube Channel&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;Once your computer has the OpenVPN client installed and you can successfully connect to VIRL, you also can map VMware Workstation to the OpenVPN network adapter under the virtual network editor.
+&lt;img src=&#34;https://ciscoskills.net/images/2017/06/virl-openvpn.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This gives your FMC direct access to VIRL’s shared flat network while using the OpenVPN client.
+Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/security/firepower/quick_start/vmware/fmcv/FMCv-quick/setup-mcvirtual.html&#34;&gt;Cisco Firepower Management Center Virtual for VMware Deployment Quick Start Guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The process in pretty simple login into the FMC CLI and run the following command and follow the prompts.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;sudo /usr/local/sf/bin/configure-network
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If all is well you should see the initial configuration wizard, and once you have completed the initial setup wizard you should be able to login using the password you recently created.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/06/virl-fmc-login.png&#34; alt=&#34;FMC Login Page&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You now have a FMC ready and primed to manage FTDv devices, like I mention earlier you can enable the evaluation license which is only available in the 6.2.0 or higher releases. Go to System-&amp;gt;Licenses-&amp;gt;Smart Licenses which gives you 90 days to kick in the tires.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/06/fmc-eval.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; You also could use VMware snapshots to set up a vanilla FMC with no devices, and no evaluation license enabled, that way you could always revert to that FMC you originally started with, also helps if you really got carried away :)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We now need a FTDv image to install within VIRL. When you look at Cisco&#39;s support &lt;a href=&#34;https://software.cisco.com/download/release.html?mdfid=286306503&amp;amp;softwareid=286306337&amp;amp;release=6.2.0&amp;amp;relind=AVAILABLE&amp;amp;rellifecycle=&amp;amp;reltype=latest&#34;&gt;download page&lt;/a&gt; you&#39;ll want to use the QEMU format (qcow2) if you are importing this into Cisco VIRL. A couple of house keeping items first before we can import this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;First:&lt;/strong&gt; Create a flavor to specify run time parameters in VIRL, you can find this under Node Resources-&amp;gt;Flavors. &lt;strong&gt;FTDv requires 8GB of RAM, 4 virtual CPU cores and 4 interfaces to run, this includes the Management and Diagnostic ports that VIRL puts in automatically. You can also leave disk space at 0&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Second:&lt;/strong&gt; Create a copy of the ASAv subtype, under Node Resources-&amp;gt;Subtypes, find the ASAv subtype and click on the “stethoscope” icon also called specialize and fill in the following:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of plugin - FTDv&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Description of plugin - Firepower Threat Defense&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of management interface - Management0/0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Names of dummy interfaces - Diagnostic0/0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pattern for data interface names - GigabitEthernet0/{0}&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;First data interface number - 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Max count of data interfaces - 10&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Number of interfaces per LC - 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Number of serial interfaces - 1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Protocol for network CLI - telnet&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make VNC access available - True&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of icon for GUI - asav&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Show subtype on GUI palette - True&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configuration disk type - cdrom&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ISO 9660 level in cdrom disk - 4&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of file for config drive - /day0-config&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Virtual interface model - virtio&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Main disk bus model - virtio&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RAM (MB) allocated per node - 8192&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Number of CPUs allocated per node - 4&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Require HW acceleration in kvm - True&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Name of default image - FTDv&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Third:&lt;/strong&gt; Import the image, Node Resources-&amp;gt;Images-&amp;gt;Add:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find and select the FTDv Subtype&lt;/li&gt;
+&lt;li&gt;Name/Version – 6.2 (I just picked the main version)&lt;/li&gt;
+&lt;li&gt;Release - 6.2.0&lt;/li&gt;
+&lt;li&gt;Source – File on server&lt;/li&gt;
+&lt;li&gt;Image path – /home/virl/VMs/&lt;em&gt;image of FTDv image&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Save the image. We are almost there!&lt;/p&gt;
+&lt;p&gt;To review we have a FMC ready, we have the evaluation license enabled so that we can manage FTDv devices and this FMC is statically configured to use an IP address that is in VIRL&#39;s shared flat network. We just went over the settings required to get the FTDv to boot up in Cisco VIRL.&lt;/p&gt;
+&lt;p&gt;So what&#39;s next? Well if you wanted to register and configure the FTDv manually you are all set to go just start-up the device and you can walk through the initial prompts to get it registered to the FMC and start deploying your configurations. However one the neat features that VIRL offers is pre-configuration of the device while the device starts up, also called Day0 configuration. That way you can to skip all of those initial prompts and just register the device from FMC when the FTDv image is fully booted. To do that you will be using the AutoNetKit in VM Maestro, use the following Day0 configuration before starting your FTDv image.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;EULA&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;accept&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;Hostname&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;ftdv-VIRL&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;AdminPassword&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Admin123&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;FirewallMode&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;routed&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;DNS1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;DNS2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;DNS3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv4Mode&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;dhcp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv4Addr&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv4Mask&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv4Gw&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv6Mode&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;disabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv6Addr&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv6Mask&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;IPv6Gw&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;FmcIp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;172.16.1.15&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;FmcRegKey&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cisco1234&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;FmcNatId&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The fields are pretty self-explanatory the only thing that could be different is if you used a different FMC IP and registration key. When the image boots it will grab an IP address from VIRL&#39;s shared network and already be pending a registration. The only thing you have to do is register your device from FMC and deploy your configuration. This now makes it pretty easy and quickly to test deployments and configuration within VIRL. In my testing it took about 15 to 20 minutes for the FTDv device to become online and to be registered within FMC. That&#39;s all I got for now like always I hope this information helpful as alawys!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22aisforabbott@gmail.com%22&#34;&gt;Shaun&lt;/a&gt; - &lt;time datetime=&#34;2017-07-06 22:21:45&#34;&gt;Jul 4, 2017&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Figured it out, just needed to select the topology management network to be in the Shared Flat network. This has helped me out tremendously, thank you.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;%22aisforabbott@gmail.com%22&#34;&gt;Shaun&lt;/a&gt; - &lt;time datetime=&#34;2017-07-05 08:30:04&#34;&gt;Jul 3, 2017&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;How and which interface did you use to get the FTDv working on the FLAT network? Can you show a working sample topology you used?&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://karmicgeezer.wordpress.com&#34; title=&#34;andy.taylor@mail.com&#34;&gt;karmicgeezer&lt;/a&gt; - &lt;time datetime=&#34;2018-01-08 09:22:27&#34;&gt;Jan 8, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Many thanks for the tutorial - when I follow this I consistently get the same issue: Virtual FTD requires at least 4 network interfaces to complete system initialization. System initialization in progress. Please stand by. The bar turns but will sit there indefinitely. Any ideas?&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2018-01-08 19:04:47&#34;&gt;Jan 9, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hey Karmicgeezer, That is expected. You can&#39;t just run the VM without it connected to anything in VIRL. Make sure your subtype in VIRL has a management and diagnostic interface. You also have to connect up to two interfaces on the FTDv in VIRL in order for it to start correctly. Hope that Helps, Ryan&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://karmicgeezer.wordpress.com&#34; title=&#34;andy.taylor@mail.com&#34;&gt;karmicgeezer&lt;/a&gt; - &lt;time datetime=&#34;2018-01-09 10:37:38&#34;&gt;Jan 9, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Ryan, Fantastic, this would explain why it works natively in ESXi but not deployed in VIRL without sufficient interfaces. Much appreciated!! All the best, Andy&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2018-01-09 21:05:28&#34;&gt;Jan 9, 2018&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Glad I could help Andy! Ryan&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Factory Reset Firepower 4100 &amp; 9300</title>
+      <link>https://ciscoskills.net/2016/10/factory-reset-firepower-4100-9300/</link>
+      <pubDate>Wed, 19 Oct 2016 00:45:07 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2016/10/factory-reset-firepower-4100-9300/</guid>
+      <description>
+        
+          &lt;p&gt;I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy. (Edit: 7-21-17) After Gabriele made this &lt;a href=&#34;http://ciscoskills.net/2016/10/18/factory-reset-firepower-4100-9300/#comment-2869&#34;&gt;comment&lt;/a&gt; it looks like you can. You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Power off the system, and then power it back on&lt;/li&gt;
+&lt;li&gt;While the system is booting, you have go into ROMMON mode to do that press ESC or CTRL+L. You&#39;ll see a message confirming that you are going to ROMMON&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[code]!! Rommon image verified successfully !! Cisco System ROMMON, Version 1.0.10, RELEASE SOFTWARE Copyright (c) 1994-2015 by Cisco Systems, Inc. Compiled Mon 11/30/2015 15:23:18.60 by builder Current image running: Boot ROM0 Last reset cause: PowerCycleRequest DIMM Slot 0 : Present DIMM Slot 1 : Present No USB drive !! BIOS has been locked !! Platform FPR-4110-SUP with 8192 Mbytes of main memory[/code]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make note of the kickstart and FXOS system image as you need these names to be able to boot to the correct image. In this example under ROMMON the following appeared on-screen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[code]find the string ! boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA[/code]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Load the kickstart image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[code]rommon 1 &amp;gt; boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA !! Kickstart Image verified successfully !! [/code]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When kickstart loads you&#39;ll be at the switch(boot)# prompt, enter configuration mode.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[code]switch(boot)# switch(boot)# config t Enter configuration commands, one per line. End with CNTL/Z.[/code]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Under the configuration mode, type admin-password erase, this will erase everything and bring the system back to factory defaults.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[code]switch(boot)(config)# admin-password erase Your password and configuration will be erased! Do you want to continue? (y/n) [n] y switch(boot)(config)# exit[/code]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Load the system image to startup the FXOS, once the image has been loaded you&#39;ll be prompted to enter the setup wizard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;codeswitchboot-load-bootflashinstallablesswitchfxos-k9-system503n231469spa-uncompressing-system-image-bootflashinstallablesswitchfxos-k9-system503n231469spa-you-have-chosen-to-setup-a-new-security-appliance-continue-yncode-i-hope-this-information-is-helpful-the-information-i-was-referencing-is-located-here-password-recovery-procedure-for-firepower-93004100-series-applianceshttpwwwciscocomcenussupportdocssecurityfirepower-9300-security-appliance200491-password-recovery-procedure-for-firepowehtml&#34;&gt;[code]switch(boot)# load bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA Uncompressing system image: bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA You have chosen to setup a new Security Appliance. Continue? (y/n):[/code] I hope this information is helpful, the information I was referencing is located here: &lt;a href=&#34;http://www.cisco.com/c/en/us/support/docs/security/firepower-9300-security-appliance/200491-Password-Recovery-Procedure-For-FirePOWE.html&#34;&gt;Password Recovery Procedure For Firepower 9300/4100 Series Appliances&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22228496698@qq.com%22&#34;&gt;Jimmy&lt;/a&gt; - &lt;time datetime=&#34;2016-11-07 21:54:51&#34;&gt;Nov 1, 2016&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;Hi :Ryan ,I got several devices like ASA 5525x with firepower mode ,i want to reinstall the whole system from ASA(firepower software ) to firepower system complete(called FTD system) ,Do you have similar experence ? Also i purchase (Protection,Control,Malware,URL Filtering) licence ,i find the the firepower mode didnt filter locker virus (like CryptoLocker,CBT locker),Can you give me some suggestion ?&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2017-04-29 19:40:22&#34;&gt;Apr 6, 2017&lt;/time&gt;
+&lt;p&gt;Hey Gabriele, Never tried that command, that&#39;s a lot easier than what I was doing :) Thanks. Ryan&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2016-11-09 21:24:39&#34;&gt;Nov 3, 2016&lt;/time&gt;
+&lt;p&gt;Hey Jimmy, I have not had experience upgrading to the FTD image for the ASAs and from what I can tell you may have to upgrade/download several things. I found this on Cisco website which may be a good starting point: &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/security/firepower/quick&#34;&gt;http://www.cisco.com/c/en/us/td/docs/security/firepower/quick&lt;/a&gt;_start/reimage/asa-ftd-reimage.html I have worked with the Firepower 4100 units which give you the option to use either ASA or an FTD image. I have been playing around with the FTD image and the ASA SFR module, they are different you really don&#39;t manage the device directly, it all works through the Firepower Management Center. Its interesting you&#39;re not having any luck with the filtering make sure if you are using the ASA image that you set up a service policy under the global policy to inspect all traffic with the SFR module and its not in monitor mode. You will also need to setup policies and rules in the FMC to block this type of traffic. Hope that helps :) Ryan&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[anon]( &#34;aasdsadf@asdfasfafds.com&#34;) - &lt;time datetime=&#34;2017-07-19 20:56:08&#34;&gt;Jul 3, 2017&lt;/time&gt;
+&lt;p&gt;You should update your post at the top with this advice. I almost took the long path as well. :)&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2017-07-21 18:51:16&#34;&gt;Jul 5, 2017&lt;/time&gt;
+&lt;p&gt;Updated, thanks Anon :)&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[Gabriele]( &#34;ferrarigabriele84@gmail.com&#34;) - &lt;time datetime=&#34;2017-04-26 09:08:26&#34;&gt;Apr 3, 2017&lt;/time&gt;
+&lt;p&gt;You can try with the commands &amp;quot;connect local-mgmt&amp;quot; and then &amp;quot;erase configuration&amp;quot;. It should work&lt;/p&gt;
+&lt;hr /&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

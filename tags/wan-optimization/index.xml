@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WAN optimization on Cisco Skills</title>
+    <link>https://ciscoskills.net/tags/wan-optimization/</link>
+    <description>Recent content in WAN optimization on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 19 Oct 2011 16:30:04 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/wan-optimization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Types of WAN Links</title>
+      <link>https://ciscoskills.net/2011/10/types-of-wan-links/</link>
+      <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
+      
+      <guid>https://ciscoskills.net/2011/10/types-of-wan-links/</guid>
+      <description>
+        
+          &lt;p&gt;I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization. If we have an office in &lt;a href=&#34;http://en.wikipedia.org/wiki/New_York&#34; title=&#34;New York&#34;&gt;New York&lt;/a&gt; and another office in &lt;a href=&#34;http://en.wikipedia.org/wiki/Wyoming&#34; title=&#34;Wyoming&#34;&gt;Wyoming&lt;/a&gt;  we need these offices to be connected to each other so that they seem to be on the same network even though they are miles away these types of WAN connections and protocols  would do it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Option&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Advantages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disadvantages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sample Protocols&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Leased_line&#34; title=&#34;Leased line&#34;&gt;Leased Line&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Point-to-point_%28telecommunications%29&#34; title=&#34;Point-to-point (telecommunications)&#34;&gt;Point-to-point&lt;/a&gt; connection between two computers &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LANs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Most Secure&lt;/p&gt;
+&lt;p&gt;Expensive&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Purchasing_power_parity&#34; title=&#34;Purchasing power parity&#34;&gt;PPP&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/High-Level_Data_Link_Control&#34; title=&#34;High-Level Data Link Control&#34;&gt;HDLC&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Synchronous_Data_Link_Control&#34; title=&#34;Synchronous Data Link Control&#34;&gt;SDLC&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Circuit_switching&#34; title=&#34;Circuit switching&#34;&gt;Circuit Switching&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A dedicated circuit path is created between endpoints. Best example is dialup connections&lt;/p&gt;
+&lt;p&gt;Less expensive&lt;/p&gt;
+&lt;p&gt;Call Setup&lt;/p&gt;
+&lt;p&gt;PPP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Integrated_Services_Digital_Network&#34; title=&#34;Integrated Services Digital Network&#34;&gt;ISDN&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_switch&#34; title=&#34;Packet switch&#34;&gt;Packet Switch&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Devices transport packets via a shared single point-to-point or point-to-multipoint link across. Variable length packets are transmitted over PVCs or SVCs&lt;/p&gt;
+&lt;p&gt;Highly efficient use of bandwidth&lt;/p&gt;
+&lt;p&gt;Shared media across link&lt;/p&gt;
+&lt;p&gt;X.25, Frame Relay&lt;/p&gt;
+&lt;p&gt;Cell Relay&lt;/p&gt;
+&lt;p&gt;Similar to packet switching, but uses fixed-length packets. Data is divided into fixed length cells and then transported across virtual circuits&lt;/p&gt;
+&lt;p&gt;Best for simultaneous use of voice and data&lt;/p&gt;
+&lt;p&gt;Overhead can be considerable&lt;/p&gt;
+&lt;p&gt;ATM&lt;/p&gt;
+&lt;p&gt;Internet&lt;/p&gt;
+&lt;p&gt;Connectionless packet switching using the internet as the WAN infrastructure. Uses network addressing to deliver packets. Because of security issues VPN technology must be used.&lt;/p&gt;
+&lt;p&gt;Least expensive, globally available&lt;/p&gt;
+&lt;p&gt;Least secure&lt;/p&gt;
+&lt;p&gt;VPN, DSL, cable modem, wireless&lt;/p&gt;
+&lt;p&gt;I hope this table is helpful and like always if you have an idea of the next topic that deals with either ICND1 or ICND2 let me know about. If you have any questions about this table feel free to comment below.&lt;/p&gt;
+&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.zdnet.com/blog/gardner/as-cloud-and-mobile-trends-drive-user-expectations-higher-networks-must-now-deliver-applications-faster-safer-cheaper/4385&#34;&gt;As cloud and mobile trends drive user expectations higher, networks must now deliver applications faster, safer, cheaper&lt;/a&gt; (zdnet.com)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://r.zemanta.com/?u=http%3A//www.infoworld.com/d/networking/cisco-upgrades-wan-optimizers-175346&amp;amp;a=57572126&amp;amp;rid=00000125-1caa-000F-0000-00000000059b&amp;amp;e=10593a4b8ca51901986b11ace1fe73f5&#34;&gt;Cisco upgrades WAN optimizers&lt;/a&gt; (infoworld.com)&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
