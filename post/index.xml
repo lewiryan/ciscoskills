@@ -2323,22 +2323,176 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/03/asa-site-to-site-vpn-pated/</guid>
       <description>
         
-          &lt;p&gt;If you ever needed to hide multiple systems behind a single IP address you would use PAT. (Port Address Translation) besides using this to connect to the internet when using an RFC 1918 address, you can configure PAT for VPN connections. The benefit is the same, hide multiple systems behind a single IP address with the advantage being you can have many systems on one side of the VPN tunnel all using that single IP. In this example, we have a site to site VPN connection one side using a PATed public IP address. We originally have two systems that will be sending data over to Contoso  who is the remote peer in this example. We are planning on adding additional systems in the future which is why Acme Corp is using a PATed  address outbound. Contoso is expected to send data back to Acme Corp which will also be reflected in this example. Also note that the &amp;quot;public&amp;quot; IP addresses listed in this example are from RFC 5737 and are not publicly available. We have a need to setup a VPN to a partner and have agreed using a public IP address over the VPN connection. We are going to have multiple systems on the local side sending information over to this partner and because of that we&#39;re going to be using a single public PATed address instead of assigning multiple static NATed IPs to each system. The table below goes over the agreed settings and what networks are protected.&lt;/p&gt;
-&lt;p&gt;Acme Corp.&lt;/p&gt;
-&lt;p&gt;Contoso Ltd.&lt;/p&gt;
-&lt;p&gt;Peer IP Address: 192.0.2.10&lt;/p&gt;
-&lt;p&gt;Peer IP Address: 203.0.113.10&lt;/p&gt;
-&lt;p&gt;Phase 1: AES 256 SHA (Group 2)&lt;/p&gt;
-&lt;p&gt;Phase 1: AES 256 SHA (Group 2)&lt;/p&gt;
-&lt;p&gt;Phase 2: AES 128 SHA&lt;/p&gt;
-&lt;p&gt;Phase 2: AES 128 SHA&lt;/p&gt;
-&lt;p&gt;PFS: No&lt;/p&gt;
-&lt;p&gt;PFS: No&lt;/p&gt;
-&lt;p&gt;Protected Networks: 192.0.2.100/32 - PATed IP Address. 192.0.2.50/32 - IP Address Contoso will use when sending data to Acme.&lt;/p&gt;
-&lt;p&gt;Protected Networks: 203.0.113.30/32 - IP Address Acme will use when sending data to Contoso.203.0.113.50/32 - Contoso&#39;s source address when sending data back to Acme.&lt;/p&gt;
-&lt;p&gt;Preshared Key: cisco&lt;/p&gt;
-&lt;p&gt;Preshared Key: cisco&lt;/p&gt;
-&lt;p&gt;Here is the topology for reference: &lt;img src=&#34;https://systemstechblog.files.wordpress.com/2017/03/site-site-vpn-example.png&#34; alt=&#34;site-site-vpn-example&#34;&gt; Let&#39;s start building the tunnel for Acme by creating some object groups: [code]object network ACCORP-DMZ-SERVER-1 host 10.254.254.10 object network Public-IP-192.0.2.100 host 192.0.2.100 object network VPN-CONTOSO-CLIENT-1 host 203.0.113.30 object network ACCORP-DMZ-SERVER-2 host 10.254.254.20 object network ACCORP-DMZ-LB-1 host 10.254.254.30 object network Public-IP-192.0.2.50 host 192.0.2.50 object network VPN-CONTOSO-CLIENT-2 host 203.0.113.50 object-group network ACCORP-DMZ-SERVERS network-object object ACCORP-DMZ-SERVER-2 network-object object ACCORP-DMZ-SERVER-1 object-group network VPN-REMOTE-ACCORP-CONTOSO network-object object VPN-CONTOSO-CLIENT-1 network-object object VPN-CONTOSO-CLIENT-2 object-group network VPN-LOCAL-ACCORP-CONTOSO network-object object Public-IP-192.0.2.100 network-object object Public-IP-192.0.2.50[/code] Create an access control list to match the traffic we want protected, these IP addresses would be the NAT address, so we referencing the object-groups. [code]access-list ACL-VPN-ACCORP-CONTOSO extended permit ip object-group VPN-LOCAL-ACCORP-CONTOSO[/code] We have to create some NAT rules for Acme. On line one I&#39;m creating a single PAT entry to hide the multiple DMZ servers under one IP address when traffic is going to Contoso. Line two is static entry for traffic inbound from Contoso. [code]nat (DMZ,Outside) source dynamic ACCORP-DMZ-SERVERS Public-IP-192.0.2.100 destination static VPN-CONTOSO-CLIENT-1 VPN-CONTOSO-CLIENT-1 nat (Outside,DMZ) source static VPN-CONTOSO-CLIENT-2 VPN-CONTOSO-CLIENT-2 destination static Public-IP-192.0.2.50 ACCORP-DMZ-LB-1 no-proxy-arp[/code] Create a VPN Group Policy for Acme and Contoso VPN connection: [code]group-policy GP-VPN-ACCORP-CONTOSO internal group-policy GP-VPN-ACCORP-CONTOSO attributes vpn-tunnel-protocol ikev1[/code] Create the tunnel group: [code]tunnel-group 203.0.113.10 type ipsec-l2l tunnel-group 203.0.113.10 general-attributes default-group-policy GP-VPN-ACCORP-CONTOSO tunnel-group 203.0.113.10 ipsec-attributes ikev1 pre-shared-key cisco isakmp keepalive disable[/code] Build the cryptomap: [code]crypto map CM-ACCORP-CONTOSO 1 match address ACL-VPN-ACCORP-CONTOSO crypto map CM-ACCORP-CONTOSO 1 set peer 203.0.113.10 crypto map CM-ACCORP-CONTOSO 1 set ikev1 transform-set ESP-AES-128-SHA crypto map CM-ACCORP-CONTOSO 1 set nat-t-disable crypto map CM-ACCORP-CONTOSO interface Outside[/code] That&#39;s all you need from the Acme side to turn up this tunnel, let&#39;s jump to Contoso&#39;s side and configure the tunnel on that side. Jumping on to the Contoso ASA, create some object groups. [code]object network CONTOSO-DMZ-SERVER-1 host 172.31.255.10 object network PUBLIC-203.0.113.30 host 203.0.113.30 object network VPN-ACME-CLIENT-1 host 192.0.2.100 object network VPN-ACME-CLIENT-2 host 192.0.2.50 object network PUBLIC-203.0.113.50 host 203.0.113.50 object-group network VPN-LOCAL-CONTOSO-ACME network-object object PUBLIC-203.0.113.30 network-object object PUBLIC-203.0.113.50 object-group network VPN-REMOTE-CONTOSO-ACME network-object object VPN-ACME-CLIENT-1 network-object object VPN-ACME-CLIENT-2[/code] Just like on the other side we have to create an access control list to match the traffic we want protected for Contoso. [code]access-list ACL-VPN-CONTOSO-ACME extended permit ip object-group VPN-LOCAL-CONTOSO-ACME object-group VPN-REMOTE-CONTOSO-ACME[/code] Create some NAT rules, these are going to static NATs on this side. [code]nat (Outside,DMZ) source static VPN-ACME-CLIENT-1 VPN-ACME-CLIENT-1 destination static PUBLIC-203.0.113.30 CONTOSO-DMZ-SERVER-1 no-proxy-arp nat (DMZ,Outside) source static CONTOSO-DMZ-SERVER-1 PUBLIC-203.0.113.50 destination static VPN-ACME-CLIENT-2 VPN-ACME-CLIENT-2 no-proxy-arp[/code] Create a VPN group policy for Contoso: [code]group-policy GP-VPN-ACME-CONTOSO internal group-policy GP-VPN-ACME-CONTOSO attributes vpn-tunnel-protocol ikev1[/code] Create the tunnel group for Contoso: [code]tunnel-group 192.0.2.10 type ipsec-l2l tunnel-group 192.0.2.10 general-attributes default-group-policy GP-VPN-ACME-CONTOSO tunnel-group 192.0.2.10 ipsec-attributes ikev1 pre-shared-key cisco isakmp keepalive disable[/code] Finally build the crypto map: [code]crypto map CM-CONTOSO-ACME 1 match address ACL-VPN-CONTOSO-ACME crypto map CM-CONTOSO-ACME 1 set peer 192.0.2.10 crypto map CM-CONTOSO-ACME 1 set ikev1 transform-set ESP-AES-128-SHA crypto map CM-CONTOSO-ACME 1 set nat-t-disable crypto map CM-CONTOSO-ACME interface Outside[/code] We can do a some verification tests, If I jump on 10.254.254.20 which is one of the servers in Acme Corp. I&#39;ll try to do a ping test over to Contoso and see if I get any replies back. [code]cisco@ACCORP-DMZ-Server-2:~$ ping 203.0.113.30 PING 203.0.113.30 (203.0.113.30) 56(84) bytes of data. 64 bytes from 203.0.113.30: icmp_seq=2 ttl=64 time=3.08 ms 64 bytes from 203.0.113.30: icmp_seq=3 ttl=64 time=1.52 ms 64 bytes from 203.0.113.30: icmp_seq=4 ttl=64 time=2.39 ms 64 bytes from 203.0.113.30: icmp_seq=5 ttl=64 time=1.94 ms 64 bytes from 203.0.113.30: icmp_seq=6 ttl=64 time=2.08 ms 64 bytes from 203.0.113.30: icmp_seq=7 ttl=64 time=3.38 ms 64 bytes from 203.0.113.30: icmp_seq=8 ttl=64 time=2.78 ms 64 bytes from 203.0.113.30: icmp_seq=9 ttl=64 time=3.16 ms 64 bytes from 203.0.113.30: icmp_seq=10 ttl=64 time=1.81 ms ^C --- 203.0.113.30 ping statistics --- 10 packets transmitted, 9 received, 10% packet loss, time 9018ms rtt min/avg/max/mdev = 1.525/2.465/3.389/0.627 ms cisco@ACCORP-DMZ-Server-2:~$[/code] Looking at the output, I lost one ping packet but that&#39;s likely because the tunnel was not up yet when that first ping packet transmitted over. I&#39;ll jump on the Contoso system and see if I can hit the Acme load server. [code]cisco@CONTOSO-DMZ-Server-1:~$ ping 192.0.2.50 PING 192.0.2.50 (192.0.2.50) 56(84) bytes of data. 64 bytes from 192.0.2.50: icmp_seq=2 ttl=64 time=1.82 ms 64 bytes from 192.0.2.50: icmp_seq=3 ttl=64 time=1.82 ms 64 bytes from 192.0.2.50: icmp_seq=4 ttl=64 time=1.84 ms 64 bytes from 192.0.2.50: icmp_seq=5 ttl=64 time=1.69 ms 64 bytes from 192.0.2.50: icmp_seq=6 ttl=64 time=1.72 ms 64 bytes from 192.0.2.50: icmp_seq=7 ttl=64 time=1.74 ms 64 bytes from 192.0.2.50: icmp_seq=8 ttl=64 time=2.16 ms 64 bytes from 192.0.2.50: icmp_seq=9 ttl=64 time=3.86 ms 64 bytes from 192.0.2.50: icmp_seq=10 ttl=64 time=1.70 ms 64 bytes from 192.0.2.50: icmp_seq=11 ttl=64 time=2.82 ms ^C --- 192.0.2.50 ping statistics --- 11 packets transmitted, 10 received, 9% packet loss, time 10025ms rtt min/avg/max/mdev = 1.697/2.121/3.863/0.667 ms cisco@R-DMZ-Server-2:~$[/code] It looks like I can hit the Acme load server! We can also finally check both firewalls to verify a VPN is indeed established. On Acme Firewall: [code]ASA-1# show crypto isakmp sa IKEv1 SAs: Active SA: 1 Rekey SA: 0 (A tunnel will report 1 Active and 1 Rekey SA during rekey) Total IKE SA: 1 1 IKE Peer: 203.0.113.10 Type : L2L Role : initiator Rekey : no State : MM_ACTIVE[/code] On Contoso Firewall: [code]ASA-2# show crypto isakmp sa IKEv1 SAs: Active SA: 1 Rekey SA: 0 (A tunnel will report 1 Active and 1 Rekey SA during rekey) Total IKE SA: 1 1 IKE Peer: 192.0.2.10 Type : L2L Role : responder Rekey : no State : MM_ACTIVE[/code] That&#39;s all I got, I hope this information is helpful. If you want to try this out I have attached the running-configs of both firewalls. If you are using Cisco VIRL here is a &lt;a href=&#34;https://github.com/lewiryan/VIRL/blob/master/Completed/ASA-Site-To-Site.virl&#34;&gt;link on GitHub&lt;/a&gt; to the file I was working with, enjoy! &lt;a href=&#34;https://systemstechblog.files.wordpress.com/2017/03/running-config-firewalls.docx&#34; title=&#34;running-config-firewalls&#34;&gt;Running-Config-Firewalls&lt;/a&gt;&lt;/p&gt;
+          &lt;p&gt;If you ever needed to hide multiple systems behind a single IP address you would use PAT. (Port Address Translation) besides using this to connect to the internet when using an RFC 1918 address, you can configure PAT for VPN connections. The benefit is the same, hide multiple systems behind a single IP address with the advantage being you can have many systems on one side of the VPN tunnel all using that single IP.&lt;/p&gt;
+&lt;p&gt;In this example, we have a site to site VPN connection one side using a PATed public IP address. We originally have two systems that will be sending data over to Contoso  who is the remote peer in this example. We are planning on adding additional systems in the future which is why Acme Corp is using a PATed address outbound. Contoso is expected to send data back to Acme Corp which will also be reflected in this example. Also note that the &amp;quot;public&amp;quot; IP addresses listed in this example are from RFC 5737 and are not publicly available. We have a need to setup a VPN to a partner and have agreed using a public IP address over the VPN connection. We are going to have multiple systems on the local side sending information over to this partner and because of that we&#39;re going to be using a single public PATed address instead of assigning multiple static NATed IPs to each system. The table below goes over the agreed settings and what networks are protected.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Acme Corp&lt;/th&gt;
+&lt;th&gt;Contoso Ltd.&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Peer IP Address: 192.0.2.10&lt;/td&gt;
+&lt;td&gt;Peer IP Address: 203.0.113.10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Phase 1: AES 256 SHA (Group 2)&lt;/td&gt;
+&lt;td&gt;Phase 1: AES 256 SHA (Group 2)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Phase 2: AES 128 SHA&lt;/td&gt;
+&lt;td&gt;Phase 2: AES 128 SHA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;PFS: No&lt;/td&gt;
+&lt;td&gt;PFS: No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Protected Networks: 192.0.2.100/32 - &lt;sub&gt;&lt;sup&gt;PATed IP Address. 192.0.2.50/32 - IP Address Contoso will use when sending data to Acme.&lt;/sub&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;td&gt;Protected Networks: 203.0.113.30/32 - &lt;sub&gt;&lt;sup&gt;IP Address Acme will use when sending data to Contoso 203.0.113.50/32 - Contoso&#39;s source address when sending data back to Acme.&lt;/sub&gt;&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Preshared Key: cisco&lt;/td&gt;
+&lt;td&gt;Preshared Key: cisco&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Here is the topology for reference: &lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/03/site-site-vpn-example.png&#34; alt=&#34;Site To Site VPN Example&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let&#39;s start building the tunnel for Acme by creating some object groups:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;object network ACCORP-DMZ-SERVER-1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; host 10.254.254.10
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;object network Public-IP-192.0.2.100
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt; host 192.0.2.100
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;object network VPN-CONTOSO-CLIENT-1
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; host 203.0.113.30
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;object network ACCORP-DMZ-SERVER-2
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; host 10.254.254.20
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;object network ACCORP-DMZ-LB-1
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; host 10.254.254.30
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;object network Public-IP-192.0.2.50
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; host 192.0.2.50
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;object network VPN-CONTOSO-CLIENT-2
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt; host 203.0.113.50
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;object-group network ACCORP-DMZ-SERVERS
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt; network-object object ACCORP-DMZ-SERVER-2
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt; network-object object ACCORP-DMZ-SERVER-1
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;object-group network VPN-REMOTE-ACCORP-CONTOSO
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt; network-object object VPN-CONTOSO-CLIENT-1
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt; network-object object VPN-CONTOSO-CLIENT-2
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;object-group network VPN-LOCAL-ACCORP-CONTOSO
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt; network-object object Public-IP-192.0.2.100
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt; network-object object Public-IP-192.0.2.50
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create an access control list to match the traffic we want protected, these IP addresses would be the NAT address, so we referencing the object-groups.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;access-list ACL-VPN-ACCORP-CONTOSO extended permit ip object-group VPN-LOCAL-ACCORP-CONTOSO
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We have to create some NAT rules for Acme. On line one I&#39;m creating a single PAT entry to hide the multiple DMZ servers under one IP address when traffic is going to Contoso. Line two is static entry for traffic inbound from Contoso.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;nat (DMZ,Outside) source dynamic ACCORP-DMZ-SERVERS Public-IP-192.0.2.100 destination static VPN-CONTOSO-CLIENT-1 VPN-CONTOSO-CLIENT-1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;nat (Outside,DMZ) source static VPN-CONTOSO-CLIENT-2 VPN-CONTOSO-CLIENT-2 destination static Public-IP-192.0.2.50 ACCORP-DMZ-LB-1 no-proxy-arp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a VPN Group Policy for Acme and Contoso VPN connection:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;group-policy GP-VPN-ACCORP-CONTOSO internal group-policy GP-VPN-ACCORP-CONTOSO attributes vpn-tunnel-protocol ikev1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the tunnel group:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tunnel-group 203.0.113.10 type ipsec-l2l tunnel-group 203.0.113.10 general-attributes default-group-policy GP-VPN-ACCORP-CONTOSO
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;tunnel-group 203.0.113.10 ipsec-attributes ikev1 pre-shared-key cisco isakmp keepalive disable
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Build the cryptomap:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto map CM-ACCORP-CONTOSO 1 match address ACL-VPN-ACCORP-CONTOSO
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;crypto map CM-ACCORP-CONTOSO 1 set peer 203.0.113.10
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;crypto map CM-ACCORP-CONTOSO 1 set ikev1 transform-set ESP-AES-128-SHA
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;crypto map CM-ACCORP-CONTOSO 1 set nat-t-disable
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;crypto map CM-ACCORP-CONTOSO interface Outside
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all you need from the Acme side to turn up this tunnel, let&#39;s jump to Contoso&#39;s side and configure the tunnel on that side. Jumping on to the Contoso ASA, create some object groups.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;object network CONTOSO-DMZ-SERVER-1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; host 172.31.255.10
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;object network PUBLIC-203.0.113.30
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt; host 203.0.113.30
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;object network VPN-ACME-CLIENT-1
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; host 192.0.2.100
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;object network VPN-ACME-CLIENT-2
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; host 192.0.2.50
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;object network PUBLIC-203.0.113.50
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; host 203.0.113.50
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;object-group network VPN-LOCAL-CONTOSO-ACME
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; network-object object PUBLIC-203.0.113.30
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt; network-object object PUBLIC-203.0.113.50
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;object-group network VPN-REMOTE-CONTOSO-ACME
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt; network-object object VPN-ACME-CLIENT-1
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt; network-object object VPN-ACME-CLIENT-2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Just like on the other side we have to create an access control list to match the traffic we want protected for Contoso.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;access-list ACL-VPN-CONTOSO-ACME extended permit ip object-group VPN-LOCAL-CONTOSO-ACME object-group VPN-REMOTE-CONTOSO-ACME
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create some NAT rules, these are going to static NATs on this side.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;nat (Outside,DMZ) source static VPN-ACME-CLIENT-1 VPN-ACME-CLIENT-1 destination static PUBLIC-203.0.113.30 CONTOSO-DMZ-SERVER-1 no-proxy-arp
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;nat (DMZ,Outside) source static CONTOSO-DMZ-SERVER-1 PUBLIC-203.0.113.50 destination static VPN-ACME-CLIENT-2 VPN-ACME-CLIENT-2 no-proxy-arp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a VPN group policy for Contoso:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;group-policy GP-VPN-ACME-CONTOSO internal group-policy GP-VPN-ACME-CONTOSO attributes vpn-tunnel-protocol ikev1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create the tunnel group for Contoso:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tunnel-group 192.0.2.10 type ipsec-l2l tunnel-group 192.0.2.10 general-attributes default-group-policy GP-VPN-ACME-CONTOSO
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;tunnel-group 192.0.2.10 ipsec-attributes ikev1 pre-shared-key cisco isakmp keepalive disable\
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Finally build the crypto map:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto map CM-CONTOSO-ACME 1 match address ACL-VPN-CONTOSO-ACME
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;crypto map CM-CONTOSO-ACME 1 set peer 192.0.2.10
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;crypto map CM-CONTOSO-ACME 1 set ikev1 transform-set ESP-AES-128-SHA
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;crypto map CM-CONTOSO-ACME 1 set nat-t-disable
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;crypto map CM-CONTOSO-ACME interface Outside
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can do a some verification tests, If I jump on 10.254.254.20 which is one of the servers in Acme Corp. I&#39;ll try to do a ping test over to Contoso and see if I get any replies back.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;cisco@ACCORP-DMZ-Server-2:~$ ping 203.0.113.30
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;PING 203.0.113.30 (203.0.113.30) 56(84) bytes of data.
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=2 ttl=64 time=3.08 ms
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=3 ttl=64 time=1.52 ms
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=4 ttl=64 time=2.39 ms
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=5 ttl=64 time=1.94 ms
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=6 ttl=64 time=2.08 ms
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=7 ttl=64 time=3.38 ms
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=8 ttl=64 time=2.78 ms
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=9 ttl=64 time=3.16 ms
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;64 bytes from 203.0.113.30: icmp_seq=10 ttl=64 time=1.81 ms
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;^C
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;--- 203.0.113.30 ping statistics ---
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;10 packets transmitted, 9 received, 10% packet loss, time 9018ms
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;rtt min/avg/max/mdev = 1.525/2.465/3.389/0.627 ms
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;cisco@ACCORP-DMZ-Server-2:~$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Looking at the output, I lost one ping packet but that&#39;s likely because the tunnel was not up yet when that first ping packet transmitted over. I&#39;ll jump on the Contoso system and see if I can hit the Acme load server.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;cisco@CONTOSO-DMZ-Server-1:~$ ping 192.0.2.50
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;PING 192.0.2.50 (192.0.2.50) 56(84) bytes of data.
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=2 ttl=64 time=1.82 ms
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=3 ttl=64 time=1.82 ms
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=4 ttl=64 time=1.84 ms
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=5 ttl=64 time=1.69 ms
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=6 ttl=64 time=1.72 ms
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=7 ttl=64 time=1.74 ms
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=8 ttl=64 time=2.16 ms
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=9 ttl=64 time=3.86 ms
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=10 ttl=64 time=1.70 ms
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;64 bytes from 192.0.2.50: icmp_seq=11 ttl=64 time=2.82 ms
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;^C
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;--- 192.0.2.50 ping statistics ---
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;11 packets transmitted, 10 received, 9% packet loss, time 10025ms
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;rtt min/avg/max/mdev = 1.697/2.121/3.863/0.667 ms
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;cisco@R-DMZ-Server-2:~$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It looks like I can hit the Acme load server! We can also finally check both firewalls to verify a VPN is indeed established. On Acme Firewall:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;ASA-1# show crypto isakmp sa
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;IKEv1 SAs:
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;   Active SA: 1
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;    Rekey SA: 0 (A tunnel will report 1 Active and 1 Rekey SA during rekey)
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Total IKE SA: 1
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;1   IKE Peer: 203.0.113.10
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    Type    : L2L             Role    : initiator
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    Rekey   : no              State   : MM_ACTIVE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On Contoso Firewall:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;ASA-2# show crypto isakmp sa
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;IKEv1 SAs:
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;   Active SA: 1
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;    Rekey SA: 0 (A tunnel will report 1 Active and 1 Rekey SA during rekey)
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Total IKE SA: 1
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;1   IKE Peer: 192.0.2.10
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    Type    : L2L             Role    : responder
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    Rekey   : no              State   : MM_ACTIVE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all I got, I hope this information is helpful. If you want to try this out I have attached the running-configs of both firewalls. If you are using Cisco VIRL here is a &lt;a href=&#34;https://github.com/lewiryan/VIRL/blob/master/Completed/ASA-Site-To-Site.virl&#34;&gt;link on GitHub&lt;/a&gt; to the file I was working with, enjoy! &lt;a href=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/files/2017/03/running-config-firewalls.pdf&#34;&gt;Running-Config-Firewalls&lt;/a&gt;&lt;/p&gt;
 
         
       </description>
