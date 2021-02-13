@@ -24,7 +24,7 @@
 <meta property="og:url" content="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/01/cisco-virl-and-windows-vms/" />
 <meta property="og:title" content="Cisco VIRL and Windows VMs" />
 <meta property="og:description" content="One of the neat features of Cisco VIRL is it runs on an open platform, with OpenStack as the orchestration program running on top of an Ubuntu operating system. …" />
-<meta property="og:image" content="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/thumbnail.png" />
+<meta property="og:image" content="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/01/img_20190824_143707.jpg" />
 <link rel="apple-touch-icon" sizes="180x180" href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/icons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/icons/favicon-32x32.png'>
 <link rel="manifest" href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/icons/site.webmanifest'>
@@ -170,55 +170,70 @@
   </div>
 
     
+    <img src="/images/2017/01/img_20190824_143707.jpg" class="image_featured">
+    
     <p>One of the neat features of Cisco VIRL is it runs on an open platform, with OpenStack as the orchestration program running on top of an Ubuntu operating system. This gives VIRL additional flexibly by being able to run third-party VMs with KVM begin the hypervisor. In this guide I’ll walk through some of the steps I took to get Windows XP up and running in VIRL. :) If you have a more recent version of Windows that's in the current decade following this guide is pretty much the same just adjust the disk space and RAM to fit the requirements. I picked Windows XP is because its light weight, and with an average RAM usage under 100MB it makes easy to add multiple instances if you needed all without wasting too much resources on VIRL host. To get started:</p>
 <ul>
 <li>You’ll need to have a copy of Windows XP.</li>
 <li>I also found an unofficial service pack for Windows XP <a href="https://ryanvm.net/forum/viewtopic.php?f=5&amp;t=10321">SP4 (unofficial)</a> - Optional</li>
 <li>Copy of the <a href="http://fedoraproject.org/wiki/Windows_Virtio_Drivers">Windows Virtio Drivers from Fedora</a>. (VFD Floppy image when installing Windows XP on KVM)</li>
 </ul>
-<p>I’m running Cisco VIRL 1.2.83 on bare metal for this example, but this would also work if VIRL is virtualized. Let’s first edit the nova.conf file in VIRL, we need change a value in the nova configuration file which helps us control the mouse better when we use VNC to view the virtual machine in VIRL.<code>\[code\]nano /etc/nova/nova.conf\[/code\]</code>Find <strong>use_usb_tablet = False</strong> and change it to <strong>use_usb_tablet = True</strong> save the changes, and restart VIRL. Once VIRL comes back up we now need to create folder under the home/virl directory to store our Windows XP installation, drivers and the virtual machine, I’m calling it VMs in this example. Once the folder is created move into that folder using terminal and type the following:<code>\[code\]sudo qemu-img create -f qcow2 wsxp-SP3.qcow2 15G\[/code\]</code>This will create a virtual disk in qcow2 format and the size will be 15G, this next command will create all the necessary settings needed to start the installation of Windows.```
-[code]sudo virt-install --connect qemu:///system --name wsxp-SP3 --ram 512 --vcpus 1 --network network=default,model=virtio --disk path=/home/virl/VMs/wsxp-SP3.qcow2,format=qcow2,device=disk,bus=virtio --cdrom /home/virl/VMs/xp.iso --disk path=/home/virl/VMs/virtio-win.vfd,device=floppy --vnc --os-type windows --os-variant winxp[/code]</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>
-<span class="ln"> 2</span>*   Subtype - Windows
-<span class="ln"> 3</span>*   Desciption of plugin - VM of Windows
-<span class="ln"> 4</span>*   Pattern for data interface names - eth{0}
-<span class="ln"> 5</span>*   First data interface number - 0
-<span class="ln"> 6</span>*   Max count of data interfaces - 5
-<span class="ln"> 7</span>*   Number of interface per LC - 0
-<span class="ln"> 8</span>*   Number of serial interfaces - 0
-<span class="ln"> 9</span>*   Protocol for network CLI - none
-<span class="ln">10</span>*   Make VNC access available - (Checked)
-<span class="ln">11</span>*   Name of icon for GUI - unknow
-<span class="ln">12</span>*   Show subtype on GUI palette (unchecked)
-<span class="ln">13</span>*   Configuration disk type - disk
-<span class="ln">14</span>*   ISO 9660 level in cdrom disk - 2
-<span class="ln">15</span>*   Virtual interface model - virtio
-<span class="ln">16</span>*   Main disk bus model - ide
-<span class="ln">17</span>*   RAM (MB) allocter per node - 512
-<span class="ln">18</span>*   Number of CPUs allocated per node - 1
-<span class="ln">19</span>*   Name of default image - Windows-XPSP3
-<span class="ln">20</span>
-<span class="ln">21</span>Create the subtype. Once the subtype is created go to Node Resources-&gt;Images-&gt;Add:
-<span class="ln">22</span>
-<span class="ln">23</span>*   Find and select the Windows Subtype
-<span class="ln">24</span>*   Release - 5.1 (I just picked the Windows NT version)
-<span class="ln">25</span>*   Source - File on server
-<span class="ln">26</span>*   Image path - /home/virl/VMs/_image of xp clone_
-<span class="ln">27</span>
-<span class="ln">28</span>Create the image. Once the image has been created you now have imported Windows XP within VIRL and should be able to launch it within VM Maestro. You can take similar steps and import additional VMs like Juniper, Palo Alto, and Fortinet are just some examples more information how to import those and other are on [3rd Party VMs in VIRL page](https://learningnetwork.cisco.com/docs/DOC-30476) on the Cisco Learning Network. I hope this information is helpful, Ryan.
-<span class="ln">29</span>---
-<span class="ln">30</span>### Comments:
-<span class="ln">31</span>#### 
-<span class="ln">32</span>[Configuring EIGRP &amp;#8211; Named Mode &amp;#8211; Cisco Skills](http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/ &#34;&#34;) - &lt;time datetime=&#34;2017-05-25 06:31:29&#34;&gt;May 4, 2017&lt;/time&gt;
-<span class="ln">33</span>
-<span class="ln">34</span>\[…\] That’s all I got for now for a basic configuration of EIGRP name mode and I hope this helpful. If you are using Cisco VIRL you can find the project I was referencing using this link Github. There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs \[…\]
-<span class="ln">35</span>&lt;hr /&gt;
-<span class="ln">36</span>#### 
-<span class="ln">37</span>[ASA Site to Site VPN (DHCP) &amp;#8211; Cisco Skills](http://ciscoskills.net/2017/04/19/asa-site-to-site-vpn-dhcp/ &#34;&#34;) - &lt;time datetime=&#34;2017-04-19 06:01:13&#34;&gt;Apr 3, 2017&lt;/time&gt;
-<span class="ln">38</span>
-<span class="ln">39</span>\[…\] There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs \[…\]
-<span class="ln">40</span>&lt;hr /&gt;
-</code></pre></div>
+<p>I’m running Cisco VIRL 1.2.83 on bare metal for this example, but this would also work if VIRL is virtualized. Let’s first edit the nova.conf file in VIRL, we need change a value in the nova configuration file which helps us control the mouse better when we use VNC to view the virtual machine in VIRL.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>nano /etc/nova/nova.conf
+</code></pre></div><p>Find <strong>use_usb_tablet = False</strong> and change it to <strong>use_usb_tablet = True</strong> save the changes, and restart VIRL.</p>
+<p>Once VIRL comes back up we now need to create folder under the home/virl directory to store our Windows XP installation, drivers and the virtual machine, I’m calling it VMs in this example. Once the folder is created move into that folder using terminal and type the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>sudo qemu-img create -f qcow2 wsxp-SP3.qcow2 15G
+</code></pre></div><p>This will create a virtual disk in qcow2 format and the size will be 15G, this next command will create all the necessary settings needed to start the installation of Windows.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>sudo virt-install --connect qemu:///system --name wsxp-SP3 --ram 512 --vcpus 1 --network network=default,model=virtio --disk path=/home/virl/VMs/wsxp-SP3.qcow2,format=qcow2,device=disk,bus=virtio --cdrom /home/virl/VMs/xp.iso --disk path=/home/virl/VMs/virtio-win.vfd,device=floppy --vnc --os-type windows --os-variant winxp
+</code></pre></div><p>Please make sure to verify the paths are correct per your system. I’m mounting the XP installation ISO as well as the floppy disk so that I can install the drivers needed for Windows to recognize the hard drive. Open virt-manager to see your Windows XP virtual machine it should already be on so you will want to walk through the steps to complete the installation.</p>
+<blockquote>
+<p>During the installation and when installing drivers, you will get a couple of warnings about how the software drivers have not passed logo testing ignore this and continue to install it.</p>
+</blockquote>
+<p><img src="/images/2017/01/virl-winxp.png" alt=""></p>
+<p>Once you have Windows installed you can mount your virtio drivers that you downloaded and install the remaining drivers needed for Windows XP as well as any programs you would like to have available when you spin up this VM. <a href="https://www.wireshark.org/download/win32/all-versions/Wireshark-win32-1.10.14.exe">Wireshark (Version 1.10.14)</a>, and <a href="http://www.firewall.cx/downloads/16-1-3cdaemon-server-a-client.html">3cdaemon</a> are just a couple of examples for software you could use.</p>
+<p>Once you have all the programs you want to go ahead and prepare a sysprep image using your XP installation ISO file. Open the deploy.cab file which is under the SUPPORT\TOOLS folder, copy it into a new directory called SYSPREP on the C drive and extract the cabinet file. Once these files have been copied, turn off the VM and clone it. That way if you need to make any changes to the VM you can use your original VM. Once the machine turns off after the sysprep you now have an image you can import into VIRL. For reference on how to Sysprep Windows XP I followed this guide: <a href="http://www.petenetlive.com/KB/Article/0000599">http://www.petenetlive.com/KB/Article/0000599</a></p>
+<p>You’ll want to use that cloned image when you import this into VIRL because it will be a “new” machine every time it is launched from VIRL including the hostname if you configured the sysprep.Inf file correctly. The finished product should be something like what I have below, you shouldn’t have to do anything but wait a couple of minutes for an XP VM and if you configured DHCP on your routers in VIRL your machine will get an IP address automatically.</p>
+<p><img src="/images/2017/01/winxpvirl.gif" alt=""></p>
+<p>To import this VM into VIRL go into the User Workspace Management within in VIRL. We are going to create copy of a subtype. Under Node Resources-&gt;Subtypes, find the generic subtype and click on the &quot;stethoscope&quot; icon also called specialize and fill in the following:</p>
+<ul>
+<li>Subtype - Windows</li>
+<li>Desciption of plugin - VM of Windows</li>
+<li>Pattern for data interface names - eth{0}</li>
+<li>First data interface number - 0</li>
+<li>Max count of data interfaces - 5</li>
+<li>Number of interface per LC - 0</li>
+<li>Number of serial interfaces - 0</li>
+<li>Protocol for network CLI - none</li>
+<li>Make VNC access available - (Checked)</li>
+<li>Name of icon for GUI - unknow</li>
+<li>Show subtype on GUI palette (unchecked)</li>
+<li>Configuration disk type - disk</li>
+<li>ISO 9660 level in cdrom disk - 2</li>
+<li>Virtual interface model - virtio</li>
+<li>Main disk bus model - ide</li>
+<li>RAM (MB) allocter per node - 512</li>
+<li>Number of CPUs allocated per node - 1</li>
+<li>Name of default image - Windows-XPSP3</li>
+</ul>
+<p>Create the subtype. Once the subtype is created go to Node Resources-&gt;Images-&gt;Add:</p>
+<ul>
+<li>Find and select the Windows Subtype</li>
+<li>Release - 5.1 (I just picked the Windows NT version)</li>
+<li>Source - File on server</li>
+<li>Image path - /home/virl/VMs/<em>image of xp clone</em></li>
+</ul>
+<p>Create the image. Once the image has been created you now have imported Windows XP within VIRL and should be able to launch it within VM Maestro. You can take similar steps and import additional VMs like Juniper, Palo Alto, and Fortinet are just some examples more information how to import those and other are on <a href="https://learningnetwork.cisco.com/docs/DOC-30476">3rd Party VMs in VIRL page</a> on the Cisco Learning Network. I hope this information is helpful, Ryan.</p>
+<hr>
+<h3 id="static-comments">Static Comments:</h3>
+<h4 id="heading"></h4>
+<p><a href="http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/" title="">Configuring EIGRP – Named Mode – Cisco Skills</a> - <time datetime="2017-05-25 06:31:29">May 4, 2017</time></p>
+<p>[…] That’s all I got for now for a basic configuration of EIGRP name mode and I hope this helpful. If you are using Cisco VIRL you can find the project I was referencing using this link Github. There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs […]</p>
+<hr />
+<h4 id="heading-1"></h4>
+<p><a href="http://ciscoskills.net/2017/04/19/asa-site-to-site-vpn-dhcp/" title="">ASA Site to Site VPN (DHCP) – Cisco Skills</a> - <time datetime="2017-04-19 06:01:13">Apr 3, 2017</time></p>
+<p>[…] There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs […]</p>
+<hr />
+
     
       
     

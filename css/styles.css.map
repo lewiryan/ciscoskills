@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "styles.css",
-	"sourceRoot": "/mnt/g/website/ciscoskills.net/hugo-ciscoskills",
+	"sourceRoot": "/mnt/c/Users/ryan5/website/hugo-ciscoskills",
 	"sources": [
 		"themes/hugo-clarity/assets/sass/main.sass",
 		"themes/hugo-clarity/assets/sass/_variables.sass",
