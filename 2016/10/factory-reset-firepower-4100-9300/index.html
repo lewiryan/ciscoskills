@@ -132,8 +132,6 @@
       Oct 19, 2016</span>
       <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/cisco' class="post_tag button button_translucent">Cisco
       </a>
-      <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/cisco' class="post_tag button button_translucent">cisco
-      </a>
       <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/firepower' class="post_tag button button_translucent">Firepower
       </a>
       <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/firewall' class="post_tag button button_translucent">firewall
@@ -141,8 +139,6 @@
       <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/technology' class="post_tag button button_translucent">technology
       </a>
       <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/tutorials' class="post_tag button button_translucent">Tutorials
-      </a>
-      <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized' class="post_tag button button_translucent">Uncategorized
       </a>
 </div>
 
@@ -172,55 +168,89 @@
   </div>
 
     
-    <p>I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &quot;startup-config&quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can't just erase startup-config and reload the device, that would be too easy. (Edit: 7-21-17) After Gabriele made this <a href="http://ciscoskills.net/2016/10/18/factory-reset-firepower-4100-9300/#comment-2869">comment</a> it looks like you can. You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:</p>
+    <p>I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &quot;startup-config&quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can't just erase startup-config and reload the device, that would be too easy.</p>
+<p>(Edit: 7-21-17) After Gabriele made this comment - &quot;connect local-mgmt&quot; and then &quot;erase configuration&quot; it looks like you can. Thanks Gabriele</p>
+<p>You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:</p>
 <ul>
 <li>Power off the system, and then power it back on</li>
 <li>While the system is booting, you have go into ROMMON mode to do that press ESC or CTRL+L. You'll see a message confirming that you are going to ROMMON</li>
 </ul>
-<p>[code]!! Rommon image verified successfully !! Cisco System ROMMON, Version 1.0.10, RELEASE SOFTWARE Copyright (c) 1994-2015 by Cisco Systems, Inc. Compiled Mon 11/30/2015 15:23:18.60 by builder Current image running: Boot ROM0 Last reset cause: PowerCycleRequest DIMM Slot 0 : Present DIMM Slot 1 : Present No USB drive !! BIOS has been locked !! Platform FPR-4110-SUP with 8192 Mbytes of main memory[/code]</p>
-<ul>
-<li>Make note of the kickstart and FXOS system image as you need these names to be able to boot to the correct image. In this example under ROMMON the following appeared on-screen</li>
-</ul>
-<p>[code]find the string ! boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA[/code]</p>
-<ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>!!  Rommon image verified successfully  !! 
+<span class="ln"> 2</span> 
+<span class="ln"> 3</span>Cisco System ROMMON, Version 1.0.10, RELEASE SOFTWARE 
+<span class="ln"> 4</span> 
+<span class="ln"> 5</span>Copyright (c) 1994-2015  by Cisco Systems, Inc. 
+<span class="ln"> 6</span> 
+<span class="ln"> 7</span>Compiled Mon 11/30/2015 15:23:18.60 by builder 
+<span class="ln"> 8</span> 
+<span class="ln"> 9</span>Current image running: Boot ROM0 
+<span class="ln">10</span> 
+<span class="ln">11</span>Last reset cause: PowerCycleRequest 
+<span class="ln">12</span> 
+<span class="ln">13</span>DIMM Slot 0 : Present 
+<span class="ln">14</span> 
+<span class="ln">15</span>DIMM Slot 1 : Present 
+<span class="ln">16</span> 
+<span class="ln">17</span>No USB drive !! 
+<span class="ln">18</span> 
+<span class="ln">19</span>BIOS has been locked !! 
+<span class="ln">20</span> 
+<span class="ln">21</span>Platform FPR-4110-SUP with 8192 Mbytes of main memory
+</code></pre></div><blockquote>
+<p>Make note of the kickstart and FXOS system image as you need these names to be able to boot to the correct image. In this example under ROMMON the following appeared on-screen</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA
+</code></pre></div><ul>
 <li>Load the kickstart image</li>
 </ul>
-<p>[code]rommon 1 &gt; boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA !! Kickstart Image verified successfully !! [/code]</p>
-<ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>rommon 1 &gt; boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA 
+<span class="ln">2</span> 
+<span class="ln">3</span>  !!   Kickstart Image verified successfully   !!
+</code></pre></div><ul>
 <li>When kickstart loads you'll be at the switch(boot)# prompt, enter configuration mode.</li>
 </ul>
-<p>[code]switch(boot)# switch(boot)# config t Enter configuration commands, one per line. End with CNTL/Z.[/code]</p>
-<ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>switch(boot)#
+<span class="ln">2</span>switch(boot)# config t
+<span class="ln">3</span>Enter configuration commands, one per line. End with CNTL/Z.
+</code></pre></div><ul>
 <li>Under the configuration mode, type admin-password erase, this will erase everything and bring the system back to factory defaults.</li>
 </ul>
-<p>[code]switch(boot)(config)# admin-password erase Your password and configuration will be erased! Do you want to continue? (y/n) [n] y switch(boot)(config)# exit[/code]</p>
-<ul>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>switch(boot)(config)# admin-password erase
+<span class="ln">2</span>Your password and configuration will be erased!
+<span class="ln">3</span>Do you want to continue? (y/n)  [n] y
+<span class="ln">4</span>switch(boot)(config)# exit
+</code></pre></div><ul>
 <li>Load the system image to startup the FXOS, once the image has been loaded you'll be prompted to enter the setup wizard.</li>
 </ul>
-<h2 id="codeswitchboot-load-bootflashinstallablesswitchfxos-k9-system503n231469spa-uncompressing-system-image-bootflashinstallablesswitchfxos-k9-system503n231469spa-you-have-chosen-to-setup-a-new-security-appliance-continue-yncode-i-hope-this-information-is-helpful-the-information-i-was-referencing-is-located-here-password-recovery-procedure-for-firepower-93004100-series-applianceshttpwwwciscocomcenussupportdocssecurityfirepower-9300-security-appliance200491-password-recovery-procedure-for-firepowehtml">[code]switch(boot)# load bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA Uncompressing system image: bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA You have chosen to setup a new Security Appliance. Continue? (y/n):[/code] I hope this information is helpful, the information I was referencing is located here: <a href="http://www.cisco.com/c/en/us/support/docs/security/firepower-9300-security-appliance/200491-Password-Recovery-Procedure-For-FirePOWE.html">Password Recovery Procedure For Firepower 9300/4100 Series Appliances</a></h2>
-<h3 id="comments">Comments:</h3>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>switch(boot)# load bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA
+<span class="ln">2</span>Uncompressing system image: bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA
+<span class="ln">3</span> 
+<span class="ln">4</span>You have chosen to setup a new Security Appliance. Continue? (y/n):
+</code></pre></div><p>I hope this information is helpful, the information I was referencing is located here: <a href="http://www.cisco.com/c/en/us/support/docs/security/firepower-9300-security-appliance/200491-Password-Recovery-Procedure-For-FirePOWE.html">Password Recovery Procedure For Firepower 9300/4100 Series Appliances</a></p>
+<hr>
+<h3 id="static-comments">Static Comments:</h3>
 <h4 id="heading"></h4>
 <p><a href="%22228496698@qq.com%22">Jimmy</a> - <time datetime="2016-11-07 21:54:51">Nov 1, 2016</time></p>
 <p>Hi :Ryan ,I got several devices like ASA 5525x with firepower mode ,i want to reinstall the whole system from ASA(firepower software ) to firepower system complete(called FTD system) ,Do you have similar experence ? Also i purchase (Protection,Control,Malware,URL Filtering) licence ,i find the the firepower mode didnt filter locker virus (like CryptoLocker,CBT locker),Can you give me some suggestion ?</p>
 <hr />
-#### 
-[Ryan](http://ciscoskills.net/ "lewiryan@isu.edu") - <time datetime="2017-04-29 19:40:22">Apr 6, 2017</time>
+<h4 id="heading-1"></h4>
+<p><a href="http://ciscoskills.net/" title="lewiryan@isu.edu">Ryan</a> - <time datetime="2017-04-29 19:40:22">Apr 6, 2017</time></p>
 <p>Hey Gabriele, Never tried that command, that's a lot easier than what I was doing :) Thanks. Ryan</p>
 <hr />
-#### 
-[Ryan](http://ciscoskills.net/ "lewiryan@isu.edu") - <time datetime="2016-11-09 21:24:39">Nov 3, 2016</time>
+<h4 id="heading-2"></h4>
+<p><a href="http://ciscoskills.net/" title="lewiryan@isu.edu">Ryan</a> - <time datetime="2016-11-09 21:24:39">Nov 3, 2016</time></p>
 <p>Hey Jimmy, I have not had experience upgrading to the FTD image for the ASAs and from what I can tell you may have to upgrade/download several things. I found this on Cisco website which may be a good starting point: <a href="http://www.cisco.com/c/en/us/td/docs/security/firepower/quick">http://www.cisco.com/c/en/us/td/docs/security/firepower/quick</a>_start/reimage/asa-ftd-reimage.html I have worked with the Firepower 4100 units which give you the option to use either ASA or an FTD image. I have been playing around with the FTD image and the ASA SFR module, they are different you really don't manage the device directly, it all works through the Firepower Management Center. Its interesting you're not having any luck with the filtering make sure if you are using the ASA image that you set up a service policy under the global policy to inspect all traffic with the SFR module and its not in monitor mode. You will also need to setup policies and rules in the FMC to block this type of traffic. Hope that helps :) Ryan</p>
 <hr />
-#### 
-[anon]( "aasdsadf@asdfasfafds.com") - <time datetime="2017-07-19 20:56:08">Jul 3, 2017</time>
+<h4 id="heading-3"></h4>
+<p><a href="%22aasdsadf@asdfasfafds.com%22">anon</a> - <time datetime="2017-07-19 20:56:08">Jul 3, 2017</time></p>
 <p>You should update your post at the top with this advice. I almost took the long path as well. :)</p>
 <hr />
-#### 
-[Ryan](http://ciscoskills.net/ "lewiryan@isu.edu") - <time datetime="2017-07-21 18:51:16">Jul 5, 2017</time>
+<h4 id="heading-4"></h4>
+<p><a href="http://ciscoskills.net/" title="lewiryan@isu.edu">Ryan</a> - <time datetime="2017-07-21 18:51:16">Jul 5, 2017</time></p>
 <p>Updated, thanks Anon :)</p>
 <hr />
-#### 
-[Gabriele]( "ferrarigabriele84@gmail.com") - <time datetime="2017-04-26 09:08:26">Apr 3, 2017</time>
+<h4 id="heading-5"></h4>
+<p><a href="%22ferrarigabriele84@gmail.com%22">Gabriele</a> - <time datetime="2017-04-26 09:08:26">Apr 3, 2017</time></p>
 <p>You can try with the commands &quot;connect local-mgmt&quot; and then &quot;erase configuration&quot;. It should work</p>
 <hr />
 
@@ -1826,7 +1856,7 @@
             </a>
             
             
-            <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized/' class=" post_tag button button_translucent" data-position=3>UNCATEGORIZED<span class="button_tally">3</span>
+            <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized/' class=" post_tag button button_translucent" data-position=2>UNCATEGORIZED<span class="button_tally">2</span>
             </a>
             
             

@@ -563,11 +563,6 @@
   </url>
   
   <url>
-    <loc>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized/</loc>
-    <lastmod>2016-10-19T00:45:07+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/centos/</loc>
     <lastmod>2016-09-16T12:30:00+00:00</lastmod>
   </url>
@@ -969,6 +964,11 @@
   
   <url>
     <loc>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2014/02/640-911-chapter-5/</loc>
+    <lastmod>2014-02-13T19:25:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized/</loc>
     <lastmod>2014-02-13T19:25:55+00:00</lastmod>
   </url>
   

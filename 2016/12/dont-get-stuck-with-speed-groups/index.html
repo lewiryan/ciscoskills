@@ -24,7 +24,7 @@
 <meta property="og:url" content="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/12/dont-get-stuck-with-speed-groups/" />
 <meta property="og:title" content="Don&#39;t get stuck with &#34;speed-groups&#34;" />
 <meta property="og:description" content="I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we …" />
-<meta property="og:image" content="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/thumbnail.png" />
+<meta property="og:image" content="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2016/12/img_20180526_154148.jpg" />
 <link rel="apple-touch-icon" sizes="180x180" href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/icons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/icons/favicon-32x32.png'>
 <link rel="manifest" href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/icons/site.webmanifest'>
@@ -166,7 +166,13 @@
   </div>
 
     
-    <p>I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we where planning on connecting in additional equipment that only supported SFP+ interfaces. So the solution was to connect to this switch  with QSFP to SFP+ adapters. Thinking this would be a simple change because we are just plugging in additional adapters on the QSFP ports we planned our maintenance window and rollback plans but I wasn't expecting a rollback for this one :)   The interfaces were configured in a shutdown status before we plugged in the adapters and cables so didn't see anything out of the ordinary, when it was time to do the maintenance let's bring up the interfaces with the command of no shutdown and we should be up... Well not exactly, I first thought it was the other end so I checked that and its reporting the link is down but it was not in a shutdown status. Looking at the Nexus switch interface I see the words &quot;check speed-group config&quot; under the interface and its in a err-disable status and I'll be honest I haven't worked with interfaces that are speed-grouped together so I didn't know that it was even a thing. A quick search to see if I could &quot;break&quot; the speed-group and configure interfaces individually on their own speed turned up nothing. We ended up doing a rollback which looked pretty ridiculous because these where just interfaces we couldn't bring online. XD It become apparent that I was stuck because with the equipment we had I couldn't use that 40Gbps uplink, the hardware only supported one speed for all six ports, hence the name &quot;speed-group&quot;.  We would have to downgrade the link 10Gbps and then we would be able to connect in our additional gear. It's this kind of stuff where planning out for growth and understanding your hardware limits becomes very important, I didn't catch it because I have never heard of such thing and our VAR didn't catch it either. In this case we weren't maxing out that 40Gbps link and we could afford a downgrade in speed in the meantime. Others may not be so lucky and this could be a problem if you really needed that 40Gbps link or only had 40Gbps on your upstream switches. In the end don't get stuck with speed-groups! :)</p>
+    <img src="/images/2016/12/img_20180526_154148.jpg" class="image_featured">
+    
+    <p>I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we where planning on connecting in additional equipment that only supported SFP+ interfaces. So the solution was to connect to this switch  with QSFP to SFP+ adapters.</p>
+<p>Thinking this would be a simple change because we are just plugging in additional adapters on the QSFP ports we planned our maintenance window and rollback plans but I wasn't expecting a rollback for this one :)   The interfaces were configured in a shutdown status before we plugged in the adapters and cables so didn't see anything out of the ordinary, when it was time to do the maintenance let's bring up the interfaces with the command of no shutdown and we should be up...</p>
+<p>Well not exactly, I first thought it was the other end so I checked that and its reporting the link is down but it was not in a shutdown status. Looking at the Nexus switch interface I see the words &quot;check speed-group config&quot; under the interface and its in a err-disable status and I'll be honest I haven't worked with interfaces that are speed-grouped together so I didn't know that it was even a thing. A quick search to see if I could &quot;break&quot; the speed-group and configure interfaces individually on their own speed turned up nothing.</p>
+<p>We ended up doing a rollback which looked pretty ridiculous because these where just interfaces we couldn't bring online. It become apparent that I was stuck because with the equipment we had I couldn't use that 40Gbps uplink, the hardware only supported one speed for all six ports, hence the name &quot;speed-group&quot;. </p>
+<p>We would have to downgrade the link 10Gbps and then we would be able to connect in our additional gear. It's this kind of stuff where planning out for growth and understanding your hardware limits becomes very important, I didn't catch it because I have never heard of such thing and our VAR didn't catch it either. In this case we weren't maxing out that 40Gbps link and we could afford a downgrade in speed in the meantime. Others may not be so lucky and this could be a problem if you really needed that 40Gbps link or only had 40Gbps on your upstream switches. In the end don't get stuck with speed-groups! :)</p>
 
     
       
@@ -1770,7 +1776,7 @@
             </a>
             
             
-            <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized/' class=" post_tag button button_translucent" data-position=3>UNCATEGORIZED<span class="button_tally">3</span>
+            <a href='http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/uncategorized/' class=" post_tag button button_translucent" data-position=2>UNCATEGORIZED<span class="button_tally">2</span>
             </a>
             
             

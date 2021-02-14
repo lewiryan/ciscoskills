@@ -1760,49 +1760,62 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
 &lt;li&gt;I also found an unofficial service pack for Windows XP &lt;a href=&#34;https://ryanvm.net/forum/viewtopic.php?f=5&amp;amp;t=10321&#34;&gt;SP4 (unofficial)&lt;/a&gt; - Optional&lt;/li&gt;
 &lt;li&gt;Copy of the &lt;a href=&#34;http://fedoraproject.org/wiki/Windows_Virtio_Drivers&#34;&gt;Windows Virtio Drivers from Fedora&lt;/a&gt;. (VFD Floppy image when installing Windows XP on KVM)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I’m running Cisco VIRL 1.2.83 on bare metal for this example, but this would also work if VIRL is virtualized. Let’s first edit the nova.conf file in VIRL, we need change a value in the nova configuration file which helps us control the mouse better when we use VNC to view the virtual machine in VIRL.&lt;code&gt;\[code\]nano /etc/nova/nova.conf\[/code\]&lt;/code&gt;Find &lt;strong&gt;use_usb_tablet = False&lt;/strong&gt; and change it to &lt;strong&gt;use_usb_tablet = True&lt;/strong&gt; save the changes, and restart VIRL. Once VIRL comes back up we now need to create folder under the home/virl directory to store our Windows XP installation, drivers and the virtual machine, I’m calling it VMs in this example. Once the folder is created move into that folder using terminal and type the following:&lt;code&gt;\[code\]sudo qemu-img create -f qcow2 wsxp-SP3.qcow2 15G\[/code\]&lt;/code&gt;This will create a virtual disk in qcow2 format and the size will be 15G, this next command will create all the necessary settings needed to start the installation of Windows.```
-[code]sudo virt-install --connect qemu:///system --name wsxp-SP3 --ram 512 --vcpus 1 --network network=default,model=virtio --disk path=/home/virl/VMs/wsxp-SP3.qcow2,format=qcow2,device=disk,bus=virtio --cdrom /home/virl/VMs/xp.iso --disk path=/home/virl/VMs/virtio-win.vfd,device=floppy --vnc --os-type windows --os-variant winxp[/code]&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;*   Subtype - Windows
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;*   Desciption of plugin - VM of Windows
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;*   Pattern for data interface names - eth{0}
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;*   First data interface number - 0
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;*   Max count of data interfaces - 5
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;*   Number of interface per LC - 0
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;*   Number of serial interfaces - 0
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;*   Protocol for network CLI - none
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;*   Make VNC access available - (Checked)
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;*   Name of icon for GUI - unknow
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;*   Show subtype on GUI palette (unchecked)
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;*   Configuration disk type - disk
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;*   ISO 9660 level in cdrom disk - 2
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;*   Virtual interface model - virtio
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;*   Main disk bus model - ide
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;*   RAM (MB) allocter per node - 512
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;*   Number of CPUs allocated per node - 1
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;*   Name of default image - Windows-XPSP3
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;Create the subtype. Once the subtype is created go to Node Resources-&amp;gt;Images-&amp;gt;Add:
-&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;*   Find and select the Windows Subtype
-&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;*   Release - 5.1 (I just picked the Windows NT version)
-&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;*   Source - File on server
-&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;*   Image path - /home/virl/VMs/_image of xp clone_
-&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;Create the image. Once the image has been created you now have imported Windows XP within VIRL and should be able to launch it within VM Maestro. You can take similar steps and import additional VMs like Juniper, Palo Alto, and Fortinet are just some examples more information how to import those and other are on [3rd Party VMs in VIRL page](https://learningnetwork.cisco.com/docs/DOC-30476) on the Cisco Learning Network. I hope this information is helpful, Ryan.
-&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;---
-&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;### Comments:
-&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;#### 
-&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;[Configuring EIGRP &amp;amp;#8211; Named Mode &amp;amp;#8211; Cisco Skills](http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/ &amp;#34;&amp;#34;) - &amp;lt;time datetime=&amp;#34;2017-05-25 06:31:29&amp;#34;&amp;gt;May 4, 2017&amp;lt;/time&amp;gt;
-&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;\[…\] That’s all I got for now for a basic configuration of EIGRP name mode and I hope this helpful. If you are using Cisco VIRL you can find the project I was referencing using this link Github. There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs \[…\]
-&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;&amp;lt;hr /&amp;gt;
-&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;#### 
-&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;[ASA Site to Site VPN (DHCP) &amp;amp;#8211; Cisco Skills](http://ciscoskills.net/2017/04/19/asa-site-to-site-vpn-dhcp/ &amp;#34;&amp;#34;) - &amp;lt;time datetime=&amp;#34;2017-04-19 06:01:13&amp;#34;&amp;gt;Apr 3, 2017&amp;lt;/time&amp;gt;
-&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;39&lt;/span&gt;\[…\] There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs \[…\]
-&lt;span class=&#34;ln&#34;&gt;40&lt;/span&gt;&amp;lt;hr /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I’m running Cisco VIRL 1.2.83 on bare metal for this example, but this would also work if VIRL is virtualized. Let’s first edit the nova.conf file in VIRL, we need change a value in the nova configuration file which helps us control the mouse better when we use VNC to view the virtual machine in VIRL.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;nano /etc/nova/nova.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Find &lt;strong&gt;use_usb_tablet = False&lt;/strong&gt; and change it to &lt;strong&gt;use_usb_tablet = True&lt;/strong&gt; save the changes, and restart VIRL.&lt;/p&gt;
+&lt;p&gt;Once VIRL comes back up we now need to create folder under the home/virl directory to store our Windows XP installation, drivers and the virtual machine, I’m calling it VMs in this example. Once the folder is created move into that folder using terminal and type the following:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;sudo qemu-img create -f qcow2 wsxp-SP3.qcow2 15G
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will create a virtual disk in qcow2 format and the size will be 15G, this next command will create all the necessary settings needed to start the installation of Windows.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;sudo virt-install --connect qemu:///system --name wsxp-SP3 --ram 512 --vcpus 1 --network network=default,model=virtio --disk path=/home/virl/VMs/wsxp-SP3.qcow2,format=qcow2,device=disk,bus=virtio --cdrom /home/virl/VMs/xp.iso --disk path=/home/virl/VMs/virtio-win.vfd,device=floppy --vnc --os-type windows --os-variant winxp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Please make sure to verify the paths are correct per your system. I’m mounting the XP installation ISO as well as the floppy disk so that I can install the drivers needed for Windows to recognize the hard drive. Open virt-manager to see your Windows XP virtual machine it should already be on so you will want to walk through the steps to complete the installation.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;During the installation and when installing drivers, you will get a couple of warnings about how the software drivers have not passed logo testing ignore this and continue to install it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/01/virl-winxp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Once you have Windows installed you can mount your virtio drivers that you downloaded and install the remaining drivers needed for Windows XP as well as any programs you would like to have available when you spin up this VM. &lt;a href=&#34;https://www.wireshark.org/download/win32/all-versions/Wireshark-win32-1.10.14.exe&#34;&gt;Wireshark (Version 1.10.14)&lt;/a&gt;, and &lt;a href=&#34;http://www.firewall.cx/downloads/16-1-3cdaemon-server-a-client.html&#34;&gt;3cdaemon&lt;/a&gt; are just a couple of examples for software you could use.&lt;/p&gt;
+&lt;p&gt;Once you have all the programs you want to go ahead and prepare a sysprep image using your XP installation ISO file. Open the deploy.cab file which is under the SUPPORT\TOOLS folder, copy it into a new directory called SYSPREP on the C drive and extract the cabinet file. Once these files have been copied, turn off the VM and clone it. That way if you need to make any changes to the VM you can use your original VM. Once the machine turns off after the sysprep you now have an image you can import into VIRL. For reference on how to Sysprep Windows XP I followed this guide: &lt;a href=&#34;http://www.petenetlive.com/KB/Article/0000599&#34;&gt;http://www.petenetlive.com/KB/Article/0000599&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You’ll want to use that cloned image when you import this into VIRL because it will be a “new” machine every time it is launched from VIRL including the hostname if you configured the sysprep.Inf file correctly. The finished product should be something like what I have below, you shouldn’t have to do anything but wait a couple of minutes for an XP VM and if you configured DHCP on your routers in VIRL your machine will get an IP address automatically.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/01/winxpvirl.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To import this VM into VIRL go into the User Workspace Management within in VIRL. We are going to create copy of a subtype. Under Node Resources-&amp;gt;Subtypes, find the generic subtype and click on the &amp;quot;stethoscope&amp;quot; icon also called specialize and fill in the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Subtype - Windows&lt;/li&gt;
+&lt;li&gt;Desciption of plugin - VM of Windows&lt;/li&gt;
+&lt;li&gt;Pattern for data interface names - eth{0}&lt;/li&gt;
+&lt;li&gt;First data interface number - 0&lt;/li&gt;
+&lt;li&gt;Max count of data interfaces - 5&lt;/li&gt;
+&lt;li&gt;Number of interface per LC - 0&lt;/li&gt;
+&lt;li&gt;Number of serial interfaces - 0&lt;/li&gt;
+&lt;li&gt;Protocol for network CLI - none&lt;/li&gt;
+&lt;li&gt;Make VNC access available - (Checked)&lt;/li&gt;
+&lt;li&gt;Name of icon for GUI - unknow&lt;/li&gt;
+&lt;li&gt;Show subtype on GUI palette (unchecked)&lt;/li&gt;
+&lt;li&gt;Configuration disk type - disk&lt;/li&gt;
+&lt;li&gt;ISO 9660 level in cdrom disk - 2&lt;/li&gt;
+&lt;li&gt;Virtual interface model - virtio&lt;/li&gt;
+&lt;li&gt;Main disk bus model - ide&lt;/li&gt;
+&lt;li&gt;RAM (MB) allocter per node - 512&lt;/li&gt;
+&lt;li&gt;Number of CPUs allocated per node - 1&lt;/li&gt;
+&lt;li&gt;Name of default image - Windows-XPSP3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Create the subtype. Once the subtype is created go to Node Resources-&amp;gt;Images-&amp;gt;Add:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find and select the Windows Subtype&lt;/li&gt;
+&lt;li&gt;Release - 5.1 (I just picked the Windows NT version)&lt;/li&gt;
+&lt;li&gt;Source - File on server&lt;/li&gt;
+&lt;li&gt;Image path - /home/virl/VMs/&lt;em&gt;image of xp clone&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Create the image. Once the image has been created you now have imported Windows XP within VIRL and should be able to launch it within VM Maestro. You can take similar steps and import additional VMs like Juniper, Palo Alto, and Fortinet are just some examples more information how to import those and other are on &lt;a href=&#34;https://learningnetwork.cisco.com/docs/DOC-30476&#34;&gt;3rd Party VMs in VIRL page&lt;/a&gt; on the Cisco Learning Network. I hope this information is helpful, Ryan.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/&#34; title=&#34;&#34;&gt;Configuring EIGRP – Named Mode – Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2017-05-25 06:31:29&#34;&gt;May 4, 2017&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[…] That’s all I got for now for a basic configuration of EIGRP name mode and I hope this helpful. If you are using Cisco VIRL you can find the project I was referencing using this link Github. There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs […]&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2017/04/19/asa-site-to-site-vpn-dhcp/&#34; title=&#34;&#34;&gt;ASA Site to Site VPN (DHCP) – Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2017-04-19 06:01:13&#34;&gt;Apr 3, 2017&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[…] There is a subtype that is added in this configuration which was the Windows XP image I was working with. You can find more information about import Windows VMs and other 3rd Party systems into VIRL by checking out a previous post: Cisco VIRL and Windows VMs […]&lt;/p&gt;
+&lt;hr /&gt;
+
         
       </description>
     </item>
@@ -1815,7 +1828,11 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/12/dont-get-stuck-with-speed-groups/</guid>
       <description>
         
-          &lt;p&gt;I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we where planning on connecting in additional equipment that only supported SFP+ interfaces. So the solution was to connect to this switch  with QSFP to SFP+ adapters. Thinking this would be a simple change because we are just plugging in additional adapters on the QSFP ports we planned our maintenance window and rollback plans but I wasn&#39;t expecting a rollback for this one :)   The interfaces were configured in a shutdown status before we plugged in the adapters and cables so didn&#39;t see anything out of the ordinary, when it was time to do the maintenance let&#39;s bring up the interfaces with the command of no shutdown and we should be up... Well not exactly, I first thought it was the other end so I checked that and its reporting the link is down but it was not in a shutdown status. Looking at the Nexus switch interface I see the words &amp;quot;check speed-group config&amp;quot; under the interface and its in a err-disable status and I&#39;ll be honest I haven&#39;t worked with interfaces that are speed-grouped together so I didn&#39;t know that it was even a thing. A quick search to see if I could &amp;quot;break&amp;quot; the speed-group and configure interfaces individually on their own speed turned up nothing. We ended up doing a rollback which looked pretty ridiculous because these where just interfaces we couldn&#39;t bring online. XD It become apparent that I was stuck because with the equipment we had I couldn&#39;t use that 40Gbps uplink, the hardware only supported one speed for all six ports, hence the name &amp;quot;speed-group&amp;quot;.  We would have to downgrade the link 10Gbps and then we would be able to connect in our additional gear. It&#39;s this kind of stuff where planning out for growth and understanding your hardware limits becomes very important, I didn&#39;t catch it because I have never heard of such thing and our VAR didn&#39;t catch it either. In this case we weren&#39;t maxing out that 40Gbps link and we could afford a downgrade in speed in the meantime. Others may not be so lucky and this could be a problem if you really needed that 40Gbps link or only had 40Gbps on your upstream switches. In the end don&#39;t get stuck with speed-groups! :)&lt;/p&gt;
+          &lt;p&gt;I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we where planning on connecting in additional equipment that only supported SFP+ interfaces. So the solution was to connect to this switch  with QSFP to SFP+ adapters.&lt;/p&gt;
+&lt;p&gt;Thinking this would be a simple change because we are just plugging in additional adapters on the QSFP ports we planned our maintenance window and rollback plans but I wasn&#39;t expecting a rollback for this one :)   The interfaces were configured in a shutdown status before we plugged in the adapters and cables so didn&#39;t see anything out of the ordinary, when it was time to do the maintenance let&#39;s bring up the interfaces with the command of no shutdown and we should be up...&lt;/p&gt;
+&lt;p&gt;Well not exactly, I first thought it was the other end so I checked that and its reporting the link is down but it was not in a shutdown status. Looking at the Nexus switch interface I see the words &amp;quot;check speed-group config&amp;quot; under the interface and its in a err-disable status and I&#39;ll be honest I haven&#39;t worked with interfaces that are speed-grouped together so I didn&#39;t know that it was even a thing. A quick search to see if I could &amp;quot;break&amp;quot; the speed-group and configure interfaces individually on their own speed turned up nothing.&lt;/p&gt;
+&lt;p&gt;We ended up doing a rollback which looked pretty ridiculous because these where just interfaces we couldn&#39;t bring online. It become apparent that I was stuck because with the equipment we had I couldn&#39;t use that 40Gbps uplink, the hardware only supported one speed for all six ports, hence the name &amp;quot;speed-group&amp;quot;. &lt;/p&gt;
+&lt;p&gt;We would have to downgrade the link 10Gbps and then we would be able to connect in our additional gear. It&#39;s this kind of stuff where planning out for growth and understanding your hardware limits becomes very important, I didn&#39;t catch it because I have never heard of such thing and our VAR didn&#39;t catch it either. In this case we weren&#39;t maxing out that 40Gbps link and we could afford a downgrade in speed in the meantime. Others may not be so lucky and this could be a problem if you really needed that 40Gbps link or only had 40Gbps on your upstream switches. In the end don&#39;t get stuck with speed-groups! :)&lt;/p&gt;
 
         
       </description>
@@ -1829,55 +1846,89 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/10/factory-reset-firepower-4100-9300/</guid>
       <description>
         
-          &lt;p&gt;I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy. (Edit: 7-21-17) After Gabriele made this &lt;a href=&#34;http://ciscoskills.net/2016/10/18/factory-reset-firepower-4100-9300/#comment-2869&#34;&gt;comment&lt;/a&gt; it looks like you can. You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:&lt;/p&gt;
+          &lt;p&gt;I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy.&lt;/p&gt;
+&lt;p&gt;(Edit: 7-21-17) After Gabriele made this comment - &amp;quot;connect local-mgmt&amp;quot; and then &amp;quot;erase configuration&amp;quot; it looks like you can. Thanks Gabriele&lt;/p&gt;
+&lt;p&gt;You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Power off the system, and then power it back on&lt;/li&gt;
 &lt;li&gt;While the system is booting, you have go into ROMMON mode to do that press ESC or CTRL+L. You&#39;ll see a message confirming that you are going to ROMMON&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;[code]!! Rommon image verified successfully !! Cisco System ROMMON, Version 1.0.10, RELEASE SOFTWARE Copyright (c) 1994-2015 by Cisco Systems, Inc. Compiled Mon 11/30/2015 15:23:18.60 by builder Current image running: Boot ROM0 Last reset cause: PowerCycleRequest DIMM Slot 0 : Present DIMM Slot 1 : Present No USB drive !! BIOS has been locked !! Platform FPR-4110-SUP with 8192 Mbytes of main memory[/code]&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Make note of the kickstart and FXOS system image as you need these names to be able to boot to the correct image. In this example under ROMMON the following appeared on-screen&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;[code]find the string ! boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA[/code]&lt;/p&gt;
-&lt;ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;!!  Rommon image verified successfully  !! 
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Cisco System ROMMON, Version 1.0.10, RELEASE SOFTWARE 
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Copyright (c) 1994-2015  by Cisco Systems, Inc. 
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Compiled Mon 11/30/2015 15:23:18.60 by builder 
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Current image running: Boot ROM0 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Last reset cause: PowerCycleRequest 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;DIMM Slot 0 : Present 
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;DIMM Slot 1 : Present 
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;No USB drive !! 
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;BIOS has been locked !! 
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;Platform FPR-4110-SUP with 8192 Mbytes of main memory
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Make note of the kickstart and FXOS system image as you need these names to be able to boot to the correct image. In this example under ROMMON the following appeared on-screen&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;Load the kickstart image&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;[code]rommon 1 &amp;gt; boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA !! Kickstart Image verified successfully !! [/code]&lt;/p&gt;
-&lt;ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;rommon 1 &amp;gt; boot bootflash:/installables/switch/fxos-k9-kickstart.5.0.3.N2.3.14.69.SPA 
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  !!   Kickstart Image verified successfully   !!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;When kickstart loads you&#39;ll be at the switch(boot)# prompt, enter configuration mode.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;[code]switch(boot)# switch(boot)# config t Enter configuration commands, one per line. End with CNTL/Z.[/code]&lt;/p&gt;
-&lt;ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(boot)#
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;switch(boot)# config t
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Enter configuration commands, one per line. End with CNTL/Z.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;Under the configuration mode, type admin-password erase, this will erase everything and bring the system back to factory defaults.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;[code]switch(boot)(config)# admin-password erase Your password and configuration will be erased! Do you want to continue? (y/n) [n] y switch(boot)(config)# exit[/code]&lt;/p&gt;
-&lt;ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(boot)(config)# admin-password erase
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Your password and configuration will be erased!
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Do you want to continue? (y/n)  [n] y
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;switch(boot)(config)# exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;Load the system image to startup the FXOS, once the image has been loaded you&#39;ll be prompted to enter the setup wizard.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;codeswitchboot-load-bootflashinstallablesswitchfxos-k9-system503n231469spa-uncompressing-system-image-bootflashinstallablesswitchfxos-k9-system503n231469spa-you-have-chosen-to-setup-a-new-security-appliance-continue-yncode-i-hope-this-information-is-helpful-the-information-i-was-referencing-is-located-here-password-recovery-procedure-for-firepower-93004100-series-applianceshttpwwwciscocomcenussupportdocssecurityfirepower-9300-security-appliance200491-password-recovery-procedure-for-firepowehtml&#34;&gt;[code]switch(boot)# load bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA Uncompressing system image: bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA You have chosen to setup a new Security Appliance. Continue? (y/n):[/code] I hope this information is helpful, the information I was referencing is located here: &lt;a href=&#34;http://www.cisco.com/c/en/us/support/docs/security/firepower-9300-security-appliance/200491-Password-Recovery-Procedure-For-FirePOWE.html&#34;&gt;Password Recovery Procedure For Firepower 9300/4100 Series Appliances&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;switch(boot)# load bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Uncompressing system image: bootflash:/installables/switch/fxos-k9-system.5.0.3.N2.3.14.69.SPA
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;You have chosen to setup a new Security Appliance. Continue? (y/n):
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I hope this information is helpful, the information I was referencing is located here: &lt;a href=&#34;http://www.cisco.com/c/en/us/support/docs/security/firepower-9300-security-appliance/200491-Password-Recovery-Procedure-For-FirePOWE.html&#34;&gt;Password Recovery Procedure For Firepower 9300/4100 Series Appliances&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;%22228496698@qq.com%22&#34;&gt;Jimmy&lt;/a&gt; - &lt;time datetime=&#34;2016-11-07 21:54:51&#34;&gt;Nov 1, 2016&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hi :Ryan ,I got several devices like ASA 5525x with firepower mode ,i want to reinstall the whole system from ASA(firepower software ) to firepower system complete(called FTD system) ,Do you have similar experence ? Also i purchase (Protection,Control,Malware,URL Filtering) licence ,i find the the firepower mode didnt filter locker virus (like CryptoLocker,CBT locker),Can you give me some suggestion ?&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2017-04-29 19:40:22&#34;&gt;Apr 6, 2017&lt;/time&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;lewiryan@isu.edu&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2017-04-29 19:40:22&#34;&gt;Apr 6, 2017&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hey Gabriele, Never tried that command, that&#39;s a lot easier than what I was doing :) Thanks. Ryan&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2016-11-09 21:24:39&#34;&gt;Nov 3, 2016&lt;/time&gt;
+&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;lewiryan@isu.edu&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2016-11-09 21:24:39&#34;&gt;Nov 3, 2016&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hey Jimmy, I have not had experience upgrading to the FTD image for the ASAs and from what I can tell you may have to upgrade/download several things. I found this on Cisco website which may be a good starting point: &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/security/firepower/quick&#34;&gt;http://www.cisco.com/c/en/us/td/docs/security/firepower/quick&lt;/a&gt;_start/reimage/asa-ftd-reimage.html I have worked with the Firepower 4100 units which give you the option to use either ASA or an FTD image. I have been playing around with the FTD image and the ASA SFR module, they are different you really don&#39;t manage the device directly, it all works through the Firepower Management Center. Its interesting you&#39;re not having any luck with the filtering make sure if you are using the ASA image that you set up a service policy under the global policy to inspect all traffic with the SFR module and its not in monitor mode. You will also need to setup policies and rules in the FMC to block this type of traffic. Hope that helps :) Ryan&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[anon]( &#34;aasdsadf@asdfasfafds.com&#34;) - &lt;time datetime=&#34;2017-07-19 20:56:08&#34;&gt;Jul 3, 2017&lt;/time&gt;
+&lt;h4 id=&#34;heading-3&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22aasdsadf@asdfasfafds.com%22&#34;&gt;anon&lt;/a&gt; - &lt;time datetime=&#34;2017-07-19 20:56:08&#34;&gt;Jul 3, 2017&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;You should update your post at the top with this advice. I almost took the long path as well. :)&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2017-07-21 18:51:16&#34;&gt;Jul 5, 2017&lt;/time&gt;
+&lt;h4 id=&#34;heading-4&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;lewiryan@isu.edu&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2017-07-21 18:51:16&#34;&gt;Jul 5, 2017&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Updated, thanks Anon :)&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Gabriele]( &#34;ferrarigabriele84@gmail.com&#34;) - &lt;time datetime=&#34;2017-04-26 09:08:26&#34;&gt;Apr 3, 2017&lt;/time&gt;
+&lt;h4 id=&#34;heading-5&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22ferrarigabriele84@gmail.com%22&#34;&gt;Gabriele&lt;/a&gt; - &lt;time datetime=&#34;2017-04-26 09:08:26&#34;&gt;Apr 3, 2017&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;You can try with the commands &amp;quot;connect local-mgmt&amp;quot; and then &amp;quot;erase configuration&amp;quot;. It should work&lt;/p&gt;
 &lt;hr /&gt;
 
