@@ -179,7 +179,7 @@
 <li><a href="http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/">The Middle of Layer Two Redundancy</a></li>
 <li><a href="https://ciscoskills.net/2011/09/14/the-%e2%80%9cending%e2%80%9d-of-layer-two-redundancy//">The “Ending” of Layer Two Redundancy</a></li>
 </ul>
-<p>So we should already know that by default spanning tree is enabled on all ports when the switch has blank config. There are of course tweaks we can do to adjust convergence times like using RSTP, if thirty seconds is too long, using portfast when there is not another switch downstream, lots of customization. Here is a simple topology, two switches two links, one of links will be blocked otherwise expect loops and network inconsistency.
+<p>So we should already know that by default spanning tree is enabled on all ports when the switch has blank config. There are of course tweaks we can do to adjust convergence times like using RSTP, if thirty seconds is too long, using portfast when there is not another switch downstream, lots of customization. Here is a simple topology, two switches two links, one of links will be blocked otherwise expect loops and network inconsistency. 
 <img src="/images/2018/12/simple-switch.png" alt=""></p>
 <p>Out of the box STP will protect you from loops, and a simple way to figure what type of spanning tree protocol is running as well as to figure out who is root you can use this command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>SW2#show spanning-tree 
