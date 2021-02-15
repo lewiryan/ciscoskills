@@ -8,10 +8,10 @@
     <lastBuildDate>Tue, 12 Apr 2016 12:55:00 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/rbac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RBAC Radius with Microsoft NPS 2012 R2</title>
-      <link>https://ciscoskills.net/2016/04/rbac-radius-with-microsoft-nps-2012-r2/</link>
+      <link>https://ciscoskills.net/2016/04/12/rbac-radius-with-microsoft-nps-2012-r2/</link>
       <pubDate>Tue, 12 Apr 2016 12:55:00 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2016/04/rbac-radius-with-microsoft-nps-2012-r2/</guid>
+      <guid>https://ciscoskills.net/2016/04/12/rbac-radius-with-microsoft-nps-2012-r2/</guid>
       <description>
         
           &lt;p&gt;In this configuration I&#39;m at looking at using Microsoft NPS 2012 R2 as radius server and I’m going to skip the installation of NPS because it really is just a next, next, finish installation. In this demo I already have this NPS system connected to a Windows domain, my goal is to create role based access on Cisco IOS routers while using radius to login. I’ll have a couple for active directory accounts each them will represent different types of allowed access to these IOS routers. One account will get full administrative access while the other will only get read access, how cool cat is that ;)&lt;/p&gt;

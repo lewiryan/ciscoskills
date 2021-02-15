@@ -8,10 +8,10 @@
     <lastBuildDate>Fri, 21 Jun 2019 18:05:55 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/graylog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Graylog with AWS Elasticsearch</title>
-      <link>https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/</link>
+      <link>https://ciscoskills.net/2019/06/21/graylog-with-aws-elasticsearch/</link>
       <pubDate>Fri, 21 Jun 2019 18:05:55 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/</guid>
+      <guid>https://ciscoskills.net/2019/06/21/graylog-with-aws-elasticsearch/</guid>
       <description>
         
           &lt;p&gt;Graylog has been through some changes last time I talked about them, hitting version 3.0 in February is awesome and one of things that make Graylog run well is Elasticsearch backend. Although Elasticsearch is not too hard to setup it usually runs better on bare metal, so there is cost of that as well as maintenance of the cluster is important, updates and upgrades. Depending your team experience you may not have time to learn it or run it the way it should be. That last thing you want is your logging setup to go down because of poor maintenance. So in this post we will walk though setting up a Graylog Server and using AWS Elasticsearch service for our backend. Without having a quick Elasticsearch cluster Graylog experience suffers, so let&#39;s get started.&lt;/p&gt;
@@ -43,10 +43,10 @@
     
     <item>
       <title>FMC Syslog with Graylog Extractor</title>
-      <link>https://ciscoskills.net/2019/02/fmc-syslog-with-graylog-extractor/</link>
+      <link>https://ciscoskills.net/2019/02/05/fmc-syslog-with-graylog-extractor/</link>
       <pubDate>Tue, 05 Feb 2019 17:15:07 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2019/02/fmc-syslog-with-graylog-extractor/</guid>
+      <guid>https://ciscoskills.net/2019/02/05/fmc-syslog-with-graylog-extractor/</guid>
       <description>
         
           &lt;p&gt;Let&#39;s continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I&#39;m using &lt;a href=&#34;https://www.graylog.org/&#34;&gt;Graylog&lt;/a&gt; which is an open source logging platform and  although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field. We&#39;ll configure the FMC to send syslogs and then configure an extractor on Graylog.&lt;/p&gt;
@@ -116,10 +116,10 @@
     
     <item>
       <title>Installing Graylog on Centos 7</title>
-      <link>https://ciscoskills.net/2016/01/installing-graylog-on-centos-7/</link>
+      <link>https://ciscoskills.net/2016/01/01/installing-graylog-on-centos-7/</link>
       <pubDate>Fri, 01 Jan 2016 07:01:00 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2016/01/installing-graylog-on-centos-7/</guid>
+      <guid>https://ciscoskills.net/2016/01/01/installing-graylog-on-centos-7/</guid>
       <description>
         
           &lt;p&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/12/graylog-logo.png?w=150&#34; alt=&#34;Graylog-logo&#34;&gt;Let&#39;s start out 2016 with setting up a logging system called Graylog. If you have not used Graylog before then I encourage you to check it out. This is an open source log management system and is pretty flexible as it can capture, index and analyze almost anything. Once up and running this system can be scaled out for an enterprise wide log management system. High availability, clustered, and replicated is what Graylog thrives on. In this demo I am going to have two systems. One is the Graylog server, web server and will also have a Mongo database. The other system will be an Elasticsearch node which is what will have the actual data stored in and indexed. For bigger “production” ready setups you just scale this out to separate systems. Documentation is key here and Graylog has done an excellent job of it so here it is in case you need it: &lt;a href=&#34;http://docs.graylog.org/en/1.3/index.html&#34;&gt;http://docs.graylog.org/en/1.3/index.html&lt;/a&gt; I’m already assuming that you have CentOS 7 minimal installed if not you can pick up the latest CentOS at &lt;a href=&#34;http://www.centos.org/&#34;&gt;http://www.centos.org/&lt;/a&gt; .The Centos systems also need a connection to the internet, and have just the root account. I&#39;m using two systems for this tutorial so keep that in mind, here are the names of each system and what their role is:&lt;/p&gt;

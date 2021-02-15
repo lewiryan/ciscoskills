@@ -8,10 +8,10 @@
     <lastBuildDate>Tue, 29 Mar 2011 15:15:39 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/rsa/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuring SSH</title>
-      <link>https://ciscoskills.net/2011/03/configuring-ssh/</link>
+      <link>https://ciscoskills.net/2011/03/29/configuring-ssh/</link>
       <pubDate>Tue, 29 Mar 2011 15:15:39 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/03/configuring-ssh/</guid>
+      <guid>https://ciscoskills.net/2011/03/29/configuring-ssh/</guid>
       <description>
         
           &lt;p&gt;Today this tutorial is going be talking about how to configure SSH on a &lt;a href=&#34;http://www.cisco.com/&#34; title=&#34;Cisco&#34;&gt;Cisco&lt;/a&gt; router or switch. SSH or &lt;a href=&#34;http://en.wikipedia.org/wiki/Secure_Shell&#34; title=&#34;Secure Shell&#34;&gt;Secure Shell&lt;/a&gt; encrypts the data that is sent from the terminal application to the device. Making if far more safer when it is compared to telnet which sends the data in plain text. To add support for SSH to a Cisco router or switch, the device needs some added information then just &lt;a href=&#34;http://en.wikipedia.org/wiki/Password&#34; title=&#34;Password&#34;&gt;passwords&lt;/a&gt;. The device will need a username and password, this can be configured on a &lt;a href=&#34;http://en.wikipedia.org/wiki/RADIUS&#34; title=&#34;RADIUS&#34;&gt;AAA server&lt;/a&gt; (Authentication Authorization and Accounting) or on the device locally this tutorial will focus on locally configured &lt;a href=&#34;http://en.wikipedia.org/wiki/User_%28computing%29&#34; title=&#34;User (computing)&#34;&gt;usernames&lt;/a&gt; and passwords. To set up SSH you need to configure that following information for the purpose of this tutorial the username will be &lt;em&gt;ciscoskills&lt;/em&gt; and the password will be &lt;em&gt;cisco&lt;/em&gt;.&lt;/p&gt;

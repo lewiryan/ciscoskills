@@ -8,10 +8,10 @@
     <lastBuildDate>Fri, 19 Jul 2013 01:51:13 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/wide-area-network/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Is Your Network Healthy?</title>
-      <link>https://ciscoskills.net/2013/07/is-your-network-healthy/</link>
+      <link>https://ciscoskills.net/2013/07/19/is-your-network-healthy/</link>
       <pubDate>Fri, 19 Jul 2013 01:51:13 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2013/07/is-your-network-healthy/</guid>
+      <guid>https://ciscoskills.net/2013/07/19/is-your-network-healthy/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/07/heart-healthy-net.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/07/heart-healthy-net.png&#34; alt=&#34;heart-healthy-net&#34;&gt;&lt;/a&gt;Networks are becoming more &amp;quot;borderless&amp;quot; as &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; likes to call it and it&#39;s definitely true. Having the ability to get access to resources remotely without having to be at our office physically is a nice touch, you may even notice higher productivity and who doesn&#39;t want that! Networks have to be in a healthy state in order for people remotely and people at the office to get their work done. An unhealthy network at a business usually loses productivity and customers which in the end comes down to money. How do you know if your network is reaching its capacity along with the general health state of it? Let&#39;s look at some commands and general best practices! Your checklist to a healthy network is:&lt;/p&gt;
@@ -43,10 +43,10 @@
     
     <item>
       <title>Types of WAN Links</title>
-      <link>https://ciscoskills.net/2011/10/types-of-wan-links/</link>
+      <link>https://ciscoskills.net/2011/10/19/types-of-wan-links/</link>
       <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/10/types-of-wan-links/</guid>
+      <guid>https://ciscoskills.net/2011/10/19/types-of-wan-links/</guid>
       <description>
         
           &lt;p&gt;I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization. If we have an office in &lt;a href=&#34;http://en.wikipedia.org/wiki/New_York&#34; title=&#34;New York&#34;&gt;New York&lt;/a&gt; and another office in &lt;a href=&#34;http://en.wikipedia.org/wiki/Wyoming&#34; title=&#34;Wyoming&#34;&gt;Wyoming&lt;/a&gt;  we need these offices to be connected to each other so that they seem to be on the same network even though they are miles away these types of WAN connections and protocols  would do it.&lt;/p&gt;

@@ -8,10 +8,10 @@
     <lastBuildDate>Sat, 11 Feb 2012 22:45:50 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/dynamic-auto/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Trunking Administrative Modes</title>
-      <link>https://ciscoskills.net/2012/02/trunking-administrative-modes/</link>
+      <link>https://ciscoskills.net/2012/02/11/trunking-administrative-modes/</link>
       <pubDate>Sat, 11 Feb 2012 22:45:50 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/02/trunking-administrative-modes/</guid>
+      <guid>https://ciscoskills.net/2012/02/11/trunking-administrative-modes/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/02/cisco-switch.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/02/cisco-switch.jpg&#34; alt=&#34;&#34; title=&#34;cisco-switch-blade&#34;&gt;&lt;/a&gt;When looking at the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; it is good idea to get a hold of trunking between switches along with that there are a couple of administrative modes that each physical &lt;a href=&#34;http://en.wikipedia.org/wiki/Interface_%28computing%29&#34; title=&#34;Interface (computing)&#34;&gt;interface&lt;/a&gt; on &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_switch&#34; title=&#34;Network switch&#34;&gt;switch&lt;/a&gt; can be when you are trunking between them. Remember that when we are trunking it usually carries all &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; (This can be changed) but there are different ways to make trunking between links happen. When you are in an interface on a Cisco switch you can change the operational mode of that interface by issuing the switchport mode command. There are four commands that can be issued: [code]Switch(config-if)#switchport mode ? access Set trunking mode to ACCESS unconditionally dynamic Set trunking mode to dynamically negotiate access or trunk mode trunk Set trunking mode to TRUNK unconditionally[/code]&lt;/p&gt;

@@ -8,10 +8,10 @@
     <lastBuildDate>Fri, 14 Dec 2018 15:35:05 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Barracuda Load Balancer- Powershell</title>
-      <link>https://ciscoskills.net/2018/12/barracuda-load-balancer-powershell/</link>
+      <link>https://ciscoskills.net/2018/12/14/barracuda-load-balancer-powershell/</link>
       <pubDate>Fri, 14 Dec 2018 15:35:05 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/12/barracuda-load-balancer-powershell/</guid>
+      <guid>https://ciscoskills.net/2018/12/14/barracuda-load-balancer-powershell/</guid>
       <description>
         
           &lt;p&gt;Working on my Powershell skills, I was playing around with a Barracuda Load Balancer and noticed it supported some APIs which is kind of cool. At first I was playing around with it in postman and got to login and put some servers in maintenance mode, but then thought it would be really neat if I could get this working in Powershell, that way us humans can just run a script and even thinking in the &amp;quot;future&amp;quot; maybe have some automated process (a.k.a AI) handle this for us. ;) So in this post I&#39;ll talk about the script I created and some of the small challenges I had with this overall it was kind of neat putting this together. TLDR: Here is the script if you don&#39;t want to read:&lt;/p&gt;
@@ -90,10 +90,10 @@
     
     <item>
       <title>Enable a RESTful ASA API</title>
-      <link>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</link>
+      <link>https://ciscoskills.net/2018/10/08/enable-a-restful-asa-api/</link>
       <pubDate>Mon, 08 Oct 2018 13:00:21 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</guid>
+      <guid>https://ciscoskills.net/2018/10/08/enable-a-restful-asa-api/</guid>
       <description>
         
           &lt;p&gt;Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he &lt;a href=&#34;https://blog.ipspace.net/2018/09/infrastructure-as-code-netconf-and-rest.html&#34;&gt;points out&lt;/a&gt; there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC. In this post we&#39;ll go through the steps to enable it and you can be the judge, does this RESTful API help?&lt;/p&gt;
@@ -127,10 +127,10 @@
     
     <item>
       <title>Enable the NX-OS API</title>
-      <link>https://ciscoskills.net/2017/10/enable-the-nx-os-api/</link>
+      <link>https://ciscoskills.net/2017/10/18/enable-the-nx-os-api/</link>
       <pubDate>Wed, 18 Oct 2017 13:18:42 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/10/enable-the-nx-os-api/</guid>
+      <guid>https://ciscoskills.net/2017/10/18/enable-the-nx-os-api/</guid>
       <description>
         
           &lt;p&gt;So what has changed in the past 20 years? Take for example the network equipment that was manufactured in 1997, how did you configure that equipment? I would imagine it involved a serial port, HyperTerminal and trusty command line. Was API even a thing back in 1997, was it common to have an API interface in network equipment like today? Why do we even need an API on the equipment in the first place? What changed?  Well the year isn&#39;t 1997 anymore, that past us 20 years ago and the equipment we work with today looks and operates much differently than it did in 1997.&lt;/p&gt;

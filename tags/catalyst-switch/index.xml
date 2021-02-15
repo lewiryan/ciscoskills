@@ -8,10 +8,10 @@
     <lastBuildDate>Wed, 30 Nov 2011 17:33:03 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/catalyst-switch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Color Code Your Routers</title>
-      <link>https://ciscoskills.net/2011/11/color-code-your-routers/</link>
+      <link>https://ciscoskills.net/2011/11/30/color-code-your-routers/</link>
       <pubDate>Wed, 30 Nov 2011 17:33:03 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/11/color-code-your-routers/</guid>
+      <guid>https://ciscoskills.net/2011/11/30/color-code-your-routers/</guid>
       <description>
         
           &lt;p&gt;I came across an interesting idea, what if you could color code your devices in command line? So such as if you were operating routers at a core level you could color code the &lt;a href=&#34;http://en.wikipedia.org/wiki/Command-line_interface&#34; title=&#34;Command-line interface&#34;&gt;CLI&lt;/a&gt; to the color red, and the branch routers green and etc. I wasn&#39;t sure if this would possible but doing some searching through the internet I found a guy Ivan Pepelnjak who wrote how to do this  a couple years ago and wrote a couple books as well, check out his blog/website at &lt;a href=&#34;http://www.ipspace.net&#34;&gt;http://www.ipspace.net&lt;/a&gt; there is tons of helpful information along with his original guide &lt;a href=&#34;http://blog.ioshints.info/2007/05/change-telnet-font-color-from-cisco.html&#34; title=&#34;Change the Telnet font color from a Cisco router&#34;&gt;here&lt;/a&gt;.  Being able to color the text output when connecting to a device, and having each different color have a different meaning to it makes it easier to understand which devices are part of the critical network. So now core devices can have a red text to them , branch devices can have a green color and redundant devices blue etc. This makes it easier to know what you are connecting to and anybody else that is authorized to do so. To make this process happen there has to be escape sequences somewhere in the router to change the color of the text. There is not a command on the router itself to change the color the text, so how would you change the color? What Ivan pointed out was the MOTD banner (Message-of-the-day) therefore when you connect to the device either with console, telnet, or &lt;a href=&#34;http://en.wikipedia.org/wiki/Secure_Shell&#34; title=&#34;Secure Shell&#34;&gt;SSH&lt;/a&gt; the color of the text will change to the color you specified right when you log into the device. To change the color of the CLI text output in a router go into &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt; and type banner motd and then your delimiting character. (For this example I used &amp;quot;*&amp;quot;) [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#banner motd *[/code] The next step is to press CTRL+V, release then the &lt;a href=&#34;http://en.wikipedia.org/wiki/Esc_key&#34; title=&#34;Esc key&#34;&gt;ESC key&lt;/a&gt;. This is the &lt;a href=&#34;http://en.wikipedia.org/wiki/Escape_sequence&#34; title=&#34;Escape sequence&#34;&gt;escape sequence&lt;/a&gt; and looks like this in CLI &lt;strong&gt;^[&lt;/strong&gt; . The next setup is to add another &lt;a href=&#34;http://en.wikipedia.org/wiki/Bracket&#34; title=&#34;Bracket&#34;&gt;left bracket&lt;/a&gt; &lt;strong&gt;[&lt;/strong&gt; then the number 3 followed by the number that represents the color:&lt;/p&gt;
@@ -57,10 +57,10 @@
     
     <item>
       <title>The Beginnings of Layer Two Redundancy</title>
-      <link>https://ciscoskills.net/2011/08/the-beginnings-of-layer-two-redundancy/</link>
+      <link>https://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/</link>
       <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/08/the-beginnings-of-layer-two-redundancy/</guid>
+      <guid>https://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34; alt=&#34;&#34; title=&#34;network-diagram&#34;&gt;&lt;/a&gt;In a perfect world we would never need redundancy on a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network&lt;/a&gt; infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network. But in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt; there is one layer that can&#39;t have redundancy at least logically and that is &lt;a href=&#34;http://en.wikipedia.org/wiki/Abstraction_layer&#34; title=&#34;Abstraction layer&#34;&gt;Layer&lt;/a&gt; two of the OSI model. If you follow this blog way back when I talked about the OSI model, layer two belongs to the switches and by design the ethernet frame does not support a TTL (&lt;a href=&#34;http://en.wikipedia.org/wiki/Time_to_live&#34; title=&#34;Time to live&#34;&gt;Time-To-Live&lt;/a&gt;) like the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP packet&lt;/a&gt;. So bring forth STP, the &lt;a href=&#34;http://en.wikipedia.org/wiki/Spanning_Tree_Protocol&#34; title=&#34;Spanning Tree Protocol&#34;&gt;Spanning Tree Protocol&lt;/a&gt; which works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until active link is unavailable (shutdown, disabled, etc.) So although there are multiple links connected physically to offer redundancy, logically the switches in the network only see one path that ethernet frame can travel. &lt;strong&gt;Your Thought:&lt;/strong&gt;&lt;/p&gt;
@@ -88,10 +88,10 @@
     
     <item>
       <title>Creating VLANs</title>
-      <link>https://ciscoskills.net/2011/04/creating-vlans/</link>
+      <link>https://ciscoskills.net/2011/04/01/creating-vlans/</link>
       <pubDate>Fri, 01 Apr 2011 17:00:08 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/04/creating-vlans/</guid>
+      <guid>https://ciscoskills.net/2011/04/01/creating-vlans/</guid>
       <description>
         
           &lt;p&gt;Today this tutorial is going to be talking about creating VLANs (Virtual &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;Local Area Networks&lt;/a&gt;) with a Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Catalyst_switch&#34; title=&#34;Catalyst switch&#34;&gt;Catalyst switch&lt;/a&gt;. By creating a VLAN you are separating the network, why would you do this? There are some several reasons, like separating your production network from a guest network, and separating a test environment from a production network. This all adds security to your network. You can separate core critical network components from the rest of the production network for added security, easier troubleshooting along with separating or segmenting your network. This is breaking up the broadcast domains into smaller chucks, which will improve your &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_performance&#34; title=&#34;Network performance&#34;&gt;network performance&lt;/a&gt;. Let&#39;s get started! By default if no configuration is applied to a switch, you just turned it on and plugged in networking devices, all of them are in a VLAN already, called VLAN 1. This is great if you know nothing about switch configuration and want something that works out of the box. But this also provides a security risk and if enough devices are connected this will slow down your network performance. VLANs separate the network so in order for &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; to communicate a layer three device (router) is needed in order for VLAN communication. When you dive into VLANs there is a lot of information! For this tutorial we are just going to be creating a VLAN and that&#39;s it. So let&#39;s create a VLAN on a single switch.&lt;/p&gt;
@@ -112,10 +112,10 @@
     
     <item>
       <title>Configuring Port Security</title>
-      <link>https://ciscoskills.net/2011/03/configuring-port-security/</link>
+      <link>https://ciscoskills.net/2011/03/31/configuring-port-security/</link>
       <pubDate>Thu, 31 Mar 2011 16:00:31 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2011/03/configuring-port-security/</guid>
+      <guid>https://ciscoskills.net/2011/03/31/configuring-port-security/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/03/lock.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/lock.png&#34; alt=&#34;&#34; title=&#34;Secure&#34;&gt;&lt;/a&gt;Today this tutorial is going to be talking about how to configure &lt;a href=&#34;http://en.wikipedia.org/wiki/Port_security&#34; title=&#34;Port security&#34;&gt;port security&lt;/a&gt; on a Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Catalyst_switch&#34; title=&#34;Catalyst switch&#34;&gt;Catalyst switch&lt;/a&gt;. Port security is one of the first things you can do to keep your network secure from unauthorized access. Port security can restrict devices so only devices you allow are granted access to network resources. If and when an unauthorized device is connected to a port you can decide what you want the switch to do. Let&#39;s get started!  There are three different settings you can configure with port security:&lt;/p&gt;

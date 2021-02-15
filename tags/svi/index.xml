@@ -8,10 +8,10 @@
     <lastBuildDate>Tue, 14 May 2019 19:00:40 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/svi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SVIs and &#34;Routed&#34; Ports</title>
-      <link>https://ciscoskills.net/2019/05/svis-and-routed-ports/</link>
+      <link>https://ciscoskills.net/2019/05/14/svis-and-routed-ports/</link>
       <pubDate>Tue, 14 May 2019 19:00:40 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2019/05/svis-and-routed-ports/</guid>
+      <guid>https://ciscoskills.net/2019/05/14/svis-and-routed-ports/</guid>
       <description>
         
           &lt;p&gt;So you have a this nice multiplayer switch, and want to take advantages of all of the features it has to offer. Well there are two different types interface ports on these type of switches. SVIs (Switched Virtual Interface) and &amp;quot;routed&amp;quot; ports, fundamentally they are same and clients/users wouldn&#39;t be able to tell if you were using/going through an SVI or a &amp;quot;routed&amp;quot; port. However they are different and in this post we&#39;ll talk about these two and when and were it would be recommended to place an SVI or a routed port.&lt;/p&gt;

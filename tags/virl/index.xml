@@ -8,10 +8,10 @@
     <lastBuildDate>Wed, 14 Jun 2017 13:05:11 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/virl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cisco FTDv in Cisco VIRL</title>
-      <link>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</link>
+      <link>https://ciscoskills.net/2017/06/14/cisco-ftdv-in-cisco-virl/</link>
       <pubDate>Wed, 14 Jun 2017 13:05:11 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</guid>
+      <guid>https://ciscoskills.net/2017/06/14/cisco-ftdv-in-cisco-virl/</guid>
       <description>
         
           &lt;p&gt;Cisco is actively pushing their Firepower Threat Defense software with the new Firepower 2100 units on their way this summer in effort to eventually replace the ASA5525-X, ASA5545-X and ASA5555-X platforms. When using FTD you must also have the Firepower Management Center (FMC) available to manage and configure these devices. This gets difficult especially if you want to test things out because not everyone has Cisco Firepower lying around unused. How are you supposed to test and learn the depths of this product? &lt;em&gt;(Hint: Cisco VIRL)&lt;/em&gt;&lt;/p&gt;
@@ -171,10 +171,10 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
     
     <item>
       <title>Cisco VIRL and Windows VMs</title>
-      <link>https://ciscoskills.net/2017/01/cisco-virl-and-windows-vms/</link>
+      <link>https://ciscoskills.net/2017/01/08/cisco-virl-and-windows-vms/</link>
       <pubDate>Sun, 08 Jan 2017 01:53:55 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/01/cisco-virl-and-windows-vms/</guid>
+      <guid>https://ciscoskills.net/2017/01/08/cisco-virl-and-windows-vms/</guid>
       <description>
         
           &lt;p&gt;One of the neat features of Cisco VIRL is it runs on an open platform, with OpenStack as the orchestration program running on top of an Ubuntu operating system. This gives VIRL additional flexibly by being able to run third-party VMs with KVM begin the hypervisor. In this guide I’ll walk through some of the steps I took to get Windows XP up and running in VIRL. :) If you have a more recent version of Windows that&#39;s in the current decade following this guide is pretty much the same just adjust the disk space and RAM to fit the requirements. I picked Windows XP is because its light weight, and with an average RAM usage under 100MB it makes easy to add multiple instances if you needed all without wasting too much resources on VIRL host. To get started:&lt;/p&gt;
@@ -245,10 +245,10 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
     
     <item>
       <title>Cisco VIRL – Update</title>
-      <link>https://ciscoskills.net/2015/11/cisco-virl-update/</link>
+      <link>https://ciscoskills.net/2015/11/18/cisco-virl-update/</link>
       <pubDate>Wed, 18 Nov 2015 13:15:24 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2015/11/cisco-virl-update/</guid>
+      <guid>https://ciscoskills.net/2015/11/18/cisco-virl-update/</guid>
       <description>
         
           &lt;p&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/11/virl-logo-e.png&#34; alt=&#34;VIRL-logo-e&#34;&gt;Cisco released VIRL almost a year ago and it’s not at the 1.0 version yet but it’s getting close as they have done some good work towards the product since it first lunched. Cisco VIRL is like GNS3 which is simulation platform that runs Cisco’s current operating systems so instead of buying used Cisco hardware you can run this program on your computer. This software is geared towards proof-of-concept designs, for personal and training on Cisco Certifications. Let’s talk about it!    Here are the links: &lt;a href=&#34;http://virl.cisco.com/&#34;&gt;http://virl.cisco.com/&lt;/a&gt; - Main Website &lt;a href=&#34;http://community.dev-innovate.com/c/virl&#34;&gt;http://community.dev-innovate.com/c/virl&lt;/a&gt; - Community Form &lt;a href=&#34;http://virl-dev-innovate.cisco.com/&#34;&gt;http://virl-dev-innovate.cisco.com/&lt;/a&gt; - Documentation So in my opinion Cisco has done a good job if you decided purchase this product at documentation, product upgrades, and new features. You need to look at the requirements before you buy as this is not your grandma’s packet tracer program. This can be a little overwhelming when you first get it but you’ll get used it when you use it more and as a bonus you get familiar with Ubuntu and Linux commands if you don’t have that under your hat already. :)  &lt;strong&gt;How Does it work?&lt;/strong&gt; The VIRL system can run on a hypervisor like VMware Workstation/Fusion/Player or bare-metal if you have it available. You would download a OVA template if you are using VMware product line, if you go bare-metal you’ll use an ISO format. The system is Ubuntu 14.04 LTS as of right now and uses some open source products like KVM/QEMU which is another hypervisor under Ubuntu. This hypervisor is able run IOS XRv, NX-OSv, CSR100v, IOSv, ASAv and even 3rd party VMs like Windows, Ubuntu, Tinycore! VIRL is also using Openstack and AutoNetKit. Openstack helps to create, link and delete compute and network resources with APIs and AutoNetKit is used to help build initial configurations on devices so you don’t have to do it manually. In the end there is some very cool open source projects in this VIRL system and it’s kind of weird because I’m actually getting more familiar with these open source projects because of this VIRL software and might have to look at them separately. This product is a subscription based product and cost $200 a year and can handle 20 Cisco nodes at once. (Used to be 15 nodes but they bumped that up to 20) Cisco also offers some other pricing models if you want 30 nodes or if you affiliated with an academic institution. You can find all that out on the main VIRL page. So in my experience with this product so far I have found it very easy to use once you get everything worked out. It really is amazing to continue where I left off on network topology or if I’m just playing around with OSPF on a Friday night, who doesn’t right? :)&lt;/p&gt;
@@ -259,10 +259,10 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
     
     <item>
       <title>Cisco VIRL is out ... for a price</title>
-      <link>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</link>
+      <link>https://ciscoskills.net/2014/12/05/cisco-virl-is-out-...-for-a-price/</link>
       <pubDate>Fri, 05 Dec 2014 03:45:43 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/12/cisco-virl-is-out-...-for-a-price/</guid>
+      <guid>https://ciscoskills.net/2014/12/05/cisco-virl-is-out-...-for-a-price/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/12/virl-logo.png&#34; alt=&#34;virl-logo&#34;&gt;&lt;/a&gt;Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)&lt;/p&gt;
@@ -279,10 +279,10 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
     
     <item>
       <title>Cisco Modeling Labs … Waiting</title>
-      <link>https://ciscoskills.net/2014/06/cisco-modeling-labs-waiting/</link>
+      <link>https://ciscoskills.net/2014/06/28/cisco-modeling-labs-waiting/</link>
       <pubDate>Sat, 28 Jun 2014 20:49:34 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/06/cisco-modeling-labs-waiting/</guid>
+      <guid>https://ciscoskills.net/2014/06/28/cisco-modeling-labs-waiting/</guid>
       <description>
         
           &lt;p&gt;Just waiting for CML, (Cisco Modeling Labs) it’s been little over a month since going to Cisco Live in San Francisco and with all the information of next-generation hardware and security with Source Fire I was pretty beat with a lot of note taking and PowerPoint slides. However the last session on the last day of the Cisco Live talked about Cisco’s Modeling Lab program. I also tried it out in the Cisco DevNet area earlier in the week during Cisco Live and I was impressed with the product. When does CML release? Well during the session it was said to wait for about 60 days, which would put this release towards the end of July/August time frame hopefully. ;)&lt;/p&gt;

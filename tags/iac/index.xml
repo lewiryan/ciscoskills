@@ -8,10 +8,10 @@
     <lastBuildDate>Mon, 08 Oct 2018 13:00:21 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/iac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Enable a RESTful ASA API</title>
-      <link>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</link>
+      <link>https://ciscoskills.net/2018/10/08/enable-a-restful-asa-api/</link>
       <pubDate>Mon, 08 Oct 2018 13:00:21 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</guid>
+      <guid>https://ciscoskills.net/2018/10/08/enable-a-restful-asa-api/</guid>
       <description>
         
           &lt;p&gt;Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he &lt;a href=&#34;https://blog.ipspace.net/2018/09/infrastructure-as-code-netconf-and-rest.html&#34;&gt;points out&lt;/a&gt; there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC. In this post we&#39;ll go through the steps to enable it and you can be the judge, does this RESTful API help?&lt;/p&gt;

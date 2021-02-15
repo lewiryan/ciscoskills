@@ -8,10 +8,10 @@
     <lastBuildDate>Sat, 16 Jul 2016 20:16:39 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/emulator/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cisco UCS Emulator 3.1(1ePE1)</title>
-      <link>https://ciscoskills.net/2016/07/cisco-ucs-emulator-3.11epe1/</link>
+      <link>https://ciscoskills.net/2016/07/16/cisco-ucs-emulator-3.11epe1/</link>
       <pubDate>Sat, 16 Jul 2016 20:16:39 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2016/07/cisco-ucs-emulator-3.11epe1/</guid>
+      <guid>https://ciscoskills.net/2016/07/16/cisco-ucs-emulator-3.11epe1/</guid>
       <description>
         
           &lt;p&gt;If you are studying any Cisco Data Center certs this tool might come in handy for some hands on learning. The Cisco UCS emulator is a VM you can spin up in VMware Workstation,Fusion or in ESXi. This emulator can be helpful in understanding the UCS platform and UCS manager. You are able to push policies and alter configurations and even import/export these configurations into and out of the &amp;quot;real&amp;quot; world to apply them/test them.&lt;/p&gt;

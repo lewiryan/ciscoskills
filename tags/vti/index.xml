@@ -8,10 +8,10 @@
     <lastBuildDate>Sat, 08 Aug 2020 15:41:06 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/vti/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VTIs with ASA</title>
-      <link>https://ciscoskills.net/2020/08/vtis-with-asa/</link>
+      <link>https://ciscoskills.net/2020/08/08/vtis-with-asa/</link>
       <pubDate>Sat, 08 Aug 2020 15:41:06 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2020/08/vtis-with-asa/</guid>
+      <guid>https://ciscoskills.net/2020/08/08/vtis-with-asa/</guid>
       <description>
         
           &lt;p&gt;I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago! We only got introduced into this technology with ASA when version 9.7 (2017) and above arrived....&lt;/p&gt;

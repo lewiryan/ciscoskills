@@ -8,10 +8,10 @@
     <lastBuildDate>Thu, 23 Aug 2012 01:03:46 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/isatap/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Why IPv6?</title>
-      <link>https://ciscoskills.net/2012/08/why-ipv6/</link>
+      <link>https://ciscoskills.net/2012/08/23/why-ipv6/</link>
       <pubDate>Thu, 23 Aug 2012 01:03:46 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/08/why-ipv6/</guid>
+      <guid>https://ciscoskills.net/2012/08/23/why-ipv6/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-i-love.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-i-love.png&#34; alt=&#34;&#34; title=&#34;I-Love-IPv6&#34;&gt;&lt;/a&gt;Although this protocol has been around since 1996 it has been anticipated that IPv4 would one day be exhausted. In February 2011 the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; title=&#34;Internet Assigned Numbers Authority&#34;&gt;Internet Assigned Numbers Authority&lt;/a&gt; (IANA) assigned the last /8 address blocks to the &lt;a href=&#34;http://en.wikipedia.org/wiki/Regional_Internet_registry&#34; title=&#34;Regional Internet registry&#34;&gt;Regional Internet Registries&lt;/a&gt; so time is getting close but you have heard this warning before right? Let&#39;s go over IPv6 at least just an overview some the features and changes compared to IPv4 because one day it will happen it&#39;s just a matter of when. :) So the first thing to understand about IPv6 is that it&#39;s a 128-bit binary value, which is displayed as 32 hexadecimal digits. What does this mean in the size or scope of the addresses?&lt;/p&gt;

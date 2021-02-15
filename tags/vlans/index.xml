@@ -8,10 +8,10 @@
     <lastBuildDate>Mon, 16 Apr 2018 13:30:10 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/vlans/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wireless VLANs</title>
-      <link>https://ciscoskills.net/2018/04/wireless-vlans/</link>
+      <link>https://ciscoskills.net/2018/04/16/wireless-vlans/</link>
       <pubDate>Mon, 16 Apr 2018 13:30:10 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/04/wireless-vlans/</guid>
+      <guid>https://ciscoskills.net/2018/04/16/wireless-vlans/</guid>
       <description>
         
           &lt;p&gt;It’s been fun four months of 2018 so far and I’m back to talk about Wireless VLANs. With 802.11ax around the corner (2019) I think we all can agree that “weird” connections although less likely have interference isn’t as mobile as a wireless LAN. Also, with 802.11ax the maximum theoretical throughput is 10Gbps! We’re going to need some serious backend infrastructure available to be able to support that type of bandwidth. So, let’s look at configuring a wireless VLANs for our mobile users!&lt;/p&gt;

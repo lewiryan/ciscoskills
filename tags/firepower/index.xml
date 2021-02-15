@@ -8,10 +8,10 @@
     <lastBuildDate>Fri, 07 Sep 2018 14:00:47 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/firepower/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Verifying DNS Lists - FMC</title>
-      <link>https://ciscoskills.net/2018/09/verifying-dns-lists-fmc/</link>
+      <link>https://ciscoskills.net/2018/09/07/verifying-dns-lists-fmc/</link>
       <pubDate>Fri, 07 Sep 2018 14:00:47 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/09/verifying-dns-lists-fmc/</guid>
+      <guid>https://ciscoskills.net/2018/09/07/verifying-dns-lists-fmc/</guid>
       <description>
         
           &lt;p&gt;We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.&lt;/p&gt;
@@ -58,10 +58,10 @@
     
     <item>
       <title>Cisco FTD Standalone</title>
-      <link>https://ciscoskills.net/2018/07/cisco-ftd-standalone/</link>
+      <link>https://ciscoskills.net/2018/07/18/cisco-ftd-standalone/</link>
       <pubDate>Wed, 18 Jul 2018 13:30:00 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2018/07/cisco-ftd-standalone/</guid>
+      <guid>https://ciscoskills.net/2018/07/18/cisco-ftd-standalone/</guid>
       <description>
         
           &lt;p&gt;No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!&lt;/p&gt;
@@ -103,10 +103,10 @@
     
     <item>
       <title>Factory Reset Firepower 2100</title>
-      <link>https://ciscoskills.net/2017/12/factory-reset-firepower-2100/</link>
+      <link>https://ciscoskills.net/2017/12/01/factory-reset-firepower-2100/</link>
       <pubDate>Fri, 01 Dec 2017 16:00:49 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/12/factory-reset-firepower-2100/</guid>
+      <guid>https://ciscoskills.net/2017/12/01/factory-reset-firepower-2100/</guid>
       <description>
         
           &lt;p&gt;In this short guide I wanted to walk through the steps to do a factory reset for the Cisco Firepower 2100 series. When doing these resets all configuration and the administrative password are removed, as well as the FTD (Firepower Threat Defense) app-instance. When the unit starts to boot it will reinstall the FTD app-instance to default configuration.&lt;/p&gt;
@@ -163,10 +163,10 @@
     
     <item>
       <title>Enter Cisco Firepower CLI (Read-Only)</title>
-      <link>https://ciscoskills.net/2017/09/enter-cisco-firepower-cli-read-only/</link>
+      <link>https://ciscoskills.net/2017/09/20/enter-cisco-firepower-cli-read-only/</link>
       <pubDate>Wed, 20 Sep 2017 11:45:41 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/09/enter-cisco-firepower-cli-read-only/</guid>
+      <guid>https://ciscoskills.net/2017/09/20/enter-cisco-firepower-cli-read-only/</guid>
       <description>
         
           &lt;p&gt;You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:&lt;/p&gt;
@@ -247,10 +247,10 @@
     
     <item>
       <title>Update Firepower Devices - Manually</title>
-      <link>https://ciscoskills.net/2017/07/update-firepower-devices-manually/</link>
+      <link>https://ciscoskills.net/2017/07/12/update-firepower-devices-manually/</link>
       <pubDate>Wed, 12 Jul 2017 14:15:38 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/07/update-firepower-devices-manually/</guid>
+      <guid>https://ciscoskills.net/2017/07/12/update-firepower-devices-manually/</guid>
       <description>
         
           &lt;p&gt;This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:&lt;/p&gt;
@@ -334,10 +334,10 @@
     
     <item>
       <title>Cisco FTDv in Cisco VIRL</title>
-      <link>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</link>
+      <link>https://ciscoskills.net/2017/06/14/cisco-ftdv-in-cisco-virl/</link>
       <pubDate>Wed, 14 Jun 2017 13:05:11 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2017/06/cisco-ftdv-in-cisco-virl/</guid>
+      <guid>https://ciscoskills.net/2017/06/14/cisco-ftdv-in-cisco-virl/</guid>
       <description>
         
           &lt;p&gt;Cisco is actively pushing their Firepower Threat Defense software with the new Firepower 2100 units on their way this summer in effort to eventually replace the ASA5525-X, ASA5545-X and ASA5555-X platforms. When using FTD you must also have the Firepower Management Center (FMC) available to manage and configure these devices. This gets difficult especially if you want to test things out because not everyone has Cisco Firepower lying around unused. How are you supposed to test and learn the depths of this product? &lt;em&gt;(Hint: Cisco VIRL)&lt;/em&gt;&lt;/p&gt;
@@ -497,10 +497,10 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
     
     <item>
       <title>Factory Reset Firepower 4100 &amp; 9300</title>
-      <link>https://ciscoskills.net/2016/10/factory-reset-firepower-4100-9300/</link>
+      <link>https://ciscoskills.net/2016/10/19/factory-reset-firepower-4100-9300/</link>
       <pubDate>Wed, 19 Oct 2016 00:45:07 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2016/10/factory-reset-firepower-4100-9300/</guid>
+      <guid>https://ciscoskills.net/2016/10/19/factory-reset-firepower-4100-9300/</guid>
       <description>
         
           &lt;p&gt;I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy.&lt;/p&gt;
