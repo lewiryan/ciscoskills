@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VLAN on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/vlan/</link>
+    <link>https://ciscoskills.net/tags/vlan/</link>
     <description>Recent content in VLAN on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 09 Jan 2018 13:15:17 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/vlan/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Jan 2018 13:15:17 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/vlan/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Private VLANs</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/01/private-vlans/</link>
+      <link>https://ciscoskills.net/2018/01/private-vlans/</link>
       <pubDate>Tue, 09 Jan 2018 13:15:17 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/01/private-vlans/</guid>
+      <guid>https://ciscoskills.net/2018/01/private-vlans/</guid>
       <description>
         
           &lt;p&gt;Let&#39;s start out 2018 with private VLANs, with PVLANs the network gets a little more privacy added to it. When we have privacy on the network we can seclude certain parts of it. Essentially, &amp;quot;you can go about your business - move along, move along&amp;quot;. Private VLANs allow us to segment networks within a single VLAN. So in this post we&#39;ll go over the types of PVLANs as well as setup a network topology with private VLANs, Let&#39;s get started! So in order to have a private VLAN we have to create a normal VLAN. Which is also called a primary VLAN. Within that private VLAN we can configure it two different ways:&lt;/p&gt;
@@ -25,7 +25,7 @@
 &lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt; - Like the name says it, This port only talks to other ports in the same community or to any promiscuous port that is associated with on the same private VLAN. This is usually used is used for connecting hosts to the network with a PVLAN.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Let&#39;s look at an example of what the use case could be for using private VLANs. Acme Corp is getting into the hosting business and they have three customers/tenants so far, these three tenants are not related and these servers don&#39;t need to know about what else is on the network, they just need to connect to the internet through R1.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/01/pvlan-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/01/pvlan-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Each PVLAN is a different &amp;quot;customer&amp;quot; and we have separated these servers with different private VLANs. These servers although they are on the same 10.0.0.0/24 network, they can&#39;t talk to each other. All servers can reach R1, servers that are in the same community PVLAN can reach each other as well. The configuration is pretty simple we have to create four (4) VLANs, in this example I have created VLANs 2, 3, 4, and 5. VLAN 2 is are primary VLAN and we are associating VLANs 3, 4 and 5 within VLAN 2.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# vlan 2
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-vlan)# private-vlan primary
@@ -83,15 +83,15 @@
     
     <item>
       <title>VLAN Access Lists (VACLs)</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/11/vlan-access-lists-vacls/</link>
+      <link>https://ciscoskills.net/2017/11/vlan-access-lists-vacls/</link>
       <pubDate>Mon, 20 Nov 2017 14:00:55 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/11/vlan-access-lists-vacls/</guid>
+      <guid>https://ciscoskills.net/2017/11/vlan-access-lists-vacls/</guid>
       <description>
         
           &lt;p&gt;VACLs are another good layer of security to help control who can talk to who, much like  access control lists that are in firewalls and routers, however the difference is VACLs operate at layer two of the OSI model. There could be situations where you have multiple hosts on the same LAN and want to block traffic from reaching certain hosts within that same network, how would you go about blocking that type of traffic without using a router or firewall? &lt;em&gt;(Hint: Create a VACL)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;In this post we have a DMZ and an INTERNAL network. The goal is to block DMZ systems from reaching other servers in the DMZ. We have are standard &amp;quot;out of the box&amp;quot; configuration firewall that is between the DMZ and INTERNAL network. In this example the firewall is configured with security-levels in place. The INTERNAL zone has a security-level of 100 and the DMZ zone as a security-level 80. We have two VLANs on this switch, VLAN two (2) which is the DMZ and VLAN three (3)  which is the INTERNAL VLAN. The firewall is using the &amp;quot;router on a stick&amp;quot; configuration and trunking VLANs on the single interface, and we have four servers total. Two DMZ servers and two INTERNAL servers are in this example.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/11/vacl-sample.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/11/vacl-sample.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The INTERNAL servers can reach the DMZ servers, however the DMZ servers can&#39;t reach the INTERNAL systems which is expected because of the security-levels that are configured on the firewall. However the DMZ servers can reach other, to disable that we need to create an ACL on the switch before we create a VACL :)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ip access-list extended BLK-DMZ-COMS permit ip 192.168.2.0 0.0.0.255 192.168.2.0 0.0.0.255
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This extended ACL is used to identify the source and destination traffic that we want to block. In this example this ACL matches DMZ servers talking to other DMZ servers in the 192.168.2.0/24 network. Next we have to build a VLAN access map, in this example I&#39;m calling it &amp;quot;VACL-BLK-DMZ-COMS&amp;quot;.&lt;/p&gt;

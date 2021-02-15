@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>EIGRP on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/eigrp/</link>
+    <link>https://ciscoskills.net/tags/eigrp/</link>
     <description>Recent content in EIGRP on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 25 May 2017 12:30:53 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/eigrp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 May 2017 12:30:53 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/eigrp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuring EIGRP - Named Mode</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/05/configuring-eigrp-named-mode/</link>
+      <link>https://ciscoskills.net/2017/05/configuring-eigrp-named-mode/</link>
       <pubDate>Thu, 25 May 2017 12:30:53 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/05/configuring-eigrp-named-mode/</guid>
+      <guid>https://ciscoskills.net/2017/05/configuring-eigrp-named-mode/</guid>
       <description>
         
           &lt;p&gt;From its older brother IGRP which was developed in 1980s to overcome the limitations of RIP, EIGRP was an &amp;quot;Enhanced&amp;quot; IGRP protocol. The main purpose of EIGRP was to  overcome the limitations of classful networks and make EIGRP a classless routing protocol. During designing of this protocol a different convergence algorithm was used making EIGRP that &amp;quot;hybrid&amp;quot; between distance-vector and link-state routing protocols. In this post we&#39;ll go over a basic design and setup for EIGRP, however instead of using the &amp;quot;classic way&amp;quot; let&#39;s look at configuring EIGRP using named mode which is available in Cisco IOS starting in version 15.2&lt;/p&gt;
 &lt;p&gt;This topology is pretty simple, I have three routers and each them is connected to the other two routers.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/05/eigrp-named1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/05/eigrp-named1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;All routers have been setup with their local addresses and can ping any network that is locally attached to them. There are two ways to configure EIGRP we could configure it the &amp;quot;classic way&amp;quot; or use named mode. Nothing has changed with EIGRP itself so you could have one router use classic and another router use named mode and the protocol would exchange routing information between the two. The change is to simplify the configuration into one spot, which is under the router EIGRP process instead of having some EIGRP configuration under each interface. Let&#39;s get started.&lt;/p&gt;
 &lt;p&gt;Create a named EIGRP process on all routers:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#router eigrp CISCOSKILLS

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Metro Design Language on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/metro-design-language/</link>
+    <link>https://ciscoskills.net/tags/metro-design-language/</link>
     <description>Recent content in Metro Design Language on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 12 Oct 2011 17:15:43 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/metro-design-language/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Oct 2011 17:15:43 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/metro-design-language/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows 8 Developer Preview</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/10/windows-8-developer-preview/</link>
+      <link>https://ciscoskills.net/2011/10/windows-8-developer-preview/</link>
       <pubDate>Wed, 12 Oct 2011 17:15:43 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/10/windows-8-developer-preview/</guid>
+      <guid>https://ciscoskills.net/2011/10/windows-8-developer-preview/</guid>
       <description>
         
           &lt;p&gt;Changing topics for today, I want to talk about the Windows 8 Developer Preview which was released on September 13th. I had the time to install it under &lt;a href=&#34;http://en.wikipedia.org/wiki/VirtualBox&#34; title=&#34;VirtualBox&#34;&gt;virtual box&lt;/a&gt; and was pleasantly surprised! About how fast it installed the easy to understand install prompts and the new &amp;quot;&lt;a href=&#34;http://en.wikipedia.org/wiki/Metro_Design_Language&#34; title=&#34;Metro Design Language&#34;&gt;Metro&lt;/a&gt;&amp;quot; &lt;a href=&#34;http://en.wikipedia.org/wiki/User_interface&#34; title=&#34;User interface&#34;&gt;UI&lt;/a&gt; which is aimed at touched devices. Also the ability to switch to the standard &lt;a href=&#34;http://en.wikipedia.org/wiki/Microsoft_Windows&#34; title=&#34;Microsoft Windows&#34;&gt;Windows operating system&lt;/a&gt;. This is an &lt;a href=&#34;http://en.wikipedia.org/wiki/Software_release_life_cycle&#34; title=&#34;Software release life cycle&#34;&gt;alpha build&lt;/a&gt; so it&#39;s not even on at the beta stages yet, Take a look for yourself! [slideshow] Want to try it for yourself check out &lt;a href=&#34;http://msdn.microsoft.com/en-us/windows/apps/br229516&#34; title=&#34;Windows 8 Developer Preview downloads&#34;&gt;Windows 8 Developer Preview downloads&lt;/a&gt;. This is an alpha build and can be unstable. I would use a &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_machine&#34; title=&#34;Virtual machine&#34;&gt;virtual machine&lt;/a&gt; to test it. Although short to the point that&#39;s all I have so check back for other posts. What do like about Windows 8 DP? What don&#39;t you like? Comment below.&lt;/p&gt;

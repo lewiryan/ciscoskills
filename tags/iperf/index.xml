@@ -2,19 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>iperf on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/iperf/</link>
+    <link>https://ciscoskills.net/tags/iperf/</link>
     <description>Recent content in iperf on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 12 Feb 2016 19:00:34 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/iperf/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Feb 2016 19:00:34 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/iperf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>iPerf Throughput Testing</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/02/iperf-throughput-testing/</link>
+      <link>https://ciscoskills.net/2016/02/iperf-throughput-testing/</link>
       <pubDate>Fri, 12 Feb 2016 19:00:34 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/02/iperf-throughput-testing/</guid>
+      <guid>https://ciscoskills.net/2016/02/iperf-throughput-testing/</guid>
       <description>
         
-          &lt;p&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2016/02/speed.png&#34; alt=&#34;speed&#34;&gt;Testing a network’s throughput is a good move, if you are testing a new service you stood up or making sure you getting what you paid for. iPerf is good free open source tool when there isn’t really a need to use commercial more expensive tools. In this short tutorial I’ll go over how to configure iPerf which is a CLI tool so let’s get started. iPerf needs client and server on each end of the connection in order to test the throughput. There is also a list of available iPerf servers that are over the internet if you wanted to test internet speed and that information is also where you would download the latest version of iPerf at: &lt;a href=&#34;https://iperf.fr/&#34;&gt;https://iperf.fr/&lt;/a&gt; If you are in Windows you have to download the compressed folder from the website and extract it somewhere on your machine. Open command prompt at where the uncompressed files are located: Run from Command Prompt (You&#39;ll get a list of the available CLI switches)  : [code]D:\ryan\iperf\iperf-3.0.11-win64&amp;gt;iperf3.exe[/code] In Linux you can do the following to install: (&lt;strong&gt;NOTE:&lt;/strong&gt; At the time of writing version 3.0.11 is the latest) [code]wget &lt;a href=&#34;https://iperf.fr/download/iperf&#34;&gt;https://iperf.fr/download/iperf&lt;/a&gt;_3.0/libiperf0_3.0.11-1_amd64.deb wget &lt;a href=&#34;https://iperf.fr/download/iperf&#34;&gt;https://iperf.fr/download/iperf&lt;/a&gt;_3.0/iperf3_3.0.11-1_amd64.deb sudo dpkg -i libiperf0_3.0.11-1_amd64.deb iperf3_3.0.11-1_amd64.deb rm libiperf0_3.0.11-1_amd64.deb iperf3_3.0.11-1_amd64.deb[/code] Run from terminal (You&#39;ll get a list of the available CLI switches): [code]iperf3[/code] Everything else in the command switches for the most part is the same when it comes to Windows and Linux. There are some commands that run in Linux that don&#39;t on Windows but this doesn&#39;t apply here. :) So in this example on one machine will be the server. [code]iperf3.exe -s ----------------------------------------------------------- Server listening on 5201 -----------------------------------------------------------[/code] On the another will be the client who is connecting to the server. You will want the IP address of the server and by default you can just use: [code]iperf3.exe -c 10.9.8.7 Connecting to host 10.9.8.7, port 5201 [  4] local 10.1.2.3 port 57979 connected to 10.9.8.7 port 5201 [ ID] Interval           Transfer     Bandwidth [  4]   0.00-1.00   sec   512 KBytes  4.19 Mbits/sec [  4]   1.00-2.00   sec  1.00 MBytes  8.39 Mbits/sec [  4]   2.00-3.00   sec  1.25 MBytes  10.5 Mbits/sec [  4]   3.00-4.00   sec  2.25 MBytes  18.9 Mbits/sec [  4]   4.00-5.00   sec   640 KBytes  5.24 Mbits/sec [  4]   5.00-6.00   sec   384 KBytes  3.15 Mbits/sec [  4]   6.00-7.00   sec  2.00 MBytes  16.8 Mbits/sec [  4]   7.00-8.00   sec  1.38 MBytes  11.5 Mbits/sec [  4]   8.00-9.00   sec  1.38 MBytes  11.5 Mbits/sec [  4]   9.00-10.00  sec  1.38 MBytes  11.5 Mbits/sec - - - - - - - - - - - - - - - - - - - - - - - - - [ ID] Interval           Transfer     Bandwidth [  4]   0.00-10.00  sec  12.1 MBytes  10.2 Mbits/sec                  sender [  4]   0.00-10.00  sec  11.9 MBytes  10.0 Mbits/sec                  receiver iperf Done.[/code] So in this example in 10 seconds we transferred about 12 MBytes of data and bandwidth was between 3.15 and 18.9Mbps. Pretty good data to have if you are troubleshooting or verifying anything. In the above example we used TCP but if we switch to UDP notice the difference? [code]iperf3.exe -u -b 0 -c 10.9.8.7 Connecting to host 10.9.8.7, port 5201 [ 4] local 10.1.2.3 port 59361 connected to 10.9.8.7 port 5201 [ ID] Interval Transfer Bandwidth Total Datagrams [ 4] 0.00-1.00 sec 11.6 MBytes 97.3 Mbits/sec 1490 [ 4] 1.00-2.00 sec 11.4 MBytes 95.6 Mbits/sec 1460 [ 4] 2.00-3.00 sec 11.4 MBytes 95.6 Mbits/sec 1460 [ 4] 3.00-4.01 sec 11.4 MBytes 95.6 Mbits/sec 1460 [ 4] 4.01-5.01 sec 11.4 MBytes 95.6 Mbits/sec 1460 [ 4] 5.01-6.00 sec 11.3 MBytes 95.6 Mbits/sec 1450 [ 4] 6.00-7.00 sec 11.4 MBytes 95.6 Mbits/sec 1460 [ 4] 7.00-8.00 sec 11.4 MBytes 95.6 Mbits/sec 1460 [ 4] 8.00-9.00 sec 11.4 MBytes 95.6 Mbits/sec 1460 [ 4] 9.00-10.00 sec 11.4 MBytes 95.6 Mbits/sec 1460 - - - - - - - - - - - - - - - - - - - - - - - - - [ ID] Interval Transfer Bandwidth Jitter Lost/Total Datagrams [ 4] 0.00-10.00 sec 114 MBytes 95.8 Mbits/sec 1.160 ms 3212/14619 (22%) [ 4] Sent 14619 datagrams iperf Done.[/code] We transferred 114 MBytes in 10 seconds, but lost 22 percent of that data thanks to UDP which is good example of the difference between TCP and UDP. ;) That&#39;s all I got so I hope this helpful,its a pretty easy install if you are on Windows or Linux. More information about the types of command switches supported are at &lt;a href=&#34;https://iperf.fr/iperf-doc.php&#34;&gt;https://iperf.fr/iperf-doc.php&lt;/a&gt;&lt;/p&gt;
+          &lt;p&gt;Testing a network’s throughput is a good move, if you are testing a new service you stood up or making sure you getting what you paid for. iPerf is good free open source tool when there isn’t really a need to use commercial more expensive tools. In this short tutorial I’ll go over how to configure iPerf which is a CLI tool so let’s get started.&lt;/p&gt;
+&lt;p&gt;iPerf needs client and server on each end of the connection in order to test the throughput. There is also a list of available iPerf servers that are over the internet if you wanted to test internet speed and that information is also where you would download the latest version of iPerf at: &lt;a href=&#34;https://iperf.fr/&#34;&gt;https://iperf.fr/&lt;/a&gt; If you are in Windows you have to download the compressed folder from the website and extract it somewhere on your machine. Open command prompt at where the uncompressed files are located: Run from Command Prompt (You&#39;ll get a list of the available CLI switches)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;D:\ryan\iperf\iperf-3.0.11-win64&amp;gt;iperf3.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In Linux you can do the following to install:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; At the time of writing version 3.0.11 is the latest&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;wget https://iperf.fr/download/iperf_3.0/libiperf0_3.0.11-1_amd64.deb
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;wget https://iperf.fr/download/iperf_3.0/iperf3_3.0.11-1_amd64.deb
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;sudo dpkg -i libiperf0_3.0.11-1_amd64.deb iperf3_3.0.11-1_amd64.deb
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;rm libiperf0_3.0.11-1_amd64.deb iperf3_3.0.11-1_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run from terminal (You&#39;ll get a list of the available CLI switches):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;iperf3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Everything else in the command switches for the most part is the same when it comes to Windows and Linux. There are some commands that run in Linux that don&#39;t on Windows but this doesn&#39;t apply here. :) So in this example on one machine will be the server.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;iperf3.exe -s
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;-----------------------------------------------------------
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Server listening on 5201
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;-----------------------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On the another will be the client who is connecting to the server. You will want the IP address of the server and by default you can just use:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;iperf3.exe -c 10.9.8.7
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Connecting to host 10.9.8.7, port 5201
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;[  4] local 10.1.2.3 port 57979 connected to 10.9.8.7 port 5201
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;[ ID] Interval           Transfer     Bandwidth
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;[  4]   0.00-1.00   sec   512 KBytes  4.19 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;[  4]   1.00-2.00   sec  1.00 MBytes  8.39 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;[  4]   2.00-3.00   sec  1.25 MBytes  10.5 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;[  4]   3.00-4.00   sec  2.25 MBytes  18.9 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;[  4]   4.00-5.00   sec   640 KBytes  5.24 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;[  4]   5.00-6.00   sec   384 KBytes  3.15 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;[  4]   6.00-7.00   sec  2.00 MBytes  16.8 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;[  4]   7.00-8.00   sec  1.38 MBytes  11.5 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;[  4]   8.00-9.00   sec  1.38 MBytes  11.5 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;[  4]   9.00-10.00  sec  1.38 MBytes  11.5 Mbits/sec
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;- - - - - - - - - - - - - - - - - - - - - - - - -
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;[ ID] Interval           Transfer     Bandwidth
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;[  4]   0.00-10.00  sec  12.1 MBytes  10.2 Mbits/sec                  sender
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;[  4]   0.00-10.00  sec  11.9 MBytes  10.0 Mbits/sec                  receiver
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;iperf Done.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So in this example in 10 seconds we transferred about 12 MBytes of data and bandwidth was between 3.15 and 18.9Mbps.&lt;/p&gt;
+&lt;p&gt;Pretty good data to have if you are troubleshooting or verifying anything. In the above example we used TCP but if we switch to UDP notice the difference?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;iperf3.exe -u -b 0 -c 10.9.8.7
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Connecting to host 10.9.8.7, port 5201
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;[  4] local 10.1.2.3 port 59361 connected to 10.9.8.7 port 5201
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;[ ID] Interval           Transfer     Bandwidth       Total Datagrams
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;[  4]   0.00-1.00   sec  11.6 MBytes  97.3 Mbits/sec  1490
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;[  4]   1.00-2.00   sec  11.4 MBytes  95.6 Mbits/sec  1460
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;[  4]   2.00-3.00   sec  11.4 MBytes  95.6 Mbits/sec  1460
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;[  4]   3.00-4.01   sec  11.4 MBytes  95.6 Mbits/sec  1460
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;[  4]   4.01-5.01   sec  11.4 MBytes  95.6 Mbits/sec  1460
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;[  4]   5.01-6.00   sec  11.3 MBytes  95.6 Mbits/sec  1450
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;[  4]   6.00-7.00   sec  11.4 MBytes  95.6 Mbits/sec  1460
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;[  4]   7.00-8.00   sec  11.4 MBytes  95.6 Mbits/sec  1460
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;[  4]   8.00-9.00   sec  11.4 MBytes  95.6 Mbits/sec  1460
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;[  4]   9.00-10.00  sec  11.4 MBytes  95.6 Mbits/sec  1460
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;- - - - - - - - - - - - - - - - - - - - - - - - -
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;[ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;[  4]   0.00-10.00  sec   114 MBytes  95.8 Mbits/sec  1.160 ms  3212/14619 (22%)
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;[  4] Sent 14619 datagrams
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;iperf Done.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We transferred 114 MBytes in 10 seconds, but lost 22 percent of that data thanks to UDP which is good example of the difference between TCP and UDP. ;) That&#39;s all I got so I hope this helpful,its a pretty easy install if you are on Windows or Linux. More information about the types of command switches supported are at &lt;a href=&#34;https://iperf.fr/iperf-doc.php&#34;&gt;https://iperf.fr/iperf-doc.php&lt;/a&gt;&lt;/p&gt;
 
         
       </description>

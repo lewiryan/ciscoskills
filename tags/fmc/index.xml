@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FMC on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/fmc/</link>
+    <link>https://ciscoskills.net/tags/fmc/</link>
     <description>Recent content in FMC on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 01 Oct 2019 10:00:47 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/fmc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Oct 2019 10:00:47 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/fmc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>FMCv - Change IP Address</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/10/fmcv-change-ip-address/</link>
+      <link>https://ciscoskills.net/2019/10/fmcv-change-ip-address/</link>
       <pubDate>Tue, 01 Oct 2019 10:00:47 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/10/fmcv-change-ip-address/</guid>
+      <guid>https://ciscoskills.net/2019/10/fmcv-change-ip-address/</guid>
       <description>
         
           &lt;p&gt;Welcome Back ;) Think about this for a bit, its been years ago when we first configured the our Cisco FMCv in our virtual environment perhaps this is running for years with no problems. (Lucky us!) All of our firewalls connect to it, policies are pushed correctly, IPS rules are updated correctly and we even have URL filtering turned on some devices, and upgrades work out of the box, it just works, again lucky us! We have remote backups working but we never needed them...&lt;/p&gt;
@@ -26,17 +26,17 @@
     
     <item>
       <title>FMC Syslog with Graylog Extractor</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/02/fmc-syslog-with-graylog-extractor/</link>
+      <link>https://ciscoskills.net/2019/02/fmc-syslog-with-graylog-extractor/</link>
       <pubDate>Tue, 05 Feb 2019 17:15:07 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/02/fmc-syslog-with-graylog-extractor/</guid>
+      <guid>https://ciscoskills.net/2019/02/fmc-syslog-with-graylog-extractor/</guid>
       <description>
         
           &lt;p&gt;Let&#39;s continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I&#39;m using &lt;a href=&#34;https://www.graylog.org/&#34;&gt;Graylog&lt;/a&gt; which is an open source logging platform and  although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field. We&#39;ll configure the FMC to send syslogs and then configure an extractor on Graylog.&lt;/p&gt;
 &lt;p&gt;So we have the FMC and Graylog in our environment setup. We&#39;ll want to first configure the FMC and add a syslog server. We can do this two ways, one way is we can go to into Policy tab-&amp;gt; Actions-&amp;gt;Alerts-&amp;gt;Create Alert (Down Arrow)-&amp;gt;Create Syslog Alert.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/fmc-syslog-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;You could also go into an access control policy and select log (&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/fmc-log-symbol.jpg&#34; alt=&#34;::inline&#34;&gt;) icon either in the default action or on a rule you would like to log. Another window will show and select the green plus icon and add the syslog server that way.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/fmc-syslog-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-syslog-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You could also go into an access control policy and select log (&lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-log-symbol.jpg&#34; alt=&#34;::inline&#34;&gt;) icon either in the default action or on a rule you would like to log. Another window will show and select the green plus icon and add the syslog server that way.
+&lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-syslog-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Once that is out-of-the-way we can now go into Graylog and configure an extractor on the syslog input. This is located under System-&amp;gt;Inputs then under the syslog input select manage extractor. On the actions tab select import extractor and paste this JSON followed by selecting the Add extractors to input at the bottom of the page.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;extractors&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
@@ -90,7 +90,7 @@
 &lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;src_port
 &lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;58996
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With this grok pattern that we created with Graylog we are able to search these fields like Source IP and Destination IP and even the ACLRule name.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/gl-aclrulename.png&#34; alt=&#34;gl-aclrulename&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2018/08/gl-aclrulename.png&#34; alt=&#34;gl-aclrulename&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This makes it much easier to search these results as well as put this type of data into dashboards or reports. Like always I hope this information is helpful you can find more information about Graylog by hitting their site and try it out for yourself. :)&lt;/p&gt;
 
         
@@ -99,16 +99,16 @@
     
     <item>
       <title>Verifying DNS Lists - FMC</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/09/verifying-dns-lists-fmc/</link>
+      <link>https://ciscoskills.net/2018/09/verifying-dns-lists-fmc/</link>
       <pubDate>Fri, 07 Sep 2018 14:00:47 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/09/verifying-dns-lists-fmc/</guid>
+      <guid>https://ciscoskills.net/2018/09/verifying-dns-lists-fmc/</guid>
       <description>
         
           &lt;p&gt;We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.&lt;/p&gt;
 &lt;p&gt;So this post is already assuming that you have an Access Control Policy deployed on a Firepower Module (ASA) or a FTD. We also are assuming that you have a DNS policy applied to the FM/FTD. These lists get downloaded about every two hours from Cisco and are updated regularly, best to keep it that way. :) However like everything there is always someone, some system, some program that fails to connect and more often than not it&#39;s usually this critical process that worked yesterday but doesn&#39;t today, so how do we check if we are hitting this?&lt;/p&gt;
 &lt;p&gt;There are two ways to check this we can look at the connection events (if you are logging which by default is yes) it will show DNS the events and depending on your policy you&#39;ll see the action taken. In this example we selected to use Domain Not Found for the action. In this example we can see Domain Not Found and we can also see the DNS category its hitting which is DNS Dga.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/07/fmc-dnfee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/07/fmc-dnfee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; I have edited this screenshot to show example.com instead of the malicious domain&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;

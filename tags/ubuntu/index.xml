@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ubuntu on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/ubuntu/</link>
+    <link>https://ciscoskills.net/tags/ubuntu/</link>
     <description>Recent content in Ubuntu on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 25 Jan 2011 16:30:44 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jan 2011 16:30:44 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ubuntu 10.10 Install</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/01/ubuntu-10.10-install/</link>
+      <link>https://ciscoskills.net/2011/01/ubuntu-10.10-install/</link>
       <pubDate>Tue, 25 Jan 2011 16:30:44 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/01/ubuntu-10.10-install/</guid>
+      <guid>https://ciscoskills.net/2011/01/ubuntu-10.10-install/</guid>
       <description>
         
           &lt;p&gt;Well a while back I went ahead and downloaded the RC version of Ubuntu 10.10 and played around with it. Yes that&#39;s right the RC version. Now there is a final version of 10.10 which was released on the 10th of October 2010. I saw that very little has changed between the RC and the final version when installing. I know this is a little late going and doing a step by step install of Ubuntu, but never seems to get old. So I took some screen shots of the install and the desktop when finished. So let’s get installing!   When you first put the disk in along with booting from the disk you are welcomed at the welcome screen.&lt;/p&gt;

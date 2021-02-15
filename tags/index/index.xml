@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>index on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/index/</link>
+    <link>https://ciscoskills.net/tags/index/</link>
     <description>Recent content in index on Cisco Skills</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/index/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://ciscoskills.net/tags/index/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Posts</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/post/</link>
+      <link>https://ciscoskills.net/post/</link>
       <pubDate>Sun, 03 Jan 2021 17:26:05 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/post/</guid>
+      <guid>https://ciscoskills.net/post/</guid>
       <description>
         
           

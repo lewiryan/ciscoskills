@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>barracuda on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/barracuda/</link>
+    <link>https://ciscoskills.net/tags/barracuda/</link>
     <description>Recent content in barracuda on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 14 Dec 2018 15:35:05 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/barracuda/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Dec 2018 15:35:05 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/barracuda/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Barracuda Load Balancer- Powershell</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/12/barracuda-load-balancer-powershell/</link>
+      <link>https://ciscoskills.net/2018/12/barracuda-load-balancer-powershell/</link>
       <pubDate>Fri, 14 Dec 2018 15:35:05 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/12/barracuda-load-balancer-powershell/</guid>
+      <guid>https://ciscoskills.net/2018/12/barracuda-load-balancer-powershell/</guid>
       <description>
         
           &lt;p&gt;Working on my Powershell skills, I was playing around with a Barracuda Load Balancer and noticed it supported some APIs which is kind of cool. At first I was playing around with it in postman and got to login and put some servers in maintenance mode, but then thought it would be really neat if I could get this working in Powershell, that way us humans can just run a script and even thinking in the &amp;quot;future&amp;quot; maybe have some automated process (a.k.a AI) handle this for us. ;) So in this post I&#39;ll talk about the script I created and some of the small challenges I had with this overall it was kind of neat putting this together. TLDR: Here is the script if you don&#39;t want to read:&lt;/p&gt;

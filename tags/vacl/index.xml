@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VACL on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/vacl/</link>
+    <link>https://ciscoskills.net/tags/vacl/</link>
     <description>Recent content in VACL on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 20 Nov 2017 14:00:55 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/vacl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Nov 2017 14:00:55 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/vacl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VLAN Access Lists (VACLs)</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/11/vlan-access-lists-vacls/</link>
+      <link>https://ciscoskills.net/2017/11/vlan-access-lists-vacls/</link>
       <pubDate>Mon, 20 Nov 2017 14:00:55 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/11/vlan-access-lists-vacls/</guid>
+      <guid>https://ciscoskills.net/2017/11/vlan-access-lists-vacls/</guid>
       <description>
         
           &lt;p&gt;VACLs are another good layer of security to help control who can talk to who, much like  access control lists that are in firewalls and routers, however the difference is VACLs operate at layer two of the OSI model. There could be situations where you have multiple hosts on the same LAN and want to block traffic from reaching certain hosts within that same network, how would you go about blocking that type of traffic without using a router or firewall? &lt;em&gt;(Hint: Create a VACL)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;In this post we have a DMZ and an INTERNAL network. The goal is to block DMZ systems from reaching other servers in the DMZ. We have are standard &amp;quot;out of the box&amp;quot; configuration firewall that is between the DMZ and INTERNAL network. In this example the firewall is configured with security-levels in place. The INTERNAL zone has a security-level of 100 and the DMZ zone as a security-level 80. We have two VLANs on this switch, VLAN two (2) which is the DMZ and VLAN three (3)  which is the INTERNAL VLAN. The firewall is using the &amp;quot;router on a stick&amp;quot; configuration and trunking VLANs on the single interface, and we have four servers total. Two DMZ servers and two INTERNAL servers are in this example.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/11/vacl-sample.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/11/vacl-sample.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The INTERNAL servers can reach the DMZ servers, however the DMZ servers can&#39;t reach the INTERNAL systems which is expected because of the security-levels that are configured on the firewall. However the DMZ servers can reach other, to disable that we need to create an ACL on the switch before we create a VACL :)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ip access-list extended BLK-DMZ-COMS permit ip 192.168.2.0 0.0.0.255 192.168.2.0 0.0.0.255
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This extended ACL is used to identify the source and destination traffic that we want to block. In this example this ACL matches DMZ servers talking to other DMZ servers in the 192.168.2.0/24 network. Next we have to build a VLAN access map, in this example I&#39;m calling it &amp;quot;VACL-BLK-DMZ-COMS&amp;quot;.&lt;/p&gt;

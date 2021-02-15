@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>IaC on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/iac/</link>
+    <link>https://ciscoskills.net/tags/iac/</link>
     <description>Recent content in IaC on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 08 Oct 2018 13:00:21 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/iac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Oct 2018 13:00:21 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/iac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Enable a RESTful ASA API</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/10/enable-a-restful-asa-api/</link>
+      <link>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</link>
       <pubDate>Mon, 08 Oct 2018 13:00:21 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/10/enable-a-restful-asa-api/</guid>
+      <guid>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</guid>
       <description>
         
           &lt;p&gt;Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he &lt;a href=&#34;https://blog.ipspace.net/2018/09/infrastructure-as-code-netconf-and-rest.html&#34;&gt;points out&lt;/a&gt; there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC. In this post we&#39;ll go through the steps to enable it and you can be the judge, does this RESTful API help?&lt;/p&gt;
@@ -36,7 +36,7 @@
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;http 0.0.0.0 0.0.0.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After that you can browse to the following link: https://ASAIP/doc/&lt;/p&gt;
 &lt;p&gt;You will get prompt to login with a username and password, so make sure the authentication is configured on the ASA. If you have login successfully you will see a webpage like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/10/asa-api.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/10/asa-api.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;From here you can explore the different HTTP requests that are available and you essentially have another way of configuring and monitoring your ASA. So back my question does this type of RESTful API help you? I have explored this and have used Postman for my poor mans &amp;quot;IaC&amp;quot; but does that count, I feel something is missing? In the end it&#39;s still a process that runs and instead of running this via CLI its a CRUD API... - Ryan&lt;/p&gt;
 
         

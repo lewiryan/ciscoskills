@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>KVM on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/kvm/</link>
+    <link>https://ciscoskills.net/tags/kvm/</link>
     <description>Recent content in KVM on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 08 Jan 2017 01:53:55 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/kvm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Jan 2017 01:53:55 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/kvm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cisco VIRL and Windows VMs</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/01/cisco-virl-and-windows-vms/</link>
+      <link>https://ciscoskills.net/2017/01/cisco-virl-and-windows-vms/</link>
       <pubDate>Sun, 08 Jan 2017 01:53:55 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/01/cisco-virl-and-windows-vms/</guid>
+      <guid>https://ciscoskills.net/2017/01/cisco-virl-and-windows-vms/</guid>
       <description>
         
           &lt;p&gt;One of the neat features of Cisco VIRL is it runs on an open platform, with OpenStack as the orchestration program running on top of an Ubuntu operating system. This gives VIRL additional flexibly by being able to run third-party VMs with KVM begin the hypervisor. In this guide I’ll walk through some of the steps I took to get Windows XP up and running in VIRL. :) If you have a more recent version of Windows that&#39;s in the current decade following this guide is pretty much the same just adjust the disk space and RAM to fit the requirements. I picked Windows XP is because its light weight, and with an average RAM usage under 100MB it makes easy to add multiple instances if you needed all without wasting too much resources on VIRL host. To get started:&lt;/p&gt;
@@ -31,11 +31,11 @@
 &lt;blockquote&gt;
 &lt;p&gt;During the installation and when installing drivers, you will get a couple of warnings about how the software drivers have not passed logo testing ignore this and continue to install it.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/01/virl-winxp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/01/virl-winxp.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Once you have Windows installed you can mount your virtio drivers that you downloaded and install the remaining drivers needed for Windows XP as well as any programs you would like to have available when you spin up this VM. &lt;a href=&#34;https://www.wireshark.org/download/win32/all-versions/Wireshark-win32-1.10.14.exe&#34;&gt;Wireshark (Version 1.10.14)&lt;/a&gt;, and &lt;a href=&#34;http://www.firewall.cx/downloads/16-1-3cdaemon-server-a-client.html&#34;&gt;3cdaemon&lt;/a&gt; are just a couple of examples for software you could use.&lt;/p&gt;
 &lt;p&gt;Once you have all the programs you want to go ahead and prepare a sysprep image using your XP installation ISO file. Open the deploy.cab file which is under the SUPPORT\TOOLS folder, copy it into a new directory called SYSPREP on the C drive and extract the cabinet file. Once these files have been copied, turn off the VM and clone it. That way if you need to make any changes to the VM you can use your original VM. Once the machine turns off after the sysprep you now have an image you can import into VIRL. For reference on how to Sysprep Windows XP I followed this guide: &lt;a href=&#34;http://www.petenetlive.com/KB/Article/0000599&#34;&gt;http://www.petenetlive.com/KB/Article/0000599&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;You’ll want to use that cloned image when you import this into VIRL because it will be a “new” machine every time it is launched from VIRL including the hostname if you configured the sysprep.Inf file correctly. The finished product should be something like what I have below, you shouldn’t have to do anything but wait a couple of minutes for an XP VM and if you configured DHCP on your routers in VIRL your machine will get an IP address automatically.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/01/winxpvirl.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/01/winxpvirl.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;To import this VM into VIRL go into the User Workspace Management within in VIRL. We are going to create copy of a subtype. Under Node Resources-&amp;gt;Subtypes, find the generic subtype and click on the &amp;quot;stethoscope&amp;quot; icon also called specialize and fill in the following:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Subtype - Windows&lt;/li&gt;

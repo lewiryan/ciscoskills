@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>graylog on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/graylog/</link>
+    <link>https://ciscoskills.net/tags/graylog/</link>
     <description>Recent content in graylog on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 21 Jun 2019 18:05:55 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/graylog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Jun 2019 18:05:55 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/graylog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Graylog with AWS Elasticsearch</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/06/graylog-with-aws-elasticsearch/</link>
+      <link>https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/</link>
       <pubDate>Fri, 21 Jun 2019 18:05:55 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/06/graylog-with-aws-elasticsearch/</guid>
+      <guid>https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/</guid>
       <description>
         
           &lt;p&gt;Graylog has been through some changes last time I talked about them, hitting version 3.0 in February is awesome and one of things that make Graylog run well is Elasticsearch backend. Although Elasticsearch is not too hard to setup it usually runs better on bare metal, so there is cost of that as well as maintenance of the cluster is important, updates and upgrades. Depending your team experience you may not have time to learn it or run it the way it should be. That last thing you want is your logging setup to go down because of poor maintenance. So in this post we will walk though setting up a Graylog Server and using AWS Elasticsearch service for our backend. Without having a quick Elasticsearch cluster Graylog experience suffers, so let&#39;s get started.&lt;/p&gt;
@@ -22,7 +22,7 @@
 &lt;p&gt;If you want more information about Elasticsearch service that AWS provides go ahead and read AWS Developer Guide - &lt;a href=&#34;https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/what-is-amazon-elasticsearch-service.html&#34;&gt;Amazon Elasticsearch Service.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Once your cluster is up and running, keep note of the Endpoint URL you will need that for Graylog. In this example I&#39;m using Centos 7 for the Graylog Server and depending on the operating system you are using for the Graylog server follow the instructions on &lt;a href=&#34;http://docs.graylog.org/en/latest/pages/installation/operating_system_packages.html&#34;&gt;Graylog&#39;s Read the Docs&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;No need for me to repeat installation steps, in this example I&#39;m using Centos 7 and followed the &lt;a href=&#34;http://docs.graylog.org/en/latest/pages/installation/os/centos.html&#34;&gt;documentation&lt;/a&gt;. Since we have an Elasticsearch cluster provided by AWS you don&#39;t need to anything related to Elasticsearch when installing Graylog, so skip it. Once you have Graylog installed go ahead and start it up to make sure you get the webpage and can login. This just verifies you have a working Graylog server ready to go. You might see some errors related to indexing but that is expected, we have not told Graylog about our AWS Elasticsearch resource.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2019/04/graylog-es-aws.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2019/04/graylog-es-aws.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Login into your Graylog server and with your favorite text editor open the Graylog server configuration file /etc/graylog/server/server.conf We are looking to modify the Elasticsearch hosts by default its local host to the Endpoint URL that is in your AWS Elasticsearch resource.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;# List of Elasticsearch hosts Graylog should connect to.
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;# Need to be specified as a comma-separated list of valid URIs for the http ports of your elasticsearch nodes.
@@ -34,7 +34,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Restart the Graylog server service&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;systemctl restart graylog-server
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You now have Graylog server backed by an AWS Elasticsearch Cluster, log away :)
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2019/04/graylog-es-aws-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2019/04/graylog-es-aws-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;AWS makes deploying Graylog even easier if you don&#39;t want to have your own Elasticsearch cluster. Although you can&#39;t stop the AWS ES Cluster you can snapshot the data to an S3 bucket and import it back into a new ES cluster and connect Graylog back to it. This makes it so you don&#39;t have this running 24x7, maybe useful for temporary debugging logs or run it 24x7. Well that&#39;s all I got for a Friday, and its the first day of summer &amp;quot;officially&amp;quot; so time enjoy it! I do hope this information is helpful but also enjoy your summer! 8-)&lt;/p&gt;
 
         
@@ -43,17 +43,17 @@
     
     <item>
       <title>FMC Syslog with Graylog Extractor</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/02/fmc-syslog-with-graylog-extractor/</link>
+      <link>https://ciscoskills.net/2019/02/fmc-syslog-with-graylog-extractor/</link>
       <pubDate>Tue, 05 Feb 2019 17:15:07 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/02/fmc-syslog-with-graylog-extractor/</guid>
+      <guid>https://ciscoskills.net/2019/02/fmc-syslog-with-graylog-extractor/</guid>
       <description>
         
           &lt;p&gt;Let&#39;s continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I&#39;m using &lt;a href=&#34;https://www.graylog.org/&#34;&gt;Graylog&lt;/a&gt; which is an open source logging platform and  although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field. We&#39;ll configure the FMC to send syslogs and then configure an extractor on Graylog.&lt;/p&gt;
 &lt;p&gt;So we have the FMC and Graylog in our environment setup. We&#39;ll want to first configure the FMC and add a syslog server. We can do this two ways, one way is we can go to into Policy tab-&amp;gt; Actions-&amp;gt;Alerts-&amp;gt;Create Alert (Down Arrow)-&amp;gt;Create Syslog Alert.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/fmc-syslog-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;You could also go into an access control policy and select log (&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/fmc-log-symbol.jpg&#34; alt=&#34;::inline&#34;&gt;) icon either in the default action or on a rule you would like to log. Another window will show and select the green plus icon and add the syslog server that way.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/fmc-syslog-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-syslog-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You could also go into an access control policy and select log (&lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-log-symbol.jpg&#34; alt=&#34;::inline&#34;&gt;) icon either in the default action or on a rule you would like to log. Another window will show and select the green plus icon and add the syslog server that way.
+&lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-syslog-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Once that is out-of-the-way we can now go into Graylog and configure an extractor on the syslog input. This is located under System-&amp;gt;Inputs then under the syslog input select manage extractor. On the actions tab select import extractor and paste this JSON followed by selecting the Add extractors to input at the bottom of the page.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;extractors&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
@@ -107,7 +107,7 @@
 &lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;src_port
 &lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;58996
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With this grok pattern that we created with Graylog we are able to search these fields like Source IP and Destination IP and even the ACLRule name.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/gl-aclrulename.png&#34; alt=&#34;gl-aclrulename&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2018/08/gl-aclrulename.png&#34; alt=&#34;gl-aclrulename&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This makes it much easier to search these results as well as put this type of data into dashboards or reports. Like always I hope this information is helpful you can find more information about Graylog by hitting their site and try it out for yourself. :)&lt;/p&gt;
 
         
@@ -116,10 +116,10 @@
     
     <item>
       <title>Installing Graylog on Centos 7</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/01/installing-graylog-on-centos-7/</link>
+      <link>https://ciscoskills.net/2016/01/installing-graylog-on-centos-7/</link>
       <pubDate>Fri, 01 Jan 2016 07:01:00 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/01/installing-graylog-on-centos-7/</guid>
+      <guid>https://ciscoskills.net/2016/01/installing-graylog-on-centos-7/</guid>
       <description>
         
           &lt;p&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2015/12/graylog-logo.png?w=150&#34; alt=&#34;Graylog-logo&#34;&gt;Let&#39;s start out 2016 with setting up a logging system called Graylog. If you have not used Graylog before then I encourage you to check it out. This is an open source log management system and is pretty flexible as it can capture, index and analyze almost anything. Once up and running this system can be scaled out for an enterprise wide log management system. High availability, clustered, and replicated is what Graylog thrives on. In this demo I am going to have two systems. One is the Graylog server, web server and will also have a Mongo database. The other system will be an Elasticsearch node which is what will have the actual data stored in and indexed. For bigger “production” ready setups you just scale this out to separate systems. Documentation is key here and Graylog has done an excellent job of it so here it is in case you need it: &lt;a href=&#34;http://docs.graylog.org/en/1.3/index.html&#34;&gt;http://docs.graylog.org/en/1.3/index.html&lt;/a&gt; I’m already assuming that you have CentOS 7 minimal installed if not you can pick up the latest CentOS at &lt;a href=&#34;http://www.centos.org/&#34;&gt;http://www.centos.org/&lt;/a&gt; .The Centos systems also need a connection to the internet, and have just the root account. I&#39;m using two systems for this tutorial so keep that in mind, here are the names of each system and what their role is:&lt;/p&gt;

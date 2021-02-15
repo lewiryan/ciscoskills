@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Open source on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/open-source/</link>
+    <link>https://ciscoskills.net/tags/open-source/</link>
     <description>Recent content in Open source on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 21 Jun 2019 18:05:55 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Jun 2019 18:05:55 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Graylog with AWS Elasticsearch</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/06/graylog-with-aws-elasticsearch/</link>
+      <link>https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/</link>
       <pubDate>Fri, 21 Jun 2019 18:05:55 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2019/06/graylog-with-aws-elasticsearch/</guid>
+      <guid>https://ciscoskills.net/2019/06/graylog-with-aws-elasticsearch/</guid>
       <description>
         
           &lt;p&gt;Graylog has been through some changes last time I talked about them, hitting version 3.0 in February is awesome and one of things that make Graylog run well is Elasticsearch backend. Although Elasticsearch is not too hard to setup it usually runs better on bare metal, so there is cost of that as well as maintenance of the cluster is important, updates and upgrades. Depending your team experience you may not have time to learn it or run it the way it should be. That last thing you want is your logging setup to go down because of poor maintenance. So in this post we will walk though setting up a Graylog Server and using AWS Elasticsearch service for our backend. Without having a quick Elasticsearch cluster Graylog experience suffers, so let&#39;s get started.&lt;/p&gt;
@@ -22,7 +22,7 @@
 &lt;p&gt;If you want more information about Elasticsearch service that AWS provides go ahead and read AWS Developer Guide - &lt;a href=&#34;https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/what-is-amazon-elasticsearch-service.html&#34;&gt;Amazon Elasticsearch Service.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Once your cluster is up and running, keep note of the Endpoint URL you will need that for Graylog. In this example I&#39;m using Centos 7 for the Graylog Server and depending on the operating system you are using for the Graylog server follow the instructions on &lt;a href=&#34;http://docs.graylog.org/en/latest/pages/installation/operating_system_packages.html&#34;&gt;Graylog&#39;s Read the Docs&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;No need for me to repeat installation steps, in this example I&#39;m using Centos 7 and followed the &lt;a href=&#34;http://docs.graylog.org/en/latest/pages/installation/os/centos.html&#34;&gt;documentation&lt;/a&gt;. Since we have an Elasticsearch cluster provided by AWS you don&#39;t need to anything related to Elasticsearch when installing Graylog, so skip it. Once you have Graylog installed go ahead and start it up to make sure you get the webpage and can login. This just verifies you have a working Graylog server ready to go. You might see some errors related to indexing but that is expected, we have not told Graylog about our AWS Elasticsearch resource.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2019/04/graylog-es-aws.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2019/04/graylog-es-aws.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Login into your Graylog server and with your favorite text editor open the Graylog server configuration file /etc/graylog/server/server.conf We are looking to modify the Elasticsearch hosts by default its local host to the Endpoint URL that is in your AWS Elasticsearch resource.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;# List of Elasticsearch hosts Graylog should connect to.
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;# Need to be specified as a comma-separated list of valid URIs for the http ports of your elasticsearch nodes.
@@ -34,7 +34,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Restart the Graylog server service&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;systemctl restart graylog-server
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You now have Graylog server backed by an AWS Elasticsearch Cluster, log away :)
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2019/04/graylog-es-aws-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2019/04/graylog-es-aws-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;AWS makes deploying Graylog even easier if you don&#39;t want to have your own Elasticsearch cluster. Although you can&#39;t stop the AWS ES Cluster you can snapshot the data to an S3 bucket and import it back into a new ES cluster and connect Graylog back to it. This makes it so you don&#39;t have this running 24x7, maybe useful for temporary debugging logs or run it 24x7. Well that&#39;s all I got for a Friday, and its the first day of summer &amp;quot;officially&amp;quot; so time enjoy it! I do hope this information is helpful but also enjoy your summer! 8-)&lt;/p&gt;
 
         
@@ -43,10 +43,10 @@
     
     <item>
       <title>Automation Dance</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/11/automation-dance/</link>
+      <link>https://ciscoskills.net/2018/11/automation-dance/</link>
       <pubDate>Tue, 13 Nov 2018 15:55:19 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/11/automation-dance/</guid>
+      <guid>https://ciscoskills.net/2018/11/automation-dance/</guid>
       <description>
         
           &lt;p&gt;I keep doing the automation dance, (yeah...that&#39;s me) there are a lot of different tooling products out there. I have been trying to understand a use case around using it with network automation. Recently I have been dancing around with Ansible. My personal belief is that using any type of these tools would be helpful but it can be a steep learning curve if you really don&#39;t have any programming knowledge. This is not something that is relatively easy to use or understand, don&#39;t expect to have a working network automated tool in production on day one. I think this is great for learning, and using this in a network sandbox. If you don&#39;t have programming mindset it might make your job harder on day one before it gets easier, but just like learning to dance you have to learn the steps, the moves, and maintain the rhythm. So with that let&#39;s at least figure out the starting points, and begin learning the steps of the automation dance. ;)&lt;/p&gt;
@@ -72,10 +72,10 @@
     
     <item>
       <title>Installing a GNS3 Server</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/08/installing-a-gns3-server/</link>
+      <link>https://ciscoskills.net/2018/08/installing-a-gns3-server/</link>
       <pubDate>Fri, 17 Aug 2018 14:00:07 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/08/installing-a-gns3-server/</guid>
+      <guid>https://ciscoskills.net/2018/08/installing-a-gns3-server/</guid>
       <description>
         
           &lt;p&gt;Although GNS3 can run local on your computer and you can use VMware Workstation and have the GNS3 appliance. I found it much more stable and predictable to run GNS3 on a dedicated server. Using this type of installation, all the projects, and images are stored on the GNS3 server, so I can install the GNS3 client any computer and get access to the same projects I was working on. You can also have multiple people working on different projects that are on the same server. I find that neat for educational use or if you where helping someone with a project. In this post I’ll walk though the steps needed to set up a GNS3 server.&lt;/p&gt;
@@ -84,17 +84,17 @@
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh &amp;amp;gt; gns3-remote-install.sh
 &lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;bash gns3-remote-install.sh --with-openvpn --with-iou --with-i386-repository
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ubuntu Server will download and add the GNS3 PPA (Personal Package Archive) once that finishes which takes about 10 to 15 minutes, go ahead and reboot the system. After a reboot we need to download &lt;a href=&#34;https://openvpn.net/index.php/open-source/downloads.html&#34;&gt;OpenVPN client&lt;/a&gt; for your computer and download the configuration from the GNS3 server. You’ll notice a banner upon a successful login on the GNS3 server, copy that URL and paste in your web browser to download the OpenVPN configuration file. The server will detect your external IP address, just use your statically configured internal address to connect to it if you are local. In this example the internal IP address of this GNS3 server is 192.168.127.131.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/08/gns3-install-4e.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2018/08/gns3-install-4e.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Depending how you are connecting to the GNS3 Server you might need to edit the OpenVPN configuration file. If you will be connecting from the Internet it will probably work, like if you are using a hosting provider like Packet.net, AWS or your own ISP. If you will normally be connecting from your internal network which is mostly likely the case, you need to edit the bottom of the OpenVPN file to the statically configured IP address you configured when you installed the Ubuntu operating system. In this example the GNS3 server internal IP is 192.168.127.131 so I’ll edit the file with a simple text editor.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/06/gns3-install-5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/gns3-install-5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Once that is done we should be able to connect to our GNS3 server using the OpenVPN client. When you configure a GNS3 server you must use the OpenVPN regardless if you are locally on the same network or over the internet. We are now ready to go ahead and install the GNS3 client on your computer. In this example I&#39;m using Windows, the GNS3 client can also be used in Linux. When you download and install the GNS3 client I usually leave everything at the defaults except the SolarWinds and NCAP most of this stuff is already on the server and I let the installer do the rest.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/06/gns3-install.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/gns3-install.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;After the installation is finished go ahead and start GNS3 the first time, you are greeted with a Setup Wizard window. We are using a GNS3 server, so everything is going to run on it. Select the Run everything on a remote server (advanced usage).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/06/gns3-install-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/gns3-install-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Another screen will want to know the IP address of the server to connect to, you need to use the OpenVPN IP address of 172.16.253.1. By default there is no user authentication, also before selecting next make sure you are connected to the GNS3 server with OpenVPN.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/06/gns3-install-8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/gns3-install-8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;After selecting next GNS3 will verify it can connect to the server and then ask you if want to start importing appliances into GNS3.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/06/gns3-install-7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/06/gns3-install-7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;You now have a GNS3 server ready to go, everything runs on this server, your projects, images and any snapshots all run on this server. When there are updates to GNS3 a simple sudo apt-upgrade command will update server and any GNS3 components automatically the only thing you need to do is update your GNS3 client so that the version match on both sides. Some things I noticed when using a GNS3 server is that is changes your host name when you run the GNS3 script but does not change the host file on the server so you might notice when you attempt to shut down or reboot the system, or do any sudo commands it can sometimes hang for a bit, and you get this message:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;sudo: unable to resolve host gns3vm\[/code\]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To fix that you just need to add in the gns3vm to the host file of the GNS3 server, in this example I&#39;m using nano, and I just added the gns3vm in the host file using a different address of the in loopback space.&lt;/p&gt;
@@ -111,10 +111,10 @@
     
     <item>
       <title>GNS3 1.0 Campaign</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/11/gns3-1.0-campaign/</link>
+      <link>https://ciscoskills.net/2013/11/gns3-1.0-campaign/</link>
       <pubDate>Thu, 21 Nov 2013 06:25:01 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/11/gns3-1.0-campaign/</guid>
+      <guid>https://ciscoskills.net/2013/11/gns3-1.0-campaign/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png&#34; alt=&#34;GNS3-logo&#34;&gt;&lt;/a&gt;It&#39;s been almost 24 hours since GNS3 launched a campaign to bring in funds to support the open source network simulator and bring it up to version 1.0. A lot of new features are on the list, like switching, &lt;a href=&#34;http://en.wikipedia.org/wiki/Cloud_computing&#34; title=&#34;Cloud computing&#34;&gt;cloud processing&lt;/a&gt;, hassle free configuration, labs/training materials and 3rd party integrations. All of which are in the works for this new version added along with some pretty cool plug-ins. As of writing this post they are at $106,973 dollars which is 300 percent over funded! A pretty good turnout in fact they meet their goal in less than 4 hours of stating the campaign and have 16 days left to go. GNS3 has had a history of being one of those free products that can be little overwhelming at first. However once you start looking into blogs, videos and other many helpful resources about GNS3 it becomes an amazing tool to simulate networks. In fact once you have verified/tested your configuration you could take that same running-config from GNS3 and paste into production, what free network simulation product does that? I have used GNS3 for the most part for studying &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco certifications&lt;/a&gt; but just recently I have found that GNS3 to be very helpful in my current work environment as I am able to play around with network designs. I could also think of other ways to use GNS3 like for demo networks, poof-of-concept ideas, security projects and much more. From what I can tell from the ideas and features coming into version 1.0 I am hopeful that this version will be a game changer for GNS3 just as it was six years ago. If you have used GNS3 before go ahead and take a look at their &lt;a href=&#34;https://gns3.crowdhoster.com/become-an-early-release-member&#34;&gt;campaign&lt;/a&gt; and see if you would like to contribute, or you can as always wait until it officially releases for free. If you never used GNS3 but have an interest go ahead and download the latest version of it, there is some good &lt;a href=&#34;http://www.gns3.net/documentation/&#34;&gt;documentation&lt;/a&gt; on GNS3’s website on how to configure it as well other blogs and videos of how to install/configure. I hope this short post is informative and just for a FYI I’ve personally contributed to the GNS3 campaign. Good Luck Stephen and Jeremy! So with that what would you like to see in GNS3 1.0, and in future versions of the product? Also what has the current version of GNS3 helped you with? Comment Below! More Information: &lt;a href=&#34;http://www.gns3.net/early-release-faq/&#34; title=&#34;Early Release FAQ&#34;&gt;General GNS3 Early Release FAQ&lt;/a&gt; &lt;a href=&#34;https://gns3.crowdhoster.com/become-an-early-release-member&#34;&gt;CrowdFunding Page&lt;/a&gt; &lt;a href=&#34;http://www.gns3.net/&#34;&gt;GNS3 Homepage&lt;/a&gt;&lt;/p&gt;

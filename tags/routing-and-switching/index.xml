@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Routing and Switching on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/routing-and-switching/</link>
+    <link>https://ciscoskills.net/tags/routing-and-switching/</link>
     <description>Recent content in Routing and Switching on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 01 Oct 2013 00:34:35 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/routing-and-switching/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Oct 2013 00:34:35 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/routing-and-switching/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CCNA 2.0 What&#39;s New?</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/10/ccna-2.0-whats-new/</link>
+      <link>https://ciscoskills.net/2013/10/ccna-2.0-whats-new/</link>
       <pubDate>Tue, 01 Oct 2013 00:34:35 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/10/ccna-2.0-whats-new/</guid>
+      <guid>https://ciscoskills.net/2013/10/ccna-2.0-whats-new/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34; alt=&#34;Cisco-Network&#34;&gt;&lt;/a&gt;I brought this topic up in March of this year &lt;a href=&#34;http://ciscoskills.net/2013/03/26/ccna-version-2-0-refresh/&#34; title=&#34;CCNA Version 2.0 Refresh&#34;&gt;(See original post)&lt;/a&gt; but I wanted to re-post it to add some information because as of today this was your last day to pass the older &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; exams. &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has a refreshed all the CCNA Routing and Switching exams. That includes the ICND1 (640-822), the ICND2 (640-816), and the all in wonder exam (640-816). You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track. Starting at the CCNA the refreshed exams are the following, 100-101 ICND1 &lt;strong&gt;(which replaces 640-822 exam)&lt;/strong&gt;, 200-101 ICND2 &lt;strong&gt;(which replaces 640-816 exam)&lt;/strong&gt;, and the all in wonder 200-120 CCNA &lt;strong&gt;(which replaces the all in wonder 640-802 exam)&lt;/strong&gt;. Like I mentioned earlier the last day to take these older exams are September 30th of 2013 so good luck :) What has changed:&lt;/p&gt;

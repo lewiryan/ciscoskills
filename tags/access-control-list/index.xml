@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Access control list on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/access-control-list/</link>
+    <link>https://ciscoskills.net/tags/access-control-list/</link>
     <description>Recent content in Access control list on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 17 Mar 2012 17:46:23 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/access-control-list/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Mar 2012 17:46:23 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/access-control-list/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What is the Nexus 1000v?</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2012/03/what-is-the-nexus-1000v/</link>
+      <link>https://ciscoskills.net/2012/03/what-is-the-nexus-1000v/</link>
       <pubDate>Sat, 17 Mar 2012 17:46:23 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2012/03/what-is-the-nexus-1000v/</guid>
+      <guid>https://ciscoskills.net/2012/03/what-is-the-nexus-1000v/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/03/network_cloud_david_klan_01_svg_med.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/03/network_cloud_david_klan_01_svg_med.png&#34; alt=&#34;&#34; title=&#34;network_cloud&#34;&gt;&lt;/a&gt;I have worked with the Nexus 1000v product and wanted to share my thoughts on it. I want to explain in this blog what this product is and what it does.  The Nexus 1000v can be virtual or a hardware appliance and is considered to be a virtual switch that runs in &lt;a href=&#34;http://en.wikipedia.org/wiki/VMware&#34; title=&#34;VMware&#34;&gt;VMware&lt;/a&gt;. The major benefit to this product is the visibly you get when running in a virtual environment. Remember in the virtual environment the network engineer has a cloudy vision of what&#39;s going, because the built-in switch within VMware does not get that technical it just works. This is fine for most people but not all, especially the network technicians we want that visibly and the Nexus 1000v does that and more! The Nexus replaces the built-in switch in VMware and installs a &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_machine&#34; title=&#34;Virtual machine&#34;&gt;virtual machine&lt;/a&gt; called the VSM (Virtual Supervisor Module) and depending on the configuration you can have two VSMs for redundancy. These VSMs can be either virtual or a hardware appliance (Nexus 1010) Depending on how many &lt;a href=&#34;http://en.wikipedia.org/wiki/VMware_ESX&#34; title=&#34;VMware ESX&#34;&gt;ESX&lt;/a&gt; hosts you have in your environment each of them will have VEM (Virtual Ethernet Module) which are the work horses and provide packet forwarding. The VSMs and VEMs make up a single Nexus 1000v switch, which appears to be a single modular switch to the network technician. Each VSM can have a maximum of 64 VEMs (or 64 physical ESX hosts) It has always been that server administrators deal with the operating system and the applications running on that server. While the network administrators manage the switches and related policies. The link between the server and switch usually a cable separates these roles, until virtual came along and smashed these roles together usually the server administrator has to deal with it. With the Nexus 1000v these roles are now separate in the virtual environment with added functionality like PVLANs, receive rate limiting, &lt;a href=&#34;http://en.wikipedia.org/wiki/Quality_of_service&#34; title=&#34;Quality of service&#34;&gt;QoS&lt;/a&gt;, Access Control Lists (&lt;a href=&#34;http://en.wikipedia.org/wiki/Access_control_list&#34; title=&#34;Access control list&#34;&gt;ACLs&lt;/a&gt;), &lt;a href=&#34;http://en.wikipedia.org/wiki/DHCP_snooping&#34; title=&#34;DHCP snooping&#34;&gt;DHCP snooping&lt;/a&gt;, SPAN, ERSPAN, AAA, &lt;a href=&#34;http://en.wikipedia.org/wiki/Netflow&#34; title=&#34;Netflow&#34;&gt;NetFlow&lt;/a&gt;, SNMP and many other features that are not available with the VMware vSwitch. Check out this marketing video that summarizes the Nexus 1000v. [youtube=http://www.youtube.com/watch?v=pgksWMUBmcI] I hope this information is helpful, check back in a couple of weeks or so because I want to go through the process of setting up the Nexus 1000v, understanding some basic terminology of the Nexus 1000v and go over the CLI. Anybody that is familiar with Cisco IOS CLI will find that the &lt;a href=&#34;http://en.wikipedia.org/wiki/NX-OS&#34; title=&#34;NX-OS&#34;&gt;NX-OS&lt;/a&gt; is almost the same. :)&lt;/p&gt;
@@ -29,10 +29,10 @@
     
     <item>
       <title>Understanding CBAC</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/02/understanding-cbac/</link>
+      <link>https://ciscoskills.net/2011/02/understanding-cbac/</link>
       <pubDate>Tue, 22 Feb 2011 17:00:34 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/02/understanding-cbac/</guid>
+      <guid>https://ciscoskills.net/2011/02/understanding-cbac/</guid>
       <description>
         
           &lt;p&gt;Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the &lt;a href=&#34;http://www.cisco.com/en/US/products/ps6537/products_ios_sub_category_home.html&#34; title=&#34;Cisco IOS&#34;&gt;Cisco IOS&lt;/a&gt; router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make &lt;a href=&#34;http://en.wikipedia.org/wiki/Context-based_access_control&#34; title=&#34;Context-based access control&#34;&gt;CBAC&lt;/a&gt; possible. CBAC stands for Content-Base-&lt;a href=&#34;http://en.wikipedia.org/wiki/Access_control&#34; title=&#34;Access control&#34;&gt;Access-Control&lt;/a&gt; and uses &lt;a href=&#34;http://en.wikipedia.org/wiki/Access_control_list&#34; title=&#34;Access control list&#34;&gt;ACLs&lt;/a&gt;. (Access Control Lists) Unlike the established TCP session and reflexive ACLs CBAC has several advantages:&lt;/p&gt;

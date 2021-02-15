@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wireless security on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/wireless-security/</link>
+    <link>https://ciscoskills.net/tags/wireless-security/</link>
     <description>Recent content in Wireless security on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 18 May 2011 16:50:52 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/wireless-security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 May 2011 16:50:52 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/wireless-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basic Wireless LAN Security</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/05/basic-wireless-lan-security/</link>
+      <link>https://ciscoskills.net/2011/05/basic-wireless-lan-security/</link>
       <pubDate>Wed, 18 May 2011 16:50:52 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/05/basic-wireless-lan-security/</guid>
+      <guid>https://ciscoskills.net/2011/05/basic-wireless-lan-security/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/wirelesssecurity.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/wirelesssecurity.png&#34; alt=&#34;&#34; title=&#34;Wireless-Security-Icon&#34;&gt;&lt;/a&gt;Although having a wireless LAN sounds like a wonderful idea, there are things that need to be implemented like security. A wireless LAN can be uncontrollable has it is just radio waves and anybody can receive them. Having and using good security practices can help you be under control of your wireless LAN.  Not having any security in a wireless LAN environment will cause anybody to have access to the network. Some threats that lead to &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;wireless LANs&lt;/a&gt; can be the following:&lt;/p&gt;

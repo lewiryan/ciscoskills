@@ -2,19 +2,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OpenSSH on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/openssh/</link>
+    <link>https://ciscoskills.net/tags/openssh/</link>
     <description>Recent content in OpenSSH on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 03 Mar 2016 02:43:31 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/openssh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Mar 2016 02:43:31 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/openssh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rancid can’t SSH to older ISRs?</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/03/rancid-cant-ssh-to-older-isrs/</link>
+      <link>https://ciscoskills.net/2016/03/rancid-cant-ssh-to-older-isrs/</link>
       <pubDate>Thu, 03 Mar 2016 02:43:31 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2016/03/rancid-cant-ssh-to-older-isrs/</guid>
+      <guid>https://ciscoskills.net/2016/03/rancid-cant-ssh-to-older-isrs/</guid>
       <description>
         
-          &lt;p&gt;Well its 2016 and you still have that one-of-kind Cisco ISR 2811 or 3845 running in the environment? You followed and installed Rancid, all the new stuff works like it should but when you try to connect to that “one-of-kind” 2811 with Rancid it closes the connection... :/ This is a simple fix and the bug is reported here: &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740307&#34;&gt;LINK.&lt;/a&gt; The bug is something with OpenSSH which is installed on your Linux operating system and Rancid rides on top of it. You would have the same issue if you just tried SSH to thing directly from your Rancid machine. The bug looked to be fixed starting OpenSSH 6.9 but as right now at least in Centos 7 the version it goes up to is OpenSSH 6.6. You can verify this by using sshd -V to output the OpenSSH version you are using. Simple fix is to modify the ssh_config file usually located at &lt;strong&gt;/etc/ssh/ssh_config&lt;/strong&gt; and at the bottom of the file put the host you are connecting to. Copy what you have in your router.db file meaning if you are using DNS names put DNS names of the devices that won’t connect into this file. If you are using IP address use IP address in this file. In this example I’m using IP addresses and DNS names, the following is at the bottom of the ssh_config file: [code]# Custom Rancid Configuration (Issues with Connecting SSH with Older Devices) # Bug Report 740307 &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740307&#34;&gt;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740307&lt;/a&gt; # Host 192.168.3.1 KexAlgorithms=diffie-hellman-group14-sha1 # Host Router03.example.com KexAlgorithms=diffie-hellman-group14-sha1 # Host Router02.example.com KexAlgorithms=diffie-hellman-group14-sha1 # [/code] You should be good to go after that. You can test this by using clogin or by connecting directly. If you noticed on the bug report you could also up the Diffie-Hellman size to 4096 on the router itself by using the &lt;strong&gt;ip ssh dh min size 4096&lt;/strong&gt; command as well. I hope this helps if you ever need it :)&lt;/p&gt;
+          &lt;p&gt;Well its 2016 and you still have that one-of-kind Cisco ISR 2811 or 3845 running in the environment? You followed and installed Rancid, all the new stuff works like it should but when you try to connect to that “one-of-kind” 2811 with Rancid it closes the connection... :/&lt;/p&gt;
+&lt;p&gt;This is a simple fix and the bug is reported here: &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740307&#34;&gt;LINK.&lt;/a&gt; The bug is something with OpenSSH which is installed on your Linux operating system and Rancid rides on top of it. You would have the same issue if you just tried SSH to thing directly from your Rancid machine. The bug looked to be fixed starting OpenSSH 6.9 but as right now at least in Centos 7 the version it goes up to is OpenSSH 6.6. You can verify this by using sshd -V to output the OpenSSH version you are using.&lt;/p&gt;
+&lt;p&gt;Simple fix is to modify the ssh_config file usually located at &lt;strong&gt;/etc/ssh/ssh_config&lt;/strong&gt; and at the bottom of the file put the host you are connecting to. Copy what you have in your router.db file meaning if you are using DNS names put DNS names of the devices that won’t connect into this file. If you are using IP address use IP address in this file. In this example I’m using IP addresses and DNS names, the following is at the bottom of the ssh_config file:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;# Custom Rancid Configuration (Issues with Connecting SSH with Older Devices)
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;# Bug Report 740307 https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740307
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;#
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Host 192.168.3.1
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;    KexAlgorithms=diffie-hellman-group14-sha1
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;#
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Host Router03.example.com
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;    KexAlgorithms=diffie-hellman-group14-sha1
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;#
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Host Router02.example.com
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    KexAlgorithms=diffie-hellman-group14-sha1
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You should be good to go after that. You can test this by using clogin or by connecting directly. If you noticed on the bug report you could also up the Diffie-Hellman size to 4096 on the router itself by using the &lt;strong&gt;ip ssh dh min size 4096&lt;/strong&gt; command as well. I hope this helps if you ever need it :)&lt;/p&gt;
 
         
       </description>

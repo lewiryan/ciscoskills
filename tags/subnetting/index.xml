@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Subnetting on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/subnetting/</link>
+    <link>https://ciscoskills.net/tags/subnetting/</link>
     <description>Recent content in Subnetting on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 24 Apr 2012 02:06:15 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/subnetting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Apr 2012 02:06:15 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/subnetting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Part 2 – The Joys of Subnetttting – VLSM!</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2012/04/part-2-the-joys-of-subnetttting-vlsm/</link>
+      <link>https://ciscoskills.net/2012/04/part-2-the-joys-of-subnetttting-vlsm/</link>
       <pubDate>Tue, 24 Apr 2012 02:06:15 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2012/04/part-2-the-joys-of-subnetttting-vlsm/</guid>
+      <guid>https://ciscoskills.net/2012/04/part-2-the-joys-of-subnetttting-vlsm/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/04/vlsm-cbe.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/04/vlsm-cbe.png&#34; alt=&#34;VLSM Chalkboard &#34; title=&#34;VLSM-CBE&#34;&gt;&lt;/a&gt;So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff. It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; test. So let&#39;s get started! On Part 1 of my subnetting post I was spiting up networks into equal parts.&lt;/p&gt;

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ACL on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/acl/</link>
+    <link>https://ciscoskills.net/tags/acl/</link>
     <description>Recent content in ACL on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 22 Feb 2011 17:00:34 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/acl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Feb 2011 17:00:34 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/acl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding CBAC</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/02/understanding-cbac/</link>
+      <link>https://ciscoskills.net/2011/02/understanding-cbac/</link>
       <pubDate>Tue, 22 Feb 2011 17:00:34 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/02/understanding-cbac/</guid>
+      <guid>https://ciscoskills.net/2011/02/understanding-cbac/</guid>
       <description>
         
           &lt;p&gt;Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the &lt;a href=&#34;http://www.cisco.com/en/US/products/ps6537/products_ios_sub_category_home.html&#34; title=&#34;Cisco IOS&#34;&gt;Cisco IOS&lt;/a&gt; router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make &lt;a href=&#34;http://en.wikipedia.org/wiki/Context-based_access_control&#34; title=&#34;Context-based access control&#34;&gt;CBAC&lt;/a&gt; possible. CBAC stands for Content-Base-&lt;a href=&#34;http://en.wikipedia.org/wiki/Access_control&#34; title=&#34;Access control&#34;&gt;Access-Control&lt;/a&gt; and uses &lt;a href=&#34;http://en.wikipedia.org/wiki/Access_control_list&#34; title=&#34;Access control list&#34;&gt;ACLs&lt;/a&gt;. (Access Control Lists) Unlike the established TCP session and reflexive ACLs CBAC has several advantages:&lt;/p&gt;
@@ -40,10 +40,10 @@
     
     <item>
       <title>Access Control Lists</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/02/access-control-lists/</link>
+      <link>https://ciscoskills.net/2011/02/access-control-lists/</link>
       <pubDate>Mon, 07 Feb 2011 18:05:37 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/02/access-control-lists/</guid>
+      <guid>https://ciscoskills.net/2011/02/access-control-lists/</guid>
       <description>
         
           &lt;p&gt;Understanding Access Control Lists is an important role for moving up into the CCNA area. ACLs can get confusing and cause network problems if not implemented correctly. I think what I outlined below explains in a nutshell of what you can expect from ACLs. I would still read and find more information about ACLs on the web and or reading material. By securing networks with ACLs you are adding another barrier to your network although ACLs can&#39;t fool-proof your network they add additional level of security from the outside world. The simple definition of an ACL (access control list) is a sequential list of permit or deny statements that apply to the IP address and or upper-layer protocols. ACLs are a powerful way to control network traffic into and out of your network. Packet filtering sometimes called static filtering, controls access to a network by analyzing the incoming and outgoing packets. A router is considered a packet filter when it forwards or denies packets according to filtering rules. Packet filtering works at the network layer of the OSI model. The ACL can get the following information from the packer header:&lt;/p&gt;

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data Link on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/data-link/</link>
+    <link>https://ciscoskills.net/tags/data-link/</link>
     <description>Recent content in Data Link on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 10 Aug 2011 17:00:58 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/data-link/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Aug 2011 17:00:58 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/data-link/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Beginnings of Layer Two Redundancy</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/08/the-beginnings-of-layer-two-redundancy/</link>
+      <link>https://ciscoskills.net/2011/08/the-beginnings-of-layer-two-redundancy/</link>
       <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2011/08/the-beginnings-of-layer-two-redundancy/</guid>
+      <guid>https://ciscoskills.net/2011/08/the-beginnings-of-layer-two-redundancy/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34; alt=&#34;&#34; title=&#34;network-diagram&#34;&gt;&lt;/a&gt;In a perfect world we would never need redundancy on a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network&lt;/a&gt; infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network. But in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt; there is one layer that can&#39;t have redundancy at least logically and that is &lt;a href=&#34;http://en.wikipedia.org/wiki/Abstraction_layer&#34; title=&#34;Abstraction layer&#34;&gt;Layer&lt;/a&gt; two of the OSI model. If you follow this blog way back when I talked about the OSI model, layer two belongs to the switches and by design the ethernet frame does not support a TTL (&lt;a href=&#34;http://en.wikipedia.org/wiki/Time_to_live&#34; title=&#34;Time to live&#34;&gt;Time-To-Live&lt;/a&gt;) like the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP packet&lt;/a&gt;. So bring forth STP, the &lt;a href=&#34;http://en.wikipedia.org/wiki/Spanning_Tree_Protocol&#34; title=&#34;Spanning Tree Protocol&#34;&gt;Spanning Tree Protocol&lt;/a&gt; which works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until active link is unavailable (shutdown, disabled, etc.) So although there are multiple links connected physically to offer redundancy, logically the switches in the network only see one path that ethernet frame can travel. &lt;strong&gt;Your Thought:&lt;/strong&gt;&lt;/p&gt;

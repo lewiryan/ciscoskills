@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>API on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/api/</link>
+    <link>https://ciscoskills.net/tags/api/</link>
     <description>Recent content in API on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 14 Dec 2018 15:35:05 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Dec 2018 15:35:05 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Barracuda Load Balancer- Powershell</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/12/barracuda-load-balancer-powershell/</link>
+      <link>https://ciscoskills.net/2018/12/barracuda-load-balancer-powershell/</link>
       <pubDate>Fri, 14 Dec 2018 15:35:05 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/12/barracuda-load-balancer-powershell/</guid>
+      <guid>https://ciscoskills.net/2018/12/barracuda-load-balancer-powershell/</guid>
       <description>
         
           &lt;p&gt;Working on my Powershell skills, I was playing around with a Barracuda Load Balancer and noticed it supported some APIs which is kind of cool. At first I was playing around with it in postman and got to login and put some servers in maintenance mode, but then thought it would be really neat if I could get this working in Powershell, that way us humans can just run a script and even thinking in the &amp;quot;future&amp;quot; maybe have some automated process (a.k.a AI) handle this for us. ;) So in this post I&#39;ll talk about the script I created and some of the small challenges I had with this overall it was kind of neat putting this together. TLDR: Here is the script if you don&#39;t want to read:&lt;/p&gt;
@@ -90,10 +90,10 @@
     
     <item>
       <title>Enable a RESTful ASA API</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/10/enable-a-restful-asa-api/</link>
+      <link>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</link>
       <pubDate>Mon, 08 Oct 2018 13:00:21 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2018/10/enable-a-restful-asa-api/</guid>
+      <guid>https://ciscoskills.net/2018/10/enable-a-restful-asa-api/</guid>
       <description>
         
           &lt;p&gt;Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he &lt;a href=&#34;https://blog.ipspace.net/2018/09/infrastructure-as-code-netconf-and-rest.html&#34;&gt;points out&lt;/a&gt; there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC. In this post we&#39;ll go through the steps to enable it and you can be the judge, does this RESTful API help?&lt;/p&gt;
@@ -118,7 +118,7 @@
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;http 0.0.0.0 0.0.0.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After that you can browse to the following link: https://ASAIP/doc/&lt;/p&gt;
 &lt;p&gt;You will get prompt to login with a username and password, so make sure the authentication is configured on the ASA. If you have login successfully you will see a webpage like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2018/10/asa-api.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/10/asa-api.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;From here you can explore the different HTTP requests that are available and you essentially have another way of configuring and monitoring your ASA. So back my question does this type of RESTful API help you? I have explored this and have used Postman for my poor mans &amp;quot;IaC&amp;quot; but does that count, I feel something is missing? In the end it&#39;s still a process that runs and instead of running this via CLI its a CRUD API... - Ryan&lt;/p&gt;
 
         
@@ -127,10 +127,10 @@
     
     <item>
       <title>Enable the NX-OS API</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/10/enable-the-nx-os-api/</link>
+      <link>https://ciscoskills.net/2017/10/enable-the-nx-os-api/</link>
       <pubDate>Wed, 18 Oct 2017 13:18:42 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/10/enable-the-nx-os-api/</guid>
+      <guid>https://ciscoskills.net/2017/10/enable-the-nx-os-api/</guid>
       <description>
         
           &lt;p&gt;So what has changed in the past 20 years? Take for example the network equipment that was manufactured in 1997, how did you configure that equipment? I would imagine it involved a serial port, HyperTerminal and trusty command line. Was API even a thing back in 1997, was it common to have an API interface in network equipment like today? Why do we even need an API on the equipment in the first place? What changed?  Well the year isn&#39;t 1997 anymore, that past us 20 years ago and the equipment we work with today looks and operates much differently than it did in 1997.&lt;/p&gt;
@@ -145,9 +145,9 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;nx-osv9000-1# config t
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;nx-osv9000-1(config)# feature nxapi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Open a web browser to the management IP address and login with a username and password.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/10/nx-api-login.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2017/10/nx-api-login.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Welcome to NX-API Sandbox! With this we can play around to get a further understanding of how to use this API. Like being able to configure and or monitor this device with either a custom home-grown system, or the use some network automation software like Puppet or Chef.
-&lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/10/nx-api-sand.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://ciscoskills.net/images/2017/10/nx-api-sand.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;so-now-what&#34;&gt;So now what?&lt;/h3&gt;
 &lt;p&gt;Well if you are like me and really don&#39;t have much programming experience or just enough to be dangerous this where you get comfortable and use this sandbox to understand what it can and cannot do. For example on the upper right hand side, if I select &lt;strong&gt;XML&lt;/strong&gt; on the message format, then &lt;strong&gt;cli_show&lt;/strong&gt; on the command type, followed by typing the command &lt;strong&gt;show hostname&lt;/strong&gt; in the CLI command box, and finishing by selecting the post button, I should see an output of an XML request as well as the XML response from the switch.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;

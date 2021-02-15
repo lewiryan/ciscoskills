@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Site to Site on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/site-to-site/</link>
+    <link>https://ciscoskills.net/tags/site-to-site/</link>
     <description>Recent content in Site to Site on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 08 Mar 2017 14:30:00 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/site-to-site/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Mar 2017 14:30:00 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/site-to-site/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ASA Site to Site VPN (PATed)</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/03/asa-site-to-site-vpn-pated/</link>
+      <link>https://ciscoskills.net/2017/03/asa-site-to-site-vpn-pated/</link>
       <pubDate>Wed, 08 Mar 2017 14:30:00 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2017/03/asa-site-to-site-vpn-pated/</guid>
+      <guid>https://ciscoskills.net/2017/03/asa-site-to-site-vpn-pated/</guid>
       <description>
         
           &lt;p&gt;If you ever needed to hide multiple systems behind a single IP address you would use PAT. (Port Address Translation) besides using this to connect to the internet when using an RFC 1918 address, you can configure PAT for VPN connections. The benefit is the same, hide multiple systems behind a single IP address with the advantage being you can have many systems on one side of the VPN tunnel all using that single IP.&lt;/p&gt;
@@ -50,7 +50,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Here is the topology for reference: &lt;img src=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/images/2017/03/site-site-vpn-example.png&#34; alt=&#34;Site To Site VPN Example&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Here is the topology for reference: &lt;img src=&#34;https://ciscoskills.net/images/2017/03/site-site-vpn-example.png&#34; alt=&#34;Site To Site VPN Example&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Let&#39;s start building the tunnel for Acme by creating some object groups:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;object network ACCORP-DMZ-SERVER-1
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt; host 10.254.254.10
@@ -183,7 +183,7 @@
 &lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;1   IKE Peer: 192.0.2.10
 &lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    Type    : L2L             Role    : responder
 &lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    Rekey   : no              State   : MM_ACTIVE
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all I got, I hope this information is helpful. If you want to try this out I have attached the running-configs of both firewalls. If you are using Cisco VIRL here is a &lt;a href=&#34;https://github.com/lewiryan/VIRL/blob/master/Completed/ASA-Site-To-Site.virl&#34;&gt;link on GitHub&lt;/a&gt; to the file I was working with, enjoy! &lt;a href=&#34;http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/files/2017/03/running-config-firewalls.pdf&#34;&gt;Running-Config-Firewalls&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all I got, I hope this information is helpful. If you want to try this out I have attached the running-configs of both firewalls. If you are using Cisco VIRL here is a &lt;a href=&#34;https://github.com/lewiryan/VIRL/blob/master/Completed/ASA-Site-To-Site.virl&#34;&gt;link on GitHub&lt;/a&gt; to the file I was working with, enjoy! &lt;a href=&#34;https://ciscoskills.net/files/2017/03/running-config-firewalls.pdf&#34;&gt;Running-Config-Firewalls&lt;/a&gt;&lt;/p&gt;
 
         
       </description>

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Catalyst on Cisco Skills</title>
-    <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/catalyst/</link>
+    <link>https://ciscoskills.net/tags/catalyst/</link>
     <description>Recent content in Catalyst on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 12 Oct 2013 15:56:48 +0000</lastBuildDate><atom:link href="http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/tags/catalyst/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Oct 2013 15:56:48 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/catalyst/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuring EtherChannel (PAgb)</title>
-      <link>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/10/configuring-etherchannel-pagb/</link>
+      <link>https://ciscoskills.net/2013/10/configuring-etherchannel-pagb/</link>
       <pubDate>Sat, 12 Oct 2013 15:56:48 +0000</pubDate>
       
-      <guid>http://archive.ciscoskills.net.s3-website-us-west-2.amazonaws.com/2013/10/configuring-etherchannel-pagb/</guid>
+      <guid>https://ciscoskills.net/2013/10/configuring-etherchannel-pagb/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png&#34; alt=&#34;NetworkSwitches&#34;&gt;&lt;/a&gt;Bundling physical links into one logical link is a common practice to up the bandwidth between switches, you may have this also configured on a server to bundle connections as well. In this tutorial I have two 2960 switches both of them trunking all &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; on two gigabit ports. So in the end game is get 2gbps instead of 1gbps between switches while using Cisco’s &lt;a href=&#34;http://en.wikipedia.org/wiki/Proprietary_protocol&#34; title=&#34;Proprietary protocol&#34;&gt;proprietary protocol&lt;/a&gt; PAgb.   It is important to remember that both of these protocols (PAgb and &lt;a href=&#34;http://en.wikipedia.org/wiki/Link_aggregation&#34; title=&#34;Link aggregation&#34;&gt;LACP&lt;/a&gt;) are link aggregation protocols only, their job is to make sure that &lt;a href=&#34;http://en.wikipedia.org/wiki/EtherChannel&#34; title=&#34;EtherChannel&#34;&gt;EtherChannel&lt;/a&gt; is setup correctly by negotiating. This helps prevent EtherChannel mismatches and loops. You could manually set the etherchannel mode to &amp;quot;on&amp;quot; instead of using either of these aggregation protocols. However this is considered best practice to use one of these link aggregation protocols. Here are some Guidelines for Configuring EtherChannel:&lt;/p&gt;
