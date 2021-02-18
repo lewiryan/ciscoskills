@@ -138,8 +138,6 @@
       </a>
       <a href='https://ciscoskills.net/tags/software' class="post_tag button button_translucent">Software
       </a>
-      <a href='https://ciscoskills.net/tags/tutorials' class="post_tag button button_translucent">Tutorials
-      </a>
       <a href='https://ciscoskills.net/tags/tutorials' class="post_tag button button_translucent">tutorials
       </a>
 </div>
@@ -170,22 +168,323 @@
   </div>
 
     
-    <p><img src="https://systemstechblog.files.wordpress.com/2015/12/graylog-logo.png?w=150" alt="Graylog-logo">Let's start out 2016 with setting up a logging system called Graylog. If you have not used Graylog before then I encourage you to check it out. This is an open source log management system and is pretty flexible as it can capture, index and analyze almost anything. Once up and running this system can be scaled out for an enterprise wide log management system. High availability, clustered, and replicated is what Graylog thrives on. In this demo I am going to have two systems. One is the Graylog server, web server and will also have a Mongo database. The other system will be an Elasticsearch node which is what will have the actual data stored in and indexed. For bigger “production” ready setups you just scale this out to separate systems. Documentation is key here and Graylog has done an excellent job of it so here it is in case you need it: <a href="http://docs.graylog.org/en/1.3/index.html">http://docs.graylog.org/en/1.3/index.html</a> I’m already assuming that you have CentOS 7 minimal installed if not you can pick up the latest CentOS at <a href="http://www.centos.org/">http://www.centos.org/</a> .The Centos systems also need a connection to the internet, and have just the root account. I'm using two systems for this tutorial so keep that in mind, here are the names of each system and what their role is:</p>
-<p><strong>SERVER NAME</strong></p>
-<p><strong>SERVER ROLE</strong></p>
-<p>Graylog1 (192.168.148.130)</p>
-<p>Graylog/Web/Mongo Server</p>
-<p>Graylog2 (192.168.148.132)</p>
-<p>Elasticsearch Node</p>
-<p>First let's login as the root account and update both systems and accept any updates before we do anything else. [code]yum update[/code] Install by favorite text editor for Linux called nano and wget on both systems. (We need to make modifications to some configuration files) [code]yum install nano wget[/code] Also we need Java on both systems so let's install that. [code]yum install java-1.8.0-openjdk[/code] Let's start with server <strong>Graylog2</strong> which will have the Elasticsearch service installed. This can be pretty big in size depending on the amount of logs you're pushing into Graylog and the retention period you have. (By default its 20 indices) Also as a note you have the the ability to cluster these Elasticseach nodes which can add additional space and redundancy to Graylog. In this tutorial we are just doing one server and currently Graylog does not support Elasticsearch 2.X so we to need install Elasticsearch 1.7.x. I downloaded the RPM package to root’s home directory on Graylog2. You can either use WinSCP or use wget to download that file. I then ran the following to install Elasticsearch 1.7.x. Remember install the latest 1.7.x version. Reference:<a href="https://www.elastic.co/downloads/past-releases">https://www.elastic.co/downloads/past-releases</a> [code]rpm -Uvh elasticsearch-1.7.4.noarch.rpm[/code] <strong><em>(Side Conversation):</em></strong> <em>By default the Elasicsearch stores its information in the var/lib/elasticsearch folder. Depending on the size of the Centos server you may want to change the default location, especially if you had Centos auto partition your drive. Usually the /home folder has the most space available and this varies on installations so on your own you can check by running df -h to view partitions. To change the save location for Elasicsearch edit the elasticsearch.yml located at /etc/elasticsearch/. You want to look for path.data and uncommnet it out and put down where you want Elasicsearch to store indexes. (Its easier to do this now then to wait until your partition is full</em> :) <em>)</em> Start elastic on bootup: [code]sudo systemctl enable elasticsearch.service[/code] Start the Elasticsearch service: [code]sudo systemctl start elasticsearch.service[/code] Verify Elasticsearch service is started: [code][root@GRAYLOG2 ~]# systemctl status elasticsearch.service â elasticsearch.service - Elasticsearch Loaded: loaded (/usr/lib/systemd/system/elasticsearch.service; enabled; vendor preset: disabled) Active: active (running) since Mon 2015-12-21 21:00:42 MST; 52s ago Docs: <a href="http://www.elastic.co">http://www.elastic.co</a> Main PID: 2835 (java) CGroup: /system.slice/elasticsearch.service ââ2835 /bin/java -Xms256m -Xmx1g -Djava.awt.headless=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiating... Dec 21 21:00:42 GRAYLOG2 systemd[1]: Started Elasticsearch. Dec 21 21:00:42 GRAYLOG2 systemd[1]: Starting Elasticsearch...[/code] Additional verification: [code][root@GRAYLOG2 ~]# curl -XGET http://127.0.0.1:9200 { &quot;status&quot; : 200, &quot;name&quot; : &quot;Norrin Radd&quot;, &quot;cluster_name&quot; : &quot;elasticsearch&quot;, &quot;version&quot; : { &quot;number&quot; : &quot;1.7.4&quot;, &quot;build_hash&quot; : &quot;0d3159b9fc8bc8e367c5c40c09c2a57c0032b32e&quot;, &quot;build_timestamp&quot; : &quot;2015-12-15T11:25:18Z&quot;, &quot;build_snapshot&quot; : false, &quot;lucene_version&quot; : &quot;4.10.4&quot; }, &quot;tagline&quot; : &quot;You Know, for Search&quot; } [root@GRAYLOG2 ~]#[/code] Allow a range of ports on the CentOS system for management and Elasticsearch functions. [code]firewall-cmd --permanent --zone=public --add-port=9200-9400/tcp[/code] Reload the firewall: [code]firewall-cmd --reload[/code] Install the browser plugin for Elasticsearch. [code]cd /usr/share/elasticsearch/ bin/plugin -install mobz/elasticsearch-head[/code] Point your browser to the Elasticsearch node <a href="http://ip-address:9200">http://ip-address:9200</a> you should see the same information as you did when you issued the curl command. You can view the plugin that was install by going to <a href="http://ip-address:9200/_plugin/head/">http://ip-address:9200/_plugin/head/</a> (This is very helpful to see the elastic cluster) We now need to modify some configuration on the Elasticsearch node. We will be editing /etc/elasticsearch/elasticsearch.yml [code]nano /etc/elasticsearch/elasticsearch.yml[/code] Edit the following: [code highlight=&quot;6,13&quot;]################################### Cluster ################################### # Cluster name identifies your cluster for auto-discovery. If you're running # multiple clusters on the same network, make sure you're using unique names. # cluster.name: graylog #################################### Node ##################################### # Node names are generated dynamically on startup, so you're relieved # from configuring them manually. You can tie this node to a specific name: # node.name: &quot;GRAYLOG2&quot; [/code] --OMITTED-- [code highlight=&quot;7&quot;] # Unicast discovery allows to explicitly control which nodes will be used # to discover the cluster. It can be used when multicast is not present, # or to restrict the cluster communication-wise. # # 1. Disable multicast discovery (enabled by default): # discovery.zen.ping.multicast.enabled: false # # 2. Configure an initial list of master nodes in the cluster # to perform discovery when new nodes (master or data) are started: # #discovery.zen.ping.unicast.hosts: [&quot;host1&quot;, &quot;host2:port&quot;] # EC2 discovery allows to use AWS EC2 API in order to perform discovery. # # You have to install the cloud-aws plugin for enabling the EC2 discovery.[/code] Restart Elasticsearch service: [code]systemctl restart elasticsearch[/code] Verify service is running: [code]systemctl status elasticsearch[/code] Open your browser up to <a href="http://ip-address:9200/_plugin/head/">http://ip-address:9200/_plugin/head/</a> you should now see your elasticsearch node named correctly. [caption id=&quot;attachment_3633&quot; align=&quot;aligncenter&quot; width=&quot;572&quot;]<img src="https://systemstechblog.files.wordpress.com/2015/12/graylog2-1.png" alt="graylog2-1"> Elasticseach Node up and running on server Graylog2[/caption] On server <strong>Graylog1:</strong> Allow the installation of EPEL packages, We use this to install pwgen if you have another way of generating random passwords then you don't need it. To install EPEL packages on Centos 7: [code]rpm -Uvh <a href="https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm">https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</a>[/code] Install pwgen: [code]yum install pwgen[/code] Install the Mango software repositories Reference: <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/</a> Create a /etc/yum.repos.d/mongodb-org-3.2.repo file so that you can install MongoDB directly, using yum. [code]nano /etc/yum.repos.d/mongodb-org-3.2.repo[/code] Copy following into the mongodb-org3.2.repo [code] [mongodb-org-3.2] name=MongoDB Repository baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/ gpgcheck=0 enabled=1[/code] Install Mongodb: [code]yum install mongodb-org[/code] Once installed start it up by running this command: [code]/etc/init.d/mongod start[/code] Verify mongo is up and running by running the mongo command. Should look something like this: [code][root@GRAYLOG1 ~]# mongo MongoDB shell version: 3.2.0 connecting to: test Server has startup warnings: 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten] 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten] ** We suggest setting it to 'never' 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten] 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'. 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten] ** We suggest setting it to 'never' 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten] 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten] ** WARNING: soft rlimits too low. rlimits set to 4096 processes, 64000 files. Number of processes should be at least 32000 : 0.5 times number of files. 2015-12-22T18:30:06.804-0700 I CONTROL [initandlisten][/code] Make sure Mongo starts up when the server reboots: [code]chkconfig -- mongodb[/code] We are now ready to install Graylog sever and Graylog Web Reference: <a href="http://docs.graylog.org/en/1.3/pages/installation/operating_system_packages.html">http://docs.graylog.org/en/1.3/pages/installation/operating_system_packages.html</a> Run the following commands, RPM is to get the package version so we can install it using yum. [code]sudo rpm -Uvh <a href="https://packages.graylog2.org/repo/packages/graylog-1.3-repository-el7">https://packages.graylog2.org/repo/packages/graylog-1.3-repository-el7</a>_latest.rpm sudo yum install graylog-server graylog-web[/code] When/If the server reboots let’s make sure graylog starts up with it: [code]systemctl enable graylog-server systemctl enable graylog-web[/code] Now we need to edit the graylog configuration: [code]nano /etc/graylog/server/server.conf[/code] Make the following edits: <em><strong>Note:</strong> For the shasum -a 256 command, use sha256sum instead.</em> _ Example: echo -n yourpassword | shasum -a 256 BECOMES echo -n yourpassword | sha256sum_ [code highlight=&quot;3,11,22&quot;]# If you are running more than one instances of graylog2-server you have to select one of these # instances as master. The master will perform some periodical tasks that non-masters won't perform. is_master = true # The auto-generated node ID will be stored in this file and read after restarts. It is a good idea # to use an absolute file path here if you are starting graylog2-server from init scripts or similar. node_id_file = /etc/graylog/server/node-id # You MUST set a secret to secure/pepper the stored user passwords here. Use at least 64 characters. # Generate one by using for example: pwgen -N 1 -s 96 password_secret = YOUR_SECRET_PASSWORD_GOES_HERE # The default root user is named 'admin' #root_username = admin # You MUST specify a hash password for the root user (which you only need to initially set up the # system and in case you lose connectivity to your authentication backend) # This password cannot be changed using the API or via the web interface. If you need to change it, # modify it in this file. # Create one by using for example: echo -n yourpassword | shasum -a 256 # and put the resulting hash value into the following line root_password_sha2 =YOUR_PASSWORD_HASH_GOES_HERE # The email address of the root user. # Default is empty #root_email = &quot;&quot; # The time zone setting of the root user. # The configured time zone must be parseable by <a href="http://www.joda.org/joda-time/apidocs/org/joda/time/DateTimeZone.html#forID-java.lang.String-">http://www.joda.org/joda-time/apidocs/org/joda/time/DateTimeZone.html#forID-java.lang.String-</a> # Default is UTC #root_timezone = UTC [/code] --OMITTED-- [code highlight=&quot;6,18,23,26,38,39&quot;]# How many Elasticsearch shards and replicas should be used per index? Note that this only applies to newly created indices. elasticsearch_shards = 4 elasticsearch_replicas = 0 # Prefix for all Elasticsearch indices and index aliases managed by Graylog. elasticsearch_index_prefix = graylog # Name of the Elasticsearch index template used by Graylog to apply the mandatory index mapping. # # Default: graylog-internal #elasticsearch_template_name = graylog-internal # Do you want to allow searches with leading wildcards? This can be extremely resource hungry and should only # be enabled with care. See also: <a href="https://www.graylog.org/documentation/general/queries/">https://www.graylog.org/documentation/general/queries/</a> allow_leading_wildcard_searches = false # Do you want to allow searches to be highlighted? Depending on the size of your messages this can be memory hungry and # should only be enabled after making sure your Elasticsearch cluster has enough memory. allow_highlighting = true # settings to be passed to elasticsearch's client (overriding those in the provided elasticsearch_config_file) # all these # this must be the same as for your Elasticsearch cluster elasticsearch_cluster_name = graylog # you could also leave this out, but makes it easier to identify the graylog2 client instance elasticsearch_node_name = graylog1 # we don't want the graylog2 server to store any data, or be master node #elasticsearch_node_master = false #elasticsearch_node_data = false # use a different port if you run multiple Elasticsearch nodes on one machine #elasticsearch_transport_tcp_port = 9350 # we don't need to run the embedded HTTP server here #elasticsearch_http_enabled = false elasticsearch_discovery_zen_ping_multicast_enabled = false elasticsearch_discovery_zen_ping_unicast_hosts = 192.168.148.132:9300 # Change the following setting if you are running into problems with timeouts during Elasticsearch cluster discovery. # The setting is specified in milliseconds, the default is 5000ms (5 seconds). #elasticsearch_cluster_discovery_timeout = 5000 [/code] Add the following firewall rule: [code]firewall-cmd --permanent --zone=public --add-port=9000/tcp firewall-cmd --permanent --zone=public --add-port=9201-9400/tcp firewall-cmd --reload[/code] Configure the Graylog web server configuration file located at /etc/graylog/web/web.conf. [code highlight=&quot;2,12&quot;]# graylog2-server REST URIs (one or more, comma separated) For example: &quot;http://127.0.0.1:12900/,http://127.0.0.1:12$ graylog2-server.uris=&quot;http://127.0.0.1:12900&quot; # Learn how to configure custom logging in the documentation: # <a href="http://docs.graylog.org/en/latest/pages/installation.html#manual-setup-graylog-web-interface-on-linux">http://docs.graylog.org/en/latest/pages/installation.html#manual-setup-graylog-web-interface-on-linux</a> # Secret key # ~~~~~ # The secret key is used to secure cryptographics functions. Set this to a long and randomly generated string. # If you deploy your application to several instances be sure to use the same key! # Generate for example with: pwgen -N 1 -s 96 application.secret=&quot;YOUR_SECRET_PASSWORD_GOES_HERE&quot; # Web interface timezone # Graylog stores all timestamps in UTC. To properly display times, set the default timezone of the interface. # If you leave this out, Graylog will pick your system default as the timezone. Usually you will want to configure it. # timezone=&quot;Europe/Berlin&quot; # Message field limit # Your web interface can cause high load in your browser when you have a lot of different message fields. The default # limit of message fields is 100. Set it to 0 if you always want to get all fields. They are for example used in the # search result sidebar or for autocompletion of field names. field_list_limit=100 # Use this to run Graylog with a path prefix #application.context=/graylog2 # You usually do not want to change this. application.global=lib.Global # Global timeout for communication with Graylog server nodes; default: 5s #timeout.DEFAULT=5s # Accept any server certificate without checking for validity; required if using self-signed certificates. # Default: true # graylog2.client.accept-any-certificate=true[/code] Start them up! Both graylog-server and graylog-web. [code]systemctl start graylog-server systemctl start graylog-web[/code] Verify both are running: [code][root@GRAYLOG1 ~]# systemctl status graylog-server â graylog-server.service - Graylog server Loaded: loaded (/usr/lib/systemd/system/graylog-server.service; enabled; vendor preset: disabled) Active: active (running) since Wed 2015-12-23 20:05:38 MST; 11s ago Docs: <a href="http://docs.graylog.org/">http://docs.graylog.org/</a> Main PID: 11758 (graylog-server) CGroup: /system.slice/graylog-server.service ââ11758 /bin/sh /usr/share/graylog-server/bin/graylog-server ââ11759 /usr/bin/java -Xms1g -Xmx1g -XX:NewRatio=1 -XX:PermSize=128m -XX:MaxPermSize=256m -se... Dec 23 20:05:38 GRAYLOG1 systemd[1]: Started Graylog server. Dec 23 20:05:38 GRAYLOG1 systemd[1]: Starting Graylog server... Dec 23 20:05:38 GRAYLOG1 graylog-server[11758]: OpenJDK 64-Bit Server VM warning: ignoring option Per...8.0 Dec 23 20:05:38 GRAYLOG1 graylog-server[11758]: OpenJDK 64-Bit Server VM warning: ignoring option Max...8.0 Hint: Some lines were ellipsized, use -l to show in full. [root@GRAYLOG1 ~]# systemctl status graylog-web â graylog-web.service - Graylog web interface Loaded: loaded (/usr/lib/systemd/system/graylog-web.service; enabled; vendor preset: disabled) Active: active (running) since Wed 2015-12-23 20:05:43 MST; 13s ago Docs: <a href="http://docs.graylog.org/">http://docs.graylog.org/</a> Main PID: 11777 (graylog-web) CGroup: /system.slice/graylog-web.service ââ11777 /bin/sh /usr/share/graylog-web/bin/graylog-web ââ11778 java -Xms1024m -Xmx1024m -XX:ReservedCodeCacheSize=128m -Dconfig.file=/etc/graylog/we... Dec 23 20:05:43 GRAYLOG1 systemd[1]: Started Graylog web interface. Dec 23 20:05:43 GRAYLOG1 systemd[1]: Starting Graylog web interface... [root@GRAYLOG1 ~]#[/code] You should be able get to the Graylog Web interface by going to <a href="http://ip-address:9000/">http://ip-address:9000/</a>. You should see a login screen, type in admin followed by your password that you created. [caption id=&quot;attachment_3688&quot; align=&quot;aligncenter&quot; width=&quot;1375&quot;]<img src="https://systemstechblog.files.wordpress.com/2016/01/graylog1-2.png" alt="graylog1-2"> Graylog Login Screen[/caption] Once logged if you get an error about an exception and an &quot;OOps Message&quot; You are likely typing the IP address of the of the server. There is some type of Java error that makes Graylog not happy :( so to fix it you can do two things:</p>
+    <p>Let's start out 2016 with setting up a logging system called Graylog. If you have not used Graylog before then I encourage you to check it out. This is an open source log management system and is pretty flexible as it can capture, index and analyze almost anything. Once up and running this system can be scaled out for an enterprise wide log management system. High availability, clustered, and replicated is what Graylog thrives on. In this demo I am going to have two systems. One is the Graylog server, web server and will also have a Mongo database. The other system will be an Elasticsearch node which is what will have the actual data stored in and indexed. For bigger “production” ready setups you just scale this out to separate systems.</p>
+<p>Documentation is key here and Graylog has done an excellent job of it so here it is in case you need it: <a href="https://docs.graylog.org/en/latest/index.html">https://docs.graylog.org/en/latest/index.html</a> I’m already assuming that you have CentOS 7 minimal installed if not you can pick up the latest CentOS at <a href="http://www.centos.org/">http://www.centos.org/</a> .The Centos systems also need a connection to the internet, and have just the root account. I'm using two systems for this tutorial so keep that in mind, here are the names of each system and what their role is:</p>
+<table>
+<thead>
+<tr>
+<th><strong>SERVER NAME</strong></th>
+<th><strong>SERVER ROLE</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Graylog1 (192.168.148.130)</td>
+<td>Graylog/Web/Mongo Server</td>
+</tr>
+<tr>
+<td>Graylog2 (192.168.148.132)</td>
+<td>Elasticsearch Node</td>
+</tr>
+</tbody>
+</table>
+<p>First let's login as the root account and update both systems and accept any updates before we do anything else.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>yum update
+</code></pre></div><p>Install my favorite text editor for Linux called nano, don't judge me! We also wget on both systems.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>yum install nano wget
+</code></pre></div><p>Also we need Java on both systems so let's install that.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>yum install java-1.8.0-openjdk 
+</code></pre></div><p>Let's start with server <strong>Graylog2</strong> which will have the Elasticsearch service installed. This can be pretty big in size depending on the amount of logs you're pushing into Graylog and the retention period you have. (By default its 20 indices) Also as a note you have the the ability to cluster these Elasticseach nodes which can add additional space and redundancy to Graylog. In this tutorial we are just doing one server and currently (as of this post) Graylog does not support Elasticsearch 2.X so we to need install Elasticsearch 1.7.x. I downloaded the RPM package to root’s home directory on Graylog2. You can either use WinSCP or use wget to download that file. I then ran the following to install Elasticsearch 1.7.x. Remember install the latest 1.7.x version. Reference:<a href="https://www.elastic.co/downloads/past-releases">https://www.elastic.co/downloads/past-releases</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>rpm -Uvh elasticsearch-1.7.4.noarch.rpm
+</code></pre></div><blockquote>
+<p><strong><em>(Side Conversation):</em></strong> <em>By default the Elasicsearch stores its information in the var/lib/elasticsearch folder. Depending on the size of the Centos server you may want to change the default location, especially if you had Centos auto partition your drive. Usually the /home folder has the most space available and this varies on installations so on your own you can check by running df -h to view partitions. To change the save location for Elasicsearch edit the elasticsearch.yml located at /etc/elasticsearch/. You want to look for path.data and uncommnet it out and put down where you want Elasicsearch to store indexes. (Its easier to do this now then to wait until your partition is full</em></p>
+</blockquote>
+<p>Start elastic on bootup:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>sudo systemctl enable elasticsearch.service
+</code></pre></div><p>Start the Elasticsearch service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>sudo systemctl start elasticsearch.service
+</code></pre></div><p>Verify Elasticsearch service is started:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>[root@GRAYLOG2 ~]#  systemctl status elasticsearch.service
+<span class="ln"> 2</span>â elasticsearch.service - Elasticsearch
+<span class="ln"> 3</span>   Loaded: loaded (/usr/lib/systemd/system/elasticsearch.service; enabled; vendor preset: disabled)
+<span class="ln"> 4</span>   Active: active (running) since Mon 2015-12-21 21:00:42 MST; 52s ago
+<span class="ln"> 5</span>     Docs: http://www.elastic.co
+<span class="ln"> 6</span> Main PID: 2835 (java)
+<span class="ln"> 7</span>   CGroup: /system.slice/elasticsearch.service
+<span class="ln"> 8</span>           ââ2835 /bin/java -Xms256m -Xmx1g -Djava.awt.headless=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiating...
+<span class="ln"> 9</span> 
+<span class="ln">10</span>Dec 21 21:00:42 GRAYLOG2 systemd[1]: Started Elasticsearch.
+<span class="ln">11</span>Dec 21 21:00:42 GRAYLOG2 systemd[1]: Starting Elasticsearch...
+</code></pre></div><p>Additional verification:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>[root@GRAYLOG2 ~]# curl -XGET http://127.0.0.1:9200
+<span class="ln"> 2</span>{
+<span class="ln"> 3</span>  &#34;status&#34; : 200,
+<span class="ln"> 4</span>  &#34;name&#34; : &#34;Norrin Radd&#34;,
+<span class="ln"> 5</span>  &#34;cluster_name&#34; : &#34;elasticsearch&#34;,
+<span class="ln"> 6</span>  &#34;version&#34; : {
+<span class="ln"> 7</span>    &#34;number&#34; : &#34;1.7.4&#34;,
+<span class="ln"> 8</span>    &#34;build_hash&#34; : &#34;0d3159b9fc8bc8e367c5c40c09c2a57c0032b32e&#34;,
+<span class="ln"> 9</span>    &#34;build_timestamp&#34; : &#34;2015-12-15T11:25:18Z&#34;,
+<span class="ln">10</span>    &#34;build_snapshot&#34; : false,
+<span class="ln">11</span>    &#34;lucene_version&#34; : &#34;4.10.4&#34;
+<span class="ln">12</span>  },
+<span class="ln">13</span>  &#34;tagline&#34; : &#34;You Know, for Search&#34;
+<span class="ln">14</span>}
+<span class="ln">15</span>[root@GRAYLOG2 ~]#
+</code></pre></div><p>Allow a range of ports on the CentOS system for management and Elasticsearch functions.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>firewall-cmd --permanent --zone=public --add-port=9200-9400/tcp
+</code></pre></div><p>Reload the firewall:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>firewall-cmd --reload
+</code></pre></div><p>Install the browser plugin for Elasticsearch.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>cd /usr/share/elasticsearch/ bin/plugin -install mobz/elasticsearch-head
+</code></pre></div><p>Point your browser to the Elasticsearch node <a href="http://ip-address:9200">http://ip-address:9200</a> you should see the same information as you did when you issued the curl command. You can view the plugin that was install by going to <a href="http://ip-address:9200/_plugin/head/">http://ip-address:9200/_plugin/head/</a> (This is very helpful to see the elastic cluster)</p>
+<p>We now need to modify some configuration on the Elasticsearch node. We will be editing /etc/elasticsearch/elasticsearch.yml</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>nano /etc/elasticsearch/elasticsearch.yml
+</code></pre></div><p>Edit the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>################################### Cluster ###################################
+<span class="ln"> 2</span> 
+<span class="ln"> 3</span># Cluster name identifies your cluster for auto-discovery. If you&#39;re running
+<span class="ln"> 4</span># multiple clusters on the same network, make sure you&#39;re using unique names.
+<span class="ln"> 5</span>#
+<span class="ln"> 6</span>cluster.name: graylog
+<span class="ln"> 7</span> 
+<span class="ln"> 8</span>#################################### Node #####################################
+<span class="ln"> 9</span> 
+<span class="ln">10</span># Node names are generated dynamically on startup, so you&#39;re relieved
+<span class="ln">11</span># from configuring them manually. You can tie this node to a specific name:
+<span class="ln">12</span>#
+<span class="ln">13</span>node.name: &#34;GRAYLOG2&#34;
+</code></pre></div><p>--OMITTED--</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># Unicast discovery allows to explicitly control which nodes will be used
+<span class="ln"> 2</span># to discover the cluster. It can be used when multicast is not present,
+<span class="ln"> 3</span># or to restrict the cluster communication-wise.
+<span class="ln"> 4</span>#
+<span class="ln"> 5</span># 1. Disable multicast discovery (enabled by default):
+<span class="ln"> 6</span>#
+<span class="ln"> 7</span>discovery.zen.ping.multicast.enabled: false
+<span class="ln"> 8</span>#
+<span class="ln"> 9</span># 2. Configure an initial list of master nodes in the cluster
+<span class="ln">10</span>#    to perform discovery when new nodes (master or data) are started:
+<span class="ln">11</span>#
+<span class="ln">12</span>#discovery.zen.ping.unicast.hosts: [&#34;host1&#34;, &#34;host2:port&#34;]
+<span class="ln">13</span> 
+<span class="ln">14</span># EC2 discovery allows to use AWS EC2 API in order to perform discovery.
+<span class="ln">15</span>#
+<span class="ln">16</span># You have to install the cloud-aws plugin for enabling the EC2 discovery.
+</code></pre></div><p>Restart Elasticsearch service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>systemctl restart elasticsearch
+</code></pre></div><p>Verify service is running:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>systemctl status elasticsearch
+</code></pre></div><p>Open your browser up to <a href="http://ip-address:9200/_plugin/head/">http://ip-address:9200/_plugin/head/</a> you should now see your elasticsearch node named correctly.</p>
+<p><img src="/images/2015/12/graylog2-1.png" alt=""></p>
+<p>On server <strong>Graylog1:</strong> Allow the installation of EPEL packages, We use this to install pwgen if you have another way of generating random passwords then you don't need it. To install EPEL packages on Centos 7:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+</code></pre></div><p>Install pwgen:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>yum install pwgen
+</code></pre></div><p>Install the Mango software repositories Reference: <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/">http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/</a> Create a /etc/yum.repos.d/mongodb-org-3.2.repo file so that you can install MongoDB directly, using yum.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>nano /etc/yum.repos.d/mongodb-org-3.2.repo
+</code></pre></div><p>Copy following into the mongodb-org3.2.repo</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>[mongodb-org-3.2]
+<span class="ln">2</span>name=MongoDB Repository
+<span class="ln">3</span>baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/
+<span class="ln">4</span>gpgcheck=0
+<span class="ln">5</span>enabled=1
+</code></pre></div><p>Install Mongodb:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>yum install mongodb-org
+</code></pre></div><p>Once installed start it up by running this command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>/etc/init.d/mongod start
+</code></pre></div><p>Verify mongo is up and running by running the mongo command. Should look something like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>[root@GRAYLOG1 ~]# mongo
+<span class="ln"> 2</span>MongoDB shell version: 3.2.0
+<span class="ln"> 3</span>connecting to: test
+<span class="ln"> 4</span>Server has startup warnings:
+<span class="ln"> 5</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten]
+<span class="ln"> 6</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is &#39;always&#39;.
+<span class="ln"> 7</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten] **        We suggest setting it to &#39;never&#39;
+<span class="ln"> 8</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten]
+<span class="ln"> 9</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is &#39;always&#39;.
+<span class="ln">10</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten] **        We suggest setting it to &#39;never&#39;
+<span class="ln">11</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten]
+<span class="ln">12</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten] ** WARNING: soft rlimits too low. rlimits set to 4096 processes, 64000 files. Number of processes should be at least 32000 : 0.5 times number of files.
+<span class="ln">13</span>2015-12-22T18:30:06.804-0700 I CONTROL  [initandlisten]
+</code></pre></div><p>Make sure Mongo starts up when the server reboots:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>chkconfig -- mongodb
+</code></pre></div><p>We are now ready to install Graylog sever and Graylog Web Reference: <a href="http://docs.graylog.org/en/1.3/pages/installation/operating_system_packages.html">http://docs.graylog.org/en/1.3/pages/installation/operating_system_packages.html</a> Run the following commands, RPM is to get the package version so we can install it using yum.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>sudo rpm -Uvh https://packages.graylog2.org/repo/packages/graylog-1.3-repository-el7\_latest.rpm
+<span class="ln">2</span>sudo yum install graylog-server graylog-web
+</code></pre></div><p>When/If the server reboots let’s make sure graylog starts up with it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>systemctl enable graylog-server systemctl enable graylog-web
+</code></pre></div><p>Now we need to edit the graylog configuration:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>nano /etc/graylog/server/server.conf
+</code></pre></div><p>Make the following edits:</p>
+<blockquote>
+<p><strong>Note:</strong> For the shasum -a 256 command, use sha256sum instead. Example: echo -n yourpassword | shasum -a 256 BECOMES echo -n yourpassword | sha256sum</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># If you are running more than one instances of graylog2-server you have to select one of these
+<span class="ln"> 2</span># instances as master. The master will perform some periodical tasks that non-masters won&#39;t perform.
+<span class="ln"> 3</span>is_master = true
+<span class="ln"> 4</span> 
+<span class="ln"> 5</span># The auto-generated node ID will be stored in this file and read after restarts. It is a good idea
+<span class="ln"> 6</span># to use an absolute file path here if you are starting graylog2-server from init scripts or similar.
+<span class="ln"> 7</span>node_id_file = /etc/graylog/server/node-id
+<span class="ln"> 8</span> 
+<span class="ln"> 9</span># You MUST set a secret to secure/pepper the stored user passwords here. Use at least 64 characters.
+<span class="ln">10</span># Generate one by using for example: pwgen -N 1 -s 96
+<span class="ln">11</span>password_secret = YOUR_SECRET_PASSWORD_GOES_HERE
+<span class="ln">12</span> 
+<span class="ln">13</span># The default root user is named &#39;admin&#39;
+<span class="ln">14</span>#root_username = admin
+<span class="ln">15</span> 
+<span class="ln">16</span># You MUST specify a hash password for the root user (which you only need to initially set up the
+<span class="ln">17</span># system and in case you lose connectivity to your authentication backend)
+<span class="ln">18</span># This password cannot be changed using the API or via the web interface. If you need to change it,
+<span class="ln">19</span># modify it in this file.
+<span class="ln">20</span># Create one by using for example: echo -n yourpassword | shasum -a 256
+<span class="ln">21</span># and put the resulting hash value into the following line
+<span class="ln">22</span>root_password_sha2 =YOUR_PASSWORD_HASH_GOES_HERE
+<span class="ln">23</span> 
+<span class="ln">24</span># The email address of the root user.
+<span class="ln">25</span># Default is empty
+<span class="ln">26</span>#root_email = &#34;&#34;
+<span class="ln">27</span> 
+<span class="ln">28</span># The time zone setting of the root user.
+<span class="ln">29</span># The configured time zone must be parseable by http://www.joda.org/joda-time/apidocs/org/joda/time/DateTimeZone.html#forID-java.lang.String-
+<span class="ln">30</span># Default is UTC
+<span class="ln">31</span>#root_timezone = UTC
+</code></pre></div><p>--OMITTED--</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># How many Elasticsearch shards and replicas should be used per index? Note that this only applies to newly created indices.
+<span class="ln"> 2</span>elasticsearch_shards = 4
+<span class="ln"> 3</span>elasticsearch_replicas = 0
+<span class="ln"> 4</span> 
+<span class="ln"> 5</span># Prefix for all Elasticsearch indices and index aliases managed by Graylog.
+<span class="ln"> 6</span>elasticsearch_index_prefix = graylog
+<span class="ln"> 7</span> 
+<span class="ln"> 8</span># Name of the Elasticsearch index template used by Graylog to apply the mandatory index mapping.
+<span class="ln"> 9</span># # Default: graylog-internal
+<span class="ln">10</span>#elasticsearch_template_name = graylog-internal
+<span class="ln">11</span> 
+<span class="ln">12</span># Do you want to allow searches with leading wildcards? This can be extremely resource hungry and should only
+<span class="ln">13</span># be enabled with care. See also: https://www.graylog.org/documentation/general/queries/
+<span class="ln">14</span>allow_leading_wildcard_searches = false
+<span class="ln">15</span> 
+<span class="ln">16</span># Do you want to allow searches to be highlighted? Depending on the size of your messages this can be memory hungry and
+<span class="ln">17</span># should only be enabled after making sure your Elasticsearch cluster has enough memory.
+<span class="ln">18</span>allow_highlighting = true
+<span class="ln">19</span> 
+<span class="ln">20</span># settings to be passed to elasticsearch&#39;s client (overriding those in the provided elasticsearch_config_file)
+<span class="ln">21</span># all these
+<span class="ln">22</span># this must be the same as for your Elasticsearch cluster
+<span class="ln">23</span>elasticsearch_cluster_name = graylog
+<span class="ln">24</span> 
+<span class="ln">25</span># you could also leave this out, but makes it easier to identify the graylog2 client instance
+<span class="ln">26</span>elasticsearch_node_name = graylog1
+<span class="ln">27</span> 
+<span class="ln">28</span># we don&#39;t want the graylog2 server to store any data, or be master node
+<span class="ln">29</span>#elasticsearch_node_master = false
+<span class="ln">30</span>#elasticsearch_node_data = false
+<span class="ln">31</span> 
+<span class="ln">32</span># use a different port if you run multiple Elasticsearch nodes on one machine
+<span class="ln">33</span>#elasticsearch_transport_tcp_port = 9350
+<span class="ln">34</span> 
+<span class="ln">35</span># we don&#39;t need to run the embedded HTTP server here
+<span class="ln">36</span>#elasticsearch_http_enabled = false
+<span class="ln">37</span> 
+<span class="ln">38</span>elasticsearch_discovery_zen_ping_multicast_enabled = false
+<span class="ln">39</span>elasticsearch_discovery_zen_ping_unicast_hosts = 192.168.148.132:9300
+<span class="ln">40</span> 
+<span class="ln">41</span># Change the following setting if you are running into problems with timeouts during Elasticsearch cluster discovery.
+<span class="ln">42</span># The setting is specified in milliseconds, the default is 5000ms (5 seconds).
+<span class="ln">43</span>#elasticsearch_cluster_discovery_timeout = 5000
+</code></pre></div><p>Add the following firewall rules:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>firewall-cmd --permanent --zone=public --add-port=9000/tcp
+<span class="ln">2</span>firewall-cmd --permanent --zone=public --add-port=9201-9400/tcp
+<span class="ln">3</span>firewall-cmd --reload
+</code></pre></div><p>Configure the Graylog web server configuration file located at /etc/graylog/web/web.conf.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># graylog2-server REST URIs (one or more, comma separated) For example: &#34;http://127.0.0.1:12900/,http://127.0.0.1:12$
+<span class="ln"> 2</span>graylog2-server.uris=&#34;http://127.0.0.1:12900&#34;
+<span class="ln"> 3</span> 
+<span class="ln"> 4</span># Learn how to configure custom logging in the documentation:
+<span class="ln"> 5</span>#    http://docs.graylog.org/en/latest/pages/installation.html#manual-setup-graylog-web-interface-on-linux
+<span class="ln"> 6</span> 
+<span class="ln"> 7</span># Secret key
+<span class="ln"> 8</span># ~~~~~
+<span class="ln"> 9</span># The secret key is used to secure cryptographics functions. Set this to a long and randomly generated string.
+<span class="ln">10</span># If you deploy your application to several instances be sure to use the same key!
+<span class="ln">11</span># Generate for example with: pwgen -N 1 -s 96
+<span class="ln">12</span>application.secret=&#34;YOUR_SECRET_PASSWORD_GOES_HERE&#34;
+<span class="ln">13</span> 
+<span class="ln">14</span># Web interface timezone
+<span class="ln">15</span># Graylog stores all timestamps in UTC. To properly display times, set the default timezone of the interface.
+<span class="ln">16</span># If you leave this out, Graylog will pick your system default as the timezone. Usually you will want to configure it.
+<span class="ln">17</span># timezone=&#34;Europe/Berlin&#34;
+<span class="ln">18</span> 
+<span class="ln">19</span># Message field limit
+<span class="ln">20</span># Your web interface can cause high load in your browser when you have a lot of different message fields. The default
+<span class="ln">21</span># limit of message fields is 100. Set it to 0 if you always want to get all fields. They are for example used in the
+<span class="ln">22</span># search result sidebar or for autocompletion of field names.
+<span class="ln">23</span>field_list_limit=100
+<span class="ln">24</span> 
+<span class="ln">25</span># Use this to run Graylog with a path prefix
+<span class="ln">26</span>#application.context=/graylog2
+<span class="ln">27</span> 
+<span class="ln">28</span># You usually do not want to change this.
+<span class="ln">29</span>application.global=lib.Global
+<span class="ln">30</span> 
+<span class="ln">31</span># Global timeout for communication with Graylog server nodes; default: 5s
+<span class="ln">32</span>#timeout.DEFAULT=5s
+<span class="ln">33</span> 
+<span class="ln">34</span># Accept any server certificate without checking for validity; required if using self-signed certificates.
+<span class="ln">35</span># Default: true
+<span class="ln">36</span># graylog2.client.accept-any-certificate=true
+</code></pre></div><p>Start them up! Both graylog-server and graylog-web.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>systemctl start graylog-server
+<span class="ln">2</span>systemctl start graylog-web
+</code></pre></div><p>Verify both are running:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>[root@GRAYLOG1 ~]# systemctl status graylog-server
+<span class="ln"> 2</span>â graylog-server.service - Graylog server
+<span class="ln"> 3</span>   Loaded: loaded (/usr/lib/systemd/system/graylog-server.service; enabled; vendor preset: disabled)
+<span class="ln"> 4</span>   Active: active (running) since Wed 2015-12-23 20:05:38 MST; 11s ago
+<span class="ln"> 5</span>     Docs: http://docs.graylog.org/
+<span class="ln"> 6</span> Main PID: 11758 (graylog-server)
+<span class="ln"> 7</span>   CGroup: /system.slice/graylog-server.service
+<span class="ln"> 8</span>           ââ11758 /bin/sh /usr/share/graylog-server/bin/graylog-server
+<span class="ln"> 9</span>           ââ11759 /usr/bin/java -Xms1g -Xmx1g -XX:NewRatio=1 -XX:PermSize=128m -XX:MaxPermSize=256m -se...
+<span class="ln">10</span> 
+<span class="ln">11</span>Dec 23 20:05:38 GRAYLOG1 systemd[1]: Started Graylog server.
+<span class="ln">12</span>Dec 23 20:05:38 GRAYLOG1 systemd[1]: Starting Graylog server...
+<span class="ln">13</span>Dec 23 20:05:38 GRAYLOG1 graylog-server[11758]: OpenJDK 64-Bit Server VM warning: ignoring option Per...8.0
+<span class="ln">14</span>Dec 23 20:05:38 GRAYLOG1 graylog-server[11758]: OpenJDK 64-Bit Server VM warning: ignoring option Max...8.0
+<span class="ln">15</span>Hint: Some lines were ellipsized, use -l to show in full.
+<span class="ln">16</span>
+<span class="ln">17</span>[root@GRAYLOG1 ~]# systemctl status graylog-web
+<span class="ln">18</span>â graylog-web.service - Graylog web interface
+<span class="ln">19</span>   Loaded: loaded (/usr/lib/systemd/system/graylog-web.service; enabled; vendor preset: disabled)
+<span class="ln">20</span>   Active: active (running) since Wed 2015-12-23 20:05:43 MST; 13s ago
+<span class="ln">21</span>     Docs: http://docs.graylog.org/
+<span class="ln">22</span> Main PID: 11777 (graylog-web)
+<span class="ln">23</span>   CGroup: /system.slice/graylog-web.service
+<span class="ln">24</span>           ââ11777 /bin/sh /usr/share/graylog-web/bin/graylog-web
+<span class="ln">25</span>           ââ11778 java -Xms1024m -Xmx1024m -XX:ReservedCodeCacheSize=128m -Dconfig.file=/etc/graylog/we...
+<span class="ln">26</span> 
+<span class="ln">27</span>Dec 23 20:05:43 GRAYLOG1 systemd[1]: Started Graylog web interface.
+<span class="ln">28</span>Dec 23 20:05:43 GRAYLOG1 systemd[1]: Starting Graylog web interface...
+<span class="ln">29</span>[root@GRAYLOG1 ~]#
+</code></pre></div><p>You should be able get to the Graylog Web interface by going to <a href="http://ip-address:9000/">http://ip-address:9000/</a>. You should see a login screen, type in admin followed by your password that you created.
+<img src="/images/2016/01/graylog1-2.png" alt=""></p>
+<p>Once logged if you get an error about an exception and an &quot;OOps Message&quot; You are likely typing the IP address of the of the server. There is some type of Java error that makes Graylog not happy :( so to fix it you can do two things:</p>
 <ul>
 <li>Use the DNS name of the server if you have local DNS servers, Graylog has to use these DNS servers as well.</li>
-</ul>
-<h2 id="or">OR</h2>
-<ul>
 <li>Edit the local server's host file and put in the hostname of the server and the IP address of it to fix this error.</li>
 </ul>
-<p>Go to /etc/hosts using nano: (In this example the 192.168.148.130 is the Graylog1 server's IP address and the hostname of this Graylog server is GRAYLOG1) [code]127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6 192.168.148.130 GRAYLOG1[/code] After you edit that hosts file just refresh your browser session. You now have installed GRAYLOG! :). [caption id=&quot;attachment_3639&quot; align=&quot;aligncenter&quot; width=&quot;1358&quot;]<img src="https://systemstechblog.files.wordpress.com/2015/12/graylog1-1.png" alt="graylog1-1"> Graylog Web Interface[/caption] It's a little bit of an effort to get this thing up and running but you now have a logging system that is ready to go. If you want this thing in production please look at the documentation that Graylog offers as there are things that I did not even mention, this was bare bones installation and Graylog has a lot to offer. I hope this information was helpful, now let's kick-off 2016! Links: <a href="https://www.graylog.org/">https://www.graylog.org/</a> <a href="http://docs.graylog.org/en/1.3/">http://docs.graylog.org/en/1.3/</a></p>
+<p>Go to /etc/hosts using nano: (In this example the 192.168.148.130 is the Graylog1 server's IP address and the hostname of this Graylog server is GRAYLOG1)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+<span class="ln">2</span>::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+<span class="ln">3</span>192.168.148.130 GRAYLOG1
+</code></pre></div><p>After you edit that hosts file just refresh your browser session. You now have installed GRAYLOG! :).</p>
+<p><img src="/images/2015/12/graylog1-1.png" alt=""></p>
+<p>It's a little bit of an effort to get this thing up and running but you now have a logging system that is ready to go. If you want this thing in production please look at the documentation that Graylog offers as there are things that I did not even mention, this was bare bones installation, and Graylog has a lot to offer! I hope this information was helpful, now let's kick-off 2016 as always I hope this information is helpful!</p>
+<p>Links: <a href="https://www.graylog.org/">https://www.graylog.org/</a>
+<a href="http://docs.graylog.org/en/1.3/">http://docs.graylog.org/en/1.3/</a></p>
 
     
       
@@ -241,7 +540,7 @@
         
         <a href='https://ciscoskills.net/tags/networking/' class="post_tag button button_translucent">
           NETWORKING
-          <span class="button_tally">118</span>
+          <span class="button_tally">117</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/ccna/' class="post_tag button button_translucent">
@@ -1317,7 +1616,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=118>NETWORKING<span class="button_tally">118</span>
+            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=117>NETWORKING<span class="button_tally">117</span>
             </a>
             
             

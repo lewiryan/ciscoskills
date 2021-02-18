@@ -17,13 +17,13 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="In my last post I talked about installing Rancid on Centos 7 so be sure to check that out. In this post we now want to actually use Rancid so I’ll walk through …">
+<meta name="description" content="In my last post I talked about Installing Rancid on Centos 7 so be sure to check that out. In this post we now want to actually use Rancid so I’ll walk through …">
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@lewiryan">
 <meta name="twitter:title" content="Configuring Rancid" />
 <meta property="og:url" content="https://ciscoskills.net/2015/02/27/configuring-rancid/" />
 <meta property="og:title" content="Configuring Rancid" />
-<meta property="og:description" content="In my last post I talked about installing Rancid on Centos 7 so be sure to check that out. In this post we now want to actually use Rancid so I’ll walk through …" />
+<meta property="og:description" content="In my last post I talked about Installing Rancid on Centos 7 so be sure to check that out. In this post we now want to actually use Rancid so I’ll walk through …" />
 <meta property="og:image" content="https://ciscoskills.net/images/thumbnail.png" />
 <link rel="apple-touch-icon" sizes="180x180" href='https://ciscoskills.net/icons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://ciscoskills.net/icons/favicon-32x32.png'>
@@ -178,62 +178,182 @@
   </div>
 
     
-    <h2 id="in-my-last-post-i-talked-about-installing-rancid-on-centos-7httpciscoskillsnet20150103install-rancid-and-viewvc-on-centos-7-install-rancid-and-viewvc-on-centos-7-so-be-sure-to-check-that-out-in-this-post-we-now-want-to-actually-use-rancid-so-ill-walk-through-on-how-to-setup-rancid-to-login-into-network-equipment-and-get-configurations-to-recap-rancid-is-a-great-tool-to-help-monitor-a-device-configuration-for-any-changes-it-also-keeps-track-of-them-by-using-cvs-concurrent-version-system-for-backups-so-you-can-go-back-and-compare-versions-or-revert-to-a-previous-configuration-rancid-supports-multiple-hardware-from-cisco-hp-dell-juniper-and-more-this-is-all-open-source-so-you-can-create-custom-scripts-or-add-commands-to-really-make-this-a-personal-repository-that-fits-your-company-rancid-has-a-couple-of-areas-that-need-to-be-edited-before-we-can-let-it-run-the-first-area-is-the-routerdb-file-this-file-is-in-each-group-or-folder-that-rancid-stores-in-our-example-we-have-two-groups-routers-and-switches-this-file-has-all-the-devices-you-want-rancid-to-keep-track-of-we-must-edit-this-file-with-either-the-dns-name-of-the-device-or-ip-address-to-do-that-go-to-the-following-login-into-rancid-with-the-root-account-followed-by-su--rancid-_type-of-device_-is-the-group-you-configured-the-list-of-groups-under-the-rancidconf-file-during-the-installation-codenano-usrlocalrancidvartype-of-devicerouterdbcode-at-first-this-is-a-blank-file-so-nothing-will-be-in-the-file-below-is-an-example-of-what-i-have-done-in-the-past-code-this-is-an-example-of-a-routerdb-fle-in-rancid--location-of-file-usrlocalrancidvarroutersrouterdb--type-the-router-name-or-ip-followed-by-the-type-of-device-rancid-supports-more-than-just-cisco--personally-i-think-it-looks-better-with-dns-names-router01examplecomciscoup--you-can-also-mark-a-device-as-down-this-will-cause-rancid-to-skip-it-router02examplecomciscodown-router03examplecomciscoup--of-course-you-can-also-comments-throughout-this-file-or-alongside-devices-for-notes--edge-switches-for-computers-at-hq-switch-hq-edge14examplecomciscoup-location-server-rack-a-switch-hq-edge07examplecomciscoup-location-room-101-switch-hq-edge21examplecomciscodown-location-building-a-under-construction-code-once-you-add-the-all-the-devices-in-each-routerdb-we-now-need-to-look-at-the-clogin-file-which-is-located-_homerancidcloginrc_-this-file-will-store-the-usernames-and-passwords-for-each-device-this-file-supports-wildcards-so-if-you-have-a-good-naming-scheme-use-it-i-have-had-luck-with-commenting-out-everything-in-that-file-and-just-starting-at-the-bottom-of-the-file-with-my-custom-configuration-such-as-code-custom-configuration-at-the-bottom-of-cloginrc--no-enable-prompts-add-noenable-swich-e-edge05examplecom-1--connect-to-all-cores-notice-the-wildcard-remember-you-still-need-to-add-the-full-name-to-the-routerdb-file-add-user-s-core0examplecom-username-goes-here-add-password-s-core0examplecom-password-goes-here-add-method-s-core0examplecom-ssh-add-noenable-s-core0examplecom-1--connect-to-all-campus-5-edge-switches-add-user-switch-c5-edgeexamplecom-username-goes-here-add-password-switch-c5-edgeexamplecom-password-goes-here-enable-password-here-add-method-switch-c5-edgeexamplecom-ssh-code-so-we-now-have-everything-ready-to-test-run-rancid-we-can-test-our-luck-by-just-running-it-once-and-to-do-that-run-the-following-command-below-when-the-commands-completes-you-should-be-able-to-browse-via-the-webpage-see-the-devices-you-added-with-their-configurations-and-get-an-email-if-youve-followed-by-earlier-post-codeusrlocalrancidbinrancid-runcode-for-reference-rancid-keeps-a-log-each-time-it-runs-and-each-different-of-group-or-device-to-view-the-log-use-my-favorite-linux-test-editor-nano--codenano-usrlocalrancidvarlogstype-of-devicegroupcode-in-this-example-log-file-everything-went-well-rancid-is-pretty-good-at-telling-you-what-the-issue-is-if-there-is-one-code-starting-sun-feb-15-180156-mst-2015-trying-to-get-all-of-the-configs-all-routers-sucessfully-completed-cvs-diff-diffing--cvs-diff-diffing-configs-cvs-commit-examining--cvs-commit-examining-configs-ending-sun-feb-15-180245-mst-2015-code-once-you-capture-devices-you-can-view-their-configuration-on-the-browser-by-going-to-httpsrancid-servicer-ipviewvcrancid-servicer-ipviewvc-in-this-example-i-just-have-one-device-with-two-revisions-on-it-im-using-router03examplecom-what-do-you-think-caption-idattachment_3194-alignaligncenter-width660screenshot-of-rancid-in-viewvc-using-router03-as-an-examplehttpssystemstechblogfileswordpresscom201502rancid-2pnghttpssystemstechblogfileswordpresscom201502rancid-2png-screenshot-of-rancid-in-viewvc-using-router03-as-an-examplecaption-caption-idattachment_3196-alignaligncenter-width660diff-between-revisions-on-router03httpssystemstechblogfileswordpresscom201502rancid-1pnghttpssystemstechblogfileswordpresscom201502rancid-1png-diff-between-revisions-on-router03caption-caption-idattachment_3198-alignaligncenter-width660screenshot-of-part-of-the-config-on-router03httpssystemstechblogfileswordpresscom201502rancid-3pnghttpssystemstechblogfileswordpresscom201502rancid-3png-screenshot-of-part-of-the-config-on-router03caption-one-of-the-last-things-to-do-is-to-setup-a-cron-job-to-run-rancid-it-depends-on-your-environment-but-in-this-example-im-running-the-rancid-job-every-hour-on-the-hour-im-also-clearing-the-log-files-every-five-days-but-running-the-job-every-day-day-at-1150pm-below-is-my-example-of-the-cron-job-make-sure-you-in-the-rancid-account-_su---rancid_-and-then-type-_crontab--e_-note-you-will-be-using-vi-so-here-is-a-crash-course-once-you-in-the-file-type-_i_-for-insert-mode-type-out-the-configuration-once-you-are-done-type-_escape-key_-followed-by-_wq_-which-will-write-save-and-quit-the-vi-program-code--rancid-user-crontab-file---begin-hourly-router-dump-1-----usrlocalrancidbinrancid-run--begin-cleanup-of-differ-logs-every-5-days-50-23----usrbinfind-usrlocalrancidvarlogs--type-f--mtime-5--exec-rm--rf--code-we-now-have-a-system-that-will-log-in-and-grab-configurations-of-our-network-equipment-on-a-scheduled-basis-rancid-does-way-more-than-just-cisco-devices-although-its-in-the-name--rancid-has-made-it-pretty-easy-to-even-add-you-own-custom-scripts-or-add-on-to-what-you-want-to-see-when-rancid-pulls-a-configuration-so-like-before-check-out-shrubbery-at-httpwwwshrubberynetrancidhttpwwwshrubberynetrancid-and-the-threads-from-rancid-discussions-at-httpwwwgossamer-threadscomlistsrancidhttpwwwgossamer-threadscomlistsrancid-for-details-ill-stop-it-here-i-hope-this-information-is-helpful-and-as-always-let-me-know-if-you-have-any-questions">In my last post I talked about <a href="http://ciscoskills.net/2015/01/03/install-rancid-and-viewvc-on-centos-7/" title="Install Rancid and ViewVC on Centos 7">installing Rancid on Centos 7</a> so be sure to check that out. In this post we now want to actually use Rancid so I’ll walk through on how to setup Rancid to login into network equipment and get configurations. <strong>To recap</strong>: Rancid is a great tool to help monitor a device configuration for any changes. It also keeps track of them by using CVS (Concurrent Version System) for backups, so you can go back and compare versions or revert to a previous configuration. Rancid supports multiple hardware from Cisco, HP, Dell, Juniper and more. This is all open-source so you can create custom scripts or add commands to really make this a personal repository that fits your company. Rancid has a couple of areas that need to be edited before we can let it run. The first area is the router.db file. This file is in each “group” or folder that rancid stores. In our example we have two groups’ routers and switches. This file has all the devices you want rancid to keep track of. We must edit this file with either the DNS name of the device or IP address. To do that go to the following: Login into Rancid with the Root account followed by su – rancid (<em>Type of Device</em> is the “group” you configured the List of Groups under the rancid.conf file during the installation) [code]nano /usr/local/rancid/var/{Type of Device}/router.db[/code] At first this is a blank file so nothing will be in the file, below is an example of what I have done in the past [code]# This is an example of a router.db fle in Rancid. # Location of File /usr/local/rancid/var/Routers/router.db # Type the Router name or IP followed by the type of device. (Rancid supports more than just Cisco) # Personally I think it looks better with DNS names. Router01.example.com;cisco;up; # You can also mark a device as down. This will cause Rancid to skip it. Router02.example.com;cisco;down; Router03.example.com;cisco;up; # Of course you can also comments throughout this file or alongside devices for notes. # Edge Switches for Computers at HQ Switch-HQ-Edge14.example.com;cisco;up; LOCATION: Server Rack A Switch-HQ-Edge07.example.com;cisco;up; LOCATION: Room 101 Switch-HQ-Edge21.example.com;cisco;down; LOCATION: Building A (Under Construction) [/code] Once you add the all the devices in each Router.db we now need to look at the .clogin file which is located (<em>/home/rancid/.cloginrc</em>) this file will store the usernames and passwords for each device,  this file supports wildcards so if you have a good naming scheme use it! I have had luck with commenting out everything in that file and just starting at the bottom of the file with my custom configuration, such as: [code]# Custom Configuration at the bottom of .cloginrc # No Enable Prompts add noenable Swich-E-Edge05.example.com 1 # Connect to All CORES (Notice the wildcard, remember you still need to add the full name to the router.db file.) add user S-core0*.example.com username-goes-here add password S-core0*.example.com password-goes-here add method S-core0*.example.com ssh add noenable S-core0*.example.com 1 # Connect To All Campus-5-Edge Switches add user Switch-C5-Edge*.example.com username-goes-here add password Switch-C5-Edge*.example.com password-goes-here enable-password-here add method Switch-C5-Edge*.example.com ssh [/code] So we now have everything ready to test run rancid, we can test our luck by just running it once and to do that run the following command below. When the commands completes you should be able to browse via the webpage, see the devices you added with their configurations, and get an email if you’ve followed by earlier post. [code]/usr/local/rancid/bin/rancid-run[/code] For reference rancid keeps a log each time it runs and each different of group or device. To view the log use my favorite Linux test editor nano. :) [code]nano /usr/local/rancid/var/logs/{Type of Device/Group}[/code] In this example log file everything went well, rancid is pretty good at telling you what the issue is if there is one. [code] starting: Sun Feb 15 18:01:56 MST 2015 Trying to get all of the configs. All routers sucessfully completed. cvs diff: Diffing . cvs diff: Diffing configs cvs commit: Examining . cvs commit: Examining configs ending: Sun Feb 15 18:02:45 MST 2015 [/code] Once you capture devices you can view their configuration on the browser by going to <a href="//rancid-servicer-ip/viewvc">http(s)://rancid-servicer-ip/viewvc</a>. In this example I just have one device with two revisions on it, I'm using router03.example.com. What do you think? [caption id=&quot;attachment_3194&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;]<a href="https://systemstechblog.files.wordpress.com/2015/02/rancid-2.png"><img src="https://systemstechblog.files.wordpress.com/2015/02/rancid-2.png" alt="Screenshot of Rancid in ViewVC Using Router03 as an example."></a> Screenshot of Rancid in ViewVC, using Router03 as an example.[/caption] [caption id=&quot;attachment_3196&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;]<a href="https://systemstechblog.files.wordpress.com/2015/02/rancid-1.png"><img src="https://systemstechblog.files.wordpress.com/2015/02/rancid-1.png" alt="Diff between revisions on Router03."></a> Diff between revisions on Router03.[/caption] [caption id=&quot;attachment_3198&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;]<a href="https://systemstechblog.files.wordpress.com/2015/02/rancid-3.png"><img src="https://systemstechblog.files.wordpress.com/2015/02/rancid-3.png" alt="Screenshot of part of the config on Router03"></a> Screenshot of part of the config on Router03[/caption] One of the last things to do is to setup a cron job to run rancid, it depends on your environment but in this example I'm running the rancid job every hour on the hour. I'm also clearing the log files every five days but running the job every day day at 11:50pm. Below is my example of the cron job. Make sure you in the rancid account (<em>su - rancid</em>) and then type <em>crontab -e</em>. Note you will be using vi so here is a crash course once you in the file type &quot;<em>i</em>&quot; for INSERT MODE type out the configuration once you are done type <em>Escape key</em> followed by &quot;<em>:wq</em>&quot; which will write (save) and quit the vi program. [code]# # Rancid User Crontab File # # Begin Hourly Router Dump 1 * * * * /usr/local/rancid/bin/rancid-run # Begin Cleanup of Differ Logs Every 5 Days 50 23 * * * /usr/bin/find /usr/local/rancid/var/logs -type f -mtime +5 -exec rm -rf {} \;[/code] We now have a system that will log in and grab configurations of our network equipment on a scheduled basis. Rancid does way more than just Cisco devices although its in the name :). Rancid has made it pretty easy to even add you own custom scripts or add-on to what you want to see when rancid pulls a configuration so like before check out Shrubbery at <a href="http://www.shrubbery.net/rancid/">http://www.shrubbery.net/rancid/</a> and the threads from Rancid Discussions at <a href="http://www.gossamer-threads.com/lists/rancid/">http://www.gossamer-threads.com/lists/rancid/</a> for details. I'll stop it here I hope this information is helpful and as always let me know if you have any questions.</h2>
-<h3 id="comments">Comments:</h3>
+    <p>In my last post I talked about <a href="https://ciscoskills.net/2015/01/03/install-rancid-and-viewvc-on-centos-7/" title="Install Rancid and ViewVC on Centos 7">Installing Rancid on Centos 7</a> so be sure to check that out. In this post we now want to actually use Rancid so I’ll walk through on how to setup Rancid to login into network equipment and get configurations.</p>
+<blockquote>
+<p><strong>To recap</strong>: Rancid is a great tool to help monitor a device configuration for any changes. It also keeps track of them by using CVS (Concurrent Version System) for backups, so you can go back and compare versions or revert to a previous configuration. Rancid supports multiple hardware from Cisco, HP, Dell, Juniper and more. This is all open-source so you can create custom scripts or add commands to really make this a personal repository that fits your company.</p>
+</blockquote>
+<p>Rancid has a couple of areas that need to be edited before we can let it run. The first area is the router.db file. This file is in each “group” or folder that rancid stores. In our example we have two groups’ routers and switches. This file has all the devices you want rancid to keep track of. We must edit this file with either the DNS name of the device or IP address. To do that go to the following:</p>
+<p>Login into Rancid with the Root account followed by su – rancid <em>Type of Device</em> is the “group” you configured the List of Groups under the rancid.conf file during the installation</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>nano /usr/local/rancid/var/{Type of Device}/router.db
+</code></pre></div><p>At first this is a blank file so nothing will be in the file, below is an example of what I have done in the past</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># This is an example of a router.db fle in Rancid.
+<span class="ln"> 2</span> 
+<span class="ln"> 3</span># Location of File /usr/local/rancid/var/Routers/router.db
+<span class="ln"> 4</span> 
+<span class="ln"> 5</span># Type the Router name or IP followed by the type of device. (Rancid supports more than just Cisco)
+<span class="ln"> 6</span> 
+<span class="ln"> 7</span># Personally I think it looks better with DNS names.
+<span class="ln"> 8</span> 
+<span class="ln"> 9</span>Router01.example.com;cisco;up;
+<span class="ln">10</span> 
+<span class="ln">11</span># You can also mark a device as down. This will cause Rancid to skip it.
+<span class="ln">12</span> 
+<span class="ln">13</span>Router02.example.com;cisco;down;
+<span class="ln">14</span> 
+<span class="ln">15</span>Router03.example.com;cisco;up;
+<span class="ln">16</span> 
+<span class="ln">17</span># Of course you can also comments throughout this file or alongside devices for notes.
+<span class="ln">18</span> 
+<span class="ln">19</span># Edge Switches for Computers at HQ
+<span class="ln">20</span> 
+<span class="ln">21</span>Switch-HQ-Edge14.example.com;cisco;up; LOCATION: Server Rack A
+<span class="ln">22</span> 
+<span class="ln">23</span>Switch-HQ-Edge07.example.com;cisco;up; LOCATION: Room 101
+<span class="ln">24</span>
+<span class="ln">25</span>Switch-HQ-Edge21.example.com;cisco;down; LOCATION: Building A (Under Construction)
+</code></pre></div><p>Once you add the all the devices in each Router.db we now need to look at the .clogin file which is located (<em>/home/rancid/.cloginrc</em>) this file will store the usernames and passwords for each device,  this file supports wildcards so if you have a good naming scheme use it! I have had luck with commenting out everything in that file and just starting at the bottom of the file with my custom configuration, such as:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># Custom Configuration at the bottom of .cloginrc
+<span class="ln"> 2</span> 
+<span class="ln"> 3</span># No Enable Prompts
+<span class="ln"> 4</span> 
+<span class="ln"> 5</span>add noenable Swich-E-Edge05.example.com 1
+<span class="ln"> 6</span> 
+<span class="ln"> 7</span># Connect to All CORES (Notice the wildcard, remember you still need to add the full name to the router.db file.)
+<span class="ln"> 8</span> 
+<span class="ln"> 9</span>add user S-core0*.example.com username-goes-here
+<span class="ln">10</span> 
+<span class="ln">11</span>add password S-core0*.example.com password-goes-here
+<span class="ln">12</span> 
+<span class="ln">13</span>add method S-core0*.example.com ssh
+<span class="ln">14</span> 
+<span class="ln">15</span>add noenable S-core0*.example.com 1
+<span class="ln">16</span> 
+<span class="ln">17</span># Connect To All Campus-5-Edge Switches
+<span class="ln">18</span> 
+<span class="ln">19</span>add user Switch-C5-Edge*.example.com username-goes-here
+<span class="ln">20</span> 
+<span class="ln">21</span>add password Switch-C5-Edge*.example.com password-goes-here enable-password-here
+<span class="ln">22</span> 
+<span class="ln">23</span>add method Switch-C5-Edge*.example.com ssh
+</code></pre></div><p>So we now have everything ready to test run rancid, we can test our luck by just running it once and to do that run the following command below. When the commands completes you should be able to browse via the webpage, see the devices you added with their configurations, and get an email if you’ve followed by earlier post.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>/usr/local/rancid/bin/rancid-run
+</code></pre></div><p>For reference rancid keeps a log each time it runs and each different of group or device. To view the log use my favorite Linux test editor nano. :) Or you can cat it!</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>nano /usr/local/rancid/var/logs/{Type of Device/Group}
+</code></pre></div><p>In this example log file everything went well, rancid is pretty good at telling you what the issue is if there is one.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>starting: Sun Feb 15 18:01:56 MST 2015
+<span class="ln"> 2</span> 
+<span class="ln"> 3</span>Trying to get all of the configs.
+<span class="ln"> 4</span> 
+<span class="ln"> 5</span>All routers sucessfully completed.
+<span class="ln"> 6</span> 
+<span class="ln"> 7</span>cvs diff: Diffing .
+<span class="ln"> 8</span> 
+<span class="ln"> 9</span>cvs diff: Diffing configs
+<span class="ln">10</span> 
+<span class="ln">11</span>cvs commit: Examining .
+<span class="ln">12</span> 
+<span class="ln">13</span>cvs commit: Examining configs
+<span class="ln">14</span> 
+<span class="ln">15</span>ending: Sun Feb 15 18:02:45 MST 2015
+</code></pre></div><p>Once you capture devices you can view their configuration on the browser by going to http(s)://rancid-server-ip/viewvc. In this example I just have one device with two revisions on it, I'm using router03.example.com. What do you think?</p>
+<p><img src="/images/2015/02/rancid-2.png" alt=""></p>
+<p>Screenshot of Rancid in ViewVC, using Router03 as an example.
+<img src="/images/2015/02/rancid-1.png" alt=""></p>
+<p>Diff between revisions on Router03.
+<img src="/images/2015/02/rancid-3.png" alt=""></p>
+<p>One of the last things to do is to setup a cron job to run rancid, it depends on your environment but in this example I'm running the rancid job every hour on the hour. I'm also clearing the log files every five days but running the job every day day at 11:50pm. Below is my example of the cron job. Make sure you in the rancid account (<em>su - rancid</em>) and then type <em>crontab -e</em>. Note you will be using vi so here is a crash course once you in the file type &quot;<em>i</em>&quot; for INSERT MODE type out the configuration once you are done type <em>Escape key</em> followed by &quot;<em>:wq</em>&quot; which will write (save) and quit the vi program.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>#
+<span class="ln">2</span># Rancid User Crontab File
+<span class="ln">3</span>#
+<span class="ln">4</span> 
+<span class="ln">5</span># Begin Hourly Router Dump
+<span class="ln">6</span>1 * * * * /usr/local/rancid/bin/rancid-run
+<span class="ln">7</span> 
+<span class="ln">8</span># Begin Cleanup of Differ Logs Every 5 Days
+<span class="ln">9</span>50 23 * * * /usr/bin/find /usr/local/rancid/var/logs -type f -mtime +5 -exec rm -rf {} \;
+</code></pre></div><p>We now have a system that will log in and grab configurations of our network equipment on a scheduled basis. Rancid does way more than just Cisco devices although its in the name :). Rancid has made it pretty easy to even add you own custom scripts or add-on to what you want to see when rancid pulls a configuration so like before check out Shrubbery at <a href="http://www.shrubbery.net/rancid/">http://www.shrubbery.net/rancid/</a> and the threads from Rancid Discussions at <a href="http://www.gossamer-threads.com/lists/rancid/">http://www.gossamer-threads.com/lists/rancid/</a> for details. I'll stop it here I hope this information is helpful and as always let me know if you have any questions.</p>
+<hr>
+<h3 id="static-comments">Static Comments:</h3>
 <h4 id="heading"></h4>
 <p><a href="%22sunnymanya@yahoo.com%22">sunny</a> - <time datetime="2015-08-22 02:49:15">Aug 6, 2015</time></p>
 <p>great write-up, thanks. Do you have an article listing the steps to setup 'cisco-sb' type devices to be congured with Rancid-3.1 or 3.2. I did every possible config/changes but could not get it to work. Finally had to downgrade rancid to 2.3.8 and then i was able for rancid to pull the config of cisco-sb devices. thanks sunny</p>
 <hr />
-#### 
-[Elliot]( "elliot.maitre@gmail.com") - <time datetime="2016-02-09 08:00:04">Feb 2, 2016</time>
+<h4 id="heading-1"></h4>
+<p><a href="%22elliot.maitre@gmail.com%22">Elliot</a> - <time datetime="2016-02-09 08:00:04">Feb 2, 2016</time></p>
 <p>Hello. Thank you for this guide, it is really helpful. I followed your two guides but I have a problem when I run RANCID. When I run /usr/local/rancid/bin/rancid-run, it takes a few seconds, I have only one switch at the moment so I think it's working. But when I go to viewvc, I just have rev. 1.1, with nothing in, and I don't have a new one (like 1.2 ...) when I run it again. In my file router.db I just have this : { my IP xx.xx.xx.xx };cisco;up In my file .cloginrc I just added : add user xx.xx.xx.xx Test (it works when i connect with this user by ssh) ad password xx.xx.xx.xx password password (the password works for connection and enable) ad method xx.xx.xx.xx ssh Are my files ok? I'm sorry, I don't speak english very well, I hope you will understand ! Thank you. Elliot</p>
 <hr />
-#### 
-[Elliot]( "elliot.maitre@gmail.com") - <time datetime="2016-02-12 07:30:09">Feb 5, 2016</time>
+<h4 id="heading-2"></h4>
+<p><a href="%22elliot.maitre@gmail.com%22">Elliot</a> - <time datetime="2016-02-12 07:30:09">Feb 5, 2016</time></p>
 <p>Hello. Yes I put HP instead of cisco but it doesn't work ^^ I think this type of HP switch isn't supported by RANCID ! I'm not an expert too, so I will try to use anything else ^^ Thank you again for your answers and your tutorial ! Elliot</p>
 <hr />
-#### 
-[blakestock]( "blakestock@gmail.com") - <time datetime="2015-09-23 14:59:31">Sep 3, 2015</time>
+<h4 id="heading-3"></h4>
+<p><a href="%22blakestock@gmail.com%22">blakestock</a> - <time datetime="2015-09-23 14:59:31">Sep 3, 2015</time></p>
 <p>Thanks for the guide! I’ve got RANCID up and running but it doesn’t seem to actually be polling the devices and getting their configs. When I run /usr/local/rancid/bin/rancid-run it takes about 1 second to finish but I’ve got 9 different devices it should be logging into. When I check the ViewVC page the devices are not showing up individually but it does show the router.db file The logs for running RANCID manually just show: starting: Wed Sep 23 16:40:15 EDT 2015 ending: Wed Sep 23 16:40:15 EDT 2015 I can ssh to each device with the username I’ve made for RANCID from the server fine. Any ideas on what I’m missing? Thanks! Blake</p>
 <hr />
-#### 
-[Ryan](http://ciscoskills.net/ "lewiryan@isu.edu") - <time datetime="2015-09-23 19:02:42">Sep 3, 2015</time>
-<p>Hey Blake, Did you follow another post I did about Installing Rancid? <a href="http://ciscoskills.net/2015/01/03/install-rancid-and-viewvc-on-centos-7/">http://ciscoskills.net/2015/01/03/install-rancid-and-viewvc-on-centos-7/</a> Go over that and see if you are missing anything, you should see some cvs information and any errors/successes about devices in your router.db file. If you seeing blank logs it is likely rancid is not understanding the router.db file. <code># This is an example of a router.db fle in Rancid. #Location of File /usr/local/rancid/var/Routers/router.db #Type the Router name or IP followed by the type of device. (Rancid supports more than just Cisco) #Personally I think it looks better with DNS names. Router01.example.com;cisco;up; #You can also mark a device as down. This will cause Rancid to skip it. Router02.example.com;cisco;down; Router03.example.com;cisco;up; #Of course you can also comments throughout this file or alongside devices for notes. #Edge Switches for Computers at HQ Switch-HQ-Edge14.example.com;cisco;up; LOCATION: Server Rack A Switch-HQ-Edge07.example.com;cisco;up; LOCATION: Room 101 Switch-HQ-Edge21.example.com;cisco;down; LOCATION: Building A (Under Construction)</code> Hope that Helps, Ryan</p>
+<h4 id="heading-4"></h4>
+<p><a href="http://ciscoskills.net/" title="ryan@ciscoskills.net">Ryan</a> - <time datetime="2015-09-23 19:02:42">Sep 3, 2015</time></p>
+<p>Hey Blake, Did you follow another post I did about Installing Rancid? <a href="https://ciscoskills.net/2015/01/03/install-rancid-and-viewvc-on-centos-7/">https://ciscoskills.net/2015/01/03/install-rancid-and-viewvc-on-centos-7/</a> Go over that and see if you are missing anything, you should see some cvs information and any errors/successes about devices in your router.db file. If you seeing blank logs it is likely rancid is not understanding the router.db file.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># This is an example of a router.db fle in Rancid.
+<span class="ln"> 2</span>
+<span class="ln"> 3</span>#Location of File /usr/local/rancid/var/Routers/router.db
+<span class="ln"> 4</span>
+<span class="ln"> 5</span>#Type the Router name or IP followed by the type of device. (Rancid supports more than just Cisco)
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>#Personally I think it looks better with DNS names.
+<span class="ln"> 8</span>
+<span class="ln"> 9</span>Router01.example.com;cisco;up;
+<span class="ln">10</span>
+<span class="ln">11</span>#You can also mark a device as down. This will cause Rancid to skip it.
+<span class="ln">12</span>
+<span class="ln">13</span>Router02.example.com;cisco;down;
+<span class="ln">14</span>
+<span class="ln">15</span>Router03.example.com;cisco;up;
+<span class="ln">16</span>
+<span class="ln">17</span>#Of course you can also comments throughout this file or alongside devices for notes.
+<span class="ln">18</span>
+<span class="ln">19</span>#Edge Switches for Computers at HQ
+<span class="ln">20</span>
+<span class="ln">21</span>Switch-HQ-Edge14.example.com;cisco;up; LOCATION: Server Rack A
+<span class="ln">22</span>
+<span class="ln">23</span>Switch-HQ-Edge07.example.com;cisco;up; LOCATION: Room 101
+<span class="ln">24</span>
+<span class="ln">25</span>Switch-HQ-Edge21.example.com;cisco;down; LOCATION: Building A (Under Construction)
+</code></pre></div><p>Hope that Helps, Ryan</p>
 <hr />
-#### 
-[blakestock]( "blakestock@gmail.com") - <time datetime="2015-09-24 07:22:27">Sep 4, 2015</time>
+<h4 id="heading-5"></h4>
+<p><a href="%22blakestock@gmail.com%22">blakestock</a> - <time datetime="2015-09-24 07:22:27">Sep 4, 2015</time></p>
 <p>Thanks for the response, I see what I did in the router.db file. I had an older version of RANCID running and in that the router.db file used colons instead of semi-colons. I had copied the old router.db file to the new server running current version and that's why it didn't read the routers or log into any of them. Thanks for your help and this great guide!!</p>
 <hr />
-#### 
-[Ryan](http://ciscoskills.net/ "lewiryan@isu.edu") - <time datetime="2016-02-09 19:25:09">Feb 2, 2016</time>
+<h4 id="heading-6"></h4>
+<p><a href="http://ciscoskills.net/" title="ryan@ciscoskills.net">Ryan</a> - <time datetime="2016-02-09 19:25:09">Feb 2, 2016</time></p>
 <p>Hey Elliot, Check the logs by going to <code>nano /usr/local/rancid/var/logs/</code> and scroll through it and see what it says. You can also test logins by using clogin since you are using Cisco equipment. On CLI login into rancid, <code>su - rancid</code> then run this command to connect to one of your devices <code>/usr/local/rancid/bin/clogin (IP address/Name of device)</code> hit enter. If it all works you should be connected to your equipment, if not it should give you an error and from there you could troubleshoot more. Hope that Helps. Ryan</p>
 <hr />
-#### 
-[Elliot]( "elliot.maitre@gmail.com") - <time datetime="2016-02-10 01:22:21">Feb 3, 2016</time>
+<h4 id="heading-7"></h4>
+<p><a href="%22elliot.maitre@gmail.com%22">Elliot</a> - <time datetime="2016-02-10 01:22:21">Feb 3, 2016</time></p>
 <p>Hi, thank you for the answer /usr/local/rancid/var/logs/ is empty .... I think it's a problem :) When i use /usr/local/rancid/bin/clogin, I don't have enough time to enter my password, and even if I'm fast enough and I enter the right password, I have an erroer : Authentication failed. I have probably made something wrong ! It's maybe a problem with the switch? Thank you Elliot</p>
 <hr />
-#### 
-[Elliot]( "elliot.maitre@gmail.com") - <time datetime="2016-02-10 07:36:34">Feb 3, 2016</time>
+<h4 id="heading-8"></h4>
+<p><a href="%22elliot.maitre@gmail.com%22">Elliot</a> - <time datetime="2016-02-10 07:36:34">Feb 3, 2016</time></p>
 <p>I checked my log file, obviously it's a password problem. I don't know why but it looks like it doesn't use the password that I give.... Because when I use /usr/local/rancid/bin/clogin I'm connected but when i use ssh I have this error : spawn ssh -c 3des -x -l rancid xx.xx.xx.xx Password: Password: Password: <a href="mailto:rancid@10.1.249.123">rancid@10.1.249.123</a>'s password: Connection closed by xx.xx.xx.xx When I use telnet : spawn telnet xx.xx.xx.xx Trying xx.xx.xx.xx... Connected to xx.xx.xx.xx. Escape character is '^]'. User Access Verification Password: % Authentication failed Password: Error: Check your passwd for xx.xx.xx.xx But i give the right password ... When I use the command : /usr/local/rancid/bin/clogin -u rancid -p password ( the same) xx.xx.xx.xx It works ! I'm connected to my switch, I have just an error for enable but it's because I don't give him the password. Thank you</p>
 <hr />
-#### 
-[Ryan](http://ciscoskills.net/ "lewiryan@isu.edu") - <time datetime="2016-02-10 19:13:45">Feb 3, 2016</time>
+<h4 id="heading-9"></h4>
+<p><a href="http://ciscoskills.net/" title="ryan@ciscoskills.net">Ryan</a> - <time datetime="2016-02-10 19:13:45">Feb 3, 2016</time></p>
 <p>Hey Elliot, Check your /home/rancid/.cloginrc file. If clogin is not working than there is something wrong with your .cloginrc file. Comment out everything in that file and just start at the bottom of the file with you own configuration. Hope that Helps. Ryan</p>
 <hr />
-#### 
-[Elliot]( "elliot.maitre@gmail.com") - <time datetime="2016-02-11 01:05:34">Feb 4, 2016</time>
+<h4 id="heading-10"></h4>
+<p><a href="%22elliot.maitre@gmail.com%22">Elliot</a> - <time datetime="2016-02-11 01:05:34">Feb 4, 2016</time></p>
 <p>I commented evrything except what I added... And now it works ! I looked for it one entire day, just for a problem of comment ^^ Thank you from France. :) Elliot</p>
 <hr />
-#### 
-[Elliot]( "elliot.maitre@gmail.com") - <time datetime="2016-02-11 03:43:41">Feb 4, 2016</time>
+<h4 id="heading-11"></h4>
+<p><a href="%22elliot.maitre@gmail.com%22">Elliot</a> - <time datetime="2016-02-11 03:43:41">Feb 4, 2016</time></p>
 <p>Hello it's me again! Now, it's working with a cisco switch, but not with HP switch :) I can connect to the switch without problem, but with hp switch the command to have access to the configuration is not &quot;enable&quot; but &quot;_cmdline-mode&quot; So when i use &quot;/usr/local/rancid/bin/clogin I have this : Username:xxx Password: enable ^ % Unrecognized command found at '^' position. So i would like to modify something to make rancid uses &quot;_cmdline-mode&quot; and not enable, but I don't know how to do this :s I tried to use &quot;add enableprompt&quot; but I don't know if it's what this command do Thanks a lot. Elliot</p>
 <hr />
-#### 
-[Elliot]( "elliot.maitre@gmail.com") - <time datetime="2016-02-11 06:23:56">Feb 4, 2016</time>
+<h4 id="heading-12"></h4>
+<p><a href="%22elliot.maitre@gmail.com%22">Elliot</a> - <time datetime="2016-02-11 06:23:56">Feb 4, 2016</time></p>
 <p>Sorry for triple post but I can't edit my post ... In /usr/local/rancid/var/logs/ i have this : starting: jeu. fÃ©vr. 11 11:10:58 CET 2016 hourly config diffs failed: /tmp/.Switchs.run.lock exists -rw-r-----. 1 rancid netadm 0 11 fÃ©vr. 10:26 /tmp/.Switchs.run.lock ending: jeu. fÃ©vr. 11 11:10:58 CET 2016 For my hp switch I have this in /.cloginrc: add user 10.1.249.59 {admin} add autoenable 10.1.249.59 1 add password 10.1.249.59 {admin} {password} add method 10.1.249.59 {telnet} I said in my last post that I need to use the command &quot;_cmdline-mode&quot; but I'm not sure that I have to use it to have access to the configuration of the switch. gG Anyway, Rancid doesn't work with my HP switch ! It's an HP 1920-8G Thank you</p>
 <hr />
-#### 
-[Ryan](http://ciscoskills.net/ "lewiryan@isu.edu") - <time datetime="2016-02-11 08:01:45">Feb 4, 2016</time>
+<h4 id="heading-13"></h4>
+<p><a href="http://ciscoskills.net/" title="ryan@ciscoskills.net">Ryan</a> - <time datetime="2016-02-11 08:01:45">Feb 4, 2016</time></p>
 <p>Hey Elliot, I know Rancid does support some HP hardware but I'm not entirely sure if your HP hardware is supported. In the router.db you put HP as the device instead of Cisco right? If that doesn't work its probably something you would have to modify in rancid and that is something I'm not an expert in. You could check out <a href="http://www.gossamer-threads.com/lists/rancid/announce/">http://www.gossamer-threads.com/lists/rancid/announce/</a> and post/search for your question over there. Good Luck, I'm glad you at least got it working for your Cisco gear :) Ryan</p>
 <hr />
 
@@ -291,7 +411,7 @@
         
         <a href='https://ciscoskills.net/tags/networking/' class="post_tag button button_translucent">
           NETWORKING
-          <span class="button_tally">118</span>
+          <span class="button_tally">117</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/ccna/' class="post_tag button button_translucent">
@@ -1367,7 +1487,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=118>NETWORKING<span class="button_tally">118</span>
+            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=117>NETWORKING<span class="button_tally">117</span>
             </a>
             
             

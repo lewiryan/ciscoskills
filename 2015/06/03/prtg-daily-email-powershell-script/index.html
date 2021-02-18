@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://ciscoskills.net/2015/06/03/prtg-daily-email-powershell-script/" />
 <meta property="og:title" content="PRTG Daily Email Powershell Script" />
 <meta property="og:description" content="So I don&#39;t write much powershell but recently I needed a way to send daily emails out of PRTG. Thanks Paessler which has kept it simple with their PRTG …" />
-<meta property="og:image" content="https://ciscoskills.net/images/thumbnail.png" />
+<meta property="og:image" content="https://ciscoskills.net/images/2015/06/20130609_112042_Android.jpg" />
 <link rel="apple-touch-icon" sizes="180x180" href='https://ciscoskills.net/icons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://ciscoskills.net/icons/favicon-32x32.png'>
 <link rel="manifest" href='https://ciscoskills.net/icons/site.webmanifest'>
@@ -170,7 +170,246 @@
   </div>
 
     
-    <p><a href="https://systemstechblog.files.wordpress.com/2015/06/combined_logo_500x300_rgb.png"><img src="https://systemstechblog.files.wordpress.com/2015/06/combined_logo_500x300_rgb.png?w=150" alt="PRTG-Logo"></a>So I don't write much powershell but recently I needed a way to send daily emails out of PRTG. Thanks Paessler which has kept it simple with their PRTG monitoring system as the hardest part of this script was getting the data in HTML. (Remember I don't write much powershell. ;) ) If you have not used PRTG before check it out if you need some alerting in your environment. Personally this is one of my favorite systems for just monitoring because a lot of other monitoring systems include everything but the kitchen sink and reality we just need to know what's up and what's down. This script grabs an XML file that PRTG builds and saves it as &quot;table.xml&quot; I have the script check if there are any sensors in trouble if not send an email. If PRTG is reporting a sensor or sensors that are in trouble this scripts builds an HTML document with a table and list the sensors in trouble highlighting the status column with the appropriate color and sends an email. Thanks goes to Martin Pugh who has provided the set-cellcolor function. :) [code language=&quot;powershell&quot;] # PRTG EMAIL ACTIVE ALARMS POWERSHELL SCRIPT. # USE TASK SCHEDULER TO RUN THIS SCRIPT. # Load up the function &quot;Set-CellColor&quot; thanks to Martin Pugh :) Function Set-CellColor { &lt;# .SYNOPSIS Function that allows you to set individual cell colors in an HTML table .DESCRIPTION To be used inconjunction with ConvertTo-HTML this simple function allows you to set particular colors for cells in an HTML table. You provide the criteria the script uses to make the determination if a cell should be a particular color (property -gt 5, property -like &quot;*Apple*&quot;, etc). You can add the function to your scripts, dot source it to load into your current PowerShell session or add it to your $Profile so it is always available. To dot source: .&quot;.\Set-CellColor.ps1&quot; .PARAMETER Property Property, or column that you will be keying on. .PARAMETER Color Name or 6-digit hex value of the color you want the cell to be .PARAMETER InputObject HTML you want the script to process. This can be entered directly into the parameter or piped to the function. .PARAMETER Filter Specifies a query to determine if a cell should have its color changed. $true results will make the color change while $false result will return nothing. Syntax <Property Name> <Operator> <Value> <Property Name>::= the same as $Property. This must match exactly <Operator>::= &quot;-eq&quot; | &quot;-le&quot; | &quot;-ge&quot; | &quot;-ne&quot; | &quot;-lt&quot; | &quot;-gt&quot;| &quot;-approx&quot; | &quot;-like&quot; | &quot;-notlike&quot; <JoinOperator> ::= &quot;-and&quot; | &quot;-or&quot; <NotOperator> ::= &quot;-not&quot; The script first attempts to convert the cell to a number, and if it fails it will cast it as a string. So 40 will be a number and you can use -lt, -gt, etc. But 40% would be cast as a string so you could only use -eq, -ne, -like, etc. .PARAMETER Row Instructs the script to change the entire row to the specified color instead of the individual cell. .INPUTS HTML with table .OUTPUTS HTML .EXAMPLE get-process | convertto-html | set-cellcolor -Propety cpu -Color red -Filter &quot;cpu -gt 1000&quot; | out-file c:\test\get-process.html Assuming Set-CellColor has been dot sourced, run Get-Process and convert to HTML. Then change the CPU cell to red only if the CPU field is greater than 1000. .EXAMPLE get-process | convertto-html | set-cellcolor cpu red -filter &quot;cpu -gt 1000 -and cpu -lt 2000&quot; | out-file c:\test\get-process.html Same as Example 1, but now we will only turn a cell red if CPU is greater than 100 but less than 2000. .EXAMPLE $HTML = $Data | sort server | ConvertTo-html -head $header | Set-CellColor cookedvalue red -Filter &quot;cookedvalue -gt 1&quot; PS C:\&gt; $HTML = $HTML | Set-CellColor Server green -Filter &quot;server -eq 'dc2'&quot; PS C:\&gt; $HTML | Set-CellColor Path Yellow -Filter &quot;Path -like &quot;&quot;*memory*&quot;&quot;&quot; | Out-File c:\Test\colortest.html Takes a collection of objects in $Data, sorts on the property Server and converts to HTML. From there we set the &quot;CookedValue&quot; property to red if it's greater then 1. We then send the HTML through Set-CellColor again, this time setting the Server cell to green if it's &quot;dc2&quot;. One more time through Set-CellColor turns the Path cell to Yellow if it contains the word &quot;memory&quot; in it. .EXAMPLE $HTML = $Data | sort server | ConvertTo-html -head $header | Set-CellColor cookedvalue red -Filter &quot;cookedvalue -gt 1&quot; -Row Now, if the cookedvalue property is greater than 1 the function will highlight the entire row red. .NOTES Author: Martin Pugh Twitter: @thesurlyadm1n Spiceworks: Martin9700 Blog: <a href="http://www.thesurlyadmin.com">www.thesurlyadmin.com</a> Changelog: 1.5 Added ability to set row color with -Row switch instead of the individual cell 1.03 Added error message in case the $Property field cannot be found in the table header 1.02 Added some additional text to help. Added some error trapping around $Filter creation. 1.01 Added verbose output 1.0 Initial Release .LINK <a href="http://community.spiceworks.com/scripts/show/2450-change-cell-color-in-html-table-with-powershell-set-cellcolor">http://community.spiceworks.com/scripts/show/2450-change-cell-color-in-html-table-with-powershell-set-cellcolor</a> #&gt; [CmdletBinding()] Param ( [Parameter(Mandatory,Position=0)] [string]$Property, [Parameter(Mandatory,Position=1)] [string]$Color, [Parameter(Mandatory,ValueFromPipeline)] [Object[]]$InputObject, [Parameter(Mandatory)] [string]$Filter, [switch]$Row ) Begin { Write-Verbose &quot;$(Get-Date): Function Set-CellColor begins&quot; If ($Filter) { If ($Filter.ToUpper().IndexOf($Property.ToUpper()) -ge 0) { $Filter = $Filter.ToUpper().Replace($Property.ToUpper(),&quot;`$Value&quot;) Try { [scriptblock]$Filter = [scriptblock]::Create($Filter) } Catch { Write-Warning &quot;$(Get-Date): &quot;&quot;$Filter&quot;&quot; caused an error, stopping script!&quot; Write-Warning $Error[0] Exit } } Else { Write-Warning &quot;Could not locate $Property in the Filter, which is required. Filter: $Filter&quot; Exit } } } Process { ForEach ($Line in $InputObject) { If ($Line.IndexOf(&quot;<tr>&lt;th&quot;) -ge 0) { Write-Verbose &quot;$(Get-Date): Processing headers...&quot; $Search = $Line | Select-String -Pattern '&lt;th ?[a-z\-:;&quot;=]*&gt;(.*?)&lt;\/th&gt;' -AllMatches $Index = 0 ForEach ($Match in $Search.Matches) { If ($Match.Groups[1].Value -eq $Property) { Break } $Index ++ } If ($Index -eq $Search.Matches.Count) { Write-Warning &quot;$(Get-Date): Unable to locate property: $Property in table header&quot; Exit } Write-Verbose &quot;$(Get-Date): $Property column found at index: $Index&quot; } If ($Line -match &quot;&lt;tr( style=&quot;&quot;background-color:.+?&quot;&quot;)?&gt;&lt;td&quot;) { $Search = $Line | Select-String -Pattern '&lt;td ?[a-z\-:;&quot;=]*&gt;(.*?)&lt;\/td&gt;' -AllMatches $Value = $Search.Matches[$Index].Groups[1].Value -as [double] If (-not $Value) { $Value = $Search.Matches[$Index].Groups[1].Value } If (Invoke-Command $Filter) { If ($Row) { Write-Verbose &quot;$(Get-Date): Criteria met! Changing row to $Color...&quot; If ($Line -match &quot;&lt;tr style=&quot;&quot;background-color:(.+?)&quot;&quot;&gt;&quot;) { $Line = $Line -replace &quot;&lt;tr style=&quot;&quot;background-color:$($Matches[1])&quot;,&quot;&lt;tr style=&quot;&quot;background-color:$Color&quot; } Else { $Line = $Line.Replace(&quot;<tr>&quot;,&quot;&lt;tr style=&quot;&quot;background-color:$Color&quot;&quot;&gt;&quot;) } } Else { Write-Verbose &quot;$(Get-Date): Criteria met! Changing cell to $Color...&quot; $Line = $Line.Replace($Search.Matches[$Index].Value,&quot;&lt;td style=&quot;&quot;background-color:$Color&quot;&quot;&gt;$Value</td>&quot;) } } } Write-Output $Line } } End { Write-Verbose &quot;$(Get-Date): Function Set-CellColor completed&quot; } } # Load up the variables, feel free to edit below like what is your email server? $smtp = &quot;mailserver.example.com&quot; # Who is this email going to? $to = &quot;Mr. Joe <a href="mailto:joe@example.com">joe@example.com</a>&quot; # Carbon Copy anyone? $cc = &quot;Mr. Admin <a href="mailto:admin@example.com">admin@example.com</a>&quot; $from = &quot;PRTG Network Monitor <a href="mailto:PRTG@example.com">PRTG@example.com</a>&quot; $subject = &quot;PRTG Checks&quot; $time = Get-Date # Get a table ready in HTML just in case we have alerts in PRTG. $a = &quot;<style>&quot; $a = $a + &quot;BODY{background-color:White;}&quot; $a = $a + &quot;TABLE{border-width: 1px;border-style: solid;border-color: black;border-collapse: collapse;}&quot; $a = $a + &quot;TH{Font-family: Courier; color: white; border-width: 1px;padding: 3px;border-style: solid;border-color: black;background-color:black}&quot; $a = $a + &quot;TD{Font-family: Courier; border-width: 1px;padding: 3px;border-style: solid;border-color:}&quot; $a = $a + &quot;</style>&quot; # Write out something in HTML in case we have alerts in PRTG. $b = &quot;<H2>PRTG Alerts</H2>&quot; $b = $b + &quot;<p>Houston, we have a problem so please reference the chart below.</p>&quot; $b = $b + &quot;<p>System Generated at $time.</p>&quot; # Write out something in HTML in case no alerts are active. $c = &quot;<H2>PRTG Alerts </H2>&quot; $c = $c + &quot;<p>No alerts being reported.</p>&quot; $c = $c + &quot;<p>System Generated at $time.</p>&quot; # URL to your PRTG server you will need to reference a local user account and password that has access to PRTG. See the end of the URL. $url = &quot;https://prtg.example.com/api/table.xml?content=sensors&amp;columns=objid,downtimesince,device,sensor,lastvalue,status,message,priority&amp;filter_status=5&amp;filter_status=4&amp;filter_status=10&amp;filter_status=13&amp;filter_status=14&amp;sortby=priority&amp;username=GOES_HERE&amp;passhash=GOES_HERE&quot; # Where do you want to store the XML file? $destination = &quot;C:\PRTG-DAILY-EMAIL\table.xml&quot; # What colors do you like for each alert? # You have a lot to choose from <a href="https://msdn.microsoft.com/en-us/library/aa358802.aspx">https://msdn.microsoft.com/en-us/library/aa358802.aspx</a> $AckColor = &quot;LightPink&quot; $AckMsg = &quot;Down (Acknowledged) &quot; $DownColor = &quot;Red&quot; $DownMsg = &quot;Down &quot; $WarnColor = &quot;Yellow&quot; $WarnMsg = &quot;Warning &quot; $SimColor =&quot;DarkSalmon&quot; $SimMsg = &quot;Down (simulated error)&quot; $outfile =&quot;C:\PRTG-DAILY-EMAIL\HTML.htm&quot; # Let's run the powershell script Invoke-WebRequest $url -Outfile $destination $xml = [xml](Get-Content .\table.xml) # If nothing is alerting in PRTG we don't need to stay around. Let's say something about it and quit out. if ($xml.sensors.totalcount -eq 0) { ConvertTo-Html -Body $c | Out-File $outfile $emailbody = Get-Content $outfile | Out-String send-MailMessage -BodyAsHtml -SmtpServer $smtp -To $to -Cc $cc -From $from -Subject $subject -body $emailbody exit } $HTML = $xml.sensors.item | Sort-Object -Property device | select device,downtimesince,sensor,status,message_raw | ConvertTo-HTML -head $a -body $b $HTML = $HTML | Set-cellcolor status $WarnColor -Filter &quot;status -eq '$WarnMsg'&quot; $HTML = $HTML | Set-cellcolor status $DownColor -Filter &quot;status -eq'$DownMsg'&quot; $HTML = $HTML | Set-cellcolor status $AckColor -Filter &quot;status -eq'$AckMsg'&quot; $HTML = $HTML | Set-cellcolor status $SimColor -Filter &quot;status -eq'$SimMsg'&quot; $HTML | Out-File $outfile $emailbody = Get-Content $outfile | Out-String send-MailMessage -BodyAsHtml -SmtpServer $smtp -To $to -Cc $cc -From $from -Subject $subject -body $emailbody exit [/code] So in the end you should get an email that looks something below if something is wrong. That's all I got I hope this information is helpful feel free to edit this and use it! <a href="https://systemstechblog.files.wordpress.com/2015/06/prtg-sample-alert1.png"><img src="https://systemstechblog.files.wordpress.com/2015/06/prtg-sample-alert1.png?w=660" alt="PRTG Sample Alert"></a></p>
+    <img src="/images/2015/06/20130609_112042_Android.jpg" class="image_featured">
+    
+    <p>So I don't write much powershell but recently I needed a way to send daily emails out of PRTG. Thanks Paessler which has kept it simple with their PRTG monitoring system as the hardest part of this script was getting the data in HTML, remember I don't write much powershell. ;) If you have not used PRTG before check it out if you need some alerting in your environment. Personally this is one of my favorite systems for just monitoring because a lot of other monitoring systems include everything but the kitchen sink and reality we just need to know what's up and what's down. This script grabs an XML file that PRTG builds and saves it as &quot;table.xml&quot; I have the script check if there are any sensors in trouble if not send an email. If PRTG is reporting a sensor or sensors that are in trouble this scripts builds an HTML document with a table and list the sensors in trouble highlighting the status column with the appropriate color and sends an email.</p>
+<p>Thanks goes to Martin Pugh who has provided the set-cellcolor function. :)</p>
+<div class="highlight"><pre class="chroma"><code class="language-ps1" data-lang="ps1"><span class="ln">  1</span><span class="c"># PRTG EMAIL ACTIVE ALARMS POWERSHELL SCRIPT.</span>
+<span class="ln">  2</span><span class="c"># USE TASK SCHEDULER TO RUN THIS SCRIPT. </span>
+<span class="ln">  3</span><span class="c"># Load up the function &#34;Set-CellColor&#34; thanks to Martin Pugh &lt;img draggable=&#34;false&#34; role=&#34;img&#34; class=&#34;emoji&#34; alt=&#34;🙂&#34; src=&#34;https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/1f642.svg&#34;&gt;</span>
+<span class="ln">  4</span><span class="k">Function</span> <span class="nb">Set-CellColor</span>
+<span class="ln">  5</span><span class="p">{</span>   <span class="cm">&lt;#
+</span><span class="ln">  6</span><span class="cm">    </span><span class="sd">.SYNOPSIS</span><span class="cm">
+</span><span class="ln">  7</span><span class="cm">        Function that allows you to set individual cell colors in an HTML table
+</span><span class="ln">  8</span><span class="cm">    </span><span class="sd">.DESCRIPTION</span><span class="cm">
+</span><span class="ln">  9</span><span class="cm">        To be used inconjunction with ConvertTo-HTML this simple function allows you
+</span><span class="ln"> 10</span><span class="cm">        to set particular colors for cells in an HTML table.  You provide the criteria
+</span><span class="ln"> 11</span><span class="cm">        the script uses to make the determination if a cell should be a particular 
+</span><span class="ln"> 12</span><span class="cm">        color (property -gt 5, property -like &#34;*Apple*&#34;, etc).
+</span><span class="ln"> 13</span><span class="cm">         
+</span><span class="ln"> 14</span><span class="cm">        You can add the function to your scripts, dot source it to load into your current
+</span><span class="ln"> 15</span><span class="cm">        PowerShell session or add it to your $Profile so it is always available.
+</span><span class="ln"> 16</span><span class="cm">         
+</span><span class="ln"> 17</span><span class="cm">        To dot source:
+</span><span class="ln"> 18</span><span class="cm">            .&#34;.\Set-CellColor.ps1&#34;
+</span><span class="ln"> 19</span><span class="cm">             
+</span><span class="ln"> 20</span><span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Property
+</span><span class="ln"> 21</span><span class="cm">        Property, or column that you will be keying on.  
+</span><span class="ln"> 22</span><span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Color
+</span><span class="ln"> 23</span><span class="cm">        Name or 6-digit hex value of the color you want the cell to be
+</span><span class="ln"> 24</span><span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> InputObject
+</span><span class="ln"> 25</span><span class="cm">        HTML you want the script to process.  This can be entered directly into the
+</span><span class="ln"> 26</span><span class="cm">        parameter or piped to the function.
+</span><span class="ln"> 27</span><span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Filter
+</span><span class="ln"> 28</span><span class="cm">        Specifies a query to determine if a cell should have its color changed.  $true
+</span><span class="ln"> 29</span><span class="cm">        results will make the color change while $false result will return nothing.
+</span><span class="ln"> 30</span><span class="cm">         
+</span><span class="ln"> 31</span><span class="cm">        Syntax
+</span><span class="ln"> 32</span><span class="cm">        &lt;Property Name&gt; &lt;Operator&gt; &lt;Value&gt;
+</span><span class="ln"> 33</span><span class="cm">         
+</span><span class="ln"> 34</span><span class="cm">        &lt;Property Name&gt;::= the same as $Property.  This must match exactly
+</span><span class="ln"> 35</span><span class="cm">        &lt;Operator&gt;::= &#34;-eq&#34; | &#34;-le&#34; | &#34;-ge&#34; | &#34;-ne&#34; | &#34;-lt&#34; | &#34;-gt&#34;| &#34;-approx&#34; | &#34;-like&#34; | &#34;-notlike&#34; 
+</span><span class="ln"> 36</span><span class="cm">            &lt;JoinOperator&gt; ::= &#34;-and&#34; | &#34;-or&#34;
+</span><span class="ln"> 37</span><span class="cm">            &lt;NotOperator&gt; ::= &#34;-not&#34;
+</span><span class="ln"> 38</span><span class="cm">         
+</span><span class="ln"> 39</span><span class="cm">        The script first attempts to convert the cell to a number, and if it fails it will
+</span><span class="ln"> 40</span><span class="cm">        cast it as a string.  So 40 will be a number and you can use -lt, -gt, etc.  But 40%
+</span><span class="ln"> 41</span><span class="cm">        would be cast as a string so you could only use -eq, -ne, -like, etc.  
+</span><span class="ln"> 42</span><span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Row
+</span><span class="ln"> 43</span><span class="cm">        Instructs the script to change the entire row to the specified color instead of the individual cell.
+</span><span class="ln"> 44</span><span class="cm">    </span><span class="sd">.INPUTS</span><span class="cm">
+</span><span class="ln"> 45</span><span class="cm">        HTML with table
+</span><span class="ln"> 46</span><span class="cm">    </span><span class="sd">.OUTPUTS</span><span class="cm">
+</span><span class="ln"> 47</span><span class="cm">        HTML
+</span><span class="ln"> 48</span><span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm">
+</span><span class="ln"> 49</span><span class="cm">        get-process | convertto-html | set-cellcolor -Propety cpu -Color red -Filter &#34;cpu -gt 1000&#34; | out-file c:\test\get-process.html
+</span><span class="ln"> 50</span><span class="cm"> 
+</span><span class="ln"> 51</span><span class="cm">        Assuming Set-CellColor has been dot sourced, run Get-Process and convert to HTML.  
+</span><span class="ln"> 52</span><span class="cm">        Then change the CPU cell to red only if the CPU field is greater than 1000.
+</span><span class="ln"> 53</span><span class="cm">         
+</span><span class="ln"> 54</span><span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm">
+</span><span class="ln"> 55</span><span class="cm">        get-process | convertto-html | set-cellcolor cpu red -filter &#34;cpu -gt 1000 -and cpu -lt 2000&#34; | out-file c:\test\get-process.html
+</span><span class="ln"> 56</span><span class="cm">         
+</span><span class="ln"> 57</span><span class="cm">        Same as Example 1, but now we will only turn a cell red if CPU is greater than 100 
+</span><span class="ln"> 58</span><span class="cm">        but less than 2000.
+</span><span class="ln"> 59</span><span class="cm">         
+</span><span class="ln"> 60</span><span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm">
+</span><span class="ln"> 61</span><span class="cm">        $HTML = $Data | sort server | ConvertTo-html -head $header | Set-CellColor cookedvalue red -Filter &#34;cookedvalue -gt 1&#34;
+</span><span class="ln"> 62</span><span class="cm">        PS C:\&gt; $HTML = $HTML | Set-CellColor Server green -Filter &#34;server -eq &#39;dc2&#39;&#34;
+</span><span class="ln"> 63</span><span class="cm">        PS C:\&gt; $HTML | Set-CellColor Path Yellow -Filter &#34;Path -like &#34;&#34;*memory*&#34;&#34;&#34; | Out-File c:\Test\colortest.html
+</span><span class="ln"> 64</span><span class="cm">         
+</span><span class="ln"> 65</span><span class="cm">        Takes a collection of objects in $Data, sorts on the property Server and converts to HTML.  From there 
+</span><span class="ln"> 66</span><span class="cm">        we set the &#34;CookedValue&#34; property to red if it&#39;s greater then 1.  We then send the HTML through Set-CellColor
+</span><span class="ln"> 67</span><span class="cm">        again, this time setting the Server cell to green if it&#39;s &#34;dc2&#34;.  One more time through Set-CellColor
+</span><span class="ln"> 68</span><span class="cm">        turns the Path cell to Yellow if it contains the word &#34;memory&#34; in it.
+</span><span class="ln"> 69</span><span class="cm">         
+</span><span class="ln"> 70</span><span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm">
+</span><span class="ln"> 71</span><span class="cm">        $HTML = $Data | sort server | ConvertTo-html -head $header | Set-CellColor cookedvalue red -Filter &#34;cookedvalue -gt 1&#34; -Row
+</span><span class="ln"> 72</span><span class="cm">         
+</span><span class="ln"> 73</span><span class="cm">        Now, if the cookedvalue property is greater than 1 the function will highlight the entire row red.
+</span><span class="ln"> 74</span><span class="cm">         
+</span><span class="ln"> 75</span><span class="cm">    </span><span class="sd">.NOTES</span><span class="cm">
+</span><span class="ln"> 76</span><span class="cm">        Author:             Martin Pugh
+</span><span class="ln"> 77</span><span class="cm">        Twitter:            @thesurlyadm1n
+</span><span class="ln"> 78</span><span class="cm">        Spiceworks:         Martin9700
+</span><span class="ln"> 79</span><span class="cm">        Blog:               www.thesurlyadmin.com
+</span><span class="ln"> 80</span><span class="cm">           
+</span><span class="ln"> 81</span><span class="cm">        Changelog:
+</span><span class="ln"> 82</span><span class="cm">            1.5             Added ability to set row color with -Row switch instead of the individual cell
+</span><span class="ln"> 83</span><span class="cm">            1.03            Added error message in case the $Property field cannot be found in the table header
+</span><span class="ln"> 84</span><span class="cm">            1.02            Added some additional text to help.  Added some error trapping around $Filter
+</span><span class="ln"> 85</span><span class="cm">                            creation.
+</span><span class="ln"> 86</span><span class="cm">            1.01            Added verbose output
+</span><span class="ln"> 87</span><span class="cm">            1.0             Initial Release
+</span><span class="ln"> 88</span><span class="cm">    </span><span class="sd">.LINK</span><span class="cm">
+</span><span class="ln"> 89</span><span class="cm">        http://community.spiceworks.com/scripts/show/2450-change-cell-color-in-html-table-with-powershell-set-cellcolor
+</span><span class="ln"> 90</span><span class="cm">    #&gt;</span>
+<span class="ln"> 91</span> 
+<span class="ln"> 92</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+<span class="ln"> 93</span>    <span class="k">Param</span> <span class="p">(</span>
+<span class="ln"> 94</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">,</span><span class="k">Position</span><span class="p">=</span><span class="n">0</span><span class="p">)]</span>
+<span class="ln"> 95</span>        <span class="no">[string]</span><span class="nv">$Property</span><span class="p">,</span>
+<span class="ln"> 96</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">,</span><span class="k">Position</span><span class="p">=</span><span class="n">1</span><span class="p">)]</span>
+<span class="ln"> 97</span>        <span class="no">[string]</span><span class="nv">$Color</span><span class="p">,</span>
+<span class="ln"> 98</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">,</span><span class="k">ValueFromPipeline</span><span class="p">)]</span>
+<span class="ln"> 99</span>        <span class="no">[Object[]]</span><span class="nv">$InputObject</span><span class="p">,</span>
+<span class="ln">100</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">101</span>        <span class="no">[string]</span><span class="nv">$Filter</span><span class="p">,</span>
+<span class="ln">102</span>        <span class="no">[switch]</span><span class="nv">$Row</span>
+<span class="ln">103</span>    <span class="p">)</span>
+<span class="ln">104</span>     
+<span class="ln">105</span>    <span class="k">Begin</span> <span class="p">{</span>
+<span class="ln">106</span>        <span class="nb">Write-Verbose</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nb">Get-Date</span><span class="p">)</span><span class="s2">: Function Set-CellColor begins&#34;</span>
+<span class="ln">107</span>        <span class="k">If</span> <span class="p">(</span><span class="nv">$Filter</span><span class="p">)</span>
+<span class="ln">108</span>        <span class="p">{</span>   <span class="k">If</span> <span class="p">(</span><span class="nv">$Filter</span><span class="p">.</span><span class="n">ToUpper</span><span class="p">().</span><span class="n">IndexOf</span><span class="p">(</span><span class="nv">$Property</span><span class="p">.</span><span class="n">ToUpper</span><span class="p">())</span> <span class="o">-ge</span> <span class="n">0</span><span class="p">)</span>
+<span class="ln">109</span>            <span class="p">{</span>   <span class="nv">$Filter</span> <span class="p">=</span> <span class="nv">$Filter</span><span class="p">.</span><span class="n">ToUpper</span><span class="p">().</span><span class="n">Replace</span><span class="p">(</span><span class="nv">$Property</span><span class="p">.</span><span class="n">ToUpper</span><span class="p">(),</span><span class="s2">&#34;</span><span class="se">`$</span><span class="s2">Value&#34;</span><span class="p">)</span>
+<span class="ln">110</span>                <span class="k">Try</span> <span class="p">{</span>
+<span class="ln">111</span>                    <span class="no">[scriptblock]</span><span class="nv">$Filter</span> <span class="p">=</span> <span class="no">[scriptblock]</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="nv">$Filter</span><span class="p">)</span>
+<span class="ln">112</span>                <span class="p">}</span>
+<span class="ln">113</span>                <span class="k">Catch</span> <span class="p">{</span>
+<span class="ln">114</span>                    <span class="nb">Write-Warning</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nb">Get-Date</span><span class="p">)</span><span class="s2">: &#34;&#34;$Filter&#34;&#34; caused an error, stopping script!&#34;</span>
+<span class="ln">115</span>                    <span class="nb">Write-Warning</span> <span class="nv">$Error</span><span class="p">[</span><span class="n">0</span><span class="p">]</span>
+<span class="ln">116</span>                    <span class="n">Exit</span>
+<span class="ln">117</span>                <span class="p">}</span>
+<span class="ln">118</span>            <span class="p">}</span>
+<span class="ln">119</span>            <span class="k">Else</span>
+<span class="ln">120</span>            <span class="p">{</span>   <span class="nb">Write-Warning</span> <span class="s2">&#34;Could not locate $Property in the Filter, which is required.  Filter: $Filter&#34;</span>
+<span class="ln">121</span>                <span class="n">Exit</span>
+<span class="ln">122</span>            <span class="p">}</span>
+<span class="ln">123</span>        <span class="p">}</span>
+<span class="ln">124</span>    <span class="p">}</span>
+<span class="ln">125</span>     
+<span class="ln">126</span>    <span class="k">Process</span> <span class="p">{</span>
+<span class="ln">127</span>        <span class="k">ForEach</span> <span class="p">(</span><span class="nv">$Line</span> <span class="k">in</span> <span class="nv">$InputObject</span><span class="p">)</span>
+<span class="ln">128</span>        <span class="p">{</span>   <span class="k">If</span> <span class="p">(</span><span class="nv">$Line</span><span class="p">.</span><span class="n">IndexOf</span><span class="p">(</span><span class="s2">&#34;&lt;tr&gt;&lt;th&#34;</span><span class="p">)</span> <span class="o">-ge</span> <span class="n">0</span><span class="p">)</span>
+<span class="ln">129</span>            <span class="p">{</span>   <span class="nb">Write-Verbose</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nb">Get-Date</span><span class="p">)</span><span class="s2">: Processing headers...&#34;</span>
+<span class="ln">130</span>                <span class="nv">$Search</span> <span class="p">=</span> <span class="nv">$Line</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="s1">&#39;&lt;th ?[a-z\-:;&#34;=]*&gt;(.*?)&lt;\/th&gt;&#39;</span> <span class="n">-AllMatches</span>
+<span class="ln">131</span>                <span class="nv">$Index</span> <span class="p">=</span> <span class="n">0</span>
+<span class="ln">132</span>                <span class="k">ForEach</span> <span class="p">(</span><span class="nv">$Match</span> <span class="k">in</span> <span class="nv">$Search</span><span class="p">.</span><span class="n">Matches</span><span class="p">)</span>
+<span class="ln">133</span>                <span class="p">{</span>   <span class="k">If</span> <span class="p">(</span><span class="nv">$Match</span><span class="p">.</span><span class="n">Groups</span><span class="p">[</span><span class="n">1</span><span class="p">].</span><span class="n">Value</span> <span class="o">-eq</span> <span class="nv">$Property</span><span class="p">)</span>
+<span class="ln">134</span>                    <span class="p">{</span>   <span class="k">Break</span>
+<span class="ln">135</span>                    <span class="p">}</span>
+<span class="ln">136</span>                    <span class="nv">$Index</span> <span class="p">++</span>
+<span class="ln">137</span>                <span class="p">}</span>
+<span class="ln">138</span>                <span class="k">If</span> <span class="p">(</span><span class="nv">$Index</span> <span class="o">-eq</span> <span class="nv">$Search</span><span class="p">.</span><span class="n">Matches</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span>
+<span class="ln">139</span>                <span class="p">{</span>   <span class="nb">Write-Warning</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nb">Get-Date</span><span class="p">)</span><span class="s2">: Unable to locate property: $Property in table header&#34;</span>
+<span class="ln">140</span>                    <span class="n">Exit</span>
+<span class="ln">141</span>                <span class="p">}</span>
+<span class="ln">142</span>                <span class="nb">Write-Verbose</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nb">Get-Date</span><span class="p">)</span><span class="s2">: $Property column found at index: $Index&#34;</span>
+<span class="ln">143</span>            <span class="p">}</span>
+<span class="ln">144</span>            <span class="k">If</span> <span class="p">(</span><span class="nv">$Line</span> <span class="o">-match</span> <span class="s2">&#34;&lt;tr( style=&#34;&#34;background-color:.+?&#34;&#34;)?&gt;&lt;td&#34;</span><span class="p">)</span>
+<span class="ln">145</span>            <span class="p">{</span>   <span class="nv">$Search</span> <span class="p">=</span> <span class="nv">$Line</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="s1">&#39;&lt;td ?[a-z\-:;&#34;=]*&gt;(.*?)&lt;\/td&gt;&#39;</span> <span class="n">-AllMatches</span>
+<span class="ln">146</span>                <span class="nv">$Value</span> <span class="p">=</span> <span class="nv">$Search</span><span class="p">.</span><span class="n">Matches</span><span class="p">[</span><span class="nv">$Index</span><span class="p">].</span><span class="n">Groups</span><span class="p">[</span><span class="n">1</span><span class="p">].</span><span class="n">Value</span> <span class="o">-as</span> <span class="no">[double]</span>
+<span class="ln">147</span>                <span class="k">If</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$Value</span><span class="p">)</span>
+<span class="ln">148</span>                <span class="p">{</span>   <span class="nv">$Value</span> <span class="p">=</span> <span class="nv">$Search</span><span class="p">.</span><span class="n">Matches</span><span class="p">[</span><span class="nv">$Index</span><span class="p">].</span><span class="n">Groups</span><span class="p">[</span><span class="n">1</span><span class="p">].</span><span class="n">Value</span>
+<span class="ln">149</span>                <span class="p">}</span>
+<span class="ln">150</span>                <span class="k">If</span> <span class="p">(</span><span class="nb">Invoke-Command</span> <span class="nv">$Filter</span><span class="p">)</span>
+<span class="ln">151</span>                <span class="p">{</span>   <span class="k">If</span> <span class="p">(</span><span class="nv">$Row</span><span class="p">)</span>
+<span class="ln">152</span>                    <span class="p">{</span>   <span class="nb">Write-Verbose</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nb">Get-Date</span><span class="p">)</span><span class="s2">: Criteria met!  Changing row to $Color...&#34;</span>
+<span class="ln">153</span>                        <span class="k">If</span> <span class="p">(</span><span class="nv">$Line</span> <span class="o">-match</span> <span class="s2">&#34;&lt;tr style=&#34;&#34;background-color:(.+?)&#34;&#34;&gt;&#34;</span><span class="p">)</span>
+<span class="ln">154</span>                        <span class="p">{</span>   <span class="nv">$Line</span> <span class="p">=</span> <span class="nv">$Line</span> <span class="o">-replace</span> <span class="s2">&#34;&lt;tr style=&#34;&#34;background-color:</span><span class="p">$(</span><span class="nv">$Matches</span><span class="p">[</span><span class="n">1</span><span class="p">])</span><span class="s2">&#34;</span><span class="p">,</span><span class="s2">&#34;&lt;tr style=&#34;&#34;background-color:$Color&#34;</span>
+<span class="ln">155</span>                        <span class="p">}</span>
+<span class="ln">156</span>                        <span class="k">Else</span>
+<span class="ln">157</span>                        <span class="p">{</span>   <span class="nv">$Line</span> <span class="p">=</span> <span class="nv">$Line</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&#34;&lt;tr&gt;&#34;</span><span class="p">,</span><span class="s2">&#34;&lt;tr style=&#34;&#34;background-color:$Color&#34;&#34;&gt;&#34;</span><span class="p">)</span>
+<span class="ln">158</span>                        <span class="p">}</span>
+<span class="ln">159</span>                    <span class="p">}</span>
+<span class="ln">160</span>                    <span class="k">Else</span>
+<span class="ln">161</span>                    <span class="p">{</span>   <span class="nb">Write-Verbose</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nb">Get-Date</span><span class="p">)</span><span class="s2">: Criteria met!  Changing cell to $Color...&#34;</span>
+<span class="ln">162</span>                        <span class="nv">$Line</span> <span class="p">=</span> <span class="nv">$Line</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="nv">$Search</span><span class="p">.</span><span class="n">Matches</span><span class="p">[</span><span class="nv">$Index</span><span class="p">].</span><span class="n">Value</span><span class="p">,</span><span class="s2">&#34;&lt;td style=&#34;&#34;background-color:$Color&#34;&#34;&gt;$Value&lt;/td&gt;&#34;</span><span class="p">)</span>
+<span class="ln">163</span>                    <span class="p">}</span>
+<span class="ln">164</span>                <span class="p">}</span>
+<span class="ln">165</span>            <span class="p">}</span>
+<span class="ln">166</span>            <span class="nb">Write-Output</span> <span class="nv">$Line</span>
+<span class="ln">167</span>        <span class="p">}</span>
+<span class="ln">168</span>    <span class="p">}</span>
+<span class="ln">169</span>     
+<span class="ln">170</span>    <span class="k">End</span> <span class="p">{</span>
+<span class="ln">171</span>        <span class="nb">Write-Verbose</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nb">Get-Date</span><span class="p">)</span><span class="s2">: Function Set-CellColor completed&#34;</span>
+<span class="ln">172</span>    <span class="p">}</span>
+<span class="ln">173</span><span class="p">}</span>
+<span class="ln">174</span><span class="c"># Load up the variables, feel free to edit below like what is your email server?</span>
+<span class="ln">175</span><span class="nv">$smtp</span> <span class="p">=</span> <span class="s2">&#34;mailserver.example.com&#34;</span>
+<span class="ln">176</span><span class="c"># Who is this email going to?</span>
+<span class="ln">177</span><span class="nv">$to</span> <span class="p">=</span> <span class="s2">&#34;Mr. Joe &lt;joe@example.com&gt;&#34;</span>
+<span class="ln">178</span><span class="c"># Carbon Copy anyone?</span>
+<span class="ln">179</span><span class="nv">$cc</span> <span class="p">=</span> <span class="s2">&#34;Mr. Admin &lt;admin@example.com&gt;&#34;</span>
+<span class="ln">180</span><span class="nv">$from</span> <span class="p">=</span> <span class="s2">&#34;PRTG Network Monitor &lt;PRTG@example.com&gt;&#34;</span>
+<span class="ln">181</span><span class="nv">$subject</span> <span class="p">=</span> <span class="s2">&#34;PRTG Checks&#34;</span>
+<span class="ln">182</span><span class="nv">$time</span> <span class="p">=</span> <span class="nb">Get-Date</span>
+<span class="ln">183</span><span class="c"># Get a table ready in HTML just in case we have alerts in PRTG.</span>
+<span class="ln">184</span><span class="nv">$a</span> <span class="p">=</span> <span class="s2">&#34;&lt;style&gt;&#34;</span>
+<span class="ln">185</span><span class="nv">$a</span> <span class="p">=</span> <span class="nv">$a</span> <span class="p">+</span> <span class="s2">&#34;BODY{background-color:White;}&#34;</span>
+<span class="ln">186</span><span class="nv">$a</span> <span class="p">=</span> <span class="nv">$a</span> <span class="p">+</span> <span class="s2">&#34;TABLE{border-width: 1px;border-style: solid;border-color: black;border-collapse: collapse;}&#34;</span>
+<span class="ln">187</span><span class="nv">$a</span> <span class="p">=</span> <span class="nv">$a</span> <span class="p">+</span> <span class="s2">&#34;TH{Font-family: Courier; color: white; border-width: 1px;padding: 3px;border-style: solid;border-color: black;background-color:black}&#34;</span>
+<span class="ln">188</span><span class="nv">$a</span> <span class="p">=</span> <span class="nv">$a</span> <span class="p">+</span> <span class="s2">&#34;TD{Font-family: Courier; border-width: 1px;padding: 3px;border-style: solid;border-color:}&#34;</span>
+<span class="ln">189</span><span class="nv">$a</span> <span class="p">=</span> <span class="nv">$a</span> <span class="p">+</span> <span class="s2">&#34;&lt;/style&gt;&#34;</span>
+<span class="ln">190</span><span class="c"># Write out something in HTML in case we have alerts in PRTG.</span>
+<span class="ln">191</span><span class="nv">$b</span> <span class="p">=</span> <span class="s2">&#34;&lt;H2&gt;PRTG Alerts&lt;/H2&gt;&#34;</span>
+<span class="ln">192</span><span class="nv">$b</span> <span class="p">=</span> <span class="nv">$b</span> <span class="p">+</span> <span class="s2">&#34;&lt;p&gt;Houston, we have a problem so please reference the chart below.&lt;/p&gt;&#34;</span>
+<span class="ln">193</span><span class="nv">$b</span> <span class="p">=</span> <span class="nv">$b</span> <span class="p">+</span> <span class="s2">&#34;&lt;p&gt;System Generated at $time.&lt;/p&gt;&#34;</span>
+<span class="ln">194</span><span class="c"># Write out something in HTML in case no alerts are active. </span>
+<span class="ln">195</span><span class="nv">$c</span> <span class="p">=</span> <span class="s2">&#34;&lt;H2&gt;PRTG Alerts &lt;/H2&gt;&#34;</span>
+<span class="ln">196</span><span class="nv">$c</span> <span class="p">=</span> <span class="nv">$c</span> <span class="p">+</span> <span class="s2">&#34;&lt;p&gt;No alerts being reported.&lt;/p&gt;&#34;</span>
+<span class="ln">197</span><span class="nv">$c</span> <span class="p">=</span> <span class="nv">$c</span> <span class="p">+</span> <span class="s2">&#34;&lt;p&gt;System Generated at $time.&lt;/p&gt;&#34;</span>
+<span class="ln">198</span><span class="c"># URL to your PRTG server you will need to reference a local user account and password that has access to PRTG. See the end of the URL. </span>
+<span class="ln">199</span><span class="nv">$url</span> <span class="p">=</span> <span class="s2">&#34;https://prtg.example.com/api/table.xml?content=sensors&amp;columns=objid,downtimesince,device,sensor,lastvalue,status,message,priority&amp;filter_status=5&amp;filter_status=4&amp;filter_status=10&amp;filter_status=13&amp;filter_status=14&amp;sortby=priority&amp;username=GOES_HERE&amp;passhash=GOES_HERE&#34;</span>
+<span class="ln">200</span><span class="c"># Where do you want to store the XML file?</span>
+<span class="ln">201</span><span class="nv">$destination</span> <span class="p">=</span> <span class="s2">&#34;C:\PRTG-DAILY-EMAIL\table.xml&#34;</span>
+<span class="ln">202</span><span class="c"># What colors do you like for each alert?</span>
+<span class="ln">203</span><span class="c"># You have a lot to choose from https://msdn.microsoft.com/en-us/library/aa358802.aspx</span>
+<span class="ln">204</span><span class="nv">$AckColor</span> <span class="p">=</span> <span class="s2">&#34;LightPink&#34;</span>
+<span class="ln">205</span><span class="nv">$AckMsg</span> <span class="p">=</span> <span class="s2">&#34;Down (Acknowledged) &#34;</span>
+<span class="ln">206</span><span class="nv">$DownColor</span> <span class="p">=</span> <span class="s2">&#34;Red&#34;</span>
+<span class="ln">207</span><span class="nv">$DownMsg</span> <span class="p">=</span> <span class="s2">&#34;Down &#34;</span>
+<span class="ln">208</span><span class="nv">$WarnColor</span> <span class="p">=</span> <span class="s2">&#34;Yellow&#34;</span>
+<span class="ln">209</span><span class="nv">$WarnMsg</span> <span class="p">=</span> <span class="s2">&#34;Warning &#34;</span>
+<span class="ln">210</span><span class="nv">$SimColor</span> <span class="p">=</span><span class="s2">&#34;DarkSalmon&#34;</span>
+<span class="ln">211</span><span class="nv">$SimMsg</span> <span class="p">=</span> <span class="s2">&#34;Down  (simulated error)&#34;</span>
+<span class="ln">212</span><span class="nv">$outfile</span> <span class="p">=</span><span class="s2">&#34;C:\PRTG-DAILY-EMAIL\HTML.htm&#34;</span>
+<span class="ln">213</span> 
+<span class="ln">214</span><span class="c"># Let&#39;s run the powershell script</span>
+<span class="ln">215</span> 
+<span class="ln">216</span><span class="nb">Invoke-WebRequest</span> <span class="nv">$url</span> <span class="n">-Outfile</span> <span class="nv">$destination</span>
+<span class="ln">217</span><span class="nv">$xml</span> <span class="p">=</span> <span class="no">[xml]</span><span class="p">(</span><span class="nb">Get-Content</span> <span class="p">.\</span><span class="n">table</span><span class="p">.</span><span class="n">xml</span><span class="p">)</span>
+<span class="ln">218</span><span class="c"># If nothing is alerting in PRTG we don&#39;t need to stay around. Let&#39;s say something about it and quit out.</span>
+<span class="ln">219</span><span class="k">if</span> <span class="p">(</span><span class="nv">$xml</span><span class="p">.</span><span class="n">sensors</span><span class="p">.</span><span class="n">totalcount</span> <span class="o">-eq</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">220</span><span class="nb">ConvertTo-Html</span> <span class="n">-Body</span> <span class="nv">$c</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="nv">$outfile</span>
+<span class="ln">221</span><span class="nv">$emailbody</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="nv">$outfile</span> <span class="p">|</span> <span class="nb">Out-String</span>
+<span class="ln">222</span><span class="nb">send-MailMessage</span> <span class="n">-BodyAsHtml</span> <span class="n">-SmtpServer</span> <span class="nv">$smtp</span> <span class="n">-To</span> <span class="nv">$to</span> <span class="n">-Cc</span> <span class="nv">$cc</span> <span class="n">-From</span> <span class="nv">$from</span> <span class="n">-Subject</span> <span class="nv">$subject</span> <span class="n">-body</span> <span class="nv">$emailbody</span>
+<span class="ln">223</span><span class="n">exit</span>
+<span class="ln">224</span><span class="p">}</span>
+<span class="ln">225</span><span class="nv">$HTML</span> <span class="p">=</span> <span class="nv">$xml</span><span class="p">.</span><span class="n">sensors</span><span class="p">.</span><span class="n">item</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">device</span> <span class="p">|</span> <span class="nb">select </span><span class="n">device</span><span class="p">,</span><span class="n">downtimesince</span><span class="p">,</span><span class="n">sensor</span><span class="p">,</span><span class="n">status</span><span class="p">,</span><span class="n">message_raw</span> <span class="p">|</span>
+<span class="ln">226</span><span class="nb">ConvertTo-HTML</span> <span class="n">-head</span> <span class="nv">$a</span> <span class="n">-body</span> <span class="nv">$b</span>
+<span class="ln">227</span><span class="nv">$HTML</span> <span class="p">=</span> <span class="nv">$HTML</span> <span class="p">|</span> <span class="nb">Set-cellcolor</span> <span class="n">status</span> <span class="nv">$WarnColor</span> <span class="n">-Filter</span> <span class="s2">&#34;status -eq &#39;$WarnMsg&#39;&#34;</span>
+<span class="ln">228</span><span class="nv">$HTML</span> <span class="p">=</span> <span class="nv">$HTML</span> <span class="p">|</span> <span class="nb">Set-cellcolor</span> <span class="n">status</span> <span class="nv">$DownColor</span> <span class="n">-Filter</span> <span class="s2">&#34;status -eq&#39;$DownMsg&#39;&#34;</span>
+<span class="ln">229</span><span class="nv">$HTML</span> <span class="p">=</span> <span class="nv">$HTML</span> <span class="p">|</span> <span class="nb">Set-cellcolor</span> <span class="n">status</span> <span class="nv">$AckColor</span> <span class="n">-Filter</span> <span class="s2">&#34;status -eq&#39;$AckMsg&#39;&#34;</span>
+<span class="ln">230</span><span class="nv">$HTML</span> <span class="p">=</span> <span class="nv">$HTML</span> <span class="p">|</span> <span class="nb">Set-cellcolor</span> <span class="n">status</span> <span class="nv">$SimColor</span> <span class="n">-Filter</span> <span class="s2">&#34;status -eq&#39;$SimMsg&#39;&#34;</span>
+<span class="ln">231</span><span class="nv">$HTML</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="nv">$outfile</span>
+<span class="ln">232</span><span class="nv">$emailbody</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="nv">$outfile</span> <span class="p">|</span> <span class="nb">Out-String</span>
+<span class="ln">233</span><span class="nb">send-MailMessage</span> <span class="n">-BodyAsHtml</span> <span class="n">-SmtpServer</span> <span class="nv">$smtp</span> <span class="n">-To</span> <span class="nv">$to</span> <span class="n">-Cc</span> <span class="nv">$cc</span> <span class="n">-From</span> <span class="nv">$from</span> <span class="n">-Subject</span> <span class="nv">$subject</span> <span class="n">-body</span> <span class="nv">$emailbody</span>
+<span class="ln">234</span><span class="n">exit</span>
+</code></pre></div><p>So in the end you should get an email that looks something below if something is wrong. That's all I got I hope this information is helpful feel free to edit this and use it! <img src="/images/2015/06/prtg-sample-alert1.png" alt=""></p>
+<p><a href="https://www.paessler.com/">https://www.paessler.com/</a></p>
 
     
       
@@ -226,7 +465,7 @@
         
         <a href='https://ciscoskills.net/tags/networking/' class="post_tag button button_translucent">
           NETWORKING
-          <span class="button_tally">118</span>
+          <span class="button_tally">117</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/ccna/' class="post_tag button button_translucent">
@@ -1302,7 +1541,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=118>NETWORKING<span class="button_tally">118</span>
+            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=117>NETWORKING<span class="button_tally">117</span>
             </a>
             
             

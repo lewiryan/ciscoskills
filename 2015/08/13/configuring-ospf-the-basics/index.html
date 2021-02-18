@@ -170,7 +170,249 @@
   </div>
 
     
-    <p><a href="https://systemstechblog.files.wordpress.com/2011/04/routing_updates.png"><img src="https://systemstechblog.files.wordpress.com/2011/04/routing_updates.png?w=150" alt="Routing_Updates"></a>We have to start somewhere so let’s look at the basics of configuring OSPF. Remember OSPF is an IGP (Interior Gateway Protocol) and allows packet authentication as well as IP multicast when sending and receiving updates. In this post we are configuring OSPF in a single area. In this topology we have four routers and two PCs. The PCs subnet are 172.30.2.0/24 and 172.30.3.0/24. We have point to point connections between each router. [caption id=&quot;attachment_3313&quot; align=&quot;aligncenter&quot; width=&quot;1024&quot;]<a href="https://systemstechblog.files.wordpress.com/2015/08/ospf-topo.png"><img src="https://systemstechblog.files.wordpress.com/2015/08/ospf-topo.png" alt="4 Node OSPF Single Area "></a> 4 Node OSPF Single Area[/caption] So we have already configured all of interfaces and everything seems good but PC1 can’t ping PC2 and vice versa. If we do a <strong>show ip route</strong> on R1 we can see that R1 does not know about the 172.30.2.x or 172.30.3.x network as well as any other network not directly connected to R1. [code]R1#show ip route Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2 E1 - OSPF external type 1, E2 - OSPF external type 2 i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2 ia - IS-IS inter area, * - candidate default, U - per-user static route o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP a - application route + - replicated route, % - next hop override Gateway of last resort is not set 172.16.0.0/16 is variably subnetted, 6 subnets, 2 masks C 172.16.0.8/30 is directly connected, GigabitEthernet0/1 L 172.16.0.9/32 is directly connected, GigabitEthernet0/1 C 172.16.0.12/30 is directly connected, GigabitEthernet0/2 L 172.16.0.13/32 is directly connected, GigabitEthernet0/2 C 172.16.128.0/30 is directly connected, GigabitEthernet0/3 L 172.16.128.1/32 is directly connected, GigabitEthernet0/3 192.168.0.0/32 is subnetted, 1 subnets C 192.168.0.1 is directly connected, Loopback0 [/code] We also see the same issue with R3, if a routing protocol is not configured on router it will only know about its own active networks. [code]R3#show ip route Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2 E1 - OSPF external type 1, E2 - OSPF external type 2 i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2 ia - IS-IS inter area, * - candidate default, U - per-user static route o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP a - application route + - replicated route, % - next hop override Gateway of last resort is not set 172.16.0.0/16 is variably subnetted, 6 subnets, 2 masks C 172.16.0.12/30 is directly connected, GigabitEthernet0/2 L 172.16.0.14/32 is directly connected, GigabitEthernet0/2 C 172.16.128.4/30 is directly connected, GigabitEthernet0/3 L 172.16.128.6/32 is directly connected, GigabitEthernet0/3 C 172.16.128.12/30 is directly connected, GigabitEthernet0/1 L 172.16.128.13/32 is directly connected, GigabitEthernet0/1 172.30.0.0/16 is variably subnetted, 2 subnets, 2 masks C 172.30.3.0/24 is directly connected, GigabitEthernet0/4 L 172.30.3.1/32 is directly connected, GigabitEthernet0/4 192.168.0.0/32 is subnetted, 1 subnets C 192.168.0.3 is directly connected, Loopback0 [/code] To configure OSPF you can do this in two ways. Let’s look at the traditional way to configure OSPF by jumping into to R1 and in the configuration mode let’s enter <strong>router ospf 1</strong> followed by enter. <em>(NOTE: 1 is the process ID for OSPF you if you don’t what to use 1 we can pick between 1-65535, also this does not have match on each router).</em> We are now under a config-router prompt, the next thing we want to do is to tell the router what IP interface you want OSPF to run on. Looking at the network topology R1 has three interfaces let’s first choose the interface that uses the IP address 172.16.0.9 and put it in area 0. <em>(Remember wildcard subnet masks)</em> [code]R1(config)#router ospf 1 R1(config-router)#network 172.16.0.9 0.0.0.0 area 0 [/code] <strong>“(Side Conversation)</strong> Area 0 is used for single-area configuration, you don’t have to use area 0 but it is recommended because Area 0 is special and not like the rest. If you ever needed two OSPF areas and they need to share routes together it won’t work without area 0 in the environment. Re-configuring a routing protocol on production may not be a good idea :). Another question that comes up when using the network command is why did I match the specific interface of 172.16.0.9? (<strong>network 172.16.0.9 0.0.0.0</strong> ) Remember when we configure OSPF using the network command we are specifically looking at the individual interface of which we want OSPF sending and receiving updates. This is where it gets confusing because this command is not telling the router what to advertise it is simply telling the router which interfaces that you want OSPF running on. You could use the “lazy method” and allow all and future interfaces that the router has to use OSPF by using the command: <strong>network 0.0.0.0 255.255.255.255</strong>. However this is a catch-22 because you are no longer in control of what interfaces that OSPF is running along with what networks are being added to OSPF. Future interfaces you configure on the router will be added to OSPF automatically and you may not want that. Personally and its a best practice to match the specific interfaces instead of using the “lazy method**.”** So what just happened? Well nothing yet because R1 is this only router sending OSPF updates so let’s jump to R2 and run the following under the config-router prompt. [code]R2(config)#router ospf 1 R2(config-router)#network 172.16.0.10 0.0.0.0 area 0 R2(config-router)# *Aug 13 01:49:33.888: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.1 on GigabitEthernet0/1 from LOADING to FULL, Loading Done [/code] Notice the OSPF Adjacency that came up, this is good news because we now have OSPF running between R1 and R2 and they are exchanging updates between each other. We can verify this up looking at **show ip ospf neighbor**. [code]R1#show ip ospf neighbor Neighbor ID Pri State Dead Time Address Interface 192.168.0.2 1 FULL/BDR 00:00:30 172.16.0.10 GigabitEthernet0/1 [/code] Let’s get PC 2’s network advertised as well as all of the remaining interfaces on R1 and R2. [code]R2(config)#router ospf 1 R2(config-router)#network 172.30.2.1 0.0.0.0 area 0 R2(config-router)#network 172.16.128.9 0.0.0.0 area 0 R2(config-router)#network 172.16.128.5 0.0.0.0 area 0 R1(config)#router ospf 1 R1(config-router)#network 172.16.0.13 0.0.0.0 area 0 R1(config-router)#network 172.16.128.1 0.0.0.0 area 0 [/code] Looking at the routing table in R1 we can see the 172.30.2.0/24 is reachable by leaving R1’s gigabitEthernet0/1 interface. [code]R1#show ip route Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2 E1 - OSPF external type 1, E2 - OSPF external type 2 i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2 ia - IS-IS inter area, * - candidate default, U - per-user static route o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP a - application route + - replicated route, % - next hop override Gateway of last resort is not set 172.16.0.0/16 is variably subnetted, 6 subnets, 2 masks C 172.16.0.8/30 is directly connected, GigabitEthernet0/1 L 172.16.0.9/32 is directly connected, GigabitEthernet0/1 C 172.16.0.12/30 is directly connected, GigabitEthernet0/2 L 172.16.0.13/32 is directly connected, GigabitEthernet0/2 C 172.16.128.0/30 is directly connected, GigabitEthernet0/3 L 172.16.128.1/32 is directly connected, GigabitEthernet0/3 172.30.0.0/24 is subnetted, 1 subnets O 172.30.2.0 [110/2] via 172.16.0.10, 00:03:39, GigabitEthernet0/1 192.168.0.0/32 is subnetted, 1 subnets C 192.168.0.1 is directly connected, Loopback0 [/code] So depending if you have a newer IOS software there is another way to configure OSPF instead of using the network command while in the (config-router) prompt. This newer method is configured by going under the interface of which you want OSPF to run. Let’s configure it on R3 and R4. We still have to switch on OSPF by running the **router ospf 1** command but then we can go to the interfaces. [code]R4(config)#router ospf 1 R3(config)#router ospf 1 [/code] Now let’s go to gigabitethernet0/1 on R4 and tell OSPF this is the interface we want OSPF running on. Also notice the adjacency with R2 this is good news. [code]R4(config)#interface gigabitEthernet 0/1 R4(config-if)#ip ospf 1 area 0 *Aug 13 01:50:10.698: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.2 on GigabitEthernet0/1 from LOADING to FULL, Loading Done [/code] Let’s continue this on all remaining interfaces on R4 and R3. [code]R4(config)# R4(config)#interface gigabitEthernet 0/2 R4(config-if)#ip ospf 1 area 0 R4(config-if)#exit R4(config)#interface gigabitEthernet 0/3 R4(config-if)#ip ospf 1 area 0 R4(config-if)#exit *Aug 13 01:55:07.905: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.1 on GigabitEthernet0/3 from LOADING to FULL, Loading Done R4(config)# --ROUTER 3 -- R3(config)#interface gigabitEthernet 0/1 R3(config-if)#ip ospf 1 area 0 R3(config-if)#exit *Aug 13 01:58:39.091: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.4 on GigabitEthernet0/1 from LOADING to FULL, Loading Done R3(config)#interface gigabitEthernet 0/2 R3(config-if)#ip ospf 1 area 0 R3(config-if)#exit *Aug 13 01:59:01.142: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.1 on GigabitEthernet0/2 from LOADING to FULL, Loading Done R3(config)#interface gigabitEthernet 0/3 R3(config-if)#ip ospf 1 area 0 R3(config-if)#exit *Aug 13 01:59:37.701: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.2 on GigabitEthernet0/3 from LOADING to FULL, Loading Done R3(config)#interface gigabitEthernet 0/4 R3(config-if)#ip ospf 1 area 0 R3(config-if)#exit R3(config)# [/code] We now have OSPF setup. We can verify this by typing **show ip ospf neighbor**. [code]R1#show ip ospf neighbor Neighbor ID Pri State Dead Time Address Interface 192.168.0.4 1 FULL/BDR 00:00:35 172.16.128.2 GigabitEthernet0/3 192.168.0.3 1 FULL/BDR 00:00:35 172.16.0.14 GigabitEthernet0/2 192.168.0.2 1 FULL/DR 00:00:31 172.16.0.10 GigabitEthernet0/1 ------ R2#show ip ospf neighbor Neighbor ID Pri State Dead Time Address Interface 192.168.0.3 1 FULL/BDR 00:00:38 172.16.128.6 GigabitEthernet0/3 192.168.0.4 1 FULL/DR 00:00:35 172.16.128.10 GigabitEthernet0/2 192.168.0.1 1 FULL/BDR 00:00:34 172.16.0.9 GigabitEthernet0/1 ------- R3#show ip ospf neighbor Neighbor ID Pri State Dead Time Address Interface 192.168.0.2 1 FULL/DR 00:00:32 172.16.128.5 GigabitEthernet0/3 192.168.0.1 1 FULL/DR 00:00:38 172.16.0.13 GigabitEthernet0/2 192.168.0.4 1 FULL/DR 00:00:32 172.16.128.14 GigabitEthernet0/1 -------- R4#show ip ospf neighbor Neighbor ID Pri State Dead Time Address Interface 192.168.0.1 1 FULL/DR 00:00:31 172.16.128.1 GigabitEthernet0/3 192.168.0.3 1 FULL/BDR 00:00:33 172.16.128.13 GigabitEthernet0/2 192.168.0.2 1 FULL/BDR 00:00:36 172.16.128.9 GigabitEthernet0/1 [/code] Let’s look at the routing table of R3, do we have route to 172.30.2.0/24 network? It looks like we do but why do we see only one route? [code]R3#show ip route Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2 E1 - OSPF external type 1, E2 - OSPF external type 2 i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2 ia - IS-IS inter area, * - candidate default, U - per-user static route o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP a - application route + - replicated route, % - next hop override Gateway of last resort is not set 172.16.0.0/16 is variably subnetted, 9 subnets, 2 masks O 172.16.0.8/30 [110/2] via 172.16.128.5, 00:02:06, GigabitEthernet0/3 [110/2] via 172.16.0.13, 00:02:45, GigabitEthernet0/2 C 172.16.0.12/30 is directly connected, GigabitEthernet0/2 L 172.16.0.14/32 is directly connected, GigabitEthernet0/2 O 172.16.128.0/30 [110/2] via 172.16.128.14, 00:03:05, GigabitEthernet0/1 [110/2] via 172.16.0.13, 00:02:45, GigabitEthernet0/2 C 172.16.128.4/30 is directly connected, GigabitEthernet0/3 L 172.16.128.6/32 is directly connected, GigabitEthernet0/3 O 172.16.128.8/30 [110/2] via 172.16.128.14, 00:03:05, GigabitEthernet0/1 [110/2] via 172.16.128.5, 00:02:06, GigabitEthernet0/3 C 172.16.128.12/30 is directly connected, GigabitEthernet0/1 L 172.16.128.13/32 is directly connected, GigabitEthernet0/1 172.30.0.0/16 is variably subnetted, 3 subnets, 2 masks O 172.30.2.0/24 [110/2] via 172.16.128.5, 00:02:06, GigabitEthernet0/3 C 172.30.3.0/24 is directly connected, GigabitEthernet0/4 L 172.30.3.1/32 is directly connected, GigabitEthernet0/4 192.168.0.0/32 is subnetted, 2 subnets O 192.168.0.1 [110/2] via 172.16.0.13, 00:02:45, GigabitEthernet0/2 C 192.168.0.3 is directly connected, Loopback0 [/code] Remember that OSPF will choose the best path and put that path in the routing table. Going straight to R2 instead of going through R1 or R4. However OSPF knows about the other two routes which is why it is able to converge quickly. That's an important tip when comparing distance vector protocols vs link state protocols. In link state protocols routers know about the entire topology within an area and each router determines the shortest path to available destinations. So in case of a failure of the link the router would already know what path to take so there is no need to re-converge the routing table. Take a look at the routing table of R3 again after I disabled interface Gig0/3 on R2. [code]R3#show ip route Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2 E1 - OSPF external type 1, E2 - OSPF external type 2 i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2 ia - IS-IS inter area, * - candidate default, U - per-user static route o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP a - application route + - replicated route, % - next hop override Gateway of last resort is not set 172.16.0.0/16 is variably subnetted, 9 subnets, 2 masks O 172.16.0.8/30 [110/2] via 172.16.0.13, 01:04:20, GigabitEthernet0/2 C 172.16.0.12/30 is directly connected, GigabitEthernet0/2 L 172.16.0.14/32 is directly connected, GigabitEthernet0/2 O 172.16.128.0/30 [110/2] via 172.16.128.14, 01:04:40, GigabitEthernet0/1 [110/2] via 172.16.0.13, 01:04:20, GigabitEthernet0/2 C 172.16.128.4/30 is directly connected, GigabitEthernet0/3 L 172.16.128.6/32 is directly connected, GigabitEthernet0/3 O 172.16.128.8/30 [110/2] via 172.16.128.14, 01:04:40, GigabitEthernet0/1 C 172.16.128.12/30 is directly connected, GigabitEthernet0/1 L 172.16.128.13/32 is directly connected, GigabitEthernet0/1 172.30.0.0/16 is variably subnetted, 3 subnets, 2 masks O 172.30.2.0/24 [110/3] via 172.16.128.14, 00:31:22, GigabitEthernet0/1 [110/3] via 172.16.0.13, 00:31:22, GigabitEthernet0/2 C 172.30.3.0/24 is directly connected, GigabitEthernet0/4 L 172.30.3.1/32 is directly connected, GigabitEthernet0/4 192.168.0.0/32 is subnetted, 2 subnets O 192.168.0.1 [110/2] via 172.16.0.13, 01:04:20, GigabitEthernet0/2 C 192.168.0.3 is directly connected, Loopback0 R3# [/code] We can now see two routes to the 172.30.2.0 network. Since these paths are equal OSPF will balance between R1 and R4 to get the 172.30.2.0 network. This stays this way until the link between R2 and R3 comes back online. I'll end it here because that’s all I got for this post like always I hope this information is helpful in understanding the basics of OSPF with in a single area configuration.</p>
+    <p>We have to start somewhere so let’s look at the basics of configuring OSPF. Remember OSPF is an IGP (Interior Gateway Protocol) and allows packet authentication as well as IP multicast when sending and receiving updates. In this post we are configuring OSPF in a single area. In this topology we have four routers and two PCs. The PCs subnet are 172.30.2.0/24 and 172.30.3.0/24. We have point to point connections between each router.</p>
+<p><img src="/images/2015/08/ospf-topo.png" alt=""></p>
+<p>So we have already configured all of interfaces and everything seems good but PC1 can’t ping PC2 and vice versa. If we do a <strong>show ip route</strong> on R1 we can see that R1 does not know about the 172.30.2.x or 172.30.3.x network as well as any other network not directly connected to R1.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>R1#show ip route 
+<span class="ln"> 2</span>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+<span class="ln"> 3</span>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+<span class="ln"> 4</span>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+<span class="ln"> 5</span>       E1 - OSPF external type 1, E2 - OSPF external type 2
+<span class="ln"> 6</span>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+<span class="ln"> 7</span>       ia - IS-IS inter area, * - candidate default, U - per-user static route
+<span class="ln"> 8</span>       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+<span class="ln"> 9</span>       a - application route
+<span class="ln">10</span>       + - replicated route, % - next hop override
+<span class="ln">11</span> 
+<span class="ln">12</span>Gateway of last resort is not set
+<span class="ln">13</span> 
+<span class="ln">14</span>      172.16.0.0/16 is variably subnetted, 6 subnets, 2 masks
+<span class="ln">15</span>C        172.16.0.8/30 is directly connected, GigabitEthernet0/1
+<span class="ln">16</span>L        172.16.0.9/32 is directly connected, GigabitEthernet0/1
+<span class="ln">17</span>C        172.16.0.12/30 is directly connected, GigabitEthernet0/2
+<span class="ln">18</span>L        172.16.0.13/32 is directly connected, GigabitEthernet0/2
+<span class="ln">19</span>C        172.16.128.0/30 is directly connected, GigabitEthernet0/3
+<span class="ln">20</span>L        172.16.128.1/32 is directly connected, GigabitEthernet0/3
+<span class="ln">21</span>      192.168.0.0/32 is subnetted, 1 subnets
+<span class="ln">22</span>C        192.168.0.1 is directly connected, Loopback0
+</code></pre></div><p>We also see the same issue with R3 if a routing protocol is not configured on router it will only know about its own active networks.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>R3#show ip route 
+<span class="ln"> 2</span>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+<span class="ln"> 3</span>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+<span class="ln"> 4</span>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+<span class="ln"> 5</span>       E1 - OSPF external type 1, E2 - OSPF external type 2
+<span class="ln"> 6</span>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+<span class="ln"> 7</span>       ia - IS-IS inter area, * - candidate default, U - per-user static route
+<span class="ln"> 8</span>       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+<span class="ln"> 9</span>       a - application route
+<span class="ln">10</span>       + - replicated route, % - next hop override
+<span class="ln">11</span> 
+<span class="ln">12</span>Gateway of last resort is not set
+<span class="ln">13</span> 
+<span class="ln">14</span>      172.16.0.0/16 is variably subnetted, 6 subnets, 2 masks
+<span class="ln">15</span>C        172.16.0.12/30 is directly connected, GigabitEthernet0/2
+<span class="ln">16</span>L        172.16.0.14/32 is directly connected, GigabitEthernet0/2
+<span class="ln">17</span>C        172.16.128.4/30 is directly connected, GigabitEthernet0/3
+<span class="ln">18</span>L        172.16.128.6/32 is directly connected, GigabitEthernet0/3
+<span class="ln">19</span>C        172.16.128.12/30 is directly connected, GigabitEthernet0/1
+<span class="ln">20</span>L        172.16.128.13/32 is directly connected, GigabitEthernet0/1
+<span class="ln">21</span>      172.30.0.0/16 is variably subnetted, 2 subnets, 2 masks
+<span class="ln">22</span>C        172.30.3.0/24 is directly connected, GigabitEthernet0/4
+<span class="ln">23</span>L        172.30.3.1/32 is directly connected, GigabitEthernet0/4
+<span class="ln">24</span>      192.168.0.0/32 is subnetted, 1 subnets
+<span class="ln">25</span>C        192.168.0.3 is directly connected, Loopback0
+</code></pre></div><p>To configure OSPF you can do this in two ways. Let’s look at the traditional way to configure OSPF by jumping into to R1 and in the configuration mode let’s enter <strong>router ospf 1</strong> followed by enter.</p>
+<blockquote>
+<p><em>(NOTE: 1 is the process ID for OSPF you if you don’t what to use 1 we can pick between 1-65535, also this does not have match on each router).</em></p>
+</blockquote>
+<p>We are now under a config-router prompt, the next thing we want to do is to tell the router what IP interface you want OSPF to run on. Looking at the network topology R1 has three interfaces let’s first choose the interface that uses the IP address 172.16.0.9 and put it in area 0. <em>(Remember wildcard subnet masks)</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>R1(config)#router ospf 1
+<span class="ln">2</span>R1(config-router)#network 172.16.0.9 0.0.0.0 area 0
+</code></pre></div><blockquote>
+<p><em><strong>Side Conversation</strong> Area 0 is used for single-area configuration, you don’t have to use area 0 but it is recommended because Area 0 is special and not like the rest. If you ever needed two OSPF areas and they need to share routes together it won’t work without area 0 in the environment. Re-configuring a routing protocol on production may not be a good idea :). Another question that comes up when using the network command is why did I match the specific interface of 172.16.0.9? (<strong>network 172.16.0.9 0.0.0.0</strong> ) Remember when we configure OSPF using the network command we are specifically looking at the individual interface of which we want OSPF sending and receiving updates. This is where it gets confusing because this command is not telling the router what to advertise it is simply telling the router which interfaces that you want OSPF running on. You could use the “lazy method” and allow all and future interfaces that the router has to use OSPF by using the command: (<strong>network 0.0.0.0 255.255.255.255</strong>). However this is a catch-22 because you are no longer in control of what interfaces that OSPF is running along with what networks are being added to OSPF. Future interfaces you configure on the router will be added to OSPF automatically and you may not want that. Personally and its a best practice to match the specific interfaces instead of using the lazy method</em>.</p>
+</blockquote>
+<p>So what just happened? Well nothing yet because R1 is this only router sending OSPF updates so let’s jump to R2 and run the following under the config-router prompt.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>R2(config)#router ospf 1
+<span class="ln">2</span>R2(config-router)#network 172.16.0.10 0.0.0.0 area 0
+<span class="ln">3</span>R2(config-router)#
+<span class="ln">4</span>*Aug 13 01:49:33.888: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.1 on GigabitEthernet0/1 from LOADING to FULL, Loading Done
+</code></pre></div><p>Notice the OSPF Adjacency that came up, this is good news because we now have OSPF running between R1 and R2 and they are exchanging updates between each other. We can verify this up looking at <strong>show ip ospf neighbor</strong>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>R1#show ip ospf neighbor 
+<span class="ln">2</span> 
+<span class="ln">3</span>Neighbor ID     Pri   State           Dead Time   Address         Interface
+<span class="ln">4</span>192.168.0.2       1   FULL/BDR        00:00:30    172.16.0.10     GigabitEthernet0/1
+</code></pre></div><p>Let’s get PC 2’s network advertised as well as all of the remaining interfaces on R1 and R2.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>R2(config)#router ospf 1 
+<span class="ln">2</span>R2(config-router)#network 172.30.2.1 0.0.0.0 area 0
+<span class="ln">3</span>R2(config-router)#network 172.16.128.9 0.0.0.0 area 0
+<span class="ln">4</span>R2(config-router)#network 172.16.128.5 0.0.0.0 area 0
+<span class="ln">5</span>R1(config)#router ospf 1 
+<span class="ln">6</span>R1(config-router)#network 172.16.0.13 0.0.0.0 area 0
+<span class="ln">7</span>R1(config-router)#network 172.16.128.1 0.0.0.0 area 0
+</code></pre></div><p>Looking at the routing table in R1 we can see the 172.30.2.0/24 is reachable by leaving R1’s gigabitEthernet0/1 interface.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>R1#show ip route 
+<span class="ln"> 2</span>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+<span class="ln"> 3</span>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+<span class="ln"> 4</span>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+<span class="ln"> 5</span>       E1 - OSPF external type 1, E2 - OSPF external type 2
+<span class="ln"> 6</span>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+<span class="ln"> 7</span>       ia - IS-IS inter area, * - candidate default, U - per-user static route
+<span class="ln"> 8</span>       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+<span class="ln"> 9</span>       a - application route
+<span class="ln">10</span>       + - replicated route, % - next hop override
+<span class="ln">11</span> 
+<span class="ln">12</span>Gateway of last resort is not set
+<span class="ln">13</span> 
+<span class="ln">14</span>      172.16.0.0/16 is variably subnetted, 6 subnets, 2 masks
+<span class="ln">15</span>C        172.16.0.8/30 is directly connected, GigabitEthernet0/1
+<span class="ln">16</span>L        172.16.0.9/32 is directly connected, GigabitEthernet0/1
+<span class="ln">17</span>C        172.16.0.12/30 is directly connected, GigabitEthernet0/2
+<span class="ln">18</span>L        172.16.0.13/32 is directly connected, GigabitEthernet0/2
+<span class="ln">19</span>C        172.16.128.0/30 is directly connected, GigabitEthernet0/3
+<span class="ln">20</span>L        172.16.128.1/32 is directly connected, GigabitEthernet0/3
+<span class="ln">21</span>      172.30.0.0/24 is subnetted, 1 subnets
+<span class="ln">22</span>O        172.30.2.0 [110/2] via 172.16.0.10, 00:03:39, GigabitEthernet0/1
+<span class="ln">23</span>      192.168.0.0/32 is subnetted, 1 subnets
+<span class="ln">24</span>C        192.168.0.1 is directly connected, Loopback0
+</code></pre></div><p>So depending if you have a newer IOS software there is another way to configure OSPF instead of using the network command while in the (config-router) prompt. This newer method is configured by going under the interface of which you want OSPF to run. Let’s configure it on R3 and R4. We still have to switch on OSPF by running the <strong>router ospf 1</strong> command but then we can go to the interfaces.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>R4(config)#router ospf 1
+<span class="ln">2</span>R3(config)#router ospf 1
+</code></pre></div><p>Now let’s go to gigabitethernet0/1 on R4 and tell OSPF this is the interface we want OSPF running on. Also notice the adjacency with R2 this is good news.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>R4(config)#interface gigabitEthernet 0/1 
+<span class="ln">2</span>R4(config-if)#ip ospf 1 area 0 
+<span class="ln">3</span>*Aug 13 01:50:10.698: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.2 on GigabitEthernet0/1 from LOADING to FULL, Loading Done
+</code></pre></div><p>Let’s continue this on all remaining interfaces on R4 and R3.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>R4(config)#
+<span class="ln"> 2</span>R4(config)#interface gigabitEthernet 0/2
+<span class="ln"> 3</span>R4(config-if)#ip ospf 1 area 0
+<span class="ln"> 4</span>R4(config-if)#exit
+<span class="ln"> 5</span>R4(config)#interface gigabitEthernet 0/3
+<span class="ln"> 6</span>R4(config-if)#ip ospf 1 area 0
+<span class="ln"> 7</span>R4(config-if)#exit
+<span class="ln"> 8</span>*Aug 13 01:55:07.905: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.1 on GigabitEthernet0/3 from LOADING to FULL, Loading Done
+<span class="ln"> 9</span>R4(config)#
+<span class="ln">10</span> 
+<span class="ln">11</span>--ROUTER 3 --
+<span class="ln">12</span> 
+<span class="ln">13</span>R3(config)#interface gigabitEthernet 0/1
+<span class="ln">14</span>R3(config-if)#ip ospf 1 area 0
+<span class="ln">15</span>R3(config-if)#exit
+<span class="ln">16</span>*Aug 13 01:58:39.091: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.4 on GigabitEthernet0/1 from LOADING to FULL, Loading Done
+<span class="ln">17</span>R3(config)#interface gigabitEthernet 0/2
+<span class="ln">18</span>R3(config-if)#ip ospf 1 area 0
+<span class="ln">19</span>R3(config-if)#exit
+<span class="ln">20</span>*Aug 13 01:59:01.142: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.1 on GigabitEthernet0/2 from LOADING to FULL, Loading Done
+<span class="ln">21</span>R3(config)#interface gigabitEthernet 0/3
+<span class="ln">22</span>R3(config-if)#ip ospf 1 area 0
+<span class="ln">23</span>R3(config-if)#exit
+<span class="ln">24</span>*Aug 13 01:59:37.701: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.0.2 on GigabitEthernet0/3 from LOADING to FULL, Loading Done
+<span class="ln">25</span>R3(config)#interface gigabitEthernet 0/4
+<span class="ln">26</span>R3(config-if)#ip ospf 1 area 0
+<span class="ln">27</span>R3(config-if)#exit
+<span class="ln">28</span>R3(config)#
+</code></pre></div><p>We now have OSPF setup. We can verify this by typing <strong>show ip ospf neighbor</strong>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>R1#show ip ospf neighbor 
+<span class="ln"> 2</span> 
+<span class="ln"> 3</span>Neighbor ID     Pri   State           Dead Time   Address         Interface
+<span class="ln"> 4</span>192.168.0.4       1   FULL/BDR        00:00:35    172.16.128.2    GigabitEthernet0/3
+<span class="ln"> 5</span>192.168.0.3       1   FULL/BDR        00:00:35    172.16.0.14     GigabitEthernet0/2
+<span class="ln"> 6</span>192.168.0.2       1   FULL/DR         00:00:31    172.16.0.10     GigabitEthernet0/1
+<span class="ln"> 7</span> 
+<span class="ln"> 8</span>------
+<span class="ln"> 9</span>R2#show ip ospf neighbor 
+<span class="ln">10</span> 
+<span class="ln">11</span>Neighbor ID     Pri   State           Dead Time   Address         Interface
+<span class="ln">12</span>192.168.0.3       1   FULL/BDR        00:00:38    172.16.128.6    GigabitEthernet0/3
+<span class="ln">13</span>192.168.0.4       1   FULL/DR         00:00:35    172.16.128.10   GigabitEthernet0/2
+<span class="ln">14</span>192.168.0.1       1   FULL/BDR        00:00:34    172.16.0.9      GigabitEthernet0/1
+<span class="ln">15</span> 
+<span class="ln">16</span>-------
+<span class="ln">17</span>R3#show ip ospf neighbor 
+<span class="ln">18</span> 
+<span class="ln">19</span>Neighbor ID     Pri   State           Dead Time   Address         Interface
+<span class="ln">20</span>192.168.0.2       1   FULL/DR         00:00:32    172.16.128.5    GigabitEthernet0/3
+<span class="ln">21</span>192.168.0.1       1   FULL/DR         00:00:38    172.16.0.13     GigabitEthernet0/2
+<span class="ln">22</span>192.168.0.4       1   FULL/DR         00:00:32    172.16.128.14   GigabitEthernet0/1
+<span class="ln">23</span> 
+<span class="ln">24</span>--------
+<span class="ln">25</span>R4#show ip ospf neighbor 
+<span class="ln">26</span>Neighbor ID     Pri   State           Dead Time   Address         Interface
+<span class="ln">27</span>192.168.0.1       1   FULL/DR         00:00:31    172.16.128.1    GigabitEthernet0/3
+<span class="ln">28</span>192.168.0.3       1   FULL/BDR        00:00:33    172.16.128.13   GigabitEthernet0/2
+<span class="ln">29</span>192.168.0.2       1   FULL/BDR        00:00:36    172.16.128.9    GigabitEthernet0/1
+</code></pre></div><p>Let’s look at the routing table of R3, do we have route to 172.30.2.0/24 network? It looks like we do but why do we see only one route?</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>R3#show ip route 
+<span class="ln"> 2</span>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+<span class="ln"> 3</span>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+<span class="ln"> 4</span>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+<span class="ln"> 5</span>       E1 - OSPF external type 1, E2 - OSPF external type 2
+<span class="ln"> 6</span>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+<span class="ln"> 7</span>       ia - IS-IS inter area, * - candidate default, U - per-user static route
+<span class="ln"> 8</span>       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+<span class="ln"> 9</span>       a - application route
+<span class="ln">10</span>       + - replicated route, % - next hop override
+<span class="ln">11</span> 
+<span class="ln">12</span>Gateway of last resort is not set
+<span class="ln">13</span> 
+<span class="ln">14</span>      172.16.0.0/16 is variably subnetted, 9 subnets, 2 masks
+<span class="ln">15</span>O        172.16.0.8/30 [110/2] via 172.16.128.5, 00:02:06, GigabitEthernet0/3
+<span class="ln">16</span>                       [110/2] via 172.16.0.13, 00:02:45, GigabitEthernet0/2
+<span class="ln">17</span>C        172.16.0.12/30 is directly connected, GigabitEthernet0/2
+<span class="ln">18</span>L        172.16.0.14/32 is directly connected, GigabitEthernet0/2
+<span class="ln">19</span>O        172.16.128.0/30 
+<span class="ln">20</span>           [110/2] via 172.16.128.14, 00:03:05, GigabitEthernet0/1
+<span class="ln">21</span>           [110/2] via 172.16.0.13, 00:02:45, GigabitEthernet0/2
+<span class="ln">22</span>C        172.16.128.4/30 is directly connected, GigabitEthernet0/3
+<span class="ln">23</span>L        172.16.128.6/32 is directly connected, GigabitEthernet0/3
+<span class="ln">24</span>O        172.16.128.8/30 
+<span class="ln">25</span>           [110/2] via 172.16.128.14, 00:03:05, GigabitEthernet0/1
+<span class="ln">26</span>           [110/2] via 172.16.128.5, 00:02:06, GigabitEthernet0/3
+<span class="ln">27</span>C        172.16.128.12/30 is directly connected, GigabitEthernet0/1
+<span class="ln">28</span>L        172.16.128.13/32 is directly connected, GigabitEthernet0/1
+<span class="ln">29</span>      172.30.0.0/16 is variably subnetted, 3 subnets, 2 masks
+<span class="ln">30</span>O        172.30.2.0/24 [110/2] via 172.16.128.5, 00:02:06, GigabitEthernet0/3
+<span class="ln">31</span>C        172.30.3.0/24 is directly connected, GigabitEthernet0/4
+<span class="ln">32</span>L        172.30.3.1/32 is directly connected, GigabitEthernet0/4
+<span class="ln">33</span>      192.168.0.0/32 is subnetted, 2 subnets
+<span class="ln">34</span>O        192.168.0.1 [110/2] via 172.16.0.13, 00:02:45, GigabitEthernet0/2
+<span class="ln">35</span>C        192.168.0.3 is directly connected, Loopback0
+</code></pre></div><p>Remember that OSPF will choose the best path and put that path in the routing table. Going straight to R2 instead of going through R1 or R4. However OSPF knows about the other two routes which is why it is able to converge quickly. That's an important tip when comparing distance vector protocols vs link state protocols. In link state protocols routers know about the entire topology within an area and each router determines the shortest path to available destinations. So in case of a failure of the link the router would already know what path to take so there is no need to re-converge the routing table. Take a look at the routing table of R3 again after I disabled interface Gig0/3 on R2.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>R3#show ip route 
+<span class="ln"> 2</span>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+<span class="ln"> 3</span>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+<span class="ln"> 4</span>       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+<span class="ln"> 5</span>       E1 - OSPF external type 1, E2 - OSPF external type 2
+<span class="ln"> 6</span>       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+<span class="ln"> 7</span>       ia - IS-IS inter area, * - candidate default, U - per-user static route
+<span class="ln"> 8</span>       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+<span class="ln"> 9</span>       a - application route
+<span class="ln">10</span>       + - replicated route, % - next hop override
+<span class="ln">11</span> 
+<span class="ln">12</span>Gateway of last resort is not set
+<span class="ln">13</span> 
+<span class="ln">14</span>      172.16.0.0/16 is variably subnetted, 9 subnets, 2 masks
+<span class="ln">15</span>O        172.16.0.8/30 [110/2] via 172.16.0.13, 01:04:20, GigabitEthernet0/2
+<span class="ln">16</span>C        172.16.0.12/30 is directly connected, GigabitEthernet0/2
+<span class="ln">17</span>L        172.16.0.14/32 is directly connected, GigabitEthernet0/2
+<span class="ln">18</span>O        172.16.128.0/30 
+<span class="ln">19</span>           [110/2] via 172.16.128.14, 01:04:40, GigabitEthernet0/1
+<span class="ln">20</span>           [110/2] via 172.16.0.13, 01:04:20, GigabitEthernet0/2
+<span class="ln">21</span>C        172.16.128.4/30 is directly connected, GigabitEthernet0/3
+<span class="ln">22</span>L        172.16.128.6/32 is directly connected, GigabitEthernet0/3
+<span class="ln">23</span>O        172.16.128.8/30 
+<span class="ln">24</span>           [110/2] via 172.16.128.14, 01:04:40, GigabitEthernet0/1
+<span class="ln">25</span>C        172.16.128.12/30 is directly connected, GigabitEthernet0/1
+<span class="ln">26</span>L        172.16.128.13/32 is directly connected, GigabitEthernet0/1
+<span class="ln">27</span>      172.30.0.0/16 is variably subnetted, 3 subnets, 2 masks
+<span class="ln">28</span>O        172.30.2.0/24 [110/3] via 172.16.128.14, 00:31:22, GigabitEthernet0/1
+<span class="ln">29</span>                       [110/3] via 172.16.0.13, 00:31:22, GigabitEthernet0/2
+<span class="ln">30</span>C        172.30.3.0/24 is directly connected, GigabitEthernet0/4
+<span class="ln">31</span>L        172.30.3.1/32 is directly connected, GigabitEthernet0/4
+<span class="ln">32</span>      192.168.0.0/32 is subnetted, 2 subnets
+<span class="ln">33</span>O        192.168.0.1 [110/2] via 172.16.0.13, 01:04:20, GigabitEthernet0/2
+<span class="ln">34</span>C        192.168.0.3 is directly connected, Loopback0
+<span class="ln">35</span>R3#
+</code></pre></div><p>We can now see two routes to the 172.30.2.0 network. Since these paths are equal OSPF will balance between R1 and R4 to get the 172.30.2.0 network. This stays this way until the link between R2 and R3 comes back online. I'll end it here because that’s all I got for this post like always I hope this information is helpful in understanding the basics of OSPF with in a single area configuration. :)</p>
 
     
       
@@ -226,7 +468,7 @@
         
         <a href='https://ciscoskills.net/tags/networking/' class="post_tag button button_translucent">
           NETWORKING
-          <span class="button_tally">118</span>
+          <span class="button_tally">117</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/ccna/' class="post_tag button button_translucent">
@@ -1302,7 +1544,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=118>NETWORKING<span class="button_tally">118</span>
+            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=117>NETWORKING<span class="button_tally">117</span>
             </a>
             
             
