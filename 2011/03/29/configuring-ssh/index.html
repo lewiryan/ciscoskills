@@ -198,6 +198,7 @@
   </div>
 
     
+    
     <p>Today this tutorial is going be talking about how to configure SSH on a <a href="http://www.cisco.com/" title="Cisco">Cisco</a> router or switch. SSH or <a href="http://en.wikipedia.org/wiki/Secure_Shell" title="Secure Shell">Secure Shell</a> encrypts the data that is sent from the terminal application to the device. Making if far more safer when it is compared to telnet which sends the data in plain text. To add support for SSH to a Cisco router or switch, the device needs some added information then just <a href="http://en.wikipedia.org/wiki/Password" title="Password">passwords</a>. The device will need a username and password, this can be configured on a <a href="http://en.wikipedia.org/wiki/RADIUS" title="RADIUS">AAA server</a> (Authentication Authorization and Accounting) or on the device locally this tutorial will focus on locally configured <a href="http://en.wikipedia.org/wiki/User_%28computing%29" title="User (computing)">usernames</a> and passwords. To set up SSH you need to configure that following information for the purpose of this tutorial the username will be <em>ciscoskills</em> and the password will be <em>cisco</em>.</p>
 <ul>
 <li>The first thing you need to do is change the <a href="http://en.wikipedia.org/wiki/Telnet" title="Telnet">vty</a> lines in the device (router/switch) depending on the device you will have more vty lines. This command will check its local database for usernames and passwords. The command is entered under (config-line)# prompt with <strong>login local.</strong></li>

@@ -170,6 +170,7 @@
   </div>
 
     
+    
     <p>Let's continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I'm using <a href="https://www.graylog.org/">Graylog</a> which is an open source logging platform and  although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field. We'll configure the FMC to send syslogs and then configure an extractor on Graylog.</p>
 <p>So we have the FMC and Graylog in our environment setup. We'll want to first configure the FMC and add a syslog server. We can do this two ways, one way is we can go to into Policy tab-&gt; Actions-&gt;Alerts-&gt;Create Alert (Down Arrow)-&gt;Create Syslog Alert.
 <img src="/images/2018/08/fmc-syslog-1.png" alt=""></p>

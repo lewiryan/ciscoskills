@@ -180,6 +180,7 @@
   </div>
 
     
+    
     <p><a href="http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png"><img src="http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png" alt="NetworkSwitches"></a>Bundling physical links into one logical link is a common practice to up the bandwidth between switches, you may have this also configured on a server to bundle connections as well. In this tutorial I have two 2960 switches both of them trunking all <a href="http://en.wikipedia.org/wiki/Virtual_LAN" title="Virtual LAN">VLANs</a> on two gigabit ports. So in the end game is get 2gbps instead of 1gbps between switches while using Cisco’s <a href="http://en.wikipedia.org/wiki/Proprietary_protocol" title="Proprietary protocol">proprietary protocol</a> PAgb.   It is important to remember that both of these protocols (PAgb and <a href="http://en.wikipedia.org/wiki/Link_aggregation" title="Link aggregation">LACP</a>) are link aggregation protocols only, their job is to make sure that <a href="http://en.wikipedia.org/wiki/EtherChannel" title="EtherChannel">EtherChannel</a> is setup correctly by negotiating. This helps prevent EtherChannel mismatches and loops. You could manually set the etherchannel mode to &quot;on&quot; instead of using either of these aggregation protocols. However this is considered best practice to use one of these link aggregation protocols. Here are some Guidelines for Configuring EtherChannel:</p>
 <ul>
 <li>You can configure the port in two ways:

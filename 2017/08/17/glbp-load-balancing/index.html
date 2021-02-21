@@ -170,6 +170,7 @@
   </div>
 
     
+    
     <p>We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.2(14)S, please welcome and &quot;slow clap&quot; the Gateway Load Balancing protocol, who has been around since 2002!</p>
 <p>So the way this protocol works is you must have at least two devices (makes sense) in a GLBP group. The GLBP group has one AVG (Active Virtual Gateway) and multiple AVFs (Active Virtual Forwarders) if you have more than two devices. The AVG is the master of the group and assigns virtual MAC address to each AVF member. Remember each AVF is responsible for forwarding packets sent to their virtual MAC address, they act independently from the AVG.</p>
 <blockquote>

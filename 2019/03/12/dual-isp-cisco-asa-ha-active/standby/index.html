@@ -172,6 +172,7 @@
   </div>
 
     
+    
     <p>So a single ISP isn't cutting it anymore you need a backup just in case the primary fails and might as well add a second ASA into this design, more redundancy equals more up-time, right? On paper it sounds good but in the &quot;real&quot; world there probably is tipping point, more redundancy increases complexity. In this post we'll aim to keep it simple, with setting up a Cisco ASA HA active/standby pair and then add in the second ISP. Let's get started!
 So this is what our topology will look like all said and done, we have two firewalls and two different ISPs. The primary ISP is ISP-1 and the secondary ISP is ISP-2. We will always be using ISP-1 as the primary and won't be load balancing between the two. ISP-2 will only be used when ISP-1 goes offline. When ISP-1 comes back online we will switch back over to ISP-1.</p>
 <p><img src="/images/2018/09/asa-ha2.png" alt="ASA-HA"></p>

@@ -184,6 +184,7 @@
   </div>
 
     
+    
     <p><a href="http://systemstechblog.files.wordpress.com/2012/02/cisco-switch.jpg"><img src="http://systemstechblog.files.wordpress.com/2012/02/cisco-switch.jpg" alt="" title="cisco-switch-blade"></a>When looking at the <a href="http://en.wikipedia.org/wiki/CCNA" title="CCNA">CCNA</a> it is good idea to get a hold of trunking between switches along with that there are a couple of administrative modes that each physical <a href="http://en.wikipedia.org/wiki/Interface_%28computing%29" title="Interface (computing)">interface</a> on <a href="http://en.wikipedia.org/wiki/Cisco_Systems" title="Cisco Systems">Cisco</a> <a href="http://en.wikipedia.org/wiki/Network_switch" title="Network switch">switch</a> can be when you are trunking between them. Remember that when we are trunking it usually carries all <a href="http://en.wikipedia.org/wiki/Virtual_LAN" title="Virtual LAN">VLANs</a> (This can be changed) but there are different ways to make trunking between links happen. When you are in an interface on a Cisco switch you can change the operational mode of that interface by issuing the switchport mode command. There are four commands that can be issued: [code]Switch(config-if)#switchport mode ? access Set trunking mode to ACCESS unconditionally dynamic Set trunking mode to dynamically negotiate access or trunk mode trunk Set trunking mode to TRUNK unconditionally[/code]</p>
 <ul>
 <li><strong>Switchport mode access –</strong> Which prevents the interface from trunking, this interface would always act as an access port.</li>

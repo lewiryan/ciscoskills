@@ -172,6 +172,7 @@
   </div>
 
     
+    
     <p>So, recently we enforced some firewall rules on a new environment, we did testing of the environment and everything was working as expected. In about 24 hours a lot of traffic from the web infrastructure was being denied and it continued, at first glance it looked like return traffic was being dropped, the web servers were sourcing at port 443 and the destination ports were using dynamic ports (RFC 6335) No user or application problems were reported when we enforced rules, and we waited additional days to see if anything came up. Nothing came up, the only thing was a spike in amount of syslog messages of dropped traffic coming from the web servers.</p>
 <p>So from that point it really wasn’t an issue, but I thought it would be interesting to see what was going on. I started to look at the firewall logs and enabled debugging to syslog, and as you can see the TCP session is being built and we can also see the TCP Teardown, which should be the end of it, something else was happening instead and it was unexpected.</p>
 <p><em>Wed Jun 20 11:58:46 2018;172.17.70.1; &lt;167&gt;Jun 20 2018 11:58:45 172.17.70.1 : %ASA-7-302013: <code>Built inbound TCP connection 47772320 for OUTSIDE:203.0.113.147/43918 (203.0.113.147/43918) to INSIDE:172.17.77.250/443 (172.17.77.250/443)</code></em></p>

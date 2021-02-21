@@ -168,6 +168,7 @@
     
     <img src="/images/2016/12/img_20180526_154148.jpg" class="image_featured">
     
+    
     <p>I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we where planning on connecting in additional equipment that only supported SFP+ interfaces. So the solution was to connect to this switch  with QSFP to SFP+ adapters.</p>
 <p>Thinking this would be a simple change because we are just plugging in additional adapters on the QSFP ports we planned our maintenance window and rollback plans but I wasn't expecting a rollback for this one :)   The interfaces were configured in a shutdown status before we plugged in the adapters and cables so didn't see anything out of the ordinary, when it was time to do the maintenance let's bring up the interfaces with the command of no shutdown and we should be up...</p>
 <p>Well not exactly, I first thought it was the other end so I checked that and its reporting the link is down but it was not in a shutdown status. Looking at the Nexus switch interface I see the words &quot;check speed-group config&quot; under the interface and its in a err-disable status and I'll be honest I haven't worked with interfaces that are speed-grouped together so I didn't know that it was even a thing. A quick search to see if I could &quot;break&quot; the speed-group and configure interfaces individually on their own speed turned up nothing.</p>
