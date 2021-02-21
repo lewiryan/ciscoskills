@@ -1,8 +1,8 @@
 
 <!DOCTYPE html>
-<html lang="en" data-figures="">
+<html lang="en" data-figures="" class="page">
   <head>
-<title>Network | Cisco Skills</title>
+<title>Install RSYSLOG &amp; LogAnalyzer on CentOS 6-5 | Cisco Skills</title>
 <meta charset="utf-8">
 <meta name="generator" content="Hugo 0.80.0" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,14 +17,14 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="I am looking at rsyslog which is fast syslog system and Loganalyzer as an upfront web GUI for those logs. The Loganalyzer application offers searching of …">
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@lewiryan">
-<meta name="twitter:title" content="Network" />
-<meta property="og:url" content="https://ciscoskills.net/tags/network/" />
-<meta property="og:title" content="Network" />
-<meta property="og:description" content="" />
-<meta property="og:image" content="https://ciscoskills.net/images/thumbnail.png" />
+<meta name="twitter:title" content="Install RSYSLOG &amp; LogAnalyzer on CentOS 6-5" />
+<meta property="og:url" content="https://ciscoskills.net/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/" />
+<meta property="og:title" content="Install RSYSLOG &amp; LogAnalyzer on CentOS 6-5" />
+<meta property="og:description" content="I am looking at rsyslog which is fast syslog system and Loganalyzer as an upfront web GUI for those logs. The Loganalyzer application offers searching of …" />
+<meta property="og:image" content="https://ciscoskills.net/images/2014/06/rsyslog-loganalyzer.png" />
 <link rel="apple-touch-icon" sizes="180x180" href='https://ciscoskills.net/icons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://ciscoskills.net/icons/favicon-32x32.png'>
 <link rel="manifest" href='https://ciscoskills.net/icons/site.webmanifest'>
@@ -32,8 +32,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-<link rel="canonical" href="https://ciscoskills.net/tags/network/">
-<link rel="alternate" type="application/rss+xml" href="https://ciscoskills.net/tags/network/index.xml" title="Cisco Skills" />
+<link rel="canonical" href="https://ciscoskills.net/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/">
 
     
 
@@ -121,69 +120,10 @@
 </header>
 
     <main>
-
-<div class="grid-inverse wrap content">
-  <ul class="posts" id="posts">
-      <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://ciscoskills.net/2014/08/06/some-qos-guidelines/">Some QoS Guidelines</a>
-      </h3>
-      <div class="post_meta">
   
-    <svg class="icon">
-  <use xlink:href="#calendar"></use>
-</svg>
-    <span class="post_date">
-      Aug 6, 2014</span>
-      <a href='https://ciscoskills.net/tags/ccna' class="post_tag button button_translucent">CCNA
-      </a>
-      <a href='https://ciscoskills.net/tags/ccnp' class="post_tag button button_translucent">CCNP
-      </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
-      </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">cisco
-      </a>
-      <a href='https://ciscoskills.net/tags/network' class="post_tag button button_translucent">Network
-      </a>
-      <a href='https://ciscoskills.net/tags/networking' class="post_tag button button_translucent">networking
-      </a>
-      <a href='https://ciscoskills.net/tags/qos' class="post_tag button button_translucent">QoS
-      </a>
-      <a href='https://ciscoskills.net/tags/rfc-4594' class="post_tag button button_translucent">RFC 4594
-      </a>
-      <a href='https://ciscoskills.net/tags/software' class="post_tag button button_translucent">software
-      </a>
-      <a href='https://ciscoskills.net/tags/technology' class="post_tag button button_translucent">technology
-      </a>
-      <a href='https://ciscoskills.net/tags/tutorial' class="post_tag button button_translucent">tutorial
-      </a>
-      <a href='https://ciscoskills.net/tags/tutorials' class="post_tag button button_translucent">Tutorials
-      </a>
-</div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div>
-          <p class="pale">
-            
-              When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared …
-            
-          </p>
-          <a href="https://ciscoskills.net/2014/08/06/some-qos-guidelines/" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://ciscoskills.net/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/">Install RSYSLOG &amp; LogAnalyzer on CentOS 6-5</a>
-      </h3>
-      <div class="post_meta">
+<div class="grid-inverse wrap content">
+  <article class="post_content">
+    <h1 class="post_title">Install RSYSLOG &amp; LogAnalyzer on CentOS 6-5</h1><div class="post_meta">
   
     <svg class="icon">
   <use xlink:href="#calendar"></use>
@@ -212,227 +152,251 @@
       </a>
 </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div>
-          <p class="pale">
-            
-              I am looking at rsyslog which is fast syslog system and Loganalyzer as an upfront web GUI for those logs. The Loganalyzer application offers searching of various syslogs, all of which is open source and available to download. In this guide I will go through the steps to get these two applications to work together and …
-            
-          </p>
-          <a href="https://ciscoskills.net/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://ciscoskills.net/2013/09/14/why-go-professional-with-cisco-certs/">Why Go Professional with Cisco Certs?</a>
-      </h3>
-      <div class="post_meta">
-  
-    <svg class="icon">
-  <use xlink:href="#calendar"></use>
+    
+  <div class="post_share">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=Install%20RSYSLOG%20%26%20LogAnalyzer%20on%20CentOS%206-5&url=https%3a%2f%2fciscoskills.net%2f2014%2f06%2f11%2finstall-rsyslog-loganalyzer-on-centos-6-5%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#twitter"></use>
 </svg>
-    <span class="post_date">
-      Sep 14, 2013</span>
-      <a href='https://ciscoskills.net/tags/careers' class="post_tag button button_translucent">Careers
-      </a>
-      <a href='https://ciscoskills.net/tags/ccna' class="post_tag button button_translucent">CCNA
-      </a>
-      <a href='https://ciscoskills.net/tags/ccnp' class="post_tag button button_translucent">CCNP
-      </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
-      </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">cisco
-      </a>
-      <a href='https://ciscoskills.net/tags/cisco-career-certifications' class="post_tag button button_translucent">Cisco Career Certifications
-      </a>
-      <a href='https://ciscoskills.net/tags/general' class="post_tag button button_translucent">General
-      </a>
-      <a href='https://ciscoskills.net/tags/knowledge' class="post_tag button button_translucent">Knowledge
-      </a>
-      <a href='https://ciscoskills.net/tags/network' class="post_tag button button_translucent">Network
-      </a>
-      <a href='https://ciscoskills.net/tags/networking' class="post_tag button button_translucent">networking
-      </a>
-</div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div>
-          <p class="pale">
-            
-              I have had the opportunity to take and thankfully pass Cisco certifications at the associate levels and there is one more associate exam, the CCNA Data Center which hopefully I will get later next year. While looking at the CCNA Data Center exam I also glanced over the professional arena that Cisco offers and if you’re …
-            
-          </p>
-          <a href="https://ciscoskills.net/2013/09/14/why-go-professional-with-cisco-certs/" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://ciscoskills.net/2012/12/01/configure-dhcp-on-a-cisco-router/">Configure DHCP on a Cisco Router</a>
-      </h3>
-      <div class="post_meta">
-  
-    <svg class="icon">
-  <use xlink:href="#calendar"></use>
+    </a>
+    <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fciscoskills.net%2f2014%2f06%2f11%2finstall-rsyslog-loganalyzer-on-centos-6-5%2f&t=Install%20RSYSLOG%20%26%20LogAnalyzer%20on%20CentOS%206-5" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#facebook"></use>
 </svg>
-    <span class="post_date">
-      Dec 1, 2012</span>
-      <a href='https://ciscoskills.net/tags/ccna' class="post_tag button button_translucent">CCNA
-      </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
-      </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">cisco
-      </a>
-      <a href='https://ciscoskills.net/tags/default-gateway' class="post_tag button button_translucent">Default gateway
-      </a>
-      <a href='https://ciscoskills.net/tags/dhcp' class="post_tag button button_translucent">DHCP
-      </a>
-      <a href='https://ciscoskills.net/tags/domain-name-system' class="post_tag button button_translucent">Domain Name System
-      </a>
-      <a href='https://ciscoskills.net/tags/dynamic-host-configuration-protocol' class="post_tag button button_translucent">Dynamic Host Configuration Protocol
-      </a>
-      <a href='https://ciscoskills.net/tags/ip-address' class="post_tag button button_translucent">IP address
-      </a>
-      <a href='https://ciscoskills.net/tags/linux' class="post_tag button button_translucent">Linux
-      </a>
-      <a href='https://ciscoskills.net/tags/network' class="post_tag button button_translucent">Network
-      </a>
-      <a href='https://ciscoskills.net/tags/networking' class="post_tag button button_translucent">networking
-      </a>
-      <a href='https://ciscoskills.net/tags/router' class="post_tag button button_translucent">router
-      </a>
-      <a href='https://ciscoskills.net/tags/technology' class="post_tag button button_translucent">technology
-      </a>
-      <a href='https://ciscoskills.net/tags/tutorial' class="post_tag button button_translucent">tutorial
-      </a>
-      <a href='https://ciscoskills.net/tags/tutorials' class="post_tag button button_translucent">Tutorials
-      </a>
-      <a href='https://ciscoskills.net/tags/windows' class="post_tag button button_translucent">windows
-      </a>
-</div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div>
-          <p class="pale">
-            
-              In this short tutorial let's configure a DHCP server on a Cisco Router. Why would we want to do that? Well configuring a basic DHCP server on a router is a good idea if this is a branch/satellite office or just a small business. There are some pros and cons of configuring DHCP on a Cisco Router so let's briefly discuss …
-            
-          </p>
-          <a href="https://ciscoskills.net/2012/12/01/configure-dhcp-on-a-cisco-router/" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="https://ciscoskills.net/2012/10/30/the-network-and-its-forces/">The Network and its Forces</a>
-      </h3>
-      <div class="post_meta">
-  
-    <svg class="icon">
-  <use xlink:href="#calendar"></use>
+    </a>
+    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
+      <svg class="icon">
+  <use xlink:href="#linkedin"></use>
 </svg>
-    <span class="post_date">
-      Oct 30, 2012</span>
-      <a href='https://ciscoskills.net/tags/business-services' class="post_tag button button_translucent">Business Services
-      </a>
-      <a href='https://ciscoskills.net/tags/ccda' class="post_tag button button_translucent">CCDA
-      </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
-      </a>
-      <a href='https://ciscoskills.net/tags/cloud-computing' class="post_tag button button_translucent">Cloud Computing
-      </a>
-      <a href='https://ciscoskills.net/tags/computer-network' class="post_tag button button_translucent">Computer network
-      </a>
-      <a href='https://ciscoskills.net/tags/customer-service' class="post_tag button button_translucent">Customer service
-      </a>
-      <a href='https://ciscoskills.net/tags/data-communications' class="post_tag button button_translucent">Data Communications
-      </a>
-      <a href='https://ciscoskills.net/tags/general' class="post_tag button button_translucent">General
-      </a>
-      <a href='https://ciscoskills.net/tags/infrastructure' class="post_tag button button_translucent">Infrastructure
-      </a>
-      <a href='https://ciscoskills.net/tags/installation' class="post_tag button button_translucent">Installation
-      </a>
-      <a href='https://ciscoskills.net/tags/network' class="post_tag button button_translucent">Network
-      </a>
-      <a href='https://ciscoskills.net/tags/networking' class="post_tag button button_translucent">networking
-      </a>
-      <a href='https://ciscoskills.net/tags/technology' class="post_tag button button_translucent">technology
-      </a>
-      <a href='https://ciscoskills.net/tags/telecommunications' class="post_tag button button_translucent">Telecommunications
-      </a>
-</div>
+    </a>
+    <a href="https://ciscoskills.net/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/" title="Copy Link" class="link link_yank">
+      <svg class="icon">
+  <use xlink:href="#copy"></use>
+</svg>
+    </a>
+  </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div>
-          <p class="pale">
-            
-              I have started looking CCDA information and some of it is interesting, towards the beginning the material started out at design methodologies. It talked about the &quot;forces&quot; of a new network framework and in this post I'll focus on the business forces that make a new framework necessary. I find it interesting …
-            
-          </p>
-          <a href="https://ciscoskills.net/2012/10/30/the-network-and-its-forces/" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-    <li>
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/tags/network/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/tags/network/page/7/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/tags/network/">1</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/tags/network/page/2/">2</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/tags/network/page/3/">3</a>
-  </li>
-  <li class="page-item disabled">
-    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/tags/network/page/7/">7</a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/tags/network/page/8/">8</a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/tags/network/page/9/">9</a>
-  </li>
-  <li class="page-item">
-    <a href="/tags/network/page/9/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/tags/network/page/9/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-  </li>
+    
+    <img src="/images/2014/06/rsyslog-loganalyzer.png" class="image_featured">
+    
+    
+    <p>I am looking at rsyslog which is fast syslog system and Loganalyzer as an upfront web GUI for those logs. The Loganalyzer application offers searching of various syslogs, all of which is open source and available to download. In this guide I will go through the steps to get these two applications to work together and in the end of this tutorial we should have a working syslog system ready to take logs! The operating system I am using is the latest CentOS 6.5 minimal. Let's get started.</p>
+<p>Using VMware Workstation the first thing I have done is installed a minimal version of CentOS on the VM. The VM has 30GB on the disk with one processor and two cores with 2GB of RAM. (Which took about 10 minutes to install) Once the VM rebooted I login into the root account and ran the command <strong>yum update</strong> and accepted all the updates the operating system was able to find (Which took about 10 minutes) Let’s first added some housekeeping packages like wget and nano <strong>yum install wget nano</strong> .The minimal install does not include wget, or nano. Nano is a good text editor for people who don’t want to use VI :) I have also disabled iptables (<strong>service iptables stop</strong> &amp; <strong>chkconfig iptables off</strong> ) in this demo but this is not recommend in a production environment.</p>
+<h3 id="first">FIRST:</h3>
+<p>Let’s install apache:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>yum install httpd
+</code></pre></div><p>Start the Service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>service httpd start
+</code></pre></div><p>Let’s make sure the service automatically when the server reboots:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>chkconfig httpd on
+</code></pre></div><p>Let’s test to make sure you can get to the sample webpage, <a href="http://your-server-ip-address">http://your-server-ip-address</a> if it is working should look something like this.
+<img src="/images/2014/06/rsyslog-1.png" alt=""></p>
+<h3 id="second">SECOND:</h3>
+<p>Install MySQL:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>yum install mysql mysql-server
+</code></pre></div><p>After install is finished start it up:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>service mysqld start
+</code></pre></div><p>Like apache, let’s make sure this service starts when the server reboots:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>chkconfig mysqld on
+</code></pre></div><p>For security change the MySQL Admin password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>mysqladmin -u root password &#39;YourNewPassword&#39;
+</code></pre></div><p>Let’s Test MySQL, by logging into the database:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>mysql -u root -p
+</code></pre></div><p>Did you get something like below?</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>Welcome to the MySQL monitor. Commands end with ; or \g.
+<span class="ln"> 2</span>Your MySQL connection id is 4
+<span class="ln"> 3</span>Server version: 5.1.73 Source distribution
+<span class="ln"> 4</span> 
+<span class="ln"> 5</span>Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+<span class="ln"> 6</span> 
+<span class="ln"> 7</span>Oracle is a registered trademark of Oracle Corporation and/or its
+<span class="ln"> 8</span>affiliates. Other names may be trademarks of their respective
+<span class="ln"> 9</span>owners.
+<span class="ln">10</span> 
+<span class="ln">11</span>Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+<span class="ln">12</span> 
+<span class="ln">13</span>mysql&gt;
+</code></pre></div><h3 id="thrid">THRID:</h3>
+<p>Install PHP,</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>yum install php php-mysql php-gd
+</code></pre></div><p>Once finished installing create a phpinfo page.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>nano /var/www/html/test.php
+</code></pre></div><p>Type the following and save the test.php</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="ln">1</span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="ln">2</span><span class="nx">phpinfo</span><span class="p">();</span>
+<span class="ln">3</span><span class="cp">?&gt;</span><span class="err">
+</span></code></pre></div><p>Restart the Apache Service</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>service httpd restart
+</code></pre></div><p>Open up your browser and type http://your-server-ip-address/test.php You should get something like below.
+<img src="/images/2014/06/rsyslog-2.png" alt=""></p>
+<h3 id="fourth">FOURTH:</h3>
+<p>Install Rsyslog, A couple things first, CentOS uses an older version of rsyslog, so why not use the latest stable version of rsyslog.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
+<span class="ln">2</span>mv rsyslog.repo /etc/yum.repos.d/rsyslog.repo
+<span class="ln">3</span>yum install rsyslog\* --skip-broken
+</code></pre></div><p>When the server reboots let’s start this service automatically.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>chkconfig rsyslog on
+</code></pre></div><p>Rsyslog has a createDB script in the following location: <strong>/usr/share/doc/rsyslog-mysql-8.2.1/createDB.sql</strong>, you can leave this alone or you can optionally change the database name. (Don’t be boring) In this example I changed it to rsyslogdb (… still a little boring)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>nano /usr/share/doc/rsyslog-mysql-8.2.1/createDB.sql
+<span class="ln">2</span>CREATE DATABASE rsyslogdb;
+<span class="ln">3</span>USE rsyslogdb;
+<span class="ln">4</span>CREATE TABLE SystemEvents
+<span class="ln">5</span>[...]
+</code></pre></div><p>Let’s create the rsyslogdb database:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>mysql -u root -p &lt; /usr/share/doc/rsyslog-mysql-8.2.1/createDB.sql
+</code></pre></div><p>Should be able to access the database:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>mysql -u root -p rsyslogdb
+</code></pre></div><p>For security add a dedicated administrator called rsyslogdbadm for only this database with a password of what you want.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>GRANT ALL ON rsyslogdb.* TO rsyslogdbadmin@localhost IDENTIFIED BY &#39;NewPasswordHere&#39;;
+<span class="ln">2</span>FLUSH PRIVILEGES;
+<span class="ln">3</span>exit
+</code></pre></div><p>Did it all work? Let’s test logging in and exit mysql.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>mysql -u rsyslogdbadmin -p rsyslogdb\
+</code></pre></div><p>Uncomment the following modules in the rsyslog.conf (Located in <strong>/etc/rsyslog.conf</strong>) file and add the MySQL module line.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># Provides UDP syslog reception
+<span class="ln"> 2</span># for parameters see http://www.rsyslog.com/doc/imudp.html
+<span class="ln"> 3</span>module(load=&#34;imudp&#34;) # needs to be done just once
+<span class="ln"> 4</span>input(type=&#34;imudp&#34; port=&#34;514&#34;)
+<span class="ln"> 5</span> 
+<span class="ln"> 6</span># Provides TCP syslog reception
+<span class="ln"> 7</span># for parameters see http://www.rsyslog.com/doc/imtcp.html
+<span class="ln"> 8</span>module(load=&#34;imtcp&#34;) # needs to be done just once
+<span class="ln"> 9</span>input(type=&#34;imtcp&#34; port=&#34;514&#34;)
+<span class="ln">10</span> 
+<span class="ln">11</span># Load the MySQL Module
+<span class="ln">12</span>module(load=&#34;ommysql&#34;)
+</code></pre></div><p>You may also want to edit the Rules section to disable logging to the console, in this example I said log only syslogs that have a level of emergency to the console.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>#### RULES ####
+<span class="ln">2</span> 
+<span class="ln">3</span># Log all kernel messages to the console.
+<span class="ln">4</span># Logging much else clutters up the screen.
+<span class="ln">5</span>*.emerg*
+</code></pre></div><p>Also note that rsyslog logs everything it sees to a log folder by default as well. If you are using LogAnalyzer to view logs like in our example we are storing those logs in a MySQL database as well. Depending on how much logging you have you may either want to disable this and have LogAnalyzer do it all or setup a cron job to drop these once in a while.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span># Log anything (except mail) of level info or higher.
+<span class="ln"> 2</span># Don&#39;t log private authentication messages!
+<span class="ln"> 3</span>*.info;mail.none;authpriv.none;cron.none /var/log/messages
+<span class="ln"> 4</span> 
+<span class="ln"> 5</span># The authpriv file has restricted access.
+<span class="ln"> 6</span>authpriv.* /var/log/secure
+<span class="ln"> 7</span> 
+<span class="ln"> 8</span># Log all the mail messages in one place.
+<span class="ln"> 9</span>mail.* -/var/log/maillog
+<span class="ln">10</span># Log cron stuff
+<span class="ln">11</span>cron.* /var/log/cron
+<span class="ln">12</span> 
+<span class="ln">13</span># Everybody gets emergency messages
+<span class="ln">14</span>*.emerg *
+<span class="ln">15</span> 
+<span class="ln">16</span># Save news errors of level crit and higher in a special file.
+<span class="ln">17</span>uucp,news.crit /var/log/spooler
+<span class="ln">18</span> 
+<span class="ln">19</span># Save boot messages also to boot.log
+<span class="ln">20</span>local7.* /var/log/boot.log
+</code></pre></div><p>In the forwarding rule add the following, this tells rsyslog to send all syslogs to the MySQL database.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span># ### begin forwarding rule ###
+<span class="ln">2</span># Let&#39;s forward all logs to the MySQL Database
+<span class="ln">3</span>*.* :ommysql:127.0.0.1,rsyslogdb,rsyslogdbadmin,YourPassword
+<span class="ln">4</span>…
+</code></pre></div><p>Save and exit the configuration file and restart the Rsyslog service to load the new configuration.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>service rsyslog restart
+</code></pre></div><p>You should now have some logs in MySQL Database, check it by using the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>mysql -u rsyslogdbadmin -p rsyslogdb
+<span class="ln">2</span> 
+<span class="ln">3</span>mysql&gt; select count(*) from SystemEvents;
+<span class="ln">4</span>+----------+
+<span class="ln">5</span>| count(*) |
+<span class="ln">6</span>+----------+
+<span class="ln">7</span>|        2 |
+<span class="ln">8</span>+----------+
+</code></pre></div><h3 id="fifth">FIFTH:</h3>
+<p>Download the LogAnalyzer web application,</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>wget http://download.adiscon.com/loganalyzer/loganalyzer-3.6.5.tar.gz
+</code></pre></div><p>Unpack the tarball:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>tar zxvf loganalyzer-3.6.5.tar.gz
+</code></pre></div><p>Copy the install files into Apache.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>cp -r loganalyzer-3.6.5/src/ /var/www/html/loganalyzer
+<span class="ln">2</span>cp -r loganalyzer-3.6.5/contrib/\* /var/www/html/loganalyzer/
+</code></pre></div><p>Let’s go into those folders:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>cd /var/www/html/loganalyzer/
+</code></pre></div><p>Add some execution permission to these files:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>chmod +x configure.sh secure.sh
+</code></pre></div><p>Run the ./configure.sh, which will create a blank config.php file as well as set write access.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>[root@localhost \]# ./configure.sh
+</code></pre></div><p>To complete the install of LogAnalyzer we have to following the prompts on the web. Browse to http://your-server-ip-address/loganalyzer You should get an error page like below. Select the here link to start the install.</p>
+<p><img src="/images/2014/06/rsyslog-3.png" alt=""></p>
+<ul>
+<li>Loganalyzer will do a couple of tests to verify configuration click next to start them.</li>
 </ul>
+<p><img src="/images/2014/06/rsyslog-4.png" alt=""></p>
+<ul>
+<li>Select Next if the config.php file can be written.</li>
+</ul>
+<p><img src="/images/2014/06/rsyslog-5.png" alt=""></p>
+<ul>
+<li>In the Basic Configuration use the following image below to reference your installation.</li>
+</ul>
+<p><img src="/images/2014/06/rsyslog-6.png" alt=""></p>
+<ul>
+<li>The next page is to create tables in the MySQL database go ahead and select next.</li>
+</ul>
+<p><img src="/images/2014/06/rsyslog-7.png" alt=""></p>
+<ul>
+<li>The next page displays any errors if any SQL Results failed, select next if you don't have any failed statements.</li>
+</ul>
+<p><img src="/images/2014/06/rsyslog-8.png" alt=""></p>
+<ul>
+<li>In step 6 we create a main user account to log into the LogAnalyzer web app.</li>
+</ul>
+<p><img src="/images/2014/06/rsyslog-9.png" alt=""></p>
+<ul>
+<li>In step 7, we create our source for syslog messages, follow the image below for a reference.</li>
+</ul>
+<p><img src="/images/2014/06/rsyslog-10.png" alt=""></p>
+<ul>
+<li>Looks like we are done the select the &quot;here&quot; link to go to the login page.</li>
+</ul>
+<p><img src="/images/2014/06/rsyslog-11.png" alt="">
+<img src="/images/2014/06/rsyslog-12.png" alt=""></p>
+<p>Done! Some last things to check with LogAnalyzer is it does DNS lookups of IP address which can slow down the website if you have a lot of IPs in your logs. To disable that feature go to <strong>Admin Center -&gt;Uncheck Resolve IP Addresses using DNS.</strong></p>
+<p>I have personally pushed up to 500 syslog messages every 10 seconds thanks to the Kiwi Syslog Generator and did not see any performance hits other than the DNS issue. Hope this information is helpful, let me know if you have used LogAnalyzer in a production environment, are there any gotchas? I have just been testing it on my lab and so far so good.</p>
+<p><strong>Links:</strong>
+<a href="http://www.centos.org/">CentOS</a>
+<a href="http://www.mysql.com/">MySQL</a>
+<a href="http://www.rsyslog.com/">RSYSLOG</a>
+<a href="http://loganalyzer.adiscon.com/">LogAnalyzer</a></p>
+<hr>
+<h3 id="static-comments">Static Comments:</h3>
+<h4 id="heading"></h4>
+<p><a href="%22belalhossain53@gmail.com%22">Md. Belal Hossain</a> - <time datetime="2015-07-07 06:04:22">Jul 2, 2015</time></p>
+<p>Nice!!</p>
+<hr />
+<h4 id="heading-1"></h4>
+<p><a href="http://ciscoskills.net/" title="ryan@ciscoskills.net">Ryan</a> - <time datetime="2015-01-09 22:17:35">Jan 5, 2015</time></p>
+<p>Glad it worked out.</p>
+<hr />
+<h4 id="heading-2"></h4>
+<p><a href="%22whmaas@hotmail.com%22">wim</a> - <time datetime="2015-01-09 03:30:33">Jan 5, 2015</time></p>
+<p>thanks!!! tried several howto's for Centos with loganalizer....this is the only one works for me</p>
+<hr />
+<h4 id="heading-3"></h4>
+<p><a href="http://ciscoskills.net/" title="ryan@ciscoskills.net">Ryan</a> - <time datetime="2015-10-05 19:21:31">Oct 1, 2015</time></p>
+<p>Hey Frank, Sorry for the late reply, in this install doc I'm using Centos 6.5. I know things have changed between Centos 6.5 and 7 so what might work with Centos 6.5 may need some tweaking in Centos 7. I have personally not tested Loganalyzer on Centos 7, I would guess it works but that is only a guess. I would also use the latest stable software versions that are available for LogAnalyzer and RSYSLOG. This looks to be a permission issue with apache, I would verify apache has rights to write the config.php file. Hope that Helps, Ryan</p>
+<hr />
+<h4 id="heading-4"></h4>
+<p><a href="%22janostasik@icloud.com%22">Jan Stasik</a> - <time datetime="2015-10-21 08:22:47">Oct 3, 2015</time></p>
+<p>HI Frank, I had same issue. I have followed the guide, of course, modified it to our needs. We have an issue on CentOS7 because of SElinux. Here is what i did: chown apache:apache -R /var/www/html/loganalyzer/ cd /var/www/html/loganalyzer/ find . -type f -exec chmod 0644 {} \; find . -type d -exec chmod 0755 {} \; chcon -t httpd_sys_content_t /var/www/html/loganalyzer -R chcon -t httpd_sys_rw_content_t /var/www/html/loganalyzer -R In my case I allowed to Apache write permission for full folder.</p>
+<p>Here is detailed description about each step. <a href="http://blog.lysender.com/2015/07/centos-7-selinux-php-apache-cannot-writeaccess-file-no-matter-what/">http://blog.lysender.com/2015/07/centos-7-selinux-php-apache-cannot-writeaccess-file-no-matter-what/</a></p>
+<hr />
+<h4 id="heading-5"></h4>
+<p><a href="%22frankdaku@gmail.com%22">Frank</a> - <time datetime="2015-09-30 09:46:59">Sep 3, 2015</time></p>
+<p>Hi! First congrats to this manual, it is really nice. BUT I'm facing a little problem (BUG???)on CentOS 7. Everything works, I use the same versions but after I execute the configure.sh, and open the loganalyzer gui, the second step fails with: &quot;file './config.php'&quot; is not writable. I made chmod 666/777 apache restart, selinux disable, but nothing happens. It keep says, that the file is not writable. Actually the file is: -rw-rw-rw-. 1 root root 0 30. Sep 19:33 config.php Could you please help me to finish this install? Thank you in advance and best regards</p>
+<hr />
 
-
-    </li>
-  </ul>
+    
+      
+    
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     
@@ -2175,8 +2139,6 @@
 </aside>
 
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
