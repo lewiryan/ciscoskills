@@ -5,13 +5,13 @@
     <link>https://ciscoskills.net/tags/interconnecting-cisco-network-devices-part-1/</link>
     <description>Recent content in Interconnecting Cisco Network Devices Part 1 on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 01 Oct 2013 00:34:35 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/interconnecting-cisco-network-devices-part-1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Sep 2013 00:34:35 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/interconnecting-cisco-network-devices-part-1/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>CCNA 2.0 What&#39;s New?</title>
-      <link>https://ciscoskills.net/2013/10/01/ccna-2.0-whats-new/</link>
-      <pubDate>Tue, 01 Oct 2013 00:34:35 +0000</pubDate>
+      <title>CCNA 2-0 What&#39;s New?</title>
+      <link>https://ciscoskills.net/2013/09/30/ccna-2-0-whats-new/</link>
+      <pubDate>Mon, 30 Sep 2013 00:34:35 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2013/10/01/ccna-2.0-whats-new/</guid>
+      <guid>https://ciscoskills.net/2013/09/30/ccna-2-0-whats-new/</guid>
       <description>
         
           &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34; alt=&#34;Cisco-Network&#34;&gt;&lt;/a&gt;I brought this topic up in March of this year &lt;a href=&#34;http://ciscoskills.net/2013/03/26/ccna-version-2-0-refresh/&#34; title=&#34;CCNA Version 2.0 Refresh&#34;&gt;(See original post)&lt;/a&gt; but I wanted to re-post it to add some information because as of today this was your last day to pass the older &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; exams. &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has a refreshed all the CCNA Routing and Switching exams. That includes the ICND1 (640-822), the ICND2 (640-816), and the all in wonder exam (640-816). You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track. Starting at the CCNA the refreshed exams are the following, 100-101 ICND1 &lt;strong&gt;(which replaces 640-822 exam)&lt;/strong&gt;, 200-101 ICND2 &lt;strong&gt;(which replaces 640-816 exam)&lt;/strong&gt;, and the all in wonder 200-120 CCNA &lt;strong&gt;(which replaces the all in wonder 640-802 exam)&lt;/strong&gt;. Like I mentioned earlier the last day to take these older exams are September 30th of 2013 so good luck :) What has changed:&lt;/p&gt;
@@ -43,13 +43,13 @@
     
     <item>
       <title>CCNA Version 2.0 Refresh</title>
-      <link>https://ciscoskills.net/2013/03/27/ccna-version-2.0-refresh/</link>
-      <pubDate>Wed, 27 Mar 2013 01:47:58 +0000</pubDate>
+      <link>https://ciscoskills.net/2013/03/26/ccna-version-2.0-refresh/</link>
+      <pubDate>Tue, 26 Mar 2013 05:47:58 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2013/03/27/ccna-version-2.0-refresh/</guid>
+      <guid>https://ciscoskills.net/2013/03/26/ccna-version-2.0-refresh/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34; alt=&#34;Cisco-Network&#34;&gt;&lt;/a&gt;I think we knew it was coming at some point and &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has recently announced a refresh for the 640-822 (ICND1), 640-816 (ICND2) and the all in one 640-802 (&lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt;) the last day to take these tests and get certified are September 30th of 2013.  You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track. Starting at the CCNA the refreshed exams are the following, 100-101 ICND1 &lt;strong&gt;(which replaces 640-822 exam)&lt;/strong&gt;, 200-101 ICND2 &lt;strong&gt;(which replaces 640-816 exam)&lt;/strong&gt;, and the all in wonder 200-120 CCNA &lt;strong&gt;(which replaces the all in wonder 640-802 exam)&lt;/strong&gt;. Like I mentioned earlier the last day to take these older exams are September 30th of 2013 so good luck :) What has changed:&lt;/p&gt;
+          &lt;p&gt;I think we knew it was coming at some point and &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has recently announced a refresh for the 640-822 (ICND1), 640-816 (ICND2) and the all in one 640-802 (&lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt;) the last day to take these tests and get certified are September 30th of 2013. You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track. Starting at the CCNA the refreshed exams are the following, 100-101 ICND1 &lt;strong&gt;(which replaces 640-822 exam)&lt;/strong&gt;, 200-101 ICND2 &lt;strong&gt;(which replaces 640-816 exam)&lt;/strong&gt;, and the all in wonder 200-120 CCNA &lt;strong&gt;(which replaces the all in wonder 640-802 exam)&lt;/strong&gt;. Like I mentioned earlier the last day to take these older exams are September 30th of 2013 so good luck :) What has changed:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The certification was formerly called CCNA  is now called CCNA Routing and Switching with no prerequisites (Like before)&lt;/li&gt;
 &lt;li&gt;If you wish to have advanced technology certifications like the CCNA Security, CCNA Voice, &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Wireless&lt;/a&gt; you must have at least a CCENT or CCNA R&amp;amp;S &lt;strong&gt;(Before you had to have CCNA)&lt;/strong&gt;&lt;/li&gt;
@@ -66,7 +66,7 @@
 &lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2013/06/29/passed-640-554/&#34;&gt;Passed 640-554!&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2013/09/30/ccna-2-0-whats-new/&#34; title=&#34;&#34;&gt;CCNA 2.0 What’s New? « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2013-09-30 18:34:44&#34;&gt;Sep 1, 2013&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[…] brought this topic up in March of this year (See original post) but I wanted to re-post it as today was your last day to pass the older CCNA exams. Cisco has a […]&lt;/p&gt;
