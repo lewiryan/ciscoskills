@@ -106,62 +106,171 @@
       <guid>https://ciscoskills.net/2014/09/10/setting-up-enhanced-vpc-on-nexus-5600/</guid>
       <description>
         
-          &lt;h2 id=&#34;so-ive-played-around-with-two-cisco-nexus-5672upswitches-which-will-be-in-production-soon-but-before-that-i-wanted-to-see-what-it-took-to-get-enhanced-vpconline-along-the-way-i-was-into-some-new-territory-as-i-never-stood-up-vpcbefore-so-in-this-post-i-have-posted-some-things-to-keep-in-mind-and-running-config-examples-all-of-which-i-hope-is-helpful-for-a-reference-before-we-go-into-the-configuration-ofvpc-i-wanted-to-mentioned-that-the-nexus-5600-series-switch-is-a-newer-product-in-the-cisco-data-center-portfolio-i-would-guess-that-it-would-eventually-replace-the-5500-nexus-switch-series-but-as-of-this-writing-cisco-has-not-put-any-end-of-life-notice-on-the-5500-hardware-one-of-the-main-differences-on-the-5600-is-the-built-in-layer-3-capabilities-the-5500-required-a-layer-3-card-that-used-an-expansion-slot-and-only-the-higher-end-nexus-products-offered-layer-3-to-find-out-more-information-about-the-5600-on-ciscos-website-cisco-nexus-5600-platform-switches-data-sheethttpwwwciscocomcenusproductscollateralswitchesnexus-5000-series-switchesdatasheet-c78-730760html-cisco-nexus-5600-platform-switches-data-sheet-so-when-i-was-looking-at-configuration-examples-i-noticed-some-confusion-between-a-dual-homedfexsetup-and-an-enhanced-vpcsetup-so-ill-try-to-clear-the-air-the-enhanced-vpcis-able-to-set-up-an-etherchannellink-from-two-different-nexus-switches-the-hostserver-that-connects-to-these-two-different-nexus-switches-must-support-activeactive-nics-this-configuration-is-almost-the-same-if-you-were-setting-up-a-dual-homedfexbut-with-just-activepassive-nicssetup-on-the-hostserver-so-here-is-a-question-if-the-configuration-is-almost-the-same-what-needs-to-beadded-to-support-enhanced-vpc-the-software-i-am-working-with-is-version-701n11-and-we-need-to-enable-the-features-of-vpc-fexand-lacp-codefeature-vpc-feature-fex-feature-lacp-code-we-also-need-to-have-some-vlanscreated-on-both-5ks-in-this-example-i-created-25-35-codevlan-25-35code-we-need-to-start-a-vpcdomain-this-must-be-the-same-on-both-switches-switch-1-code-vpc-domain-1-peer-keepalive-destination-16925412-source-16925411-code-switch-2-code-vpc-domain-1-peer-keepalive-destination-16925411-source-16925412-code-a-note-about-the-peer-keepalive-the-55005600-nexus-has-a-dedicated-management-nic-card-on-the-front-of-the-unit-where-the-power-is-the-reason-i-did-this-was-i-did-not-want-to-waste-a-10gbconnection-for-just-a-keep-alive-link-although-it-can-be-done---in-this-example-i-dont-have-a-dedicated-management-network-so-i-decided-to-use-the-management-nic-of-both-5ks-by-default-you-have-a-another-vrfcontext-called-management-on-the-5ksrunning-config-so-on-both-5ksi-give-that-vrfcontext-an-ip-address-and-directly-connected-both-5ks-together-switch-1-code-interface-mgmt0-vrf-member-management-ip-address-1692541124-code-switch-2-code-interface-mgmt0-vrf-member-management-ip-address-1692541224-code-another-helpful-tip-that-i-could-not-find-out-was-if-the-management-nicswould-auto-mdimdix-so-i-just-plugged-in-a-straight-though-and-it-works-so-you-dont-need-a-crossover-cable-if-you-dont-have-one-nearby--we-now-need-to-create-a-vpcpeer-link-between-the-two-nexus-switches-in-this-example-i-am-using-two-10gb-links-which-are-the-same-interfaces-on-both-nexus-switches-consistency-is-your-friend-code-interface-ethernet131-channel-group-1-mode-active-interface-ethernet132-channel-group-1-mode-active-code-both-switches-are-referring-to-port-channel-one-for-interfaces-31-and-32-in-the-port-channel-we-will-trunk-the-vlanswe-have-created-earlier-along-with-setting-this-port-channel-into-a-vpc-peer-link-code-interface-port-channel1--switchport-mode-trunk--switchporttrunk-allowed-vlan-25-35--vpc-peer-link-code-to-keep-the-configshort-i-am-only-referring-to-two-fexesin-this-example-remember-so-far-in-this-post-you-would-do-exactly-the-same-configuration-if-you-just-wanted-to-set-up-dual-homedfexes-starting-with-fex-101-on-switch-1-code-interface-ethernet11--description-fex-101-port-1--switchportmode-fex-fabric--fex-associate-101-channel-group-101-interface-ethernet12--description-fex-101-port-3--switchportmode-fex-fabric--fex-associate-101-channel-group-101-interface-port-channel101--switchportmode-fex-fabric--fex-associate-101--vpc-101-code-continue-with-fex-101-on-switch-2-code-interface-ethernet11--description-fex-101-port-2--switchportmode-fex-fabric--fex-associate-101-channel-group-101-interface-ethernet12--description-fex-101-port-4--switchportmode-fex-fabric--fex-associate-101-channel-group-101-interface-port-channel101--switchportmode-fex-fabric--fex-associate-101--vpc-101-code-start-with-fex-102-on-switch-1-code-interface-ethernet13--description-fex-102-port-1--switchportmode-fex-fabric--fex-associate-102-channel-group-102-interface-ethernet14--description-fex-102-port-3--switchportmode-fex-fabric--fex-associate-102-channel-group-102-interface-port-channel102--switchportmode-fex-fabric--fex-associate-102--vpc-102-code-continue-with-fex-102-on-switch-2-code-interface-ethernet13--description-fex-102-port-2--switchportmode-fex-fabric--fex-associate-102-channel-group-102-interface-ethernet14--description-fex-102-port-4--switchportmode-fex-fabric--fex-associate-102-channel-group-102-interface-port-channel102--switchportmode-fex-fabric--fex-associate-102--vpc-102-code-so-we-have-just-setup-two-dual-homedfexeson-the-5672upswitches-here-is-where-we-can-kick-it-up-a-notch-to-set-up-enhanced-vpc-if-i-had-a-host-that-plugged-into-fex101-and-fex102-and-i-wanted-to-set-up-etherchannel-so-that-host-could-send-traffic-on-out-both-links-i-would-put-the-following-configuration-on-both-switches-code-interface-eth10111-eth10112-channel-group-2-mode-active-interface-eth10211-eth10212-channel-group-2-mode-active-interface-po2-switchportaccess-vlan-25-code-here-is-the-result-this-is-now-an-enhanced-vpc-some-key-points-of-this-setup-is-be-consistentwith-your-configuration-it-all-has-to-match-on-both-switches-otherwise-expect-problems-to-arise-enhanced-vpc-offers-some-high-level-redundancy-by-just-looking-at-the-picture-below-you-could-have-multiple-failures-and-servers-and-applications-would-still-be-accessible-this-makes-this-type-of-setup-a-common-practice-if-business-needs-demand-it-so-ill-stop-it-there-like-before-i-hope-this-information-is-helpful-as-a-reference-feel-free-to-comment-below-if-you-have-any-questions-vpc-nexushttpssystemstechblogfileswordpresscom201409vpc-nexuspnghttpssystemstechblogfileswordpresscom201409nexus-vpc-epng&#34;&gt;So I&#39;ve played around with two Cisco Nexus 5672UP switches which will be in production soon but before that I wanted to see what it took to get enhanced vPC online. Along the way I was into some new territory as I never stood up vPC before, so in this post I have posted some things to keep in mind and running-config examples, all of which I hope is helpful for a reference. Before we go into the configuration of vPC I wanted to mentioned that the Nexus 5600 series switch is a newer product in the Cisco Data Center portfolio. I would guess that it would eventually replace the 5500 Nexus switch series but as of this writing Cisco has not put any end of life notice on the 5500 hardware. One of the main differences on the 5600 is the built-in layer 3 capabilities. The 5500 required a layer 3 card that used an expansion slot and only the higher-end Nexus products offered layer 3. To find out more information about the 5600 on Cisco&#39;s website: &lt;a href=&#34;http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/datasheet-c78-730760.html&#34; title=&#34;Cisco Nexus 5600 Platform Switches Data Sheet&#34;&gt;Cisco Nexus 5600 Platform Switches Data Sheet&lt;/a&gt; So when I was looking at configuration examples I noticed some confusion between a dual-homed FEX setup and an enhanced vPC setup, so I&#39;ll try to clear the air. The &amp;quot;Enhanced&amp;quot; vPC is able to set up an etherchannel link from two different Nexus switches. The host/server that connects to these two different Nexus switches must support Active/Active NICs. This configuration is almost the same if you were setting up a dual-homed FEX but with just Active/Passive NICs setup on the host/server. So here is a question if the configuration is almost the same what needs to be added to support enhanced vPC? The software I am working with is version 7.0(1)N1(1) and we need to enable the features of vpc, fex and lacp. [code]feature vpc feature fex feature lacp [/code] We also need to have some VLANs created on both 5ks. In this example I created 25-35 [code]vlan 25-35[/code] We need to start a VPC domain, this must be the same on both switches. SWITCH 1: [code] vpc domain 1 peer-keepalive destination 169.254.1.2 source 169.254.1.1 [/code] SWITCH 2: [code] vpc domain 1 peer-keepalive destination 169.254.1.1 source 169.254.1.2 [/code] A note about the peer-keepalive, the 5500/5600 Nexus has a dedicated management NIC card on the front of the unit. (Where the power is) The reason I did this was I did not want to waste a 10Gb connection for just a keep-alive link. (Although it can be done :/ )  In this example I don&#39;t have a &amp;quot;dedicated&amp;quot; management network so I decided to use the management NIC of both 5ks. By default you have a another vrf context called management on the 5ks running-config. So on both 5ks I give that vrf context an IP address and directly connected both 5ks together. SWITCH 1: [code] interface mgmt0 vrf member management ip address 169.254.1.1/24 [/code] SWITCH 2: [code] interface mgmt0 vrf member management ip address 169.254.1.2/24 [/code] Another helpful tip that I could not find out was if the management NICs would auto MDI/MDIX. So I just plugged in a straight-though and it works, so you don&#39;t need a crossover cable if you don&#39;t have one nearby. :) We now need to create a vPC peer-link between the two Nexus switches. In this example I am using two 10Gb links, which are the same interfaces on both Nexus switches. (Consistency is your friend) [code] interface Ethernet1/31 channel-group 1 mode active interface Ethernet1/32 channel-group 1 mode active [/code] Both switches are referring to port-channel one for interfaces 31 and 32. In the port-channel we will trunk the vlans we have created earlier along with setting this port-channel into a vpc peer-link. [code] interface port-channel1   switchport mode trunk   switchport trunk allowed vlan 25-35   vpc peer-link [/code] To keep the config short I am only referring to two FEXes in this example. (Remember so far in this post you would do exactly the same configuration if you just wanted to set up dual-homed FEXes) Starting with FEX 101 on SWITCH 1: [code] interface Ethernet1/1   description FEX-101-PORT-1   switchport mode fex-fabric   fex associate 101 channel-group 101 interface Ethernet1/2   description FEX-101-PORT-3   switchport mode fex-fabric   fex associate 101 channel-group 101 interface port-channel101   switchport mode fex-fabric   fex associate 101   vpc 101 [/code] Continue with FEX 101 on SWITCH 2: [code] interface Ethernet1/1   description FEX-101-PORT-2   switchport mode fex-fabric   fex associate 101 channel-group 101 interface Ethernet1/2   description FEX-101-PORT-4   switchport mode fex-fabric   fex associate 101 channel-group 101 interface port-channel101   switchport mode fex-fabric   fex associate 101   vpc 101 [/code] Start with FEX 102 on SWITCH 1: [code] interface Ethernet1/3   description FEX-102-PORT-1   switchport mode fex-fabric   fex associate 102 channel-group 102 interface Ethernet1/4   description FEX-102-PORT-3   switchport mode fex-fabric   fex associate 102 channel-group 102 interface port-channel102   switchport mode fex-fabric   fex associate 102   vpc 102 [/code] Continue with FEX 102 on SWITCH 2: [code] interface Ethernet1/3   description FEX-102-PORT-2   switchport mode fex-fabric   fex associate 102 channel-group 102 interface Ethernet1/4   description FEX-102-PORT-4   switchport mode fex-fabric   fex associate 102 channel-group 102 interface port-channel102   switchport mode fex-fabric   fex associate 102   vpc 102 [/code] So we have just setup two dual-homed FEXes on the 5672UP switches, here is where we can kick it up a notch to set up enhanced vPC. If I had a host that plugged into FEX 101 and FEX 102 and I wanted to set up etherchannel so that host could send traffic on out both links I would put the following configuration on &lt;strong&gt;BOTH&lt;/strong&gt; switches: [code] interface eth101/1/1, eth101/1/2 channel-group 2 mode active interface eth102/1/1, eth102/1/2 channel-group 2 mode active interface po2 switchport access vlan 25 [/code] Here is the result, this is now an enhanced vPC. Some key points of this setup is be consistent with your configuration, it all has to match on both switches otherwise expect problems to arise. Enhanced vPC offers some high level redundancy, by just looking at the picture below you could have multiple failures and servers and applications would still be accessible. This makes this type of setup a common practice if business needs demand it. So I&#39;ll stop it there like before I hope this information is helpful as a reference. Feel free to comment below if you have any questions. &lt;a href=&#34;https://systemstechblog.files.wordpress.com/2014/09/nexus-vpc-e.png&#34;&gt;&lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/09/vpc-nexus.png&#34; alt=&#34;vpc-nexus&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+          &lt;p&gt;So I&#39;ve played around with two Cisco Nexus 5672UP switches which will be in production soon but before that I wanted to see what it took to get enhanced vPC online. Along the way I was into some new territory as I never stood up vPC before, so in this post I have posted some things to keep in mind and running-config examples, all of which I hope is helpful for a reference.&lt;/p&gt;
+&lt;p&gt;Before we go into the configuration of vPC I wanted to mentioned that the Nexus 5600 series switch is a newer product in the Cisco Data Center portfolio. I would guess that it would eventually replace the 5500 Nexus switch series but as of this writing Cisco has not put any end of life notice on the 5500 hardware. One of the main differences on the 5600 is the built-in layer 3 capabilities. The 5500 required a layer 3 card that used an expansion slot and only the higher-end Nexus products offered layer 3. To find out more information about the 5600 on Cisco&#39;s website: &lt;a href=&#34;http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/datasheet-c78-730760.html&#34; title=&#34;Cisco Nexus 5600 Platform Switches Data Sheet&#34;&gt;Cisco Nexus 5600 Platform Switches Data Sheet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So when I was looking at configuration examples I noticed some confusion between a dual-homed FEX setup and an enhanced vPC setup, so I&#39;ll try to clear the air. The &amp;quot;Enhanced&amp;quot; vPC is able to set up an etherchannel link from two different Nexus switches. The host/server that connects to these two different Nexus switches must support Active/Active NICs. This configuration is almost the same if you were setting up a dual-homed FEX but with just Active/Passive NICs setup on the host/server. So here is a question if the configuration is almost the same what needs to be added to support enhanced vPC? The software I am working with is version 7.0(1)N1(1) and we need to enable the features of vpc, fex and lacp.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;feature vpc
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;feature fex
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;feature lacp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We also need to have some VLANs created on both 5ks. In this example I created 25-35&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vlan 25-35
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We need to start a VPC domain, this must be the same on both switches.&lt;/p&gt;
+&lt;h3 id=&#34;switch-1&#34;&gt;SWITCH 1:&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vpc domain 1 peer-keepalive destination 169.254.1.2 source 169.254.1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;switch-2&#34;&gt;SWITCH 2:&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vpc domain 1 peer-keepalive destination 169.254.1.1 source 169.254.1.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;A note about the peer-keepalive, the 5500/5600 Nexus has a dedicated management NIC card on the front of the unit. (Where the power is) The reason I did this was I did not want to waste a 10Gb connection for just a keep-alive link. (Although it can be done :/ )  In this example I don&#39;t have a &amp;quot;dedicated&amp;quot; management network so I decided to use the management NIC of both 5ks. By default you have a another vrf context called management on the 5ks running-config. So on both 5ks I give that vrf context an IP address and directly connected both 5ks together.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;switch-1-1&#34;&gt;SWITCH 1:&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface mgmt0 vrf member management ip address 169.254.1.1/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;switch-2-1&#34;&gt;SWITCH 2:&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface mgmt0 vrf member management ip address 169.254.1.2/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Another helpful tip that I could not find out was if the management NICs would auto MDI/MDIX. So I just plugged in a straight-though and it works, so you don&#39;t need a crossover cable if you don&#39;t have one nearby. :)&lt;/p&gt;
+&lt;p&gt;We now need to create a vPC peer-link between the two Nexus switches. In this example I am using two 10Gb links, which are the same interfaces on both Nexus switches. (Consistency is your friend)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface Ethernet1/31
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;  channel-group 1 mode active
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;interface Ethernet1/32
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  channel-group 1 mode active
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Both switches are referring to port-channel one for interfaces 31 and 32. In the port-channel we will trunk the vlans we have created earlier along with setting this port-channel into a vpc peer-link.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface port-channel1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;  switchport mode trunk
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  switchport trunk allowed vlan 25-35
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  vpc peer-link
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To keep the config short I am only referring to two FEXes in this example. (Remember so far in this post you would do exactly the same configuration if you just wanted to set up dual-homed FEXes) Starting with FEX 101 on &lt;strong&gt;SWITCH 1:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface Ethernet1/1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  description FEX-101-PORT-1
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  fex associate 101
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  channel-group 101
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;interface Ethernet1/2
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  description FEX-101-PORT-3
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex associate 101
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  channel-group 101
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;interface port-channel101
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  fex associate 101
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  vpc 101
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Continue with FEX 101 on &lt;strong&gt;SWITCH 2:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface Ethernet1/1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  description FEX-101-PORT-2
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  fex associate 101
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  channel-group 101
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;interface Ethernet1/2
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  description FEX-101-PORT-4
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex associate 101
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  channel-group 101
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;interface port-channel101
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  fex associate 101
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  vpc 101
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Start with FEX 102 on &lt;strong&gt;SWITCH 1:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface Ethernet1/3
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  description FEX-102-PORT-1
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  fex associate 102
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  channel-group 102
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;interface Ethernet1/4
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  description FEX-102-PORT-3
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex associate 102
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  channel-group 102
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;interface port-channel102
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  fex associate 102
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  vpc 102
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Continue with FEX 102 on &lt;strong&gt;SWITCH 2:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface Ethernet1/3
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  description FEX-102-PORT-2
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  fex associate 102
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  channel-group 102
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;interface Ethernet1/4
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  description FEX-102-PORT-4
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex associate 102
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  channel-group 102
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;interface port-channel102
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  switchport mode fex-fabric
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  fex associate 102
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  vpc 102
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So we have just setup two dual-homed FEXes on the 5672UP switches, here is where we can kick it up a notch to set up enhanced vPC. If I had a host that plugged into FEX 101 and FEX 102 and I wanted to set up etherchannel so that host could send traffic on out both links I would put the following configuration on &lt;strong&gt;BOTH&lt;/strong&gt; switches:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface eth101/1/1, eth101/1/2
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;channel-group 2 mode active
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;interface eth102/1/1, eth102/1/2
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;channel-group 2 mode active
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;interface po2
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;switchport access vlan 25
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is the result, this is now an enhanced vPC. Some key points of this setup is be consistent with your configuration, it all has to match on both switches otherwise expect problems to arise. Enhanced vPC offers some high level redundancy, by just looking at the picture below you could have multiple failures and servers and applications would still be accessible. This makes this type of setup a common practice if business needs demand it. So I&#39;ll stop it there like before I hope this information is helpful as a reference. Feel free to comment below if you have any questions.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2014/09/vpc-nexus.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;http://gravatar.com/hostingnuggets&#34; title=&#34;hostingnuggets@gmail.com&#34;&gt;John Naggets&lt;/a&gt; - &lt;time datetime=&#34;2015-04-10 09:49:55&#34;&gt;Apr 5, 2015&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;What about using the QSFP ports instead of the Ethernet1/31 and Ethernet1/32 to connect both switches together using vPC, would that also work?&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2015-04-10 22:06:51&#34;&gt;Apr 5, 2015&lt;/time&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2015-04-10 22:06:51&#34;&gt;Apr 5, 2015&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hey John, Yes I would think that would work. However I don&#39;t know if I would use the QSFP ports for a vPC link. Those type of ports would be better for uplinks. I don&#39;t think you would be running that much traffic thorough a vPC link unless something is wrong. From what I looked at it seemed like you would want to balance it out. So for example if I had an uplink on 5k-1 to Core-1, I would also want an uplink on 5k-2 going to Core-1. That way the traffic does not need to go through the vPC unless there is a problem. Hope that helps.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Joel]( &#34;bigstyx@gmail.com&#34;) - &lt;time datetime=&#34;2014-12-16 03:51:59&#34;&gt;Dec 2, 2014&lt;/time&gt;
+&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22bigstyx@gmail.com%22&#34;&gt;Joel&lt;/a&gt; - &lt;time datetime=&#34;2014-12-16 03:51:59&#34;&gt;Dec 2, 2014&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hello, are you sure of your drawing ? have a look at Fig 6-10 on ^this CISCO page : &lt;a href=&#34;http://www.cisco.com/en/US/docs/switches/datacenter/nexus5000/sw/mkt&#34;&gt;http://www.cisco.com/en/US/docs/switches/datacenter/nexus5000/sw/mkt&lt;/a&gt;_ops_guides/513_n1_1/n5k_enhanced_vpc.html&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Zak Post]( &#34;zakpost@gmail.com&#34;) - &lt;time datetime=&#34;2015-01-14 07:04:47&#34;&gt;Jan 3, 2015&lt;/time&gt;
+&lt;h4 id=&#34;heading-3&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22zakpost@gmail.com%22&#34;&gt;Zak Post&lt;/a&gt; - &lt;time datetime=&#34;2015-01-14 07:04:47&#34;&gt;Jan 3, 2015&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Thanks for this, it was easy to follow up to get a working configuration.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2015-01-14 19:45:47&#34;&gt;Jan 3, 2015&lt;/time&gt;
+&lt;h4 id=&#34;heading-4&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2015-01-14 19:45:47&#34;&gt;Jan 3, 2015&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Glad you were able to use it. :)&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Nishant]( &#34;nishanth.tm@gmail.com&#34;) - &lt;time datetime=&#34;2015-09-04 06:24:45&#34;&gt;Sep 5, 2015&lt;/time&gt;
+&lt;h4 id=&#34;heading-5&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22nishanth.tm@gmail.com%22&#34;&gt;Nishant&lt;/a&gt; - &lt;time datetime=&#34;2015-09-04 06:24:45&#34;&gt;Sep 5, 2015&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Thanks, I found your post really helpful. I am in the process of implementing eVPC on 5672 UP. I have few questions with respect to the same, 1.You had mentioned that the host/server that connects to these different Fexes must support Active/Active NICs, does it mean that the host or server should support LACP? What if my host doesn&#39;t support LACP? 2.Can I dual home a VMware ESXi (active-active NICs on route based originating virtual port ID load balancing policy) to the fexes? … 3.Can I configure the fex port channel to static ( mode on) instead of active or lacp ? interface eth101/1/1, eth101/1/2 channel-group 2 mode on interface eth102/1/1, eth102/1/2 channel-group 2 mode on interface po2 switchport access vlan 25 Thanks in advance, Nishant&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2014-12-16 20:25:43&#34;&gt;Dec 2, 2014&lt;/time&gt;
+&lt;h4 id=&#34;heading-6&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2014-12-16 20:25:43&#34;&gt;Dec 2, 2014&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hey Joel, Thanks for pointing that out I fixed the image and thanks for the reference.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2015-01-26 22:17:26&#34;&gt;Jan 1, 2015&lt;/time&gt;
+&lt;h4 id=&#34;heading-7&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2015-01-26 22:17:26&#34;&gt;Jan 1, 2015&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hey Kerry, Yes you would be able to add 4 ports in a port-channel to the FEXes. You could almost do the same thing with two 5600s without the FEXes if you wanted. Just setup a VPC and port-channel on both 5600s instead of using the FEXes.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Kerry]( &#34;kerry.maguire@co-opngn.net&#34;) - &lt;time datetime=&#34;2015-01-26 14:46:53&#34;&gt;Jan 1, 2015&lt;/time&gt;
+&lt;h4 id=&#34;heading-8&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;%22kerry.maguire@co-opngn.net%22&#34;&gt;Kerry&lt;/a&gt; - &lt;time datetime=&#34;2015-01-26 14:46:53&#34;&gt;Jan 1, 2015&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Thank you for this write up, great information. In my setup the host has 2 10g NICS for a total of 4 uplinks. Would I be able to follow your example here for PO2 but add in all 4 ports? (Ex 101/1/1-4 and 102/1/1-4&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2015-09-07 21:48:25&#34;&gt;Sep 1, 2015&lt;/time&gt;
+&lt;h4 id=&#34;heading-9&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2015-09-07 21:48:25&#34;&gt;Sep 1, 2015&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hey Nishant, You don&#39;t have to have Active/Active on the FEXs, you can have a single uplink from a host to a FEX and treat it like a standard port. The example that I showed is something you could do if you had a host that supported LACP. I also believe you can turn off LACP if you needed to and manually put up a port-channel on the FEX. Here is some more info: (Figure 6-5) &lt;a href=&#34;http://www.cisco.com/en/US/docs/switches/datacenter/nexus5000/sw/mkt&#34;&gt;http://www.cisco.com/en/US/docs/switches/datacenter/nexus5000/sw/mkt&lt;/a&gt;_ops_guides/513_n1_1/n5k_enhanced_vpc.html&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[John](http://gravatar.com/hostingnuggets &#34;hostingnuggets@gmail.com&#34;) - &lt;time datetime=&#34;2016-01-30 05:42:16&#34;&gt;Jan 6, 2016&lt;/time&gt;
+&lt;h4 id=&#34;heading-10&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://gravatar.com/hostingnuggets&#34; title=&#34;hostingnuggets@gmail.com&#34;&gt;John&lt;/a&gt; - &lt;time datetime=&#34;2016-01-30 05:42:16&#34;&gt;Jan 6, 2016&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Does this setup really need 8 network connections between the two nexus 5k and the two nexus 2k? Would it also work with only 4 network connections instead? and in that case would it still be called &amp;quot;dual homed&amp;quot;? I am not sure to understand the advantage of 8 network connections.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2016-01-30 08:54:29&#34;&gt;Jan 6, 2016&lt;/time&gt;
+&lt;h4 id=&#34;heading-11&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2016-01-30 08:54:29&#34;&gt;Jan 6, 2016&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hey John, You could use 4 connections instead of 8 you just loose the amount of bandwidth available instead of 40Gbps you would have 20Gbps that is available to the 2ks. It would also still be called a dual homed setup because that 2k switch is connected two different 5k switches. Ryan.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[hostingnuggets](http://couleur3bestof.wordpress.com &#34;hostingnuggets@gmail.com&#34;) - &lt;time datetime=&#34;2016-04-24 07:25:51&#34;&gt;Apr 0, 2016&lt;/time&gt;
+&lt;h4 id=&#34;heading-12&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://couleur3bestof.wordpress.com&#34; title=&#34;hostingnuggets@gmail.com&#34;&gt;hostingnuggets&lt;/a&gt; - &lt;time datetime=&#34;2016-04-24 07:25:51&#34;&gt;Apr 0, 2016&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Ryan, I was wondering when connecting your server redundatly on Po2 shouldn&#39;t you specify a VPC? For instance you have: interface po2 switchport access vlan 25 but as far as I understand shouldn&#39;t it be assigned a VPC, for example: interface po2 switchport access vlan 25 vpc 2 ?&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2016-04-25 17:45:32&#34;&gt;Apr 1, 2016&lt;/time&gt;
+&lt;h4 id=&#34;heading-13&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2016-04-25 17:45:32&#34;&gt;Apr 1, 2016&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;You are correct if you would have connected the server directly to the 5ks you have to specify a VPC or if you had a single FEX connected to the 5k. In this example however I&#39;m using FEXes which already have a VPC configured from both 5ks and I&#39;m using port-channels off of those FEXes this is called &amp;quot;Enhanced vPC&amp;quot;. There is a difference between them, when you create an Enhanced vPC you don&#39;t specify a VPC on the FEXes because there is already a vPC created upstream. Regular vPC with FEXes: &lt;a href=&#34;http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/configuration_guide_c07-543563.html&#34;&gt;LINK&lt;/a&gt; Enhanced vPC with FEXes: &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5000/sw/layer2/513_n1_1/b_Cisco_n5k_layer2_config_gd_rel_513_N1_1/b_Cisco_n5k_layer2_config_gd_rel_513_N1_1_chapter_01010.html&#34;&gt;LINK&lt;/a&gt; Hope that Helps, Ryan&lt;/p&gt;
 &lt;hr /&gt;
 
