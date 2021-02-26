@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://ciscoskills.net/2014/08/06/some-qos-guidelines/" />
 <meta property="og:title" content="Some QoS Guidelines" />
 <meta property="og:description" content="When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind …" />
-<meta property="og:image" content="https://ciscoskills.net/images/thumbnail.png" />
+<meta property="og:image" content="https://ciscoskills.net/images/2014/08/mvimg_20191123_152629.jpg" />
 <link rel="apple-touch-icon" sizes="180x180" href='https://ciscoskills.net/icons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://ciscoskills.net/icons/favicon-32x32.png'>
 <link rel="manifest" href='https://ciscoskills.net/icons/site.webmanifest'>
@@ -137,8 +137,6 @@
       </a>
       <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
       </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">cisco
-      </a>
       <a href='https://ciscoskills.net/tags/network' class="post_tag button button_translucent">Network
       </a>
       <a href='https://ciscoskills.net/tags/networking' class="post_tag button button_translucent">networking
@@ -152,8 +150,6 @@
       <a href='https://ciscoskills.net/tags/technology' class="post_tag button button_translucent">technology
       </a>
       <a href='https://ciscoskills.net/tags/tutorial' class="post_tag button button_translucent">tutorial
-      </a>
-      <a href='https://ciscoskills.net/tags/tutorials' class="post_tag button button_translucent">Tutorials
       </a>
 </div>
 
@@ -183,8 +179,16 @@
   </div>
 
     
+    <img src="/images/2014/08/mvimg_20191123_152629.jpg" class="image_featured">
     
-    <p>When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared but it always something being tested on so we know it was there, somewhere… QoS can be a little boring and it does get a reputation of being difficult to understand, like where and how do I implement QoS? Most of the time QoS is not configured which causes applications to suffer in the end have an impact of end user performance. Throwing bandwidth to fix the problem is usually a costly risk, and remember you still may have the same performance problems. What also makes it interesting is you may have an environment that runs fine without QoS, so why do you need it? Well there's no easy button to fix or find these unanswered questions about QoS. In this post I'm referencing guidelines of where to start looking which will hopefully help answer some of those unanswered questions. :) A good place to start is at RFC 4594, (<a href="http://tools.ietf.org/html/rfc4594">Configuration Guidelines for DiffServ Service Classes</a>) which provides an industry best practice on QoS. These are not standards that the RFC published but a good FYI. One of the reasons why RFC 4594 is not a standard is to work with what the individual business requires. For example VoIP/Video may not be the number one priority in the network for some businesses. Cisco has even made a slight change with RFC 4594 by switching the Call-Signaling and Broadcast Video markings to CS3 and CS5. <a href="https://systemstechblog.files.wordpress.com/2014/08/cisco-modified-rfc-4594.jpg"><img src="http://systemstechblog.files.wordpress.com/2014/08/cisco-modified-rfc-4594.jpg" alt="Cisco-Modified-RFC-4594"></a> Crawl, walk, run is the method Cisco recognizes as not all enterprises are ready for such a complex QoS design. Starting from a phased approach is often more successful than an all-in one approach. (Rome wasn’t built in a day) Looking at the three different classes below, it would be much simpler to start at a 4-Class model and work our way up if the business needs demand it. <a href="https://systemstechblog.files.wordpress.com/2014/08/cisco-qos-class-model.png"><img src="http://systemstechblog.files.wordpress.com/2014/08/cisco-qos-class-model.png" alt="Cisco-QoS-Class-model"></a> Keep in mind that depending on the hardware you are running there are different types QoS syntax, like MLS QoS, MQC, and C3PL. These all have different QoS capabilities depending on the type of QoS syntax you're using. Catalyst 2960/3560/3750 are the last platforms to use MLS QoS.</p>
+    
+    <p>When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared but it always something being tested on so we know it was there, somewhere… QoS can be a little boring and it does get a reputation of being difficult to understand, like where and how do I implement QoS? Most of the time QoS is not configured which causes applications to suffer in the end have an impact of end user performance.</p>
+<p>Throwing bandwidth to fix the problem is usually a costly risk, and remember you still may have the same performance problems. What also makes it interesting is you may have an environment that runs fine without QoS, so why do you need it? Well there's no easy button to fix or find these unanswered questions about QoS. In this post I'm referencing guidelines of where to start looking which will hopefully help answer some of those unanswered questions. :)</p>
+<p>A good place to start is at RFC 4594, (<a href="http://tools.ietf.org/html/rfc4594">Configuration Guidelines for DiffServ Service Classes</a>) which provides an industry best practice on QoS. These are not standards that the RFC published but a good FYI. One of the reasons why RFC 4594 is not a standard is to work with what the individual business requires. For example VoIP/Video may not be the number one priority in the network for some businesses, an example could be a hospital. Life-saving hardware is number one. Cisco has even made a slight change with RFC 4594 by switching the Call-Signaling and Broadcast Video markings to CS3 and CS5.</p>
+<p><img src="/images/2014/08/cisco-modified-rfc-4594.jpg" alt="Cisco-Modified-RFC-4594"></p>
+<p>Crawl, walk, run is the method Cisco recognizes as not all enterprises are ready for such a complex QoS design. Starting from a phased approach is often more successful than an all-in one approach. (Rome wasn’t built in a day) Looking at the three different classes below, it would be much simpler to start at a 4-Class model and work our way up if the business needs demand it.</p>
+<p><img src="/images/2014/08/cisco-qos-class-model.png" alt="Cisco-QoS-Class-model"></p>
+<p>Keep in mind that depending on the hardware you are running there are different types QoS syntax, like MLS QoS, MQC, and C3PL. These all have different QoS capabilities depending on the type of QoS syntax you're using. Catalyst 2960/3560/3750 are the last platforms to use MLS QoS.</p>
 <ul>
 <li>QoS is disabled by default and must be globally enabled with the mls qos command.</li>
 <li>Once enabled, all ports are set to an untrusted port-state.</li>
@@ -200,7 +204,7 @@
 <li>All ports trust at layer 2 and layer 3 by default.</li>
 <li>C3PL presents queuing policies similar to MQC.</li>
 </ul>
-<p>Some key points:</p>
+<h3 id="some-key-points">Some key points:</h3>
 <ul>
 <li>The primary role of QoS in campus networks is <strong>not</strong> to control latency or jitter (as it is in the WAN/VPN), but to manage packet loss.</li>
 <li>In GE/10GE campus networks, it takes only a few milliseconds of congestion to cause instantaneous buffer overruns resulting in packet drops.</li>
@@ -210,7 +214,17 @@
 <li>Police unwanted traffic flows as close to their sources as possible.</li>
 <li>Enable queuing policies at every node where the potential for congestion exists.</li>
 </ul>
-<p>I hope this information is helpful in at least getting started in QoS. Feel free to post any questions or your experience in QoS. I have also linked some Cisco references about QoS. <a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qosmrn.html">QoS Design Strategy At-A-Glance</a> <a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampusaag.html">Campus QoS Design At-A-Glance</a> <a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat3xxxaag.html">Cisco Catalyst 3560/3750 QoS Design At-A-Glance</a> <a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat3x50aag.html">Cisco Catalyst 3650/3850 QoS Design At-A-Glance</a> <a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat4500aag.html">Cisco Catalyst 4500 QoS Design At-A-Glance</a> <a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat6500sup2taag.html">Cisco Catalyst 6500 QoS Design At-A-Glance</a> <a href="http://www.cisco.com/c/dam/en/us/td/docs/solutions/Enterprise/Video/autoqosmediacampus.pdf">Cisco Campus AutoQoS SRND4 At-A-Glance</a> <a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/WAN_and_MAN/QoS_SRND_40/QoSIntro_40.html">Enterprise Quality of Service Design 4.0</a> <a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/WAN_and_MAN/QoS_SRND_40/QoSCampus_40.html">Campus QoS Design 4.0</a> Reading Material: <a href="http://www.ciscopress.com/store/end-to-end-qos-network-design-quality-of-service-for-9781587143694">End-to-End QoS Network Design: Quality of Service for Rich-Media &amp; Cloud Networks, 2nd Edition</a></p>
+<p>I hope this information is helpful in at least getting started in QoS. Feel free to post any questions or your experience in QoS. I have also linked some Cisco references about QoS.</p>
+<p><a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qosmrn.html">QoS Design Strategy At-A-Glance</a></p>
+<p><a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampusaag.html">Campus QoS Design At-A-Glance</a></p>
+<p><a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat3xxxaag.html">Cisco Catalyst 3560/3750 QoS Design At-A-Glance</a></p>
+<p><a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat3x50aag.html">Cisco Catalyst 3650/3850 QoS Design At-A-Glance</a></p>
+<p><a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat4500aag.html">Cisco Catalyst 4500 QoS Design At-A-Glance</a></p>
+<p><a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/Video/qoscampuscat6500sup2taag.html">Cisco Catalyst 6500 QoS Design At-A-Glance</a></p>
+<p><a href="http://www.cisco.com/c/dam/en/us/td/docs/solutions/Enterprise/Video/autoqosmediacampus.pdf">Cisco Campus AutoQoS SRND4 At-A-Glance</a></p>
+<p><a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/WAN_and_MAN/QoS_SRND_40/QoSIntro_40.html">Enterprise Quality of Service Design 4.0</a></p>
+<p><a href="http://www.cisco.com/en/US/docs/solutions/Enterprise/WAN_and_MAN/QoS_SRND_40/QoSCampus_40.html">Campus QoS Design 4.0</a></p>
+<p>Reading Material: <a href="http://www.ciscopress.com/store/end-to-end-qos-network-design-quality-of-service-for-9781587143694">End-to-End QoS Network Design: Quality of Service for Rich-Media &amp; Cloud Networks, 2nd Edition</a></p>
 
     
       
@@ -276,7 +290,7 @@
         
         <a href='https://ciscoskills.net/tags/tutorials/' class="post_tag button button_translucent">
           TUTORIALS
-          <span class="button_tally">65</span>
+          <span class="button_tally">64</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/general/' class="post_tag button button_translucent">
@@ -1778,7 +1792,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=65>TUTORIALS<span class="button_tally">65</span>
+            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=64>TUTORIALS<span class="button_tally">64</span>
             </a>
             
             
