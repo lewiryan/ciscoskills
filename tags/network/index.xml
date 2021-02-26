@@ -5900,10 +5900,10 @@ Rohit&lt;/p&gt;
     
     <item>
       <title>Some QoS Guidelines</title>
-      <link>https://ciscoskills.net/2014/08/06/some-qos-guidelines/</link>
-      <pubDate>Wed, 06 Aug 2014 02:15:54 +0000</pubDate>
+      <link>https://ciscoskills.net/2014/08/05/some-qos-guidelines/</link>
+      <pubDate>Tue, 05 Aug 2014 02:15:54 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/08/06/some-qos-guidelines/</guid>
+      <guid>https://ciscoskills.net/2014/08/05/some-qos-guidelines/</guid>
       <description>
         
           &lt;p&gt;When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared but it always something being tested on so we know it was there, somewhere… QoS can be a little boring and it does get a reputation of being difficult to understand, like where and how do I implement QoS? Most of the time QoS is not configured which causes applications to suffer in the end have an impact of end user performance.&lt;/p&gt;
