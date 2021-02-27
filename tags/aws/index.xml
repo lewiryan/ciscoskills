@@ -173,6 +173,7 @@
       <description>
         
           &lt;p&gt;Graylog has been through some changes last time I talked about them, hitting version 3.0 in February is awesome and one of things that make Graylog run well is Elasticsearch backend. Although Elasticsearch is not too hard to setup it usually runs better on bare metal, so there is cost of that as well as maintenance of the cluster is important, updates and upgrades. Depending your team experience you may not have time to learn it or run it the way it should be. That last thing you want is your logging setup to go down because of poor maintenance. So in this post we will walk though setting up a Graylog Server and using AWS Elasticsearch service for our backend. Without having a quick Elasticsearch cluster Graylog experience suffers, so let&#39;s get started.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;The first thing and easiest thing is to spin up an Elasticsearch cluster within AWS. Depending on your use case you may only want a development deployment (single-node) or you can do a 3 or 2 node cluster within different availability zones within AWS, so its up to you and your wallet ;) of how big or small you want this Elasticsearch resource.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Additional security protections are recommended if this going to be used for production, like one example is don&#39;t open Elasticsearch to the internet without ACLs in place!&lt;/p&gt;

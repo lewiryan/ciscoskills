@@ -933,59 +933,6 @@
     </item>
     
     <item>
-      <title>Configuring SSH</title>
-      <link>https://ciscoskills.net/2011/03/29/configuring-ssh/</link>
-      <pubDate>Tue, 29 Mar 2011 15:15:39 +0000</pubDate>
-      
-      <guid>https://ciscoskills.net/2011/03/29/configuring-ssh/</guid>
-      <description>
-        
-          &lt;p&gt;Today this tutorial is going be talking about how to configure SSH on a &lt;a href=&#34;http://www.cisco.com/&#34; title=&#34;Cisco&#34;&gt;Cisco&lt;/a&gt; router or switch. SSH or &lt;a href=&#34;http://en.wikipedia.org/wiki/Secure_Shell&#34; title=&#34;Secure Shell&#34;&gt;Secure Shell&lt;/a&gt; encrypts the data that is sent from the terminal application to the device. Making if far more safer when it is compared to telnet which sends the data in plain text. To add support for SSH to a Cisco router or switch, the device needs some added information then just &lt;a href=&#34;http://en.wikipedia.org/wiki/Password&#34; title=&#34;Password&#34;&gt;passwords&lt;/a&gt;. The device will need a username and password, this can be configured on a &lt;a href=&#34;http://en.wikipedia.org/wiki/RADIUS&#34; title=&#34;RADIUS&#34;&gt;AAA server&lt;/a&gt; (Authentication Authorization and Accounting) or on the device locally this tutorial will focus on locally configured &lt;a href=&#34;http://en.wikipedia.org/wiki/User_%28computing%29&#34; title=&#34;User (computing)&#34;&gt;usernames&lt;/a&gt; and passwords. To set up SSH you need to configure that following information for the purpose of this tutorial the username will be &lt;em&gt;ciscoskills&lt;/em&gt; and the password will be &lt;em&gt;cisco&lt;/em&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The first thing you need to do is change the &lt;a href=&#34;http://en.wikipedia.org/wiki/Telnet&#34; title=&#34;Telnet&#34;&gt;vty&lt;/a&gt; lines in the device (router/switch) depending on the device you will have more vty lines. This command will check its local database for usernames and passwords. The command is entered under (config-line)# prompt with &lt;strong&gt;login local.&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;The next step depends if you want to still allow telnet connections to the device (router/switch). This command is entered under (config-line)# prompt which is &lt;strong&gt;transport input telnet ssh.&lt;/strong&gt; If you only want ssh connections then type the following in &lt;strong&gt;transport input ssh&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;You must enter an at least one username and password for the device (router/switch). This command is entered in &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt; (config)# which for this example the username will be &lt;em&gt;ciscoskills&lt;/em&gt; and the password will be &lt;em&gt;cisco&lt;/em&gt;. The command would be &lt;strong&gt;username ciscoskills password cisco&lt;/strong&gt; in global configuration mode.&lt;/li&gt;
-&lt;li&gt;You also must configure a &lt;a href=&#34;http://en.wikipedia.org/wiki/Domain_name&#34; title=&#34;Domain name&#34;&gt;DNS domain&lt;/a&gt; name for this example the domain will be ciscoskills.net. This command is entered in global configuration mode (config)# which for this example is &lt;strong&gt;ip domain-name ciscoskills.net&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;The final command to configure SSH is generate a key pair, This command Is entered in global configuration mode (config)# which is &lt;strong&gt;crypto key generate rsa&lt;/strong&gt;. When asked the question how many bits in the modulus? Cisco documentation likes 1024. The more bits you have the longer the key and harder to crack. The default is 512.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This is what the follow commands would look like in the below output:```
-[code]Router_or_Switch#
-Router_or_Switch#configure terminal
-Enter configuration commands, one per line. End with CNTL/Z.
-Router_or_Switch(config)#line vty 0 4
-Router_or_Switch(config-line)#login local
-Router_or_Switch(config-line)#transport input telnet ssh
-Router_or_Switch(config-line)#exit
-Router_or_Switch(config)#username ciscoskills password cisco
-Router_or_Switch(config)#ip domain-name ciscoskills.net
-Router_or_Switch(config)#crypto key generate rsa
-The name for the keys will be: Router_or_Switch.ciscoskills.net
-Choose the size of the key modulus in the range of 360 to 2048 for your
-General Purpose Keys. Choosing a key modulus greater than 512 may take
-a few minutes.&lt;/p&gt;
-&lt;p&gt;How many bits in the modulus [512]: 1024
-% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]&lt;/p&gt;
-&lt;p&gt;Router_or_Switch(config)#exit
-*Mar 1 0:4:8.988: %SSH-5-ENABLED: SSH 1.99 has been enabled&lt;/p&gt;
-&lt;p&gt;%SYS-5-CONFIG_I: Configured from console by console[/code]&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;---
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;### Comments:
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;#### 
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;[How to speed up the login via SSH in Ubuntu by 100 times | Azoft Spotlight](http://www.azoft.com/spotlight/2011/04/18/ssh-ubuntu-100.html &amp;#34;&amp;#34;) - &amp;lt;time datetime=&amp;#34;2011-04-18 02:07:04&amp;#34;&amp;gt;Apr 1, 2011&amp;lt;/time&amp;gt;
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;\[...\] Configuring SSH (ciscoskills.net) \[...\]
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;&amp;lt;hr /&amp;gt;
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;#### 
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;[Configure Cisco SDM | Cisco Skills](http://ciscoskills.net/2011/04/18/configure-cisco-sdm/ &amp;#34;&amp;#34;) - &amp;lt;time datetime=&amp;#34;2011-04-18 10:28:12&amp;#34;&amp;gt;Apr 1, 2011&amp;lt;/time&amp;gt;
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;\[...\] Configuring SSH (ciscoskills.net) \[...\]
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&amp;lt;hr /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-        
-      </description>
-    </item>
-    
-    <item>
       <title>Understanding UDP</title>
       <link>https://ciscoskills.net/2011/03/28/understanding-udp/</link>
       <pubDate>Mon, 28 Mar 2011 16:15:29 +0000</pubDate>
@@ -1015,6 +962,7 @@ a few minutes.&lt;/p&gt;
       <description>
         
           &lt;p&gt;Well my first of the many &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco certifications&lt;/a&gt; that I plan take in the future was a success! I was able to pass the &lt;a href=&#34;http://en.wikipedia.org/wiki/Interconnecting_Cisco_Networking_Devices_Part_1&#34; title=&#34;Interconnecting Cisco Networking Devices Part 1&#34;&gt;ICND1&lt;/a&gt; exam. This blog post is going to be a little different in that I want to share how I was able to pass this test and talk about my experience.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Well in January after finishing the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Networking_Academy&#34; title=&#34;Cisco Networking Academy&#34;&gt;Cisco Networking Academy&lt;/a&gt; in the Exploration series I wanted to go ahead and take shot at the ICND1 exam. Now I knew that this was not going to be easy, by looking at online sites like CLN (Cisco Learning Network) and reading the horror stories of people missing by one point, having a hard time &lt;a href=&#34;http://en.wikipedia.org/wiki/Understanding&#34; title=&#34;Understanding&#34;&gt;understanding&lt;/a&gt; the material, not fully prepared, etc. But also reading success stories about how people passed and what they did to pass, really made me jump on the opportunity. Another thing that made me want to try it was the discounted price I was able to get, by going into the Cisco Networking Academy and doing fairly well I was able to apply for a voucher, which helped that determination I had when &lt;a href=&#34;http://en.wikipedia.org/wiki/Study_skills&#34; title=&#34;Study skills&#34;&gt;studying&lt;/a&gt; for the ICND1 exam.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;So what did I do to pass this this exam?&lt;/strong&gt; 
 Well although I finished the Cisco Networking Academy I needed to review the fundamental topics again. So I bought the &lt;a href=&#34;http://www.amazon.com/Official-Certification-Library-640-802-Containing/dp/1587201836/ref=sr_1_1?ie=UTF8&amp;amp;qid=1300551785&amp;amp;sr=8-1&#34;&gt;CCNA Official Exam Certification Library (Exam 640-802), Third Edition (Containing ICND1 and ICND2 Second Edition Exam Certification Guides)&lt;/a&gt; I wanted something that really covered it all in one book, and I am very pleased that I went ahead and got it. But reading a book I don&#39;t think cuts it, you need to fully understand how to set up routers, and switches. That&#39;s where either packet tracer or access to physical equipment comes in. Since I am part of the Cisco Networking Academy I had access to physical and simulation software that I could use. One thing I can agree on is with Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Test_%28assessment%29&#34; title=&#34;Test (assessment)&#34;&gt;exams&lt;/a&gt; you want to make sure that you know how a set of commands work and know what they do and when to apply them.&lt;/p&gt;
@@ -1027,6 +975,7 @@ In the end it shows as at the end of the exam I received an excellent score! Hav
 &lt;p&gt;&lt;strong&gt;This is my first time taking the exam what can I expect?&lt;/strong&gt;
 Like you I was nervous so nervous, I reviewed and reviewed and went over everything again and again. I would agree to this which is you are battling with yourself. Relaxing is important and one thing I like when taking the Cisco exams is you start with a tutorial, I think this helps you get into the mode and you start to calm down. You have about 15 minutes to just breathe and get ready to take the exam and don&#39;t over think it! Simple questions usually want a simple answer. Although test taking tips help you have to know the material in the end to pass, you can&#39;t guess at this stuff. Set a goal and take the exam. Looking back I&#39;m glad I did. It showed that I&#39;m in right the career path and shows to employers that I know the material.&lt;/p&gt;
 &lt;p&gt;So what&#39;s next well I&#39;m taking a break this week, and will start again next week with some more Cisco information and tutorials. I&#39;m also going to start reviewing the ICND2 exam soon and currently I&#39;m estimating that this one will take longer than three months. :)&lt;/p&gt;
+&lt;!--adsense--&gt;
 
         
       </description>

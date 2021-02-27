@@ -85,46 +85,50 @@
       <description>
         
           &lt;p&gt;Today this tutorial is going be talking about how to configure SSH on a &lt;a href=&#34;http://www.cisco.com/&#34; title=&#34;Cisco&#34;&gt;Cisco&lt;/a&gt; router or switch. SSH or &lt;a href=&#34;http://en.wikipedia.org/wiki/Secure_Shell&#34; title=&#34;Secure Shell&#34;&gt;Secure Shell&lt;/a&gt; encrypts the data that is sent from the terminal application to the device. Making if far more safer when it is compared to telnet which sends the data in plain text. To add support for SSH to a Cisco router or switch, the device needs some added information then just &lt;a href=&#34;http://en.wikipedia.org/wiki/Password&#34; title=&#34;Password&#34;&gt;passwords&lt;/a&gt;. The device will need a username and password, this can be configured on a &lt;a href=&#34;http://en.wikipedia.org/wiki/RADIUS&#34; title=&#34;RADIUS&#34;&gt;AAA server&lt;/a&gt; (Authentication Authorization and Accounting) or on the device locally this tutorial will focus on locally configured &lt;a href=&#34;http://en.wikipedia.org/wiki/User_%28computing%29&#34; title=&#34;User (computing)&#34;&gt;usernames&lt;/a&gt; and passwords. To set up SSH you need to configure that following information for the purpose of this tutorial the username will be &lt;em&gt;ciscoskills&lt;/em&gt; and the password will be &lt;em&gt;cisco&lt;/em&gt;.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;The first thing you need to do is change the &lt;a href=&#34;http://en.wikipedia.org/wiki/Telnet&#34; title=&#34;Telnet&#34;&gt;vty&lt;/a&gt; lines in the device (router/switch) depending on the device you will have more vty lines. This command will check its local database for usernames and passwords. The command is entered under (config-line)# prompt with &lt;strong&gt;login local.&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;The next step depends if you want to still allow telnet connections to the device (router/switch). This command is entered under (config-line)# prompt which is &lt;strong&gt;transport input telnet ssh.&lt;/strong&gt; If you only want ssh connections then type the following in &lt;strong&gt;transport input ssh&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;You must enter an at least one username and password for the device (router/switch). This command is entered in &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt; (config)# which for this example the username will be &lt;em&gt;ciscoskills&lt;/em&gt; and the password will be &lt;em&gt;cisco&lt;/em&gt;. The command would be &lt;strong&gt;username ciscoskills password cisco&lt;/strong&gt; in global configuration mode.&lt;/li&gt;
 &lt;li&gt;You also must configure a &lt;a href=&#34;http://en.wikipedia.org/wiki/Domain_name&#34; title=&#34;Domain name&#34;&gt;DNS domain&lt;/a&gt; name for this example the domain will be ciscoskills.net. This command is entered in global configuration mode (config)# which for this example is &lt;strong&gt;ip domain-name ciscoskills.net&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;The final command to configure SSH is generate a key pair, This command Is entered in global configuration mode (config)# which is &lt;strong&gt;crypto key generate rsa&lt;/strong&gt;. When asked the question how many bits in the modulus? Cisco documentation likes 1024. The more bits you have the longer the key and harder to crack. The default is 512.&lt;/li&gt;
+&lt;li&gt;The final command to configure SSH is generate a key pair, This command Is entered in global configuration mode (config)# which is &lt;strong&gt;crypto key generate rsa&lt;/strong&gt;. When asked the question how many bits in the modulus? Cisco documentation likes 1024. The more bits you have the longer the key and harder to crack. The default is 512, and probaly best to go for 2048.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This is what the follow commands would look like in the below output:```
-[code]Router_or_Switch#
-Router_or_Switch#configure terminal
-Enter configuration commands, one per line. End with CNTL/Z.
-Router_or_Switch(config)#line vty 0 4
-Router_or_Switch(config-line)#login local
-Router_or_Switch(config-line)#transport input telnet ssh
-Router_or_Switch(config-line)#exit
-Router_or_Switch(config)#username ciscoskills password cisco
-Router_or_Switch(config)#ip domain-name ciscoskills.net
-Router_or_Switch(config)#crypto key generate rsa
-The name for the keys will be: Router_or_Switch.ciscoskills.net
-Choose the size of the key modulus in the range of 360 to 2048 for your
-General Purpose Keys. Choosing a key modulus greater than 512 may take
-a few minutes.&lt;/p&gt;
-&lt;p&gt;How many bits in the modulus [512]: 1024
-% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]&lt;/p&gt;
-&lt;p&gt;Router_or_Switch(config)#exit
-*Mar 1 0:4:8.988: %SSH-5-ENABLED: SSH 1.99 has been enabled&lt;/p&gt;
-&lt;p&gt;%SYS-5-CONFIG_I: Configured from console by console[/code]&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;---
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;### Comments:
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;#### 
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;[How to speed up the login via SSH in Ubuntu by 100 times | Azoft Spotlight](http://www.azoft.com/spotlight/2011/04/18/ssh-ubuntu-100.html &amp;#34;&amp;#34;) - &amp;lt;time datetime=&amp;#34;2011-04-18 02:07:04&amp;#34;&amp;gt;Apr 1, 2011&amp;lt;/time&amp;gt;
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;\[...\] Configuring SSH (ciscoskills.net) \[...\]
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;&amp;lt;hr /&amp;gt;
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;#### 
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;[Configure Cisco SDM | Cisco Skills](http://ciscoskills.net/2011/04/18/configure-cisco-sdm/ &amp;#34;&amp;#34;) - &amp;lt;time datetime=&amp;#34;2011-04-18 10:28:12&amp;#34;&amp;gt;Apr 1, 2011&amp;lt;/time&amp;gt;
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;\[...\] Configuring SSH (ciscoskills.net) \[...\]
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&amp;lt;hr /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is what the follow commands would look like in the below output:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;Router_or_Switch#
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Router_or_Switch#configure terminal
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Enter configuration commands, one per line. End with CNTL/Z.
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Router_or_Switch(config)#line vty 0 4
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Router_or_Switch(config-line)#login local
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Router_or_Switch(config-line)#transport input telnet ssh
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Router_or_Switch(config-line)#exit
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;Router_or_Switch(config)#username ciscoskills&amp;amp;nbsp;password cisco
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Router_or_Switch(config)#ip domain-name ciscoskills.net
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Router_or_Switch(config)#crypto key generate rsa
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;The name for the keys will be: Router_or_Switch.ciscoskills.net
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Choose the size of the key modulus in the range of 360 to 2048 for your
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;General Purpose Keys. Choosing a key modulus greater than 512 may take
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;a few minutes.
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;How many bits in the modulus \[512\]: 1024
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;% Generating 1024 bit RSA keys, keys will be non-exportable...\[OK\]
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Router_or_Switch(config)#exit
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;*Mar 1 0:4:8.988: %SSH-5-ENABLED: SSH 1.99 has been enabled
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;%SYS-5-CONFIG\_I: Configured from console by console
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s it! This guide is meant for Cisco labs, but you would follow this information to set up a SSH connection with in a production network. It you would like more information a simple web search would work. You can also find more documentation at Cisco.com. I hope this information was helpful and if you have suggestions or comments? Let me hear them!&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.azoft.com/spotlight/2011/04/18/ssh-ubuntu-100.html&#34; title=&#34;&#34;&gt;How to speed up the login via SSH in Ubuntu by 100 times | Azoft Spotlight&lt;/a&gt; - &lt;time datetime=&#34;2011-04-18 02:07:04&#34;&gt;Apr 1, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Configuring SSH (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/18/configure-cisco-sdm/&#34; title=&#34;&#34;&gt;Configure Cisco SDM | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-18 10:28:12&#34;&gt;Apr 1, 2011&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[...] Configuring SSH (ciscoskills.net) [...]&lt;/p&gt;
+&lt;hr /&gt;
+
         
       </description>
     </item>

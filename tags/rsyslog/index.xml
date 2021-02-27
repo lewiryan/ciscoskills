@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;I am looking at rsyslog which is fast syslog system and Loganalyzer as an upfront web GUI for those logs. The Loganalyzer application offers searching of various syslogs, all of which is open source and available to download. In this guide I will go through the steps to get these two applications to work together and in the end of this tutorial we should have a working syslog system ready to take logs! The operating system I am using is the latest CentOS 6.5 minimal. Let&#39;s get started.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Using VMware Workstation the first thing I have done is installed a minimal version of CentOS on the VM. The VM has 30GB on the disk with one processor and two cores with 2GB of RAM. (Which took about 10 minutes to install) Once the VM rebooted I login into the root account and ran the command &lt;strong&gt;yum update&lt;/strong&gt; and accepted all the updates the operating system was able to find (Which took about 10 minutes) Let’s first added some housekeeping packages like wget and nano &lt;strong&gt;yum install wget nano&lt;/strong&gt; .The minimal install does not include wget, or nano. Nano is a good text editor for people who don’t want to use VI :) I have also disabled iptables (&lt;strong&gt;service iptables stop&lt;/strong&gt; &amp;amp; &lt;strong&gt;chkconfig iptables off&lt;/strong&gt; ) in this demo but this is not recommend in a production environment.&lt;/p&gt;
 &lt;h3 id=&#34;first&#34;&gt;FIRST:&lt;/h3&gt;
 &lt;p&gt;Let’s install apache:&lt;/p&gt;
@@ -198,6 +199,7 @@
 &lt;a href=&#34;http://www.mysql.com/&#34;&gt;MySQL&lt;/a&gt;
 &lt;a href=&#34;http://www.rsyslog.com/&#34;&gt;RSYSLOG&lt;/a&gt;
 &lt;a href=&#34;http://loganalyzer.adiscon.com/&#34;&gt;LogAnalyzer&lt;/a&gt;&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
