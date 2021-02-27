@@ -79,6 +79,7 @@
       <description>
         
           &lt;p&gt;Although GNS3 can run local on your computer and you can use VMware Workstation and have the GNS3 appliance. I found it much more stable and predictable to run GNS3 on a dedicated server. Using this type of installation, all the projects, and images are stored on the GNS3 server, so I can install the GNS3 client any computer and get access to the same projects I was working on. You can also have multiple people working on different projects that are on the same server. I find that neat for educational use or if you where helping someone with a project. In this post I’ll walk though the steps needed to set up a GNS3 server.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;The first thing we need to have is an Ubuntu server 16.04.4 operating system installed, as of writing this GNS3 server only supports 16.04.x LTS, some people have had issues with using Ubuntu’s 18.04 LTS which was released in April of this year. We are about halfway through LTS cycle with 16.04 with support ending in April of 2021, still got time. ;) Once you have Ubuntu server &lt;a href=&#34;http://releases.ubuntu.com/xenial/&#34;&gt;16.04&lt;/a&gt; installed and a static IP address assigned we now need to run the GNS3 script, move to the tmp folder.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;cd /tmp
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh &amp;amp;gt; gns3-remote-install.sh
@@ -104,7 +105,7 @@
 &lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;192.168.127.131 ubuntu
 &lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;127.0.0.253 gns3vm
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I also have not had any problems with security updates and just let the Ubuntu server do that automatically when you first setup the operating system, overall its been a good experience. The server I have GNS3 running has a 256GB SSD, an Intel Xeon E3-1270V5 processor with 32GB of RAM and really no complainants, that&#39;s all I got and like always I hope this information is helpful.&lt;/p&gt;
-
+&lt;!--adsense--&gt;
         
       </description>
     </item>

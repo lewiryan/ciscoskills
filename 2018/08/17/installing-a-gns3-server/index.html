@@ -169,6 +169,17 @@
     
     
     <p>Although GNS3 can run local on your computer and you can use VMware Workstation and have the GNS3 appliance. I found it much more stable and predictable to run GNS3 on a dedicated server. Using this type of installation, all the projects, and images are stored on the GNS3 server, so I can install the GNS3 client any computer and get access to the same projects I was working on. You can also have multiple people working on different projects that are on the same server. I find that neat for educational use or if you where helping someone with a project. In this post I’ll walk though the steps needed to set up a GNS3 server.</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <p>The first thing we need to have is an Ubuntu server 16.04.4 operating system installed, as of writing this GNS3 server only supports 16.04.x LTS, some people have had issues with using Ubuntu’s 18.04 LTS which was released in April of this year. We are about halfway through LTS cycle with 16.04 with support ending in April of 2021, still got time. ;) Once you have Ubuntu server <a href="http://releases.ubuntu.com/xenial/">16.04</a> installed and a static IP address assigned we now need to run the GNS3 script, move to the tmp folder.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>cd /tmp
 <span class="ln">2</span>curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh &amp;gt; gns3-remote-install.sh
@@ -195,6 +206,16 @@
 <span class="ln">5</span>127.0.0.253 gns3vm
 </code></pre></div><p>I also have not had any problems with security updates and just let the Ubuntu server do that automatically when you first setup the operating system, overall its been a good experience. The server I have GNS3 running has a 256GB SSD, an Intel Xeon E3-1270V5 processor with 32GB of RAM and really no complainants, that's all I got and like always I hope this information is helpful.</p>
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
       
     

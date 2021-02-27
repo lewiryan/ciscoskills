@@ -293,6 +293,7 @@
 &lt;p&gt;I &amp;quot;officially&amp;quot; started about three months ago, but was really off and on throughout 2018.  During the last three months I did about an hour a day (Monday-Friday), the weekends I would shoot for 4 to 5 hours off and on during the day.&lt;/p&gt;
 &lt;h2 id=&#34;whats-next&#34;&gt;What&#39;s Next&lt;/h2&gt;
 &lt;p&gt;Not really in rush, so I&#39;m probably going to wait until next winter, maybe ;)... I know it seems weird to drag this out and not just pass all of the exams but there are some personal/life goals this year I would like to at least start, in the meantime I hope this information is helpful and good luck!&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://loopedback.com&#34;&gt;Loopy&lt;/a&gt; - &lt;time datetime=&#34;2019-05-17 21:06:55&#34;&gt;May 17, 2019&lt;/time&gt;&lt;/p&gt;
@@ -518,6 +519,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he &lt;a href=&#34;https://blog.ipspace.net/2018/09/infrastructure-as-code-netconf-and-rest.html&#34;&gt;points out&lt;/a&gt; there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC. In this post we&#39;ll go through the steps to enable it and you can be the judge, does this RESTful API help?&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So the first thing we need to grab the RESTful API application and by default is not included so we&#39;ll need to go to cisco.com and download it.  You need look for the Adaptive Security Appliance REST API Plugin and depending on your version of ASA there might be some gotchas on which versions to use so read the release notes. Once we you have the correct version downloaded you need to upload it to the ASA flash. Once uploaded you have to specify the location of the REST API Plugin:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;ASA-HA-1(config)# rest-api image flash:asa-restapi-132325-lfbff-k8.SPA
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Computed Hash   SHA2: 2106d6ac8c4e3c181c4820fb46588b8c
@@ -605,6 +607,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;You are still recommended to have a management network connected to this appliance, here is the topology for this example, thanks GNS3 ;)
 &lt;img src=&#34;https://ciscoskills.net/images/2018/06/ftdv-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;On first boot you must give the appliance some minutes to boot up when you first turn it on. It starts a first boot process which goes through building and setting up everything it needs. Once the unit is primed and ready you should see a login prompt, login with the default username and password which is admin/Admin123 the appliance will go ahead and display a EULA, agree to it and then the system will want you to change the password. You will then be walked through the initial setup of setting up your management IP address, gateway, DNS servers and after that you will be asked if you want to manage the device locally, since we are not using a FMC make sure to answer YES.&lt;/p&gt;
@@ -851,6 +854,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
 &lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Enabling password reset..
 &lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;Please continue to boot the image
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The system will now boot into FXOS and attempt to reinstall the FTD application, the username and passwords are now at default settings and the FTD app-instance would also reinstall. Depending on the version of FTD that is installed by default you may have to reinstall any patches to get your unit up to update.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
@@ -3035,6 +3039,7 @@ Of course you can reverse engineer this if you were given a decimal value and ne
       <description>
         
           &lt;p&gt;In this post I want to walk though the steps to install Rancid on CentOS 7 minimal. Rancid is a great tool to help monitor a device configuration for any changes. It also keeps track of them by using CVS (Concurrent Version System) for backups, so you can go back and compare versions or revert to a previous configuration. Rancid supports multiple hardware from Cisco, HP, Dell, Juniper and more. This is all open-source so you can create custom scripts or add commands to really make this a personal repository that fits your company.  During this install guide several things are required when we install Rancid, I have tired to make this as simple as possible but its not just a type and watch it install. You have to customize some of the scripts to make Rancid work like it should. Read it though and follow along.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So I&#39;m already assuming that you have CentOS 7 minimal installed, with connection to the internet, and have just the root account with a password. You can pick up the latest CentOS at &lt;a href=&#34;http://www.centos.org/&#34;&gt;http://www.centos.org/&lt;/a&gt; Login as the root account and let&#39;s update this thing and accept any updates before we do anything else.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;yum update
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We now need to install all the prerequisites needed for Rancid and some other tools we&#39;ll need for troubleshooting (if needed)&lt;/p&gt;

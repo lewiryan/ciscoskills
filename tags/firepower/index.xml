@@ -65,6 +65,7 @@
       <description>
         
           &lt;p&gt;No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;You are still recommended to have a management network connected to this appliance, here is the topology for this example, thanks GNS3 ;)
 &lt;img src=&#34;https://ciscoskills.net/images/2018/06/ftdv-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;On first boot you must give the appliance some minutes to boot up when you first turn it on. It starts a first boot process which goes through building and setting up everything it needs. Once the unit is primed and ready you should see a login prompt, login with the default username and password which is admin/Admin123 the appliance will go ahead and display a EULA, agree to it and then the system will want you to change the password. You will then be walked through the initial setup of setting up your management IP address, gateway, DNS servers and after that you will be asked if you want to manage the device locally, since we are not using a FMC make sure to answer YES.&lt;/p&gt;
@@ -147,6 +148,7 @@
 &lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Enabling password reset..
 &lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;Please continue to boot the image
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The system will now boot into FXOS and attempt to reinstall the FTD application, the username and passwords are now at default settings and the FTD app-instance would also reinstall. Depending on the version of FTD that is installed by default you may have to reinstall any patches to get your unit up to update.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;

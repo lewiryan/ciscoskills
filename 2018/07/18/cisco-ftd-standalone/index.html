@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://ciscoskills.net/2018/07/18/cisco-ftd-standalone/" />
 <meta property="og:title" content="Cisco FTD Standalone" />
 <meta property="og:description" content="No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into …" />
-<meta property="og:image" content="https://ciscoskills.net/images/thumbnail.png" />
+<meta property="og:image" content="https://ciscoskills.net/images/2018/04/mvimg_20190826_114830e.jpg" />
 <link rel="apple-touch-icon" sizes="180x180" href='https://ciscoskills.net/icons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://ciscoskills.net/icons/favicon-32x32.png'>
 <link rel="manifest" href='https://ciscoskills.net/icons/site.webmanifest'>
@@ -173,8 +173,21 @@
   </div>
 
     
+    <img src="/images/2018/04/mvimg_20190826_114830e.jpg" class="image_featured">
+    
     
     <p>No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <p>You are still recommended to have a management network connected to this appliance, here is the topology for this example, thanks GNS3 ;)
 <img src="/images/2018/06/ftdv-topo.png" alt=""></p>
 <p>On first boot you must give the appliance some minutes to boot up when you first turn it on. It starts a first boot process which goes through building and setting up everything it needs. Once the unit is primed and ready you should see a login prompt, login with the default username and password which is admin/Admin123 the appliance will go ahead and display a EULA, agree to it and then the system will want you to change the password. You will then be walked through the initial setup of setting up your management IP address, gateway, DNS servers and after that you will be asked if you want to manage the device locally, since we are not using a FMC make sure to answer YES.</p>
