@@ -135,8 +135,6 @@
       </a>
       <a href='https://ciscoskills.net/tags/ccna' class="post_tag button button_translucent">CCNA
       </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
-      </a>
       <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">cisco
       </a>
       <a href='https://ciscoskills.net/tags/icnd1' class="post_tag button button_translucent">ICND1
@@ -160,8 +158,6 @@
       <a href='https://ciscoskills.net/tags/transmission-protocols' class="post_tag button button_translucent">Transmission Protocols
       </a>
       <a href='https://ciscoskills.net/tags/tutorial' class="post_tag button button_translucent">tutorial
-      </a>
-      <a href='https://ciscoskills.net/tags/tutorials' class="post_tag button button_translucent">Tutorials
       </a>
 </div>
 
@@ -192,8 +188,29 @@
 
     
     
-    <h2 id="this-tutorial-is-going-to-betalking-about-the-tcp-protocolhttpenwikipediaorgwikitransmission_control_protocol-transmission-control-protocol-every-time-you-connect-to-a-website-you-are-using-the-http-protocolhttpenwikipediaorgwikihypertext_transfer_protocol-hypertext-transfer-protocol-but-below-that-you-are-also-using-a-tcp-protocol-the-nature-of-tcp-is-to-provideerror-recovery-there-are-other-services-or-applications-that-use-tcp-http-however-is-a-common-protocol-that-is-used-in-online-applications-remember-tcp-is-not-the-only-protocol-in-the-transport-layerhttpenwikipediaorgwikitransport_layer-transport-layer-of-the-osi-modelhttpenwikipediaorgwikiosi_model-osi-model-there-is-another-called-udphttpenwikipediaorgwikiuser_datagram_protocol-user-datagram-protocol-but-thats-another-day--tcp-stands-for-transmission-control-protocol-what-makes-tcp-shine-is-its-error-recoveryhttpenwikipediaorgwikierror_detection_and_correction-error-detection-and-correction-this-helps-other-protocolshttpenwikipediaorgwikicommunications_protocol-communications-protocolbelow-not-worry-about-if-the-packet-was-droppedbecause-tcp-will-requestthat-packet-again-with-all-of-that-overhead-in-tcp-it-does-require-more-bandwidth-and-processing-compared-to-the-udp-protocol-tcp-has-several-fields-in-the-header-as-pictured-belowthe-tcp-header-fieldhttpsystemstechblogfileswordpresscom201102tcpheaderjpgw300-tcp-headerhttpsystemstechblogwordpresscom20110225understanding-tcptcpheader-like-mentioned-tcp-has-reliability-error-recovery-this-is-madepossible-by-using-sequence-and-acknowledgment-numbers-byteshttpenwikipediaorgwikibyte-byte-in-the-tcp-header-field-take-the-example-below-the-acknowledgment-field-in-the-tcp-header-that-was-sent-by-theweb-browser-was-4000-this-implies-the-next-byteto-bereceived-will-have-a-sequence-number-of-4000tcp-seq-and-ackhttpsystemstechblogfileswordpresscom201102tcp-sqackpngw300-tcp-sqackhttpsystemstechblogwordpresscom20110225understanding-tcptcp-sqack-since-the-sequence-and-acknowledgment-numbers-count-the-number-of-bytes-this-helps-with-error-control-if-a-tcp-segment-was-lost-or-caused-an-error-the-web-browserhttpenwikipediaorgwikiweb_browser-web-browserwould-send-an-acknowledgment-that-the-web-server-that-would-not-be-expecting-and-resend-any-lost-data-an-example-would-be-if-the-web-browser-only-received-2000-bytes-the-client-would-send-an-acknowledgment-of3000-bytes-when-the-web-server-received-that-information-it-knows-that-it-sent-3000-bytes-of-data-and-the-acknowledgment-field-should-be4000-the-web-server-would-resend-the-third-segment-again-and-wait-of-an-acknowledgment-of-4000tcp-drophttpsystemstechblogfileswordpresscom201102tcp-droppngw300-tcp-drophttpsystemstechblogwordpresscom20110225understanding-tcptcp-drop-another-feature-tcp-has-is-calledflow-control-this-uses-the-window-field-which-determines-the-maximumamount-unacknowledged-bytes-at-a-given-time-the-size-starts-out-small-and-if-no-errors-occur-then-the-window-size-increases-the-number-of-unacknowledged-bytes-this-speeds-up-time-needed-to-download-the-information-if-errors-start-to-occur-then-the-windows-size-decreases-keep-in-mind-that-this-field-will-change-often-as-it-will-continue-try-to-raise-the-number-of-unacknowledged-bytestcp-windowhttpsystemstechblogfileswordpresscom201102tcp-windowpngw300-tcp-windowhttpsystemstechblogwordpresscom20110225understanding-tcptcp-window-tcp-is-also-does-a-connectionestablishment-and-termination-this-happens-before-any-data-is-sentis-it-will-also-start-the-sequence-numbers-acknowledgment-numbers-and-agree-on-the-port-numbershttpenwikipediaorgwikiport_number-port-numberto-use-this-three-way-handshake-happens-in-beginning-and-at-the-end-when-the-data-transfer-is-complete-the-flags-it-uses-in-the-tcp-header-are-syn-which-means-synchronize-the-sequence-numbers-ack-which-is-an-acknowledgment-field-and-to-terminate-or-finish-the-connection-it-will-send-a-fin-bit-although-this-a-brief-tutorial-and-how-tcp-works-in-gives-you-an-understanding-of-the-main-components-that-are-involvedin-setting-up-a-tcp-connection-and-finishing-a-connection-like-always-i-encourage-you-if-you-would-like-more-information-a-web-search-will-do-along-with-visiting-ciscocom-i-hope-this-tutorial-was-helpful">This tutorial is going to be talking about the <a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol" title="Transmission Control Protocol">TCP protocol</a>. Every time you connect to a website you are using the <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" title="Hypertext Transfer Protocol">HTTP protocol</a>, but below that you are also using a TCP protocol. The nature of TCP is to provide error recovery; there are other services or applications that use TCP. HTTP however is a common protocol that is used in online applications.  Remember TCP is not the only protocol in the <a href="http://en.wikipedia.org/wiki/Transport_Layer" title="Transport Layer">transport layer</a> of the <a href="http://en.wikipedia.org/wiki/OSI_model" title="OSI model">OSI model</a>, there is another called <a href="http://en.wikipedia.org/wiki/User_Datagram_Protocol" title="User Datagram Protocol">UDP</a> but that's another day. :) TCP stands for (Transmission Control Protocol) what makes TCP shine is its <a href="http://en.wikipedia.org/wiki/Error_detection_and_correction" title="Error detection and correction">error recovery</a>, this helps other <a href="http://en.wikipedia.org/wiki/Communications_protocol" title="Communications protocol">protocols</a> below not worry about if the packet was dropped because TCP will request that packet again. With all of that overhead in TCP it does require more bandwidth, and processing compared to the UDP protocol. TCP has several fields in the header as pictured below.  <a href="http://systemstechblog.wordpress.com/2011/02/25/understanding-tcp/tcpheader/"><img src="http://systemstechblog.files.wordpress.com/2011/02/tcpheader.jpg?w=300" alt="The TCP Header Field" title="tcp-header"></a> Like mentioned TCP has reliability (error recovery) this is made possible by using sequence and acknowledgment numbers (<a href="http://en.wikipedia.org/wiki/Byte" title="Byte">bytes</a>) in the TCP header field. Take the example below the acknowledgment field in the TCP header that was sent by the web browser was 4000, this implies the next byte to be received will have a sequence number of 4000.  <a href="http://systemstechblog.wordpress.com/2011/02/25/understanding-tcp/tcp-sqack/"><img src="http://systemstechblog.files.wordpress.com/2011/02/tcp-sqack.png?w=300" alt="TCP SEQ and ACK" title="TCP-SQACK"></a> Since the sequence and acknowledgment numbers count the number of bytes, this helps with error control if a TCP segment was lost or caused an error the <a href="http://en.wikipedia.org/wiki/Web_browser" title="Web browser">web browser</a> would send an acknowledgment that the web server that would not be expecting and resend any lost data. An example would be if the web browser only received 2000 bytes, the client would send an acknowledgment of 3000 bytes. When the web server received that information it knows that it sent 3000 bytes of data and the acknowledgment field should be 4000. The web server would resend the third segment again and wait of an acknowledgment of 4000.  <a href="http://systemstechblog.wordpress.com/2011/02/25/understanding-tcp/tcp-drop/"><img src="http://systemstechblog.files.wordpress.com/2011/02/tcp-drop.png?w=300" alt="TCP Drop" title="tcp-drop"></a> Another feature TCP has is called flow control; this uses the window field which determines the maximum amount unacknowledged bytes at a given time. The size starts out small and if no errors occur then the window size increases the number of unacknowledged bytes. This speeds up time needed to download the information. If errors start to occur then the windows size decreases, keep in mind that this field will change often as it will continue try to raise the number of unacknowledged bytes.  <a href="http://systemstechblog.wordpress.com/2011/02/25/understanding-tcp/tcp-window/"><img src="http://systemstechblog.files.wordpress.com/2011/02/tcp-window.png?w=300" alt="TCP Window" title="TCP-Window"></a> TCP is also does a connection establishment and termination. This happens before any data is sent is it will also start the sequence numbers, acknowledgment numbers and agree on the <a href="http://en.wikipedia.org/wiki/Port_number" title="Port number">port numbers</a> to use. This three-way handshake happens in beginning and at the end when the data transfer is complete. The flags it uses in the TCP header are &quot;SYN&quot; which means synchronize the sequence numbers. &quot;ACK&quot; which is an acknowledgment field and to terminate or finish the connection it will send a &quot;FIN&quot; bit. Although this a brief tutorial and how TCP works in gives you an understanding of the main components that are involved in setting up a TCP connection and finishing a connection. Like always I encourage you if you would like more information a web search will do, along with visiting Cisco.com. I hope this tutorial was helpful.</h2>
-<h3 id="comments">Comments:</h3>
+    <p>This tutorial is going to be talking about the <a href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol" title="Transmission Control Protocol">TCP protocol</a>. Every time you connect to a website you are using the <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" title="Hypertext Transfer Protocol">HTTP protocol</a>, but below that you are also using a TCP protocol. The nature of TCP is to provide error recovery; there are other services or applications that use TCP. HTTP however is a common protocol that is used in online applications.  Remember TCP is not the only protocol in the <a href="http://en.wikipedia.org/wiki/Transport_Layer" title="Transport Layer">transport layer</a> of the <a href="http://en.wikipedia.org/wiki/OSI_model" title="OSI model">OSI model</a>, there is another called <a href="http://en.wikipedia.org/wiki/User_Datagram_Protocol" title="User Datagram Protocol">UDP</a> but that's another day. :)</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>TCP stands for (Transmission Control Protocol) what makes TCP shine is its <a href="http://en.wikipedia.org/wiki/Error_detection_and_correction" title="Error detection and correction">error recovery</a>, this helps other <a href="http://en.wikipedia.org/wiki/Communications_protocol" title="Communications protocol">protocols</a> below not worry about if the packet was dropped because TCP will request that packet again. With all of that overhead in TCP it does require more bandwidth, and processing compared to the UDP protocol. TCP has several fields in the header as pictured below.</p>
+<p><img src="/images/2011/02/tcpheader.jpg" alt="The TCP Header Field"></p>
+<p>Like mentioned TCP has reliability (error recovery) this is made possible by using sequence and acknowledgment numbers (<a href="http://en.wikipedia.org/wiki/Byte" title="Byte">bytes</a>) in the TCP header field. Take the example below the acknowledgment field in the TCP header that was sent by the web browser was 4000, this implies the next byte to be received will have a sequence number of 4000.</p>
+<p><img src="/images/2011/02/tcp-sqack.png" alt="TCP SEQ and ACK"></p>
+<p>Since the sequence and acknowledgment numbers count the number of bytes, this helps with error control if a TCP segment was lost or caused an error the <a href="http://en.wikipedia.org/wiki/Web_browser" title="Web browser">web browser</a> would send an acknowledgment that the web server that would not be expecting and resend any lost data. An example would be if the web browser only received 2000 bytes, the client would send an acknowledgment of 3000 bytes. When the web server received that information it knows that it sent 3000 bytes of data and the acknowledgment field should be 4000. The web server would resend the third segment again and wait of an acknowledgment of 4000.</p>
+<p><img src="/images/2011/02/tcp-drop.png" alt="TCP Drop"></p>
+<p>Another feature TCP has is called flow control; this uses the window field which determines the maximum amount unacknowledged bytes at a given time. The size starts out small and if no errors occur then the window size increases the number of unacknowledged bytes. This speeds up time needed to download the information. If errors start to occur then the windows size decreases, keep in mind that this field will change often as it will continue try to raise the number of unacknowledged bytes.</p>
+<p><img src="/images/2011/02/tcp-window.png" alt="TCP Window"></p>
+<p>TCP is also does a connection establishment and termination. This happens before any data is sent is it will also start the sequence numbers, acknowledgment numbers and agree on the <a href="http://en.wikipedia.org/wiki/Port_number" title="Port number">port numbers</a> to use. This three-way handshake happens in beginning and at the end when the data transfer is complete. The flags it uses in the TCP header are &quot;SYN&quot; which means synchronize the sequence numbers. &quot;ACK&quot; which is an acknowledgment field and to terminate or finish the connection it will send a &quot;FIN&quot; bit. Although this a brief tutorial and how TCP works in gives you an understanding of the main components that are involved in setting up a TCP connection and finishing a connection. Like always I encourage you if you would like more information a web search will do, along with visiting Cisco.com. I hope this tutorial was helpful.</p>
+<hr>
+<h3 id="static-comments">Static Comments:</h3>
 <h4 id="heading"></h4>
 <p><a href="http://ciscoskills.net/2011/03/04/wordpress-com-hit-by-a-dos-attack/" title="">WordPress.com Hit by a DoS Attack | Cisco Skills</a> - <time datetime="2011-03-04 08:41:33">Mar 5, 2011</time></p>
 <p>[...] out my recent post of Understanding TCP to learn how the TCP protocol works in a simplified form. You can also find more information about [...]</p>
@@ -243,17 +260,17 @@
       <nav class="tags_nav">
         <a href='https://ciscoskills.net/tags/cisco/' class="post_tag button button_translucent">
           CISCO
-          <span class="button_tally">141</span>
+          <span class="button_tally">142</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/technology/' class="post_tag button button_translucent">
           TECHNOLOGY
-          <span class="button_tally">130</span>
+          <span class="button_tally">131</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/networking/' class="post_tag button button_translucent">
           NETWORKING
-          <span class="button_tally">117</span>
+          <span class="button_tally">118</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/ccna/' class="post_tag button button_translucent">
@@ -263,12 +280,12 @@
         
         <a href='https://ciscoskills.net/tags/tutorials/' class="post_tag button button_translucent">
           TUTORIALS
-          <span class="button_tally">64</span>
+          <span class="button_tally">62</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/general/' class="post_tag button button_translucent">
           GENERAL
-          <span class="button_tally">57</span>
+          <span class="button_tally">56</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/tutorial/' class="post_tag button button_translucent">
@@ -329,7 +346,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/640-911/' class=" post_tag button button_translucent" data-position=8>640-911<span class="button_tally">8</span>
+            <a href='https://ciscoskills.net/tags/640-911/' class=" post_tag button button_translucent" data-position=9>640-911<span class="button_tally">9</span>
             </a>
             
             
@@ -533,7 +550,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/ccna-data-center/' class=" post_tag button button_translucent" data-position=12>CCNA-DATA-CENTER<span class="button_tally">12</span>
+            <a href='https://ciscoskills.net/tags/ccna-data-center/' class=" post_tag button button_translucent" data-position=13>CCNA-DATA-CENTER<span class="button_tally">13</span>
             </a>
             
             
@@ -573,7 +590,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/certification/' class=" post_tag button button_translucent" data-position=13>CERTIFICATION<span class="button_tally">13</span>
+            <a href='https://ciscoskills.net/tags/certification/' class=" post_tag button button_translucent" data-position=14>CERTIFICATION<span class="button_tally">14</span>
             </a>
             
             
@@ -585,7 +602,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/cisco/' class=" post_tag button button_translucent" data-position=141>CISCO<span class="button_tally">141</span>
+            <a href='https://ciscoskills.net/tags/cisco/' class=" post_tag button button_translucent" data-position=142>CISCO<span class="button_tally">142</span>
             </a>
             
             
@@ -593,7 +610,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/cisco-career-certifications/' class=" post_tag button button_translucent" data-position=23>CISCO-CAREER-CERTIFICATIONS<span class="button_tally">23</span>
+            <a href='https://ciscoskills.net/tags/cisco-career-certifications/' class=" post_tag button button_translucent" data-position=24>CISCO-CAREER-CERTIFICATIONS<span class="button_tally">24</span>
             </a>
             
             
@@ -725,7 +742,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/data-center/' class=" post_tag button button_translucent" data-position=12>DATA-CENTER<span class="button_tally">12</span>
+            <a href='https://ciscoskills.net/tags/data-center/' class=" post_tag button button_translucent" data-position=13>DATA-CENTER<span class="button_tally">13</span>
             </a>
             
             
@@ -925,7 +942,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/general/' class=" post_tag button button_translucent" data-position=57>GENERAL<span class="button_tally">57</span>
+            <a href='https://ciscoskills.net/tags/general/' class=" post_tag button button_translucent" data-position=56>GENERAL<span class="button_tally">56</span>
             </a>
             
             
@@ -1105,7 +1122,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/internet-protocol/' class=" post_tag button button_translucent" data-position=7>INTERNET-PROTOCOL<span class="button_tally">7</span>
+            <a href='https://ciscoskills.net/tags/internet-protocol/' class=" post_tag button button_translucent" data-position=8>INTERNET-PROTOCOL<span class="button_tally">8</span>
             </a>
             
             
@@ -1129,7 +1146,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/ip-address/' class=" post_tag button button_translucent" data-position=19>IP-ADDRESS<span class="button_tally">19</span>
+            <a href='https://ciscoskills.net/tags/ip-address/' class=" post_tag button button_translucent" data-position=20>IP-ADDRESS<span class="button_tally">20</span>
             </a>
             
             
@@ -1313,7 +1330,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=117>NETWORKING<span class="button_tally">117</span>
+            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=118>NETWORKING<span class="button_tally">118</span>
             </a>
             
             
@@ -1457,7 +1474,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/protocols/' class=" post_tag button button_translucent" data-position=6>PROTOCOLS<span class="button_tally">6</span>
+            <a href='https://ciscoskills.net/tags/protocols/' class=" post_tag button button_translucent" data-position=5>PROTOCOLS<span class="button_tally">5</span>
             </a>
             
             
@@ -1693,7 +1710,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/technology/' class=" post_tag button button_translucent" data-position=130>TECHNOLOGY<span class="button_tally">130</span>
+            <a href='https://ciscoskills.net/tags/technology/' class=" post_tag button button_translucent" data-position=131>TECHNOLOGY<span class="button_tally">131</span>
             </a>
             
             
@@ -1761,7 +1778,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=64>TUTORIALS<span class="button_tally">64</span>
+            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=62>TUTORIALS<span class="button_tally">62</span>
             </a>
             
             
@@ -1773,7 +1790,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/uncategorized/' class=" post_tag button button_translucent" data-position=2>UNCATEGORIZED<span class="button_tally">2</span>
+            <a href='https://ciscoskills.net/tags/uncategorized/' class=" post_tag button button_translucent" data-position=1>UNCATEGORIZED<span class="button_tally">1</span>
             </a>
             
             

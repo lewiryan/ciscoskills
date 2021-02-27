@@ -394,13 +394,19 @@
     
     <item>
       <title>CCNA Data Center</title>
-      <link>https://ciscoskills.net/2012/11/22/ccna-data-center/</link>
-      <pubDate>Thu, 22 Nov 2012 02:30:15 +0000</pubDate>
+      <link>https://ciscoskills.net/2012/11/21/ccna-data-center/</link>
+      <pubDate>Wed, 21 Nov 2012 02:30:15 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/11/22/ccna-data-center/</guid>
+      <guid>https://ciscoskills.net/2012/11/21/ccna-data-center/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/11/data-centere.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/11/data-centere.png&#34; alt=&#34;&#34; title=&#34;data-center&#34;&gt;&lt;/a&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has now introduced another associate level &lt;a href=&#34;http://en.wikipedia.org/wiki/Test_%28assessment%29&#34; title=&#34;Test (assessment)&#34;&gt;exam&lt;/a&gt;, the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; exam. Like the name suggests this exam focuses on the &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; and if passed you can continue up the stack by also taking the CCNP Data Center exam which was also recently introduced as well. Still want more a little more, if you are up for the challenge you can also tackle the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCIE_Certification&#34; title=&#34;CCIE Certification&#34;&gt;CCIE&lt;/a&gt; Data Center which is an exam that was introduced in March of 2012.  Looking at the CCNA DC certification requirements, there is no need to get certificated in the regular CCNA &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;Routing&lt;/a&gt; and Switching as it is not required but looking at the renewal options for this certification you have to either get a CCNA concentration exam like &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Wireless&lt;/a&gt;, Security, Voice, SP, SP Ops or a higher certification like CCNP and above. &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/11/ccna-data-centere1.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/11/ccna-data-centere1.png&#34; alt=&#34;&#34; title=&#34;Cisco Cert Table&#34;&gt;&lt;/a&gt; An interesting thing I noticed when looking at Cisco&#39;s Career Certifications is that if you passed your CCNA Data Center exam and then later you passed the regular CCNA exam the CCNA Data Center certification would not renew. Unlike if you recived your CCNP Data Center certification and then took the CCNP exam it would renew you CCNP Data Center certification. What makes this exam so different from the rest of Cisco&#39;s certifications? Well to what I can tell this exam focuses on a specific area, meaning you don&#39;t need to have any certifications to back you up before you take the CCNA Data Center exam, and you can continue with CCNP Data Center exam without the need to have any other certifications beside CCNA DC. To pass the CCNA Data Center and receive your certification, you will need to pass two exams. The first exam (640-911 DCICN) looks at how a Data Center network works, along with configuring, verifying and troubleshooting data center switches. This exam also looks at implementing data center &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; schemes and configuring, along with verifying and troubleshooting routing on Nexus switches. The second exam (640-916 DCICT) looks at Cisco&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Fabric_computing&#34; title=&#34;Fabric computing&#34;&gt;Unified Computing&lt;/a&gt; System, and virtualization by talking about the fundamentals. Along with focusing on the data center storage switching and the unified fabric between them. Finally this exam looks at the Data Center Network Services, like such as Cisco ACS and load balancing between servers and management options. Excited? You can find more information by going to &lt;a href=&#34;http://www.cisco.com/web/learning/le3/le2/le0/ccna_dc/index.html&#34; title=&#34;CCNA Data Center Certification&#34;&gt;CCNA Data Center - Career Certifications&lt;/a&gt; and check out the &lt;a href=&#34;https://learningnetwork.cisco.com/community/certifications/ccna_data_center&#34;&gt;The Cisco Learning Network and the section  CCNA Data Center&lt;/a&gt;. Because of this recent announcement there are limited if any Cisco Press books out there, (Let me know if you find one ;) ) but I&#39;m sure that will change within a couple months. Check back to this post to see any updates on reading material as I will be actively looking. &lt;strong&gt;UPDATE:&lt;/strong&gt; There is a book available from Todd Lammle - &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265&#34; title=&#34;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide&#34;&gt;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide&lt;/a&gt; This title looks like it only covers the 640-911 exam. **UPDATE 2: **Since Cisco has now re-amped the ICND1 (ICND1 100-101) and ICND2 (ICND2 200-101) you can now get the CCNA Data Center cert renewed by passing the any current Associate-level exam except for the ICND1. :)&lt;/p&gt;
+          &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has now introduced another associate level &lt;a href=&#34;http://en.wikipedia.org/wiki/Test_%28assessment%29&#34; title=&#34;Test (assessment)&#34;&gt;exam&lt;/a&gt;, the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; exam. Like the name suggests this exam focuses on the &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; and if passed you can continue up the stack by also taking the CCNP Data Center exam which was also recently introduced as well. Still want more a little more, if you are up for the challenge you can also tackle the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCIE_Certification&#34; title=&#34;CCIE Certification&#34;&gt;CCIE&lt;/a&gt; Data Center which is an exam that was introduced in March of 2012.&lt;/p&gt;
+&lt;p&gt;Looking at the CCNA DC certification requirements, there is no need to get certificated in the regular CCNA &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;Routing&lt;/a&gt; and Switching as it is not required but looking at the renewal options for this certification you have to either get a CCNA concentration exam like &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Wireless&lt;/a&gt;, Security, Voice, SP, SP Ops or a higher certification like CCNP and above.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2012/11/ccna-data-centere1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;An interesting thing I noticed when looking at Cisco&#39;s Career Certifications is that if you passed your CCNA Data Center exam and then later you passed the regular CCNA exam the CCNA Data Center certification would not renew. Unlike if you recived your CCNP Data Center certification and then took the CCNP exam it would renew you CCNP Data Center certification. What makes this exam so different from the rest of Cisco&#39;s certifications? Well to what I can tell this exam focuses on a specific area, meaning you don&#39;t need to have any certifications to back you up before you take the CCNA Data Center exam, and you can continue with CCNP Data Center exam without the need to have any other certifications beside CCNA DC. To pass the CCNA Data Center and receive your certification, you will need to pass two exams. The first exam (640-911 DCICN) looks at how a Data Center network works, along with configuring, verifying and troubleshooting data center switches.&lt;/p&gt;
+&lt;p&gt;This exam also looks at implementing data center &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; schemes and configuring, along with verifying and troubleshooting routing on Nexus switches. The second exam (640-916 DCICT) looks at Cisco&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Fabric_computing&#34; title=&#34;Fabric computing&#34;&gt;Unified Computing&lt;/a&gt; System, and virtualization by talking about the fundamentals. Along with focusing on the data center storage switching and the unified fabric between them. Finally this exam looks at the Data Center Network Services, like such as Cisco ACS and load balancing between servers and management options.&lt;/p&gt;
+&lt;p&gt;Excited? You can find more information by going to &lt;a href=&#34;http://www.cisco.com/web/learning/le3/le2/le0/ccna_dc/index.html&#34; title=&#34;CCNA Data Center Certification&#34;&gt;CCNA Data Center - Career Certifications&lt;/a&gt; and check out the &lt;a href=&#34;https://learningnetwork.cisco.com/community/certifications/ccna_data_center&#34;&gt;The Cisco Learning Network and the section  CCNA Data Center&lt;/a&gt;. Because of this recent announcement there are limited if any Cisco Press books out there, (Let me know if you find one ;) ) but I&#39;m sure that will change within a couple months. Check back to this post to see any updates on reading material as I will be actively looking.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; There is a book available from Todd Lammle - &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265&#34; title=&#34;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide&#34;&gt;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide&lt;/a&gt; This title looks like it only covers the 640-911 exam. **UPDATE 2: **Since Cisco has now re-amped the ICND1 (ICND1 100-101) and ICND2 (ICND2 200-101) you can now get the CCNA Data Center cert renewed by passing the any current Associate-level exam except for the ICND1. :)&lt;/p&gt;
 &lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/next-generations-data-centers-need-next-generations-skills/&#34;&gt;Next Generations Data Centers Need Next Generation Skills&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
@@ -408,7 +414,7 @@
 &lt;li&gt;&lt;a href=&#34;http://networkingnerd.net/2012/11/21/vmware-certification-for-cisco-people/&#34;&gt;VMware Certification for Cisco People&lt;/a&gt; (networkingnerd.net)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2013/06/29/passed-640-554/&#34; title=&#34;&#34;&gt;Passed 640-554! « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2013-06-29 23:51:06&#34;&gt;Jun 6, 2013&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[…] what is my next plan? Not sure I might look at that new CCNA Data Center exam which was announced last fall and it also looked like they may have some study material for […]&lt;/p&gt;
@@ -920,70 +926,67 @@ So when I scheduled the test I also scheduled it on my birthday, not sure why 
     
     <item>
       <title>Part 2 – The Joys of Subnetttting – VLSM!</title>
-      <link>https://ciscoskills.net/2012/04/24/part-2-the-joys-of-subnetttting-vlsm/</link>
-      <pubDate>Tue, 24 Apr 2012 02:06:15 +0000</pubDate>
+      <link>https://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</link>
+      <pubDate>Mon, 23 Apr 2012 02:06:15 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/04/24/part-2-the-joys-of-subnetttting-vlsm/</guid>
+      <guid>https://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/04/vlsm-cbe.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/04/vlsm-cbe.png&#34; alt=&#34;VLSM Chalkboard &#34; title=&#34;VLSM-CBE&#34;&gt;&lt;/a&gt;So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff. It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; test. So let&#39;s get started! On Part 1 of my subnetting post I was spiting up networks into equal parts.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
+          &lt;p&gt;So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff. It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; test. So let&#39;s get started! On Part 1 of my subnetting post I was spiting up networks into equal parts.&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Example: If I took an original Class C address of 192.168.5.X (Subnet 255.255.255.0) in broke it up into four parts, each part would be equal. I would use a /26 or a 255.255.255.192. Each network would hold 62 hosts and I would have four of them.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;192.168.5.1 – 192.168.5.62&lt;/li&gt;
 &lt;li&gt;192.168.5.65 – 192.168.5.90&lt;/li&gt;
 &lt;li&gt;192.168.5.93 – 192.168.5.126&lt;/li&gt;
 &lt;li&gt;192.168.5.129 – 192.168.5.254&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;This example is standard subnetting if this loses you go back and check out my post of Part 1. Also check out this subnetting workbook (which is in Part 1) this workbook will help you to continue to practice subnetting, there are easier ways to get the answers but you have to start at the beginning and really have an understanding of it, once you got it you&#39;ll find the shortcuts everyone finds different ways to break this down :) -- &lt;a href=&#34;http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/&#34; title=&#34;Part 1 – The Joys of Subnetting!&#34;&gt;Part 1 – The Joys of Subnetting!&lt;/a&gt; -- Subnetting Workbook --&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/04/ip-subnetting-workbook.pdf&#34;&gt;IP-Subnetting-Workbook&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;With &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt; it&#39;s basically the same method but a better way to conserve addresses, instead of having equal parts of the Class address why can&#39;t we divide it up and different size pieces? Take a look at the picture below one link requires 111 hosts another only needs 25 hosts and the last one needs 50 hosts. With standard subnetting you would not be able to fulfill this goal. However with VLSM you would let&#39;s go through the process. &lt;a href=&#34;http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/vlsm-diagram/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/04/vlsm-diagram.png&#34; alt=&#34;VLSM Design - Acme Corp&#34; title=&#34;VLSM- Diagram&#34;&gt;&lt;/a&gt; So our corporation Acme wants to expand departments to three different buildings instead of one building. These buildings are connected via a &lt;a href=&#34;http://en.wikipedia.org/wiki/Wide_area_network&#34; title=&#34;Wide area network&#34;&gt;WAN&lt;/a&gt; Link to each other. We are handed one &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; class which is a class C from Acme&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Tier_3&#34; title=&#34;Tier 3&#34;&gt;Tier 3&lt;/a&gt; support. No Problem let&#39;s break this down.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This example is standard subnetting if this loses you go back and check out my post of Part 1. Also check out this subnetting workbook (which is in Part 1) this workbook will help you to continue to practice subnetting, there are easier ways to get the answers but you have to start at the beginning and really have an understanding of it, once you got it you&#39;ll find the shortcuts everyone finds different ways to break this down :) -- &lt;a href=&#34;http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/&#34; title=&#34;Part 1 – The Joys of Subnetting!&#34;&gt;Part 1 – The Joys of Subnetting!&lt;/a&gt; -- Subnetting Workbook --&lt;a href=&#34;https://ciscoskills.net/files/2012/04/ip-subnetting-workbook.pdf&#34;&gt;IP-Subnetting-Workbook&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt; it&#39;s basically the same method but a better way to conserve addresses, instead of having equal parts of the Class address why can&#39;t we divide it up and different size pieces? Take a look at the picture below one link requires 111 hosts another only needs 25 hosts and the last one needs 50 hosts. With standard subnetting you would not be able to fulfill this goal. However with VLSM you would let&#39;s go through the process.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2012/04/vlsm-diagram.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;So our corporation Acme wants to expand departments to three different buildings instead of one building. These buildings are connected via a &lt;a href=&#34;http://en.wikipedia.org/wiki/Wide_area_network&#34; title=&#34;Wide area network&#34;&gt;WAN&lt;/a&gt; Link to each other. We are handed one &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; class which is a class C from Acme&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Tier_3&#34; title=&#34;Tier 3&#34;&gt;Tier 3&lt;/a&gt; support. No Problem let&#39;s break this down.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;It is always best to take the biggest number of hosts required in this case it is the Finance department which requires 111 hosts. What is the next step? We can&#39;t give a whole class C address because we have two other departments so let&#39;s divide it into two. The subnet mask would be 255.255.255.128 and or a /25. These two networks would be able to hold 126 hosts.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;192.168.16.1 - 192.168.16.126&lt;/li&gt;
-&lt;li&gt;192.168.16.129 – 192.168.16.254&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Does this look familiar? So far we are just doing standard subnettng, The Finance department will use the first range. What about the second one let&#39;s break it down even further! I would then choose the next biggest subnet which is the IT department which requires 50 hosts. So the range we can work with is 192.168.16.129 – 192.168.16.254. The subnet mask is 255.255.255.128 or a /25. This range is too big still because we still have one more department to work with. So let&#39;s break this down to a /26 .&lt;/p&gt;
+&lt;p&gt;192.168.16.1 - 192.168.16.126&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;192.168.16.129 – 192.168.16.254&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Does this look familiar? So far we are just doing standard subnettng, The Finance department will use the first range. What about the second one let&#39;s break it down even further! I would then choose the next biggest subnet which is the IT department which requires 50 hosts. So the range we can work with is 192.168.16.129 – 192.168.16.254. The subnet mask is 255.255.255.128 or a /25. This range is too big still because we still have one more department to work with. So let&#39;s break this down to a /26.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;192.168.16.129 – 192.168.16.190&lt;/li&gt;
 &lt;li&gt;192.168.16.193 – 192.168.16.254&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
 &lt;p&gt;So I just took the original /25 and spilt it into two equal pieces which is like the standard subnettng but now that we have different size networks within the same &lt;a href=&#34;http://en.wikipedia.org/wiki/Classful_network&#34; title=&#34;Classful network&#34;&gt;class C network&lt;/a&gt; it&#39;s now considered VLSM! I also have an address range that can work with for the IT department we will use 192.168.16.129 – 192.168.16.190. The subnet masks of these two IP address ranges are 255.255.255.192. Each network can hold up to 62 hosts.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
+&lt;blockquote&gt;
 &lt;p&gt;We could give HR the other range and that might be a good &amp;quot;real world&amp;quot; solution because this looks to perfect right? But for the sake of the exam let&#39;s continue so we have the following range left to hack and slash: (&lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;Subnet mask&lt;/a&gt; is 255.255.255.192)&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;192.168.16.193 – 192.168.16.254&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
 &lt;p&gt;Let&#39;s break this down one more click to a /27 the subnet mask will be 255.255.255.224. These ranges will be able to handle up to 30 hosts:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;192.168.16.193 – 192.168.16.222&lt;/li&gt;
 &lt;li&gt;192.168.16.225 – 192.168.16.254&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;For HR let&#39;s pick the range 192.168.16.193 – 192.168.16.222 like before the subnet mask will be 255.255.255.224. That&#39;s VLSM!!!&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;For HR let&#39;s pick the range 192.168.16.193 – 192.168.16.222 like before the subnet mask will be 255.255.255.224. That&#39;s VLSM!!!&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Not too bad right? What happens to the other range (192.168.16.225 – 192.168.16.254) that&#39;s a spare that can be used elsewhere in the environment of &lt;a href=&#34;http://en.wikipedia.org/wiki/Acme_Corporation&#34; title=&#34;Acme Corporation&#34;&gt;Acme Corporation&lt;/a&gt;. So let&#39;s look at the picture of our ranges and networks:&lt;/p&gt;
-&lt;p&gt;Finance Network --111 Hosts&lt;/p&gt;
-&lt;p&gt;Range: (192.168.16.1 – 192.168.16.128) – &lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;Subnet Mask&lt;/a&gt; 255.255.255.128 &lt;strong&gt;Can support up to 126 hosts&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;IT Network --50 Hosts&lt;/p&gt;
-&lt;p&gt;Range: (192.168.16.129 -192.168.16.190) – Subnet Mask 255.255.255.192 &lt;strong&gt;Can support up to 62 hosts&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;HR Network --25 Hosts&lt;/p&gt;
-&lt;p&gt;Range: (192.168.16.193 – 192.168.16.222) – Subnet Mask  255.255.255.224 &lt;strong&gt;Can support up to 30 hosts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Finance Network --111 Hosts
+Range: (192.168.16.1 – 192.168.16.128) – &lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;Subnet Mask&lt;/a&gt; 255.255.255.128 &lt;strong&gt;Can support up to 126 hosts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;IT Network --50 Hosts
+Range: (192.168.16.129 -192.168.16.190) – Subnet Mask 255.255.255.192 &lt;strong&gt;Can support up to 62 hosts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;HR Network --25 Hosts
+Range: (192.168.16.193 – 192.168.16.222) – Subnet Mask  255.255.255.224 &lt;strong&gt;Can support up to 30 hosts&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I&#39;ll let that sink in if you have a question feel free to post it, I or others would be happy to help you out :). Here is another question for you where else would you put IP addresses that the diagram doesn&#39;t say? How many would you need if any? How many networks would you have total including the three networks we did? Like always I hope this information is helpful and if you have a question post it, if you have an idea on the next topic post it!! Have an awesome day! - Ryan&lt;/p&gt;
 &lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
 &lt;ul&gt;
@@ -992,61 +995,20 @@ So when I scheduled the test I also scheduled it on my birthday, not sure why 
 &lt;li&gt;&lt;a href=&#34;http://gunnalag.wordpress.com/2012/04/08/configuring-dhcp-server-in-windows-server-2008-r2/&#34;&gt;Configuring DHCP Server in Windows Server 2008 R2&lt;/a&gt; (gunnalag.wordpress.com)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://gunnalag.wordpress.com/2012/04/08/subnetting-purpose-of-it-and-how-it-works/&#34;&gt;Subnetting, purpose of it and how it works&lt;/a&gt; (gunnalag.wordpress.com)&lt;/li&gt;
 &lt;/ul&gt;
+&lt;!--adsense--&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;%22peter.gavin@live.com%22&#34;&gt;ITforMe&lt;/a&gt; - &lt;time datetime=&#34;2012-04-23 21:21:49&#34;&gt;Apr 1, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Very nice post. Thanks for the comment about subnet calculators. Some traditionalists might flog a guy over the head for using such a thing, but as an &amp;quot;Army of One&amp;quot; IT Generalist, a subnetting calculator allows me to make better decisions more quickly. That is the least I owe to my employer. It is also usefull as a visualization tool to give some sense of sizing of address boundaries; an important component of designs. Keep up the great posts!.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[ICND2 &amp;#8211; Passed! | Cisco Skills](http://ciscoskills.net/2012/05/14/icnd2-passed/ &#34;&#34;) - &lt;time datetime=&#34;2012-05-14 20:33:04&#34;&gt;May 1, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/05/14/icnd2-passed/&#34; title=&#34;&#34;&gt;ICND2 – Passed! | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-05-14 20:33:04&#34;&gt;May 1, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-04-23 21:34:54&#34;&gt;Apr 1, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://systemstechblog.wordpress.com&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2012-04-23 21:34:54&#34;&gt;Apr 1, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;You are welcome :) I agree with your comment, in the &amp;quot;real world&amp;quot; you need to make sure that address scheme works before you deploy it. Calculators can help with that. For exams you better know it inside and out! Ryan&lt;/p&gt;
-&lt;hr /&gt;
-
-        
-      </description>
-    </item>
-    
-    <item>
-      <title>Part 1 - The Joys of Subnetting!</title>
-      <link>https://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/</link>
-      <pubDate>Sun, 01 Apr 2012 20:25:19 +0000</pubDate>
-      
-      <guid>https://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/</guid>
-      <description>
-        
-          &lt;p&gt;Since &lt;a href=&#34;http://en.wikipedia.org/wiki/Computer_network&#34; title=&#34;Computer network&#34;&gt;network&lt;/a&gt; technicians work with &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP addressing&lt;/a&gt;, it is hugely important to understand subnetting. I remember back when I started to learn subnetting it was confusing and I wanted nothing to do with it. The thing that made me change my mind was after I understood it and how important it is. In the &amp;quot;&lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; world&amp;quot; they don&#39;t cover useless topics, there is always a reason why they expect you to know this and it&#39;s not just for the exams. Subnetting has always had its moments with people and in this blog I&#39;ll do my best to show you what I have done to make subnetting an easier experience. Eons ago I talked about &amp;quot;&lt;a href=&#34;http://ciscoskills.net/2011/02/15/the-wonders-of-binary/&#34; title=&#34;The Wonders of Binary&#34;&gt;The Wonders of Binary&lt;/a&gt;&amp;quot; which talked about how to convert these ones and zeros into &lt;a href=&#34;http://en.wikipedia.org/wiki/Decimal&#34; title=&#34;Decimal&#34;&gt;decimal value&lt;/a&gt; and is another stepping stone into understanding the subnet world. Let&#39;s introduce the three classes of subnet masks that &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PCs&lt;/a&gt; can use: Class A: 1-127 -- &lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;Subnet Mask&lt;/a&gt;: 255.0.0.0&lt;/strong&gt; Class B: 128-191 &lt;strong&gt;Subnet Mask: 255.255.0.0&lt;/strong&gt; Class C: 192-223 &lt;strong&gt;Subnet Mask: 255.255.255.0&lt;/strong&gt; Do you get it? Let me explain what is going on, back when the internet was young and just started out we had three &lt;a href=&#34;http://en.wikipedia.org/wiki/Classful_network&#34; title=&#34;Classful network&#34;&gt;IP classes&lt;/a&gt; you could use. These classes would be handed out depending on the size of the organization. Usually universities would get a Class B address range, big companies like GE received a class A address. The problem with this is it&#39;s a waste of addresses when would you ever have 65,534 &lt;em&gt;(Class B)&lt;/em&gt; or 16,277,214 &lt;em&gt;(Class A)&lt;/em&gt; computers on the same network? &lt;strong&gt;Nothing would work!&lt;/strong&gt; What could I do to break this down into separate networks? That&#39;s where subnetting comes into play, if I had class B address range I could break it up into smaller networks, watch and be amazed. Let&#39;s say my class B range is &lt;strong&gt;134.50.0.0 – 134.50.255.255&lt;/strong&gt; in this range I have one network so I could have 65,534 computers connected to this. We already said this is stupid setup because nothing would be able talk because this network would be over saturated, remember computers are chatty fellows even when you don&#39;t use them. But what I could do is break this address into smaller ranges, instead of one big network I could break it into a Class C address. See if you follow this: &lt;strong&gt;134.50.1.0 – 134.50.1.255&lt;/strong&gt; –Subnet &lt;strong&gt;255.255.255.0&lt;/strong&gt; &lt;strong&gt;134.50.2.0 – 134.50.2.255&lt;/strong&gt; – Subnet &lt;strong&gt;255.255.255.0&lt;/strong&gt; &lt;strong&gt;134.50.3.0 – 134.50.3.255&lt;/strong&gt; – Subnet &lt;strong&gt;255.255.255.0&lt;/strong&gt; &lt;strong&gt;134.50.4.0 – 134.50.5.255&lt;/strong&gt; – Subnet &lt;strong&gt;255.255.255.0&lt;/strong&gt; … &lt;strong&gt;134.50.255.0 – 134.50.255.255&lt;/strong&gt; –Subnet &lt;strong&gt;255.255.255.0&lt;/strong&gt; So what did I just do? Just what I said I would do I broke up this network into smaller networks, so how many networks do I have now? Well instead of one big network I now have 256 smaller networks with each network able to handle 254 computers. Real world example is if this was a campus environment each building can have its own network. Building A can have the 134.50.1.0 network, building B can have the 134.50.2.0 network, etc. This makes the network scalable and way easier to manage, and that&#39;s the basics of how subnetting works, for now remember you can always take a bigger subnet and break it down into smaller ones. It is a little tricky to take small subnets and expand them but remember it can be done with something called &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt; and if you designed your network scheme correctly :). Also check out this subnetting workbook which will help you to continue to practice subnetting, there are easier ways to get the answers but you have to start at the beginning and really have an understanding of it, once you got it you&#39;ll find the shortcuts :cool:. &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/04/ip-subnetting-workbook.pdf&#34;&gt;IP-Subnetting-Workbook&lt;/a&gt; I have used this exact one when I was studying subnetting, try it out and if you have questions feel free to post them. Also if you have other ideas of the next topic I should cover that deals with ICND1 or ICND2 let me know. As always I hope this information is helpful and since this is part 1 of subnetting check back often see if I posted part 2 which will deal with VLSM.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34;&gt;Configure Router on a Stick&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://computrnetworking.wordpress.com/2012/02/20/network-subnetting/&#34;&gt;Network Subnetting&lt;/a&gt; (computrnetworking.wordpress.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.ioshints.info/2012/03/stretched-layer-2-subnets-server.html&#34;&gt;Stretched Layer-2 Subnets - The Server Engineer Perspective&lt;/a&gt; (ioshints.info)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/&#34; title=&#34;&#34;&gt;Part 2 – The Joys of Subnetttting – VLSM! | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-04-23 21:08:37&#34;&gt;Apr 1, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[winnie]( &#34;winnissa92@gmail.com&#34;) - &lt;time datetime=&#34;2012-04-24 08:54:18&#34;&gt;Apr 2, 2012&lt;/time&gt;
-&lt;p&gt;thanks so much for help&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-04-24 19:15:53&#34;&gt;Apr 2, 2012&lt;/time&gt;
-&lt;p&gt;You&#39;re Welcome.&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[winnie]( &#34;winnissa92@gmail.com&#34;) - &lt;time datetime=&#34;2012-04-24 00:34:19&#34;&gt;Apr 2, 2012&lt;/time&gt;
-&lt;p&gt;i need you help with this question: with a given network 192.168.50.1, create 8 subnets, how r u going to do it?&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-04-24 07:51:23&#34;&gt;Apr 2, 2012&lt;/time&gt;
-&lt;p&gt;Sure, So you need 8 equal networks in a class C address, instead of looking at the number of hosts you are looking at the number of networks. To get 8 equal networks we need to subnet them down to a /27, each network would be able to hold 30 hosts and you would have 8 of them. /25 gives you two networks (255.255.255.128) /26 gives you four networks (255.255.255.192) /27 gives you eight networks (255.255.255.224) ... See a pattern here, they go by the powers of two. Here is my range: 192.168.50.1 - 192.168.50.254 - Original (255.255.255.0) Subnet Ranges all of them are equal and subnet mask is 255.255.255.224 192.168.50.1 - 192.168.50.30 192.168.50.33 - 192.168.50.62 192.168.50.65 - 192.168.50.94 192.168.50.97 - 192.168.50.126 192.168.50.129 - 192.168.50.158 192.168.50.161 - 192.168.50.191 192.168.50.193 - 192.168.50.222 192.168.50.225 - 192.168.50.254 Does that make sense of how I found them? I would also check out that subnetting workbook which is in Part 2 and Part 1 for download. Hope that Helps thanks for the question.&lt;/p&gt;
 &lt;hr /&gt;
 
         

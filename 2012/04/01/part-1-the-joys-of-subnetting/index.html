@@ -135,11 +135,7 @@
       </a>
       <a href='https://ciscoskills.net/tags/ccna' class="post_tag button button_translucent">CCNA
       </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
-      </a>
       <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">cisco
-      </a>
-      <a href='https://ciscoskills.net/tags/general' class="post_tag button button_translucent">General
       </a>
       <a href='https://ciscoskills.net/tags/icnd1' class="post_tag button button_translucent">ICND1
       </a>
@@ -149,8 +145,6 @@
       </a>
       <a href='https://ciscoskills.net/tags/networking' class="post_tag button button_translucent">networking
       </a>
-      <a href='https://ciscoskills.net/tags/protocols' class="post_tag button button_translucent">Protocols
-      </a>
       <a href='https://ciscoskills.net/tags/subnet-masks' class="post_tag button button_translucent">subnet masks
       </a>
       <a href='https://ciscoskills.net/tags/subnetwork' class="post_tag button button_translucent">Subnetwork
@@ -158,8 +152,6 @@
       <a href='https://ciscoskills.net/tags/technology' class="post_tag button button_translucent">technology
       </a>
       <a href='https://ciscoskills.net/tags/tutorial' class="post_tag button button_translucent">tutorial
-      </a>
-      <a href='https://ciscoskills.net/tags/tutorials' class="post_tag button button_translucent">Tutorials
       </a>
       <a href='https://ciscoskills.net/tags/vlsm' class="post_tag button button_translucent">VLSM
       </a>
@@ -192,33 +184,75 @@
 
     
     
-    <p>Since <a href="http://en.wikipedia.org/wiki/Computer_network" title="Computer network">network</a> technicians work with <a href="http://en.wikipedia.org/wiki/IP_address" title="IP address">IP addressing</a>, it is hugely important to understand subnetting. I remember back when I started to learn subnetting it was confusing and I wanted nothing to do with it. The thing that made me change my mind was after I understood it and how important it is. In the &quot;<a href="http://en.wikipedia.org/wiki/Cisco_Systems" title="Cisco Systems">Cisco</a> world&quot; they don't cover useless topics, there is always a reason why they expect you to know this and it's not just for the exams. Subnetting has always had its moments with people and in this blog I'll do my best to show you what I have done to make subnetting an easier experience. Eons ago I talked about &quot;<a href="http://ciscoskills.net/2011/02/15/the-wonders-of-binary/" title="The Wonders of Binary">The Wonders of Binary</a>&quot; which talked about how to convert these ones and zeros into <a href="http://en.wikipedia.org/wiki/Decimal" title="Decimal">decimal value</a> and is another stepping stone into understanding the subnet world. Let's introduce the three classes of subnet masks that <a href="http://en.wikipedia.org/wiki/Personal_computer" title="Personal computer">PCs</a> can use: Class A: 1-127 -- <strong><a href="http://en.wikipedia.org/wiki/Subnetwork" title="Subnetwork">Subnet Mask</a>: 255.0.0.0</strong> Class B: 128-191 <strong>Subnet Mask: 255.255.0.0</strong> Class C: 192-223 <strong>Subnet Mask: 255.255.255.0</strong> Do you get it? Let me explain what is going on, back when the internet was young and just started out we had three <a href="http://en.wikipedia.org/wiki/Classful_network" title="Classful network">IP classes</a> you could use. These classes would be handed out depending on the size of the organization. Usually universities would get a Class B address range, big companies like GE received a class A address. The problem with this is it's a waste of addresses when would you ever have 65,534 <em>(Class B)</em> or 16,277,214 <em>(Class A)</em> computers on the same network? <strong>Nothing would work!</strong> What could I do to break this down into separate networks? That's where subnetting comes into play, if I had class B address range I could break it up into smaller networks, watch and be amazed. Let's say my class B range is <strong>134.50.0.0 – 134.50.255.255</strong> in this range I have one network so I could have 65,534 computers connected to this. We already said this is stupid setup because nothing would be able talk because this network would be over saturated, remember computers are chatty fellows even when you don't use them. But what I could do is break this address into smaller ranges, instead of one big network I could break it into a Class C address. See if you follow this: <strong>134.50.1.0 – 134.50.1.255</strong> –Subnet <strong>255.255.255.0</strong> <strong>134.50.2.0 – 134.50.2.255</strong> – Subnet <strong>255.255.255.0</strong> <strong>134.50.3.0 – 134.50.3.255</strong> – Subnet <strong>255.255.255.0</strong> <strong>134.50.4.0 – 134.50.5.255</strong> – Subnet <strong>255.255.255.0</strong> … <strong>134.50.255.0 – 134.50.255.255</strong> –Subnet <strong>255.255.255.0</strong> So what did I just do? Just what I said I would do I broke up this network into smaller networks, so how many networks do I have now? Well instead of one big network I now have 256 smaller networks with each network able to handle 254 computers. Real world example is if this was a campus environment each building can have its own network. Building A can have the 134.50.1.0 network, building B can have the 134.50.2.0 network, etc. This makes the network scalable and way easier to manage, and that's the basics of how subnetting works, for now remember you can always take a bigger subnet and break it down into smaller ones. It is a little tricky to take small subnets and expand them but remember it can be done with something called <a href="http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing" title="Classless Inter-Domain Routing">VLSM</a> and if you designed your network scheme correctly :). Also check out this subnetting workbook which will help you to continue to practice subnetting, there are easier ways to get the answers but you have to start at the beginning and really have an understanding of it, once you got it you'll find the shortcuts :cool:. <a href="http://systemstechblog.files.wordpress.com/2012/04/ip-subnetting-workbook.pdf">IP-Subnetting-Workbook</a> I have used this exact one when I was studying subnetting, try it out and if you have questions feel free to post them. Also if you have other ideas of the next topic I should cover that deals with ICND1 or ICND2 let me know. As always I hope this information is helpful and since this is part 1 of subnetting check back often see if I posted part 2 which will deal with VLSM.</p>
+    <p>Since <a href="http://en.wikipedia.org/wiki/Computer_network" title="Computer network">network</a> technicians work with <a href="http://en.wikipedia.org/wiki/IP_address" title="IP address">IP addressing</a>, it is hugely important to understand subnetting. I remember back when I started to learn subnetting it was confusing and I wanted nothing to do with it. The thing that made me change my mind was after I understood it and how important it is. In the &quot;<a href="http://en.wikipedia.org/wiki/Cisco_Systems" title="Cisco Systems">Cisco</a> world&quot; they don't cover useless topics...right? ;) there is always a reason why they expect you to know this and it's not just for the exams. Subnetting has always had its moments with people and in this blog I'll do my best to show you what I have done to make subnetting an easier experience. Eons ago I talked about &quot;<a href="http://ciscoskills.net/2011/02/15/the-wonders-of-binary/" title="The Wonders of Binary">The Wonders of Binary</a>&quot; which talked about how to convert these ones and zeros into <a href="http://en.wikipedia.org/wiki/Decimal" title="Decimal">decimal value</a> and is another stepping stone into understanding the subnet world.</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>Let's introduce the three classes of subnet masks that <a href="http://en.wikipedia.org/wiki/Personal_computer" title="Personal computer">PCs</a> can use:</p>
+<ul>
+<li>Class A: 1-127 -- <strong><a href="http://en.wikipedia.org/wiki/Subnetwork" title="Subnetwork">Subnet Mask</a>: 255.0.0.0</strong></li>
+<li>Class B: 128-191 <strong>Subnet Mask: 255.255.0.0</strong></li>
+<li>Class C: 192-223 <strong>Subnet Mask: 255.255.255.0</strong></li>
+</ul>
+<p>Do you get it? Let me explain what is going on, back when the internet was young and just started out we had three <a href="http://en.wikipedia.org/wiki/Classful_network" title="Classful network">IP classes</a> you could use. These classes would be handed out depending on the size of the organization. Usually universities would get a Class B address range, big companies like GE received a class A address. The problem with this is it's a waste of addresses when would you ever have 65,534 <em>(Class B)</em> or 16,277,214 <em>(Class A)</em> computers on the same network? <strong>Nothing would work!</strong> What could I do to break this down into separate networks?</p>
+<p>That's where subnetting comes into play, if I had class B address range I could break it up into smaller networks, watch and be amazed. Let's say my class B range is <strong>134.50.0.0 – 134.50.255.255</strong> in this range I have one network so I could have 65,534 computers connected to this. We already said this is stupid setup because nothing would be able talk because this network would be over saturated, remember computers are chatty fellows even when you don't use them. But what I could do is break this address into smaller ranges, instead of one big network I could break it into a Class C address. See if you follow this:</p>
+<ul>
+<li><strong>134.50.1.0 – 134.50.1.255</strong> –Subnet <strong>255.255.255.0</strong></li>
+<li><strong>134.50.2.0 – 134.50.2.255</strong> – Subnet <strong>255.255.255.0</strong></li>
+<li><strong>134.50.3.0 – 134.50.3.255</strong> – Subnet <strong>255.255.255.0</strong></li>
+<li><strong>134.50.4.0 – 134.50.5.255</strong> – Subnet <strong>255.255.255.0</strong></li>
+<li>…</li>
+<li><strong>134.50.255.0 – 134.50.255.255</strong> –Subnet <strong>255.255.255.0</strong></li>
+</ul>
+<p>So what did I just do? Just what I said I would do I broke up this network into smaller networks, so how many networks do I have now? Well instead of one big network I now have 256 smaller networks with each network able to handle 254 computers. Real world example is if this was a campus environment each building can have its own network. Building A can have the 134.50.1.0 network, building B can have the 134.50.2.0 network, etc. This makes the network scalable and way easier to manage, and that's the basics of how subnetting works, for now remember you can always take a bigger subnet and break it down into smaller ones. It is a little tricky to take small subnets and expand them but remember it can be done with something called <a href="http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing" title="Classless Inter-Domain Routing">VLSM</a> and if you designed your network scheme correctly :).</p>
+<p>Also check out this subnetting workbook which will help you to continue to practice subnetting, there are easier ways to get the answers but you have to start at the beginning and really have an understanding of it, once you got it you'll find the shortcuts :cool:.</p>
+<p><a href="/files/2012/04/ip-subnetting-workbook.pdf">IP-Subnetting-Workbook</a></p>
+<p>I have used this exact one when I was studying subnetting, try it out and if you have questions feel free to post them. Also if you have other ideas of the next topic I should cover that deals with ICND1 or ICND2 let me know. As always I hope this information is helpful and since this is part 1 of subnetting check back often see if I posted part 2 which will deal with VLSM.</p>
 <h6 id="related-articles">Related articles</h6>
 <ul>
 <li><a href="http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/">Configure Router on a Stick</a> (ciscoskills.net)</li>
 <li><a href="http://computrnetworking.wordpress.com/2012/02/20/network-subnetting/">Network Subnetting</a> (computrnetworking.wordpress.com)</li>
 <li><a href="http://blog.ioshints.info/2012/03/stretched-layer-2-subnets-server.html">Stretched Layer-2 Subnets - The Server Engineer Perspective</a> (ioshints.info)</li>
 </ul>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <hr>
-<h3 id="comments">Comments:</h3>
+<h3 id="static-comments">Static Comments:</h3>
 <h4 id="heading"></h4>
 <p><a href="http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/" title="">Part 2 – The Joys of Subnetttting – VLSM! | Cisco Skills</a> - <time datetime="2012-04-23 21:08:37">Apr 1, 2012</time></p>
 <p>[...] Post navigation ← Previous [...]</p>
 <hr />
-#### 
-[winnie]( "winnissa92@gmail.com") - <time datetime="2012-04-24 08:54:18">Apr 2, 2012</time>
+<h4 id="heading-1"></h4>
+<p><a href="%22winnissa92@gmail.com%22">winnie</a> - <time datetime="2012-04-24 08:54:18">Apr 2, 2012</time></p>
 <p>thanks so much for help</p>
 <hr />
-#### 
-[Ryan](http://systemstechblog.wordpress.com "lewiryan@isu.edu") - <time datetime="2012-04-24 19:15:53">Apr 2, 2012</time>
+<h4 id="heading-2"></h4>
+<p><a href="http://systemstechblog.wordpress.com" title="ryan@ciscoskills.net">Ryan</a> - <time datetime="2012-04-24 19:15:53">Apr 2, 2012</time></p>
 <p>You're Welcome.</p>
 <hr />
-#### 
-[winnie]( "winnissa92@gmail.com") - <time datetime="2012-04-24 00:34:19">Apr 2, 2012</time>
+<h4 id="heading-3"></h4>
+<p><a href="%22winnissa92@gmail.com%22">winnie</a> - <time datetime="2012-04-24 00:34:19">Apr 2, 2012</time></p>
 <p>i need you help with this question: with a given network 192.168.50.1, create 8 subnets, how r u going to do it?</p>
 <hr />
-#### 
-[Ryan](http://systemstechblog.wordpress.com "lewiryan@isu.edu") - <time datetime="2012-04-24 07:51:23">Apr 2, 2012</time>
+<h4 id="heading-4"></h4>
+<p><a href="http://systemstechblog.wordpress.com" title="ryan@ciscoskills.net">Ryan</a> - <time datetime="2012-04-24 07:51:23">Apr 2, 2012</time></p>
 <p>Sure, So you need 8 equal networks in a class C address, instead of looking at the number of hosts you are looking at the number of networks. To get 8 equal networks we need to subnet them down to a /27, each network would be able to hold 30 hosts and you would have 8 of them. /25 gives you two networks (255.255.255.128) /26 gives you four networks (255.255.255.192) /27 gives you eight networks (255.255.255.224) ... See a pattern here, they go by the powers of two. Here is my range: 192.168.50.1 - 192.168.50.254 - Original (255.255.255.0) Subnet Ranges all of them are equal and subnet mask is 255.255.255.224 192.168.50.1 - 192.168.50.30 192.168.50.33 - 192.168.50.62 192.168.50.65 - 192.168.50.94 192.168.50.97 - 192.168.50.126 192.168.50.129 - 192.168.50.158 192.168.50.161 - 192.168.50.191 192.168.50.193 - 192.168.50.222 192.168.50.225 - 192.168.50.254 Does that make sense of how I found them? I would also check out that subnetting workbook which is in Part 2 and Part 1 for download. Hope that Helps thanks for the question.</p>
 <hr />
 
@@ -266,17 +300,17 @@
       <nav class="tags_nav">
         <a href='https://ciscoskills.net/tags/cisco/' class="post_tag button button_translucent">
           CISCO
-          <span class="button_tally">141</span>
+          <span class="button_tally">142</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/technology/' class="post_tag button button_translucent">
           TECHNOLOGY
-          <span class="button_tally">130</span>
+          <span class="button_tally">131</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/networking/' class="post_tag button button_translucent">
           NETWORKING
-          <span class="button_tally">117</span>
+          <span class="button_tally">118</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/ccna/' class="post_tag button button_translucent">
@@ -286,12 +320,12 @@
         
         <a href='https://ciscoskills.net/tags/tutorials/' class="post_tag button button_translucent">
           TUTORIALS
-          <span class="button_tally">64</span>
+          <span class="button_tally">62</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/general/' class="post_tag button button_translucent">
           GENERAL
-          <span class="button_tally">57</span>
+          <span class="button_tally">56</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/tutorial/' class="post_tag button button_translucent">
@@ -352,7 +386,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/640-911/' class=" post_tag button button_translucent" data-position=8>640-911<span class="button_tally">8</span>
+            <a href='https://ciscoskills.net/tags/640-911/' class=" post_tag button button_translucent" data-position=9>640-911<span class="button_tally">9</span>
             </a>
             
             
@@ -556,7 +590,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/ccna-data-center/' class=" post_tag button button_translucent" data-position=12>CCNA-DATA-CENTER<span class="button_tally">12</span>
+            <a href='https://ciscoskills.net/tags/ccna-data-center/' class=" post_tag button button_translucent" data-position=13>CCNA-DATA-CENTER<span class="button_tally">13</span>
             </a>
             
             
@@ -596,7 +630,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/certification/' class=" post_tag button button_translucent" data-position=13>CERTIFICATION<span class="button_tally">13</span>
+            <a href='https://ciscoskills.net/tags/certification/' class=" post_tag button button_translucent" data-position=14>CERTIFICATION<span class="button_tally">14</span>
             </a>
             
             
@@ -608,7 +642,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/cisco/' class=" post_tag button button_translucent" data-position=141>CISCO<span class="button_tally">141</span>
+            <a href='https://ciscoskills.net/tags/cisco/' class=" post_tag button button_translucent" data-position=142>CISCO<span class="button_tally">142</span>
             </a>
             
             
@@ -616,7 +650,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/cisco-career-certifications/' class=" post_tag button button_translucent" data-position=23>CISCO-CAREER-CERTIFICATIONS<span class="button_tally">23</span>
+            <a href='https://ciscoskills.net/tags/cisco-career-certifications/' class=" post_tag button button_translucent" data-position=24>CISCO-CAREER-CERTIFICATIONS<span class="button_tally">24</span>
             </a>
             
             
@@ -748,7 +782,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/data-center/' class=" post_tag button button_translucent" data-position=12>DATA-CENTER<span class="button_tally">12</span>
+            <a href='https://ciscoskills.net/tags/data-center/' class=" post_tag button button_translucent" data-position=13>DATA-CENTER<span class="button_tally">13</span>
             </a>
             
             
@@ -948,7 +982,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/general/' class=" post_tag button button_translucent" data-position=57>GENERAL<span class="button_tally">57</span>
+            <a href='https://ciscoskills.net/tags/general/' class=" post_tag button button_translucent" data-position=56>GENERAL<span class="button_tally">56</span>
             </a>
             
             
@@ -1128,7 +1162,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/internet-protocol/' class=" post_tag button button_translucent" data-position=7>INTERNET-PROTOCOL<span class="button_tally">7</span>
+            <a href='https://ciscoskills.net/tags/internet-protocol/' class=" post_tag button button_translucent" data-position=8>INTERNET-PROTOCOL<span class="button_tally">8</span>
             </a>
             
             
@@ -1152,7 +1186,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/ip-address/' class=" post_tag button button_translucent" data-position=19>IP-ADDRESS<span class="button_tally">19</span>
+            <a href='https://ciscoskills.net/tags/ip-address/' class=" post_tag button button_translucent" data-position=20>IP-ADDRESS<span class="button_tally">20</span>
             </a>
             
             
@@ -1336,7 +1370,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=117>NETWORKING<span class="button_tally">117</span>
+            <a href='https://ciscoskills.net/tags/networking/' class=" post_tag button button_translucent" data-position=118>NETWORKING<span class="button_tally">118</span>
             </a>
             
             
@@ -1480,7 +1514,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/protocols/' class=" post_tag button button_translucent" data-position=6>PROTOCOLS<span class="button_tally">6</span>
+            <a href='https://ciscoskills.net/tags/protocols/' class=" post_tag button button_translucent" data-position=5>PROTOCOLS<span class="button_tally">5</span>
             </a>
             
             
@@ -1716,7 +1750,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/technology/' class=" post_tag button button_translucent" data-position=130>TECHNOLOGY<span class="button_tally">130</span>
+            <a href='https://ciscoskills.net/tags/technology/' class=" post_tag button button_translucent" data-position=131>TECHNOLOGY<span class="button_tally">131</span>
             </a>
             
             
@@ -1784,7 +1818,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=64>TUTORIALS<span class="button_tally">64</span>
+            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=62>TUTORIALS<span class="button_tally">62</span>
             </a>
             
             
@@ -1796,7 +1830,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/uncategorized/' class=" post_tag button button_translucent" data-position=2>UNCATEGORIZED<span class="button_tally">2</span>
+            <a href='https://ciscoskills.net/tags/uncategorized/' class=" post_tag button button_translucent" data-position=1>UNCATEGORIZED<span class="button_tally">1</span>
             </a>
             
             

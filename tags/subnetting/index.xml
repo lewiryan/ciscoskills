@@ -5,73 +5,70 @@
     <link>https://ciscoskills.net/tags/subnetting/</link>
     <description>Recent content in Subnetting on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 24 Apr 2012 02:06:15 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/subnetting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Apr 2012 02:06:15 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/subnetting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Part 2 – The Joys of Subnetttting – VLSM!</title>
-      <link>https://ciscoskills.net/2012/04/24/part-2-the-joys-of-subnetttting-vlsm/</link>
-      <pubDate>Tue, 24 Apr 2012 02:06:15 +0000</pubDate>
+      <link>https://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</link>
+      <pubDate>Mon, 23 Apr 2012 02:06:15 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/04/24/part-2-the-joys-of-subnetttting-vlsm/</guid>
+      <guid>https://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/04/vlsm-cbe.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/04/vlsm-cbe.png&#34; alt=&#34;VLSM Chalkboard &#34; title=&#34;VLSM-CBE&#34;&gt;&lt;/a&gt;So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff. It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; test. So let&#39;s get started! On Part 1 of my subnetting post I was spiting up networks into equal parts.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
+          &lt;p&gt;So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff. It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; test. So let&#39;s get started! On Part 1 of my subnetting post I was spiting up networks into equal parts.&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Example: If I took an original Class C address of 192.168.5.X (Subnet 255.255.255.0) in broke it up into four parts, each part would be equal. I would use a /26 or a 255.255.255.192. Each network would hold 62 hosts and I would have four of them.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;192.168.5.1 – 192.168.5.62&lt;/li&gt;
 &lt;li&gt;192.168.5.65 – 192.168.5.90&lt;/li&gt;
 &lt;li&gt;192.168.5.93 – 192.168.5.126&lt;/li&gt;
 &lt;li&gt;192.168.5.129 – 192.168.5.254&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;This example is standard subnetting if this loses you go back and check out my post of Part 1. Also check out this subnetting workbook (which is in Part 1) this workbook will help you to continue to practice subnetting, there are easier ways to get the answers but you have to start at the beginning and really have an understanding of it, once you got it you&#39;ll find the shortcuts everyone finds different ways to break this down :) -- &lt;a href=&#34;http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/&#34; title=&#34;Part 1 – The Joys of Subnetting!&#34;&gt;Part 1 – The Joys of Subnetting!&lt;/a&gt; -- Subnetting Workbook --&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/04/ip-subnetting-workbook.pdf&#34;&gt;IP-Subnetting-Workbook&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;With &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt; it&#39;s basically the same method but a better way to conserve addresses, instead of having equal parts of the Class address why can&#39;t we divide it up and different size pieces? Take a look at the picture below one link requires 111 hosts another only needs 25 hosts and the last one needs 50 hosts. With standard subnetting you would not be able to fulfill this goal. However with VLSM you would let&#39;s go through the process. &lt;a href=&#34;http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/vlsm-diagram/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/04/vlsm-diagram.png&#34; alt=&#34;VLSM Design - Acme Corp&#34; title=&#34;VLSM- Diagram&#34;&gt;&lt;/a&gt; So our corporation Acme wants to expand departments to three different buildings instead of one building. These buildings are connected via a &lt;a href=&#34;http://en.wikipedia.org/wiki/Wide_area_network&#34; title=&#34;Wide area network&#34;&gt;WAN&lt;/a&gt; Link to each other. We are handed one &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; class which is a class C from Acme&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Tier_3&#34; title=&#34;Tier 3&#34;&gt;Tier 3&lt;/a&gt; support. No Problem let&#39;s break this down.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This example is standard subnetting if this loses you go back and check out my post of Part 1. Also check out this subnetting workbook (which is in Part 1) this workbook will help you to continue to practice subnetting, there are easier ways to get the answers but you have to start at the beginning and really have an understanding of it, once you got it you&#39;ll find the shortcuts everyone finds different ways to break this down :) -- &lt;a href=&#34;http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/&#34; title=&#34;Part 1 – The Joys of Subnetting!&#34;&gt;Part 1 – The Joys of Subnetting!&lt;/a&gt; -- Subnetting Workbook --&lt;a href=&#34;https://ciscoskills.net/files/2012/04/ip-subnetting-workbook.pdf&#34;&gt;IP-Subnetting-Workbook&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt; it&#39;s basically the same method but a better way to conserve addresses, instead of having equal parts of the Class address why can&#39;t we divide it up and different size pieces? Take a look at the picture below one link requires 111 hosts another only needs 25 hosts and the last one needs 50 hosts. With standard subnetting you would not be able to fulfill this goal. However with VLSM you would let&#39;s go through the process.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2012/04/vlsm-diagram.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;So our corporation Acme wants to expand departments to three different buildings instead of one building. These buildings are connected via a &lt;a href=&#34;http://en.wikipedia.org/wiki/Wide_area_network&#34; title=&#34;Wide area network&#34;&gt;WAN&lt;/a&gt; Link to each other. We are handed one &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; class which is a class C from Acme&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Tier_3&#34; title=&#34;Tier 3&#34;&gt;Tier 3&lt;/a&gt; support. No Problem let&#39;s break this down.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;It is always best to take the biggest number of hosts required in this case it is the Finance department which requires 111 hosts. What is the next step? We can&#39;t give a whole class C address because we have two other departments so let&#39;s divide it into two. The subnet mask would be 255.255.255.128 and or a /25. These two networks would be able to hold 126 hosts.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;192.168.16.1 - 192.168.16.126&lt;/li&gt;
-&lt;li&gt;192.168.16.129 – 192.168.16.254&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Does this look familiar? So far we are just doing standard subnettng, The Finance department will use the first range. What about the second one let&#39;s break it down even further! I would then choose the next biggest subnet which is the IT department which requires 50 hosts. So the range we can work with is 192.168.16.129 – 192.168.16.254. The subnet mask is 255.255.255.128 or a /25. This range is too big still because we still have one more department to work with. So let&#39;s break this down to a /26 .&lt;/p&gt;
+&lt;p&gt;192.168.16.1 - 192.168.16.126&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;192.168.16.129 – 192.168.16.254&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Does this look familiar? So far we are just doing standard subnettng, The Finance department will use the first range. What about the second one let&#39;s break it down even further! I would then choose the next biggest subnet which is the IT department which requires 50 hosts. So the range we can work with is 192.168.16.129 – 192.168.16.254. The subnet mask is 255.255.255.128 or a /25. This range is too big still because we still have one more department to work with. So let&#39;s break this down to a /26.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;192.168.16.129 – 192.168.16.190&lt;/li&gt;
 &lt;li&gt;192.168.16.193 – 192.168.16.254&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
 &lt;p&gt;So I just took the original /25 and spilt it into two equal pieces which is like the standard subnettng but now that we have different size networks within the same &lt;a href=&#34;http://en.wikipedia.org/wiki/Classful_network&#34; title=&#34;Classful network&#34;&gt;class C network&lt;/a&gt; it&#39;s now considered VLSM! I also have an address range that can work with for the IT department we will use 192.168.16.129 – 192.168.16.190. The subnet masks of these two IP address ranges are 255.255.255.192. Each network can hold up to 62 hosts.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
+&lt;blockquote&gt;
 &lt;p&gt;We could give HR the other range and that might be a good &amp;quot;real world&amp;quot; solution because this looks to perfect right? But for the sake of the exam let&#39;s continue so we have the following range left to hack and slash: (&lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;Subnet mask&lt;/a&gt; is 255.255.255.192)&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;192.168.16.193 – 192.168.16.254&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
 &lt;p&gt;Let&#39;s break this down one more click to a /27 the subnet mask will be 255.255.255.224. These ranges will be able to handle up to 30 hosts:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;192.168.16.193 – 192.168.16.222&lt;/li&gt;
 &lt;li&gt;192.168.16.225 – 192.168.16.254&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;For HR let&#39;s pick the range 192.168.16.193 – 192.168.16.222 like before the subnet mask will be 255.255.255.224. That&#39;s VLSM!!!&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;For HR let&#39;s pick the range 192.168.16.193 – 192.168.16.222 like before the subnet mask will be 255.255.255.224. That&#39;s VLSM!!!&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Not too bad right? What happens to the other range (192.168.16.225 – 192.168.16.254) that&#39;s a spare that can be used elsewhere in the environment of &lt;a href=&#34;http://en.wikipedia.org/wiki/Acme_Corporation&#34; title=&#34;Acme Corporation&#34;&gt;Acme Corporation&lt;/a&gt;. So let&#39;s look at the picture of our ranges and networks:&lt;/p&gt;
-&lt;p&gt;Finance Network --111 Hosts&lt;/p&gt;
-&lt;p&gt;Range: (192.168.16.1 – 192.168.16.128) – &lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;Subnet Mask&lt;/a&gt; 255.255.255.128 &lt;strong&gt;Can support up to 126 hosts&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;IT Network --50 Hosts&lt;/p&gt;
-&lt;p&gt;Range: (192.168.16.129 -192.168.16.190) – Subnet Mask 255.255.255.192 &lt;strong&gt;Can support up to 62 hosts&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;HR Network --25 Hosts&lt;/p&gt;
-&lt;p&gt;Range: (192.168.16.193 – 192.168.16.222) – Subnet Mask  255.255.255.224 &lt;strong&gt;Can support up to 30 hosts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Finance Network --111 Hosts
+Range: (192.168.16.1 – 192.168.16.128) – &lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;Subnet Mask&lt;/a&gt; 255.255.255.128 &lt;strong&gt;Can support up to 126 hosts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;IT Network --50 Hosts
+Range: (192.168.16.129 -192.168.16.190) – Subnet Mask 255.255.255.192 &lt;strong&gt;Can support up to 62 hosts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;HR Network --25 Hosts
+Range: (192.168.16.193 – 192.168.16.222) – Subnet Mask  255.255.255.224 &lt;strong&gt;Can support up to 30 hosts&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;I&#39;ll let that sink in if you have a question feel free to post it, I or others would be happy to help you out :). Here is another question for you where else would you put IP addresses that the diagram doesn&#39;t say? How many would you need if any? How many networks would you have total including the three networks we did? Like always I hope this information is helpful and if you have a question post it, if you have an idea on the next topic post it!! Have an awesome day! - Ryan&lt;/p&gt;
 &lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
 &lt;ul&gt;
@@ -80,18 +77,19 @@
 &lt;li&gt;&lt;a href=&#34;http://gunnalag.wordpress.com/2012/04/08/configuring-dhcp-server-in-windows-server-2008-r2/&#34;&gt;Configuring DHCP Server in Windows Server 2008 R2&lt;/a&gt; (gunnalag.wordpress.com)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://gunnalag.wordpress.com/2012/04/08/subnetting-purpose-of-it-and-how-it-works/&#34;&gt;Subnetting, purpose of it and how it works&lt;/a&gt; (gunnalag.wordpress.com)&lt;/li&gt;
 &lt;/ul&gt;
+&lt;!--adsense--&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;%22peter.gavin@live.com%22&#34;&gt;ITforMe&lt;/a&gt; - &lt;time datetime=&#34;2012-04-23 21:21:49&#34;&gt;Apr 1, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Very nice post. Thanks for the comment about subnet calculators. Some traditionalists might flog a guy over the head for using such a thing, but as an &amp;quot;Army of One&amp;quot; IT Generalist, a subnetting calculator allows me to make better decisions more quickly. That is the least I owe to my employer. It is also usefull as a visualization tool to give some sense of sizing of address boundaries; an important component of designs. Keep up the great posts!.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[ICND2 &amp;#8211; Passed! | Cisco Skills](http://ciscoskills.net/2012/05/14/icnd2-passed/ &#34;&#34;) - &lt;time datetime=&#34;2012-05-14 20:33:04&#34;&gt;May 1, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/05/14/icnd2-passed/&#34; title=&#34;&#34;&gt;ICND2 – Passed! | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-05-14 20:33:04&#34;&gt;May 1, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-04-23 21:34:54&#34;&gt;Apr 1, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://systemstechblog.wordpress.com&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2012-04-23 21:34:54&#34;&gt;Apr 1, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;You are welcome :) I agree with your comment, in the &amp;quot;real world&amp;quot; you need to make sure that address scheme works before you deploy it. Calculators can help with that. For exams you better know it inside and out! Ryan&lt;/p&gt;
 &lt;hr /&gt;
 

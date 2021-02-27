@@ -963,22 +963,17 @@
   </url>
   
   <url>
-    <loc>https://ciscoskills.net/tags/uncategorized/</loc>
+    <loc>https://ciscoskills.net/tags/internet-protocol/</loc>
+    <lastmod>2014-02-13T19:25:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ciscoskills.net/tags/ip-address/</loc>
     <lastmod>2014-02-13T19:25:55+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://ciscoskills.net/2014/02/06/640-911-chapter-4/</loc>
-    <lastmod>2014-02-06T18:15:27+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ciscoskills.net/tags/internet-protocol/</loc>
-    <lastmod>2014-02-06T18:15:27+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ciscoskills.net/tags/ip-address/</loc>
     <lastmod>2014-02-06T18:15:27+00:00</lastmod>
   </url>
   
@@ -1263,18 +1258,18 @@
   </url>
   
   <url>
-    <loc>https://ciscoskills.net/2012/11/22/ccna-data-center/</loc>
-    <lastmod>2012-11-22T02:30:15+00:00</lastmod>
+    <loc>https://ciscoskills.net/2012/11/21/ccna-data-center/</loc>
+    <lastmod>2012-11-21T02:30:15+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://ciscoskills.net/tags/ccnp-data-center/</loc>
-    <lastmod>2012-11-22T02:30:15+00:00</lastmod>
+    <lastmod>2012-11-21T02:30:15+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://ciscoskills.net/tags/fabric-computing/</loc>
-    <lastmod>2012-11-22T02:30:15+00:00</lastmod>
+    <lastmod>2012-11-21T02:30:15+00:00</lastmod>
   </url>
   
   <url>
@@ -1439,36 +1434,31 @@
   
   <url>
     <loc>https://ciscoskills.net/tags/classless-inter-domain-routing/</loc>
-    <lastmod>2012-04-24T02:06:15+00:00</lastmod>
+    <lastmod>2012-04-23T02:06:15+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ciscoskills.net/2012/04/24/part-2-the-joys-of-subnetttting-vlsm/</loc>
-    <lastmod>2012-04-24T02:06:15+00:00</lastmod>
+    <loc>https://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</loc>
+    <lastmod>2012-04-23T02:06:15+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://ciscoskills.net/tags/subnetting/</loc>
-    <lastmod>2012-04-24T02:06:15+00:00</lastmod>
+    <lastmod>2012-04-23T02:06:15+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://ciscoskills.net/tags/subnetwork/</loc>
-    <lastmod>2012-04-24T02:06:15+00:00</lastmod>
+    <lastmod>2012-04-23T02:06:15+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://ciscoskills.net/tags/vlsm/</loc>
-    <lastmod>2012-04-24T02:06:15+00:00</lastmod>
+    <lastmod>2012-04-23T02:06:15+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/</loc>
-    <lastmod>2012-04-01T20:25:19+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ciscoskills.net/tags/protocols/</loc>
     <lastmod>2012-04-01T20:25:19+00:00</lastmod>
   </url>
   
@@ -1893,6 +1883,11 @@
   </url>
   
   <url>
+    <loc>https://ciscoskills.net/tags/protocols/</loc>
+    <lastmod>2011-08-31T13:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ciscoskills.net/tags/byte/</loc>
     <lastmod>2011-08-24T17:00:52+00:00</lastmod>
   </url>
@@ -1999,6 +1994,11 @@
   
   <url>
     <loc>https://ciscoskills.net/tags/interface-computing/</loc>
+    <lastmod>2011-07-06T15:45:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ciscoskills.net/tags/uncategorized/</loc>
     <lastmod>2011-07-06T15:45:45+00:00</lastmod>
   </url>
   
