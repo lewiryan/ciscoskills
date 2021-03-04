@@ -176,6 +176,17 @@
     
     <p>So a single ISP isn't cutting it anymore you need a backup just in case the primary fails and might as well add a second ASA into this design, more redundancy equals more up-time, right? On paper it sounds good but in the &quot;real&quot; world there probably is tipping point, more redundancy increases complexity. In this post we'll aim to keep it simple, with setting up a Cisco ASA HA active/standby pair and then add in the second ISP. Let's get started!
 So this is what our topology will look like all said and done, we have two firewalls and two different ISPs. The primary ISP is ISP-1 and the secondary ISP is ISP-2. We will always be using ISP-1 as the primary and won't be load balancing between the two. ISP-2 will only be used when ISP-1 goes offline. When ISP-1 comes back online we will switch back over to ISP-1.</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <p><img src="/images/2018/09/asa-ha2.png" alt="ASA-HA"></p>
 <p>So let's first look at getting the ASA HA pair setup. In this example I have two ASA's that are the same hardware and software version, For the HA I have to be able to use two interfaces for the LAN failover and State link interface. I need to choose one ASA that will be the primary and one that is secondary. If you already have a configuration on one ASA, choose that as the primary. The secondary ASA just needs enough configuration so that you can get into it as the configuration gets overwritten on the secondary ASA from the primary.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>ASA-HA-1(config)# failover

@@ -256,6 +256,7 @@
       <description>
         
           &lt;p&gt;This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;You can manually update this by either connecting to the console or ssh into the sensor.&lt;/li&gt;
 &lt;li&gt;Once in you&#39;ll need to the bash shell so type the command &amp;quot;expert&amp;quot; to get into it.&lt;/li&gt;
@@ -506,6 +507,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;(Edit: 7-21-17) After Gabriele made this comment - &amp;quot;connect local-mgmt&amp;quot; and then &amp;quot;erase configuration&amp;quot; it looks like you can. Thanks Gabriele&lt;/p&gt;
 &lt;p&gt;You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:&lt;/p&gt;
 &lt;ul&gt;

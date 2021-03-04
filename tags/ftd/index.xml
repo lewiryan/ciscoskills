@@ -122,6 +122,7 @@
       <description>
         
           &lt;p&gt;This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;You can manually update this by either connecting to the console or ssh into the sensor.&lt;/li&gt;
 &lt;li&gt;Once in you&#39;ll need to the bash shell so type the command &amp;quot;expert&amp;quot; to get into it.&lt;/li&gt;

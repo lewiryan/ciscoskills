@@ -158,6 +158,7 @@
         
           &lt;p&gt;So a single ISP isn&#39;t cutting it anymore you need a backup just in case the primary fails and might as well add a second ASA into this design, more redundancy equals more up-time, right? On paper it sounds good but in the &amp;quot;real&amp;quot; world there probably is tipping point, more redundancy increases complexity. In this post we&#39;ll aim to keep it simple, with setting up a Cisco ASA HA active/standby pair and then add in the second ISP. Let&#39;s get started!
 So this is what our topology will look like all said and done, we have two firewalls and two different ISPs. The primary ISP is ISP-1 and the secondary ISP is ISP-2. We will always be using ISP-1 as the primary and won&#39;t be load balancing between the two. ISP-2 will only be used when ISP-1 goes offline. When ISP-1 comes back online we will switch back over to ISP-1.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/09/asa-ha2.png&#34; alt=&#34;ASA-HA&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So let&#39;s first look at getting the ASA HA pair setup. In this example I have two ASA&#39;s that are the same hardware and software version, For the HA I have to be able to use two interfaces for the LAN failover and State link interface. I need to choose one ASA that will be the primary and one that is secondary. If you already have a configuration on one ASA, choose that as the primary. The secondary ASA just needs enough configuration so that you can get into it as the configuration gets overwritten on the secondary ASA from the primary.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# failover
@@ -946,6 +947,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;You can manually update this by either connecting to the console or ssh into the sensor.&lt;/li&gt;
 &lt;li&gt;Once in you&#39;ll need to the bash shell so type the command &amp;quot;expert&amp;quot; to get into it.&lt;/li&gt;
@@ -1849,6 +1851,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;(Edit: 7-21-17) After Gabriele made this comment - &amp;quot;connect local-mgmt&amp;quot; and then &amp;quot;erase configuration&amp;quot; it looks like you can. Thanks Gabriele&lt;/p&gt;
 &lt;p&gt;You also can follow the  password recovery on this post which will also erases the configuration. You have to be physically at the device with a console cable, plug into the console port to begin:&lt;/p&gt;
 &lt;ul&gt;

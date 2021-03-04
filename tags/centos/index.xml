@@ -960,6 +960,7 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;systemctl start postfix
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;systemctl enable postfix
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Finished! We have just installed Rancid along with made some helpful tweaks like getting an upfront web page to view the configurations instead of CLI as well as setting up Rancid to email us if anything changes or if there are issues with connecting to any equipment. I&#39;ll put the brakes here and in the next post we will go over how to customize rancid to log into devices and grab configurations. I hope this install guide is helpful and let me know if you have any questions. Enjoy New Year! :) If you can&#39;t wait for me then you can check Shrubbery at &lt;a href=&#34;http://www.shrubbery.net/rancid/&#34;&gt;http://www.shrubbery.net/rancid/&lt;/a&gt; Read the README file once you download Rancid. You can also check threads from Rancid Discussions at &lt;a href=&#34;http://www.gossamer-threads.com/lists/rancid/&#34;&gt;www.gossamer-threads.com/lists/rancid/&lt;/a&gt;&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
