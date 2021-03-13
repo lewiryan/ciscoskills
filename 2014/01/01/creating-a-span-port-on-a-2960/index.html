@@ -164,7 +164,38 @@
 
     
     
-    <p>Creating a mirroring port also called a <a href="http://en.wikipedia.org/wiki/Port_mirroring" title="Port mirroring">SPAN port</a> (Switched Port Analyzer) might be required for some network appliances to analyze network traffic. Since we have switches which run in separate <a href="http://en.wikipedia.org/wiki/Collision_domain" title="Collision domain">collision domains</a> per port we have to do some configuration on the switch first before we can analyze traffic. (Think back to <a href="http://ciscoskills.net/2011/03/30/collision-domains-vs-broadcast-domains/" title="Collision Domains vs. Broadcast Domains">Collision domains vs. Broadcast domains</a>) In this example I have a 24-port Cisco Catalyst 2960 switch with no configuration on it. I have two <a href="http://en.wikipedia.org/wiki/Personal_computer" title="Personal computer">PCs</a> that are connected to this switch, One PC (PC2) will be my destination of copied frames while the other PC (PC1) will be the source of those frames. PC2 will have <a href="http://en.wikipedia.org/wiki/Wireshark" title="Wireshark">Wireshark</a> installed and be capturing the output, while PC1 will browsing the web and checking for windows updates. If all goes correct I should be able to see traffic that PC1 is sending and receiving from PC2. To get started I am in <a href="http://en.wikipedia.org/wiki/Cisco_IOS" title="Cisco IOS">global configuration mode</a> and I will be using the “monitor session” command. The following command below tells the switch to copy frames on port FastEthernet0/5 which is where PC1 is physically connected. [code]Switch(config)#monitor session 1 source interface Fa0/5[/code] I have to issue one more command which tells the switch where to send those copied frames and in this example I sending them to FastEthernet0/6 which is where PC2 is physically connected. [code]Switch(config)monitor session 1 destination interface Fa0/6[/code] You can verify your SPAN port by issuing the show monitor session command. [code]Switch#show monitor session 1 Session 1 --------- Type : Local Session Source Ports : Both : Fa0/5 Destination Ports : Fa0/6 Encapsulation : Native Ingress : Disabled Switch#[/code] After that is complete I have ran a wireshark capture on PC2 and you can check out the results here on cloud shark I only ran the capture for 78 seconds and had a total of 4551 packets! <a href="http://www.cloudshark.org/captures/8f1cd7661a1f">http://www.cloudshark.org/captures/8f1cd7661a1f</a> That’s it! You can also watch more than one <a href="http://en.wikipedia.org/wiki/Port_%28computer_networking%29" title="Port (computer networking)">network port</a> to capture network traffic if you want, as well using it on port-channels but the 2960 I have does not support that feature :) Like always I hope this information is helpful and Happy New Year! Cisco Documentation: <a href="http://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a008015c612.shtml" title="Catalyst Switched Port Analyzer (SPAN) Configuration Example">Catalyst Switched Port Analyzer (SPAN) Configuration Example</a></p>
+    <p>Creating a mirroring port also called a <a href="http://en.wikipedia.org/wiki/Port_mirroring" title="Port mirroring">SPAN port</a> (Switched Port Analyzer) might be required for some network appliances to analyze network traffic. Since we have switches which run in separate <a href="http://en.wikipedia.org/wiki/Collision_domain" title="Collision domain">collision domains</a> per port we have to do some configuration on the switch first before we can analyze traffic. (Think back to <a href="http://ciscoskills.net/2011/03/30/collision-domains-vs-broadcast-domains/" title="Collision Domains vs. Broadcast Domains">Collision domains vs. Broadcast domains</a>)</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>In this example I have a 24-port Cisco Catalyst 2960 switch with no configuration on it. I have two <a href="http://en.wikipedia.org/wiki/Personal_computer" title="Personal computer">PCs</a> that are connected to this switch, One PC (PC2) will be my destination of copied frames while the other PC (PC1) will be the source of those frames. PC2 will have <a href="http://en.wikipedia.org/wiki/Wireshark" title="Wireshark">Wireshark</a> installed and be capturing the output, while PC1 will browsing the web and checking for windows updates. If all goes correct I should be able to see traffic that PC1 is sending and receiving from PC2.</p>
+<p>To get started I am in <a href="http://en.wikipedia.org/wiki/Cisco_IOS" title="Cisco IOS">global configuration mode</a> and I will be using the “monitor session” command. The following command below tells the switch to copy frames on port FastEthernet0/5 which is where PC1 is physically connected.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>Switch(config)#monitor session 1 source interface Fa0/5
+</code></pre></div><p>I have to issue one more command which tells the switch where to send those copied frames and in this example I sending them to FastEthernet0/6 which is where PC2 is physically connected.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>Switch(config)monitor session 1 destination interface Fa0/6
+</code></pre></div><p>You can verify your SPAN port by issuing the show monitor session command.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>Switch#show monitor session 1
+<span class="ln"> 2</span>Session 1
+<span class="ln"> 3</span>---------
+<span class="ln"> 4</span>Type                   : Local Session
+<span class="ln"> 5</span>Source Ports           :
+<span class="ln"> 6</span>    Both               : Fa0/5
+<span class="ln"> 7</span>Destination Ports      : Fa0/6
+<span class="ln"> 8</span>    Encapsulation      : Native
+<span class="ln"> 9</span>          Ingress      : Disabled
+<span class="ln">10</span> 
+<span class="ln">11</span>Switch#
+</code></pre></div><p>After that is complete I have ran a wireshark capture on PC2 and you can check out the results here on cloud shark I only ran the capture for 78 seconds and had a total of 4551 packets!</p>
+<p><a href="http://www.cloudshark.org/captures/8f1cd7661a1f">http://www.cloudshark.org/captures/8f1cd7661a1f</a></p>
+<p>That’s it! You can also watch more than one <a href="http://en.wikipedia.org/wiki/Port_%28computer_networking%29" title="Port (computer networking)">network port</a> to capture network traffic if you want, as well using it on port-channels but the 2960 I have does not support that feature :) Like always I hope this information is helpful and Happy New Year! Cisco Documentation: <a href="http://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a008015c612.shtml" title="Catalyst Switched Port Analyzer (SPAN) Configuration Example">Catalyst Switched Port Analyzer (SPAN) Configuration Example</a></p>
 
     
       
@@ -230,7 +261,7 @@
         
         <a href='https://ciscoskills.net/tags/tutorials/' class="post_tag button button_translucent">
           TUTORIALS
-          <span class="button_tally">62</span>
+          <span class="button_tally">61</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/general/' class="post_tag button button_translucent">
@@ -285,10 +316,6 @@
           <div class="tags_list">
             
             <a href='https://ciscoskills.net/tags/300-115/' class=" post_tag button button_translucent" data-position=1>300-115<span class="button_tally">1</span>
-            </a>
-            
-            
-            <a href='https://ciscoskills.net/tags/5596up/' class=" post_tag button button_translucent" data-position=1>5596UP<span class="button_tally">1</span>
             </a>
             
             
@@ -1728,7 +1755,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=62>TUTORIALS<span class="button_tally">62</span>
+            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=61>TUTORIALS<span class="button_tally">61</span>
             </a>
             
             

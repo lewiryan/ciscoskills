@@ -630,112 +630,134 @@ Of course you can reverse engineer this if you were given a decimal value and ne
     </item>
     
     <item>
-      <title>Inter-VLAN Routing on the Nexus 5k.</title>
-      <link>https://ciscoskills.net/2014/03/13/inter-vlan-routing-on-the-nexus-5k./</link>
+      <title>Inter-VLAN Routing on the Nexus 5k</title>
+      <link>https://ciscoskills.net/2014/03/13/inter-vlan-routing-on-the-nexus-5k/</link>
       <pubDate>Thu, 13 Mar 2014 15:45:41 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2014/03/13/inter-vlan-routing-on-the-nexus-5k./</guid>
+      <guid>https://ciscoskills.net/2014/03/13/inter-vlan-routing-on-the-nexus-5k/</guid>
       <description>
         
-          &lt;p&gt;I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let&#39;s go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.  In this example I have already configured a FEX port with a 2k check out the my earlier post &lt;a href=&#34;http://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/&#34; title=&#34;Connecting FEX (5k to 2k)&#34;&gt;Connecting FEX (5k to 2k)&lt;/a&gt; so let&#39;s start right after that and login into the 5k.&lt;code&gt;\[code\]User Access Verification demo5k login: admin Password: Cisco Nexus Operating System (NX-OS) Software TAC support: http://www.cisco.com/tac Copyright (c) 2002-2013, Cisco Systems, Inc. All rights reserved. The copyrights to certain works contained in this software are owned by other third parties and used and distributed under license. Certain components of this software are licensed under the GNU General Public License (GPL) version 2.0 or the GNU Lesser General Public License (LGPL) Version 2.1. A copy of each such license is available at http://www.opensource.org/licenses/gpl-2.0.php and http://www.opensource.org/licenses/lgpl-2.1.php demo5k# config t\[/code\]&lt;/code&gt;Now in configuration mode we have to turn on a feature in the NX-OS to enable VLAN Routing, we do this by issuing the “&lt;strong&gt;feature interface-vlan&lt;/strong&gt;” command. The Nexus runs on efficiency and only loads what it needs or configured. This is familiar approach that Linux uses which loads what is installed and nothing else. In the output below we can see all the features that the NX-OS supports followed by the command to turn on Inter-VLAN Routing.```
-[code]demo5k(config)# feature ?
-bgp             Enable/Disable Border Gateway Protocol (BGP)
-cts             Enable/Disable CTS
-dhcp            Enable/Disable DHCP Snooping
-dot1x           Enable/Disable dot1x
-eigrp           Enable/Disable Enhanced Interior Gateway Routing Protocol
-(EIGRP)
-fcoe            Enable/Disable FCoE/FC feature
-fcoe-npv        Enable/Disable FCoE NPV feature
-fex             Enable/Disable FEX
-flexlink        Enable/Disable Flexlink
-hsrp            Enable/Disable Hot Standby Router Protocol (HSRP)
-http-server     Enable/Disable http-server
-interface-vlan  Enable/Disable interface vlan
-lacp            Enable/Disable LACP
-msdp            Enable/Disable Multicast Source Discovery Protocol (MSDP)
-ntp             Enable/Disable NTP
-ospf            Enable/Disable Open Shortest Path First Protocol (OSPF)
-ospfv3          Enable/Disable Open Shortest Path First Version 3 Protocol
-(OSPFv3)
-pim             Enable/Disable Protocol Independent Multicast (PIM)
-port-security   Enable/Disable port-security
-private-vlan    Enable/Disable private-vlan
-privilege       Enable/Disable IOS type privilege level support
-ptp             Enable/Disable PTP
-rip             Enable/Disable Routing Information Protocol (RIP)
-scp-server      Enable/Disable SCP server
-sftp-server     Enable/Disable SFTP server
-ssh             Enable/Disable ssh
-tacacs+         Enable/Disable tacacs+
-telnet          Enable/Disable telnet
-udld            Enable/Disable UDLD
-vpc             Enable/Disable VPC (Virtual Port Channel)
-vrrp            Enable/Disable Virtual Router Redundancy Protocol (VRRP)
-vtp             Enable/Disable Vlan Trunking Protocol (VTP)&lt;/p&gt;
-&lt;p&gt;demo5k(config)# feature interface-vlan
-demo5k(config)#[/code]
-&lt;code&gt;Just like the Catalyst line we are in configuration mode and let&#39;s create two vlans 50 and 60 with IP addresses.&lt;/code&gt;
-[code highlight=&amp;quot;9&amp;quot;]demo5k(config)# vlan 50
-demo5k(config-vlan)# name SERVER-A-VLAN
-demo5k(config-vlan)# exit
-demo5k(config)# interface vlan 50
-demo5k(config-if)# description SERVER-A-NETWORK
-demo5k(config-if)# ip address 192.168.50.1 255.255.255.0
-demo5k(config-if)# no shutdown
-demo5k(config-if)# exit
-! Create another Interface VLAN!
-demo5k(config)# interface vlan 60
-demo5k(config-if)# description SERVER-B-NETWORK
-demo5k(config-if)# ip address 192.168.60.1 255.255.255.0
-demo5k(config-if)# no shutdown
-demo5k(config-if)# exit
-demo5k(config)#exit[/code]
-&lt;code&gt;Let&#39;s verify our creation by doing a **show interface vlan** 60&lt;/code&gt;
-[code]demo5k# show interface vlan 60
-Vlan60 is down (VLAN does not exist), line protocol is down
-Hardware is EtherSVI, address is  547f.ee59.a2c1
-Description: SERVER-B-NETWORK
-Internet Address is 192.168.60.1/24
-MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec[/code]
-&lt;code&gt;Let&#39;s look at VLAN 50:&lt;/code&gt;
-[code]demo5k# show interface vlan 50
-Vlan60 is down (VLAN is down), line protocol is down
-Hardware is EtherSVI, address is  547f.ee59.a2c1
-Description: SERVER-A-NETWORK
-Internet Address is 192.168.50.1/24
-MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec[/code]
-&lt;code&gt;We can also look at the interface brief:&lt;/code&gt;
-[code]demo5k# show ip interface brief
-IP Interface Status for VRF &amp;quot;default&amp;quot;(1)
-Interface            IP Address      Interface Status
-Vlan50               192.168.50.1    protocol-down/link-down/admin-up
-Vlan60               192.168.60.1    protocol-down/link-down/admin-up[/code]
-&lt;code&gt;VLANs have been created and IP addresses assigned to the interfaces, now let&#39;s configure the 2k. In this example I&#39;ve configured two access ports on the 2k one is in VLAN 50 and another is in VLAN 60. Starting with VLAN 50 on port 1 on the 2k.&lt;/code&gt;
-[code]demo5k(config)# interface ethernet 100/1/1
-demo5k(config-if)# switchport access vlan 50
-demo5k(config-if)# spanning-tree port type edge
-Warning: Edge port type (portfast) should only be enabled on ports connected to a single
-host. Connecting hubs, concentrators, switches, bridges, etc... to this
-interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
-Use with CAUTION&lt;/p&gt;
-&lt;p&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/1 but will only
-have effect when the interface is in a non-trunking mode.
-demo5k(config-if)# no shutdown
-demo5k(config-if)# exit[/code]
-&lt;code&gt;You&#39;ll notice the warning when we configure the port as an edge port, in the Catalyst world this is the same as spanning-tree portfast. Let&#39;s next configure port 25 on the same 2k into VLAN 60.&lt;/code&gt;
-[code]demo5k(config)# interface ethernet 100/1/25
-demo5k(config-if)# switchport access vlan 60
-demo5k(config-if)# spanning-tree port type edge
-Warning: Edge port type (portfast) should only be enabled on ports connected to a single
-host. Connecting hubs, concentrators, switches, bridges, etc... to this
-interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
-Use with CAUTION&lt;/p&gt;
-&lt;p&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/25 but will only
-have effect when the interface is in a non-trunking mode.
-demo5k(config-if)# no shutdown
-demo5k(config-if)# exit[/code]&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+          &lt;p&gt;I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let&#39;s go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.  In this example I have already configured a FEX port with a 2k check out the my earlier post &lt;a href=&#34;http://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/&#34;&gt;Connecting FEX (5k to 2k)&lt;/a&gt; so let&#39;s start right after that and login into the 5k.&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;User Access Verification
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k login: admin
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Password:
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Cisco Nexus Operating System (NX-OS) Software
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;TAC support: http://www.cisco.com/tac
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Copyright (c) 2002-2013, Cisco Systems, Inc. All rights reserved.
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;The copyrights to certain works contained in this software are
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;owned by other third parties and used and distributed under
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;license. Certain components of this software are licensed under
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;the GNU General Public License (GPL) version 2.0 or the GNU
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Lesser General Public License (LGPL) Version 2.1. A copy of each
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;such license is available at
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;http://www.opensource.org/licenses/gpl-2.0.php and
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;http://www.opensource.org/licenses/lgpl-2.1.php
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;demo5k# config t
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now in configuration mode we have to turn on a feature in the NX-OS to enable VLAN Routing, we do this by issuing the “&lt;strong&gt;feature interface-vlan&lt;/strong&gt;” command. The Nexus runs on efficiency and only loads what it needs or configured. This is familiar approach that Linux uses which loads what is installed and nothing else. In the output below we can see all the features that the NX-OS supports followed by the command to turn on Inter-VLAN Routing.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# feature ?
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  bgp             Enable/Disable Border Gateway Protocol (BGP)
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  cts             Enable/Disable CTS
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  dhcp            Enable/Disable DHCP Snooping
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  dot1x           Enable/Disable dot1x
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  eigrp           Enable/Disable Enhanced Interior Gateway Routing Protocol
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;                  (EIGRP)
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  fcoe            Enable/Disable FCoE/FC feature
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  fcoe-npv        Enable/Disable FCoE NPV feature
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex             Enable/Disable FEX
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  flexlink        Enable/Disable Flexlink
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;  hsrp            Enable/Disable Hot Standby Router Protocol (HSRP)
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;  http-server     Enable/Disable http-server
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  interface-vlan  Enable/Disable interface vlan
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  lacp            Enable/Disable LACP
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  msdp            Enable/Disable Multicast Source Discovery Protocol (MSDP)
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  ntp             Enable/Disable NTP
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  ospf            Enable/Disable Open Shortest Path First Protocol (OSPF)
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;  ospfv3          Enable/Disable Open Shortest Path First Version 3 Protocol
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;                  (OSPFv3)
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;  pim             Enable/Disable Protocol Independent Multicast (PIM)
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;  port-security   Enable/Disable port-security
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;  private-vlan    Enable/Disable private-vlan
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;  privilege       Enable/Disable IOS type privilege level support
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;  ptp             Enable/Disable PTP
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;  rip             Enable/Disable Routing Information Protocol (RIP)
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;  scp-server      Enable/Disable SCP server
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;  sftp-server     Enable/Disable SFTP server
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;  ssh             Enable/Disable ssh
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;  tacacs+         Enable/Disable tacacs+
+&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;  telnet          Enable/Disable telnet
+&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;  udld            Enable/Disable UDLD
+&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;  vpc             Enable/Disable VPC (Virtual Port Channel)
+&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;  vrrp            Enable/Disable Virtual Router Redundancy Protocol (VRRP)
+&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;  vtp             Enable/Disable Vlan Trunking Protocol (VTP)
+&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;demo5k(config)# feature interface-vlan
+&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;demo5k(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Just like the Catalyst line we are in configuration mode and let&#39;s create two vlans 50 and 60 with IP addresses.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# vlan 50
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-vlan)# name SERVER-A-VLAN
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-vlan)# exit
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;demo5k(config)# interface vlan 50
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;demo5k(config-if)# description SERVER-A-NETWORK
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;demo5k(config-if)# ip address 192.168.50.1 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;demo5k(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;demo5k(config-if)# exit
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;! Create another Interface VLAN!
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;demo5k(config)# interface vlan 60
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# description SERVER-B-NETWORK
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# ip address 192.168.60.1 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;demo5k(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;demo5k(config-if)# exit
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;demo5k(config)#exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s verify our creation by doing a &lt;strong&gt;show interface vlan 60&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show interface vlan 60
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Vlan60 is down (VLAN does not exist), line protocol is down
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is EtherSVI, address is  547f.ee59.a2c1
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Description: SERVER-B-NETWORK
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  Internet Address is 192.168.60.1/24
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec\[/code\]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s look at VLAN 50:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show interface vlan 50
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Vlan60 is down (VLAN is down), line protocol is down
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is EtherSVI, address is  547f.ee59.a2c1
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Description: SERVER-A-NETWORK
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  Internet Address is 192.168.50.1/24
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec\[/code\]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can also look at the interface brief:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show ip interface brief
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;IP Interface Status for VRF &amp;#34;default&amp;#34;(1)
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Interface            IP Address      Interface Status
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Vlan50               192.168.50.1    protocol-down/link-down/admin-up
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Vlan60               192.168.60.1    protocol-down/link-down/admin-up\[/code\]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;VLANs have been created and IP addresses assigned to the interfaces, now let&#39;s configure the 2k. In this example I&#39;ve configured two access ports on the 2k one is in VLAN 50 and another is in VLAN 60. Starting with VLAN 50 on port 1 on the 2k&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# interface ethernet 100/1/1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-if)# switchport access vlan 50
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-if)# spanning-tree port type edge
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Warning: Edge port type (portfast) should only be enabled on ports connected to a single
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt; host. Connecting hubs, concentrators, switches, bridges, etc... to this
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; Use with CAUTION
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/1 but will only
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; have effect when the interface is in a non-trunking mode.
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# exit\[/code\]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You&#39;ll notice the warning when we configure the port as an edge port, in the Catalyst world this is the same as spanning-tree portfast. Let&#39;s next configure port 25 on the same 2k into VLAN 60.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# interface ethernet 100/1/25
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-if)# switchport access vlan 60
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-if)# spanning-tree port type edge
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Warning: Edge port type (portfast) should only be enabled on ports connected to a single
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt; host. Connecting hubs, concentrators, switches, bridges, etc... to this
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; Use with CAUTION
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/25 but will only
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; have effect when the interface is in a non-trunking mode.
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# no shutdown
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# exit\[/code\]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Done and Done, If you hook-up two PCs with correct IP address scheme in the separate VLANs you would be able to ping them. To verify the routing table you would do a &lt;strong&gt;show ip route&lt;/strong&gt;, just like the IOS world :) Like always I hope this information is helpful and comment below if you have any questions.&lt;/p&gt;
+&lt;!--adsense--&gt;
+
         
       </description>
     </item>
@@ -1064,7 +1086,7 @@ demo5k(config-if)# exit[/code]&lt;/p&gt;
       <guid>https://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</guid>
       <description>
         
-          &lt;p&gt;So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff. It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; test. So let&#39;s get started! On Part 1 of my subnetting post I was spiting up networks into equal parts.&lt;/p&gt;
+          &lt;p&gt;So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff, and the fact that I mispelled subnetting! (Really? 4Ts) It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; test. So let&#39;s get started! On Part 1 of my subnetting post I was spiting up networks into equal parts.&lt;/p&gt;
 &lt;!--adsense--&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Example: If I took an original Class C address of 192.168.5.X (Subnet 255.255.255.0) in broke it up into four parts, each part would be equal. I would use a /26 or a 255.255.255.192. Each network would hold 62 hosts and I would have four of them.&lt;/p&gt;
