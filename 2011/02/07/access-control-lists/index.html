@@ -137,8 +137,6 @@
       </a>
       <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">Cisco
       </a>
-      <a href='https://ciscoskills.net/tags/cisco' class="post_tag button button_translucent">cisco
-      </a>
       <a href='https://ciscoskills.net/tags/icnd2' class="post_tag button button_translucent">ICND2
       </a>
       <a href='https://ciscoskills.net/tags/networking' class="post_tag button button_translucent">networking
@@ -150,8 +148,6 @@
       <a href='https://ciscoskills.net/tags/technology' class="post_tag button button_translucent">technology
       </a>
       <a href='https://ciscoskills.net/tags/tutorial' class="post_tag button button_translucent">tutorial
-      </a>
-      <a href='https://ciscoskills.net/tags/tutorials' class="post_tag button button_translucent">Tutorials
       </a>
 </div>
 
@@ -182,7 +178,19 @@
 
     
     
-    <p>Understanding Access Control Lists is an important role for moving up into the CCNA area. ACLs can get confusing and cause network problems if not implemented correctly. I think what I outlined below explains in a nutshell of what you can expect from ACLs. I would still read and find more information about ACLs on the web and or reading material. By securing networks with ACLs you are adding another barrier to your network although ACLs can't fool-proof your network they add additional level of security from the outside world. The simple definition of an ACL (access control list) is a sequential list of permit or deny statements that apply to the IP address and or upper-layer protocols. ACLs are a powerful way to control network traffic into and out of your network. Packet filtering sometimes called static filtering, controls access to a network by analyzing the incoming and outgoing packets. A router is considered a packet filter when it forwards or denies packets according to filtering rules. Packet filtering works at the network layer of the OSI model. The ACL can get the following information from the packer header:</p>
+    <p>Understanding Access Control Lists is an important role for moving up into the CCNA area. ACLs can get confusing and cause network problems if not implemented correctly. I think what I outlined below explains in a nutshell of what you can expect from ACLs.</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>I would still read and find more information about ACLs on the web and or reading material (becuase I don't trust myself!). By securing networks with ACLs you are adding another barrier to your network although ACLs can't fool-proof your network they add additional level of security from the outside world. The simple definition of an ACL (access control list) is a sequential list of permit or deny statements that apply to the IP address and or upper-layer protocols. ACLs are a powerful way to control network traffic into and out of your network. Packet filtering sometimes called static filtering, controls access to a network by analyzing the incoming and outgoing packets. A router is considered a packet filter when it forwards or denies packets according to filtering rules. Packet filtering works at the network layer of the OSI model. The ACL can get the following information from the packer header:</p>
 <ul>
 <li>Source IP address</li>
 <li>Destination IP address</li>
@@ -213,18 +221,28 @@
 </ul>
 </li>
 </ul>
-<p><strong>Standard ACLs</strong> Standard ACLs allow you to permit or deny traffic from a source IP address. The packet's destination and ports involved do not matter. (Example the following ACL statement allows all traffic from the network 192.168.30.0/24 [code]Router(config)#access-list 10 permit 192.168.30.0 0.0.0.255[/code] Remember there is ALWAYS an implied &quot;deny all&quot; at the end of each ACL statement. (This example is blocking all other network traffic besides what is allowed) Also remember that Standard ACLs are created in global configuration mode. <strong>Extended ACLs</strong> Extended ACLs filter IP packets based on protocol type, source and destination IP address, source TCP or UDP ports, destination TCP or UDP ports and optional protocol type information for finger granularity control. (Example in the following ACL statement, ACL 103 permits traffic originating from any address on the 192.168.30.0/24 network to any destination host using port 80 (HTTP) [code]Router(config)#access-list 103 permit tcp 192.168.30.0 0.0.0.255 any eq 80[/code] Extended ACLs are created in global configuration mode. <strong>Dynamic ACLs</strong> Dynamic or lock-and-key ACLs are available for Internet Protocol traffic only. Dynamic ACLs starts with the application of an extended ACL to block traffic through the router. Common reasons to use Dynamic ACLs are:</p>
+<p><strong>Standard ACLs</strong> Standard ACLs allow you to permit or deny traffic from a source IP address. The packet's destination and ports involved do not matter. (Example the following ACL statement allows all traffic from the network 192.168.30.0/24</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>Router(config)#access-list 10 permit 192.168.30.0 0.0.0.255
+</code></pre></div><p>Remember there is ALWAYS an implied &quot;deny all&quot; at the end of each ACL statement. (This example is blocking all other network traffic besides what is allowed) Also remember that Standard ACLs are created in global configuration mode.</p>
+<p><strong>Extended ACLs</strong> Extended ACLs filter IP packets based on protocol type, source and destination IP address, source TCP or UDP ports, destination TCP or UDP ports and optional protocol type information for finger granularity control. (Example in the following ACL statement, ACL 103 permits traffic originating from any address on the 192.168.30.0/24 network to any destination host using port 80 (HTTP)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>Router(config)#access-list 103 permit tcp 192.168.30.0 0.0.0.255 any eq 80
+</code></pre></div><p>Extended ACLs are created in global configuration mode.</p>
+<p><strong>Dynamic ACLs</strong> Dynamic or lock-and-key ACLs are available for Internet Protocol traffic only. Dynamic ACLs starts with the application of an extended ACL to block traffic through the router. Common reasons to use Dynamic ACLs are:</p>
 <ul>
 <li>When you want a specific remote user or group of remote users to access a host within your network.</li>
 <li>Connecting to the outside of your network (Internet) Lock-and-key authenticates the user and then permits limited access through your firewall router.</li>
 <li>You want a subset of hosts on a local network to access a host from a remote network that is protected by a firewall.</li>
 </ul>
-<p>Lock-and-key requires users to authenticate through an AAA, TACACS server or other security server before it allows access. <strong>Reflexive ACLs</strong> Reflexive ACLs allow IP packets to be filtered based on upper-layer session information. Generally are used to allow outbound traffic and to limit inbound traffic by using sessions that originate inside the router. When a router sees a new outbound connection it adds an entry to a temporary ACL to allow replies back into the network. Reflexive ACLs can be defined only with an extended named IP ACL. They cannot be defined with numbered or standard named ACLs or with other protocols. <strong>Time-Based ACLs</strong> Time-Based ACLs are like extended ACLs in function, but they allow access control based on time. To use time-based ACLs you create a time range that defines specific times of the day and days of the week. You use the time range with a name and then refer to it by a function. The time range relies on the router system clock. This feature works with NTP (Network Time Protocol) synchronization, but the router clock can also be used. <strong>Numbered ACL</strong> You can assign a number based on whether your ACL is standard or extended</p>
+<p>Lock-and-key requires users to authenticate through an AAA, TACACS server or other security server before it allows access.</p>
+<p><strong>Reflexive ACLs</strong> Reflexive ACLs allow IP packets to be filtered based on upper-layer session information. Generally are used to allow outbound traffic and to limit inbound traffic by using sessions that originate inside the router. When a router sees a new outbound connection it adds an entry to a temporary ACL to allow replies back into the network. Reflexive ACLs can be defined only with an extended named IP ACL. They cannot be defined with numbered or standard named ACLs or with other protocols.</p>
+<p><strong>Time-Based ACLs</strong> Time-Based ACLs are like extended ACLs in function, but they allow access control based on time. To use time-based ACLs you create a time range that defines specific times of the day and days of the week. You use the time range with a name and then refer to it by a function. The time range relies on the router system clock. This feature works with NTP (Network Time Protocol) synchronization, but the router clock can also be used.</p>
+<p><strong>Numbered ACL</strong> You can assign a number based on whether your ACL is standard or extended</p>
 <ul>
 <li>1 to 99 and 1300 to 1999 are Standard IP ACL</li>
 <li>100 to 199 and 2000 to 2699 are Extended IP ACL</li>
 </ul>
-<p>You cannot add or delete entries within the ACL (You have to totally delete the ACL in order to edit it) <strong>Named ACL</strong> You can assign names to the ACL instead of numbers.</p>
+<p>You cannot add or delete entries within the ACL (You have to totally delete the ACL in order to edit it)</p>
+<p><strong>Named ACL</strong> You can assign names to the ACL instead of numbers.</p>
 <ul>
 <li>Names can contain alphanumeric characters</li>
 <li>Recommended to type the name in all CAPITAL LETTERS</li>
@@ -232,8 +250,36 @@
 <li>You can add or delete entries within the ACL</li>
 <li>You can specify whether the ACL is standard or extended</li>
 </ul>
-<p>The remark keyword is used for documentation and makes the access lists easier to understand. Each remark is limited to 100 characters. (Example) [code]R1#config t Enter configuration commands one per line. End with CTRL/Z R1(config)#access-list 10 remark Permit hosts from the 192.168.10.0 LAN R1(config)#access-list 10 permit 192.168.10.0 R1(config)#exit R1# *Oct 25 20:34:23:13: %SYS-5-CONFIG_I: configured from console by console R1# show run Building configuration… !<output omitted>! access-list 10 remark Permit hosts from the 192.168.10.0 LAN access-list 10 permit 192.168.10.0 !<output omitted>![/code] <strong>Creating a Named ACL</strong> Naming an ACL makes it easier to understand its function. (Example shows the commands used to configure a standard named ACL on router R1) Keep in mind this is the same command you would use if you wanted an extended ACL just substitute standard for extended. Interface fa0/0 denies hosts on the  192.168.11.10 network access to the 192.168.10.0 network is as follows: [code]R1(config)#ip access-list standard NO_ACCESS R1(config-std-nacl)#deny host 192.168.11.10 R1(config-std-nacl)#permit 192.168.11.0.0.0.255 R1(config-std-nacl)#interface fa0/0 R1(config-if)#ip access-group NO_ACCESS out[/code] That's my view on Access Control Lists, if you want to have more documentation about ACLs you can check out these two links below from Cisco <a href="http://www.cisco.com/en/US/products/sw/secursw/ps1018/products_tech_note09186a00800a5b9a.shtml">Configuring IP Access Lists</a> <a href="http://www.cisco.com/en/US/docs/ios/11_3/security/configuration/guide/scacls.html">Access Control Lists: Overview and Guidelines</a> I hope this tutorial was helpful.</p>
+<p>The remark keyword is used for documentation and makes the access lists easier to understand. Each remark is limited to 100 characters. (Example)</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>R1#config t
+<span class="ln"> 2</span>Enter configuration commands one per line. End with CTRL/Z
+<span class="ln"> 3</span>R1(config)#access-list 10 remark Permit hosts from the 192.168.10.0 LAN
+<span class="ln"> 4</span>R1(config)#access-list 10 permit 192.168.10.0
+<span class="ln"> 5</span>R1(config)#exit
+<span class="ln"> 6</span>R1# 
+<span class="ln"> 7</span>*Oct 25 20:34:23:13: %SYS-5-CONFIG\_I: configured from console by console
+<span class="ln"> 8</span>R1# show run Building configuration… 
+<span class="ln"> 9</span>!&lt;output omitted&gt;!
+<span class="ln">10</span>access-list 10 remark Permit hosts from the 192.168.10.0 LAN access-list 10 permit 192.168.10.0
+<span class="ln">11</span>!&lt;output omitted&gt;!
+</code></pre></div><p><strong>Creating a Named ACL</strong> Naming an ACL makes it easier to understand its function. (Example shows the commands used to configure a standard named ACL on router R1) Keep in mind this is the same command you would use if you wanted an extended ACL just substitute standard for extended. Interface fa0/0 denies hosts on the  192.168.11.10 network access to the 192.168.10.0 network is as follows:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>R1(config)#ip access-list standard NO_ACCESS
+<span class="ln">2</span>R1(config-std-nacl)#deny host 192.168.11.10
+<span class="ln">3</span>R1(config-std-nacl)#permit 192.168.11.0.0.0.255
+<span class="ln">4</span>R1(config-std-nacl)#interface fa0/0
+<span class="ln">5</span>R1(config-if)#ip access-group NO_ACCESS out
+</code></pre></div><p>That's my view on Access Control Lists, if you want to have more documentation about ACLs you can check out these two links below from Cisco <a href="http://www.cisco.com/en/US/products/sw/secursw/ps1018/products_tech_note09186a00800a5b9a.shtml">Configuring IP Access Lists</a> <a href="http://www.cisco.com/en/US/docs/ios/11_3/security/configuration/guide/scacls.html">Access Control Lists: Overview and Guidelines</a> I hope this tutorial was helpful.</p>
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
       
     
@@ -298,7 +344,7 @@
         
         <a href='https://ciscoskills.net/tags/tutorials/' class="post_tag button button_translucent">
           TUTORIALS
-          <span class="button_tally">61</span>
+          <span class="button_tally">59</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/general/' class="post_tag button button_translucent">
@@ -308,7 +354,7 @@
         
         <a href='https://ciscoskills.net/tags/tutorial/' class="post_tag button button_translucent">
           TUTORIAL
-          <span class="button_tally">51</span>
+          <span class="button_tally">52</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/icnd2/' class="post_tag button button_translucent">
@@ -668,7 +714,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/cisco-router/' class=" post_tag button button_translucent" data-position=3>CISCO-ROUTER<span class="button_tally">3</span>
+            <a href='https://ciscoskills.net/tags/cisco-router/' class=" post_tag button button_translucent" data-position=2>CISCO-ROUTER<span class="button_tally">2</span>
             </a>
             
             
@@ -1788,11 +1834,11 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/tutorial/' class=" post_tag button button_translucent" data-position=51>TUTORIAL<span class="button_tally">51</span>
+            <a href='https://ciscoskills.net/tags/tutorial/' class=" post_tag button button_translucent" data-position=52>TUTORIAL<span class="button_tally">52</span>
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=61>TUTORIALS<span class="button_tally">61</span>
+            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=59>TUTORIALS<span class="button_tally">59</span>
             </a>
             
             

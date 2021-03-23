@@ -49,13 +49,59 @@
     
     <item>
       <title>Configure Router on a Stick</title>
-      <link>https://ciscoskills.net/2012/02/01/configure-router-on-a-stick/</link>
-      <pubDate>Wed, 01 Feb 2012 03:45:09 +0000</pubDate>
+      <link>https://ciscoskills.net/2012/01/31/configure-router-on-a-stick/</link>
+      <pubDate>Tue, 31 Jan 2012 10:45:09 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/02/01/configure-router-on-a-stick/</guid>
+      <guid>https://ciscoskills.net/2012/01/31/configure-router-on-a-stick/</guid>
       <description>
         
-          &lt;p&gt;A while ago I talked about putting different &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; on a switch, remember a VLAN is virtual network that although physically it may look like on the same network that does not always mean the case. By having VLANs you are segmenting the network and the only way to get to the other side is having a router. I have already configured the Cisco switch as posted in &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34; title=&#34;Creating VLANs&#34;&gt;Creating VLANs&lt;/a&gt; but in summary I have three VLANs total VLAN 1 which is the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;native VLAN&lt;/a&gt;, VLAN 2 and VLAN 3 (which is called support. If you like to understand how create VLANs on a switch follow the post above. If you look at the network topology below you can see where Cisco came up with the name &amp;quot;Router on Stick&amp;quot; each PC is on its own network and needs the router in order for traffic to pass between the networks. Like before I have three VLANs total. VLAN 1 which is the native VLAN, VLAN 2 and VLAN 3 (which is called &amp;quot;Support&amp;quot;). &lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/router-on-a-sticke/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/router-on-a-sticke.png&#34; alt=&#34;&#34; title=&#34;Router-On-A-Stick&#34;&gt;&lt;/a&gt; You have to create sub-interfaces on the router to route between different VLANs these sub-interfaces do not correspond to the VLANs so you could put any number but for manageability usually people use the same sub-interface has the VLAN ID. To create a sub-interface start typing the interface that will be physically connected to the switch at the end add a period and number. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0.2 Router(config-subif)#[/code] You are now in the sub-interface configuration, we want to tell the router which VLAN this interface will be a part of. In this example I am typing &amp;quot;&lt;strong&gt;encapsulation dot1Q 2&amp;quot;&lt;/strong&gt; dot1Q is an IEEE standard 802.1Q , the number &amp;quot;two&amp;quot; is the VLAN this interface will be a part of. Just like a real interface this interface must have an IP address for end devices to reach it. In this example we are using 192.168.2.1 with a Class C subnet mask. (i.e 255.255.255.0) [code]Router(config-subif)#encapsulation dot1Q 2 Router(config-subif)#ip address 192.168.2.1 255.255.255.0 Router(config-subif)#no shut[/code] We do the same for VLAN 3 (Support) in which we will create a new sub-interface in this example I am using sub-interface 3, and I&#39;m going to be putting this sub-interface in VLAN 3 by using &amp;quot;&lt;strong&gt;encapsulation dot1Q 3&amp;quot;.&lt;/strong&gt; Remember the sub-interface number has no effect on which VLAN this interface is a part of. I&#39;m also adding a IP address of 192.168.3.1 with a Class C subnet mask. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0.3 Router(config-subif)# Router(config-subif)#encapsulation dot1Q 3 Router(config-subif)#ip address 192.168.3.1 255.255.255.0 Router(config-subif)#no shut[/code] The last VLAN is the native VLAN and by default is VLAN 1, for this configuration go to the physical interface and add an IP address for this example we are using 192.168.1.1 with a Class C subnet mask. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0 Router(config-if)#ip address 192.168.1.1 255.255.255.0 Router(config-if)#no shut[/code] The last thing we have to setup is on the Cisco Switch in which we have to specify which interface on the switch will pass all the VLANs, this is known as the trunking port. Go into configuration mode and for this example we selected FastEthernet0/1 apply the &amp;quot;&lt;strong&gt;switchport mode trunk&amp;quot;&lt;/strong&gt; command and since we are using the default native VLAN which is not always recommended that&#39;s all the configuration needed. We now have three different networks separated by VLANs, if you issue a &amp;quot;&lt;strong&gt;show ip route&amp;quot;&lt;/strong&gt; on the router we will see each sub-interface and route to each of them. All devices should be able to ping each other. [code]Switch&amp;gt;en Switch#config t Enter configuration commands, one per line. End with CNTL/Z. Switch(config)#interface fastEthernet 0/1 Switch(config-if)#switchport mode trunk[/code] [code]Router#show ip route Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2 E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area * - candidate default, U - per-user static route, o - ODR P - periodic downloaded static route Gateway of last resort is not set C 192.168.1.0/24 is directly connected, FastEthernet0/0 C 192.168.2.0/24 is directly connected, FastEthernet0/0.2 C 192.168.3.0/24 is directly connected, FastEthernet0/0.3[/code] I hope this information is helpful I have also attached a PDF of the running-config of both devices to give you an example of the configuration. (&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/01/router-on-stick-example-runconfig.pdf&#34;&gt;Router-On-Stick-Example-RunConfig&lt;/a&gt;) If you have any questions post them below. Like always if you an idea of the next topic let me hear it.&lt;/p&gt;
+          &lt;p&gt;A while ago I talked about putting different &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; on a switch, remember a VLAN is virtual network that although physically it may look like on the same network that does not always mean the case. By having VLANs you are segmenting the network and the only way to get to the other side is having a router. I have already configured the Cisco switch as posted in &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34; title=&#34;Creating VLANs&#34;&gt;Creating VLANs&lt;/a&gt; but in summary I have three VLANs total VLAN 1 which is the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;native VLAN&lt;/a&gt;, VLAN 2 and VLAN 3 (which is called support. If you like to understand how create VLANs on a switch follow the post above. If you look at the network topology below you can see where Cisco came up with the name &amp;quot;Router on Stick&amp;quot; each PC is on its own network and needs the router in order for traffic to pass between the networks. Like before I have three VLANs total. VLAN 1 which is the native VLAN, VLAN 2 and VLAN 3 (which is called &amp;quot;Support&amp;quot;).&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2012/01/31/configure-router-on-a-stick/router-on-a-sticke/&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You have to create sub-interfaces on the router to route between different VLANs these sub-interfaces do not correspond to the VLANs so you could put any number but for manageability usually people use the same sub-interface has the VLAN ID. To create a sub-interface start typing the interface that will be physically connected to the switch at the end add a period and number.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router#config t 
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Enter configuration commands, one per line. End with CNTL/Z. 
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Router(config)#interface fastEthernet 0/0.2
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Router(config-subif)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You are now in the sub-interface configuration, we want to tell the router which VLAN this interface will be a part of. In this example I am typing &amp;quot;&lt;strong&gt;encapsulation dot1Q 2&amp;quot;&lt;/strong&gt; dot1Q is an IEEE standard 802.1Q , the number &amp;quot;two&amp;quot; is the VLAN this interface will be a part of. Just like a real interface this interface must have an IP address for end devices to reach it. In this example we are using 192.168.2.1 with a Class C subnet mask. (i.e 255.255.255.0)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router(config-subif)#encapsulation dot1Q 2
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Router(config-subif)#ip address 192.168.2.1 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Router(config-subif)#no shut
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We do the same for VLAN 3 (Support) in which we will create a new sub-interface in this example I am using sub-interface 3, and I&#39;m going to be putting this sub-interface in VLAN 3 by using &amp;quot;&lt;strong&gt;encapsulation dot1Q 3&amp;quot;.&lt;/strong&gt; Remember the sub-interface number has no effect on which VLAN this interface is a part of. I&#39;m also adding a IP address of 192.168.3.1 with a Class C subnet mask.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router#config t
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Enter configuration commands, one per line. End with CNTL/Z.
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Router(config)#interface fastEthernet 0/0.3
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Router(config-subif)# 
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Router(config-subif)#encapsulation dot1Q 3
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;Router(config-subif)#ip address 192.168.3.1 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;Router(config-subif)#no shut
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The last VLAN is the native VLAN and by default is VLAN 1, for this configuration go to the physical interface and add an IP address for this example we are using 192.168.1.1 with a Class C subnet mask.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router#config t
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Enter configuration commands, one per line. End with CNTL/Z.
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Router(config)#interface fastEthernet 0/0
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Router(config-if)#ip address 192.168.1.1 255.255.255.0
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Router(config-if)#no shut
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The last thing we have to setup is on the Cisco Switch in which we have to specify which interface on the switch will pass all the VLANs, this is known as the trunking port. Go into configuration mode and for this example we selected FastEthernet0/1 apply the &amp;quot;&lt;strong&gt;switchport mode trunk&amp;quot;&lt;/strong&gt; command and since we are using the default native VLAN which is not always recommended that&#39;s all the configuration needed. We now have three different networks separated by VLANs, if you issue a &amp;quot;&lt;strong&gt;show ip route&amp;quot;&lt;/strong&gt; on the router we will see each sub-interface and route to each of them. All devices should be able to ping each other.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Switch&amp;gt;en
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Switch#config t
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Enter configuration commands, one per line.  End with CNTL/Z.
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Switch(config)#interface fastEthernet 0/1
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Switch(config-if)#switchport mode trunk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;Router#show ip route
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;       * - candidate default, U - per-user static route, o - ODR
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;       P - periodic downloaded static route
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Gateway of last resort is not set
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;C    192.168.1.0/24 is directly connected, FastEthernet0/0
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;C    192.168.2.0/24 is directly connected, FastEthernet0/0.2
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;C    192.168.3.0/24 is directly connected, FastEthernet0/0.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I hope this information is helpful I have also attached a PDF of the running-config of both devices to give you an example of the configuration. (&lt;a href=&#34;https://ciscoskills.net/files/2012/01/router-on-stick-example-runconfig.pdf&#34;&gt;Router-On-Stick-Example-RunConfig&lt;/a&gt;) If you have any questions post them below. Like always if you an idea of the next topic let me hear it.&lt;/p&gt;
 &lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/11/02/ospf-what-a-protocol/&#34;&gt;OSPF...What a Protocol!&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
@@ -64,57 +110,57 @@
 &lt;li&gt;&lt;a href=&#34;http://mungauwamaseghe.wordpress.com/2012/01/31/journey-to-the-ccie-lab-part-44-bgp-link-bandwidth/&#34;&gt;Journey to the CCIE LAB - Part 44 - BGP Link Bandwidth&lt;/a&gt; (mungauwamaseghe.wordpress.com)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
+&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;http://gravatar.com/aslan77777&#34; title=&#34;ciscodaze@live.com&#34;&gt;Theophilus&lt;/a&gt; - &lt;time datetime=&#34;2012-06-08 17:11:20&#34;&gt;Jun 5, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;I saw your comment on not having to use the encap command when using the actual interface (fa0/0), but I was wondering, (since you typically see books and tutorials NOT using the actual interface, but instead, typically fa0/0.1), are there any other ramifications to using one as opposed to the other?? Fa0/0 as opposed to Fa0/0.1?? Thanks, Kevin&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Theophilus](http://aslan77777.wordpress.com &#34;ciscodaze@live.com&#34;) - &lt;time datetime=&#34;2012-06-08 17:17:52&#34;&gt;Jun 5, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://aslan77777.wordpress.com&#34; title=&#34;ciscodaze@live.com&#34;&gt;Theophilus&lt;/a&gt; - &lt;time datetime=&#34;2012-06-08 17:17:52&#34;&gt;Jun 5, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Besided the encapsulation command, are there any ramifications to using Fa0/0 for vlan 1 (instead of Fa0/0.1, as typically shown in ROAS configs)? Thanks, Kevin&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;&#34;) - &lt;time datetime=&#34;2012-06-08 18:13:58&#34;&gt;Jun 5, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net&#34; title=&#34;&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2012-06-08 18:13:58&#34;&gt;Jun 5, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Hey Kevin, The only reason this is set on the physical interface is because it is using un-tagged traffic also know as the native VLAN. You can&#39;t set the encapsulation dot1q on a physical interface only sub-interfaces. A better way to do this is use a sub-interface followed by: encapsulation dot1Q [VLAN-ID] native I don&#39;t see any problems with this method besides security and monitoring. For example If you wanted to see all traffic passing in and out of the physical interface using Netflow or SNMP you would not see that in this example, you would only see the native VLAN traffic. For security you should not use the native VLAN in production so this example it is not using best practices therefore I would not recommend it. This post goes along with another post I did about creating VLANs on a switch: &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34;&gt;http://ciscoskills.net/2011/04/01/creating-vlans/&lt;/a&gt; Hope that Helps, Ryan&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Part 1 &amp;#8211; The Joys of Subnetting! | Cisco Skills](http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/ &#34;&#34;) - &lt;time datetime=&#34;2012-04-01 15:03:41&#34;&gt;Apr 0, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-3&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/&#34; title=&#34;&#34;&gt;Part 1 – The Joys of Subnetting! | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-04-01 15:03:41&#34;&gt;Apr 0, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Part 2 – The Joys of Subnetttting – VLSM! | Cisco Skills](http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/ &#34;&#34;) - &lt;time datetime=&#34;2012-04-23 21:08:49&#34;&gt;Apr 1, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-4&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/&#34; title=&#34;&#34;&gt;Part 2 – The Joys of Subnetttting – VLSM! | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-04-23 21:08:49&#34;&gt;Apr 1, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[How to configure a Catalyst 3750/3750-E/3750-X Series Switches Using LLDP (Link Layer Discovery Protocol) &amp;laquo; Pete&amp;#039;s Packet](http://petespacket.com/2012/03/08/how-to-configure-a-catalyst-37503750-e3750-x-series-switches-using-lldp-link-layer-discovery-protocol/ &#34;&#34;) - &lt;time datetime=&#34;2012-03-08 14:00:56&#34;&gt;Mar 4, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-5&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://petespacket.com/2012/03/08/how-to-configure-a-catalyst-37503750-e3750-x-series-switches-using-lldp-link-layer-discovery-protocol/&#34; title=&#34;&#34;&gt;How to configure a Catalyst 3750/3750-E/3750-X Series Switches Using LLDP (Link Layer Discovery Protocol) « Pete�s Packet&lt;/a&gt; - &lt;time datetime=&#34;2012-03-08 14:00:56&#34;&gt;Mar 4, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[...] Configure Router on a Stick [...]&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-01-31 22:34:25&#34;&gt;Jan 2, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-6&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2012-01-31 22:34:25&#34;&gt;Jan 2, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;If you are talking about the trunk link between the switch and the router it will pass up to the router and then be forwarded back down to the switch. So if you had a lot of traffic being forwarded between networks you could run into some bandwidth limits. To fix that you could configure a switch that does layer 3 routing and skip the router all together that way you would not be dependent on that one link to forward all of your traffic back and forth. The native VLAN by default is VLAN 1 and that can be changed. The only difference between a native VLAN and a regular VLAN is it passes un-tagged traffic. If you look at the router configuration I&#39;ve setup, the physical interface (fa0/0) notice how I don&#39;t have to put the encapsulation, because this is traffic is not tagged with a VLAN. To answer you question you can put everything on a VLAN and forget about the default/native VLAN. A good practice to use is to change it to a non-default number something other than 1 and a VLAN that you are not using in your network. However make sure every switch has the correct native VLAN or you will get messages about native VLAN mismatched. Ryan&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Philip](http://www.studio1250.com &#34;philip@studio1250.com&#34;) - &lt;time datetime=&#34;2012-02-23 13:58:30&#34;&gt;Feb 4, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-7&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.studio1250.com&#34; title=&#34;philip@studio1250.com&#34;&gt;Philip&lt;/a&gt; - &lt;time datetime=&#34;2012-02-23 13:58:30&#34;&gt;Feb 4, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Great article! Thanks for the info. I was talking to my friend about this last night and when I got into packet tracer I couldn&#39;t quite figure out how to assign multiple ip addresses to a single interface. I&#39;m glad you took the time to write up this example.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-02-23 20:32:32&#34;&gt;Feb 4, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-8&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2012-02-23 20:32:32&#34;&gt;Feb 4, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Glad I could help. :) The configuration is pretty straight forward.&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Theophilus](http://gravatar.com/aslan77777 &#34;ciscodaze@live.com&#34;) - &lt;time datetime=&#34;2012-06-10 14:34:04&#34;&gt;Jun 0, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-9&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://gravatar.com/aslan77777&#34; title=&#34;ciscodaze@live.com&#34;&gt;Theophilus&lt;/a&gt; - &lt;time datetime=&#34;2012-06-10 14:34:04&#34;&gt;Jun 0, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Thanks Ryan&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[Trunking Administrative Modes | Cisco Skills](http://ciscoskills.net/2012/02/11/trunking-administrative-modes/ &#34;&#34;) - &lt;time datetime=&#34;2012-02-11 16:05:33&#34;&gt;Feb 6, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-10&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/02/11/trunking-administrative-modes/&#34; title=&#34;&#34;&gt;Trunking Administrative Modes | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-02-11 16:05:33&#34;&gt;Feb 6, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[EIGRP… The Basics | Cisco Skills](http://ciscoskills.net/2012/02/28/eigrp-the-basics/ &#34;&#34;) - &lt;time datetime=&#34;2012-02-28 19:53:58&#34;&gt;Feb 2, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-11&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/02/28/eigrp-the-basics/&#34; title=&#34;&#34;&gt;EIGRP… The Basics | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-02-28 19:53:58&#34;&gt;Feb 2, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
 &lt;hr /&gt;
-#### 
-[ITforMe](http://gravatar.com/pedrok00 &#34;peter.gavin@live.com&#34;) - &lt;time datetime=&#34;2012-01-31 21:21:36&#34;&gt;Jan 2, 2012&lt;/time&gt;
+&lt;h4 id=&#34;heading-12&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://gravatar.com/pedrok00&#34; title=&#34;peter.gavin@live.com&#34;&gt;ITforMe&lt;/a&gt; - &lt;time datetime=&#34;2012-01-31 21:21:36&#34;&gt;Jan 2, 2012&lt;/time&gt;&lt;/p&gt;
 &lt;p&gt;Good post. Thanks for sharing. Can you confirm that with intervlan routing, that one would not run into the bandwidth limitations imposed by a traditional upstream router? (e.g. say, 50 ports feeding upstream to a physical router only to pipe back down into the switch). In other words, is a router on a stick configuration smart enough to know that if it needs to route across two VLANs that happen to live on the same port, that it isolates the flow of traffic to just that port? I&#39;m also interested in what your thoughts are on the default VLAN 1. It seems that it is often more than just the factory VLAN, but that it may hold special characteristics and limitations (e.g. routing, etc.). If that is the case, would you suggest taking a new stack of switches, and making all of the untagged ports to the systems/workstations on something like VLAN101, with a PVID of 101, so as to prevent any traffic from going across the default VLAN?&lt;/p&gt;
 &lt;hr /&gt;
 

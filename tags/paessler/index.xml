@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;So I don&#39;t write much powershell but recently I needed a way to send daily emails out of PRTG. Thanks Paessler which has kept it simple with their PRTG monitoring system as the hardest part of this script was getting the data in HTML, remember I don&#39;t write much powershell. ;) If you have not used PRTG before check it out if you need some alerting in your environment. Personally this is one of my favorite systems for just monitoring because a lot of other monitoring systems include everything but the kitchen sink and reality we just need to know what&#39;s up and what&#39;s down. This script grabs an XML file that PRTG builds and saves it as &amp;quot;table.xml&amp;quot; I have the script check if there are any sensors in trouble if not send an email. If PRTG is reporting a sensor or sensors that are in trouble this scripts builds an HTML document with a table and list the sensors in trouble highlighting the status column with the appropriate color and sends an email.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Thanks goes to Martin Pugh who has provided the set-cellcolor function. :)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ps1&#34; data-lang=&#34;ps1&#34;&gt;&lt;span class=&#34;ln&#34;&gt;  1&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# PRTG EMAIL ACTIVE ALARMS POWERSHELL SCRIPT.&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;  2&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# USE TASK SCHEDULER TO RUN THIS SCRIPT. &lt;/span&gt;

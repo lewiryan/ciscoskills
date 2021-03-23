@@ -179,6 +179,17 @@
     
     
     <p>So I've played around with two Cisco Nexus 5672UP switches which will be in production soon but before that I wanted to see what it took to get enhanced vPC online. Along the way I was into some new territory as I never stood up vPC before, so in this post I have posted some things to keep in mind and running-config examples, all of which I hope is helpful for a reference.</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <p>Before we go into the configuration of vPC I wanted to mentioned that the Nexus 5600 series switch is a newer product in the Cisco Data Center portfolio. I would guess that it would eventually replace the 5500 Nexus switch series but as of this writing Cisco has not put any end of life notice on the 5500 hardware. One of the main differences on the 5600 is the built-in layer 3 capabilities. The 5500 required a layer 3 card that used an expansion slot and only the higher-end Nexus products offered layer 3. To find out more information about the 5600 on Cisco's website: <a href="http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/datasheet-c78-730760.html" title="Cisco Nexus 5600 Platform Switches Data Sheet">Cisco Nexus 5600 Platform Switches Data Sheet</a></p>
 <p>So when I was looking at configuration examples I noticed some confusion between a dual-homed FEX setup and an enhanced vPC setup, so I'll try to clear the air. The &quot;Enhanced&quot; vPC is able to set up an etherchannel link from two different Nexus switches. The host/server that connects to these two different Nexus switches must support Active/Active NICs. This configuration is almost the same if you were setting up a dual-homed FEX but with just Active/Passive NICs setup on the host/server. So here is a question if the configuration is almost the same what needs to be added to support enhanced vPC? The software I am working with is version 7.0(1)N1(1) and we need to enable the features of vpc, fex and lacp.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>feature vpc
@@ -410,7 +421,7 @@
         
         <a href='https://ciscoskills.net/tags/tutorials/' class="post_tag button button_translucent">
           TUTORIALS
-          <span class="button_tally">61</span>
+          <span class="button_tally">59</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/general/' class="post_tag button button_translucent">
@@ -420,7 +431,7 @@
         
         <a href='https://ciscoskills.net/tags/tutorial/' class="post_tag button button_translucent">
           TUTORIAL
-          <span class="button_tally">51</span>
+          <span class="button_tally">52</span>
         </a>
         
         <a href='https://ciscoskills.net/tags/icnd2/' class="post_tag button button_translucent">
@@ -780,7 +791,7 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/cisco-router/' class=" post_tag button button_translucent" data-position=3>CISCO-ROUTER<span class="button_tally">3</span>
+            <a href='https://ciscoskills.net/tags/cisco-router/' class=" post_tag button button_translucent" data-position=2>CISCO-ROUTER<span class="button_tally">2</span>
             </a>
             
             
@@ -1900,11 +1911,11 @@
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/tutorial/' class=" post_tag button button_translucent" data-position=51>TUTORIAL<span class="button_tally">51</span>
+            <a href='https://ciscoskills.net/tags/tutorial/' class=" post_tag button button_translucent" data-position=52>TUTORIAL<span class="button_tally">52</span>
             </a>
             
             
-            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=61>TUTORIALS<span class="button_tally">61</span>
+            <a href='https://ciscoskills.net/tags/tutorials/' class=" post_tag button button_translucent" data-position=59>TUTORIALS<span class="button_tally">59</span>
             </a>
             
             

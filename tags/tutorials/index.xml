@@ -1562,6 +1562,7 @@ You have now just created your first radius network policy. If all is well and i
       <description>
         
           &lt;p&gt;So I don&#39;t write much powershell but recently I needed a way to send daily emails out of PRTG. Thanks Paessler which has kept it simple with their PRTG monitoring system as the hardest part of this script was getting the data in HTML, remember I don&#39;t write much powershell. ;) If you have not used PRTG before check it out if you need some alerting in your environment. Personally this is one of my favorite systems for just monitoring because a lot of other monitoring systems include everything but the kitchen sink and reality we just need to know what&#39;s up and what&#39;s down. This script grabs an XML file that PRTG builds and saves it as &amp;quot;table.xml&amp;quot; I have the script check if there are any sensors in trouble if not send an email. If PRTG is reporting a sensor or sensors that are in trouble this scripts builds an HTML document with a table and list the sensors in trouble highlighting the status column with the appropriate color and sends an email.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Thanks goes to Martin Pugh who has provided the set-cellcolor function. :)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ps1&#34; data-lang=&#34;ps1&#34;&gt;&lt;span class=&#34;ln&#34;&gt;  1&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# PRTG EMAIL ACTIVE ALARMS POWERSHELL SCRIPT.&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;  2&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# USE TASK SCHEDULER TO RUN THIS SCRIPT. &lt;/span&gt;
@@ -5276,81 +5277,6 @@ Range: (192.168.16.193 – 192.168.16.222) – Subnet Mask  255.255.255.224 &l
     </item>
     
     <item>
-      <title>Configure Router on a Stick</title>
-      <link>https://ciscoskills.net/2012/02/01/configure-router-on-a-stick/</link>
-      <pubDate>Wed, 01 Feb 2012 03:45:09 +0000</pubDate>
-      
-      <guid>https://ciscoskills.net/2012/02/01/configure-router-on-a-stick/</guid>
-      <description>
-        
-          &lt;p&gt;A while ago I talked about putting different &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; on a switch, remember a VLAN is virtual network that although physically it may look like on the same network that does not always mean the case. By having VLANs you are segmenting the network and the only way to get to the other side is having a router. I have already configured the Cisco switch as posted in &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34; title=&#34;Creating VLANs&#34;&gt;Creating VLANs&lt;/a&gt; but in summary I have three VLANs total VLAN 1 which is the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;native VLAN&lt;/a&gt;, VLAN 2 and VLAN 3 (which is called support. If you like to understand how create VLANs on a switch follow the post above. If you look at the network topology below you can see where Cisco came up with the name &amp;quot;Router on Stick&amp;quot; each PC is on its own network and needs the router in order for traffic to pass between the networks. Like before I have three VLANs total. VLAN 1 which is the native VLAN, VLAN 2 and VLAN 3 (which is called &amp;quot;Support&amp;quot;). &lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/router-on-a-sticke/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/router-on-a-sticke.png&#34; alt=&#34;&#34; title=&#34;Router-On-A-Stick&#34;&gt;&lt;/a&gt; You have to create sub-interfaces on the router to route between different VLANs these sub-interfaces do not correspond to the VLANs so you could put any number but for manageability usually people use the same sub-interface has the VLAN ID. To create a sub-interface start typing the interface that will be physically connected to the switch at the end add a period and number. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0.2 Router(config-subif)#[/code] You are now in the sub-interface configuration, we want to tell the router which VLAN this interface will be a part of. In this example I am typing &amp;quot;&lt;strong&gt;encapsulation dot1Q 2&amp;quot;&lt;/strong&gt; dot1Q is an IEEE standard 802.1Q , the number &amp;quot;two&amp;quot; is the VLAN this interface will be a part of. Just like a real interface this interface must have an IP address for end devices to reach it. In this example we are using 192.168.2.1 with a Class C subnet mask. (i.e 255.255.255.0) [code]Router(config-subif)#encapsulation dot1Q 2 Router(config-subif)#ip address 192.168.2.1 255.255.255.0 Router(config-subif)#no shut[/code] We do the same for VLAN 3 (Support) in which we will create a new sub-interface in this example I am using sub-interface 3, and I&#39;m going to be putting this sub-interface in VLAN 3 by using &amp;quot;&lt;strong&gt;encapsulation dot1Q 3&amp;quot;.&lt;/strong&gt; Remember the sub-interface number has no effect on which VLAN this interface is a part of. I&#39;m also adding a IP address of 192.168.3.1 with a Class C subnet mask. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0.3 Router(config-subif)# Router(config-subif)#encapsulation dot1Q 3 Router(config-subif)#ip address 192.168.3.1 255.255.255.0 Router(config-subif)#no shut[/code] The last VLAN is the native VLAN and by default is VLAN 1, for this configuration go to the physical interface and add an IP address for this example we are using 192.168.1.1 with a Class C subnet mask. [code]Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#interface fastEthernet 0/0 Router(config-if)#ip address 192.168.1.1 255.255.255.0 Router(config-if)#no shut[/code] The last thing we have to setup is on the Cisco Switch in which we have to specify which interface on the switch will pass all the VLANs, this is known as the trunking port. Go into configuration mode and for this example we selected FastEthernet0/1 apply the &amp;quot;&lt;strong&gt;switchport mode trunk&amp;quot;&lt;/strong&gt; command and since we are using the default native VLAN which is not always recommended that&#39;s all the configuration needed. We now have three different networks separated by VLANs, if you issue a &amp;quot;&lt;strong&gt;show ip route&amp;quot;&lt;/strong&gt; on the router we will see each sub-interface and route to each of them. All devices should be able to ping each other. [code]Switch&amp;gt;en Switch#config t Enter configuration commands, one per line. End with CNTL/Z. Switch(config)#interface fastEthernet 0/1 Switch(config-if)#switchport mode trunk[/code] [code]Router#show ip route Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2 E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area * - candidate default, U - per-user static route, o - ODR P - periodic downloaded static route Gateway of last resort is not set C 192.168.1.0/24 is directly connected, FastEthernet0/0 C 192.168.2.0/24 is directly connected, FastEthernet0/0.2 C 192.168.3.0/24 is directly connected, FastEthernet0/0.3[/code] I hope this information is helpful I have also attached a PDF of the running-config of both devices to give you an example of the configuration. (&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/01/router-on-stick-example-runconfig.pdf&#34;&gt;Router-On-Stick-Example-RunConfig&lt;/a&gt;) If you have any questions post them below. Like always if you an idea of the next topic let me hear it.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/11/02/ospf-what-a-protocol/&#34;&gt;OSPF...What a Protocol!&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ipv6area.wordpress.com/2011/12/08/what-is-ipv6-an-introduction-to-ipv6/&#34;&gt;What is IPv6 ? An introduction to IPV6&lt;/a&gt; (ipv6area.wordpress.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.edugeek.net/forums/networks/89609-guest-vlans-guest-wifi-different-ip-range-out-filtered-internet.html&#34;&gt;Guest VLANS + Guest Wifi - Different IP Range, Out to Filtered Internet&lt;/a&gt; (edugeek.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://mungauwamaseghe.wordpress.com/2012/01/31/journey-to-the-ccie-lab-part-44-bgp-link-bandwidth/&#34;&gt;Journey to the CCIE LAB - Part 44 - BGP Link Bandwidth&lt;/a&gt; (mungauwamaseghe.wordpress.com)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://gravatar.com/aslan77777&#34; title=&#34;ciscodaze@live.com&#34;&gt;Theophilus&lt;/a&gt; - &lt;time datetime=&#34;2012-06-08 17:11:20&#34;&gt;Jun 5, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;I saw your comment on not having to use the encap command when using the actual interface (fa0/0), but I was wondering, (since you typically see books and tutorials NOT using the actual interface, but instead, typically fa0/0.1), are there any other ramifications to using one as opposed to the other?? Fa0/0 as opposed to Fa0/0.1?? Thanks, Kevin&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Theophilus](http://aslan77777.wordpress.com &#34;ciscodaze@live.com&#34;) - &lt;time datetime=&#34;2012-06-08 17:17:52&#34;&gt;Jun 5, 2012&lt;/time&gt;
-&lt;p&gt;Besided the encapsulation command, are there any ramifications to using Fa0/0 for vlan 1 (instead of Fa0/0.1, as typically shown in ROAS configs)? Thanks, Kevin&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;&#34;) - &lt;time datetime=&#34;2012-06-08 18:13:58&#34;&gt;Jun 5, 2012&lt;/time&gt;
-&lt;p&gt;Hey Kevin, The only reason this is set on the physical interface is because it is using un-tagged traffic also know as the native VLAN. You can&#39;t set the encapsulation dot1q on a physical interface only sub-interfaces. A better way to do this is use a sub-interface followed by: encapsulation dot1Q [VLAN-ID] native I don&#39;t see any problems with this method besides security and monitoring. For example If you wanted to see all traffic passing in and out of the physical interface using Netflow or SNMP you would not see that in this example, you would only see the native VLAN traffic. For security you should not use the native VLAN in production so this example it is not using best practices therefore I would not recommend it. This post goes along with another post I did about creating VLANs on a switch: &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34;&gt;http://ciscoskills.net/2011/04/01/creating-vlans/&lt;/a&gt; Hope that Helps, Ryan&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Part 1 &amp;#8211; The Joys of Subnetting! | Cisco Skills](http://ciscoskills.net/2012/04/01/part-1-the-joys-of-subnetting/ &#34;&#34;) - &lt;time datetime=&#34;2012-04-01 15:03:41&#34;&gt;Apr 0, 2012&lt;/time&gt;
-&lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Part 2 – The Joys of Subnetttting – VLSM! | Cisco Skills](http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/ &#34;&#34;) - &lt;time datetime=&#34;2012-04-23 21:08:49&#34;&gt;Apr 1, 2012&lt;/time&gt;
-&lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[How to configure a Catalyst 3750/3750-E/3750-X Series Switches Using LLDP (Link Layer Discovery Protocol) &amp;laquo; Pete&amp;#039;s Packet](http://petespacket.com/2012/03/08/how-to-configure-a-catalyst-37503750-e3750-x-series-switches-using-lldp-link-layer-discovery-protocol/ &#34;&#34;) - &lt;time datetime=&#34;2012-03-08 14:00:56&#34;&gt;Mar 4, 2012&lt;/time&gt;
-&lt;p&gt;[...] Configure Router on a Stick [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-01-31 22:34:25&#34;&gt;Jan 2, 2012&lt;/time&gt;
-&lt;p&gt;If you are talking about the trunk link between the switch and the router it will pass up to the router and then be forwarded back down to the switch. So if you had a lot of traffic being forwarded between networks you could run into some bandwidth limits. To fix that you could configure a switch that does layer 3 routing and skip the router all together that way you would not be dependent on that one link to forward all of your traffic back and forth. The native VLAN by default is VLAN 1 and that can be changed. The only difference between a native VLAN and a regular VLAN is it passes un-tagged traffic. If you look at the router configuration I&#39;ve setup, the physical interface (fa0/0) notice how I don&#39;t have to put the encapsulation, because this is traffic is not tagged with a VLAN. To answer you question you can put everything on a VLAN and forget about the default/native VLAN. A good practice to use is to change it to a non-default number something other than 1 and a VLAN that you are not using in your network. However make sure every switch has the correct native VLAN or you will get messages about native VLAN mismatched. Ryan&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Philip](http://www.studio1250.com &#34;philip@studio1250.com&#34;) - &lt;time datetime=&#34;2012-02-23 13:58:30&#34;&gt;Feb 4, 2012&lt;/time&gt;
-&lt;p&gt;Great article! Thanks for the info. I was talking to my friend about this last night and when I got into packet tracer I couldn&#39;t quite figure out how to assign multiple ip addresses to a single interface. I&#39;m glad you took the time to write up this example.&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-02-23 20:32:32&#34;&gt;Feb 4, 2012&lt;/time&gt;
-&lt;p&gt;Glad I could help. :) The configuration is pretty straight forward.&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Theophilus](http://gravatar.com/aslan77777 &#34;ciscodaze@live.com&#34;) - &lt;time datetime=&#34;2012-06-10 14:34:04&#34;&gt;Jun 0, 2012&lt;/time&gt;
-&lt;p&gt;Thanks Ryan&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Trunking Administrative Modes | Cisco Skills](http://ciscoskills.net/2012/02/11/trunking-administrative-modes/ &#34;&#34;) - &lt;time datetime=&#34;2012-02-11 16:05:33&#34;&gt;Feb 6, 2012&lt;/time&gt;
-&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[EIGRP… The Basics | Cisco Skills](http://ciscoskills.net/2012/02/28/eigrp-the-basics/ &#34;&#34;) - &lt;time datetime=&#34;2012-02-28 19:53:58&#34;&gt;Feb 2, 2012&lt;/time&gt;
-&lt;p&gt;[...] Configure Router on a Stick (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[ITforMe](http://gravatar.com/pedrok00 &#34;peter.gavin@live.com&#34;) - &lt;time datetime=&#34;2012-01-31 21:21:36&#34;&gt;Jan 2, 2012&lt;/time&gt;
-&lt;p&gt;Good post. Thanks for sharing. Can you confirm that with intervlan routing, that one would not run into the bandwidth limitations imposed by a traditional upstream router? (e.g. say, 50 ports feeding upstream to a physical router only to pipe back down into the switch). In other words, is a router on a stick configuration smart enough to know that if it needs to route across two VLANs that happen to live on the same port, that it isolates the flow of traffic to just that port? I&#39;m also interested in what your thoughts are on the default VLAN 1. It seems that it is often more than just the factory VLAN, but that it may hold special characteristics and limitations (e.g. routing, etc.). If that is the case, would you suggest taking a new stack of switches, and making all of the untagged ports to the systems/workstations on something like VLAN101, with a PVID of 101, so as to prevent any traffic from going across the default VLAN?&lt;/p&gt;
-&lt;hr /&gt;
-
-        
-      </description>
-    </item>
-    
-    <item>
       <title>Color Code Your Routers</title>
       <link>https://ciscoskills.net/2011/11/30/color-code-your-routers/</link>
       <pubDate>Wed, 30 Nov 2011 17:33:03 +0000</pubDate>
@@ -6198,70 +6124,6 @@ Range: (192.168.16.193 – 192.168.16.222) – Subnet Mask  255.255.255.224 &l
     </item>
     
     <item>
-      <title>Access Control Lists</title>
-      <link>https://ciscoskills.net/2011/02/07/access-control-lists/</link>
-      <pubDate>Mon, 07 Feb 2011 18:05:37 +0000</pubDate>
-      
-      <guid>https://ciscoskills.net/2011/02/07/access-control-lists/</guid>
-      <description>
-        
-          &lt;p&gt;Understanding Access Control Lists is an important role for moving up into the CCNA area. ACLs can get confusing and cause network problems if not implemented correctly. I think what I outlined below explains in a nutshell of what you can expect from ACLs. I would still read and find more information about ACLs on the web and or reading material. By securing networks with ACLs you are adding another barrier to your network although ACLs can&#39;t fool-proof your network they add additional level of security from the outside world. The simple definition of an ACL (access control list) is a sequential list of permit or deny statements that apply to the IP address and or upper-layer protocols. ACLs are a powerful way to control network traffic into and out of your network. Packet filtering sometimes called static filtering, controls access to a network by analyzing the incoming and outgoing packets. A router is considered a packet filter when it forwards or denies packets according to filtering rules. Packet filtering works at the network layer of the OSI model. The ACL can get the following information from the packer header:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Source IP address&lt;/li&gt;
-&lt;li&gt;Destination IP address&lt;/li&gt;
-&lt;li&gt;ICMP message type&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;An ACL can also get information from upper-layer protocols:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;TCP/UDP source port&lt;/li&gt;
-&lt;li&gt;TCP/UDP destination port&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Remember the three Ps &lt;strong&gt;P&lt;/strong&gt;er protocol, &lt;strong&gt;P&lt;/strong&gt;er direction, and &lt;strong&gt;P&lt;/strong&gt;er interface&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;One ACL per protocol- To control traffic flow on an interface an ACL must be defined for each protocol enabled on the interface (example IP, IPX, AppleTalk)&lt;/li&gt;
-&lt;li&gt;One ACL per direction- ACLs control traffic in one direction at one time on an interface. You must create two separate ACLs to control traffic in both inbound and outbound connections.&lt;/li&gt;
-&lt;li&gt;One ACL per interface- ACLs control traffic for an interface such as Fast Ethernet.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Types of Cisco ACLs&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Standard ACLs filter packets based on source IP addresses only.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Extended ACLs filter packets based on:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Source and destination IP address&lt;/li&gt;
-&lt;li&gt;Source and destination TCP and UDP ports&lt;/li&gt;
-&lt;li&gt;Protocol type (IP, ICMP, UDP, TCP or protocol number)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Standard ACLs&lt;/strong&gt; Standard ACLs allow you to permit or deny traffic from a source IP address. The packet&#39;s destination and ports involved do not matter. (Example the following ACL statement allows all traffic from the network 192.168.30.0/24 [code]Router(config)#access-list 10 permit 192.168.30.0 0.0.0.255[/code] Remember there is ALWAYS an implied &amp;quot;deny all&amp;quot; at the end of each ACL statement. (This example is blocking all other network traffic besides what is allowed) Also remember that Standard ACLs are created in global configuration mode. &lt;strong&gt;Extended ACLs&lt;/strong&gt; Extended ACLs filter IP packets based on protocol type, source and destination IP address, source TCP or UDP ports, destination TCP or UDP ports and optional protocol type information for finger granularity control. (Example in the following ACL statement, ACL 103 permits traffic originating from any address on the 192.168.30.0/24 network to any destination host using port 80 (HTTP) [code]Router(config)#access-list 103 permit tcp 192.168.30.0 0.0.0.255 any eq 80[/code] Extended ACLs are created in global configuration mode. &lt;strong&gt;Dynamic ACLs&lt;/strong&gt; Dynamic or lock-and-key ACLs are available for Internet Protocol traffic only. Dynamic ACLs starts with the application of an extended ACL to block traffic through the router. Common reasons to use Dynamic ACLs are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;When you want a specific remote user or group of remote users to access a host within your network.&lt;/li&gt;
-&lt;li&gt;Connecting to the outside of your network (Internet) Lock-and-key authenticates the user and then permits limited access through your firewall router.&lt;/li&gt;
-&lt;li&gt;You want a subset of hosts on a local network to access a host from a remote network that is protected by a firewall.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Lock-and-key requires users to authenticate through an AAA, TACACS server or other security server before it allows access. &lt;strong&gt;Reflexive ACLs&lt;/strong&gt; Reflexive ACLs allow IP packets to be filtered based on upper-layer session information. Generally are used to allow outbound traffic and to limit inbound traffic by using sessions that originate inside the router. When a router sees a new outbound connection it adds an entry to a temporary ACL to allow replies back into the network. Reflexive ACLs can be defined only with an extended named IP ACL. They cannot be defined with numbered or standard named ACLs or with other protocols. &lt;strong&gt;Time-Based ACLs&lt;/strong&gt; Time-Based ACLs are like extended ACLs in function, but they allow access control based on time. To use time-based ACLs you create a time range that defines specific times of the day and days of the week. You use the time range with a name and then refer to it by a function. The time range relies on the router system clock. This feature works with NTP (Network Time Protocol) synchronization, but the router clock can also be used. &lt;strong&gt;Numbered ACL&lt;/strong&gt; You can assign a number based on whether your ACL is standard or extended&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;1 to 99 and 1300 to 1999 are Standard IP ACL&lt;/li&gt;
-&lt;li&gt;100 to 199 and 2000 to 2699 are Extended IP ACL&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You cannot add or delete entries within the ACL (You have to totally delete the ACL in order to edit it) &lt;strong&gt;Named ACL&lt;/strong&gt; You can assign names to the ACL instead of numbers.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Names can contain alphanumeric characters&lt;/li&gt;
-&lt;li&gt;Recommended to type the name in all CAPITAL LETTERS&lt;/li&gt;
-&lt;li&gt;Names cannot contain spaces or punctuation and must begin with an alphabetic character&lt;/li&gt;
-&lt;li&gt;You can add or delete entries within the ACL&lt;/li&gt;
-&lt;li&gt;You can specify whether the ACL is standard or extended&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The remark keyword is used for documentation and makes the access lists easier to understand. Each remark is limited to 100 characters. (Example) [code]R1#config t Enter configuration commands one per line. End with CTRL/Z R1(config)#access-list 10 remark Permit hosts from the 192.168.10.0 LAN R1(config)#access-list 10 permit 192.168.10.0 R1(config)#exit R1# *Oct 25 20:34:23:13: %SYS-5-CONFIG_I: configured from console by console R1# show run Building configuration… !&lt;output omitted&gt;! access-list 10 remark Permit hosts from the 192.168.10.0 LAN access-list 10 permit 192.168.10.0 !&lt;output omitted&gt;![/code] &lt;strong&gt;Creating a Named ACL&lt;/strong&gt; Naming an ACL makes it easier to understand its function. (Example shows the commands used to configure a standard named ACL on router R1) Keep in mind this is the same command you would use if you wanted an extended ACL just substitute standard for extended. Interface fa0/0 denies hosts on the  192.168.11.10 network access to the 192.168.10.0 network is as follows: [code]R1(config)#ip access-list standard NO_ACCESS R1(config-std-nacl)#deny host 192.168.11.10 R1(config-std-nacl)#permit 192.168.11.0.0.0.255 R1(config-std-nacl)#interface fa0/0 R1(config-if)#ip access-group NO_ACCESS out[/code] That&#39;s my view on Access Control Lists, if you want to have more documentation about ACLs you can check out these two links below from Cisco &lt;a href=&#34;http://www.cisco.com/en/US/products/sw/secursw/ps1018/products_tech_note09186a00800a5b9a.shtml&#34;&gt;Configuring IP Access Lists&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/ios/11_3/security/configuration/guide/scacls.html&#34;&gt;Access Control Lists: Overview and Guidelines&lt;/a&gt; I hope this tutorial was helpful.&lt;/p&gt;
-
-        
-      </description>
-    </item>
-    
-    <item>
       <title>Persistency on Linux</title>
       <link>https://ciscoskills.net/2011/02/04/persistency-on-linux/</link>
       <pubDate>Fri, 04 Feb 2011 16:45:22 +0000</pubDate>
@@ -6283,7 +6145,95 @@ Range: (192.168.16.193 – 192.168.16.222) – Subnet Mask  255.255.255.224 &l
       <guid>https://ciscoskills.net/2011/01/26/basic-router-configuration/</guid>
       <description>
         
-          &lt;p&gt;One of the things you do first when setting up a Cisco router in lab environments and production environments is basic router configuration. By having a good understanding of basic router configuration you will have the essential building blocks and be able to apply additional knowledge upon router configuration. This tutorial is assuming that  you are in a lab environment, additional security measures for production environments are recommended and are not discussed in this tutorial. Also this tutorial is assuming a terminal emulator session is on and ready. (Hyper-Terminal, Putty, etc) .  The first thing you should always do when first configuring a router is erase the startup configuration. This assures us that anything that might have been saved or loaded is gone and won&#39;t affect are configurations. First make sure you are in privileged EXEC mode on the router by typing &lt;em&gt;enable&lt;/em&gt;: [code]Router&amp;gt;enable Router#[/code] The &lt;em&gt;#&lt;/em&gt; symbol tells us that we are in privileged EXEC mode. Then in privileged EXEC mode issue the command &lt;em&gt;erase startup-config.&lt;/em&gt; The router will give you a warning and tell you to that you are about to erase the NVRAM hit enter. If you are prompted to save changes type &lt;em&gt;no&lt;/em&gt; (If you typed &lt;em&gt;yes&lt;/em&gt; than it will save the running-config to the startup-config and that defeats the purpose of erasing the startup-config file.) [code]Router#erase startup-config Erasing the nvram filesystem will remove all files! Continue? [confirm] [OK] Erase of nvram: complete Router#[/code] When the prompt returns to &lt;em&gt;Router#&lt;/em&gt; issue the &lt;em&gt;reload&lt;/em&gt; command. If prompted to save changes type &lt;em&gt;no&lt;/em&gt; and hit enter. The router will now reload and be ready to configure. When the router finishes loading make sure you type &lt;em&gt;no&lt;/em&gt; for the auto-install. [code]Would you like to enter the initial configuration dialog? [yes/no]: no Would you like to terminate autoinstall? [yes]: Press Enter to accept default. Press RETURN to get started![/code] Enter privileged EXEC mode then type &lt;em&gt;configure terminal&lt;/em&gt;: [code]Router&amp;gt;enable Router#configure terminal Enter configuration commands, one per line. End with CNTL/Z. Router(config)#[/code] To configure the router name enter the &lt;em&gt;hostname&lt;/em&gt; command followed by the name or letters you want the router to be called (for this example I picked &lt;strong&gt;R1&lt;/strong&gt;): [code]Router(config)#hostname R1 R1(config)#[/code] Disable DNS Lookup with the &lt;em&gt;no ip domain-lookup&lt;/em&gt; command: [code]R1(config)#no ip domain-lookup R1(config)#[/code] Configure an EXEC mode password, by using the &lt;em&gt;enable secret&lt;/em&gt; [password] The word secret provides better security by storing the password in a non-reversible cryptographic function in MD5 hash. (For this example the password we will be &lt;strong&gt;allknowing&lt;/strong&gt;) [code]R1(config)#enable secret allknowing R1(config)#[/code] Configure the message-of-the-day banner using the command &lt;em&gt;banner motd.&lt;/em&gt; You can use any message, but make it aware that only authorized personal can enter the router. (For this example I typed this up) [code]R1(config)#banner motd Enter TEXT message. End with the character &#39;&amp;amp;&#39;.  ********************************    !!!AUTHORIZED ACCESS ONLY!!!  ******************************** &amp;amp; R1(config)#[/code] Configure the console password on the router (Make sure you are still in privileged EXEC mode) and type &lt;em&gt;line console 0&lt;/em&gt; for the password. It&#39;s encouraged to use a different password than the enable secret (for this example I&#39;ll use &lt;strong&gt;knowingall&lt;/strong&gt;) type &lt;em&gt;login&lt;/em&gt; to allow password checking. This password will be placed at the console line. [code]R1(config)#line console 0 R1(config-line)#password knowingall R1(config-line)#login R1(config-line)#exit R1(config)#[/code] Configure the password for the virtual terminal lines, again make sure you are in privileged EXEC mode and type &lt;em&gt;line vty 0 4.&lt;/em&gt; The password should be a different as well. The VTY lines are used to remote into the router it can be an insecure method and can send passwords and commands in plain text if not properly setup. If you will never use VTY lines then you can just type &lt;em&gt;login&lt;/em&gt; first and then &lt;em&gt;exit&lt;/em&gt; without typing a password. That will make it so you can&#39;t connect to the router remotely. (For this example however we are using VTY Lines and the password will be &lt;strong&gt;knowing&lt;/strong&gt;) [code]R1(config)#line vty 0 4 R1(config-line)#password knowing R1(config-line)#login R1(config-line)#exit R1(config)#[/code] The next and final command is optional but is a helpful one, if you don&#39;t want those random messages popping up while you are typing. The command is called &lt;em&gt;logging synchronous&lt;/em&gt; and is issued in the line configuration mode for the console port. (Make sure you are in privileged EXEC mode and type &lt;em&gt;line console 0&lt;/em&gt; hit enter and type &lt;em&gt;logging synchronous&lt;/em&gt;. [code]R1(config)#line console 0 R1(config-line)#logging synchronous R1(config-line)#exit R1(config)#[/code] That&#39;s it! This basic router configuration is on every Cisco Lab so you will end up being able to do this in your sleep! One final thing that I forgot to mention, and a lot of people forget to do when they are stuck or can&#39;t remember that command is to use that question mark. Which can be entered at the prompt or at a command to display a list of available commands and parameters. This is helpful because the router will give you a brief summary of what that command will do. If you use the question mark it will become your best friend! (for example issuing the question mark at privileged EXEC mode gives me a list of all of the commands I can use and more available if I hit the space bar). [code]Router#? Exec commands: &amp;lt;1-99&amp;gt; Session number to resume auto Exec level Automation clear Reset functions clock Manage the system clock configure Enter configuration mode connect Open a terminal connection copy Copy from one file to another debug Debugging functions (see also &#39;undebug&#39;) delete Delete a file dir List files on a filesystem disable Turn off privileged commands disconnect Disconnect an existing network connection enable Turn on privileged commands erase Erase a filesystem exit Exit from the EXEC logout Exit from the EXEC   mkdir Create new directory more Display the contents of a file   no Disable debugging informations ping Send echo messages reload Halt and perform a cold restart --More-- [/code] I can then go further (if needed) into a command and hit the question mark. (For example if I type the &lt;em&gt;copy&lt;/em&gt; command followed by a space and a question mark I get the following output). You can use this method and every command no matter how long or short the command is. [code]Router#copy ?   flash:          Copy from flash: file system   ftp:            Copy from ftp: file system   running-config  Copy from current system configuration   startup-config  Copy from startup configuration   tftp:           Copy from tftp: file system [/code] Knowing every command in a router is not needed, instead I would know your way around it and use the available help tools built into the software. Hope this tutorial was helpful.&lt;/p&gt;
+          &lt;p&gt;One of the things you do first when setting up a Cisco router in lab environments and production environments is basic router configuration. By having a good understanding of basic router configuration you will have the essential building blocks and be able to apply additional knowledge upon router configuration. This tutorial is assuming that  you are in a lab environment, additional security measures for production environments are recommended and are not discussed in this tutorial. Also this tutorial is assuming a terminal emulator session is on and ready. (Hyper-Terminal, Putty, etc).&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;p&gt;The first thing you should always do when first configuring a router is erase the startup configuration. This assures us that anything that might have been saved or loaded is gone and won&#39;t affect are configurations. First make sure you are in privileged EXEC mode on the router by typing &lt;em&gt;enable&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router&amp;gt;enable
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Router#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;#&lt;/em&gt; symbol tells us that we are in privileged EXEC mode.&lt;/p&gt;
+&lt;p&gt;Then in privileged EXEC mode issue the command &lt;em&gt;erase startup-config.&lt;/em&gt; The router will give you a warning and tell you to that you are about to erase the NVRAM hit enter. If you are prompted to save changes type &lt;em&gt;no&lt;/em&gt; (If you typed &lt;em&gt;yes&lt;/em&gt; than it will save the running-config to the startup-config and that defeats the purpose of erasing the startup-config file.)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router#erase startup-config
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Erasing the nvram filesystem will remove all files! Continue? [confirm]
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;[OK]
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Erase of nvram: complete
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Router#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When the prompt returns to &lt;em&gt;Router#&lt;/em&gt; issue the &lt;em&gt;reload&lt;/em&gt; command. If prompted to save changes type &lt;em&gt;no&lt;/em&gt; and hit enter. The router will now reload and be ready to configure. When the router finishes loading make sure you type &lt;em&gt;no&lt;/em&gt; for the auto-install.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Would you like to enter the initial configuration dialog? [yes/no]: no
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Would you like to terminate autoinstall? [yes]:
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Press Enter to accept default.
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Press RETURN to get started!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Enter privileged EXEC mode then type &lt;em&gt;configure terminal&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router&amp;gt;enable
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Router#configure terminal
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Enter configuration commands, one per line. End with CNTL/Z.
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Router(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To configure the router name enter the &lt;em&gt;hostname&lt;/em&gt; command followed by the name or letters you want the router to be called (for this example I picked &lt;strong&gt;R1&lt;/strong&gt;):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router(config)#hostname R1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Disable DNS Lookup with the &lt;em&gt;no ip domain-lookup&lt;/em&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#no ip domain-lookup
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Configure an EXEC mode password, by using the &lt;em&gt;enable secret&lt;/em&gt; [password] The word secret provides better security by storing the password in a non-reversible cryptographic function in MD5 hash. (For this example the password we will be &lt;strong&gt;allknowing&lt;/strong&gt;)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#enable secret allknowing
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Configure the message-of-the-day banner using the command &lt;em&gt;banner motd.&lt;/em&gt; You can use any message, but make it aware that only authorized personal can enter the router. (For this example I typed this up)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#banner motd
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Enter TEXT message. End with the character &amp;#39;&amp;amp;&amp;#39;.
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; ********************************
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;   !!!AUTHORIZED ACCESS ONLY!!!
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; ********************************
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;&amp;amp;
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;R1(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Configure the console password on the router (Make sure you are still in privileged EXEC mode) and type &lt;em&gt;line console 0&lt;/em&gt; for the password. It&#39;s encouraged to use a different password than the enable secret (for this example I&#39;ll use &lt;strong&gt;knowingall&lt;/strong&gt;) type &lt;em&gt;login&lt;/em&gt; to allow password checking. This password will be placed at the console line.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#line console 0
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-line)#password knowingall
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-line)#login
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;R1(config-line)#exit
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;R1(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Configure the password for the virtual terminal lines, again make sure you are in privileged EXEC mode and type &lt;em&gt;line vty 0 4.&lt;/em&gt; The password should be a different as well. The VTY lines are used to remote into the router it can be an insecure method and can send passwords and commands in plain text if not properly setup. If you will never use VTY lines then you can just type &lt;em&gt;login&lt;/em&gt; first and then &lt;em&gt;exit&lt;/em&gt; without typing a password. That will make it so you can&#39;t connect to the router remotely. (For this example however we are using VTY Lines and the password will be &lt;strong&gt;knowing&lt;/strong&gt;)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#line vty 0 4
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-line)#password knowing 
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-line)#login
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;R1(config-line)#exit
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;R1(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The next and final command is optional but is a helpful one, if you don&#39;t want those random messages popping up while you are typing. The command is called &lt;em&gt;logging synchronous&lt;/em&gt; and is issued in the line configuration mode for the console port. (Make sure you are in privileged EXEC mode and type &lt;em&gt;line console 0&lt;/em&gt; hit enter and type &lt;em&gt;logging synchronous&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#line console 0
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-line)#logging synchronous
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-line)#exit
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;R1(config)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s it! This basic router configuration is on every Cisco Lab so you will end up being able to do this in your sleep! One final thing that I forgot to mention, and a lot of people forget to do when they are stuck or can&#39;t remember that command is to use that question mark. Which can be entered at the prompt or at a command to display a list of available commands and parameters. This is helpful because the router will give you a brief summary of what that command will do. If you use the question mark it will become your best friend! (for example issuing the question mark at privileged EXEC mode gives me a list of all of the commands I can use and more available if I hit the space bar).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;Router#?
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Exec commands:
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  &amp;lt;1-99&amp;gt;      Session number to resume
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  auto        Exec level Automation
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  clear       Reset functions
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  clock       Manage the system clock
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  configure   Enter configuration mode
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  connect     Open a terminal connection
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  copy        Copy from one file to another
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  debug       Debugging functions (see also &amp;#39;undebug&amp;#39;)
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  delete      Delete a file
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;  dir         List files on a filesystem
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;  disable     Turn off privileged commands
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  disconnect  Disconnect an existing network connection
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  enable      Turn on privileged commands
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  erase       Erase a filesystem
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  exit        Exit from the EXEC
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  logout      Exit from the EXEC
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;  mkdir Create new directory
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;  more        Display the contents of a file
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;  no Disable debugging informations
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;  ping        Send echo messages
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;  reload      Halt and perform a cold restart
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt; --More--
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I can then go further (if needed) into a command and hit the question mark. (For example if I type the &lt;em&gt;copy&lt;/em&gt; command followed by a space and a question mark I get the following output). You can use this method and every command no matter how long or short the command is.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router#copy ?
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;  flash:          Copy from flash: file system
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  ftp:            Copy from ftp: file system
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  running-config  Copy from current system configuration
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  startup-config  Copy from startup configuration
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  tftp:           Copy from tftp: file system
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Knowing every command in a router is not needed, instead I would know your way around it and use the available help tools built into the software. Hope this tutorial was helpful.&lt;/p&gt;
 
         
       </description>
