@@ -10067,8 +10067,257 @@ Like you I was nervous so nervous, I reviewed and reviewed and went over everyth
       <guid>https://ciscoskills.net/2011/01/18/basic-ppp-configuration/</guid>
       <description>
         
-          &lt;p&gt;This tutorial will be going over Basic Configuration of PPP (Point-to-Point Protocol). This tutorial includes Basic Configuration tasks on a router, Configuring OSPF routing protocol, and Configuring PPP PAP and CHAP authentication. Let&#39;s get started! &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/01/ppp1.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/01/ppp1.png?w=150&#34; alt=&#34;Network Topology of PPP&#34; title=&#34;Point-to-Point Protocol&#34;&gt;&lt;/a&gt; We can see in the above diagram we will be using three routers, a loop back connection, two switches (which we will leave them at their default configuration) and two PCs If you are using packet tracer or using real devices than cable the network. The next couple of steps are assuming you already know the material. Next perform Basic Router Configurations (hostname, disable DNS lookup, EXEC password, message-of-the-day banner, and password for console and VTY connections, along with synchronous logging).  After that, configure the interfaces on R1, R2, and R3 (with the IP addresses from the addressing table (remember to include the clock rate on serial DCE interfaces). Make sure that the IP addressing is correct and the interfaces are active by issuing the &lt;em&gt;show ip interface&lt;/em&gt; brief command. Test and configure ethernet interfaces on PC1 and PC3 (test by pinging the default gateway) OK, now that all devices are connected we can start by configuring OSPF (so that each router knows about each other network). (On the R1 we are going to use the process ID of 1) [code]R1(config)#router ospf 1 R1(config-router)#network 192.168.10.0 0.0.0.255 area 0 R1(config-router)#network 10.1.1.0 0.0.0.3 area 0 *Aug 17 17:49:14.689: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on Serial0/0/0 from LOADING to FULL, Loading Done R1(config-router)#[/code] Next we will move to R2 and configure OSPF the output is: [code]R2(config)#router ospf 1 R2(config-router)#network 10.1.1.0 0.0.0.3 area 0 *Aug 17 17:48:40.645: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.10.1 on Serial0/0/0 from LOADING to FULL, Loading Done R2(config-router)#network 10.2.2.0 0.0.0.3 area 0 R2(config-router)#network 209.165.200.224 0.0.0.31 area 0 R2(config-router)# *Aug 17 17:57:44.729: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on Serial0/0/1 from LOADING to FULL, Loading Done R2(config-router)#[/code] The last router (R3) is ready to be configured with OSPF (Again remember to use the process ID of 1) [code]R3(config)#router ospf 1 R3(config-router)#network 10.2.2.0 0.0.0.3 area 0 *Aug 17 17:58:02.017: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on Serial0/0/1 from LOADING to FULL, Loading Done R3(config-router)#network 192.168.30.0 0.0.0.255 area 0 R3(config-router)#[/code] With OSPF setup you want to verify that you have full network connectivity (Every device should be able to ping each other) This is R1&#39;s output of the command &lt;em&gt;show ip route&lt;/em&gt; Also R1 was able to ping 192.168.30.1 [code]R1#show ip route &lt;output omitted&gt; O 192.168.30.0/24 [110/1563] via 10.1.1.2, 00:33:56, Serial0/0/0 C 192.168.10.0/24 is directly connected, FastEthernet0/1   209.165.200.0/27 is subnetted, 1 subnets O 209.165.200.225 [110/782] via 10.1.1.2, 00:33:56, Serial0/0/0   10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks O 10.2.2.0/30 [110/1562] via 10.1.1.2, 00:33:56, Serial0/0/0 C 10.1.1.0/30 is directly connected, Serial0/0/0 R1#ping 192.168.30.1 Type escape sequence to abort. Sending 5, 100-byte ICMP Echos to 192.168.30.1, timeout is 2 seconds: !!!!! Success rate is 100 percent (5/5), round-trip min/avg/max = 32/32/32 ms R1#[/code] This output of R2 when issuing the command &lt;em&gt;show ip route&lt;/em&gt; also R2 is able to ping 192.168.30.1 and 192.168.10.1 [code]R2#show ip route &lt;output omitted&gt; O 192.168.30.0/24 [110/782] via 10.2.2.2, 00:33:04, Serial0/0/1 O 192.168.10.0/24 [110/782] via 10.1.1.1, 00:33:04, Serial0/0/0   209.165.200.0/27 is subnetted, 1 subnets C 209.165.200.224 is directly connected, Loopback0   10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks C 10.2.2.0/30 is directly connected, Serial0/0/1 C 10.1.1.0/30 is directly connected, Serial0/0/0 R2#ping 192.168.30.1 Type escape sequence to abort. Sending 5, 100-byte ICMP Echos to 192.168.30.1, timeout is 2 seconds: !!!!! Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms R2#ping 192.168.10.1 Type escape sequence to abort. Sending 5, 100-byte ICMP Echos to 192.168.10.1, timeout is 2 seconds: !!!!! Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms R2#[/code] This last output of R3 when using the command &lt;em&gt;show ip route&lt;/em&gt;. R3 is able to ping 209.165.200.225 and 192.168.10.1 [code]R3#show ip route &lt;output omitted&gt; C 192.168.30.0/24 is directly connected, FastEthernet0/1 O 192.168.10.0/24 [110/1563] via 10.2.2.1, 00:32:01, Serial0/0/1   209.165.200.0/27 is subnetted, 1 subnets O 209.165.200.225 [110/782] via 10.2.2.1, 00:32:01, Serial0/0/1   10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks C 10.2.2.0/30 is directly connected, Serial0/0/1 O 10.1.1.0/30 [110/1562] via 10.2.2.1, 00:32:01, Serial0/0/1 R3#ping 209.165.200.225 Type escape sequence to abort. Sending 5, 100-byte ICMP Echos to 209.165.200.225, timeout is 2 seconds: !!!!! Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms R3#ping 192.168.10.1 Type escape sequence to abort. Sending 5, 100-byte ICMP Echos to 192.168.10.1, timeout is 2 seconds: !!!!! Success rate is 100 percent (5/5), round-trip min/avg/max = 32/32/32 ms R3#[/code] Now that all devices can ping each other we can start configuring PPP encapsulation on the serial interfaces. Type the command &lt;em&gt;show interface serial0/0/0&lt;/em&gt; in R1 notice in the output the encapsulation type, which is HDLC. This is the default encapsulation on serial interfaces with Cisco Routers. (let&#39;s change that to PPP) [code]R1#show interface serial0/0/0 Serial0/0/0 is up, line protocol is up   Hardware is GT96K Serial Internet address is 10.1.1.1/30   MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,   reliability 255/255, txload 1/255, rxload 1/255   Encapsulation HDLC, loopback not set &lt;output omitted&gt;[/code] R2&#39;s output from the &lt;em&gt;show interface serial0/0/0&lt;/em&gt; and &lt;em&gt;show interface serial0/0/1&lt;/em&gt;: [code]R2#show interface serial0/0/0 Serial0/0/0 is up, line protocol is up   Hardware is GT96K Serial Internet address is 10.1.1.2/30   MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,   reliability 255/255, txload 1/255, rxload 1/255   Encapsulation HDLC, loopback not set &lt;output omitted&gt; R2#show interface serial0/0/1 Serial0/0/1 is up, line protocol is up   Hardware is GT96K Serial Internet address is 10.2.2.1/30   MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,   reliability 255/255, txload 1/255, rxload 1/255   Encapsulation HDLC, loopback not set &lt;output omitted&gt;[/code] R3&#39;s output from the &lt;em&gt;show interface serial 0/0/1&lt;/em&gt; command: [code]R3#show interface serial0/0/1 Serial0/0/1 is up, line protocol is up   Hardware is GT96K Serial Internet address is 10.2.2.2/30   MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,   reliability 255/255, txload 1/255, rxload 1/255   Encapsulation HDLC, loopback not set &lt;output omitted&gt;[/code] So you see that all routers have the encapsulation of HDLC, if we were to put PPP on one end of a serial interface say R2&#39;s S0/0/0 interface and leave HDLC on the other end what would happen? If you guessed that the link would go down you are correct. But also OSPF would get rid of that route in the routing table. You have to be careful when configuring PPP especially on a production network. You run the risk of making you network inoperable if you are not careful setting the different encapsulations. To change the encapsulation from HDLC to PPP on R1, R2, and R3. Go to the interface of the serial connection and type &lt;em&gt;encapsulation ppp&lt;/em&gt;. (yes it is really that simple). This is the following output from R1 on interface s0/0/0 (notice that OSPF will go down if you don&#39;t configure the other side of the serial interface in this case R2&#39;s serial0/0/0) [code]R1(config)#interface serial 0/0/0 R1(config-if)#encapsulation ppp R1(config-if)# *Aug 16 18:15:53.412: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on Serial0/0/0 from FULL to DOWN, Neighbor Down: Interface down or detached R1(config-if)#[/code] This is R2&#39;s output for the encapsulation change from HDLC to PPP, again notice how OSPF is going down because of the different encapsulation. R3 is still running HDLC therefore the link is down. [code]R2(config)#interface serial0/0/1 R2(config-if)#encapsulation ppp R2(config-if)# *Aug 17 20:02:08.080: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on Serial0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached R2(config-if)#[/code] Change R1 and R3 to the proper encapsulation type so communication between the routers are again connected and to get OSPF working again. (This example on R3 notice that once the encapsulation was changed to PPP the link went back up and OSPF found an adjacent neighbor.) [code]R3(config)#interface serial 0/0/1 R3(config-if)#encapsulation ppp R3(config-if)# *Aug 17 20:04:27.152: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up *Aug 17 20:04:30.952: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on Serial0/0/1 from LOADING to FULL, Loading Done [/code] Verify that all routers are now running PPP by typing the command show interface [interface ID] (This example shows that R1 is running PPP for the encapsulation) [code]R1#show interface serial0/0/0 Serial0/0/0 is up, line protocol is up   Hardware is GT96K Serial Internet address is 10.1.1.1/30   MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,   reliability 255/255, txload 1/255, rxload 1/255   Encapsulation PPP, LCP Open   Open: CDPCP, IPCP, loopback not set &lt;output omitted&gt;[/code] This shows both of R2&#39;s serial interfaces, when issuing the &lt;em&gt;show interface serial0/0/0&lt;/em&gt; and  &lt;em&gt;show interface serial0/0/1&lt;/em&gt; commands: [code]R2#show interface serial 0/0/0 Serial0/0/0 is up, line protocol is up   Hardware is GT96K Serial Internet address is 10.1.1.2/30   MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,   reliability 255/255, txload 1/255, rxload 1/255   Encapsulation PPP, LCP Open   Open: CDPCP, IPCP, loopback not set &lt;output omitted&gt; R2#show interface serial 0/0/1 Serial0/0/1 is up, line protocol is up   Hardware is GT96K Serial Internet address is 10.2.2.1/30   MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,   reliability 255/255, txload 1/255, rxload 1/255   Encapsulation PPP, LCP Open   Open: CDPCP, IPCP, loopback not set &lt;output omitted&gt; [/code] R3&#39;s output when issuing the &lt;em&gt;show interface serial0/0/1&lt;/em&gt; command: [code]R3#show interface serial 0/0/1 Serial0/0/1 is up, line protocol is up   Hardware is GT96K Serial Internet address is 10.2.2.2/30   MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,   reliability 255/255, txload 1/255, rxload 1/255   Encapsulation PPP, LCP Open   Open: CDPCP, IPCP, loopback not set &lt;output omitted&gt;[/code] Now that all routers are using a different encapsulation protocol (PPP) we can also give the protocol some authentication. The first one we will use is (PAP) password authentication protocol. PAP is not a secure authentication protocol. Passwords are sent using plain text and only authenticates once. To set up PAP the username and password must match the other router. So for this example R1&#39;s username is R1 and the password is knowing. [code]R1(config)#username R1 password knowing[/code] Keep in mind that this information needs to be typed on R2 for PAP to work. The example from R2&#39;s username is R2 and the password is knowing. [code]R2(config)#username R2 password knowing[/code] Again this information needs to be typed on R1 for PAP to work. Back to R1 we want to go to the interface that R2 is connected to(interface s0/0/0) then we would type &lt;em&gt;ppp authentication pap&lt;/em&gt; hit enter (notice the link went down between R1 and R2). Type &lt;em&gt;ppp pap sent-username R2 password knowing&lt;/em&gt; This will send the username of R2 and the password of &amp;quot;knowing&amp;quot; to R2. R2 will check the username and password and because they match R2&#39;s username and password PPP will be authenticated. [code]R1(config)#int s0/0/0 R1(config-if)#ppp authentication pap R1(config-if)# *Aug 22 18:58:57.367: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to down R1(config-if)# *Aug 22 18:58:58.423: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on Serial0/0/0 from FULL to DOWN, Neighbor Down: Interface down or detached R1(config-if)#ppp pap sent-username R2 password knowing[/code] Let&#39;s do the same thing with R2 as we did with R1 but remember to type R1&#39;s username (R1) and password (knowing) on R2&#39;s interface that connects to R1 (serial0/0/0) Also notice that the link between R1 and R2 went back up. [code]R2(config)#interface Serial0/0/0 R2(config-if)#ppp authentication pap R2(config-if)#ppp pap sent-username R1 password knowing R2(config-if)# *Aug 23 16:30:33.771: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up[/code] Now that R1 and R2 are working with PAP with PPP we can put CHAP between R2 and R3. CHAP stands for (Challenge Handshake Authentication Protocol) because of the challenge CHAP is a stronger authentication than PAP. CHAP also encrypts the password so it is not sent in plain text. The way to set up CHAP is fundamentally the same. Looking at R2 we are still going to be using the username and password. However in this case the username will be R3 instead of R2 because of the three-way handshake CHAP uses. The password will be &amp;quot;knowing&amp;quot;. We than go into the serial interface that R3 is connected to (s0/0/1) and type &lt;em&gt;ppp authentication chap&lt;/em&gt; (Notice how the link went down) [code]R2(config)#username R3 password knowing R2(config)#int s0/0/1 R2(config-if)#ppp authentication chap R2(config-if)# *Aug 23 18:06:00.935: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to down R2(config-if)# *Aug 23 18:06:01.947: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on Serial0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached R2(config-if)#[/code] Let&#39;s do the same thing for R3 as we did for R2&#39;s serial interface link (0/0/1) The username will be R2 and the password will be &amp;quot;knowing&amp;quot;. (because of the three-way handshake CHAP uses) Also notice the link between R3 and R2 it went back up and OSPF is working again. [code]R3(config)#username R2 password knowing *Aug 23 18:07:13.074: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/1, changed state to up R3(config)#int s0/0/1 R3(config-if)# *Aug 23 18:07:22.174: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on Serial0/0/1 from LOADING to FULL, Loading Done R3(config-if)#ppp authentication chap R3(config-if)#[/code] That&#39;s that! You know have PPP setup and some authentication. Between R1 and R2 the authentication is PAP and between R2 and R3 the authentication is CHAP. You should be able to ping all the devices within the topology diagram. Hope this tutorial was helpful&lt;/p&gt;
-
+          &lt;p&gt;This tutorial will be going over Basic Configuration of PPP (Point-to-Point Protocol). This tutorial includes Basic Configuration tasks on a router, Configuring OSPF routing protocol, and Configuring PPP PAP and CHAP authentication. Let&#39;s get started!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/01/ppp1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We can see in the above diagram we will be using three routers, a loop back connection, two switches (which we will leave them at their default configuration) and two PCs If you are using packet tracer or using real devices than cable the network. The next couple of steps are assuming you already know the material. Next perform Basic Router Configurations (hostname, disable DNS lookup, EXEC password, message-of-the-day banner, and password for console and VTY connections, along with synchronous logging).  After that, configure the interfaces on R1, R2, and R3 (with the IP addresses from the addressing table (remember to include the clock rate on serial DCE interfaces). Make sure that the IP addressing is correct and the interfaces are active by issuing the &lt;em&gt;show ip interface&lt;/em&gt; brief command. Test and configure ethernet interfaces on PC1 and PC3 (test by pinging the default gateway)&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;p&gt;OK, now that all devices are connected we can start by configuring OSPF (so that each router knows about each other network). (On the R1 we are going to use the process ID of 1)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#router ospf 1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-router)#network 192.168.10.0 0.0.0.255 area 0
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-router)#network 10.1.1.0 0.0.0.3 area 0
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 17 17:49:14.689: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Serial0/0/0 from LOADING to FULL, Loading Done
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;R1(config-router)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next we will move to R2 and configure OSPF the output is:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2(config)#router ospf 1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;R2(config-router)#network 10.1.1.0 0.0.0.3 area 0
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;*Aug 17 17:48:40.645: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.10.1 on
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Serial0/0/0 from LOADING to FULL, Loading Done
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;R2(config-router)#network 10.2.2.0 0.0.0.3 area 0
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;R2(config-router)#network 209.165.200.224 0.0.0.31 area 0
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;R2(config-router)#
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;*Aug 17 17:57:44.729: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Serial0/0/1 from LOADING to FULL, Loading Done
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;R2(config-router)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The last router (R3) is ready to be configured with OSPF (Again remember to use the process ID of 1)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: The process ID does not need to match across all routers to make OSPF work, using process ID of 1 just makes this simple to debug if you were looking at running process on the router and had multiple instances of OSPF running.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3(config)#router ospf 1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R3(config-router)#network 10.2.2.0 0.0.0.3 area 0
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;*Aug 17 17:58:02.017: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Serial0/0/1 from LOADING to FULL, Loading Done
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;R3(config-router)#network 192.168.30.0 0.0.0.255 area 0
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;R3(config-router)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With OSPF setup you want to verify that you have full network connectivity (Every device should be able to ping each other) This is R1&#39;s output of the command &lt;em&gt;show ip route&lt;/em&gt; Also R1 was able to ping 192.168.30.1&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show ip route
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;O 192.168.30.0/24 [110/1563] via 10.1.1.2, 00:33:56, Serial0/0/0
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;C 192.168.10.0/24 is directly connected, FastEthernet0/1
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  209.165.200.0/27 is subnetted, 1 subnets
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;O 209.165.200.225 [110/782] via 10.1.1.2, 00:33:56, Serial0/0/0
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;O 10.2.2.0/30 [110/1562] via 10.1.1.2, 00:33:56, Serial0/0/0
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;C 10.1.1.0/30 is directly connected, Serial0/0/0
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R1#ping 192.168.30.1
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Type escape sequence to abort.
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 192.168.30.1, timeout is 2 seconds:
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;!!!!!
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 32/32/32 ms
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;R1#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This output of R2 when issuing the command &lt;em&gt;show ip route&lt;/em&gt; also R2 is able to ping 192.168.30.1 and 192.168.10.1&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2#show ip route
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;O 192.168.30.0/24 [110/782] via 10.2.2.2, 00:33:04, Serial0/0/1
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;O 192.168.10.0/24 [110/782] via 10.1.1.1, 00:33:04, Serial0/0/0
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  209.165.200.0/27 is subnetted, 1 subnets
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;C 209.165.200.224 is directly connected, Loopback0
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;C 10.2.2.0/30 is directly connected, Serial0/0/1
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;C 10.1.1.0/30 is directly connected, Serial0/0/0
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R2#ping 192.168.30.1
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Type escape sequence to abort.
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 192.168.30.1, timeout is 2 seconds:
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;!!!!!
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;R2#ping 192.168.10.1
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Type escape sequence to abort.
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 192.168.10.1, timeout is 2 seconds:
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;!!!!!
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;R2#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This last output of R3 when using the command &lt;em&gt;show ip route&lt;/em&gt;. R3 is able to ping 209.165.200.225 and 192.168.10.1&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R3#show ip route
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;C 192.168.30.0/24 is directly connected, FastEthernet0/1
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;O 192.168.10.0/24 [110/1563] via 10.2.2.1, 00:32:01, Serial0/0/1
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  209.165.200.0/27 is subnetted, 1 subnets
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;O 209.165.200.225 [110/782] via 10.2.2.1, 00:32:01, Serial0/0/1
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;C 10.2.2.0/30 is directly connected, Serial0/0/1
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;O 10.1.1.0/30 [110/1562] via 10.2.2.1, 00:32:01, Serial0/0/1
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R3#ping 209.165.200.225
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Type escape sequence to abort.
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 209.165.200.225, timeout is 2 seconds:
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;!!!!!
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;R3#ping 192.168.10.1
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Type escape sequence to abort.
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 192.168.10.1, timeout is 2 seconds:
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;!!!!!
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 32/32/32 ms
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;R3#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that all devices can ping each other we can start configuring PPP encapsulation on the serial interfaces. Type the command &lt;em&gt;show interface serial0/0/0&lt;/em&gt; in R1 notice in the output the encapsulation type, which is HDLC. This is the default encapsulation on serial interfaces with Cisco Routers. (let&#39;s change that to PPP)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1#show interface serial0/0/0
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Serial0/0/0 is up, line protocol is up
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is GT96K Serial
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Internet address is 10.1.1.1/30
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;  Encapsulation HDLC, loopback not set
+&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;R2&#39;s output from the &lt;em&gt;show interface serial0/0/0&lt;/em&gt; and &lt;em&gt;show interface serial0/0/1&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2#show interface serial0/0/0
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Serial0/0/0 is up, line protocol is up
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  Hardware is GT96K Serial
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Internet address is 10.1.1.2/30
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  Encapsulation HDLC, loopback not set
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R2#show interface serial0/0/1
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Serial0/0/1 is up, line protocol is up
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;  Hardware is GT96K Serial
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  Internet address is 10.2.2.1/30
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  Encapsulation HDLC, loopback not set
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;R3&#39;s output from the &lt;em&gt;show interface serial 0/0/1&lt;/em&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3#show interface serial0/0/1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Serial0/0/1 is up, line protocol is up
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is GT96K Serial
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Internet address is 10.2.2.2/30
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;  Encapsulation HDLC, loopback not set
+&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So you see that all routers have the encapsulation of HDLC, if we were to put PPP on one end of a serial interface say R2&#39;s S0/0/0 interface and leave HDLC on the other end what would happen?
+If you guessed that the link would go down you are correct. But also OSPF would get rid of that route in the routing table. You have to be careful when configuring PPP especially on a production network. You run the risk of making you network inoperable if you are not careful setting the different encapsulations. To change the encapsulation from HDLC to PPP on R1, R2, and R3. Go to the interface of the serial connection and type &lt;em&gt;encapsulation ppp&lt;/em&gt;. (yes it is really that simple). This is the following output from R1 on interface s0/0/0 (notice that OSPF will go down if you don&#39;t configure the other side of the serial interface in this case R2&#39;s serial0/0/0)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#interface serial 0/0/0
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-if)#encapsulation ppp
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-if)#
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 16 18:15:53.412: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Serial0/0/0 from FULL to DOWN, Neighbor Down: Interface down or
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;detached
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;R1(config-if)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is R2&#39;s output for the encapsulation change from HDLC to PPP, again notice how OSPF is going down because of the different encapsulation. R3 is still running HDLC therefore the link is down.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R2(config)#interface serial0/0/1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R2(config-if)#encapsulation ppp
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R2(config-if)#
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 17 20:02:08.080: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Serial0/0/1 from FULL to DOWN, Neighbor Down: Interface down or
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;detached
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;R2(config-if)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Change R1 and R3 to the proper encapsulation type so communication between the routers are again connected and to get OSPF working again. (This example on R3 notice that once the encapsulation was changed to PPP the link went back up and OSPF found an adjacent neighbor.)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3(config)#interface serial 0/0/1
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R3(config-if)#encapsulation ppp
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R3(config-if)#
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 17 20:04:27.152: %LINEPROTO-5-UPDOWN: Line protocol on
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Interface Serial0/0/1, changed state to up
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;*Aug 17 20:04:30.952: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;Serial0/0/1 from LOADING to FULL, Loading Done
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Verify that all routers are now running PPP by typing the command show interface [interface ID] (This example shows that R1 is running PPP for the encapsulation)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show interface serial0/0/0
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Serial0/0/0 is up, line protocol is up
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  Hardware is GT96K Serial
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Internet address is 10.1.1.1/30
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  Encapsulation PPP, LCP Open
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  Open: CDPCP, IPCP, loopback not set
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This shows both of R2&#39;s serial interfaces, when issuing the &lt;em&gt;show interface serial0/0/0&lt;/em&gt; and  &lt;em&gt;show interface serial0/0/1&lt;/em&gt; commands:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2#show interface serial 0/0/0
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Serial0/0/0 is up, line protocol is up
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  Hardware is GT96K Serial
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Internet address is 10.1.1.2/30
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  Encapsulation PPP, LCP Open
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  Open: CDPCP, IPCP, loopback not set
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;R2#show interface serial 0/0/1
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Serial0/0/1 is up, line protocol is up
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  Hardware is GT96K Serial
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  Internet address is 10.2.2.1/30
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  Encapsulation PPP, LCP Open
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;  Open: CDPCP, IPCP, loopback not set
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;R3&#39;s output when issuing the &lt;em&gt;show interface serial0/0/1&lt;/em&gt; command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R3#show interface serial 0/0/1
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Serial0/0/1 is up, line protocol is up
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  Hardware is GT96K Serial
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Internet address is 10.2.2.2/30
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  Encapsulation PPP, LCP Open
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  Open: CDPCP, IPCP, loopback not set
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&amp;lt;output omitted&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that all routers are using a different encapsulation protocol (PPP) we can also give the protocol some authentication. The first one we will use is (PAP) password authentication protocol. PAP is not a secure authentication protocol. Passwords are sent using plain text and only authenticates once. To set up PAP the username and password must match the other router. So for this example R1&#39;s username is R1 and the password is knowing.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#username R1 password knowing
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Keep in mind that this information needs to be typed on R2 for PAP to work. The example from R2&#39;s username is R2 and the password is knowing.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R2(config)#username R2 password knowing
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Again this information needs to be typed on R1 for PAP to work. Back to R1 we want to go to the interface that R2 is connected to(interface s0/0/0) then we would type &lt;em&gt;ppp authentication pap&lt;/em&gt; hit enter (notice the link went down between R1 and R2). Type &lt;em&gt;ppp pap sent-username R2 password knowing&lt;/em&gt; This will send the username of R2 and the password of &amp;quot;knowing&amp;quot; to R2. R2 will check the username and password and because they match R2&#39;s username and password PPP will be authenticated.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#int s0/0/0
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-if)#ppp authentication pap
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-if)#
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 22 18:58:57.367: %LINEPROTO-5-UPDOWN: Line protocol on
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Interface Serial0/0/0, changed state to down
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;R1(config-if)#
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;*Aug 22 18:58:58.423: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
+&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;Serial0/0/0 from FULL to DOWN, Neighbor Down: Interface down or detached
+&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;R1(config-if)#ppp pap sent-username R2 password knowing
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s do the same thing with R2 as we did with R1 but remember to type R1&#39;s username (R1) and password (knowing) on R2&#39;s interface that connects to R1 (serial0/0/0) Also notice that the link between R1 and R2 went back up.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R2(config)#interface Serial0/0/0
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R2(config-if)#ppp authentication pap
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R2(config-if)#ppp pap sent-username R1 password knowing
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;R2(config-if)#
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;*Aug 23 16:30:33.771: %LINEPROTO-5-UPDOWN: Line protocol on
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;Interface Serial0/0/0, changed state to up
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that R1 and R2 are working with PAP with PPP we can put CHAP between R2 and R3. CHAP stands for (Challenge Handshake Authentication Protocol) because of the challenge CHAP is a stronger authentication than PAP. CHAP also encrypts the password so it is not sent in plain text. The way to set up CHAP is fundamentally the same. Looking at R2 we are still going to be using the username and password. However in this case the username will be R3 instead of R2 because of the three-way handshake CHAP uses. The password will be &amp;quot;knowing&amp;quot;. We than go into the serial interface that R3 is connected to (s0/0/1) and type &lt;em&gt;ppp authentication chap&lt;/em&gt; (Notice how the link went down)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2(config)#username R3 password knowing
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;R2(config)#int s0/0/1
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;R2(config-if)#ppp authentication chap
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;R2(config-if)#
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;*Aug 23 18:06:00.935: %LINEPROTO-5-UPDOWN: Line protocol on
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Interface Serial0/0/1, changed state to down
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;R2(config-if)#
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;*Aug 23 18:06:01.947: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Serial0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;R2(config-if)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s do the same thing for R3 as we did for R2&#39;s serial interface link (0/0/1) The username will be R2 and the password will be &amp;quot;knowing&amp;quot;. (because of the three-way handshake CHAP uses) Also notice the link between R3 and R2 it went back up and OSPF is working again.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3(config)#username R2 password knowing
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;*Aug 23 18:07:13.074: %LINEPROTO-5-UPDOWN: Line protocol on
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Interface Serial0/0/1, changed state to up
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;R3(config)#int s0/0/1
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;R3(config-if)#
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;*Aug 23 18:07:22.174: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;Serial0/0/1 from LOADING to FULL, Loading Done
+&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;R3(config-if)#ppp authentication chap
+&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;R3(config-if)#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s that! You know have PPP setup and some authentication. Between R1 and R2 the authentication is PAP and between R2 and R3 the authentication is CHAP. You should be able to ping all the devices within the topology diagram. Hope this tutorial was helpful&lt;/p&gt;
+&lt;!--adsense--&gt;
         
       </description>
     </item>
