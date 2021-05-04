@@ -111,6 +111,7 @@
       <description>
         
           &lt;p&gt;In this short guide I wanted to walk through the steps to do a factory reset for the Cisco Firepower 2100 series. When doing these resets all configuration and the administrative password are removed, as well as the FTD (Firepower Threat Defense) app-instance. When the unit starts to boot it will reinstall the FTD app-instance to default configuration.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;There are two ways to factory reset these Firepower 2100 units. If you can get into the device you can simply use these commands: &lt;code&gt;connect local-mgmt erase configuration&lt;/code&gt; The other method is used for if you are unable to get into the unit because either you don&#39;t know the password or something else has happened to make this appliance unstable enough that a factory reset is needed.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note: You have to be able to view the console port and power off the device in order to do the following:&lt;/p&gt;
@@ -344,6 +345,7 @@
       <description>
         
           &lt;p&gt;Cisco is actively pushing their Firepower Threat Defense software with the new Firepower 2100 units on their way this summer in effort to eventually replace the ASA5525-X, ASA5545-X and ASA5555-X platforms. When using FTD you must also have the Firepower Management Center (FMC) available to manage and configure these devices. This gets difficult especially if you want to test things out because not everyone has Cisco Firepower lying around unused. How are you supposed to test and learn the depths of this product? &lt;em&gt;(Hint: Cisco VIRL)&lt;/em&gt;&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; There is a catch to this, as of this post Cisco does not included the FMC or FTDv images with Cisco VIRL by itself. You’ll have to be with a company or organization that has already purchased this product. Keep in mind during the initial configuration of FMC there will be a spot to install some licensing but you can skip this step as it&#39;s not required to get to the initial login screen. The images I’m working with in this post are the following:&lt;/p&gt;
 &lt;/blockquote&gt;

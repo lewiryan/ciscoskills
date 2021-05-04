@@ -2317,20 +2317,6 @@ Range: (192.168.16.193 – 192.168.16.222) – Subnet Mask  255.255.255.224 &l
     </item>
     
     <item>
-      <title>Persistency on Linux</title>
-      <link>https://ciscoskills.net/2011/02/04/persistency-on-linux/</link>
-      <pubDate>Fri, 04 Feb 2011 16:45:22 +0000</pubDate>
-      
-      <guid>https://ciscoskills.net/2011/02/04/persistency-on-linux/</guid>
-      <description>
-        
-          &lt;p&gt;Many popular Linux OS can be installed on USB, and have persistency (Data and or settings) saved on that USB. So in the end you have a “almost installed” OS on your USB. This tutorial focuses on BackTrack but you can put other Linux OS like, Ubuntu, Fedora, Debian, Open SUSE, and many more can be used as well. First and the easiest way I found was running a program called &lt;a href=&#34;http://www.linuxliveusb.com/&#34;&gt;Linux Live USB Creator&lt;/a&gt;. This program can put together a LiveUSB (in which data cannot be saved, like a Live CD) or also put persistency on (which allows you to save file and settings). The only thing you can’t usually do with a persistency system is update system settings, and sometimes installing additional software. This program can also put up a portable Virtual Box so you don’t have to restart your system to use it. So the first thing to do is to download and install Linux Live USB Creator, follow the simple setup information to install Linux Live After you install Linux Live you can start-up the program and choose your USB drive.  &lt;a href=&#34;http://systemstechblog.wordpress.com/2011/02/04/persistency-on-linux/lili-usb/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/01/lili-usb.png?w=90&#34; alt=&#34;Linux Live USB Program&#34; title=&#34;Linux Live USB Program&#34;&gt;&lt;/a&gt; Next choose the source of the .iso file, you can even download the .iso from here as well. For this example I was trying out BackTrack 4, So I selected backtrack. (Many other Linux OS are available)   &lt;a href=&#34;http://systemstechblog.wordpress.com/2011/02/04/persistency-on-linux/source/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/01/source.png?w=150&#34; alt=&#34;ISO Source File&#34; title=&#34;Source&#34;&gt;&lt;/a&gt;  The next one is persistency this allows you to actually save data on the USB. You can then boot that USB from multiple machines and you settings and files should be there. Select how much space you want for persistency. If you set it to zero it will be a LiveUSB. &lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/01/persistence.png?w=150&#34; alt=&#34;Persistence Level&#34; title=&#34;Persistence&#34;&gt;Next are options and are totally up to you, (what I did was select every one of them when I installed BackTrack4)   &lt;a href=&#34;http://systemstechblog.wordpress.com/2011/02/04/persistency-on-linux/options/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/01/options.png?w=150&#34; alt=&#34;Options&#34; title=&#34;Options&#34;&gt;&lt;/a&gt; Then after all the selections have been made hit that lightning bolt!   &lt;a href=&#34;http://systemstechblog.wordpress.com/2011/02/04/persistency-on-linux/startnow/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/01/startnow.png?w=150&#34; alt=&#34;To Start Click the Lighting Bolt&#34; title=&#34;Start Now&#34;&gt;&lt;/a&gt;  Once completed you can either start the OS within Windows from the portal VM, or reboot and select you USB drive to boot and you now should have a persistent system up and running.   (For BackTrack4 I have found that you need to select “Start Persistent Live CD” in order for the persistent mode to start and save data.)   You can find more information on &lt;a href=&#34;http://www.linuxliveusb.com/&#34;&gt;Linux Live USB Creator’s&lt;/a&gt; website. I hope this tutorial was helpful&lt;/p&gt;
-
-        
-      </description>
-    </item>
-    
-    <item>
       <title>Basic Router Configuration</title>
       <link>https://ciscoskills.net/2011/01/26/basic-router-configuration/</link>
       <pubDate>Wed, 26 Jan 2011 14:30:30 +0000</pubDate>

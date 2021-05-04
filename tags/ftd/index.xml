@@ -61,6 +61,7 @@
       <description>
         
           &lt;p&gt;In this short guide I wanted to walk through the steps to do a factory reset for the Cisco Firepower 2100 series. When doing these resets all configuration and the administrative password are removed, as well as the FTD (Firepower Threat Defense) app-instance. When the unit starts to boot it will reinstall the FTD app-instance to default configuration.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;There are two ways to factory reset these Firepower 2100 units. If you can get into the device you can simply use these commands: &lt;code&gt;connect local-mgmt erase configuration&lt;/code&gt; The other method is used for if you are unable to get into the unit because either you don&#39;t know the password or something else has happened to make this appliance unstable enough that a factory reset is needed.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note: You have to be able to view the console port and power off the device in order to do the following:&lt;/p&gt;
