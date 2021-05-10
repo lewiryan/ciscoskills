@@ -5,18 +5,19 @@
     <link>https://ciscoskills.net/tags/technology/</link>
     <description>Recent content in technology on Cisco Skills</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 04 Jan 2020 05:23:27 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/technology/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Jan 2020 05:23:27 +0000</lastBuildDate><atom:link href="https://ciscoskills.net/tags/technology/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Goals</title>
-      <link>https://ciscoskills.net/2020/01/04/goals/</link>
-      <pubDate>Sat, 04 Jan 2020 05:23:27 +0000</pubDate>
+      <link>https://ciscoskills.net/2020/01/03/goals/</link>
+      <pubDate>Fri, 03 Jan 2020 05:23:27 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2020/01/04/goals/</guid>
+      <guid>https://ciscoskills.net/2020/01/03/goals/</guid>
       <description>
         
           &lt;p&gt;Every year I think about goals, either how to conquer them, reflect on them, and recently change them. We all have been there, we have a plan in our head that we follow for a handful of years or even decades... something happens... all of sudden things change. It&#39;s this change that I believe is so important to life, we can&#39;t and shouldn&#39;t be static, we have to change in order to grow ourselves.&lt;/p&gt;
 &lt;p&gt;Life events happen to us all the time, the big ones that have happen to me are things like, collage graduation, this website!, my first career job as Network Engineer, unexpected loss of a family member, a new job, moving, my first home, promotions, all of which happened in the last decade. 2019 was such special year for me and I&#39;ll remember it for the rest my life, so much has happen to me personally...&lt;/p&gt;
 &lt;p&gt;I really hope everyone allows themselves to be able to experience these life events, ups and downs personal or professional let these change you, that&#39;s really the whole point of life...which in turn allows you to find who you are truly, and that should be everyone&#39;s goal. I started this blog to get better at writing, teaching people about networking and my overall experiences in this field. I really didn&#39;t care if someone stumbled on it in the beginning, however over time that changed, I love this! I&#39;m not saying goodbye, but what happens next is anyone&#39;s guess, and that&#39;s how I think life works the best! - Ryan :)&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
 &lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
@@ -41,7 +42,7 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;sudo /usr/local/sf/bin/configure-network
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It&#39;s that easy...(almost too easy) I had to move the VMDK of this thing to a different vSphere install as well as in a different data center. So I just cloned the original moved the clone and turned it on, ran the CLI script and in about 15 minutes all of my devices checked in automatically.&lt;/p&gt;
 &lt;p&gt;Remember you have to make sure you can reach your devices from your different IP scheme. After that its been back to a smooth road like nothing ever happened, policies are pushed correctly, IPS rules are updated correctly, URL filtering works, upgrades work out of the box, and backups are working!  The only thing that has changed is the IP address, just the season! These are the always the best stories to tell!&lt;/p&gt;
-
+&lt;!--adsense--&gt;
         
       </description>
     </item>
@@ -471,6 +472,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;So, recently we enforced some firewall rules on a new environment, we did testing of the environment and everything was working as expected. In about 24 hours a lot of traffic from the web infrastructure was being denied and it continued, at first glance it looked like return traffic was being dropped, the web servers were sourcing at port 443 and the destination ports were using dynamic ports (RFC 6335) No user or application problems were reported when we enforced rules, and we waited additional days to see if anything came up. Nothing came up, the only thing was a spike in amount of syslog messages of dropped traffic coming from the web servers.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So from that point it really wasn’t an issue, but I thought it would be interesting to see what was going on. I started to look at the firewall logs and enabled debugging to syslog, and as you can see the TCP session is being built and we can also see the TCP Teardown, which should be the end of it, something else was happening instead and it was unexpected.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Wed Jun 20 11:58:46 2018;172.17.70.1; &amp;lt;167&amp;gt;Jun 20 2018 11:58:45 172.17.70.1 : %ASA-7-302013: &lt;code&gt;Built inbound TCP connection 47772320 for OUTSIDE:203.0.113.147/43918 (203.0.113.147/43918) to INSIDE:172.17.77.250/443 (172.17.77.250/443)&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Wed Jun 20 12:00:51 2018;172.17.70.1; &amp;lt;167&amp;gt;Jun 20 2018 12:00:50 172.17.70.1 : %ASA-7-302014: &lt;code&gt;Teardown TCP connection 47772320 for OUTSIDE:203.0.113.147/43918 to INSIDE:172.17.77.250/443 duration 0:02:05 bytes 107244 TCP FINs from INSIDE&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
@@ -505,7 +507,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
 &lt;p&gt;Why are seeing a FIN and RST from the client in the first place? This TCP connection is using TLS, so I started to look at how TLS functions in a TCP connection. When communication starts, and we finish our TCP handshake, then if the connection is over TLS we do a TLS handshake-&amp;gt; After the two hosts agree on the ciphers and TLS settings data is exchanged encrypted-&amp;gt;After TLS is done with the data TLS &lt;strong&gt;should&lt;/strong&gt; send a close notify to “peacefully” end the TLS session-&amp;gt;Following that TCP closes with a FIN and it is peaceful. :)&lt;/p&gt;
 &lt;p&gt;I couldn’t investigate the TLS packet because it was encrypted however I think it had something to do with the close notify action of TLS. Not all implementations of SSL/TLS follow that rule even through RFC 5246 seems to imply that a close notify is required. I think this would explain the reason why the server sends RST when it receives both a FIN and RST at the same time from the client, it was unexpected, and we did not close the TLS session properly. When I did the test, I didn’t get any TCP resets. Although we where not seeing any disruptions from this it was helpful to at least figure out what the problem is and then being able to theorize what we could do to fix that problem.&lt;/p&gt;
 &lt;p&gt;In this example its related to the client so we can’t do anything on our end. The fact that this is happening at the end of the TCP connection, you are not going to notice anyway because you already have data you requested. We don&#39;t really care how the connection closes. I hope this post was helpful in understanding how to dig in the weeds and even through the connection worked, its helpful to understand any anomalies because those could turn into problems in the future.&lt;/p&gt;
-
+&lt;!--adsense--&gt;
         
       </description>
     </item>
@@ -4251,13 +4253,14 @@ This chapter goes over what chapter 2 started we get more information on collisi
     
     <item>
       <title>Why IPv6?</title>
-      <link>https://ciscoskills.net/2012/08/23/why-ipv6/</link>
-      <pubDate>Thu, 23 Aug 2012 01:03:46 +0000</pubDate>
+      <link>https://ciscoskills.net/2012/08/22/why-ipv6/</link>
+      <pubDate>Wed, 22 Aug 2012 01:03:46 +0000</pubDate>
       
-      <guid>https://ciscoskills.net/2012/08/23/why-ipv6/</guid>
+      <guid>https://ciscoskills.net/2012/08/22/why-ipv6/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-i-love.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-i-love.png&#34; alt=&#34;&#34; title=&#34;I-Love-IPv6&#34;&gt;&lt;/a&gt;Although this protocol has been around since 1996 it has been anticipated that IPv4 would one day be exhausted. In February 2011 the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; title=&#34;Internet Assigned Numbers Authority&#34;&gt;Internet Assigned Numbers Authority&lt;/a&gt; (IANA) assigned the last /8 address blocks to the &lt;a href=&#34;http://en.wikipedia.org/wiki/Regional_Internet_registry&#34; title=&#34;Regional Internet registry&#34;&gt;Regional Internet Registries&lt;/a&gt; so time is getting close but you have heard this warning before right? Let&#39;s go over IPv6 at least just an overview some the features and changes compared to IPv4 because one day it will happen it&#39;s just a matter of when. :) So the first thing to understand about IPv6 is that it&#39;s a 128-bit binary value, which is displayed as 32 hexadecimal digits. What does this mean in the size or scope of the addresses?&lt;/p&gt;
+          &lt;p&gt;Although this protocol has been around since 1996 it has been anticipated that IPv4 would one day be exhausted. In February 2011 the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Assigned_Numbers_Authority&#34; title=&#34;Internet Assigned Numbers Authority&#34;&gt;Internet Assigned Numbers Authority&lt;/a&gt; (IANA) assigned the last /8 address blocks to the &lt;a href=&#34;http://en.wikipedia.org/wiki/Regional_Internet_registry&#34; title=&#34;Regional Internet registry&#34;&gt;Regional Internet Registries&lt;/a&gt; so time is getting close but you have heard this warning before right? Let&#39;s go over IPv6 at least just an overview some the features and changes compared to IPv4 because one day it will happen it&#39;s just a matter of when. :) So the first thing to understand about IPv6 is that it&#39;s a 128-bit binary value, which is displayed as 32 hexadecimal digits. What does this mean in the size or scope of the addresses?&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;Well it has been suggested that if you were to give everyone in the world the entire IPv4 scope (4,294,267,295 addresses), you still would have more than enough IPv6 address!&lt;/li&gt;
 &lt;li&gt;You could give everyone on the planet trillions of IPv6 addresses and still have leftovers!&lt;/li&gt;
@@ -4268,7 +4271,11 @@ This chapter goes over what chapter 2 started we get more information on collisi
 &lt;li&gt;Say goodbye to broadcasts because there&#39;s none in IPv6 and no threat of broadcast storms.&lt;/li&gt;
 &lt;li&gt;Multi-homed hosts a technique to increase reliability of the internet, because each host can have multiple IP addresses with one physical link. This makes it easier to have this host be connected to different ISP at the same time.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let&#39;s compare the &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv4&#34; title=&#34;IPv4&#34;&gt;IPv4 header&lt;/a&gt; with IPV6. There less junk in the IPv6 header and because  of that less overhead when compared to IPv4, we have better routing within the network and no checksums. &lt;a href=&#34;http://ciscoskills.net/2012/08/22/why-ipv6/ipv4-headw/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv4-headw.png&#34; alt=&#34;An IPv4 Header&#34; title=&#34;IPv4 Header&#34;&gt;&lt;/a&gt; As you can see the IPv6 header looks simpler and although it is 40 octets compared to the IPv4 header which is 20 octets. IPv6 has to have &lt;a href=&#34;http://en.wikipedia.org/wiki/IPsec&#34; title=&#34;IPsec&#34;&gt;IPsec&lt;/a&gt; which is a mandatory part for IPv6 unlike IPv4 which is an option. (Security, Security, Security) &lt;a href=&#34;http://ciscoskills.net/2012/08/22/why-ipv6/ipv6-headw/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/08/ipv6-headw.png&#34; alt=&#34;An IPv6 Header&#34; title=&#34;IPv6 Header&#34;&gt;&lt;/a&gt; Since IPv6 and IPv4 don&#39;t work together directly how can we ever switch over? There are transition solutions like Dual Stacking, 6to4 tunneling and &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv6_transition_mechanisms&#34; title=&#34;IPv6 transition mechanisms&#34;&gt;NAT-PT&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/ISATAP&#34; title=&#34;ISATAP&#34;&gt;ISATAP&lt;/a&gt; tunneling and &lt;a href=&#34;http://en.wikipedia.org/wiki/Teredo_tunneling&#34; title=&#34;Teredo tunneling&#34;&gt;Teredo tunneling&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Let&#39;s compare the &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv4&#34; title=&#34;IPv4&#34;&gt;IPv4 header&lt;/a&gt; with IPV6. There less junk in the IPv6 header and because  of that less overhead when compared to IPv4, we have better routing within the network and no checksums.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2012/08/ipv4-headw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As you can see the IPv6 header looks simpler and although it is 40 octets compared to the IPv4 header which is 20 octets. IPv6 has to have &lt;a href=&#34;http://en.wikipedia.org/wiki/IPsec&#34; title=&#34;IPsec&#34;&gt;IPsec&lt;/a&gt; which is a mandatory part for IPv6 unlike IPv4 which is an option. (Security, Security, Security)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2012/08/ipv6-headw.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Since IPv6 and IPv4 don&#39;t work together directly how can we ever switch over? There are transition solutions like Dual Stacking, 6to4 tunneling and &lt;a href=&#34;http://en.wikipedia.org/wiki/IPv6_transition_mechanisms&#34; title=&#34;IPv6 transition mechanisms&#34;&gt;NAT-PT&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/ISATAP&#34; title=&#34;ISATAP&#34;&gt;ISATAP&lt;/a&gt; tunneling and &lt;a href=&#34;http://en.wikipedia.org/wiki/Teredo_tunneling&#34; title=&#34;Teredo tunneling&#34;&gt;Teredo tunneling&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Dual Stacking – is a method of basically running both IPv4 and IPv6 in the network environment and using IPv6 as the preferred protocol.&lt;/li&gt;
 &lt;li&gt;6to4 tunneling – which automatically establishes connections to IPv6 networks through IPv4 network, like the internet. It applies a valid IPv6 prefix to each &amp;quot;island&amp;quot; thus enables a fast deployment of IPv6 in corporate without having the ISP to be involved.&lt;/li&gt;
@@ -4283,11 +4290,6 @@ This chapter goes over what chapter 2 started we get more information on collisi
 &lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2012/08/21/verity_stob_ipv6/&#34;&gt;How I Learned to Stop Worrying and Love IPv6&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.slumpedoverkeyboarddead.com/2012/09/03/what-is-a-class-abc-ip-address/&#34; title=&#34;&#34;&gt;Slumped Over Keyboard Dead | That�s how they�ll find me one day… » What Is A Class A,B,C IP Address?&lt;/a&gt; - &lt;time datetime=&#34;2012-09-03 08:55:51&#34;&gt;Sep 1, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Why IPv6? (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
 
         
       </description>

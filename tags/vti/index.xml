@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago! We only got introduced into this technology with ASA when version 9.7 (2017) and above arrived....&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;In the old days, which wasn&#39;t that long ago.... We were stuck with cryptomaps to interfaces and dealing with &amp;quot;interesting&amp;quot; traffic when working with ASAs...Well time for change no more defining interesting traffic, we route these bits instead! Any traffic we want to go over the tunnel is routed over, we can apply ACLs on the inbound interface just like we do with physical interfaces, so simple...&lt;/p&gt;
 &lt;p&gt;Here is the topology I&#39;m working with:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2020/07/vti-asa.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;

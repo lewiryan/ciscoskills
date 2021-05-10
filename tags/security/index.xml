@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;It&#39;s like clock work...around this time the seasons are changing..autumn colors are out, and the colder air reminds us that things are changing around here, embrace it! One thing that I&#39;ve been working with is AWS Transit gateways, a common theme this year is all cloud! AWS Transit Gateways make it easier to move towards that!&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;AWS Transit gateways relatively new, (couple years old now) so instead of attaching to each AWS VPC environment independently we can connect to the transit gateway and attach VPCs to the gateway. If you enable BGP your routes will propagate. I&#39;ve been working with ECMP, specifically with Fortigates.&lt;/p&gt;
 &lt;p&gt;There are two ways to have redundancy in a network when you have multiple paths to a destination. Similar routes that have a higher cost/weight then ones that don&#39;t are only used when there is a problem with primary path. So you have a backup route on standby until the primary route fails. This could be a good option if the backup route isn&#39;t the same bandwidth/media or really not equal to the primary link which is why different cost/weight is important to have.&lt;/p&gt;
 &lt;p&gt;However if you have multiple paths that were equal bandwidth/media we could/would want to use both of them at the same time so that traffic is load balanced across the network, this is called ECMP (Equal-cost multi-path routing)&lt;/p&gt;
@@ -173,6 +174,7 @@
       <description>
         
           &lt;p&gt;I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago! We only got introduced into this technology with ASA when version 9.7 (2017) and above arrived....&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;In the old days, which wasn&#39;t that long ago.... We were stuck with cryptomaps to interfaces and dealing with &amp;quot;interesting&amp;quot; traffic when working with ASAs...Well time for change no more defining interesting traffic, we route these bits instead! Any traffic we want to go over the tunnel is routed over, we can apply ACLs on the inbound interface just like we do with physical interfaces, so simple...&lt;/p&gt;
 &lt;p&gt;Here is the topology I&#39;m working with:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2020/07/vti-asa.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -383,6 +385,7 @@
       <description>
         
           &lt;p&gt;So, recently we enforced some firewall rules on a new environment, we did testing of the environment and everything was working as expected. In about 24 hours a lot of traffic from the web infrastructure was being denied and it continued, at first glance it looked like return traffic was being dropped, the web servers were sourcing at port 443 and the destination ports were using dynamic ports (RFC 6335) No user or application problems were reported when we enforced rules, and we waited additional days to see if anything came up. Nothing came up, the only thing was a spike in amount of syslog messages of dropped traffic coming from the web servers.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So from that point it really wasn’t an issue, but I thought it would be interesting to see what was going on. I started to look at the firewall logs and enabled debugging to syslog, and as you can see the TCP session is being built and we can also see the TCP Teardown, which should be the end of it, something else was happening instead and it was unexpected.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Wed Jun 20 11:58:46 2018;172.17.70.1; &amp;lt;167&amp;gt;Jun 20 2018 11:58:45 172.17.70.1 : %ASA-7-302013: &lt;code&gt;Built inbound TCP connection 47772320 for OUTSIDE:203.0.113.147/43918 (203.0.113.147/43918) to INSIDE:172.17.77.250/443 (172.17.77.250/443)&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Wed Jun 20 12:00:51 2018;172.17.70.1; &amp;lt;167&amp;gt;Jun 20 2018 12:00:50 172.17.70.1 : %ASA-7-302014: &lt;code&gt;Teardown TCP connection 47772320 for OUTSIDE:203.0.113.147/43918 to INSIDE:172.17.77.250/443 duration 0:02:05 bytes 107244 TCP FINs from INSIDE&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
@@ -417,7 +420,7 @@
 &lt;p&gt;Why are seeing a FIN and RST from the client in the first place? This TCP connection is using TLS, so I started to look at how TLS functions in a TCP connection. When communication starts, and we finish our TCP handshake, then if the connection is over TLS we do a TLS handshake-&amp;gt; After the two hosts agree on the ciphers and TLS settings data is exchanged encrypted-&amp;gt;After TLS is done with the data TLS &lt;strong&gt;should&lt;/strong&gt; send a close notify to “peacefully” end the TLS session-&amp;gt;Following that TCP closes with a FIN and it is peaceful. :)&lt;/p&gt;
 &lt;p&gt;I couldn’t investigate the TLS packet because it was encrypted however I think it had something to do with the close notify action of TLS. Not all implementations of SSL/TLS follow that rule even through RFC 5246 seems to imply that a close notify is required. I think this would explain the reason why the server sends RST when it receives both a FIN and RST at the same time from the client, it was unexpected, and we did not close the TLS session properly. When I did the test, I didn’t get any TCP resets. Although we where not seeing any disruptions from this it was helpful to at least figure out what the problem is and then being able to theorize what we could do to fix that problem.&lt;/p&gt;
 &lt;p&gt;In this example its related to the client so we can’t do anything on our end. The fact that this is happening at the end of the TCP connection, you are not going to notice anyway because you already have data you requested. We don&#39;t really care how the connection closes. I hope this post was helpful in understanding how to dig in the weeds and even through the connection worked, its helpful to understand any anomalies because those could turn into problems in the future.&lt;/p&gt;
-
+&lt;!--adsense--&gt;
         
       </description>
     </item>

@@ -19,7 +19,7 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;sudo /usr/local/sf/bin/configure-network
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It&#39;s that easy...(almost too easy) I had to move the VMDK of this thing to a different vSphere install as well as in a different data center. So I just cloned the original moved the clone and turned it on, ran the CLI script and in about 15 minutes all of my devices checked in automatically.&lt;/p&gt;
 &lt;p&gt;Remember you have to make sure you can reach your devices from your different IP scheme. After that its been back to a smooth road like nothing ever happened, policies are pushed correctly, IPS rules are updated correctly, URL filtering works, upgrades work out of the box, and backups are working!  The only thing that has changed is the IP address, just the season! These are the always the best stories to tell!&lt;/p&gt;
-
+&lt;!--adsense--&gt;
         
       </description>
     </item>
