@@ -174,7 +174,18 @@
     <img src="/images/2019/01/dscn1466.jpg" class="image_featured">
     
     
-    <p>It's the &quot;S&quot; word we don't like to hear, and often times it has degraded networks or even took them down entirely.  (<a href="/files/2019/01/All-Systems-Down.pdf/">All Systems Down</a> - an older but classic story) It's also one of those things that nobody really likes, we even had network companies, as well as IEEE <strong>try</strong> to replace it with something else. Remember the names like TRILL, and IEEE 802.1aq (SPB) or Cisco's FabicPath technologies? You had all of these different flavors that showed a lot progress, but they never really took off for one reason or another. The funny part is this protocol we are all trying kill off is still alive and doing well, so let's look at spanning tree in the meantime because you will likely run into it.</p>
+    <p>It's the &quot;S&quot; word we don't like to hear, and often times it has degraded networks or even took them down entirely.  (<a href="/files/2019/01/All-Systems-Down.pdf">All Systems Down</a> - an older but classic story) It's also one of those things that nobody really likes, we even had network companies, as well as IEEE <strong>try</strong> to replace it with something else. Remember the names like TRILL, and IEEE 802.1aq (SPB) or Cisco's FabicPath technologies? You had all of these different flavors that showed a lot progress, but they never really took off for one reason or another. The funny part is this protocol we are all trying kill off is still alive and doing well, so let's look at spanning tree in the meantime because you will likely run into it.</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <p>Remember there are multiple types of spanning tree protocols but they all have a common theme to them and in this post we are going to be focusing on those common themes. If you need a refresher about the reasons and basic functions of spanning tree you can check out these posts I did quite a while ago.</p>
 <ul>
 <li><a href="https://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/">The Beginnings of Layer Two Redundancy</a></li>
@@ -234,7 +245,7 @@
 <h2 id="move-up-a-layer">Move up a layer?</h2>
 <p>Traditionally L2/L3 boundary is at the distribution/aggregation layer of the network, but this traditional design is changing to IP routing at the access layer (Routed Access Layer) to remove spanning tree However this may work well for client/end-user access, this type of design fails at the data center. You may have racks of servers in your data center, you want the maximum amount a flexibility to move hardware around as well as add additional hardware in the future.  If you did a routed access layer at the data center, you start to lock yourself in and although its 2019 a lot applications still operate at a layer two level and even if the apps you are running don't have that problem you run into scalability issues.</p>
 <h2 id="smoke-and-mirrors">Smoke and Mirrors?</h2>
-<p>So where's the magic? How do you use a reliable layer three network like you did in on the client/end-user side but put it in a data center? Think network overlays like VxLAN or BGP EVPN, (EVPN BGP),  (order does not matter, they're the same thing) ;) . Basically these are network overlay technologies, you have you underlayer network that is running and you put this technology on top of that network, I call it network virtualization but you may have also heard SDN, (Software Define Networking). Whatever you want to call it this is how you kill spanning tree. Spanning tree by default just runs on a layer two network, we saw that from the beginning. So you remove layer two from the entire stack and then overlay an additional network on top of that. Using these type of technologies your applications don't know the difference. Another helpful post I saw when reading about overlay networks was from David Varnum's post about how Arista Networks uses BGP EVPN, pretty neat technology, if interested.</p>
+<p>So where's the magic? How do you use a reliable layer three network like you did in on the client/end-user side but put it in a data center? Think network overlays like VxLAN or BGP EVPN, (EVPN BGP),  (order does not matter, they're the same thing) 😉 Basically these are network overlay technologies, you have you underlayer network that is running and you put this technology on top of that network, I call it network virtualization but you may have also heard SDN, (Software Define Networking). Whatever you want to call it this is how you kill spanning tree. Spanning tree by default just runs on a layer two network, we saw that from the beginning. So you remove layer two from the entire stack and then overlay an additional network on top of that. Using these type of technologies your applications don't know the difference. Another helpful post I saw when reading about overlay networks was from David Varnum's post about how Arista Networks uses BGP EVPN, pretty neat technology, if interested.</p>
 <p><a href="https://overlaid.net/2018/08/27/arista-bgp-evpn-overview-and-concepts/">Arista BGP EVPN – Overview and Concepts</a></p>
 
     
