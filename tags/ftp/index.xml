@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;If you ever needed a TFTP or an anonymous FTP server to transfer files, logs, or crash debugs to and from your network devices it can be a little tricky if you don&#39;t have anything setup. There are some free quick programs out there if you are in a pinch for one-time transfers but if you ever wanted to have something in infrastructure that is ready to go for this kind of stuff just follow this tutorial below.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;I&#39;m using the latest version of Centos 7 minimal, we need to add some house keeping items first so let&#39;s get started! Install NANO ( I like it, don&#39;t judge me!):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;yum install nano
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Install Firewalld (Seems like Centos 7 1511 does not include it at least the minimal version)&lt;/p&gt;

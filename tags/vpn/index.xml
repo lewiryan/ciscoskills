@@ -266,6 +266,7 @@
       <description>
         
           &lt;p&gt;If you don’t already know, site to site VPNs can be a cost-effective way for remote sites to connect to HQ resources instead of a lease line like using MPLS or Metro-E circuits. We can instead use a standard internet connection with a static IP, this is usually cheaper than a dedicated circuit. Our next steps are purchasing a firewall for the remote site (assuming you already have one at HQ) and setup a site to site VPN connection to make the connection. In this guide, I’ll demo a site to site VPN with a pair of ASAs as well as some additional commands to allow DHCP across the tunnel so that your HQ DHCP server can hand out addresses instead of configuring a local DHCP server at the remote site.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;The table below goes over the agreed settings and what networks are protected. Also note that the “public” IP addresses listed in this example are from RFC 5737 and are not publicly available. Since this is a VPN connection we must agree on some common settings before traffic is allowed across it. We will be tunneling the entire address range for both sites and no need to NAT anything because its Acme’s network. Reference the table below:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -431,6 +432,7 @@
       <description>
         
           &lt;p&gt;If you ever needed to hide multiple systems behind a single IP address you would use PAT. (Port Address Translation) besides using this to connect to the internet when using an RFC 1918 address, you can configure PAT for VPN connections. The benefit is the same, hide multiple systems behind a single IP address with the advantage being you can have many systems on one side of the VPN tunnel all using that single IP.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;In this example, we have a site to site VPN connection one side using a PATed public IP address. We originally have two systems that will be sending data over to Contoso  who is the remote peer in this example. We are planning on adding additional systems in the future which is why Acme Corp is using a PATed address outbound. Contoso is expected to send data back to Acme Corp which will also be reflected in this example. Also note that the &amp;quot;public&amp;quot; IP addresses listed in this example are from RFC 5737 and are not publicly available. We have a need to setup a VPN to a partner and have agreed using a public IP address over the VPN connection. We are going to have multiple systems on the local side sending information over to this partner and because of that we&#39;re going to be using a single public PATed address instead of assigning multiple static NATed IPs to each system. The table below goes over the agreed settings and what networks are protected.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;

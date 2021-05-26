@@ -171,6 +171,17 @@
     
     
     <p>It’s been fun four months of 2018 so far and I’m back to talk about Wireless VLANs. With 802.11ax around the corner (2019) I think we all can agree that “weird” connections although less likely have interference isn’t as mobile as a wireless LAN. Also, with 802.11ax the maximum theoretical throughput is 10Gbps! We’re going to need some serious backend infrastructure available to be able to support that type of bandwidth. So, let’s look at configuring a wireless VLANs for our mobile users!</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <p>Just like regular weird LANs, we want to separate traffic to be able to have a secure network, because it's usually not only your employees that will use the wireless network, we could have guest networks, department networks and even infrastructure/IoT networks. Like for security cameras, motion sensors, thermostats, lights, and so much more, just within that list you have at least three wireless networks if not four if you needed to have further separation. So how do you configure wireless to have multiple VLANs attached to it? First you must look at the wireless hardware you are working with. That hardware at least needs to support a trunk link, that’s what makes this magic happen. If supports VLAN trunks, then chances are it comes in two flavors:</p>
 <ul>
 <li>Wireless Controller with “lightweight” access points, which essentially tunnel the traffic back to the controller. The controller has a trunk link with all the Wireless VLANs connected to it. The access points don’t need access to all those wireless VLANs, they can join a management network and route/tunnel the traffic back to the controller.</li>

@@ -51,6 +51,7 @@
       <description>
         
           &lt;p&gt;Working on my Powershell skills, I was playing around with a Barracuda Load Balancer and noticed it supported some APIs which is kind of cool. At first I was playing around with it in postman and got to login and put some servers in maintenance mode, but then thought it would be really neat if I could get this working in Powershell, that way us humans can just run a script and even thinking in the &amp;quot;future&amp;quot; maybe have some automated process (a.k.a AI) handle this for us. ;) So in this post I&#39;ll talk about the script I created and some of the small challenges I had with this overall it was kind of neat putting this together. TLDR: Here is the script if you don&#39;t want to read:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-PS1&#34; data-lang=&#34;PS1&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Barracuda Load Balancer Powershell Script&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Minimum version of Powershell is 6.0.4 – Can download stable releases @ https://github.com/PowerShell/PowerShell&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Puts servers in Maintenance, Disable or Enable status&lt;/span&gt;
@@ -133,6 +134,7 @@
       <description>
         
           &lt;p&gt;If you ever needed a TFTP or an anonymous FTP server to transfer files, logs, or crash debugs to and from your network devices it can be a little tricky if you don&#39;t have anything setup. There are some free quick programs out there if you are in a pinch for one-time transfers but if you ever wanted to have something in infrastructure that is ready to go for this kind of stuff just follow this tutorial below.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;I&#39;m using the latest version of Centos 7 minimal, we need to add some house keeping items first so let&#39;s get started! Install NANO ( I like it, don&#39;t judge me!):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;yum install nano
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Install Firewalld (Seems like Centos 7 1511 does not include it at least the minimal version)&lt;/p&gt;
@@ -289,6 +291,7 @@
       <description>
         
           &lt;p&gt;Let&#39;s start out 2016 with setting up a logging system called Graylog. If you have not used Graylog before then I encourage you to check it out. This is an open source log management system and is pretty flexible as it can capture, index and analyze almost anything. Once up and running this system can be scaled out for an enterprise wide log management system. High availability, clustered, and replicated is what Graylog thrives on. In this demo I am going to have two systems. One is the Graylog server, web server and will also have a Mongo database. The other system will be an Elasticsearch node which is what will have the actual data stored in and indexed. For bigger “production” ready setups you just scale this out to separate systems.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Documentation is key here and Graylog has done an excellent job of it so here it is in case you need it: &lt;a href=&#34;https://docs.graylog.org/en/latest/index.html&#34;&gt;https://docs.graylog.org/en/latest/index.html&lt;/a&gt; I’m already assuming that you have CentOS 7 minimal installed if not you can pick up the latest CentOS at &lt;a href=&#34;http://www.centos.org/&#34;&gt;http://www.centos.org/&lt;/a&gt; .The Centos systems also need a connection to the internet, and have just the root account. I&#39;m using two systems for this tutorial so keep that in mind, here are the names of each system and what their role is:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -619,6 +622,7 @@
       <description>
         
           &lt;p&gt;Cisco released VIRL almost a year ago and it’s not at the 1.0 version yet but it’s getting close as they have done some good work towards the product since it first lunched. Cisco VIRL is like GNS3 which is simulation platform that runs Cisco’s current operating systems so instead of buying used Cisco hardware you can run this program on your computer. This software is geared towards proof-of-concept designs, for personal and training on Cisco Certifications. Let’s talk about it!&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Here are the links: &lt;a href=&#34;http://virl.cisco.com/&#34;&gt;http://virl.cisco.com/&lt;/a&gt; - Main Website
 &lt;a href=&#34;http://community.dev-innovate.com/c/virl&#34;&gt;http://community.dev-innovate.com/c/virl&lt;/a&gt; - Community Form
 &lt;a href=&#34;http://virl-dev-innovate.cisco.com/&#34;&gt;http://virl-dev-innovate.cisco.com/&lt;/a&gt; - Documentation&lt;/p&gt;

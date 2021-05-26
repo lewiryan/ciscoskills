@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;We have to start somewhere so let’s look at the basics of configuring OSPF. Remember OSPF is an IGP (Interior Gateway Protocol) and allows packet authentication as well as IP multicast when sending and receiving updates. In this post we are configuring OSPF in a single area. In this topology we have four routers and two PCs. The PCs subnet are 172.30.2.0/24 and 172.30.3.0/24. We have point to point connections between each router.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2015/08/ospf-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So we have already configured all of interfaces and everything seems good but PC1 can’t ping PC2 and vice versa. If we do a &lt;strong&gt;show ip route&lt;/strong&gt; on R1 we can see that R1 does not know about the 172.30.2.x or 172.30.3.x network as well as any other network not directly connected to R1.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show ip route 

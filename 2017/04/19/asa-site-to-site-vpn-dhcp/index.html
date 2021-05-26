@@ -173,6 +173,17 @@
     
     
     <p>If you don’t already know, site to site VPNs can be a cost-effective way for remote sites to connect to HQ resources instead of a lease line like using MPLS or Metro-E circuits. We can instead use a standard internet connection with a static IP, this is usually cheaper than a dedicated circuit. Our next steps are purchasing a firewall for the remote site (assuming you already have one at HQ) and setup a site to site VPN connection to make the connection. In this guide, I’ll demo a site to site VPN with a pair of ASAs as well as some additional commands to allow DHCP across the tunnel so that your HQ DHCP server can hand out addresses instead of configuring a local DHCP server at the remote site.</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <p>The table below goes over the agreed settings and what networks are protected. Also note that the “public” IP addresses listed in this example are from RFC 5737 and are not publicly available. Since this is a VPN connection we must agree on some common settings before traffic is allowed across it. We will be tunneling the entire address range for both sites and no need to NAT anything because its Acme’s network. Reference the table below:</p>
 <table>
 <thead>

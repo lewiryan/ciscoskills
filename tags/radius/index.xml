@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;In this configuration I&#39;m at looking at using Microsoft NPS 2012 R2 as radius server and I’m going to skip the installation of NPS because it really is just a next, next, finish installation. In this demo I already have this NPS system connected to a Windows domain, my goal is to create role based access on Cisco IOS routers while using radius to login. I’ll have a couple for active directory accounts each them will represent different types of allowed access to these IOS routers. One account will get full administrative access while the other will only get read access, how cool cat is that ;)&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;We have to get some house-cleaning things done first before we jump into it. To keep this simple in this example I&#39;m only using one router and this router is able to reach the radius server. I’ll have to create an enable secret on the device, create a local username with a password, and turn AAA (Authentication, Authorization, Accounting). I like to create my own AAA method lists one for the console logins and one for remote logins here is what I got so far:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;enable secret 0 cisco
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;username admin privilege 15 secret 0 cisco

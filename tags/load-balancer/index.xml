@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;Working on my Powershell skills, I was playing around with a Barracuda Load Balancer and noticed it supported some APIs which is kind of cool. At first I was playing around with it in postman and got to login and put some servers in maintenance mode, but then thought it would be really neat if I could get this working in Powershell, that way us humans can just run a script and even thinking in the &amp;quot;future&amp;quot; maybe have some automated process (a.k.a AI) handle this for us. ;) So in this post I&#39;ll talk about the script I created and some of the small challenges I had with this overall it was kind of neat putting this together. TLDR: Here is the script if you don&#39;t want to read:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-PS1&#34; data-lang=&#34;PS1&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Barracuda Load Balancer Powershell Script&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Minimum version of Powershell is 6.0.4 – Can download stable releases @ https://github.com/PowerShell/PowerShell&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Puts servers in Maintenance, Disable or Enable status&lt;/span&gt;

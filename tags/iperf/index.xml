@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;Testing a network’s throughput is a good move, if you are testing a new service you stood up or making sure you getting what you paid for. iPerf is good free open source tool when there isn’t really a need to use commercial more expensive tools. In this short tutorial I’ll go over how to configure iPerf which is a CLI tool so let’s get started.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;iPerf needs client and server on each end of the connection in order to test the throughput. There is also a list of available iPerf servers that are over the internet if you wanted to test internet speed and that information is also where you would download the latest version of iPerf at: &lt;a href=&#34;https://iperf.fr/&#34;&gt;https://iperf.fr/&lt;/a&gt; If you are in Windows you have to download the compressed folder from the website and extract it somewhere on your machine. Open command prompt at where the uncompressed files are located: Run from Command Prompt (You&#39;ll get a list of the available CLI switches)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;D:\ryan\iperf\iperf-3.0.11-win64&amp;gt;iperf3.exe
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In Linux you can do the following to install:&lt;/p&gt;

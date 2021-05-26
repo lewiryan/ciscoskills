@@ -155,6 +155,7 @@
       <description>
         
           &lt;p&gt;So you have a this nice multiplayer switch, and want to take advantages of all of the features it has to offer. Well there are two different types interface ports on these type of switches. SVIs (Switched Virtual Interface) and &amp;quot;routed&amp;quot; ports, fundamentally they are same and clients/users wouldn&#39;t be able to tell if you were using/going through an SVI or a &amp;quot;routed&amp;quot; port. However they are different and in this post we&#39;ll talk about these two and when and were it would be recommended to place an SVI or a routed port.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;In order to pass traffic between networks we need a router. Switches work in layer two and routers work in layer three, this separation of duties between devices works well. Doing something like &lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34;&gt;Configuring Router on Stick&lt;/a&gt;, is easier to troubleshoot and usually cheaper to implement. It only becomes a problem when we run out of resources like bandwidth.&lt;/p&gt;
 &lt;p&gt;Looking on the example below, we have three different networks all branching off of this router. The router has three networks configured on this interface the red network, teal network and the blue network. In order for PC1 to reach PC2 it has use the router even through they are plugged on the same switch, they are on different VLANs, different networks. If PC1 was transferring a lot of data between PC2 it could easily tap out that router&#39;s interface. Other devices on those networks like PC3 would become bandwidth starved and struggle to get a good connection for inter-vlan connectivity. &lt;img src=&#34;https://ciscoskills.net/images/2018/07/router-on-a-stickee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;However a multilayered switch which has usually plenty of bandwidth on its back plane and would be able to handle this easily and in this example this would be great use case  to create and SVI interface for each network. To create an SVI:&lt;/p&gt;
@@ -448,6 +449,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;Let&#39;s continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I&#39;m using &lt;a href=&#34;https://www.graylog.org/&#34;&gt;Graylog&lt;/a&gt; which is an open source logging platform and  although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field. We&#39;ll configure the FMC to send syslogs and then configure an extractor on Graylog.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So we have the FMC and Graylog in our environment setup. We&#39;ll want to first configure the FMC and add a syslog server. We can do this two ways, one way is we can go to into Policy tab-&amp;gt; Actions-&amp;gt;Alerts-&amp;gt;Create Alert (Down Arrow)-&amp;gt;Create Syslog Alert.
 &lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-syslog-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;You could also go into an access control policy and select log (&lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-log-symbol.jpg&#34; alt=&#34;::inline&#34;&gt;) icon either in the default action or on a rule you would like to log. Another window will show and select the green plus icon and add the syslog server that way.
@@ -559,6 +561,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So this post is already assuming that you have an Access Control Policy deployed on a Firepower Module (ASA) or a FTD. We also are assuming that you have a DNS policy applied to the FM/FTD. These lists get downloaded about every two hours from Cisco and are updated regularly, best to keep it that way. :) However like everything there is always someone, some system, some program that fails to connect and more often than not it&#39;s usually this critical process that worked yesterday but doesn&#39;t today, so how do we check if we are hitting this?&lt;/p&gt;
 &lt;p&gt;There are two ways to check this we can look at the connection events (if you are logging which by default is yes) it will show DNS the events and depending on your policy you&#39;ll see the action taken. In this example we selected to use Domain Not Found for the action. In this example we can see Domain Not Found and we can also see the DNS category its hitting which is DNS Dga.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/07/fmc-dnfee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -704,8 +707,9 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;When you want more speed all you need is EtherChannel, EtherChannel can be configured as a layer three logical interface instead of just sitting at layer two. This is very helpful if we are running layer three down to the access layer switches, instead of at the distribution layer. You also could see this in a collapsed core design, we also don’t have to worry too much about STP when we configure EtherChannel’s. The only requirements to use layer three EtherChannels is your switch need is support layer three “routed” interfaces, so with that let&#39;s get started!&lt;/p&gt;
-&lt;p&gt;This is pretty much the same as configuring a &lt;a href=&#34;https://ciscoskills.net/2013/10/12/configuring-etherchannel-pagb/&#34;&gt;layer two EtherChannel&lt;/a&gt; with one exception, in this example I’ve got three switches one access layer switch and two distribution/core switches. We are running layer three all the way down to the access layer, so we don’t have worry about STP between the two distribution/core switches and remember VLANs/Networks are locally significant to each access layer switch in this design.
-&lt;img src=&#34;https://ciscoskills.net/images/2018/05/etherchannel-l3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;p&gt;This is pretty much the same as configuring a &lt;a href=&#34;https://ciscoskills.net/2013/10/12/configuring-etherchannel-pagb/&#34;&gt;layer two EtherChannel&lt;/a&gt; with one exception, in this example I’ve got three switches one access layer switch and two distribution/core switches. We are running layer three all the way down to the access layer, so we don’t have worry about STP between the two distribution/core switches and remember VLANs/Networks are locally significant to each access layer switch in this design.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/05/etherchannel-l3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I have already configured SW1 and SW2 links between them as well as the network that SW3 has for the access layer, on SW1 and SW2 we need to create port-channels going to SW3.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# interface ethernet2/1-2
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-if-range)# channel-group 11 mode active
@@ -744,7 +748,9 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <guid>https://ciscoskills.net/2018/01/09/private-vlans/</guid>
       <description>
         
-          &lt;p&gt;Let&#39;s start out 2018 with private VLANs, with PVLANs the network gets a little more privacy added to it. When we have privacy on the network we can seclude certain parts of it. Essentially, &amp;quot;you can go about your business - move along, move along&amp;quot;. Private VLANs allow us to segment networks within a single VLAN. So in this post we&#39;ll go over the types of PVLANs as well as setup a network topology with private VLANs, Let&#39;s get started! So in order to have a private VLAN we have to create a normal VLAN. Which is also called a primary VLAN. Within that private VLAN we can configure it two different ways:&lt;/p&gt;
+          &lt;p&gt;Let&#39;s start out 2018 with private VLANs, with PVLANs the network gets a little more privacy added to it. When we have privacy on the network we can seclude certain parts of it. Essentially, &amp;quot;you can go about your business - move along, move along&amp;quot;. Private VLANs allow us to segment networks within a single VLAN. So in this post we&#39;ll go over the types of PVLANs as well as setup a network topology with private VLANs, Let&#39;s get started!&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;p&gt;So in order to have a private VLAN we have to create a normal VLAN. Which is also called a primary VLAN. Within that private VLAN we can configure it two different ways:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Isolated private VLAN&lt;/strong&gt; - Which is just what it sounds like, this type of VLAN is cut off from everything including hosts within that same isolated private VLAN. The only thing this VLAN can reach is the primary VLAN.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Community private VLAN&lt;/strong&gt; - Again just like the name sounds this type of VLAN can be grouped together with other members in the same private VLAN community. This enables members of the same community to be able to talk to each other in the same PVLAN. as well as being able to reach the primary VLAN. However these communities are isolated from each other so they can&#39;t talk to other private VLAN communities or isolated PVLANs.&lt;/li&gt;
@@ -882,6 +888,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;VACLs are another good layer of security to help control who can talk to who, much like  access control lists that are in firewalls and routers, however the difference is VACLs operate at layer two of the OSI model. There could be situations where you have multiple hosts on the same LAN and want to block traffic from reaching certain hosts within that same network, how would you go about blocking that type of traffic without using a router or firewall? &lt;em&gt;(Hint: Create a VACL)&lt;/em&gt;&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;In this post we have a DMZ and an INTERNAL network. The goal is to block DMZ systems from reaching other servers in the DMZ. We have are standard &amp;quot;out of the box&amp;quot; configuration firewall that is between the DMZ and INTERNAL network. In this example the firewall is configured with security-levels in place. The INTERNAL zone has a security-level of 100 and the DMZ zone as a security-level 80. We have two VLANs on this switch, VLAN two (2) which is the DMZ and VLAN three (3)  which is the INTERNAL VLAN. The firewall is using the &amp;quot;router on a stick&amp;quot; configuration and trunking VLANs on the single interface, and we have four servers total. Two DMZ servers and two INTERNAL servers are in this example.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/11/vacl-sample.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The INTERNAL servers can reach the DMZ servers, however the DMZ servers can&#39;t reach the INTERNAL systems which is expected because of the security-levels that are configured on the firewall. However the DMZ servers can reach other, to disable that we need to create an ACL on the switch before we create a VACL :)&lt;/p&gt;
@@ -908,6 +915,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;So what has changed in the past 20 years? Take for example the network equipment that was manufactured in 1997, how did you configure that equipment? I would imagine it involved a serial port, HyperTerminal and trusty command line. Was API even a thing back in 1997, was it common to have an API interface in network equipment like today? Why do we even need an API on the equipment in the first place? What changed?  Well the year isn&#39;t 1997 anymore, that past us 20 years ago and the equipment we work with today looks and operates much differently than it did in 1997.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;We work in a world now that operates with Gbps/Tbps not Kbps/Mbps. With the need for speed CLI isn&#39;t the fastest thing anymore to configure or monitor network devices. This industry is moving into automated ways to configure and monitor network devices. So in this post we&#39;ll look at enabling the NX-API that&#39;s in the Cisco Nexus 9000 and 3000 family switches, and in foing this we&#39;ll get introduced into the Cisco NX-API sandbox.&lt;/p&gt;
 &lt;p&gt;To enable this API  jump right into CLI and configure the management interface, we&#39;ll be able to use this API using the management IP address of the switch.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vrf context management
@@ -958,6 +966,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;Once logged into the Firepower default prompt type system support diagnostic-cli command.&lt;/li&gt;
 &lt;/ul&gt;
@@ -1042,6 +1051,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.2(14)S, please welcome and &amp;quot;slow clap&amp;quot; the Gateway Load Balancing protocol, who has been around since 2002!&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So the way this protocol works is you must have at least two devices (makes sense) in a GLBP group. The GLBP group has one AVG (Active Virtual Gateway) and multiple AVFs (Active Virtual Forwarders) if you have more than two devices. The AVG is the master of the group and assigns virtual MAC address to each AVF member. Remember each AVF is responsible for forwarding packets sent to their virtual MAC address, they act independently from the AVG.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note: The AVG is also an AVF When a PC/server makes an ARP request to reach the default gateway each router in the GLBP group share the load by default one client will get a MAC address from one router, while the other client will get an address from another router but both clients point to the same IP address for the default gateway.&lt;/p&gt;
@@ -1393,6 +1403,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;From its older brother IGRP which was developed in 1980s to overcome the limitations of RIP, EIGRP was an &amp;quot;Enhanced&amp;quot; IGRP protocol. The main purpose of EIGRP was to  overcome the limitations of classful networks and make EIGRP a classless routing protocol. During designing of this protocol a different convergence algorithm was used making EIGRP that &amp;quot;hybrid&amp;quot; between distance-vector and link-state routing protocols. In this post we&#39;ll go over a basic design and setup for EIGRP, however instead of using the &amp;quot;classic way&amp;quot; let&#39;s look at configuring EIGRP using named mode which is available in Cisco IOS starting in version 15.2&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;This topology is pretty simple, I have three routers and each them is connected to the other two routers.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/05/eigrp-named1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;All routers have been setup with their local addresses and can ping any network that is locally attached to them. There are two ways to configure EIGRP we could configure it the &amp;quot;classic way&amp;quot; or use named mode. Nothing has changed with EIGRP itself so you could have one router use classic and another router use named mode and the protocol would exchange routing information between the two. The change is to simplify the configuration into one spot, which is under the router EIGRP process instead of having some EIGRP configuration under each interface. Let&#39;s get started.&lt;/p&gt;
@@ -1606,6 +1617,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;If you don’t already know, site to site VPNs can be a cost-effective way for remote sites to connect to HQ resources instead of a lease line like using MPLS or Metro-E circuits. We can instead use a standard internet connection with a static IP, this is usually cheaper than a dedicated circuit. Our next steps are purchasing a firewall for the remote site (assuming you already have one at HQ) and setup a site to site VPN connection to make the connection. In this guide, I’ll demo a site to site VPN with a pair of ASAs as well as some additional commands to allow DHCP across the tunnel so that your HQ DHCP server can hand out addresses instead of configuring a local DHCP server at the remote site.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;The table below goes over the agreed settings and what networks are protected. Also note that the “public” IP addresses listed in this example are from RFC 5737 and are not publicly available. Since this is a VPN connection we must agree on some common settings before traffic is allowed across it. We will be tunneling the entire address range for both sites and no need to NAT anything because its Acme’s network. Reference the table below:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1771,6 +1783,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;If you ever needed to hide multiple systems behind a single IP address you would use PAT. (Port Address Translation) besides using this to connect to the internet when using an RFC 1918 address, you can configure PAT for VPN connections. The benefit is the same, hide multiple systems behind a single IP address with the advantage being you can have many systems on one side of the VPN tunnel all using that single IP.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;In this example, we have a site to site VPN connection one side using a PATed public IP address. We originally have two systems that will be sending data over to Contoso  who is the remote peer in this example. We are planning on adding additional systems in the future which is why Acme Corp is using a PATed address outbound. Contoso is expected to send data back to Acme Corp which will also be reflected in this example. Also note that the &amp;quot;public&amp;quot; IP addresses listed in this example are from RFC 5737 and are not publicly available. We have a need to setup a VPN to a partner and have agreed using a public IP address over the VPN connection. We are going to have multiple systems on the local side sending information over to this partner and because of that we&#39;re going to be using a single public PATed address instead of assigning multiple static NATed IPs to each system. The table below goes over the agreed settings and what networks are protected.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1954,6 +1967,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;One of the neat features of Cisco VIRL is it runs on an open platform, with OpenStack as the orchestration program running on top of an Ubuntu operating system. This gives VIRL additional flexibly by being able to run third-party VMs with KVM begin the hypervisor. In this guide I’ll walk through some of the steps I took to get Windows XP up and running in VIRL. :) If you have a more recent version of Windows that&#39;s in the current decade following this guide is pretty much the same just adjust the disk space and RAM to fit the requirements. I picked Windows XP is because its light weight, and with an average RAM usage under 100MB it makes easy to add multiple instances if you needed all without wasting too much resources on VIRL host. To get started:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;You’ll need to have a copy of Windows XP.&lt;/li&gt;
 &lt;li&gt;I also found an unofficial service pack for Windows XP &lt;a href=&#34;https://ryanvm.net/forum/viewtopic.php?f=5&amp;amp;t=10321&#34;&gt;SP4 (unofficial)&lt;/a&gt; - Optional&lt;/li&gt;
@@ -2028,6 +2042,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we where planning on connecting in additional equipment that only supported SFP+ interfaces. So the solution was to connect to this switch  with QSFP to SFP+ adapters.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Thinking this would be a simple change because we are just plugging in additional adapters on the QSFP ports we planned our maintenance window and rollback plans but I wasn&#39;t expecting a rollback for this one :)   The interfaces were configured in a shutdown status before we plugged in the adapters and cables so didn&#39;t see anything out of the ordinary, when it was time to do the maintenance let&#39;s bring up the interfaces with the command of no shutdown and we should be up...&lt;/p&gt;
 &lt;p&gt;Well not exactly, I first thought it was the other end so I checked that and its reporting the link is down but it was not in a shutdown status. Looking at the Nexus switch interface I see the words &amp;quot;check speed-group config&amp;quot; under the interface and its in a err-disable status and I&#39;ll be honest I haven&#39;t worked with interfaces that are speed-grouped together so I didn&#39;t know that it was even a thing. A quick search to see if I could &amp;quot;break&amp;quot; the speed-group and configure interfaces individually on their own speed turned up nothing.&lt;/p&gt;
 &lt;p&gt;We ended up doing a rollback which looked pretty ridiculous because these where just interfaces we couldn&#39;t bring online. It become apparent that I was stuck because with the equipment we had I couldn&#39;t use that 40Gbps uplink, the hardware only supported one speed for all six ports, hence the name &amp;quot;speed-group&amp;quot;. &lt;/p&gt;
@@ -2166,6 +2181,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;If you are studying any Cisco Data Center certs this tool might come in handy for some hands on learning. The Cisco UCS emulator is a VM you can spin up in VMware Workstation,Fusion or in ESXi. This emulator can be helpful in understanding the UCS platform and UCS manager. You are able to push policies and alter configurations and even import/export these configurations into and out of the &amp;quot;real&amp;quot; world to apply them/test them.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;You can download this emulator from Cisco&#39;s Community site: &lt;a href=&#34;https://communities.cisco.com/docs/DOC-67121&#34;&gt;Cisco UCS Platform Emulator 3.1(1ePE1) Downloads&lt;/a&gt; All you need is a Cisco ID to sign in which is free to register and download. Its pretty easy to set up if you are deploying and OVA once the VM is online you just browse to the IP address of the VM . Watch the console of the VM for the IP address and it does take 5 to 10 minutes to boot up before you can hit the emulator. When the system boots it&#39;ll look for a DHCP server if your setup does not have DHCP you can manually add an IP address from the console screen. Follow the prompts its pretty easy to figure out, once you have a valid IP address you can just type that into your browser. You should see the UCS Platform Emulator. This is where you can modify your hardware before going into the UCS Manager.
 &lt;img src=&#34;https://ciscoskills.net/images/2016/07/ucs-e-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;UCS Platform Emulator
@@ -2186,6 +2202,7 @@ Please reference the &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/securi
       <description>
         
           &lt;p&gt;In this configuration I&#39;m at looking at using Microsoft NPS 2012 R2 as radius server and I’m going to skip the installation of NPS because it really is just a next, next, finish installation. In this demo I already have this NPS system connected to a Windows domain, my goal is to create role based access on Cisco IOS routers while using radius to login. I’ll have a couple for active directory accounts each them will represent different types of allowed access to these IOS routers. One account will get full administrative access while the other will only get read access, how cool cat is that ;)&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;We have to get some house-cleaning things done first before we jump into it. To keep this simple in this example I&#39;m only using one router and this router is able to reach the radius server. I’ll have to create an enable secret on the device, create a local username with a password, and turn AAA (Authentication, Authorization, Accounting). I like to create my own AAA method lists one for the console logins and one for remote logins here is what I got so far:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;enable secret 0 cisco
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;username admin privilege 15 secret 0 cisco
@@ -2394,6 +2411,7 @@ You have now just created your first radius network policy. If all is well and i
       <description>
         
           &lt;p&gt;Well its 2016 and you still have that one-of-kind Cisco ISR 2811 or 3845 running in the environment? You followed and installed Rancid, all the new stuff works like it should but when you try to connect to that “one-of-kind” 2811 with Rancid it closes the connection... :/&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;This is a simple fix and the bug is reported here: &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740307&#34;&gt;LINK.&lt;/a&gt; The bug is something with OpenSSH which is installed on your Linux operating system and Rancid rides on top of it. You would have the same issue if you just tried SSH to thing directly from your Rancid machine. The bug looked to be fixed starting OpenSSH 6.9 but as right now at least in Centos 7 the version it goes up to is OpenSSH 6.6. You can verify this by using sshd -V to output the OpenSSH version you are using.&lt;/p&gt;
 &lt;p&gt;Simple fix is to modify the ssh_config file usually located at &lt;strong&gt;/etc/ssh/ssh_config&lt;/strong&gt; and at the bottom of the file put the host you are connecting to. Copy what you have in your router.db file meaning if you are using DNS names put DNS names of the devices that won’t connect into this file. If you are using IP address use IP address in this file. In this example I’m using IP addresses and DNS names, the following is at the bottom of the ssh_config file:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;# Custom Rancid Configuration (Issues with Connecting SSH with Older Devices)
@@ -2423,6 +2441,7 @@ You have now just created your first radius network policy. If all is well and i
       <description>
         
           &lt;p&gt;Cisco released VIRL almost a year ago and it’s not at the 1.0 version yet but it’s getting close as they have done some good work towards the product since it first lunched. Cisco VIRL is like GNS3 which is simulation platform that runs Cisco’s current operating systems so instead of buying used Cisco hardware you can run this program on your computer. This software is geared towards proof-of-concept designs, for personal and training on Cisco Certifications. Let’s talk about it!&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Here are the links: &lt;a href=&#34;http://virl.cisco.com/&#34;&gt;http://virl.cisco.com/&lt;/a&gt; - Main Website
 &lt;a href=&#34;http://community.dev-innovate.com/c/virl&#34;&gt;http://community.dev-innovate.com/c/virl&lt;/a&gt; - Community Form
 &lt;a href=&#34;http://virl-dev-innovate.cisco.com/&#34;&gt;http://virl-dev-innovate.cisco.com/&lt;/a&gt; - Documentation&lt;/p&gt;
@@ -2444,6 +2463,7 @@ You have now just created your first radius network policy. If all is well and i
       <description>
         
           &lt;p&gt;We have to start somewhere so let’s look at the basics of configuring OSPF. Remember OSPF is an IGP (Interior Gateway Protocol) and allows packet authentication as well as IP multicast when sending and receiving updates. In this post we are configuring OSPF in a single area. In this topology we have four routers and two PCs. The PCs subnet are 172.30.2.0/24 and 172.30.3.0/24. We have point to point connections between each router.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2015/08/ospf-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So we have already configured all of interfaces and everything seems good but PC1 can’t ping PC2 and vice versa. If we do a &lt;strong&gt;show ip route&lt;/strong&gt; on R1 we can see that R1 does not know about the 172.30.2.x or 172.30.3.x network as well as any other network not directly connected to R1.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show ip route 

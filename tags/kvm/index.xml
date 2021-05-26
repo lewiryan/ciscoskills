@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;One of the neat features of Cisco VIRL is it runs on an open platform, with OpenStack as the orchestration program running on top of an Ubuntu operating system. This gives VIRL additional flexibly by being able to run third-party VMs with KVM begin the hypervisor. In this guide I’ll walk through some of the steps I took to get Windows XP up and running in VIRL. :) If you have a more recent version of Windows that&#39;s in the current decade following this guide is pretty much the same just adjust the disk space and RAM to fit the requirements. I picked Windows XP is because its light weight, and with an average RAM usage under 100MB it makes easy to add multiple instances if you needed all without wasting too much resources on VIRL host. To get started:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;You’ll need to have a copy of Windows XP.&lt;/li&gt;
 &lt;li&gt;I also found an unofficial service pack for Windows XP &lt;a href=&#34;https://ryanvm.net/forum/viewtopic.php?f=5&amp;amp;t=10321&#34;&gt;SP4 (unofficial)&lt;/a&gt; - Optional&lt;/li&gt;

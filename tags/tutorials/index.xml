@@ -143,6 +143,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;Working on my Powershell skills, I was playing around with a Barracuda Load Balancer and noticed it supported some APIs which is kind of cool. At first I was playing around with it in postman and got to login and put some servers in maintenance mode, but then thought it would be really neat if I could get this working in Powershell, that way us humans can just run a script and even thinking in the &amp;quot;future&amp;quot; maybe have some automated process (a.k.a AI) handle this for us. ;) So in this post I&#39;ll talk about the script I created and some of the small challenges I had with this overall it was kind of neat putting this together. TLDR: Here is the script if you don&#39;t want to read:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-PS1&#34; data-lang=&#34;PS1&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Barracuda Load Balancer Powershell Script&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Minimum version of Powershell is 6.0.4 – Can download stable releases @ https://github.com/PowerShell/PowerShell&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Puts servers in Maintenance, Disable or Enable status&lt;/span&gt;
@@ -224,7 +225,9 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <guid>https://ciscoskills.net/2018/01/09/private-vlans/</guid>
       <description>
         
-          &lt;p&gt;Let&#39;s start out 2018 with private VLANs, with PVLANs the network gets a little more privacy added to it. When we have privacy on the network we can seclude certain parts of it. Essentially, &amp;quot;you can go about your business - move along, move along&amp;quot;. Private VLANs allow us to segment networks within a single VLAN. So in this post we&#39;ll go over the types of PVLANs as well as setup a network topology with private VLANs, Let&#39;s get started! So in order to have a private VLAN we have to create a normal VLAN. Which is also called a primary VLAN. Within that private VLAN we can configure it two different ways:&lt;/p&gt;
+          &lt;p&gt;Let&#39;s start out 2018 with private VLANs, with PVLANs the network gets a little more privacy added to it. When we have privacy on the network we can seclude certain parts of it. Essentially, &amp;quot;you can go about your business - move along, move along&amp;quot;. Private VLANs allow us to segment networks within a single VLAN. So in this post we&#39;ll go over the types of PVLANs as well as setup a network topology with private VLANs, Let&#39;s get started!&lt;/p&gt;
+&lt;!--adsense--&gt;
+&lt;p&gt;So in order to have a private VLAN we have to create a normal VLAN. Which is also called a primary VLAN. Within that private VLAN we can configure it two different ways:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Isolated private VLAN&lt;/strong&gt; - Which is just what it sounds like, this type of VLAN is cut off from everything including hosts within that same isolated private VLAN. The only thing this VLAN can reach is the primary VLAN.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Community private VLAN&lt;/strong&gt; - Again just like the name sounds this type of VLAN can be grouped together with other members in the same private VLAN community. This enables members of the same community to be able to talk to each other in the same PVLAN. as well as being able to reach the primary VLAN. However these communities are isolated from each other so they can&#39;t talk to other private VLAN communities or isolated PVLANs.&lt;/li&gt;
@@ -300,6 +303,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;From its older brother IGRP which was developed in 1980s to overcome the limitations of RIP, EIGRP was an &amp;quot;Enhanced&amp;quot; IGRP protocol. The main purpose of EIGRP was to  overcome the limitations of classful networks and make EIGRP a classless routing protocol. During designing of this protocol a different convergence algorithm was used making EIGRP that &amp;quot;hybrid&amp;quot; between distance-vector and link-state routing protocols. In this post we&#39;ll go over a basic design and setup for EIGRP, however instead of using the &amp;quot;classic way&amp;quot; let&#39;s look at configuring EIGRP using named mode which is available in Cisco IOS starting in version 15.2&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;This topology is pretty simple, I have three routers and each them is connected to the other two routers.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/05/eigrp-named1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;All routers have been setup with their local addresses and can ping any network that is locally attached to them. There are two ways to configure EIGRP we could configure it the &amp;quot;classic way&amp;quot; or use named mode. Nothing has changed with EIGRP itself so you could have one router use classic and another router use named mode and the protocol would exchange routing information between the two. The change is to simplify the configuration into one spot, which is under the router EIGRP process instead of having some EIGRP configuration under each interface. Let&#39;s get started.&lt;/p&gt;
@@ -612,6 +616,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;If you ever needed a TFTP or an anonymous FTP server to transfer files, logs, or crash debugs to and from your network devices it can be a little tricky if you don&#39;t have anything setup. There are some free quick programs out there if you are in a pinch for one-time transfers but if you ever wanted to have something in infrastructure that is ready to go for this kind of stuff just follow this tutorial below.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;I&#39;m using the latest version of Centos 7 minimal, we need to add some house keeping items first so let&#39;s get started! Install NANO ( I like it, don&#39;t judge me!):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;yum install nano
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Install Firewalld (Seems like Centos 7 1511 does not include it at least the minimal version)&lt;/p&gt;
@@ -768,6 +773,7 @@ Hey Hemant, If the primary link goes down and it fails over to the secondary lin
       <description>
         
           &lt;p&gt;In this configuration I&#39;m at looking at using Microsoft NPS 2012 R2 as radius server and I’m going to skip the installation of NPS because it really is just a next, next, finish installation. In this demo I already have this NPS system connected to a Windows domain, my goal is to create role based access on Cisco IOS routers while using radius to login. I’ll have a couple for active directory accounts each them will represent different types of allowed access to these IOS routers. One account will get full administrative access while the other will only get read access, how cool cat is that ;)&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;We have to get some house-cleaning things done first before we jump into it. To keep this simple in this example I&#39;m only using one router and this router is able to reach the radius server. I’ll have to create an enable secret on the device, create a local username with a password, and turn AAA (Authentication, Authorization, Accounting). I like to create my own AAA method lists one for the console logins and one for remote logins here is what I got so far:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;enable secret 0 cisco
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;username admin privilege 15 secret 0 cisco
@@ -976,6 +982,7 @@ You have now just created your first radius network policy. If all is well and i
       <description>
         
           &lt;p&gt;Let&#39;s start out 2016 with setting up a logging system called Graylog. If you have not used Graylog before then I encourage you to check it out. This is an open source log management system and is pretty flexible as it can capture, index and analyze almost anything. Once up and running this system can be scaled out for an enterprise wide log management system. High availability, clustered, and replicated is what Graylog thrives on. In this demo I am going to have two systems. One is the Graylog server, web server and will also have a Mongo database. The other system will be an Elasticsearch node which is what will have the actual data stored in and indexed. For bigger “production” ready setups you just scale this out to separate systems.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Documentation is key here and Graylog has done an excellent job of it so here it is in case you need it: &lt;a href=&#34;https://docs.graylog.org/en/latest/index.html&#34;&gt;https://docs.graylog.org/en/latest/index.html&lt;/a&gt; I’m already assuming that you have CentOS 7 minimal installed if not you can pick up the latest CentOS at &lt;a href=&#34;http://www.centos.org/&#34;&gt;http://www.centos.org/&lt;/a&gt; .The Centos systems also need a connection to the internet, and have just the root account. I&#39;m using two systems for this tutorial so keep that in mind, here are the names of each system and what their role is:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1306,6 +1313,7 @@ You have now just created your first radius network policy. If all is well and i
       <description>
         
           &lt;p&gt;We have to start somewhere so let’s look at the basics of configuring OSPF. Remember OSPF is an IGP (Interior Gateway Protocol) and allows packet authentication as well as IP multicast when sending and receiving updates. In this post we are configuring OSPF in a single area. In this topology we have four routers and two PCs. The PCs subnet are 172.30.2.0/24 and 172.30.3.0/24. We have point to point connections between each router.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2015/08/ospf-topo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;So we have already configured all of interfaces and everything seems good but PC1 can’t ping PC2 and vice versa. If we do a &lt;strong&gt;show ip route&lt;/strong&gt; on R1 we can see that R1 does not know about the 172.30.2.x or 172.30.3.x network as well as any other network not directly connected to R1.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show ip route 

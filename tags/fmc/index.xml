@@ -33,6 +33,7 @@
       <description>
         
           &lt;p&gt;Let&#39;s continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I&#39;m using &lt;a href=&#34;https://www.graylog.org/&#34;&gt;Graylog&lt;/a&gt; which is an open source logging platform and  although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field. We&#39;ll configure the FMC to send syslogs and then configure an extractor on Graylog.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So we have the FMC and Graylog in our environment setup. We&#39;ll want to first configure the FMC and add a syslog server. We can do this two ways, one way is we can go to into Policy tab-&amp;gt; Actions-&amp;gt;Alerts-&amp;gt;Create Alert (Down Arrow)-&amp;gt;Create Syslog Alert.
 &lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-syslog-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;You could also go into an access control policy and select log (&lt;img src=&#34;https://ciscoskills.net/images/2018/08/fmc-log-symbol.jpg&#34; alt=&#34;::inline&#34;&gt;) icon either in the default action or on a rule you would like to log. Another window will show and select the green plus icon and add the syslog server that way.
@@ -106,6 +107,7 @@
       <description>
         
           &lt;p&gt;We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;So this post is already assuming that you have an Access Control Policy deployed on a Firepower Module (ASA) or a FTD. We also are assuming that you have a DNS policy applied to the FM/FTD. These lists get downloaded about every two hours from Cisco and are updated regularly, best to keep it that way. :) However like everything there is always someone, some system, some program that fails to connect and more often than not it&#39;s usually this critical process that worked yesterday but doesn&#39;t today, so how do we check if we are hitting this?&lt;/p&gt;
 &lt;p&gt;There are two ways to check this we can look at the connection events (if you are logging which by default is yes) it will show DNS the events and depending on your policy you&#39;ll see the action taken. In this example we selected to use Domain Not Found for the action. In this example we can see Domain Not Found and we can also see the DNS category its hitting which is DNS Dga.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/07/fmc-dnfee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;

@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;ul&gt;
 &lt;li&gt;Once logged into the Firepower default prompt type system support diagnostic-cli command.&lt;/li&gt;
 &lt;/ul&gt;

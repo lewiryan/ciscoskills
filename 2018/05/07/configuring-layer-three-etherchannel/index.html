@@ -171,8 +171,19 @@
     
     
     <p>When you want more speed all you need is EtherChannel, EtherChannel can be configured as a layer three logical interface instead of just sitting at layer two. This is very helpful if we are running layer three down to the access layer switches, instead of at the distribution layer. You also could see this in a collapsed core design, we also don’t have to worry too much about STP when we configure EtherChannel’s. The only requirements to use layer three EtherChannels is your switch need is support layer three “routed” interfaces, so with that let's get started!</p>
-<p>This is pretty much the same as configuring a <a href="https://ciscoskills.net/2013/10/12/configuring-etherchannel-pagb/">layer two EtherChannel</a> with one exception, in this example I’ve got three switches one access layer switch and two distribution/core switches. We are running layer three all the way down to the access layer, so we don’t have worry about STP between the two distribution/core switches and remember VLANs/Networks are locally significant to each access layer switch in this design.
-<img src="/images/2018/05/etherchannel-l3.png" alt=""></p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9033188266851547"
+     data-ad-slot="3084884603"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>This is pretty much the same as configuring a <a href="https://ciscoskills.net/2013/10/12/configuring-etherchannel-pagb/">layer two EtherChannel</a> with one exception, in this example I’ve got three switches one access layer switch and two distribution/core switches. We are running layer three all the way down to the access layer, so we don’t have worry about STP between the two distribution/core switches and remember VLANs/Networks are locally significant to each access layer switch in this design.</p>
+<p><img src="/images/2018/05/etherchannel-l3.png" alt=""></p>
 <p>I have already configured SW1 and SW2 links between them as well as the network that SW3 has for the access layer, on SW1 and SW2 we need to create port-channels going to SW3.</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>SW1(config)# interface ethernet2/1-2
 <span class="ln">2</span>SW1(config-if-range)# channel-group 11 mode active

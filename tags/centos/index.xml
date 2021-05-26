@@ -15,6 +15,7 @@
       <description>
         
           &lt;p&gt;If you ever needed a TFTP or an anonymous FTP server to transfer files, logs, or crash debugs to and from your network devices it can be a little tricky if you don&#39;t have anything setup. There are some free quick programs out there if you are in a pinch for one-time transfers but if you ever wanted to have something in infrastructure that is ready to go for this kind of stuff just follow this tutorial below.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;I&#39;m using the latest version of Centos 7 minimal, we need to add some house keeping items first so let&#39;s get started! Install NANO ( I like it, don&#39;t judge me!):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;yum install nano
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Install Firewalld (Seems like Centos 7 1511 does not include it at least the minimal version)&lt;/p&gt;
@@ -171,6 +172,7 @@
       <description>
         
           &lt;p&gt;Well its 2016 and you still have that one-of-kind Cisco ISR 2811 or 3845 running in the environment? You followed and installed Rancid, all the new stuff works like it should but when you try to connect to that “one-of-kind” 2811 with Rancid it closes the connection... :/&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;This is a simple fix and the bug is reported here: &lt;a href=&#34;https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740307&#34;&gt;LINK.&lt;/a&gt; The bug is something with OpenSSH which is installed on your Linux operating system and Rancid rides on top of it. You would have the same issue if you just tried SSH to thing directly from your Rancid machine. The bug looked to be fixed starting OpenSSH 6.9 but as right now at least in Centos 7 the version it goes up to is OpenSSH 6.6. You can verify this by using sshd -V to output the OpenSSH version you are using.&lt;/p&gt;
 &lt;p&gt;Simple fix is to modify the ssh_config file usually located at &lt;strong&gt;/etc/ssh/ssh_config&lt;/strong&gt; and at the bottom of the file put the host you are connecting to. Copy what you have in your router.db file meaning if you are using DNS names put DNS names of the devices that won’t connect into this file. If you are using IP address use IP address in this file. In this example I’m using IP addresses and DNS names, the following is at the bottom of the ssh_config file:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;# Custom Rancid Configuration (Issues with Connecting SSH with Older Devices)
@@ -200,6 +202,7 @@
       <description>
         
           &lt;p&gt;Let&#39;s start out 2016 with setting up a logging system called Graylog. If you have not used Graylog before then I encourage you to check it out. This is an open source log management system and is pretty flexible as it can capture, index and analyze almost anything. Once up and running this system can be scaled out for an enterprise wide log management system. High availability, clustered, and replicated is what Graylog thrives on. In this demo I am going to have two systems. One is the Graylog server, web server and will also have a Mongo database. The other system will be an Elasticsearch node which is what will have the actual data stored in and indexed. For bigger “production” ready setups you just scale this out to separate systems.&lt;/p&gt;
+&lt;!--adsense--&gt;
 &lt;p&gt;Documentation is key here and Graylog has done an excellent job of it so here it is in case you need it: &lt;a href=&#34;https://docs.graylog.org/en/latest/index.html&#34;&gt;https://docs.graylog.org/en/latest/index.html&lt;/a&gt; I’m already assuming that you have CentOS 7 minimal installed if not you can pick up the latest CentOS at &lt;a href=&#34;http://www.centos.org/&#34;&gt;http://www.centos.org/&lt;/a&gt; .The Centos systems also need a connection to the internet, and have just the root account. I&#39;m using two systems for this tutorial so keep that in mind, here are the names of each system and what their role is:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
