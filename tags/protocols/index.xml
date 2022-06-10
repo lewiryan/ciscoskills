@@ -14,67 +14,10 @@
       <guid>https://ciscoskills.net/2011/08/31/link-state-protocols/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-cables.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-cables.png&#34; alt=&#34;&#34; title=&#34;Network-Cables&#34;&gt;&lt;/a&gt;Weeks ago and maybe months :), I talked about distance vector protocols and with that you probably got the feeling that when using a distance vector protocol it does not give a full network graphical representation of the entire network. Only the directly connected routes can&#39;t remember? Check out this post &lt;a href=&#34;http://ciscoskills.net/2011/06/15/distance-vector-routing/&#34; title=&#34;Distance Vector Routing&#34;&gt;Distance Vector Routing&lt;/a&gt;. Link state protocols are faster to converge network changes compared to distance vector however when compared to distance vector setup they can be harder to set up, maintain, and troubleshoot when problems arise. Although the core design of a link-state protocol is like distance vector, meaning it will send updates to neighboring &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;routers&lt;/a&gt;, it does this in an entirely different way. Routers that use link-state advertise every possible route in the network. This process is called flooding which means every router in the network has the same information. This information is stored in RAM and called the link-state database (LSDB). The link-state protocol uses this information for other process, like to calculate the &amp;quot;best routes&amp;quot; to each subnet. You can probably guess that when using a link-state protocol it will use more resources like CPU and memory compared to distance vector, Your&#39; right. The link-state protocols relay on LSAs (&lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;Link-state&lt;/a&gt; advertisements) which are broken down in two main types:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Router &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_advertisement&#34; title=&#34;Link-state advertisement&#34;&gt;LSA&lt;/a&gt; - Includes the a number to identify the router called the router ID. The router&#39;s interface &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt;, subnet masks, the state of link (Up or Down), and the cost of the interface.&lt;/li&gt;
-&lt;li&gt;Link LSA- Which identifies each link the subnet and the routers that are attached to that link. It also identifies if the link is either up or down.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These LSAs are created by the router and then floods the LSA to other routers their neighbors. The thing that makes link-state protocol a topic starter is that they look at the &amp;quot;Link&amp;quot; of the connection and advertise each interface even if the connection is up or down. The LSDB has information about not only the up and working routers, interfaces, and networks, but all routers and interfaces even if the interfaces are down. With link-state protocols it creates a complete network topology in each router unlike distance vector.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Which &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_protocol&#34; title=&#34;Routing protocol&#34;&gt;Routing Protocols&lt;/a&gt; use Link-State? Take a guess!&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;RIPv1&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;RIPv2&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/IS-IS&#34; title=&#34;IS-IS&#34;&gt;IS-IS&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Classless&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Supports &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Send Subnet Mask&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Distance Vector&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;No *&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;*EIGRP is considered a hybrid routing protocol (Uses the best of both Distance Vector and Link-State protocols) In some Cisco documentation EIGRP is also referred to as an advance distance vector protocol. Link-State Protocols converge much quickly than distance vector, they do consume more RAM and CPU when compared to distance vector. They avoid routing loops by default unlike with distance vector which requires more features like split horizon. Distance vector is easier to set up when compared to link-state which requires more thought when configuring it correctly. I have opened another door towards the ICND2 path, so let&#39;s stop for now and let it sink-in. Like always you have power of the internet at your hands if you can&#39;t wait a simple search will do. As I always say I hope this information is helpful and if you have an idea of the next topic that I should talk about that deals with ether ICND1 or ICND2 let&#39;s hear it!&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/15/distance-vector-routing/&#34;&gt;Distance Vector Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34;&gt;Cisco Discovery Protocol&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/237312/black_hat_routers_using_ospf_open_to_attacks.html&#34;&gt;Black Hat: Routers Using OSPF Open to Attacks&lt;/a&gt; (pcworld.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://thinkup.waldenu.edu/technology/networking/item/11465-why-are-routed-protocols-important-to-networking&amp;amp;sa=U&amp;amp;ei=L-plTeSGEYOEtgfOl8CWDQ&amp;amp;ved=0CIMDEBYwUjjYBA&amp;amp;usg=AFQjCNFeYACbEdz8vyrBwykpHsfhPgZQJw&#34;&gt;Why Are Routed Protocols Important to Networking?&lt;/a&gt; (thinkup.waldenu.edu)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/01/classful-vs-classless-routing/&#34;&gt;Classful vs. Classless Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/21/welcome-cct-cisco-certified-technician/&#34; title=&#34;&#34;&gt;Welcome CCT (Cisco Certified Technician Certification) | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-09-21 20:44:41&#34;&gt;Sep 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Link-State Protocols (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2012-02-26 19:21:19&#34;&gt;Feb 0, 2012&lt;/time&gt;
-&lt;p&gt;Glad I could Help :)&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Nan]( &#34;nancy3d@yahoo.com&#34;) - &lt;time datetime=&#34;2012-02-26 12:00:56&#34;&gt;Feb 0, 2012&lt;/time&gt;
-&lt;p&gt;Thanks for your hard work, I&#39;m studying Cisco and just needed to understand a little bit more about LS. I&#39;ll do let it sink first before going to other topic lol.&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Network-Cables Weeks ago and maybe months :), I talked about distance vector protocols and with that you probably got the feeling that when using a distance vector protocol it does not give a full network graphical representation of the entire network. Only the directly connected routes can&#39;t remember? Check out this post Distance Vector Routing. Link state protocols are faster to converge network changes compared to distance vector however when compared to distance vector setup they can be harder to set up, maintain, and troubleshoot when problems arise.
+          
+          
         
       </description>
     </item>
@@ -87,22 +30,10 @@
       <guid>https://ciscoskills.net/2011/05/02/configure-static-routing/</guid>
       <description>
         
-          &lt;p&gt;Plugging Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;routers&lt;/a&gt; together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;routing&lt;/a&gt; protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change. A good example of using a &lt;a href=&#34;http://en.wikipedia.org/wiki/Static_routing&#34; title=&#34;Static routing&#34;&gt;static route&lt;/a&gt; is with a &lt;a href=&#34;http://en.wikipedia.org/wiki/Stub_network&#34; title=&#34;Stub network&#34;&gt;stub network&lt;/a&gt;. A stub network is only accessed by a single router and no other routes are configured so there is only one path the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_traffic_measurement&#34; title=&#34;Network traffic measurement&#34;&gt;network traffic&lt;/a&gt; can take. Notice the picture below and how any traffic going towards the network cloud from the 192.168.1.0 network will always pass the 172.16.5.0 network. Why waste putting a routing protocol here?) &lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/static_default_route.png?w=300&#34; alt=&#34;&#34; title=&#34;Stub Network&#34;&gt;In order to configure a static route you must be in the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt;, the ip route command complete &lt;a href=&#34;http://en.wikipedia.org/wiki/Syntax&#34; title=&#34;Syntax&#34;&gt;syntax&lt;/a&gt; is the following: &lt;strong&gt;ip route&lt;/strong&gt; &lt;em&gt;prefix mask&lt;/em&gt; {&lt;em&gt;ip-address&lt;/em&gt;} | &lt;em&gt;interface-type interface-number&lt;/em&gt; [&lt;em&gt;ip-address&lt;/em&gt;]} [&lt;strong&gt;dhcp&lt;/strong&gt;] [&lt;em&gt;distance&lt;/em&gt;] [&lt;strong&gt;name&lt;/strong&gt; &lt;em&gt;next-hop-name&lt;/em&gt;] [&lt;strong&gt;permanent&lt;/strong&gt; | &lt;strong&gt;track&lt;/strong&gt; &lt;em&gt;number&lt;/em&gt;] [&lt;strong&gt;tag&lt;/strong&gt; &lt;em&gt;tag&lt;/em&gt;] For the CCENT/CCNA the complete syntax is not relevant, let&#39;s use a simpler version of the ip route syntax: &lt;strong&gt;ip route&lt;/strong&gt; &lt;em&gt;network-address&lt;/em&gt; &lt;em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;subnet-mask&lt;/a&gt;&lt;/em&gt; {&lt;em&gt;ip address&lt;/em&gt; | &lt;em&gt;exit interface&lt;/em&gt;} The &lt;em&gt;network address&lt;/em&gt; is the destination network or the remote address that will be added in the routing table. (For the complete syntax this follows on the prefix parameter) The &lt;em&gt;subnet mask&lt;/em&gt; is the subnet mask of the remote network that will be added in the routing table. (For the complete syntax this follows on the mask parameter) One or both of the following commands must be configured: The &lt;em&gt;ip-address&lt;/em&gt; in the syntax is usually called the next-hop router&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; The &lt;em&gt;exit-interface&lt;/em&gt; is the outgoing interface that would be used in forwarding the packets io the destination network (For the complete syntax this follows on the &lt;strong&gt;interface-type&lt;/strong&gt; &lt;em&gt;interface-number&lt;/em&gt; parameter) Looking at the picture above we need to have a static route on R2, we can do these in two ways the first example is using the next hop IP address. (For this example the next hop IP address is 172.16.5.1 R1&#39;s serial 0/0/0 interface. The next example is using the exit interface out of R2. [code]R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.5.1[/code]   [code]R2(config)#ip route 192.168.1.0 255.255.255.0 serial 0/0/1[/code] The last thing we need to do in order for this stub network to work is put a &lt;a href=&#34;http://en.wikipedia.org/wiki/Default_route&#34; title=&#34;Default route&#34;&gt;default route&lt;/a&gt; on R1 because R2 is going to the cloud the (internet or network) any traffic like a web request going to the internet needs to be forwarded to R2. A default route is a route that will match every IP address. Remember that a router does not have every single possible route on the internet or network usually these can be summary routes and default routes. Like on R2 we can do this in two ways, the first example is using the next hop IP address. (For this example the next hop IP address is 172.16.5.2 R2&#39;s serial 0/0/1 interface. The next example is using the exit interface out of R1. [code]R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.5.2[/code]   [code]R1(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0/0[/code] That&#39;s my tutorial for configuring static routes. Static routes do need some overhead but once you get them working you don&#39;t need to even touch it again. You can find more information at Cisco.com and the Cisco Learning Network. Like always I hope this information/tutorial was informative if you have any ideas on the next topic I should cover in the ICND1 or ICND2 area let me know by commenting below.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://joernfranz.net/2011/01/12/configuring-static-dynamic-ip-address-under-ubuntu/&#34;&gt;Configuring static / dynamic IP address under Ubuntu&lt;/a&gt; (joernfranz.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.makeuseof.com/tag/static-ip-address-advantages-disadvantages/&#34;&gt;What Is A Static IP Address, How Do I Get One &amp;amp; Its Advantages / Disadvantages&lt;/a&gt; (makeuseof.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.brighthub.com/internet/web-development/articles/113397.aspx&#34;&gt;How to Find Your IP Address&lt;/a&gt; (brighthub.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/27/configure-a-site-to-site-vpn-via-sdm/&#34;&gt;Configure a Site-to-Site VPN via SDM&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.ghacks.net/2011/04/29/why-your-home-router-is-192-168-1-1/&#34;&gt;Why Your Home Router is 192.168.1.1&lt;/a&gt; (ghacks.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/&#34; title=&#34;&#34;&gt;Dynamic Routing Protocols | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-05-04 11:07:03&#34;&gt;May 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Plugging Cisco routers together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic routing protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change.
+          
+          
         
       </description>
     </item>
@@ -115,20 +46,10 @@
       <guid>https://ciscoskills.net/2011/03/28/understanding-udp/</guid>
       <description>
         
-          &lt;p&gt;Forever ago I talked about TCP (&lt;a href=&#34;http://ciscoskills.net/2011/02/25/understanding-tcp/&#34; title=&#34;Understanding TCP&#34;&gt;Understanding TCP&lt;/a&gt;) and I said that in that post that UDP would be another day, well this is the day where we get to understand UDP, which stands for &lt;a href=&#34;http://en.wikipedia.org/wiki/User_Datagram_Protocol&#34; title=&#34;User Datagram Protocol&#34;&gt;User Datagram Protocol&lt;/a&gt;. UDP is the total opposite of the TCP communication. UDP in short sends information or data without notifying the receiver that its sending data. UDP is considered a &lt;a href=&#34;http://en.wikipedia.org/wiki/Connectionless_protocol&#34; title=&#34;Connectionless protocol&#34;&gt;connectionless protocol&lt;/a&gt;, and does not guarantee the reliability or order the packets like TCP does. Therefor packets may be dropped and are never recovered.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/03/udp-communication.png&#34; alt=&#34;The UDP Communication Progress&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Although this may sound like a bad thing, it depends on your network application. Some common network applications that use UDP include: the Domain Name System (&lt;a href=&#34;http://en.wikipedia.org/wiki/Domain_Name_System&#34; title=&#34;Domain Name System&#34;&gt;DNS&lt;/a&gt;), streaming media applications such as &lt;a href=&#34;http://en.wikipedia.org/wiki/IPTV&#34; title=&#34;IPTV&#34;&gt;IPTV&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Voice_over_IP&#34; title=&#34;Voice over IP&#34;&gt;Voice over IP (VoIP)&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol&#34; title=&#34;Trivial File Transfer Protocol&#34;&gt;Trivial File Transfer Protocol&lt;/a&gt; (TFTP) and online games. Looking at the UDP header there is a lot less overhead when compared to TCP, this makes UDP faster for routers to route the information with less overhead on processing power.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/03/udp-header.png&#34; alt=&#34;The UDP Header Field&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Time-sensitive applications often use UDP because if dropped packets means less delayed information then UDP it is. In connectionless protocols there is no effort made to set up a connection like TCP, UDP just sends the information in one direction from the source address to the destination address and hopes it arrives in complete package but if not, the protocol does not care. So to review:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;UDP is Unreliable - When a message is sent, it cannot or will not know if it will reach its destination; it could get lost along the way. There is no concept of acknowledgment, re-transmission and or timeout like the &lt;a href=&#34;http://en.wikipedia.org/wiki/Transmission_Control_Protocol&#34; title=&#34;Transmission Control Protocol&#34;&gt;TCP protocol&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;UDP is not ordered - If two messages are sent to the same destination, the order in which they arrive cannot be predicted.&lt;/li&gt;
-&lt;li&gt;UDP is lightweight - There is no ordering of messages, any tracking connections, etc. It is a small transport layer designed on top of &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Inside UDP &lt;a href=&#34;http://en.wikipedia.org/wiki/Datagram&#34; title=&#34;Datagram&#34;&gt;Datagrams&lt;/a&gt; - &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_%28information_technology%29&#34; title=&#34;Packet (information technology)&#34;&gt;Packets&lt;/a&gt; that are sent individually and are guaranteed to be whole if they arrive. Packets have definite bounds and do not split or merge into data streams. (Meaning that UDP packets are not coherent)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;That&#39;s UDP is in a summary format, I hope this information is useful and like always look at other sources like Cisco.com or do a simple web search. Comments are encourage, so let me know how I&#39;m  doing if you have a topic that is related to the ICND1 or ICND2 let me know about.&lt;/p&gt;
-
+          
+            Forever ago I talked about TCP (Understanding TCP) and I said that in that post that UDP would be another day, well this is the day where we get to understand UDP, which stands for User Datagram Protocol. UDP is the total opposite of the TCP communication. UDP in short sends information or data without notifying the receiver that its sending data. UDP is considered a connectionless protocol, and does not guarantee the reliability or order the packets like TCP does.
+          
+          
         
       </description>
     </item>
@@ -141,26 +62,10 @@
       <guid>https://ciscoskills.net/2011/03/16/how-a-router-routes/</guid>
       <description>
         
-          &lt;p&gt;This tutorial will be going over the basic information of how a router routes &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP packets&lt;/a&gt;. Routers are used in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI layer&lt;/a&gt; three or the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network layer&lt;/a&gt;. These routers have IP addresses and forward IP packets to the proper destination. This guide is somewhat basic and is assuming you have some information of how &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP addressing&lt;/a&gt; works and along with what routing protocols are. So let&#39;s focus first on how a host or a computer forwards traffic and then look at how a router forwards traffic. Computers forward or send packets based on these two steps.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;If the destination IP address is in the same network or subnet as PC-1 then send the packet directly to that host (without the routers help)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;If PC-1 does not have the &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt; to the destination host (PC-2) then it will send an &lt;a href=&#34;http://en.wikipedia.org/wiki/Address_Resolution_Protocol&#34; title=&#34;Address Resolution Protocol&#34;&gt;ARP&lt;/a&gt; request to get the MAC address.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/16/how-a-router-routes/arp-message/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/02/arp-message.png?w=300&#34; alt=&#34;ARP Message (Broadcast)&#34; title=&#34;ARP-Message&#34;&gt;&lt;/a&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/02/arp-message.png&#34;&gt;&lt;/a&gt; For example PC-1 (192.168.1.1) is trying to send to PC-2 (192.1681.2) since both of these computers are on the same network, (PC-1 checks the destination &lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;subnet mask&lt;/a&gt; and IP address to see if they are on the same network which they are) if PC-1 knows the MAC address of PC-2 it will put the IP address of PC-2 in the destination address field along with other information not related to this tutorial and forward the packet. If PC-1 does not know the MAC address it will send and ARP request, what this request does is send a broadcast message to all other &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PCs&lt;/a&gt; and devices connected on the 192.168.1.0 network. This message wants to find the MAC address of the host connected to 192.168.1.2, once PC-2 gets the message it will send its MAC address to PC-1. PC-1 will then forward the packet to PC-2.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;If the destination IP address is not in the same subnet or network has PC-1 then PC-1 will send the packet to its default gateway.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;If PC-1 does not have the MAC address to the default gateway (R1) then send a ARP request to get the MAC address&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For example PC-1 (192.168.1.1) is trying to send to R1 (192.168.1.254) because the packet is not in the same network, PC-1&#39;s main goal is to send to a webserver (154.63.2.1) (PC-1 checks the destination subnet mask and IP address to see if they are on the same network which they are not) if PC-1 knows the MAC address of R1 it will put the IP address of R1 in the destination address field along with other information not related to this tutorial, and forward the packet. If PC-1 does not know the MAC address it will send and ARP request, what this request does is send a broadcast message to all other PCs and devices connected on the 192.168.1.0 network. This message wants to find the MAC address of the host connected to 192.168.1.254, once R1 gets the message it will send its MAC address to PC-1. PC-1 will then forward the packet/frame. Once the frame is received by R1 the router will first check the data-link FCS field. If the frame received errors the router will drop the packet. If the frame has no errors the router will rip off the old data link header and trailer and then look at the IP packet. The router then compares the IP packet&#39;s destination address. If the router has the IP address in its routing table the router will encapsulate the IP packet inside a new data link layer header and trailer and forward it out the correct interface, thus forwarding the frame. Confusued? Let&#39;s go into some more detail of what happened. &lt;a href=&#34;http://ciscoskills.net/2011/03/16/how-a-router-routes/route-example/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/02/route-example.png?w=300&#34; alt=&#34;&#34; title=&#34;Route-Example&#34;&gt;&lt;/a&gt; Looking at the topology PC-1 wants to send a packet to the web server. Since the web server is not on PC-1&#39;s network it will need to send the packet to its default gateway which is R1. PC-1 will build an IP packet with the destination IP address of the web server (154.63.2.1). PC-1 sends this has an &lt;a href=&#34;http://en.wikipedia.org/wiki/Ethernet_frame&#34; title=&#34;Ethernet frame&#34;&gt;Ethernet frame&lt;/a&gt; with the destination IP address of R1 and has the MAC address of R1. R1 receives the frame and because the MAC address matches R1, the router will copy the frame and process it. R1 checks the FCS and no errors have occurred, next the router will then discard the old Ethernet header and trailer. R1 will compare the address and see if it has a match in its routing table; if there is not match the router will drop the frame. However the router finds an entry in its table to (154.63.2.1) the frame is forwarded out the router serial interface. The router encapsulates the packet and forwards out serial interface in an HDLC frame towards the next router. This will repeat the same steps in each router as along as the routers have a route to that destination it will then eventually be received by the router connected to the web server. This router will send an ARP message that wants to know who is 154.63.2.1? That broadcast message will be received by all devices connected to the 154.63.2.0 network. The web server will respond and send the MAC address to the router and the router will then forward the packet to the web server. That&#39;s the basic understanding of how routers forward traffic, this tutorial only scratched the surface with how routers route along with keeping it simple some things were skipped in this tutorial. If you would like to find more information take a look at Cisco.com which is a great place to get started. Questions or comments are also welcomed.&lt;/p&gt;
-
+          
+            This tutorial will be going over the basic information of how a router routes IP packets. Routers are used in the OSI layer three or the network layer. These routers have IP addresses and forward IP packets to the proper destination. This guide is somewhat basic and is assuming you have some information of how IP addressing works and along with what routing protocols are. So let&#39;s focus first on how a host or a computer forwards traffic and then look at how a router forwards traffic.
+          
+          
         
       </description>
     </item>
@@ -173,24 +78,10 @@
       <guid>https://ciscoskills.net/2011/02/25/understanding-tcp/</guid>
       <description>
         
-          &lt;p&gt;This tutorial is going to be talking about the &lt;a href=&#34;http://en.wikipedia.org/wiki/Transmission_Control_Protocol&#34; title=&#34;Transmission Control Protocol&#34;&gt;TCP protocol&lt;/a&gt;. Every time you connect to a website you are using the &lt;a href=&#34;http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol&#34; title=&#34;Hypertext Transfer Protocol&#34;&gt;HTTP protocol&lt;/a&gt;, but below that you are also using a TCP protocol. The nature of TCP is to provide error recovery; there are other services or applications that use TCP. HTTP however is a common protocol that is used in online applications.  Remember TCP is not the only protocol in the &lt;a href=&#34;http://en.wikipedia.org/wiki/Transport_Layer&#34; title=&#34;Transport Layer&#34;&gt;transport layer&lt;/a&gt; of the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt;, there is another called &lt;a href=&#34;http://en.wikipedia.org/wiki/User_Datagram_Protocol&#34; title=&#34;User Datagram Protocol&#34;&gt;UDP&lt;/a&gt; but that&#39;s another day. :)&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;TCP stands for (Transmission Control Protocol) what makes TCP shine is its &lt;a href=&#34;http://en.wikipedia.org/wiki/Error_detection_and_correction&#34; title=&#34;Error detection and correction&#34;&gt;error recovery&lt;/a&gt;, this helps other &lt;a href=&#34;http://en.wikipedia.org/wiki/Communications_protocol&#34; title=&#34;Communications protocol&#34;&gt;protocols&lt;/a&gt; below not worry about if the packet was dropped because TCP will request that packet again. With all of that overhead in TCP it does require more bandwidth, and processing compared to the UDP protocol. TCP has several fields in the header as pictured below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/02/tcpheader.jpg&#34; alt=&#34;The TCP Header Field&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Like mentioned TCP has reliability (error recovery) this is made possible by using sequence and acknowledgment numbers (&lt;a href=&#34;http://en.wikipedia.org/wiki/Byte&#34; title=&#34;Byte&#34;&gt;bytes&lt;/a&gt;) in the TCP header field. Take the example below the acknowledgment field in the TCP header that was sent by the web browser was 4000, this implies the next byte to be received will have a sequence number of 4000.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/02/tcp-sqack.png&#34; alt=&#34;TCP SEQ and ACK&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Since the sequence and acknowledgment numbers count the number of bytes, this helps with error control if a TCP segment was lost or caused an error the &lt;a href=&#34;http://en.wikipedia.org/wiki/Web_browser&#34; title=&#34;Web browser&#34;&gt;web browser&lt;/a&gt; would send an acknowledgment that the web server that would not be expecting and resend any lost data. An example would be if the web browser only received 2000 bytes, the client would send an acknowledgment of 3000 bytes. When the web server received that information it knows that it sent 3000 bytes of data and the acknowledgment field should be 4000. The web server would resend the third segment again and wait of an acknowledgment of 4000.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/02/tcp-drop.png&#34; alt=&#34;TCP Drop&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Another feature TCP has is called flow control; this uses the window field which determines the maximum amount unacknowledged bytes at a given time. The size starts out small and if no errors occur then the window size increases the number of unacknowledged bytes. This speeds up time needed to download the information. If errors start to occur then the windows size decreases, keep in mind that this field will change often as it will continue try to raise the number of unacknowledged bytes.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/02/tcp-window.png&#34; alt=&#34;TCP Window&#34;&gt;&lt;/p&gt;
-&lt;p&gt;TCP is also does a connection establishment and termination. This happens before any data is sent is it will also start the sequence numbers, acknowledgment numbers and agree on the &lt;a href=&#34;http://en.wikipedia.org/wiki/Port_number&#34; title=&#34;Port number&#34;&gt;port numbers&lt;/a&gt; to use. This three-way handshake happens in beginning and at the end when the data transfer is complete. The flags it uses in the TCP header are &amp;quot;SYN&amp;quot; which means synchronize the sequence numbers. &amp;quot;ACK&amp;quot; which is an acknowledgment field and to terminate or finish the connection it will send a &amp;quot;FIN&amp;quot; bit. Although this a brief tutorial and how TCP works in gives you an understanding of the main components that are involved in setting up a TCP connection and finishing a connection. Like always I encourage you if you would like more information a web search will do, along with visiting Cisco.com. I hope this tutorial was helpful.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/04/wordpress-com-hit-by-a-dos-attack/&#34; title=&#34;&#34;&gt;WordPress.com Hit by a DoS Attack | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-03-04 08:41:33&#34;&gt;Mar 5, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] out my recent post of Understanding TCP to learn how the TCP protocol works in a simplified form. You can also find more information about [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            This tutorial is going to be talking about the TCP protocol. Every time you connect to a website you are using the HTTP protocol, but below that you are also using a TCP protocol. The nature of TCP is to provide error recovery; there are other services or applications that use TCP. HTTP however is a common protocol that is used in online applications. Remember TCP is not the only protocol in the transport layer of the OSI model, there is another called UDP but that&#39;s another day.
+          
+          
         
       </description>
     </item>

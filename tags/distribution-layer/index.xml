@@ -14,36 +14,10 @@
       <guid>https://ciscoskills.net/2018/05/07/configuring-layer-three-etherchannel/</guid>
       <description>
         
-          &lt;p&gt;When you want more speed all you need is EtherChannel, EtherChannel can be configured as a layer three logical interface instead of just sitting at layer two. This is very helpful if we are running layer three down to the access layer switches, instead of at the distribution layer. You also could see this in a collapsed core design, we also don’t have to worry too much about STP when we configure EtherChannel’s. The only requirements to use layer three EtherChannels is your switch need is support layer three “routed” interfaces, so with that let&#39;s get started!&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;This is pretty much the same as configuring a &lt;a href=&#34;https://ciscoskills.net/2013/10/12/configuring-etherchannel-pagb/&#34;&gt;layer two EtherChannel&lt;/a&gt; with one exception, in this example I’ve got three switches one access layer switch and two distribution/core switches. We are running layer three all the way down to the access layer, so we don’t have worry about STP between the two distribution/core switches and remember VLANs/Networks are locally significant to each access layer switch in this design.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/05/etherchannel-l3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I have already configured SW1 and SW2 links between them as well as the network that SW3 has for the access layer, on SW1 and SW2 we need to create port-channels going to SW3.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# interface ethernet2/1-2
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-if-range)# channel-group 11 mode active
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW1(config-if-range)# no shutdown
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW2(config)# interface ethernet2/1-2 
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW2(config-if-range)# channel-group 12 mode active
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW2(config-if-range)# no shutdown
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next after the port-channels are created we assign an IP address to the port-channel, this just like any other interface instead of using a dedicated port you use the port-channel..simple ;)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# interface port-channel 11
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-if)# ip address 172.16.0.1/30
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW2(config)# interface port-channel 12 
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW2(config-if)# ip address 172.16.0.5/30
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We now reference the same steps that we did with SW1 and SW2 on SW3. Let’s create two different port-channels because these are going to two different switches on SW3.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW3(config)# interface ethernet2/1-2 
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW3(config-if-range)# channel-group 11 mode active
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW3(config-if-range)# no shutdown
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;SW3(config)# interface ethernet2/3-4
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;SW3(config-if-range)# channel-group 12 mode active
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;SW3(config-if-range)# no shutdown
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Just like what we did on SW1 and SW2, we need to assign IP addresses on these port-channels on SW3.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW3(config)# interface port-channel 11
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW3(config-if)# ip address 172.16.0.2/30
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW3(config-if)# interface port-channel 12
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;SW3(config-if)# ip address 172.16.0.6/30
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And…That’s it, this is pretty simple design to set up, if you put a routing protocol on it this can scale out easily. Each access switch would belong to a different network being able to map devices by physical location, instead of extending VLANs across the campus. I hope this information is helpful, Summer 2018 is right around the corner at the US of A so be sure enjoy it!&lt;/p&gt;
-
+          
+            When you want more speed all you need is EtherChannel, EtherChannel can be configured as a layer three logical interface instead of just sitting at layer two. This is very helpful if we are running layer three down to the access layer switches, instead of at the distribution layer. You also could see this in a collapsed core design, we also don’t have to worry too much about STP when we configure EtherChannel’s.
+          
+          
         
       </description>
     </item>
@@ -56,24 +30,10 @@
       <guid>https://ciscoskills.net/2012/01/21/the-three-tiers/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/01/network_switch.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/network_switch.jpg?w=150&#34; alt=&#34;&#34; title=&#34;network_switch&#34;&gt;&lt;/a&gt;Working towards the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; talks about a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_topology&#34; title=&#34;Network topology&#34;&gt;hierarchical network&lt;/a&gt; there are three layers to this design. Access Layer, distribution layer and the core layer. Each of them have their own set of functions and is also considered to be a best practice when the network continues to grow and for redundancy along with just a better way to manage it. &lt;strong&gt;The Access layer&lt;/strong&gt; is the layer that devices connect to, such as &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PCs&lt;/a&gt;, printers, and &lt;a href=&#34;http://en.wikipedia.org/wiki/VoIP_phone&#34; title=&#34;VoIP phone&#34;&gt;IP Phones&lt;/a&gt;. The access layer can include routers, switches, bridges, hubs, &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_access_point&#34; title=&#34;Wireless access point&#34;&gt;wireless access points&lt;/a&gt;, etc. The main purpose is providing a means of connecting devices to the network, this is also your first line of defense of controlling who is on your network. &lt;strong&gt;The Distribution Layer&lt;/strong&gt; aggregates the data received from the access layer before it is transmitted to the core for routing to its destination. The distribution layer is like a traffic cop to which it controls the flow of network traffic using policies like routing between broadcast domains by having &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; which are setup on the access layer. VLANs let you segment traffic on a switch into separate subnetworks. Why would you segment traffic? The main reason is for security you should not have sensitive data on a public network because anybody can reach it, by separating it you also have more control over it on who can get access to it. &lt;strong&gt;The Core Layer&lt;/strong&gt; of the hierarchical design is the high-speed backbone of the network. The core layer is critical for interconnectivity between the distribution layer devices. The core must be highly available and should be redundant. The core can also connect to internet resources, because the core aggregates the traffic from the entire distribution layer it must be able to handle high data traffic. &lt;a href=&#34;http://ciscoskills.net/2012/01/21/the-three-tiers/hierarchical-layerse/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/01/hierarchical-layerse.png&#34; alt=&#34;The Hierarchical Layer&#34; title=&#34;Hierarchical Layers&#34;&gt;&lt;/a&gt; In small networks it is a common practice to use a collapsed core model to where the distribution layer and core are merged into one layer. If the network grows it is fairly easy to add the core layer. Because you are in hierarchical network you have many benefits which I&#39;ll hold off for another day but in summary they are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Scalability&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Redundancy_%28engineering%29&#34; title=&#34;Redundancy (engineering)&#34;&gt;Redundancy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Performance&lt;/li&gt;
-&lt;li&gt;Security&lt;/li&gt;
-&lt;li&gt;Manageability&lt;/li&gt;
-&lt;li&gt;Maintainability&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Like always I hope this information is helpful in at least having a better idea of Cisco&#39;s hierarchical network design. One of the hardest things when designing this type of network is if you are trying to change the original one because of poor performance and degradation. Like always if you have an idea of the next topic that looks at ICND1 or ICND2 let me hear it by posting below, or if you have questions feel free to post them as well.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2011/09/21/flatter_networks/&#34;&gt;No more tiers for flatter networks&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.ioshints.info/2011/10/l2-or-l3-switching-in-campus-networks.html&#34;&gt;L2 or L3 switching in campus networks?&lt;/a&gt; (ioshints.info)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/vxlan-deep-dive-part-2-looking-at-the-options/&#34;&gt;VXLAN Deep Dive, Part 2: Looking at the Options&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/digging-deeper-into-vxlan/&#34;&gt;Digging Deeper into VXLAN, Part 1&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;/ul&gt;
-
+          
+            network_switch Working towards the CCNA Cisco talks about a hierarchical network there are three layers to this design. Access Layer, distribution layer and the core layer. Each of them have their own set of functions and is also considered to be a best practice when the network continues to grow and for redundancy along with just a better way to manage it. The Access layer is the layer that devices connect to, such as PCs, printers, and IP Phones.
+          
+          
         
       </description>
     </item>

@@ -14,44 +14,10 @@
       <guid>https://ciscoskills.net/2011/10/19/types-of-wan-links/</guid>
       <description>
         
-          &lt;p&gt;I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization. If we have an office in &lt;a href=&#34;http://en.wikipedia.org/wiki/New_York&#34; title=&#34;New York&#34;&gt;New York&lt;/a&gt; and another office in &lt;a href=&#34;http://en.wikipedia.org/wiki/Wyoming&#34; title=&#34;Wyoming&#34;&gt;Wyoming&lt;/a&gt;  we need these offices to be connected to each other so that they seem to be on the same network even though they are miles away these types of WAN connections and protocols  would do it.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Option&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Advantages&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Disadvantages&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Sample Protocols&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Leased_line&#34; title=&#34;Leased line&#34;&gt;Leased Line&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Point-to-point_%28telecommunications%29&#34; title=&#34;Point-to-point (telecommunications)&#34;&gt;Point-to-point&lt;/a&gt; connection between two computers &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LANs&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Most Secure&lt;/p&gt;
-&lt;p&gt;Expensive&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Purchasing_power_parity&#34; title=&#34;Purchasing power parity&#34;&gt;PPP&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/High-Level_Data_Link_Control&#34; title=&#34;High-Level Data Link Control&#34;&gt;HDLC&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Synchronous_Data_Link_Control&#34; title=&#34;Synchronous Data Link Control&#34;&gt;SDLC&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Circuit_switching&#34; title=&#34;Circuit switching&#34;&gt;Circuit Switching&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;A dedicated circuit path is created between endpoints. Best example is dialup connections&lt;/p&gt;
-&lt;p&gt;Less expensive&lt;/p&gt;
-&lt;p&gt;Call Setup&lt;/p&gt;
-&lt;p&gt;PPP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Integrated_Services_Digital_Network&#34; title=&#34;Integrated Services Digital Network&#34;&gt;ISDN&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_switch&#34; title=&#34;Packet switch&#34;&gt;Packet Switch&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Devices transport packets via a shared single point-to-point or point-to-multipoint link across. Variable length packets are transmitted over PVCs or SVCs&lt;/p&gt;
-&lt;p&gt;Highly efficient use of bandwidth&lt;/p&gt;
-&lt;p&gt;Shared media across link&lt;/p&gt;
-&lt;p&gt;X.25, Frame Relay&lt;/p&gt;
-&lt;p&gt;Cell Relay&lt;/p&gt;
-&lt;p&gt;Similar to packet switching, but uses fixed-length packets. Data is divided into fixed length cells and then transported across virtual circuits&lt;/p&gt;
-&lt;p&gt;Best for simultaneous use of voice and data&lt;/p&gt;
-&lt;p&gt;Overhead can be considerable&lt;/p&gt;
-&lt;p&gt;ATM&lt;/p&gt;
-&lt;p&gt;Internet&lt;/p&gt;
-&lt;p&gt;Connectionless packet switching using the internet as the WAN infrastructure. Uses network addressing to deliver packets. Because of security issues VPN technology must be used.&lt;/p&gt;
-&lt;p&gt;Least expensive, globally available&lt;/p&gt;
-&lt;p&gt;Least secure&lt;/p&gt;
-&lt;p&gt;VPN, DSL, cable modem, wireless&lt;/p&gt;
-&lt;p&gt;I hope this table is helpful and like always if you have an idea of the next topic that deals with either ICND1 or ICND2 let me know about. If you have any questions about this table feel free to comment below.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.zdnet.com/blog/gardner/as-cloud-and-mobile-trends-drive-user-expectations-higher-networks-must-now-deliver-applications-faster-safer-cheaper/4385&#34;&gt;As cloud and mobile trends drive user expectations higher, networks must now deliver applications faster, safer, cheaper&lt;/a&gt; (zdnet.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://r.zemanta.com/?u=http%3A//www.infoworld.com/d/networking/cisco-upgrades-wan-optimizers-175346&amp;amp;a=57572126&amp;amp;rid=00000125-1caa-000F-0000-00000000059b&amp;amp;e=10593a4b8ca51901986b11ace1fe73f5&#34;&gt;Cisco upgrades WAN optimizers&lt;/a&gt; (infoworld.com)&lt;/li&gt;
-&lt;/ul&gt;
-
+          
+            I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization.
+          
+          
         
       </description>
     </item>
@@ -64,30 +30,10 @@
       <guid>https://ciscoskills.net/2011/05/04/dynamic-routing-protocols/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/networking.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/networking.png&#34; alt=&#34;&#34; title=&#34;Dynamic Routing&#34;&gt;&lt;/a&gt;If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PCs&lt;/a&gt;, printers, and other network equipment. That&#39;s where &lt;a href=&#34;http://en.wikipedia.org/wiki/Adaptive_routing&#34; title=&#34;Adaptive routing&#34;&gt;dynamic routing&lt;/a&gt; protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post &lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34; title=&#34;Configure Static Routing&#34;&gt;Configure Static Routing&lt;/a&gt;) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it. (RIP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;, and &lt;a href=&#34;http://en.wikipedia.org/wiki/Border_Gateway_Protocol&#34; title=&#34;Border Gateway Protocol&#34;&gt;BGP&lt;/a&gt; are all examples of routing protocols! When using a dynamic routing protocol routers learn &amp;quot;dynamically&amp;quot; about other remote networks and automatically add these networks to its routing table. However keep in mind that when compared to static routing, dynamic routing require less administrator overhead but they will use the routers resources like, more RAM, more processing time (CPU), and even the network bandwidth&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/routing_updates/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/routing_updates.png?w=300&#34; alt=&#34;&#34; title=&#34;Routing_Updates&#34;&gt;&lt;/a&gt;Although there are several routing protocols each of them have their benefits but they all focus on these key things:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Learn about networks from other neighboring routers and maintain up-to-date routing information.&lt;/li&gt;
-&lt;li&gt;Advertise routing information to neighboring routers and thus discovering remote networks.&lt;/li&gt;
-&lt;li&gt;If more than route is possible the router will pick the best route based on its metric.&lt;/li&gt;
-&lt;li&gt;If the any one part of the network fails, react by advertising the bad routes and advertise the best available route. (Convergence)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Before we go any further about dynamic routing protocols remember there are two type of routing protocols used today:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Interior_gateway_protocol&#34; title=&#34;Interior gateway protocol&#34;&gt;IGP&lt;/a&gt; (Interior Gateway Protocols) A routing protocol that is designed for a single autonomous system. Some common routing protocols classified under IGP are RIP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Interior_Gateway_Routing_Protocol&#34; title=&#34;Interior Gateway Routing Protocol&#34;&gt;IGRP&lt;/a&gt;, EIGRP, OSPF, IS-IS.&lt;/li&gt;
-&lt;li&gt;EGP (Exterior Gateway Protocols) A routing protocol that is designed for use in between autonomous systems. A common routing protocol classified under EGP is BGP.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/igp-and-egp/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/igp-and-egp.png?w=300&#34; alt=&#34;&#34; title=&#34;IGP and EGP&#34;&gt;&lt;/a&gt;Interior Gateway Protocols are used within a company or organization, once that information leaves the company or organization it moves towards the ISP which would use an &lt;a href=&#34;http://en.wikipedia.org/wiki/Exterior_Gateway_Protocol&#34; title=&#34;Exterior Gateway Protocol&#34;&gt;Exterior Gateway Protocol&lt;/a&gt; EGP. So for the picture above think of the clouds to be the inside of a company or organization and outside of that company or organization the routing protocol would change. For now let&#39;s stop there because the dynamic routing protocols open another door, like &lt;a href=&#34;http://en.wikipedia.org/wiki/Distance-vector_routing_protocol&#34; title=&#34;Distance-vector routing protocol&#34;&gt;Distance Vector&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;Link-state routing protocols&lt;/a&gt;, and the difference between classful and classless routing protocols along with the different type of administrative distances and metrics, these discussions for another day. :) Like always I hope this information was informative and if you have a topic that deals with either ICND1 or ICND2 material let me know by commenting below.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34;&gt;Configure Static Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/01/classful-vs-classless-routing/&#34; title=&#34;&#34;&gt;Classful vs. Classless Routing | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-06-01 10:53:15&#34;&gt;Jun 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Dynamic Routing If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get PCs, printers, and other network equipment. That&#39;s where dynamic routing protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post Configure Static Routing) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it.
+          
+          
         
       </description>
     </item>
@@ -100,22 +46,10 @@
       <guid>https://ciscoskills.net/2011/05/02/configure-static-routing/</guid>
       <description>
         
-          &lt;p&gt;Plugging Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;routers&lt;/a&gt; together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;routing&lt;/a&gt; protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change. A good example of using a &lt;a href=&#34;http://en.wikipedia.org/wiki/Static_routing&#34; title=&#34;Static routing&#34;&gt;static route&lt;/a&gt; is with a &lt;a href=&#34;http://en.wikipedia.org/wiki/Stub_network&#34; title=&#34;Stub network&#34;&gt;stub network&lt;/a&gt;. A stub network is only accessed by a single router and no other routes are configured so there is only one path the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_traffic_measurement&#34; title=&#34;Network traffic measurement&#34;&gt;network traffic&lt;/a&gt; can take. Notice the picture below and how any traffic going towards the network cloud from the 192.168.1.0 network will always pass the 172.16.5.0 network. Why waste putting a routing protocol here?) &lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/static_default_route.png?w=300&#34; alt=&#34;&#34; title=&#34;Stub Network&#34;&gt;In order to configure a static route you must be in the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt;, the ip route command complete &lt;a href=&#34;http://en.wikipedia.org/wiki/Syntax&#34; title=&#34;Syntax&#34;&gt;syntax&lt;/a&gt; is the following: &lt;strong&gt;ip route&lt;/strong&gt; &lt;em&gt;prefix mask&lt;/em&gt; {&lt;em&gt;ip-address&lt;/em&gt;} | &lt;em&gt;interface-type interface-number&lt;/em&gt; [&lt;em&gt;ip-address&lt;/em&gt;]} [&lt;strong&gt;dhcp&lt;/strong&gt;] [&lt;em&gt;distance&lt;/em&gt;] [&lt;strong&gt;name&lt;/strong&gt; &lt;em&gt;next-hop-name&lt;/em&gt;] [&lt;strong&gt;permanent&lt;/strong&gt; | &lt;strong&gt;track&lt;/strong&gt; &lt;em&gt;number&lt;/em&gt;] [&lt;strong&gt;tag&lt;/strong&gt; &lt;em&gt;tag&lt;/em&gt;] For the CCENT/CCNA the complete syntax is not relevant, let&#39;s use a simpler version of the ip route syntax: &lt;strong&gt;ip route&lt;/strong&gt; &lt;em&gt;network-address&lt;/em&gt; &lt;em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;subnet-mask&lt;/a&gt;&lt;/em&gt; {&lt;em&gt;ip address&lt;/em&gt; | &lt;em&gt;exit interface&lt;/em&gt;} The &lt;em&gt;network address&lt;/em&gt; is the destination network or the remote address that will be added in the routing table. (For the complete syntax this follows on the prefix parameter) The &lt;em&gt;subnet mask&lt;/em&gt; is the subnet mask of the remote network that will be added in the routing table. (For the complete syntax this follows on the mask parameter) One or both of the following commands must be configured: The &lt;em&gt;ip-address&lt;/em&gt; in the syntax is usually called the next-hop router&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; The &lt;em&gt;exit-interface&lt;/em&gt; is the outgoing interface that would be used in forwarding the packets io the destination network (For the complete syntax this follows on the &lt;strong&gt;interface-type&lt;/strong&gt; &lt;em&gt;interface-number&lt;/em&gt; parameter) Looking at the picture above we need to have a static route on R2, we can do these in two ways the first example is using the next hop IP address. (For this example the next hop IP address is 172.16.5.1 R1&#39;s serial 0/0/0 interface. The next example is using the exit interface out of R2. [code]R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.5.1[/code]   [code]R2(config)#ip route 192.168.1.0 255.255.255.0 serial 0/0/1[/code] The last thing we need to do in order for this stub network to work is put a &lt;a href=&#34;http://en.wikipedia.org/wiki/Default_route&#34; title=&#34;Default route&#34;&gt;default route&lt;/a&gt; on R1 because R2 is going to the cloud the (internet or network) any traffic like a web request going to the internet needs to be forwarded to R2. A default route is a route that will match every IP address. Remember that a router does not have every single possible route on the internet or network usually these can be summary routes and default routes. Like on R2 we can do this in two ways, the first example is using the next hop IP address. (For this example the next hop IP address is 172.16.5.2 R2&#39;s serial 0/0/1 interface. The next example is using the exit interface out of R1. [code]R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.5.2[/code]   [code]R1(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0/0[/code] That&#39;s my tutorial for configuring static routes. Static routes do need some overhead but once you get them working you don&#39;t need to even touch it again. You can find more information at Cisco.com and the Cisco Learning Network. Like always I hope this information/tutorial was informative if you have any ideas on the next topic I should cover in the ICND1 or ICND2 area let me know by commenting below.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://joernfranz.net/2011/01/12/configuring-static-dynamic-ip-address-under-ubuntu/&#34;&gt;Configuring static / dynamic IP address under Ubuntu&lt;/a&gt; (joernfranz.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.makeuseof.com/tag/static-ip-address-advantages-disadvantages/&#34;&gt;What Is A Static IP Address, How Do I Get One &amp;amp; Its Advantages / Disadvantages&lt;/a&gt; (makeuseof.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.brighthub.com/internet/web-development/articles/113397.aspx&#34;&gt;How to Find Your IP Address&lt;/a&gt; (brighthub.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/27/configure-a-site-to-site-vpn-via-sdm/&#34;&gt;Configure a Site-to-Site VPN via SDM&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.ghacks.net/2011/04/29/why-your-home-router-is-192-168-1-1/&#34;&gt;Why Your Home Router is 192.168.1.1&lt;/a&gt; (ghacks.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/&#34; title=&#34;&#34;&gt;Dynamic Routing Protocols | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-05-04 11:07:03&#34;&gt;May 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Plugging Cisco routers together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic routing protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change.
+          
+          
         
       </description>
     </item>
@@ -128,22 +62,11 @@
       <guid>https://ciscoskills.net/2011/01/21/configuring-nat-one-to-one-mapping/</guid>
       <description>
         
-          &lt;p&gt;In this simple tutorial we are going to be configuring a static NAT which is a one-to-one mapping between an inside IP address and an outside IP address. (One private to one permanent address) Using this type of NAT would be helpful for outside devices accessing your inside devices. (Like a web server) Let&#39;s get started!!&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/01/nat_static1.png&#34; alt=&#34;NAT One to One&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Looking at the topology above you can see that we have a server inside of are network and want people to access this server outside of are network. Using NAT will help us accomplish this task! (This tutorial is assuming that all configurations, like basic router configurations and IP addresses are in place and working before NAT is enabled for the above topology) In order for one to one mapping to work we first need to make an IP route that forwards the public IP address or addresses out towards the ISP. So on the router we would make an IP route to forward that IP address to the ISP router or the internet cloud.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router(config)#ip route 209.200.210.5 255.255.255.252 s0/0/1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The above command tells us that if the router sees this IP address (209.200.210.5 which is the public IP address assigned to us by the ISP) it will forward the packet out the serial interface of s0/0/1. The ISP will then forward the information to the destination. The next thing to do is create a static mapping on the router. This static mapping will be permanently assigned to an inside IP address and mapped to an outside IP address. You can make more than one, one to one mapping but remember you will also need additional public IP addresses from the ISP for each private address you want to translate. So the command to translate the server IP address into a public IP address would look like:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router(config)#ip nat inside source static 192.168.5.254 209.200.210.5
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This command tells us that the IP address of 192.168.5.254 will be translated to 209.200.210.5. So any device outside of our network will be able to reach the server by using the 209.200.210.5 IP address.&lt;/p&gt;
-&lt;p&gt;Then you want to define the &amp;quot;inside&amp;quot; of your network and the &amp;quot;outside&amp;quot; of your network. So for this example the router&#39;s fastethernet 0/0 interface would be the inside of are network.  (We have control over it) Move to the interface and use the &lt;em&gt;ip nat inside&lt;/em&gt; command.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router(config)#interface fastEthernet 0/0
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Router(config-if)#ip nat inside
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This command tells us that the fast ethernet interface 0/0 is in the inside of are network. You can also assign or have more than one ip nat inside interface. You also want to define the &amp;quot;outside&amp;quot; of your network. So for example the router&#39;s serial interface s0/0/1 would be the outside network. Move to the interface and use the &lt;em&gt;ip nat outside&lt;/em&gt; command.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router(config)#interface s0/0/1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Router(config-if)#ip nat outside
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This command tells us that the serial interface of s0/0/1 and anything connected to it is the outside network (We don&#39;t have control over it.) You can also assign or have more than one ip nat outside interface. That&#39;s it!! You now have a one to one mapping to a public IP address. Remember that this tutorial is assuming that the ISP router (internet cloud for this topology) has a way back to the NAT router. If not than your device will be able to send information however any information trying to travel back to your device will fail. (So if you have control of the ISP router like in lab environments than just apply a static route back to the NAT router.) Hope this tutorial was Helpful!&lt;/p&gt;
-
+          
+            In this simple tutorial we are going to be configuring a static NAT which is a one-to-one mapping between an inside IP address and an outside IP address. (One private to one permanent address) Using this type of NAT would be helpful for outside devices accessing your inside devices. (Like a web server) Let&#39;s get started!!
+Looking at the topology above you can see that we have a server inside of are network and want people to access this server outside of are network.
+          
+          
         
       </description>
     </item>
@@ -156,25 +79,11 @@
       <guid>https://ciscoskills.net/2011/01/19/configuring-pat/</guid>
       <description>
         
-          &lt;p&gt;This tutorial will help you configure PAT (Port Address Translation), or sometimes called NAT (Network Address Translation) with overload on a Cisco router. PAT uses multiple private IP addresses and translates them into a single or very few public IP addresses. This is possible because the private IP addresses are mapped to the port number of the PC. Let&#39;s get started!!!&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/01/pat.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;With the above shown topology we see that we are using two routers called ISP and R1 we also have one switch (default configuration) and a PC connected to R1&#39;s Fa0/0 interface. Both routers need to be setup with basic router configuration and IP address added to the interfaces of ISP and R1 along with the PC to be configured with the supplied IP address. Also a default-gateway on the PC and clock rate on ISP&#39;s serial interface before we can get stated. &lt;strong&gt;(This tutorial is assuming you can already do that)&lt;/strong&gt; ;)  Now that the basic setups have been configured we need an IP route on R1 to ISP. We want to define that any IP address not in R1&#39;s routing table needs to be sent to the ISP. To do that move to global configuration mode and type the command &lt;em&gt;ip route&lt;/em&gt; and the IP address of ISP&#39;s serial interface:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#ip route 0.0.0.0 0.0.0.0 209.220.198.2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can do this two ways, use the IP address of ISP (like above) OR use the exit interface of R1. (like below)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#ip route 0.0.0.0 0.0.0.0 s0/0/0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The next thing we need is an ACL (Access-Control-List). Adding a standard ACL defines which addresses are to be translated with NAT (example):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#access-list 5 permit 172.16.5.0 0.0.0.255
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The above command makes an access-control list. But an ACL is no good if we don&#39;t apply it. We now need to apply this ACL to R1. Remember to specify the access list number that you made earlier. (example):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#ip nat inside source list 5 interface serial s0/0/0 overload
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The above command tells us that we want to use the access list number &amp;quot;5&amp;quot; (which says that the 172 network is allowed to be translated into a public IP address) with interface s0/0/0 and put overload on that interface. (Overload is the keyword that makes this possible!!) On R1 move to the interface configuration mode, tell the router which interface has the private IP addresses by using the &lt;em&gt;ip nat inside&lt;/em&gt; command (this would be R1&#39;s Fast-Ethernet 0/0 interface):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#interface fa0/0 
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-if)#ip nat inside
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You also want to configure the outside interface on R1. That would be the serial 0/0/0 interface.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#interface s0/0/0
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-if)#ip nat outside
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This command tells us that R1&#39;s interface s0/0/0 is the outside interface (This is the location of the public IP addresses or ISP) That&#39;s it!! This is simple tutorial that uses PAT or Port Address Translation also called NAT with overload! Hope this tutorial was helpful&lt;/p&gt;
-
+          
+            This tutorial will help you configure PAT (Port Address Translation), or sometimes called NAT (Network Address Translation) with overload on a Cisco router. PAT uses multiple private IP addresses and translates them into a single or very few public IP addresses. This is possible because the private IP addresses are mapped to the port number of the PC. Let&#39;s get started!!!
+With the above shown topology we see that we are using two routers called ISP and R1 we also have one switch (default configuration) and a PC connected to R1&#39;s Fa0/0 interface.
+          
+          
         
       </description>
     </item>
@@ -187,257 +96,11 @@
       <guid>https://ciscoskills.net/2011/01/18/basic-ppp-configuration/</guid>
       <description>
         
-          &lt;p&gt;This tutorial will be going over Basic Configuration of PPP (Point-to-Point Protocol). This tutorial includes Basic Configuration tasks on a router, Configuring OSPF routing protocol, and Configuring PPP PAP and CHAP authentication. Let&#39;s get started!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/01/ppp1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;We can see in the above diagram we will be using three routers, a loop back connection, two switches (which we will leave them at their default configuration) and two PCs If you are using packet tracer or using real devices than cable the network. The next couple of steps are assuming you already know the material. Next perform Basic Router Configurations (hostname, disable DNS lookup, EXEC password, message-of-the-day banner, and password for console and VTY connections, along with synchronous logging).  After that, configure the interfaces on R1, R2, and R3 (with the IP addresses from the addressing table (remember to include the clock rate on serial DCE interfaces). Make sure that the IP addressing is correct and the interfaces are active by issuing the &lt;em&gt;show ip interface&lt;/em&gt; brief command. Test and configure ethernet interfaces on PC1 and PC3 (test by pinging the default gateway)&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;OK, now that all devices are connected we can start by configuring OSPF (so that each router knows about each other network). (On the R1 we are going to use the process ID of 1)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#router ospf 1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-router)#network 192.168.10.0 0.0.0.255 area 0
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-router)#network 10.1.1.0 0.0.0.3 area 0
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 17 17:49:14.689: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Serial0/0/0 from LOADING to FULL, Loading Done
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;R1(config-router)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next we will move to R2 and configure OSPF the output is:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2(config)#router ospf 1
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;R2(config-router)#network 10.1.1.0 0.0.0.3 area 0
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;*Aug 17 17:48:40.645: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.10.1 on
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Serial0/0/0 from LOADING to FULL, Loading Done
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;R2(config-router)#network 10.2.2.0 0.0.0.3 area 0
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;R2(config-router)#network 209.165.200.224 0.0.0.31 area 0
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;R2(config-router)#
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;*Aug 17 17:57:44.729: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Serial0/0/1 from LOADING to FULL, Loading Done
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;R2(config-router)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The last router (R3) is ready to be configured with OSPF (Again remember to use the process ID of 1)&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Note: The process ID does not need to match across all routers to make OSPF work, using process ID of 1 just makes this simple to debug if you were looking at running process on the router and had multiple instances of OSPF running.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3(config)#router ospf 1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R3(config-router)#network 10.2.2.0 0.0.0.3 area 0
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;*Aug 17 17:58:02.017: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Serial0/0/1 from LOADING to FULL, Loading Done
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;R3(config-router)#network 192.168.30.0 0.0.0.255 area 0
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;R3(config-router)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With OSPF setup you want to verify that you have full network connectivity (Every device should be able to ping each other) This is R1&#39;s output of the command &lt;em&gt;show ip route&lt;/em&gt; Also R1 was able to ping 192.168.30.1&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show ip route
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;O 192.168.30.0/24 [110/1563] via 10.1.1.2, 00:33:56, Serial0/0/0
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;C 192.168.10.0/24 is directly connected, FastEthernet0/1
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  209.165.200.0/27 is subnetted, 1 subnets
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;O 209.165.200.225 [110/782] via 10.1.1.2, 00:33:56, Serial0/0/0
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;O 10.2.2.0/30 [110/1562] via 10.1.1.2, 00:33:56, Serial0/0/0
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;C 10.1.1.0/30 is directly connected, Serial0/0/0
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R1#ping 192.168.30.1
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Type escape sequence to abort.
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 192.168.30.1, timeout is 2 seconds:
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;!!!!!
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 32/32/32 ms
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;R1#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This output of R2 when issuing the command &lt;em&gt;show ip route&lt;/em&gt; also R2 is able to ping 192.168.30.1 and 192.168.10.1&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2#show ip route
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;O 192.168.30.0/24 [110/782] via 10.2.2.2, 00:33:04, Serial0/0/1
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;O 192.168.10.0/24 [110/782] via 10.1.1.1, 00:33:04, Serial0/0/0
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  209.165.200.0/27 is subnetted, 1 subnets
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;C 209.165.200.224 is directly connected, Loopback0
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;C 10.2.2.0/30 is directly connected, Serial0/0/1
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;C 10.1.1.0/30 is directly connected, Serial0/0/0
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R2#ping 192.168.30.1
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Type escape sequence to abort.
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 192.168.30.1, timeout is 2 seconds:
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;!!!!!
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;R2#ping 192.168.10.1
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Type escape sequence to abort.
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 192.168.10.1, timeout is 2 seconds:
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;!!!!!
-&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms
-&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;R2#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This last output of R3 when using the command &lt;em&gt;show ip route&lt;/em&gt;. R3 is able to ping 209.165.200.225 and 192.168.10.1&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R3#show ip route
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;C 192.168.30.0/24 is directly connected, FastEthernet0/1
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;O 192.168.10.0/24 [110/1563] via 10.2.2.1, 00:32:01, Serial0/0/1
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  209.165.200.0/27 is subnetted, 1 subnets
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;O 209.165.200.225 [110/782] via 10.2.2.1, 00:32:01, Serial0/0/1
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;C 10.2.2.0/30 is directly connected, Serial0/0/1
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;O 10.1.1.0/30 [110/1562] via 10.2.2.1, 00:32:01, Serial0/0/1
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R3#ping 209.165.200.225
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Type escape sequence to abort.
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 209.165.200.225, timeout is 2 seconds:
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;!!!!!
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 16/16/16 ms
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;R3#ping 192.168.10.1
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Type escape sequence to abort.
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Sending 5, 100-byte ICMP Echos to 192.168.10.1, timeout is 2 seconds:
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;!!!!!
-&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;Success rate is 100 percent (5/5), round-trip min/avg/max = 32/32/32 ms
-&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;R3#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that all devices can ping each other we can start configuring PPP encapsulation on the serial interfaces. Type the command &lt;em&gt;show interface serial0/0/0&lt;/em&gt; in R1 notice in the output the encapsulation type, which is HDLC. This is the default encapsulation on serial interfaces with Cisco Routers. (let&#39;s change that to PPP)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1#show interface serial0/0/0
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Serial0/0/0 is up, line protocol is up
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is GT96K Serial
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Internet address is 10.1.1.1/30
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;  Encapsulation HDLC, loopback not set
-&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;R2&#39;s output from the &lt;em&gt;show interface serial0/0/0&lt;/em&gt; and &lt;em&gt;show interface serial0/0/1&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2#show interface serial0/0/0
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Serial0/0/0 is up, line protocol is up
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  Hardware is GT96K Serial
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Internet address is 10.1.1.2/30
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  Encapsulation HDLC, loopback not set
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;R2#show interface serial0/0/1
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Serial0/0/1 is up, line protocol is up
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;  Hardware is GT96K Serial
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  Internet address is 10.2.2.1/30
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  Encapsulation HDLC, loopback not set
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;R3&#39;s output from the &lt;em&gt;show interface serial 0/0/1&lt;/em&gt; command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3#show interface serial0/0/1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Serial0/0/1 is up, line protocol is up
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is GT96K Serial
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Internet address is 10.2.2.2/30
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;  Encapsulation HDLC, loopback not set
-&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So you see that all routers have the encapsulation of HDLC, if we were to put PPP on one end of a serial interface say R2&#39;s S0/0/0 interface and leave HDLC on the other end what would happen?
-If you guessed that the link would go down you are correct. But also OSPF would get rid of that route in the routing table. You have to be careful when configuring PPP especially on a production network. You run the risk of making you network inoperable if you are not careful setting the different encapsulations. To change the encapsulation from HDLC to PPP on R1, R2, and R3. Go to the interface of the serial connection and type &lt;em&gt;encapsulation ppp&lt;/em&gt;. (yes it is really that simple). This is the following output from R1 on interface s0/0/0 (notice that OSPF will go down if you don&#39;t configure the other side of the serial interface in this case R2&#39;s serial0/0/0)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#interface serial 0/0/0
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-if)#encapsulation ppp
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-if)#
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 16 18:15:53.412: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Serial0/0/0 from FULL to DOWN, Neighbor Down: Interface down or
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;detached
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;R1(config-if)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is R2&#39;s output for the encapsulation change from HDLC to PPP, again notice how OSPF is going down because of the different encapsulation. R3 is still running HDLC therefore the link is down.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R2(config)#interface serial0/0/1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R2(config-if)#encapsulation ppp
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R2(config-if)#
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 17 20:02:08.080: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Serial0/0/1 from FULL to DOWN, Neighbor Down: Interface down or
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;detached
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;R2(config-if)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Change R1 and R3 to the proper encapsulation type so communication between the routers are again connected and to get OSPF working again. (This example on R3 notice that once the encapsulation was changed to PPP the link went back up and OSPF found an adjacent neighbor.)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3(config)#interface serial 0/0/1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R3(config-if)#encapsulation ppp
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R3(config-if)#
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 17 20:04:27.152: %LINEPROTO-5-UPDOWN: Line protocol on
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Interface Serial0/0/1, changed state to up
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;*Aug 17 20:04:30.952: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;Serial0/0/1 from LOADING to FULL, Loading Done
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Verify that all routers are now running PPP by typing the command show interface [interface ID] (This example shows that R1 is running PPP for the encapsulation)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show interface serial0/0/0
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Serial0/0/0 is up, line protocol is up
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  Hardware is GT96K Serial
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Internet address is 10.1.1.1/30
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  Encapsulation PPP, LCP Open
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  Open: CDPCP, IPCP, loopback not set
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This shows both of R2&#39;s serial interfaces, when issuing the &lt;em&gt;show interface serial0/0/0&lt;/em&gt; and  &lt;em&gt;show interface serial0/0/1&lt;/em&gt; commands:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2#show interface serial 0/0/0
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Serial0/0/0 is up, line protocol is up
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  Hardware is GT96K Serial
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Internet address is 10.1.1.2/30
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  Encapsulation PPP, LCP Open
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  Open: CDPCP, IPCP, loopback not set
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;R2#show interface serial 0/0/1
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Serial0/0/1 is up, line protocol is up
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  Hardware is GT96K Serial
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  Internet address is 10.2.2.1/30
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  Encapsulation PPP, LCP Open
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;  Open: CDPCP, IPCP, loopback not set
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;R3&#39;s output when issuing the &lt;em&gt;show interface serial0/0/1&lt;/em&gt; command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R3#show interface serial 0/0/1
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Serial0/0/1 is up, line protocol is up
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  Hardware is GT96K Serial
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Internet address is 10.2.2.2/30
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  MTU 1500 bytes, BW 128 Kbit, DLY 20000 usec,
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  reliability 255/255, txload 1/255, rxload 1/255
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;  Encapsulation PPP, LCP Open
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  Open: CDPCP, IPCP, loopback not set
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&amp;lt;output omitted&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that all routers are using a different encapsulation protocol (PPP) we can also give the protocol some authentication. The first one we will use is (PAP) password authentication protocol. PAP is not a secure authentication protocol. Passwords are sent using plain text and only authenticates once. To set up PAP the username and password must match the other router. So for this example R1&#39;s username is R1 and the password is knowing.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#username R1 password knowing
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Keep in mind that this information needs to be typed on R2 for PAP to work. The example from R2&#39;s username is R2 and the password is knowing.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R2(config)#username R2 password knowing
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Again this information needs to be typed on R1 for PAP to work. Back to R1 we want to go to the interface that R2 is connected to(interface s0/0/0) then we would type &lt;em&gt;ppp authentication pap&lt;/em&gt; hit enter (notice the link went down between R1 and R2). Type &lt;em&gt;ppp pap sent-username R2 password knowing&lt;/em&gt; This will send the username of R2 and the password of &amp;quot;knowing&amp;quot; to R2. R2 will check the username and password and because they match R2&#39;s username and password PPP will be authenticated.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#int s0/0/0
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-if)#ppp authentication pap
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-if)#
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;*Aug 22 18:58:57.367: %LINEPROTO-5-UPDOWN: Line protocol on
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Interface Serial0/0/0, changed state to down
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;R1(config-if)#
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;*Aug 22 18:58:58.423: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
-&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;Serial0/0/0 from FULL to DOWN, Neighbor Down: Interface down or detached
-&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;R1(config-if)#ppp pap sent-username R2 password knowing
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s do the same thing with R2 as we did with R1 but remember to type R1&#39;s username (R1) and password (knowing) on R2&#39;s interface that connects to R1 (serial0/0/0) Also notice that the link between R1 and R2 went back up.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R2(config)#interface Serial0/0/0
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R2(config-if)#ppp authentication pap
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R2(config-if)#ppp pap sent-username R1 password knowing
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;R2(config-if)#
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;*Aug 23 16:30:33.771: %LINEPROTO-5-UPDOWN: Line protocol on
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;Interface Serial0/0/0, changed state to up
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that R1 and R2 are working with PAP with PPP we can put CHAP between R2 and R3. CHAP stands for (Challenge Handshake Authentication Protocol) because of the challenge CHAP is a stronger authentication than PAP. CHAP also encrypts the password so it is not sent in plain text. The way to set up CHAP is fundamentally the same. Looking at R2 we are still going to be using the username and password. However in this case the username will be R3 instead of R2 because of the three-way handshake CHAP uses. The password will be &amp;quot;knowing&amp;quot;. We than go into the serial interface that R3 is connected to (s0/0/1) and type &lt;em&gt;ppp authentication chap&lt;/em&gt; (Notice how the link went down)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R2(config)#username R3 password knowing
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;R2(config)#int s0/0/1
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;R2(config-if)#ppp authentication chap
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;R2(config-if)#
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;*Aug 23 18:06:00.935: %LINEPROTO-5-UPDOWN: Line protocol on
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Interface Serial0/0/1, changed state to down
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;R2(config-if)#
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;*Aug 23 18:06:01.947: %OSPF-5-ADJCHG: Process 1, Nbr 192.168.30.1 on
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Serial0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;R2(config-if)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s do the same thing for R3 as we did for R2&#39;s serial interface link (0/0/1) The username will be R2 and the password will be &amp;quot;knowing&amp;quot;. (because of the three-way handshake CHAP uses) Also notice the link between R3 and R2 it went back up and OSPF is working again.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R3(config)#username R2 password knowing
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;*Aug 23 18:07:13.074: %LINEPROTO-5-UPDOWN: Line protocol on
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Interface Serial0/0/1, changed state to up
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;R3(config)#int s0/0/1
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;R3(config-if)#
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;*Aug 23 18:07:22.174: %OSPF-5-ADJCHG: Process 1, Nbr 209.165.200.225 on
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;Serial0/0/1 from LOADING to FULL, Loading Done
-&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;R3(config-if)#ppp authentication chap
-&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;R3(config-if)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s that! You know have PPP setup and some authentication. Between R1 and R2 the authentication is PAP and between R2 and R3 the authentication is CHAP. You should be able to ping all the devices within the topology diagram. Hope this tutorial was helpful&lt;/p&gt;
-&lt;!--adsense--&gt;
+          
+            This tutorial will be going over Basic Configuration of PPP (Point-to-Point Protocol). This tutorial includes Basic Configuration tasks on a router, Configuring OSPF routing protocol, and Configuring PPP PAP and CHAP authentication. Let&#39;s get started!
+We can see in the above diagram we will be using three routers, a loop back connection, two switches (which we will leave them at their default configuration) and two PCs If you are using packet tracer or using real devices than cable the network.
+          
+          
         
       </description>
     </item>

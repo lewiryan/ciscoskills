@@ -14,30 +14,10 @@
       <guid>https://ciscoskills.net/2019/04/02/passed-300-115/</guid>
       <description>
         
-          &lt;p&gt;Just a short post about my recent Cisco exam, I was able to pass the 300-115 to renew all my lower CCNA certifications. The last time I took a Cisco exam was almost 3 years ago when I passed the CCNA Data Center certification. Overall the exam was fair although you will need multiple study resources to make sure you cover all the exam objectives. The primary reason for doing this exam first instead of ROUTE or TSHOOT was I felt it was maybe the hardest one? Won&#39;t really know until I take the other two. The resources I used:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.amazon.com/Routing-Switching-SWITCH-300-115-Official/dp/1587205602/ref=sr_1_1?keywords=ccnp+switch&amp;amp;qid=1552154049&amp;amp;s=gateway&amp;amp;sr=8-1&#34;&gt;The Official Cert Guide - CCNP Routing and Switching 300-115&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.udemy.com/ccnp-switch-video-boot-camp/&#34;&gt;Chris Bryant Videos&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.gns3.com/&#34;&gt;GNS3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.reddit.com/r/ccnp/&#34;&gt;CCNP Subreddit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.boson.com/practice-exam/300-115-cisco-switch-practice-exam&#34;&gt;Boson 300-115 Practice Exams&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I &amp;quot;officially&amp;quot; started about three months ago, but was really off and on throughout 2018.  During the last three months I did about an hour a day (Monday-Friday), the weekends I would shoot for 4 to 5 hours off and on during the day.&lt;/p&gt;
-&lt;h2 id=&#34;whats-next&#34;&gt;What&#39;s Next&lt;/h2&gt;
-&lt;p&gt;Not really in rush, so I&#39;m probably going to wait until next winter, maybe ;)... I know it seems weird to drag this out and not just pass all of the exams but there are some personal/life goals this year I would like to at least start, in the meantime I hope this information is helpful and good luck!&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://loopedback.com&#34;&gt;Loopy&lt;/a&gt; - &lt;time datetime=&#34;2019-05-17 21:06:55&#34;&gt;May 17, 2019&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;I don&#39;t know that this could possibly be harder than ROUTE, but I may have a Bias being it took me 3 tries to piss that exam by a single question :) Huge congratulations on your pass, and good luck on your future ones, I really hope you do take the opportunity to study and pass ROUTE and TSHOOT for the certification! I am currently studying for exactly this exam, and I agree I use almost more off the beaten path resources than training materials to really understand things, to compare them all together and see which explanation makes the most sense. Again congrats and good luck on your next exams bud :)&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2019-05-19 13:22:26&#34;&gt;May 19, 2019&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Loopy, Thanks and congrats on passing the ROUTE exam. I&#39;ll probably start studying the ROUTE exam in the winter months and take the exam in the springtime. Still something I want to finish up but want to have that balance of life/work/study. (if that&#39;s possible) ;) Ryan&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href=&#34;https://loopedback.com&#34;&gt;Loopy&lt;/a&gt; - &lt;time datetime=&#34;2019-05-19 16:45:42&#34;&gt;May 19, 2019&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;I&#39;m attacking SWITCH and TSHOOT like a rabid dog, I have other things I need to study for work, but after grinding to pass ROUTE there is no way I can not finish this certification!&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Just a short post about my recent Cisco exam, I was able to pass the 300-115 to renew all my lower CCNA certifications. The last time I took a Cisco exam was almost 3 years ago when I passed the CCNA Data Center certification. Overall the exam was fair although you will need multiple study resources to make sure you cover all the exam objectives. The primary reason for doing this exam first instead of ROUTE or TSHOOT was I felt it was maybe the hardest one?
+          
+          
         
       </description>
     </item>
@@ -50,56 +30,10 @@
       <guid>https://ciscoskills.net/2014/05/10/gns3-alpha-install-and-setup/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png?w=150&#34; alt=&#34;GNS3-logo&#34;&gt;&lt;/a&gt;So Alpha 3 came out last week with a bunch updates and I decided to give it run this week. I&#39;m not doing anything that difficult with the program so maybe I&#39;m not breaking it in all the way but I also was looking at some installation notes for Ubuntu and other Linux flavors, I figured I’ll try to install it on a Windows machine and not Linux (call me lazy) feel free to follow this guide.   To install GNS3, here is what I had&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Windows 7 Professional x64 bit with the latest Microsoft updates&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://members.gns3.net/&#34; title=&#34;GNS3 Early Release Members Area&#34;&gt;Downloaded GNS3 Early Release 1.0&lt;/a&gt; – Alpha 3 (Must be a member)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; title=&#34;Download VirtualBox&#34;&gt;Oracle VM Virtual Box installed&lt;/a&gt; (latest version 4.3.10 and only if you are going to use IOU)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://sourceforge.net/projects/gns-3/files/IOU%20VMs/GNS3-1.0-alpha3%20IOU%20VM.ova/download&#34;&gt;Downloaded GNS3-1.0-alpha3&lt;/a&gt; IOU VM (Only if you are going to use IOU)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Since this is an all and one installer it was pretty easy to install, and I decided to install all the components that the all-in-one had to offer.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;WinPCAP 4.1.3&lt;/li&gt;
-&lt;li&gt;Wireshark 1.10.7&lt;/li&gt;
-&lt;li&gt;Dynamips 0.2.12&lt;/li&gt;
-&lt;li&gt;VPCS 0.4b2&lt;/li&gt;
-&lt;li&gt;GNS3&lt;/li&gt;
-&lt;li&gt;SuperPutty 1.4.0.4 beta&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I accepted the default destination folder and installed it, once installed I used by GNS3 membership to activate the software. That&#39;s it you now are running the Alpha version of GNS3. If you wanted to try IOU that is where it can get tricky, remember GNS3 is a platform that can support IOU and Dynampis. IOU are images that Cisco created to run on Unix, the reason IOU is popular is because it supports layer two (switching) functionally. Before GNS3 1.0 only supported layer three (Routing) and very limited layer two (switching) functions. However IOU is not available to the public. Dynampis is an emulation technology that older Cisco router images can run on but you are still in the same situation as you were before which is Cisco does not give public access to these images. The GNS3 team are working on trying to get an IOU image for GNS3 before the end of the year when GNS3 goes public, but since this is an alpha version of GNS3 and only available to members its currently only a problem for members that are testing out IOU. I would suspect towards the end of the year this won&#39;t be an issue. If you have an IOU image feel free to continue the steps below. :) We now need to import the GNS3 IOU VM that we downloaded into virtual box.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Start virtual box&lt;/li&gt;
-&lt;li&gt;Go to File-&amp;gt; Import Appliance&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Browse to the OVF file that you downloaded and select next and accept the defaults by selecting import.  When you first start the VM you may get an error about the network interface accept the warning and make sure the VM is only using the &lt;strong&gt;host-only adapter&lt;/strong&gt;. Once the VM is online we need to do some verification, for the username you will use &lt;strong&gt;root&lt;/strong&gt; and the password is &lt;strong&gt;cisco&lt;/strong&gt;. When at the shell type &lt;strong&gt;ifconfig eth0&lt;/strong&gt; to get the IP address of the VM. Keep note of the IP address. The next step is to import your IOU image into the GNS3 IOU VM.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Type the IP address of the VM into your browser followed by the 8000 port number. (&lt;em&gt;Example http://192.168.1.1:8000/upload&lt;/em&gt; )&lt;/li&gt;
-&lt;li&gt;Browse your local computer for the IOU image file and select upload.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You should get a message of where the file is stored on the Linix VM when the upload is successful, keep note of that location. Open up GNS3 and in the preferences.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Go to Server-&amp;gt;Remote Servers and add the GNS3 IOU VM to the list, the default port number is 8000&lt;/li&gt;
-&lt;li&gt;Select the IOS on UNIX option and browse to the path of your license key (Path to IOURC) which is needed to activate the IOU image.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Finally we need to set the IOU image path that was uploaded to the GNS3 IOU VM.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Select the IOU devices option in the GNS3 preferences and in the IOU path type in the path of the IOU device that you keep note of and select save. (&lt;em&gt;Example:  /home/gns3/Documents/GNS3/images/linux-iou.bin&lt;/em&gt; )&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;you-now-have-a-working-iou-in-gns3-go-ahead-and-try-it-out-if-you-want-moreinformationabout-gns3-or-if-you-are-a-member-and-havingsome-issues-go-check-out-the-gns3-formshttpforumgns3neti-hope-this-information-that-i-provided-helps-as-well&#34;&gt;You now have a working IOU in GNS3, Go ahead and try it out. If you want more information about GNS3 or if you are a member and having some issues go check out the &lt;a href=&#34;http://forum.gns3.net/&#34;&gt;GNS3 forms&lt;/a&gt;. I hope this information that I provided helps as well.&lt;/h2&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;lewiryan@isu.edu&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2014-10-31 21:00:10&#34;&gt;Oct 5, 2014&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Guellord, Did you check to make sure you have the network settings setup in Virtualbox? Not sure what you are using but edit the machine and make sure you are using a host-only adapter. You should not have to login to get an IP address it should be in the login banner if you are using the latest GNS3 IOU. Hope that Helps. Also might want to try looking at this post: &lt;a href=&#34;http://ciscoskills.net/2014/10/28/setting-up-gns3-1-1-on-ubuntu/&#34;&gt;http://ciscoskills.net/2014/10/28/setting-up-gns3-1-1-on-ubuntu/&lt;/a&gt; &lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/10/gns3-iou-virtual-box.png&#34; alt=&#34;VirtualBox-GNS3 1.1 IOU Network Settings&#34;&gt;&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[GNS3 1.0 Public is Out &amp;laquo; Cisco Skills](http://ciscoskills.net/2014/10/21/gns3-1-0-public-is-out/ &#34;&#34;) - &lt;time datetime=&#34;2014-10-21 14:31:44&#34;&gt;Oct 2, 2014&lt;/time&gt;
-&lt;p&gt;[…] of 2014, which was about getting GNS3 Alpha 3 working on Windows, you can see the full post here: GNS3 Alpha – Install and Setup. I have followed the GNS3 releases throughout the six months of them releasing Alpha and beta […]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Guellord]( &#34;guellokama@gmail.com&#34;) - &lt;time datetime=&#34;2014-10-31 19:45:29&#34;&gt;Oct 5, 2014&lt;/time&gt;
-&lt;p&gt;Hi, i try to use IOU image on gns3 1.1 I follow all these steps as mentioned above,and i log in GNS3 IOU VM as well but i don&#39;t get an IP address when i type ifconfig eth0 i don&#39;t get an IP address, what will be the issue?&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            So Alpha 3 came out last week with a bunch updates and I decided to give it run this week. I&#39;m not doing anything that difficult with the program so maybe I&#39;m not breaking it in all the way but I also was looking at some installation notes for Ubuntu and other Linux flavors, I figured I’ll try to install it on a Windows machine and not Linux (call me lazy) feel free to follow this guide.
+          
+          
         
       </description>
     </item>
@@ -112,13 +46,11 @@
       <guid>https://ciscoskills.net/2014/04/19/640-911-chapter-12-13/</guid>
       <description>
         
-          &lt;p&gt;We are at the last chapters of the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center 640-911 by Todd Lammle&lt;/a&gt;. Chapter 12 talks about redundant switched technologies and chapter 13 talks about security. Just like before I will go over the high-points, so let’s get started!&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;strong&gt;Chapter 12 Overview&lt;/strong&gt;: In this chapter we get to learn about Spanning Tree Protocol and some history with it. With networks we like multiple ways to a destination however in the layer two area redundancy does not play well and that’s where spanning tree can help us. So know what spanning tree and its purpose. Spanning tree has several terms that are important to remember for the exam, I would look over page 387. For the exam know some show commands for spanning tree, like &lt;strong&gt;show spanning-tree&lt;/strong&gt;, and &lt;strong&gt;show spanning-tree summary&lt;/strong&gt;. This chapter also talked about the different types of spanning-tree but could not tell if this would be on 640-911 exam as well as port-channels which helps eliminate blocked STP ports. :)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Chapter 13 Overview&lt;/strong&gt;: In the last chapter of 640-911 book we get introduced to &lt;a href=&#34;http://ciscoskills.net/2011/02/07/access-control-lists/&#34; title=&#34;Access Control Lists&#34;&gt;access-control-lists&lt;/a&gt; and the types of access-lists that the NX-OS supports, know the difference as well as configuring a standard access list and extended access list also be sure to understand the implicit deny statement at end of every access-list. I would also know how wildcard masking works, (flip the subnet mask). A couple more things I thought would be important to keep an eye out is understand that once an access-list is created that does not mean its active, make you sure to understand how to apply the ACL on an interface. Finally know your show commands for access-lists, like &lt;strong&gt;show access-list&lt;/strong&gt; and &lt;strong&gt;show access-list summary&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Overall thoughts&lt;/strong&gt;: So thanks for checking out these posts about the 640-911 exam, I hope this give you an idea of what to expect on the exam and good luck, if you decide to take it. Personally I am shooting for May/June timeframe to pass at least the 640-911. I thought this book was helpful but if you went and passed the CCNA or even CCNP it does get a little dry in areas. This exam is introductory but required if you wanted to achieve the CCNA Data Center certification. Remember you need to pass two exams 640-911 and the 640-916 to become CCNA Data Center certified. Check out all the 640-911 exam topics: &lt;a href=&#34;https://ciscoskills.net/files/2014/01/640-911_dcicn.pdf&#34;&gt;640-911 Exam Topics&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;A little off topic but interesting to note is as of this writing Todd Lammle is the only author that has published a study guide for the CCNA Data Center, a quick check on Amazon shows that Cisco Press is ready to roll out an official certification guide for the 640-911 in the end of August authored by a Wendell Odom, followed by the 640-916 in January of 2015. I’ll end it here, I hope this information is helpful and comment below if you have any questions on these chapters.&lt;/p&gt;
-
+          
+            We are at the last chapters of the CCNA Data Center 640-911 by Todd Lammle. Chapter 12 talks about redundant switched technologies and chapter 13 talks about security. Just like before I will go over the high-points, so let’s get started!
+Chapter 12 Overview: In this chapter we get to learn about Spanning Tree Protocol and some history with it. With networks we like multiple ways to a destination however in the layer two area redundancy does not play well and that’s where spanning tree can help us.
+          
+          
         
       </description>
     </item>
@@ -131,127 +63,10 @@
       <guid>https://ciscoskills.net/2014/03/13/inter-vlan-routing-on-the-nexus-5k/</guid>
       <description>
         
-          &lt;p&gt;I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let&#39;s go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.  In this example I have already configured a FEX port with a 2k check out the my earlier post &lt;a href=&#34;http://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/&#34;&gt;Connecting FEX (5k to 2k)&lt;/a&gt; so let&#39;s start right after that and login into the 5k.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;User Access Verification
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k login: admin
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Password:
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Cisco Nexus Operating System (NX-OS) Software
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;TAC support: http://www.cisco.com/tac
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Copyright (c) 2002-2013, Cisco Systems, Inc. All rights reserved.
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;The copyrights to certain works contained in this software are
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;owned by other third parties and used and distributed under
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;license. Certain components of this software are licensed under
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;the GNU General Public License (GPL) version 2.0 or the GNU
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Lesser General Public License (LGPL) Version 2.1. A copy of each
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;such license is available at
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;http://www.opensource.org/licenses/gpl-2.0.php and
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;http://www.opensource.org/licenses/lgpl-2.1.php
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;demo5k# config t
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now in configuration mode we have to turn on a feature in the NX-OS to enable VLAN Routing, we do this by issuing the “&lt;strong&gt;feature interface-vlan&lt;/strong&gt;” command. The Nexus runs on efficiency and only loads what it needs or configured. This is familiar approach that Linux uses which loads what is installed and nothing else. In the output below we can see all the features that the NX-OS supports followed by the command to turn on Inter-VLAN Routing.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# feature ?
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  bgp             Enable/Disable Border Gateway Protocol (BGP)
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  cts             Enable/Disable CTS
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  dhcp            Enable/Disable DHCP Snooping
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  dot1x           Enable/Disable dot1x
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  eigrp           Enable/Disable Enhanced Interior Gateway Routing Protocol
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;                  (EIGRP)
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  fcoe            Enable/Disable FCoE/FC feature
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  fcoe-npv        Enable/Disable FCoE NPV feature
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex             Enable/Disable FEX
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  flexlink        Enable/Disable Flexlink
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;  hsrp            Enable/Disable Hot Standby Router Protocol (HSRP)
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;  http-server     Enable/Disable http-server
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  interface-vlan  Enable/Disable interface vlan
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  lacp            Enable/Disable LACP
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  msdp            Enable/Disable Multicast Source Discovery Protocol (MSDP)
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  ntp             Enable/Disable NTP
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  ospf            Enable/Disable Open Shortest Path First Protocol (OSPF)
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;  ospfv3          Enable/Disable Open Shortest Path First Version 3 Protocol
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;                  (OSPFv3)
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;  pim             Enable/Disable Protocol Independent Multicast (PIM)
-&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;  port-security   Enable/Disable port-security
-&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;  private-vlan    Enable/Disable private-vlan
-&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;  privilege       Enable/Disable IOS type privilege level support
-&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;  ptp             Enable/Disable PTP
-&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;  rip             Enable/Disable Routing Information Protocol (RIP)
-&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;  scp-server      Enable/Disable SCP server
-&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;  sftp-server     Enable/Disable SFTP server
-&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;  ssh             Enable/Disable ssh
-&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;  tacacs+         Enable/Disable tacacs+
-&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;  telnet          Enable/Disable telnet
-&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;  udld            Enable/Disable UDLD
-&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;  vpc             Enable/Disable VPC (Virtual Port Channel)
-&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;  vrrp            Enable/Disable Virtual Router Redundancy Protocol (VRRP)
-&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;  vtp             Enable/Disable Vlan Trunking Protocol (VTP)
-&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;demo5k(config)# feature interface-vlan
-&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;demo5k(config)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Just like the Catalyst line we are in configuration mode and let&#39;s create two vlans 50 and 60 with IP addresses.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# vlan 50
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-vlan)# name SERVER-A-VLAN
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-vlan)# exit
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;demo5k(config)# interface vlan 50
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;demo5k(config-if)# description SERVER-A-NETWORK
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;demo5k(config-if)# ip address 192.168.50.1 255.255.255.0
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;demo5k(config-if)# no shutdown
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;demo5k(config-if)# exit
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;! Create another Interface VLAN!
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;demo5k(config)# interface vlan 60
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# description SERVER-B-NETWORK
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# ip address 192.168.60.1 255.255.255.0
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;demo5k(config-if)# no shutdown
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;demo5k(config-if)# exit
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;demo5k(config)#exit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s verify our creation by doing a &lt;strong&gt;show interface vlan 60&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show interface vlan 60
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Vlan60 is down (VLAN does not exist), line protocol is down
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is EtherSVI, address is  547f.ee59.a2c1
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Description: SERVER-B-NETWORK
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  Internet Address is 192.168.60.1/24
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s look at VLAN 50:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show interface vlan 50
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Vlan60 is down (VLAN is down), line protocol is down
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is EtherSVI, address is  547f.ee59.a2c1
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Description: SERVER-A-NETWORK
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  Internet Address is 192.168.50.1/24
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can also look at the interface brief:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show ip interface brief
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;IP Interface Status for VRF &amp;#34;default&amp;#34;(1)
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Interface            IP Address      Interface Status
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Vlan50               192.168.50.1    protocol-down/link-down/admin-up
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Vlan60               192.168.60.1    protocol-down/link-down/admin-up\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;VLANs have been created and IP addresses assigned to the interfaces, now let&#39;s configure the 2k. In this example I&#39;ve configured two access ports on the 2k one is in VLAN 50 and another is in VLAN 60. Starting with VLAN 50 on port 1 on the 2k&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# interface ethernet 100/1/1
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-if)# switchport access vlan 50
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-if)# spanning-tree port type edge
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Warning: Edge port type (portfast) should only be enabled on ports connected to a single
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt; host. Connecting hubs, concentrators, switches, bridges, etc... to this
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; Use with CAUTION
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/1 but will only
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; have effect when the interface is in a non-trunking mode.
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# no shutdown
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# exit\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You&#39;ll notice the warning when we configure the port as an edge port, in the Catalyst world this is the same as spanning-tree portfast. Let&#39;s next configure port 25 on the same 2k into VLAN 60.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# interface ethernet 100/1/25
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-if)# switchport access vlan 60
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-if)# spanning-tree port type edge
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Warning: Edge port type (portfast) should only be enabled on ports connected to a single
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt; host. Connecting hubs, concentrators, switches, bridges, etc... to this
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; Use with CAUTION
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/25 but will only
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; have effect when the interface is in a non-trunking mode.
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# no shutdown
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# exit\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Done and Done, If you hook-up two PCs with correct IP address scheme in the separate VLANs you would be able to ping them. To verify the routing table you would do a &lt;strong&gt;show ip route&lt;/strong&gt;, just like the IOS world :) Like always I hope this information is helpful and comment below if you have any questions.&lt;/p&gt;
-&lt;!--adsense--&gt;
-
+          
+            I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let&#39;s go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.
+          
+          
         
       </description>
     </item>
@@ -264,31 +79,10 @@
       <guid>https://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/nexus-pline.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/nexus-pline.png&#34; alt=&#34;Nexus-PLine&#34;&gt;&lt;/a&gt;I was pretty excited to get my hands on some of the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Nexus_switches&#34; title=&#34;Cisco Nexus switches&#34;&gt;Cisco Nexus&lt;/a&gt; product line which focuses on switching in the data center. The gear I have is an evaluation unit so I made some notes and one thing I was impressed is how easy it is to connect a Nexus 5K to a Nexus 2k also known as a fabric extender. I have kept it simple as the gear I have is a single Nexus 5596 along with a single Nexus 224TP-E who needs redundancy right? So in this post I&#39;ll explain how to connect a 5k Nexus to a 2k extender. Let’s get started! So I needed a couple of SFPs as the only way to connect the 5k to the 2k is a FET-10G SFP along with that was some multimode fiber (OM3) with LC connectors. Looking at the simple diagram below our end goal is to be able to configure the 2k from the 5k. That is the point of the 2k extenders less switches to manage in the data center.&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/5k-to-2k.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/5k-to-2k.png&#34; alt=&#34;5k to 2k&#34;&gt;&lt;/a&gt;Once we have made the physical connections lets power both switches on, we won&#39;t need to worry about the 2k switch at all as along we have a physical connection to a parent switch the 5k in our case, but that also could be 7k switch. Just an FYI, I&#39;ve already ran through the simple CLI wizard to setup a username and password but other than that let&#39;s get configuring by entering the familiar command &amp;quot;&lt;strong&gt;config t&lt;/strong&gt;&amp;quot; [code]User Access Verification demo5k login: admin Password: Cisco Nexus Operating System (NX-OS) Software TAC support: &lt;a href=&#34;http://www.cisco.com/tac&#34;&gt;http://www.cisco.com/tac&lt;/a&gt; Copyright (c) 2002-2013, Cisco Systems, Inc. All rights reserved. The copyrights to certain works contained in this software are owned by other third parties and used and distributed under license. Certain components of this software are licensed under the GNU General Public License (GPL) version 2.0 or the GNU Lesser General Public License (LGPL) Version 2.1. A copy of each such license is available at &lt;a href=&#34;http://www.opensource.org/licenses/gpl-2.0.php&#34;&gt;http://www.opensource.org/licenses/gpl-2.0.php&lt;/a&gt; and &lt;a href=&#34;http://www.opensource.org/licenses/lgpl-2.1.php&#34;&gt;http://www.opensource.org/licenses/lgpl-2.1.php&lt;/a&gt; demo5k# config t[/code] Now in configuration mode we have to turn on a feature in the NX-OS to enable FEX, we do this by issuing the &amp;quot;&lt;strong&gt;feature FEX&lt;/strong&gt;&amp;quot; command. The Nexus runs on efficiency and only loads what it needs or configured. This is familiar approach that Linux uses which loads what is installed and nothing else.  In the output below we can see all the features that the NX-OS supports followed by the command to turn on FEX. [code] Enter configuration commands, one per line. End with CNTL/Z. demo5k(config)# feature ? bgp Enable/Disable Border Gateway Protocol (BGP) cts Enable/Disable CTS dhcp Enable/Disable DHCP Snooping dot1x Enable/Disable dot1x eigrp Enable/Disable Enhanced Interior Gateway Routing Protocol (EIGRP) fcoe Enable/Disable FCoE/FC feature fcoe-npv Enable/Disable FCoE NPV feature fex Enable/Disable FEX flexlink Enable/Disable Flexlink hsrp Enable/Disable Hot Standby Router Protocol (HSRP) http-server Enable/Disable http-server interface-vlan Enable/Disable interface vlan lacp Enable/Disable LACP msdp Enable/Disable Multicast Source Discovery Protocol (MSDP) ntp Enable/Disable NTP ospf Enable/Disable Open Shortest Path First Protocol (OSPF) ospfv3 Enable/Disable Open Shortest Path First Version 3 Protocol (OSPFv3) pim Enable/Disable Protocol Independent Multicast (PIM) port-security Enable/Disable port-security private-vlan Enable/Disable private-vlan privilege Enable/Disable IOS type privilege level support ptp Enable/Disable PTP rip Enable/Disable Routing Information Protocol (RIP) scp-server Enable/Disable SCP server sftp-server Enable/Disable SFTP server ssh Enable/Disable ssh tacacs+ Enable/Disable tacacs+ telnet Enable/Disable telnet udld Enable/Disable UDLD vpc Enable/Disable VPC (Virtual Port Channel) vrrp Enable/Disable Virtual Router Redundancy Protocol (VRRP) vtp Enable/Disable Vlan Trunking Protocol (VTP) demo5k(config)# feature fex demo5k(config)#[/code] Now that our FEX feature is active let&#39;s configure the port that has the 2k connected and in this example I have it as ethernet port 48 on our 5k. The commands are petty simple, I first want to go into interface followed by changing the mode of interface and finally giving the interface a FEX associate ID. :!:&lt;strong&gt;NOTE&lt;/strong&gt;: Since this design is a single stack we need to issue the FEX associate command on the physical interface. If you want redundancy you would usually put the FEX associate command with &lt;a href=&#34;http://ciscoskills.net/2014/09/10/setting-up-enhanced-vpc-on-nexus-5600/&#34; title=&#34;Setting up Enhanced vPC on Nexus 5600&#34;&gt;channel-groups and vPCs&lt;/a&gt;. Another helpful FYI is if you have channel-groups you don&#39;t need to put the FEX associate command on the physical interface. [code]demo5k(config)# interface ethernet1/48 demo5k(config-if)# switchport mode fex-fabric demo5k(config-if)# fex associate 100 demo5k(config-if)# exit demo5k(config)#[/code] Give it a couple of minutes and you should see the 2k come online :) [code]2013 Dec 01 07:28:37 demo5k %$ VDC-1 %$ %PFMA-2-FEX_STATUS: Fex 100 is online 2013 Dec 01 07:28:37 demo5k %$ VDC-1 %$ %NOHMS-2-NOHMS_ENV_FEX_ONLINE: FEX-100 On-line 2013 Dec 01 07:28:39 demo5k %$ VDC-1 %$ %PFMA-2-FEX_STATUS: Fex 100 is online[/code] Let&#39;s verify that our FEX is all good by issuing &amp;quot;&lt;strong&gt;show fex 100&lt;/strong&gt;&amp;quot; which shows the FEX and the 5k version. (Notice they match versions) You can also find the serial number, model number, the number links and the status of fabric when using this command. (The 5K) [code]demo5k# show fex 100 FEX: 100 Description: FEX0100 state: Online FEX version: 6.0(2)N1(2) [Switch version: 6.0(2)N1(2)] Extender Serial: SSI153804CQ Extender Model: N2K-C2248TP-E-1GE, Part No: 73-13671-01 Pinning-mode: static Max-links: 1 Fabric port for control traffic: Eth1/48 FCoE Admin: false FCoE Oper: true FCoE FEX AA Configured: false Fabric interface state: Eth1/48 - Interface Up. State: Active demo5k# show fex FEX FEX FEX FEX Number Description State Model Serial ------------------------------------------------------------------------ 100 FEX0100 Online N2K-C2248TP-E-1GE SSI153804CQ[/code] You can also go into detail on the FEX by issuing the &amp;quot;&lt;strong&gt;show fex detail&lt;/strong&gt;&amp;quot; which shows almost the same information has &amp;quot;&lt;strong&gt;show fex&lt;/strong&gt;&amp;quot; but it includes the FEX ports, the status of those FEX ports and what port the fabric is connected. (Also called the 5k) as well as helpful logs for the 2k at the end of command. [code]demo5k# show fex detail FEX: 100 Description: FEX0100 state: Online FEX version: 6.0(2)N1(2) [Switch version: 6.0(2)N1(2)] FEX Interim version: 6.0(2)N1(2) Switch Interim version: 6.0(2)N1(2) Extender Serial: SSI153804CQ Extender Model: N2K-C2248TP-E-1GE, Part No: 73-13671-01 Card Id: 149, Mac Addr: 70:81:05:00:99:42, Num Macs: 64 Module Sw Gen: 12594 [Switch Sw Gen: 21] post level: complete pinning-mode: static Max-links: 1 Fabric port for control traffic: Eth1/48 FCoE Admin: false FCoE Oper: true FCoE FEX AA Configured: false Fabric interface state: Eth1/48 - Interface Up. State: Active Fex Port State Fabric Port Eth100/1/1 Down Eth1/48 Eth100/1/2 Down Eth1/48 Eth100/1/3 Down Eth1/48 Eth100/1/4 Down Eth1/48 Eth100/1/5 Down Eth1/48 Eth100/1/6 Down Eth1/48 Eth100/1/7 Down Eth1/48 Eth100/1/8 Down Eth1/48 Eth100/1/9 Down Eth1/48 Eth100/1/10 Down Eth1/48 Eth100/1/11 Down Eth1/48 Eth100/1/12 Down Eth1/48 Eth100/1/13 Down Eth1/48 Eth100/1/14 Down Eth1/48 Eth100/1/15 Down Eth1/48 Eth100/1/16 Down Eth1/48 Eth100/1/17 Down Eth1/48 Eth100/1/18 Down Eth1/48 Eth100/1/19 Down Eth1/48 Eth100/1/20 Down Eth1/48 Eth100/1/21 Down Eth1/48 Eth100/1/22 Down Eth1/48 Eth100/1/23 Down Eth1/48 Eth100/1/24 Down Eth1/48 Eth100/1/25 Down Eth1/48 Eth100/1/26 Down Eth1/48 Eth100/1/27 Down Eth1/48 Eth100/1/28 Down Eth1/48 Eth100/1/29 Down Eth1/48 Eth100/1/30 Down Eth1/48 Eth100/1/31 Down Eth1/48 Eth100/1/32 Down Eth1/48 Eth100/1/33 Down Eth1/48 Eth100/1/34 Down Eth1/48 Eth100/1/35 Down Eth1/48 Eth100/1/36 Down Eth1/48 Eth100/1/37 Down Eth1/48 Eth100/1/38 Down Eth1/48 Eth100/1/39 Down Eth1/48 Eth100/1/40 Down Eth1/48 Eth100/1/41 Down Eth1/48 Eth100/1/42 Down Eth1/48 Eth100/1/43 Down Eth1/48 Eth100/1/44 Down Eth1/48 Eth100/1/45 Down Eth1/48 Eth100/1/46 Down Eth1/48 Eth100/1/47 Down Eth1/48 Eth100/1/48 Down Eth1/48 Logs: 12/01/2013 07:28:31.344277: Module register received 12/01/2013 07:28:31.347237: Registration response sent 12/01/2013 07:28:31.696577: create module inserted event. 12/01/2013 07:28:31.697697: Module Online Sequence 12/01/2013 07:28:37.285556: Module Online[/code] Believe it or not you now have a working 5k with a connected FEX, you could plug devices in and be ready to roll on a single stack 2k and 5k. One thing I&#39;ve been impressed with the NX-OS it&#39;s that familiar feeling of IOS with some improved differences, Cisco has good documentation on the common and different features when comparing NX-OS and IOS which is below. Like always I hope this post is helpful and I have a couple more Nexus posts in the works but other than that enjoy the remaining of 2013! &lt;a href=&#34;http://docwiki.cisco.com/wiki/Cisco_Nexus_7000_NX-OS/IOS_Comparison_Tech_Notes&#34; title=&#34;Cisco Nexus 7000 NX-OS/IOS Comparison Tech Notes&#34;&gt;Cisco Nexus 7000 NX-OS/IOS Comparison Tech Notes&lt;/a&gt;&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/exploring-the-nexus-1000-v-rest-api/&#34;&gt;Exploring the Nexus 1000 V REST API&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://brasstacksblog.typepad.com/brass-tacks/2012/02/fc-and-fcoe-versus-iscsi-network-centric-versus-end-node-centric-provisioning.html&#34;&gt;FC and FCoE versus iSCSI - &amp;quot;Network-centric&amp;quot; versus &amp;quot;End-Node-centric&amp;quot; provisioning&lt;/a&gt; (brasstacksblog.typepad.com)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://LinkedIn.com/farhane&#34; title=&#34;Interpreter411@gmail.com&#34;&gt;Farhan&lt;/a&gt; - &lt;time datetime=&#34;2013-12-01 10:54:08&#34;&gt;Dec 0, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Quick question: why port 1/48 down? I thought you configured that interface/port?&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2013-12-01 11:25:41&#34;&gt;Dec 0, 2013&lt;/time&gt;
-&lt;p&gt;Hey Farhan, Port 1/48 is not down on the 5k but on the 2k port 100/1/48 is down, this is a 1GB copper port and in the example I had nothing connected to the 2k. The 2k has four FEX ports that can be connected to a 5k or a 7k, however in this example I did not issue a command that shows the FEX port status, I&#39;ll do some digging in finding an example but from what I can tell I think the &amp;quot;show interface fex-fabric&amp;quot; would show what uplink it is connected to and the status of the FEX link. Hope that Helps.&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Inter-VLAN Routing on the Nexus 5k. &amp;laquo; Cisco Skills](http://ciscoskills.net/2014/03/13/inter-vlan-routing-on-the-nexus-5k/ &#34;&#34;) - &lt;time datetime=&#34;2014-03-13 09:46:28&#34;&gt;Mar 4, 2014&lt;/time&gt;
-&lt;p&gt;[…] this example I have already configured a FEX port with a 2k check out the my earlier post Connecting FEX (5k to 2k) so let’s start right after that and login into the […]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[640-911 (Chapter 7) &amp;laquo; Cisco Skills](http://ciscoskills.net/2014/02/27/640-911-chapter-7/ &#34;&#34;) - &lt;time datetime=&#34;2014-02-27 11:02:42&#34;&gt;Feb 4, 2014&lt;/time&gt;
-&lt;p&gt;[…] to forwarded traffic is also very cool, thanks ISSU (No downtime around here ) I hinted on an earlier post that the Nexus runs on efficiency and only loads what it needs or configured, why load up NTP if […]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            I was pretty excited to get my hands on some of the Cisco Nexus product line which focuses on switching in the data center. The gear I have is an evaluation unit so I made some notes and one thing I was impressed is how easy it is to connect a Nexus 5K to a Nexus 2k also known as a fabric extender. I have kept it simple as the gear I have is a single Nexus 5596 along with a single Nexus 224TP-E who needs redundancy right?
+          
+          
         
       </description>
     </item>
@@ -301,44 +95,10 @@
       <guid>https://ciscoskills.net/2013/10/12/configuring-etherchannel-pagb/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/10/networkswitches_e.png&#34; alt=&#34;NetworkSwitches&#34;&gt;&lt;/a&gt;Bundling physical links into one logical link is a common practice to up the bandwidth between switches, you may have this also configured on a server to bundle connections as well. In this tutorial I have two 2960 switches both of them trunking all &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt; on two gigabit ports. So in the end game is get 2gbps instead of 1gbps between switches while using Cisco’s &lt;a href=&#34;http://en.wikipedia.org/wiki/Proprietary_protocol&#34; title=&#34;Proprietary protocol&#34;&gt;proprietary protocol&lt;/a&gt; PAgb.   It is important to remember that both of these protocols (PAgb and &lt;a href=&#34;http://en.wikipedia.org/wiki/Link_aggregation&#34; title=&#34;Link aggregation&#34;&gt;LACP&lt;/a&gt;) are link aggregation protocols only, their job is to make sure that &lt;a href=&#34;http://en.wikipedia.org/wiki/EtherChannel&#34; title=&#34;EtherChannel&#34;&gt;EtherChannel&lt;/a&gt; is setup correctly by negotiating. This helps prevent EtherChannel mismatches and loops. You could manually set the etherchannel mode to &amp;quot;on&amp;quot; instead of using either of these aggregation protocols. However this is considered best practice to use one of these link aggregation protocols. Here are some Guidelines for Configuring EtherChannel:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;You can configure the port in two ways:
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Port_Aggregation_Protocol&#34; title=&#34;Port Aggregation Protocol&#34;&gt;PAgp&lt;/a&gt; which is Cisco proprietary protocol.&lt;/li&gt;
-&lt;li&gt;LACP which is an industry standard 802.3ad.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;You can combine from two links to eight links.&lt;/li&gt;
-&lt;li&gt;All ports &lt;strong&gt;MUST&lt;/strong&gt; be identical such as:
-&lt;ul&gt;
-&lt;li&gt;Same speed that also includes duplex.&lt;/li&gt;
-&lt;li&gt;Cannot mix and match Fast Ethernet and Gigabit ports.&lt;/li&gt;
-&lt;li&gt;Cannot throw in PAgp and LACP in the same “channel”.&lt;/li&gt;
-&lt;li&gt;Must be either all trunking or non-trunking.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;All links in the channel must be either in Layer 2 or Layer 3.&lt;/li&gt;
-&lt;li&gt;If you want to use PAgp each side must be one of the two settings for the channel to come up.
-&lt;ul&gt;
-&lt;li&gt;Auto-Desirable&lt;/li&gt;
-&lt;li&gt;Desirable-Desirable&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;If you would like to use LACP then each side must be one of the two settings for the channel to come up.
-&lt;ul&gt;
-&lt;li&gt;Active-Active&lt;/li&gt;
-&lt;li&gt;Active-Passive&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So for this example I have a two Cisco 2960 switches, one switch is a 24-port while the other one is a 48-port switch. I have already done some pre-configuring for the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;native VLAN&lt;/a&gt; (not using VLAN1) and I have also created an additional VLAN for data traffic on both of these switches. The two switches I am working with both have two gigabit trunk uplinks to each other, by default of STP one link will be in blocking state. To allow both of these links in a forwarding state follow the configuration below. On the 24-port switch under both gigabit interfaces: [code highlight=&amp;quot;3,4,5&amp;quot;] 24-SW3#configure t Enter configuration commands, one per line. End with CNTL/Z. 24-SW3(config)#interface range gigabitEthernet 0/1 -2 24-SW3(config-if-range)#channel-group 1 mode desirable Creating a port-channel interface Port-channel 1 *Mar 2 22:53:06.895: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down *Mar 2 22:53:06.920: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down *Mar 2 22:53:09.688: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up *Mar 2 22:53:09.713: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up [/code] On the 48-port switch under both gigabit interfaces: [code highlight=&amp;quot;3,4,10,11&amp;quot;] 48-SW1#configure t Enter configuration commands, one per line. End with CNTL/Z. 48-SW1(config)#interface range gigabitEthernet 0/1 - 2 48-SW1(config-if-range)#channel-group 1 mode auto Creating a port-channel interface Port-channel 1 *Mar 2 09:56:03.907: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down *Mar 2 09:56:03.940: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down *Mar 2 09:56:13.327: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up *Mar 2 09:56:13.797: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up *Mar 2 09:56:27.235: %LINK-3-UPDOWN: Interface Port-channel1, changed state to up *Mar 2 09:56:28.242: %LINEPROTO-5-UPDOWN: Line protocol on Interface Port-channel1, changed state to up[/code] To verify that port-channel is working as expected (Notice line 4) [code highlight=&amp;quot;1,4&amp;quot;] 24-SW3#show interfaces port-channel 1 Port-channel1 is up, line protocol is up (connected) Hardware is EtherChannel, address is 001a.6d44.0c1a (bia 001a.6d44.0c1a) MTU 1500 bytes, BW 2000000 Kbit, DLY 10 usec, reliability 255/255, txload 1/255, rxload 1/255 Encapsulation ARPA, loopback not set Keepalive set (10 sec) Full-duplex, 1000Mb/s, link type is auto, media type is unknown --- Omitted ---[/code] You can also verify EtherChannel with the following command, several options are available. [code highlight=&amp;quot;1&amp;quot;] 24-SW3#show etherchannel 1 ? detail Detail information port Port information port-channel Port-channel information protocol protocol enabled summary One-line summary per channel-group [/code] We now have a 2gbps unlink between these two switches, if we looked at spanning-tree we would see the port-channel interface (Po1) is in a forwading state and the two gigabit links are not listed as active interfaces. If you would like more information about EtherChannel look at the post I did some time ago about &lt;a href=&#34;http://ciscoskills.net/2012/01/04/basic-understanding-of-etherchannel/&#34; title=&#34;Basic Understanding of EtherChannel&#34;&gt;Understanding EtherChannel&lt;/a&gt;.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://datacenteroverlords.com/2013/09/02/link-aggregation/&#34;&gt;Link Aggregation&lt;/a&gt; (datacenteroverlords.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.thegeekstuff.com/2013/09/cisco-vlan-trunk/&#34;&gt;How to Create VLAN Trunking on Cisco Catalyst Switch&lt;/a&gt; (thegeekstuff.com)&lt;/li&gt;
-&lt;/ul&gt;
-
+          
+            Bundling physical links into one logical link is a common practice to up the bandwidth between switches, you may have this also configured on a server to bundle connections as well. In this tutorial I have two 2960 switches both of them trunking all VLANs on two gigabit ports. So in the end game is get 2gbps instead of 1gbps between switches while using Cisco’s proprietary protocol PAgb. It is important to remember that both of these protocols (PAgb and LACP) are link aggregation protocols only, their job is to make sure that EtherChannel is setup correctly by negotiating.
+          
+          
         
       </description>
     </item>

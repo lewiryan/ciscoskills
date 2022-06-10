@@ -14,32 +14,11 @@
       <guid>https://ciscoskills.net/2013/07/06/look-at-gns3-new-version/</guid>
       <description>
         
-          &lt;p&gt;&lt;strong&gt;Look at GNS3 - New Version:&lt;/strong&gt; A new version of GNS3 released on July 5th 2013 is available for download. You can download GNS3 v0.8.4 at &lt;a href=&#34;http://www.gns3.net&#34; title=&#34;GNS3: Graphical Network Simulator&#34;&gt;gns3.net&lt;/a&gt;. This release includes improvements and new features. Some of the important one are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Lots of &lt;a href=&#34;http://en.wikipedia.org/wiki/Graphical_user_interface&#34; title=&#34;Graphical user interface&#34;&gt;GUI&lt;/a&gt; improvements.&lt;/li&gt;
-&lt;li&gt;New hub device.&lt;/li&gt;
-&lt;li&gt;New Idlemax and Idlesleep settings (advanced manipulation of IDLE &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PC&lt;/a&gt;).&lt;/li&gt;
-&lt;li&gt;IOS image and settings test button.&lt;/li&gt;
-&lt;li&gt;New Tool menu to start external scripts/tools.&lt;/li&gt;
-&lt;li&gt;Drag &amp;amp; drop of multiple devices when pressing SHIFT.&lt;/li&gt;
-&lt;li&gt;Temporary projects are created by default.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/VirtualBox&#34; title=&#34;VirtualBox&#34;&gt;VirtualBox&lt;/a&gt; interface numbering starts at 0 (e.g. e0 = VirtualBox interface 1 = eth0 on &lt;a href=&#34;http://en.wikipedia.org/wiki/Linux&#34; title=&#34;Linux&#34;&gt;Linux&lt;/a&gt;).&lt;/li&gt;
-&lt;li&gt;Support for 36 network cards in VirtualBox (using ICH9 chipset)&lt;/li&gt;
-&lt;li&gt;New option to save traffic captures in project directories.&lt;/li&gt;
-&lt;li&gt;Experimental auto IDLE PC calculation feature (requires &lt;a href=&#34;http://en.wikipedia.org/wiki/Dynamips&#34; title=&#34;Dynamips&#34;&gt;Dynamips&lt;/a&gt; greater than 0.2.8-RC5, which is included in Windows all-in-one and &lt;a href=&#34;http://en.wikipedia.org/wiki/OS_X&#34; title=&#34;OS X&#34;&gt;OSX&lt;/a&gt; DMG).&lt;/li&gt;
-&lt;li&gt;Added entries to have Dynamips/Qemu/VirtualBox hypervisors bind/listen to all available IP/host addresses (optional).&lt;/li&gt;
-&lt;li&gt;AW+ router support by &lt;a href=&#34;http://en.wikipedia.org/wiki/Allied_Telesis&#34; title=&#34;Allied Telesis&#34;&gt;Allied Telesis&lt;/a&gt; from &lt;a href=&#34;http://en.wikipedia.org/wiki/New_Zealand&#34; title=&#34;New Zealand&#34;&gt;New Zealand&lt;/a&gt; (educational version of their OS to be released).&lt;/li&gt;
-&lt;li&gt;Removed the “Save IOS configs option” in project settings. IOS configs are always saved.&lt;/li&gt;
-&lt;li&gt;Qemu FLASH files are automatically saved in a directory named ‘qemu-flash-drives’ (in the project directory).&lt;/li&gt;
-&lt;li&gt;Dynamips version 0.2.8&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You can also read the &lt;a href=&#34;http://code.gns3.net/gns3-devel/raw-file/94a2358b0b55/CHANGELOG&#34; title=&#34;GNS3 - Change Log&#34;&gt;changelog&lt;/a&gt; for a full list of changes! I have used GNS3 off and on with my certification studies, it has always been a great program for that &amp;quot;what if question.&amp;quot; Currently I am using if for some &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt; routing redundancy checks and some proof of concept designs. What are some good topologies for GNS3 have you seen? Post some links! I have just downloaded the new version and I will get back with you :) Have questions about GNS3? Post them on the &lt;a href=&#34;http://forum.gns3.net/&#34; title=&#34;Forum - GNS3&#34;&gt;GNS3 Forum.&lt;/a&gt;&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://rednectar.net/2013/07/06/gns3-0-8-4-released-today-here-are-the-highlights/&#34;&gt;GNS3 0.8.4 released today here are the highlights&lt;/a&gt; (rednectar.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://rednectar.net/2013/07/06/how-the-gns3-hypervisor-manager-works/&#34;&gt;How the GNS3 Hypervisor Manager Works&lt;/a&gt; (rednectar.net)&lt;/li&gt;
-&lt;/ul&gt;
-
+          
+            Look at GNS3 - New Version: A new version of GNS3 released on July 5th 2013 is available for download. You can download GNS3 v0.8.4 at gns3.net. This release includes improvements and new features. Some of the important one are:
+Lots of GUI improvements. New hub device. New Idlemax and Idlesleep settings (advanced manipulation of IDLE PC). IOS image and settings test button. New Tool menu to start external scripts/tools. Drag &amp;amp; drop of multiple devices when pressing SHIFT.
+          
+          
         
       </description>
     </item>

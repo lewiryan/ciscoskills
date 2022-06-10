@@ -14,71 +14,10 @@
       <guid>https://ciscoskills.net/2018/01/09/private-vlans/</guid>
       <description>
         
-          &lt;p&gt;Let&#39;s start out 2018 with private VLANs, with PVLANs the network gets a little more privacy added to it. When we have privacy on the network we can seclude certain parts of it. Essentially, &amp;quot;you can go about your business - move along, move along&amp;quot;. Private VLANs allow us to segment networks within a single VLAN. So in this post we&#39;ll go over the types of PVLANs as well as setup a network topology with private VLANs, Let&#39;s get started!&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;So in order to have a private VLAN we have to create a normal VLAN. Which is also called a primary VLAN. Within that private VLAN we can configure it two different ways:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Isolated private VLAN&lt;/strong&gt; - Which is just what it sounds like, this type of VLAN is cut off from everything including hosts within that same isolated private VLAN. The only thing this VLAN can reach is the primary VLAN.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Community private VLAN&lt;/strong&gt; - Again just like the name sounds this type of VLAN can be grouped together with other members in the same private VLAN community. This enables members of the same community to be able to talk to each other in the same PVLAN. as well as being able to reach the primary VLAN. However these communities are isolated from each other so they can&#39;t talk to other private VLAN communities or isolated PVLANs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Once we have set up the type of private VLAN we want we have to configure the individual ports on the switch, remember we have to always associate these private VLANs with a primary VLAN. We configure this on the individual switch port. There are two different types of modes for these switch ports:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Promiscuous&lt;/strong&gt; - This type of switch port mode is usually used for a common gateway device because when in this mode this port can talk to anything in primary or secondary VLAN.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Host&lt;/strong&gt; - Like the name says it, This port only talks to other ports in the same community or to any promiscuous port that is associated with on the same private VLAN. This is usually used is used for connecting hosts to the network with a PVLAN.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Let&#39;s look at an example of what the use case could be for using private VLANs. Acme Corp is getting into the hosting business and they have three customers/tenants so far, these three tenants are not related and these servers don&#39;t need to know about what else is on the network, they just need to connect to the internet through R1.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/01/pvlan-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Each PVLAN is a different &amp;quot;customer&amp;quot; and we have separated these servers with different private VLANs. These servers although they are on the same 10.0.0.0/24 network, they can&#39;t talk to each other. All servers can reach R1, servers that are in the same community PVLAN can reach each other as well. The configuration is pretty simple we have to create four (4) VLANs, in this example I have created VLANs 2, 3, 4, and 5. VLAN 2 is are primary VLAN and we are associating VLANs 3, 4 and 5 within VLAN 2.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# vlan 2
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-vlan)# private-vlan primary
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW1(config-vlan)# private-vlan association 3-5
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next we have to tell the switch which PVLANs are community PVLANs and which ones are isolated. In this example VLAN three (3) is an isoloated PVLAN. Where PVLANs four (4) and five (5) are community private VLANs&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# vlan 3
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-vlan)# private-vlan isolated
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW1(config-vlan)# exit
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;SW1(config)# vlan 4
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;SW1(config-vlan)# private-vlan community
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;SW1(config-vlan)# exit
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;SW1(config)# vlan 5
-&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;SW1(config-vlan)# private-vlan community
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After that we have to go into the individual switch ports for each server and router. Starting with R1 we are mapping VLANs 3, 4, and 5 to this port and turning on promiscuous. This allows R1 to be able to reach all hosts in these different PVLANs.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# interface gigabitethernet 1/1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-if)# description to R1
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW1(config-if)# switchport private-vlan mapping 2 3-5
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;SW1(config-if)# switchport mode private-vlan promiscuous
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;SW1(config-if)# exit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s jump to server-1&#39;s switch port. This PVLAN is isolated however it will still be able to reach R1 but not server-2/3/4/ or 5.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW1(config)# interface gigabitethernet 0/1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW1(config-if)# description to server-1
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW1(config-if)# switchport private-vlan host-association 2 3
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;SW1(config-if)# switchport mode private-vlan host
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;SW1(config-if)# exit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Going over to server-2 and server-3&#39;s switch ports. This PVLAN is a community private VLAN, these servers will be able to reach each other and R1 but not server-1 or server-4/5.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;SW1(config)# interface gigabitethernet 0/2
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;SW1(config-if)# description to server-2
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;SW1(config-if)# switchport private-vlan host-association 2 4
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;SW1(config-if)# switchport mode private-vlan host
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;SW1(config-if)# exit
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;SW1(config)# interface gigabitethernet 0/3
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;SW1(config-if)# description to server-3
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;SW1(config-if)# switchport private-vlan host-association 2 4
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;SW1(config-if)# switchport mode private-vlan host
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;SW1(config-if)# exit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Last group of servers to configure is server-4 and server-5. The setup is pretty close to server-2 and server-3 just changing the PVLANs. These servers will be able to reach R1 and each other but not server-2/3 or server-1.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;SW1(config)# interface gigabitethernet 0/2
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;SW1(config-if)# description to server-4
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;SW1(config-if)# switchport private-vlan host-association 2 5
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;SW1(config-if)# switchport mode private-vlan host
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;SW1(config-if)# exit
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;SW1(config)# interface gigabitethernet 0/3
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;SW1(config-if)# description to server-5
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;SW1(config-if)# switchport private-vlan host-association 2 5
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;SW1(config-if)# switchport mode private-vlan host
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;SW1(config-if)# exit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Creating PVLANs is not just for hosting providers you could configure this in a campus network like on a distribution switch to separate floors, departments or even different businesses. If you have Cisco VIRL I have also created a VIRL topology, If you don&#39;t have VIRL you can still browse the XML data and copy the configuration over for you own lab.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/lewiryan/VIRL/blob/master/Completed/PVLANs%20Sample.virl&#34;&gt;PVLANs Sample via Github&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Like always I hope this information is helpful! :)&lt;/p&gt;
-
+          
+            Let&#39;s start out 2018 with private VLANs, with PVLANs the network gets a little more privacy added to it. When we have privacy on the network we can seclude certain parts of it. Essentially, &amp;quot;you can go about your business - move along, move along&amp;quot;. Private VLANs allow us to segment networks within a single VLAN. So in this post we&#39;ll go over the types of PVLANs as well as setup a network topology with private VLANs, Let&#39;s get started!
+          
+          
         
       </description>
     </item>
@@ -91,21 +30,10 @@
       <guid>https://ciscoskills.net/2017/11/20/vlan-access-lists-vacls/</guid>
       <description>
         
-          &lt;p&gt;VACLs are another good layer of security to help control who can talk to who, much like  access control lists that are in firewalls and routers, however the difference is VACLs operate at layer two of the OSI model. There could be situations where you have multiple hosts on the same LAN and want to block traffic from reaching certain hosts within that same network, how would you go about blocking that type of traffic without using a router or firewall? &lt;em&gt;(Hint: Create a VACL)&lt;/em&gt;&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;In this post we have a DMZ and an INTERNAL network. The goal is to block DMZ systems from reaching other servers in the DMZ. We have are standard &amp;quot;out of the box&amp;quot; configuration firewall that is between the DMZ and INTERNAL network. In this example the firewall is configured with security-levels in place. The INTERNAL zone has a security-level of 100 and the DMZ zone as a security-level 80. We have two VLANs on this switch, VLAN two (2) which is the DMZ and VLAN three (3)  which is the INTERNAL VLAN. The firewall is using the &amp;quot;router on a stick&amp;quot; configuration and trunking VLANs on the single interface, and we have four servers total. Two DMZ servers and two INTERNAL servers are in this example.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/11/vacl-sample.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;The INTERNAL servers can reach the DMZ servers, however the DMZ servers can&#39;t reach the INTERNAL systems which is expected because of the security-levels that are configured on the firewall. However the DMZ servers can reach other, to disable that we need to create an ACL on the switch before we create a VACL :)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ip access-list extended BLK-DMZ-COMS permit ip 192.168.2.0 0.0.0.255 192.168.2.0 0.0.0.255
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This extended ACL is used to identify the source and destination traffic that we want to block. In this example this ACL matches DMZ servers talking to other DMZ servers in the 192.168.2.0/24 network. Next we have to build a VLAN access map, in this example I&#39;m calling it &amp;quot;VACL-BLK-DMZ-COMS&amp;quot;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vlan access-map VACL-BLK-DMZ-COMS 10 match ip address BLK-DMZ-COMS action drop
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This VLAN access map matches the IP address in our ACL that we created as well as the action to take if a match is successful. However just like ACLs VLANs access-maps have an implicit deny so we need to add another entry to the access map to allow everything else.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vlan access-map VACL-BLK-DMZ-COMS 20 action forward
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The final thing is to apply this VACL that we just created to the VLAN we want this VACL to apply enforce, which would be VLAN 2.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vlan filter VACL-BLK-DMZ-COMS vlan-list 2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s it! We have just enabled this VACL onto VLAN 2, the DMZ servers can no longer talk to each other. Our internal systems can still reach both of the DMZ systems just like we wanted. I hope this information is helpful,&lt;/p&gt;
-&lt;p&gt;If you are using Cisco VIRL here is a &lt;a href=&#34;https://github.com/lewiryan/VIRL/blob/master/Completed/VACL%20Sample.virl&#34;&gt;link on GitHub&lt;/a&gt; to the file I was working with.&lt;/p&gt;
-
+          
+            VACLs are another good layer of security to help control who can talk to who, much like access control lists that are in firewalls and routers, however the difference is VACLs operate at layer two of the OSI model. There could be situations where you have multiple hosts on the same LAN and want to block traffic from reaching certain hosts within that same network, how would you go about blocking that type of traffic without using a router or firewall?
+          
+          
         
       </description>
     </item>
@@ -118,94 +46,10 @@
       <guid>https://ciscoskills.net/2017/08/17/glbp-load-balancing/</guid>
       <description>
         
-          &lt;p&gt;We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.2(14)S, please welcome and &amp;quot;slow clap&amp;quot; the Gateway Load Balancing protocol, who has been around since 2002!&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;So the way this protocol works is you must have at least two devices (makes sense) in a GLBP group. The GLBP group has one AVG (Active Virtual Gateway) and multiple AVFs (Active Virtual Forwarders) if you have more than two devices. The AVG is the master of the group and assigns virtual MAC address to each AVF member. Remember each AVF is responsible for forwarding packets sent to their virtual MAC address, they act independently from the AVG.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Note: The AVG is also an AVF When a PC/server makes an ARP request to reach the default gateway each router in the GLBP group share the load by default one client will get a MAC address from one router, while the other client will get an address from another router but both clients point to the same IP address for the default gateway.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;In this example I have two different GLBP networks, the 192.168.1.0/24 and the 192.168.2.0/24 with three routers in each LAN. I also have a routing protocol running  between the routers (&lt;a href=&#34;http://ciscoskills.net/2017/05/25/configuring-eigrp-named-mode/&#34;&gt;Named EIGRP&lt;/a&gt;) to better handle the multiple paths as well as recover from failed links.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2017/07/glbp.png&#34; alt=&#34;GLBP network with three routers&#34;&gt;&lt;/p&gt;
-&lt;p&gt;To configure GLBP let&#39;s start on the 192.168.1.0/24 network, we have to configure the following on each router that belongs to the 192.168.1.0/24, which would be R1, R2, and R3, this configuration is under the interface that belongs to the 192.168.1.0/24 network. (Gigabit0/1)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 ip 192.168.1.1 glbp 1 preempt glbp 1 authentication md5 key-string cisco123
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we care which router is the AVG and which one is in succession we would have to configure the priority, higher is better. In this example we want R1 the AVG, R2 and R3 are backup AVGs. We also want to do the same thing for R4, R5, and R6 with R4 the AVG, R5 and R6 backup AVGs. On R1 and R4 under interface (Gigabit0/1):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 200
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On R2 and R5 under interface (Gigabit0/1):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 175
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On R3 and R6 under interface (Gigabit0/1):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;glbp 1 priority 150
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can verify if everything works by issuing the command show glbp brief&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#show glbp brief
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Interface   Grp  Fwd Pri State    Address         Active router   Standby router
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Gi0/1       1    -   200 Active   192.168.1.1     local           192.168.1.12
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Gi0/1       1    1   -   Active   0007.b400.0101  local           -
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Gi0/1       1    2   -   Listen   0007.b400.0102  192.168.1.12    -
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Gi0/1       1    3   -   Listen   0007.b400.0103  192.168.1.13    -
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;R4#show glbp brief
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Interface   Grp  Fwd Pri State    Address         Active router   Standby router
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Gi0/1       1    -   200 Active   192.168.2.1     local           192.168.2.15
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Gi0/1       1    1   -   Active   0007.b400.0101  local           -
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Gi0/1       1    2   -   Listen   0007.b400.0102  192.168.2.15    -
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;Gi0/1       1    3   -   Listen   0007.b400.0103  192.168.2.16    -
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we look at PC1 we can ping PC3 which tells us routing is working as well as GLBP. Looking at the ARP table on PC1 we notice that the default gateway MAC address is 00:07:b4:00:01:01&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;ping 192.168.1.21
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Pinging 192.168.1.21 with 32 bytes of data:
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time=1ms TTL=126
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time=1ms TTL=126
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time&amp;lt;1ms TTL=126
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Reply from 192.168.1.21: bytes=32 time&amp;lt;1ms TTL=126 
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;Ping statistics for 192.168.1.21:      
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss), 
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Approximate round trip times in milli-seconds:  
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    Minimum = 0ms, Maximum = 1ms, Average = 0ms 
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;arp -a
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Interface: 192.168.2.22 --- 0x10003
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  Internet Address      Physical Address      Type
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  192.168.2.1           00-07-b4-00-01-01     dynamic   
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Looking on PC2 we can ping PC4, looking at the ARP table notice that MAC address is different from what PC1 has, which is exactly how GLBP works :)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;ping 192.168.1.22
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Pinging 192.168.1.22 with 32 bytes of data:
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Reply from 192.168.1.22: bytes=32 time=1ms TTL=126
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Ping statistics for 192.168.1.22:
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Approximate round trip times in milli-seconds:
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;    Minimum = 1ms, Maximum = 1ms, Average = 1ms
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;arp -a
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;Interface: 192.168.2.21 --- 0x10003
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  Internet Address      Physical Address      Type
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  192.168.2.1           00-07-b4-00-01-03     dynamic
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  192.168.2.22          fa-16-3e-2d-9c-a5     dynamic   
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is a traceroute from PC3 going to PC1 notice the hops.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;tracert 192.168.2.21
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Tracing route to 192.168.2.21 over a maximum of 30 hops
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  1    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.1.12
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  2    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  172.16.0.18
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  3     1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.2.21  
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;Trace complete.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is a traceroute from PC4 going to PC2 notice the hops, a little different from PC3.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;C:\Documents and Settings\VIRL&amp;gt;tracert 192.168.2.22
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Tracing route to 192.168.2.22 over a maximum of 30 hops
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  1    &amp;lt;1 ms    &amp;lt;1 ms    &amp;lt;1 ms  192.168.1.13
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  2     1 ms    &amp;lt;1 ms    &amp;lt;1 ms  172.16.0.34
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  3     4 ms     1 ms    &amp;lt;1 ms  192.168.2.22 
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;Trace complete.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s all I got for this one, if you want to continue reading about GLBP you go right to source &lt;a href=&#34;http://www.cisco.com/en/US/docs/ios/12_2t/12_2t15/feature/guide/ft_glbp.html#wp1043699&#34;&gt;GLBP - Gateway Load Balancing Protocol&lt;/a&gt;. This is a pretty simple and personally a neat little protocol and with the added benefit of using all of your hardware. Like always I hope this helps. - Ryan&lt;/p&gt;
-
+          
+            We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.
+          
+          
         
       </description>
     </item>
@@ -218,30 +62,10 @@
       <guid>https://ciscoskills.net/2011/05/04/dynamic-routing-protocols/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/networking.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/networking.png&#34; alt=&#34;&#34; title=&#34;Dynamic Routing&#34;&gt;&lt;/a&gt;If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PCs&lt;/a&gt;, printers, and other network equipment. That&#39;s where &lt;a href=&#34;http://en.wikipedia.org/wiki/Adaptive_routing&#34; title=&#34;Adaptive routing&#34;&gt;dynamic routing&lt;/a&gt; protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post &lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34; title=&#34;Configure Static Routing&#34;&gt;Configure Static Routing&lt;/a&gt;) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it. (RIP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;, and &lt;a href=&#34;http://en.wikipedia.org/wiki/Border_Gateway_Protocol&#34; title=&#34;Border Gateway Protocol&#34;&gt;BGP&lt;/a&gt; are all examples of routing protocols! When using a dynamic routing protocol routers learn &amp;quot;dynamically&amp;quot; about other remote networks and automatically add these networks to its routing table. However keep in mind that when compared to static routing, dynamic routing require less administrator overhead but they will use the routers resources like, more RAM, more processing time (CPU), and even the network bandwidth&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/routing_updates/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/routing_updates.png?w=300&#34; alt=&#34;&#34; title=&#34;Routing_Updates&#34;&gt;&lt;/a&gt;Although there are several routing protocols each of them have their benefits but they all focus on these key things:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Learn about networks from other neighboring routers and maintain up-to-date routing information.&lt;/li&gt;
-&lt;li&gt;Advertise routing information to neighboring routers and thus discovering remote networks.&lt;/li&gt;
-&lt;li&gt;If more than route is possible the router will pick the best route based on its metric.&lt;/li&gt;
-&lt;li&gt;If the any one part of the network fails, react by advertising the bad routes and advertise the best available route. (Convergence)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Before we go any further about dynamic routing protocols remember there are two type of routing protocols used today:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Interior_gateway_protocol&#34; title=&#34;Interior gateway protocol&#34;&gt;IGP&lt;/a&gt; (Interior Gateway Protocols) A routing protocol that is designed for a single autonomous system. Some common routing protocols classified under IGP are RIP, &lt;a href=&#34;http://en.wikipedia.org/wiki/Interior_Gateway_Routing_Protocol&#34; title=&#34;Interior Gateway Routing Protocol&#34;&gt;IGRP&lt;/a&gt;, EIGRP, OSPF, IS-IS.&lt;/li&gt;
-&lt;li&gt;EGP (Exterior Gateway Protocols) A routing protocol that is designed for use in between autonomous systems. A common routing protocol classified under EGP is BGP.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/igp-and-egp/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/igp-and-egp.png?w=300&#34; alt=&#34;&#34; title=&#34;IGP and EGP&#34;&gt;&lt;/a&gt;Interior Gateway Protocols are used within a company or organization, once that information leaves the company or organization it moves towards the ISP which would use an &lt;a href=&#34;http://en.wikipedia.org/wiki/Exterior_Gateway_Protocol&#34; title=&#34;Exterior Gateway Protocol&#34;&gt;Exterior Gateway Protocol&lt;/a&gt; EGP. So for the picture above think of the clouds to be the inside of a company or organization and outside of that company or organization the routing protocol would change. For now let&#39;s stop there because the dynamic routing protocols open another door, like &lt;a href=&#34;http://en.wikipedia.org/wiki/Distance-vector_routing_protocol&#34; title=&#34;Distance-vector routing protocol&#34;&gt;Distance Vector&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;Link-state routing protocols&lt;/a&gt;, and the difference between classful and classless routing protocols along with the different type of administrative distances and metrics, these discussions for another day. :) Like always I hope this information was informative and if you have a topic that deals with either ICND1 or ICND2 material let me know by commenting below.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34;&gt;Configure Static Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/01/classful-vs-classless-routing/&#34; title=&#34;&#34;&gt;Classful vs. Classless Routing | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-06-01 10:53:15&#34;&gt;Jun 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Dynamic Routing If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get PCs, printers, and other network equipment. That&#39;s where dynamic routing protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post Configure Static Routing) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it.
+          
+          
         
       </description>
     </item>
@@ -254,22 +78,10 @@
       <guid>https://ciscoskills.net/2011/05/02/configure-static-routing/</guid>
       <description>
         
-          &lt;p&gt;Plugging Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;routers&lt;/a&gt; together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;routing&lt;/a&gt; protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change. A good example of using a &lt;a href=&#34;http://en.wikipedia.org/wiki/Static_routing&#34; title=&#34;Static routing&#34;&gt;static route&lt;/a&gt; is with a &lt;a href=&#34;http://en.wikipedia.org/wiki/Stub_network&#34; title=&#34;Stub network&#34;&gt;stub network&lt;/a&gt;. A stub network is only accessed by a single router and no other routes are configured so there is only one path the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_traffic_measurement&#34; title=&#34;Network traffic measurement&#34;&gt;network traffic&lt;/a&gt; can take. Notice the picture below and how any traffic going towards the network cloud from the 192.168.1.0 network will always pass the 172.16.5.0 network. Why waste putting a routing protocol here?) &lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/static_default_route.png?w=300&#34; alt=&#34;&#34; title=&#34;Stub Network&#34;&gt;In order to configure a static route you must be in the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_IOS&#34; title=&#34;Cisco IOS&#34;&gt;global configuration mode&lt;/a&gt;, the ip route command complete &lt;a href=&#34;http://en.wikipedia.org/wiki/Syntax&#34; title=&#34;Syntax&#34;&gt;syntax&lt;/a&gt; is the following: &lt;strong&gt;ip route&lt;/strong&gt; &lt;em&gt;prefix mask&lt;/em&gt; {&lt;em&gt;ip-address&lt;/em&gt;} | &lt;em&gt;interface-type interface-number&lt;/em&gt; [&lt;em&gt;ip-address&lt;/em&gt;]} [&lt;strong&gt;dhcp&lt;/strong&gt;] [&lt;em&gt;distance&lt;/em&gt;] [&lt;strong&gt;name&lt;/strong&gt; &lt;em&gt;next-hop-name&lt;/em&gt;] [&lt;strong&gt;permanent&lt;/strong&gt; | &lt;strong&gt;track&lt;/strong&gt; &lt;em&gt;number&lt;/em&gt;] [&lt;strong&gt;tag&lt;/strong&gt; &lt;em&gt;tag&lt;/em&gt;] For the CCENT/CCNA the complete syntax is not relevant, let&#39;s use a simpler version of the ip route syntax: &lt;strong&gt;ip route&lt;/strong&gt; &lt;em&gt;network-address&lt;/em&gt; &lt;em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;subnet-mask&lt;/a&gt;&lt;/em&gt; {&lt;em&gt;ip address&lt;/em&gt; | &lt;em&gt;exit interface&lt;/em&gt;} The &lt;em&gt;network address&lt;/em&gt; is the destination network or the remote address that will be added in the routing table. (For the complete syntax this follows on the prefix parameter) The &lt;em&gt;subnet mask&lt;/em&gt; is the subnet mask of the remote network that will be added in the routing table. (For the complete syntax this follows on the mask parameter) One or both of the following commands must be configured: The &lt;em&gt;ip-address&lt;/em&gt; in the syntax is usually called the next-hop router&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; The &lt;em&gt;exit-interface&lt;/em&gt; is the outgoing interface that would be used in forwarding the packets io the destination network (For the complete syntax this follows on the &lt;strong&gt;interface-type&lt;/strong&gt; &lt;em&gt;interface-number&lt;/em&gt; parameter) Looking at the picture above we need to have a static route on R2, we can do these in two ways the first example is using the next hop IP address. (For this example the next hop IP address is 172.16.5.1 R1&#39;s serial 0/0/0 interface. The next example is using the exit interface out of R2. [code]R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.5.1[/code]   [code]R2(config)#ip route 192.168.1.0 255.255.255.0 serial 0/0/1[/code] The last thing we need to do in order for this stub network to work is put a &lt;a href=&#34;http://en.wikipedia.org/wiki/Default_route&#34; title=&#34;Default route&#34;&gt;default route&lt;/a&gt; on R1 because R2 is going to the cloud the (internet or network) any traffic like a web request going to the internet needs to be forwarded to R2. A default route is a route that will match every IP address. Remember that a router does not have every single possible route on the internet or network usually these can be summary routes and default routes. Like on R2 we can do this in two ways, the first example is using the next hop IP address. (For this example the next hop IP address is 172.16.5.2 R2&#39;s serial 0/0/1 interface. The next example is using the exit interface out of R1. [code]R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.5.2[/code]   [code]R1(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0/0[/code] That&#39;s my tutorial for configuring static routes. Static routes do need some overhead but once you get them working you don&#39;t need to even touch it again. You can find more information at Cisco.com and the Cisco Learning Network. Like always I hope this information/tutorial was informative if you have any ideas on the next topic I should cover in the ICND1 or ICND2 area let me know by commenting below.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://joernfranz.net/2011/01/12/configuring-static-dynamic-ip-address-under-ubuntu/&#34;&gt;Configuring static / dynamic IP address under Ubuntu&lt;/a&gt; (joernfranz.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.makeuseof.com/tag/static-ip-address-advantages-disadvantages/&#34;&gt;What Is A Static IP Address, How Do I Get One &amp;amp; Its Advantages / Disadvantages&lt;/a&gt; (makeuseof.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.brighthub.com/internet/web-development/articles/113397.aspx&#34;&gt;How to Find Your IP Address&lt;/a&gt; (brighthub.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/27/configure-a-site-to-site-vpn-via-sdm/&#34;&gt;Configure a Site-to-Site VPN via SDM&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.ghacks.net/2011/04/29/why-your-home-router-is-192-168-1-1/&#34;&gt;Why Your Home Router is 192.168.1.1&lt;/a&gt; (ghacks.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/&#34; title=&#34;&#34;&gt;Dynamic Routing Protocols | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-05-04 11:07:03&#34;&gt;May 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Plugging Cisco routers together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic routing protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change.
+          
+          
         
       </description>
     </item>

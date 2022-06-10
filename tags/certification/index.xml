@@ -14,24 +14,10 @@
       <guid>https://ciscoskills.net/2019/06/11/changes-on-the-horizon-cisco/</guid>
       <description>
         
-          &lt;p&gt;Well we finally got an answer, Cisco is upping their Certifications and making some big changes. The CCNA track is taking a hit as all of the secondary exams under CCNA are being retired. If you are studying for any of these CCNA secondary exams keep in mind these won&#39;t transfer over after February 24th 2020. If you complete any current CCNA/CCDA certification before February 24, you’ll receive the new CCNA certification and a training badge in the corresponding technology area. (No idea what a training badge is)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;CCNA Cloud&lt;/li&gt;
-&lt;li&gt;CCNA Collaboration&lt;/li&gt;
-&lt;li&gt;CCNA Cyber Ops&lt;/li&gt;
-&lt;li&gt;CCNA Data Center&lt;/li&gt;
-&lt;li&gt;CCDA&lt;/li&gt;
-&lt;li&gt;CCNA Industrial&lt;/li&gt;
-&lt;li&gt;CCNA Security&lt;/li&gt;
-&lt;li&gt;CCNA Service Provider&lt;/li&gt;
-&lt;li&gt;CCNA Wireless&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If you are CCNP or trying to become one there are some migration tools to you can look at: &lt;a href=&#34;https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/professional/ccnp-routing-switching-migration-tool.html&#34;&gt;CCNP Route Switch Migration Tool&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/professional/ccnp-security-migration-tool.html&#34;&gt;CCNP Security Migration Tool&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/professional/ccnp-wireless-migration-tool.html&#34;&gt;CCNP Wireless Migration Tool&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Additional Information: &lt;a href=&#34;https://www.cisco.com/c/en/us/training-events/training-certifications/certifications.html&#34;&gt;Certifications - Training &amp;amp; Certifications - Cisco&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Personally I think its a good thing but there is definitely a change, CCNA is the odd one out unfortunately. If you are in the programming space Cisco DevNet gets their own certification track in February 2020. This is something that Network Engineers have been dabbling in for a while now. More to come I&#39;m sure ;)&lt;/p&gt;
-
+          
+            Well we finally got an answer, Cisco is upping their Certifications and making some big changes. The CCNA track is taking a hit as all of the secondary exams under CCNA are being retired. If you are studying for any of these CCNA secondary exams keep in mind these won&#39;t transfer over after February 24th 2020. If you complete any current CCNA/CCDA certification before February 24, you’ll receive the new CCNA certification and a training badge in the corresponding technology area.
+          
+          
         
       </description>
     </item>
@@ -44,16 +30,10 @@
       <guid>https://ciscoskills.net/2014/12/05/cisco-virl-is-out-...-for-a-price/</guid>
       <description>
         
-          &lt;p&gt;Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;CML is Cisco TAC supported so you can call Cisco.  With VIRL you have community to help you out.&lt;/li&gt;
-&lt;li&gt;You have cap of 15 devices with VIRL. The CML version capacity is dependent on the hardware its running on.&lt;/li&gt;
-&lt;li&gt;CML is  for the &amp;quot;Big Guys&amp;quot;, and way more expensive. VIRL is just for personal/training use. (i.e CCNA, CCNP, CCIE)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To be upfront I have not purchased VIRL so I can&#39;t tell you my thoughts on the product itself but personally I think this is great way to learn and study Cisco certifications when looking at CCNP and even CCIE. This is way cheaper than buying hardware or renting rack space. The price is $199.99 a year and I would assume this would cover any updates the product has. Cisco is also selling an Academic Version for $79.99 a year with some extra terms attached to it. I&#39;m curious if anybody has any thoughts on VIRL, what advantages do you think this network simulation program (VIRL) has compared to GNS3? What do you think VIRL&#39;s target audience is? Is this price too high? Finally do you think the product is too green? Are you going to buy it or wait and see?&lt;/p&gt;
-&lt;p&gt;Comment below. Links: &lt;a href=&#34;http://virl.cisco.com/&#34;&gt;http://virl.cisco.com/&lt;/a&gt;
-&lt;a href=&#34;http://community.dev-innovate.com/c/virl&#34;&gt;http://community.dev-innovate.com/c/virl&lt;/a&gt;&lt;/p&gt;
-
+          
+            Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)
+          
+          
         
       </description>
     </item>
@@ -66,13 +46,11 @@
       <guid>https://ciscoskills.net/2014/04/16/640-911-chapter-10-11/</guid>
       <description>
         
-          &lt;p&gt;Just like before if you have followed, I have gone over the CCNA Data Center Study Guide from Todd Lammle and in this post we cover two chapters. Feel free to comment below if you have any questions on either of these two chapters.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;strong&gt;Chapter 10 Overview&lt;/strong&gt;: Chapter 10 starts us back in the book, before we do any configuring and we learn about routing protocols, and remember the difference between static and dynamic routing (name implies it) Also know the default administrate distances of the different routing protocols (starts on page 297). We also got a crash course in distance vector, link-state and hybrid routing protocols. Out of RIP, RIPv2, EIGRP and OSPF where does each protocol belong? Know the differences between RIP and RIPv2 (there is a couple of them) Know what EIGRP does and it available features it offers as well as OSPF.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts&lt;/strong&gt;: This chapter went over the dynamic routing protocols and at a fundamental level but in important one to remember not to just pass the exam but to also go further. There was a lot of good information in Chapter 10 about dynamic protocols. If you have never used/learned about dynamic routing protocols make sure you understand the chapter and go over the review questions.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Chapter 11 Overview&lt;/strong&gt;: Chapter 11 looks at layer two switching technologies, we get to learn about frame tagging or also called VLANs, make sure you understand how 802.1Q works. We also looked into some configuration options like learning how to set up a trunk link, VTP options and SVIs. Know what the type of modes VTP offers, and what is required when setting up VTP what needs to match? With SVIs know how to enable them and what they are used for because it’s not just a management port. (Hint: &lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34; title=&#34;Configure Router on a Stick&#34;&gt;Router on a Stick&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts&lt;/strong&gt;: We went from Layer 3 in the OSI back to Layer 2, we need to know the difference between VLANs as we start to blur the lines when using Router on a Stick configurations. This chapter covered the basics of VLANs an important step to make sure you understand the fundamentals. Same things goes with this chapter, if you have never used/learned about VLANs, VTP, SVIs make sure to go over the chapter and review questions. Short and sweet, please post any questions if you have any about this chapter, I hope this information is helpful.&lt;/p&gt;
-
+          
+            Just like before if you have followed, I have gone over the CCNA Data Center Study Guide from Todd Lammle and in this post we cover two chapters. Feel free to comment below if you have any questions on either of these two chapters.
+Chapter 10 Overview: Chapter 10 starts us back in the book, before we do any configuring and we learn about routing protocols, and remember the difference between static and dynamic routing (name implies it) Also know the default administrate distances of the different routing protocols (starts on page 297).
+          
+          
         
       </description>
     </item>
@@ -85,8 +63,10 @@
       <guid>https://ciscoskills.net/2014/02/27/640-911-chapter-7/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt;If you made it past the earlier chapters this one should be interesting, like before I am going through each chapter of the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. Comment below if you have questions in this chapter, last week we learned about subnetting and in this chapter we will learn about the NX-OS which is Cisco&#39;s Data Center switches. Let&#39;s begin! &lt;strong&gt;Overview&lt;/strong&gt;: This was short chapter in introducing the NX-OS product line and into the virtualized enviroments that data centers are now becoming. In this chapter you will discover that Cisco wants all traffic both SAN and LAN unified on one switch instead of being separate devices. The NX-OS is a Linux system with some pretty neat isolation features with the data and control plane separated and the ability to offload crunching to dedicated CPUs instead of sharing the load. I also liked how the system manger worked, it reminds me of a watchdog making sure everything is running in par and the ability to restart processes with automatic restart thanks to PSS. (Persistent Storage Service) Being able to upgrade the software and still being able to forwarded traffic is also very cool, thanks ISSU (No downtime around here :) ) I hinted on an &lt;a href=&#34;http://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/&#34; title=&#34;Connecting FEX (5k to 2k)&#34;&gt;earlier post&lt;/a&gt; that the Nexus runs on efficiency and only loads what it needs or configured, why load up NTP if you are not going to use it? Know some common process that can run on the NX-OS like STP, CDP, and HSRP. All of these have to be turned on before you can use them. Some other cool things you can do is VRF which separates the routing table for multi-tenancy or for security requirements. Finally being able to a VDC (virtualized dedicated device) which is able run another copy of the NX-OS on the same hardware and depending the model of Nexus hardware you are using you can run up to eight different systems! **My thoughts: **Very cool stuff going on in the Cisco world, if you never heard of the Nexus and this is first time reading this chapter what does this remind you of? We know that servers took a huge movement into virtualization to combat server sprawl. The Nexus is attempting a similar approach to add to their portfolio. What is interesting to me is the Nexus was first introduced in the beginning of 2008, which makes the NX-OS product six years old. For the exam go over the chapter and review questions as always ask questions if you have any by commenting below.&lt;/p&gt;
-
+          
+            If you made it past the earlier chapters this one should be interesting, like before I am going through each chapter of the CCNA Data Center Study Guide from Todd Lammle. Comment below if you have questions in this chapter, last week we learned about subnetting and in this chapter we will learn about the NX-OS which is Cisco&#39;s Data Center switches. Let&#39;s begin! Overview: This was short chapter in introducing the NX-OS product line and into the virtualized enviroments that data centers are now becoming.
+          
+          
         
       </description>
     </item>
@@ -99,12 +79,10 @@
       <guid>https://ciscoskills.net/2014/02/13/640-911-chapter-5/</guid>
       <description>
         
-          &lt;p&gt;Last week we covered chapter four which talked about the TCP/IP and the DoD models and what role they cover in networking as we learned that every application like FTP, DNS, DHCP depend on it. Like always post questions if you have any about the book &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. I&#39;ll continue to cover  topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. Let&#39;s go over chapter five.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt;
-I think we knew it was on the way, in this chapter we opened the door to IPv4 addressing. If this is your first time understanding IP addresses go over it carefully, this exam will cover it. Know the ranges of a Class A, B and C networks, where&#39;s the loopback? Also know the private IP class ranges of A, B and C. (RFC1918) Know the difference between broadcasts, unicast, and multicast addresses. We also got introduced into IPv6, know the address format, the short hand way to write an IPv6 address as well as the types of IPv6 addresses. (link-local, unicast, global unicast addresses, and unique local address)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts:&lt;/strong&gt; If you have been around IPv4 addresses you might be good on this chapter, towards the end of the chapter I would look at IPv6, we don&#39;t talk about subnetting yet that&#39;s next week. :) Pretty short chapter this week post questions below if you have any on this chapter.&lt;/p&gt;
-
+          
+            Last week we covered chapter four which talked about the TCP/IP and the DoD models and what role they cover in networking as we learned that every application like FTP, DNS, DHCP depend on it. Like always post questions if you have any about the book CCNA Data Center Study Guide from Todd Lammle. I&#39;ll continue to cover topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover.
+          
+          
         
       </description>
     </item>
@@ -117,15 +95,10 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2014/02/06/640-911-chapter-4/</guid>
       <description>
         
-          &lt;p&gt;Continuing where we left off on Chapter 3 on &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. Like before feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter three we discussed about Ethernet Technologies and in chapter four we will learn about the TCP/IP protocol which is fundamentally the protocol that makes the Internet work.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;strong&gt;Overview&lt;/strong&gt;: The chapter started talking about the DoD model and comparing it to the OSI model, remember this and a little history behind it as well as the layers the DoD model shows its relevance with the OSI model. We start talking about applications like Telnet, FTP, SMTP what are these? Know the common applications and their port numbers. The chapter also talked about host-to-host layer protocols like TCP and UDP, know the difference between these two, and some memorization of what the TCP and UDP header looks like. (Which one is unreliable and which one uses acknowledgments and flow control?) We also looked into the Internet layer Protocols, do you know them all and their functions? Also know what the IP header looks like. (What does it include?)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Personal Story&lt;/strong&gt;: I wanted to jump in and talk about my personal experience with TCP/IP protocol mainly the ICMP management of it. I was contracted with a company that had a Cisco Phone System and a 2900 router using SiP as well as Internet on top it. They had this time clock system that would send punches over a VPN to a corporate office and it was setup and working for a while until of course it eventually stopped sending time punches. This took about a week to figure out as the VPN was online and you could contact the device from corporate. With a SPAN port I could see traffic hitting the time clock as well as it coming back. The issue was when the 2900 router was setup, it was set to disregard ICMP (For general network security) because of the way the time clock is designed it would use ICMP to decide the acceptable MTU size before sending time punches. Since it never got a reply it would fail on sending time punches, in the end I enabled the router to accept ICMP to fix the issue. Long story short, ICMP is a management protocol for IP and although it can be used against you, it&#39;s a balancing act between security and functionally and in this case the time clock used ICMP legitimately, lesson learned. :)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts:&lt;/strong&gt; Personally I liked going over this chapter it starts to put some pieces together, I would read it over if you have seen this before just lock down any missing parts. Also post any questions about this chapter below.&lt;/p&gt;
-&lt;p&gt;Could be Helpful? &lt;a href=&#34;https://ciscoskills.net/files/2014/01/640-911_dcicn.pdf&#34;&gt;640-911 Exam Topics&lt;/a&gt; (PDF)&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/02/25/understanding-tcp/&#34; title=&#34;Understanding TCP&#34;&gt;Understanding TCP&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/28/understanding-udp/&#34; title=&#34;Understanding UDP&#34;&gt;Understanding UDP&lt;/a&gt;&lt;/p&gt;
-
+          
+            Continuing where we left off on Chapter 3 on CCNA Data Center Study Guide from Todd Lammle. Like before feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter three we discussed about Ethernet Technologies and in chapter four we will learn about the TCP/IP protocol which is fundamentally the protocol that makes the Internet work.
+          
+          
         
       </description>
     </item>
@@ -138,31 +111,10 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2014/02/03/ccnp-security-refresh/</guid>
       <description>
         
-          &lt;p&gt;Cisco recently published its &lt;a href=&#34;http://www.cisco.com/web/offers/lp/2014-annual-security-report/index.html&#34;&gt;2014 Annual Security Report&lt;/a&gt;, and some interesting data was captured in 2013. One of the details was a talent gap in network security and because of this gap Cisco has a major revision in the CCNP Security certification starting in April. Its estimated that in short term or already present is shortage of more than a million security professionals worldwide! Like mentioned because of this Cisco is reworking the CCNP Security track. Let&#39;s get into the details of the changes coming in April 22nd 2014. One thing I noticed is the exam names themselves such as the old exams are specifying Cisco&#39;s own technologies to solve these security issues.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;642-637 (SECURE) Securing Networks with Cisco Routers and Switches.&lt;/li&gt;
-&lt;li&gt;642-618 (FIREWALL) Deploying Cisco ASA Firewall Solutions.&lt;/li&gt;
-&lt;li&gt;642-648 (VPN) Deploying Cisco ASA VPN Solutions.&lt;/li&gt;
-&lt;li&gt;642-627 (IPS) Implementing Cisco Intrusion Prevention System.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The refreshed exam looks at the overall picture of security instead of throwing in a specific box to solve your problem along with knowing how to administrate the device. The new exam names are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;300-208 (SISAS) Implementing Cisco Secure Access Solutions&lt;/li&gt;
-&lt;li&gt;300-206 (SENSS) Implementing Cisco Edge Network Security Solutions .&lt;/li&gt;
-&lt;li&gt;300-209 (SIMOS) Implementing Cisco Secure Mobility Solutions.&lt;/li&gt;
-&lt;li&gt;300-207 (SITCS) Implementing Cisco Threat Control Solutions.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This alignment goes together with the new material of the Associate level exam (&lt;a href=&#34;http://ciscoskills.net/2013/09/30/ccna-2-0-whats-new/&#34; title=&#34;CCNA 2.0 What’s New?&#34;&gt;CCNA 2.0&lt;/a&gt; Is what I&#39;m calling it :) ) What is also interesting is Cisco is retiring alot of the Security Specialist exams on April 22nd 2014, below is a list of exams and their last day to test.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Cisco ASA Specialist  - April 21st 2014&lt;/li&gt;
-&lt;li&gt;Cisco Firewall Security Specialist - April 21st 2014&lt;/li&gt;
-&lt;li&gt;Cisco IOS Security Specialist - April 21st 2014&lt;/li&gt;
-&lt;li&gt;Cisco IPS Security Specialist - April 21st 2014&lt;/li&gt;
-&lt;li&gt;Cisco Network Admission Control Specialist - April 21st 2014&lt;/li&gt;
-&lt;li&gt;Cisco VPN Security Specialist - Aprial 21st 2014&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In return Cisco is offering training for these specific products, I was unable to tell if completing these training courses tied to any new certifications. My guess is since Cisco is retiring these types of specialist certifications, these are just training materials to help you better understand Cisco&#39;s product line along with administrating the product. All of this is still pretty new information, the Cisco Learning Network will be having CCNP Tech Seminars stating February 4th and going through April 1st. All of this free to access by registering which would be incredibility helpful. &lt;a href=&#34;https://learningnetwork.cisco.com/community/certifications/ccnpsecurity/senss/ccnp_security_tech_seminars&#34; title=&#34;CCNP Security Tech Seminars&#34;&gt;CCNP Security Tech Seminars&lt;/a&gt; Like always I hope the above information is helpful. If you have any questions or if you currently studying for the CCNP Security comment below on what you think about these changes.&lt;/p&gt;
-
+          
+            Cisco recently published its 2014 Annual Security Report, and some interesting data was captured in 2013. One of the details was a talent gap in network security and because of this gap Cisco has a major revision in the CCNP Security certification starting in April. Its estimated that in short term or already present is shortage of more than a million security professionals worldwide! Like mentioned because of this Cisco is reworking the CCNP Security track.
+          
+          
         
       </description>
     </item>
@@ -175,14 +127,10 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2014/01/30/640-911-chapter-3/</guid>
       <description>
         
-          &lt;p&gt;Picking up were we left on off on a series of blog posts that follow the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. Feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter two we discussed about internetworking and in chapter three we will learn about Ethernet technologies.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt; 
-This chapter goes over what chapter 2 started we get more information on collision domains, broadcast domains, and introductions into CSMA/CD and the familiarity link between half and full-duplex ethernet. We also looked at the sections of a MAC address and what the IEEE is involved with assignment of these address when giving them to manufactures. We learned about how to convert binary to hexadecimal as well as vice versa. We also looked at the Data link layer and the fields associated with it.(Which part of the OSI model is that?)&lt;/p&gt;
-&lt;p&gt;Chapter 2 hinted on the cabling standards but we now have a list full of them starting from coaxial cable to single-mode fiber cable. (Which goes further?) We also learned which  type of cable connects to what and how they are terminated. (Like devices use a crossover cable and not a straight-through cable) We finally talked about Data encapsulation and had some good examples at the end of the chapter of how a computer sends information on the network and it looks like more information is in Chapter 9 :) .&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts:&lt;/strong&gt; I would read this chapter even if you went through it before there is a lot of information that needs refreshed (at least for me) if you are going to take the exam. Go over the review questions and over the written labs for converting from decimal to binary and from binary to hexadecimal.&lt;/p&gt;
-&lt;p&gt;Could be helpful?: &lt;a href=&#34;http://ciscoskills.net/2011/03/10/crossover-or-straight-through/&#34; title=&#34;Crossover or Straight through?&#34;&gt;Crossover or Straight through?&lt;/a&gt; &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911_dcicn.pdf&#34;&gt;640-911 Exam Topics&lt;/a&gt;(PDF)&lt;/p&gt;
-
+          
+            Picking up were we left on off on a series of blog posts that follow the CCNA Data Center Study Guide from Todd Lammle. Feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter two we discussed about internetworking and in chapter three we will learn about Ethernet technologies.
+          
+          
         
       </description>
     </item>
@@ -195,30 +143,10 @@ This chapter goes over what chapter 2 started we get more information on collisi
       <guid>https://ciscoskills.net/2014/01/16/640-911-chapter-1/</guid>
       <description>
         
-          &lt;p&gt;So I bought the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/ref=sr_1_1?ie=UTF8&amp;amp;qid=1389461666&amp;amp;sr=8-1&amp;amp;keywords=ccna+data+center&#34; title=&#34;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide: Exam 640-911&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. I have decided it would be a good idea to go over the topics of each chapter of this book in series of  blog posts. The idea of this is to work together if on a study group, go over the topics in each chapter of the book, talk about examples and to get an idea of what the exam would cover. Below are my thoughts about chapter one.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt; So when I read chapter one I had to remind myself this is an introduction into the CCNA Data Center exam, as I have &lt;a href=&#34;http://ciscoskills.net/2012/11/21/ccna-data-center/&#34; title=&#34;CCNA Data Center&#34;&gt;talked before&lt;/a&gt; the 640-911 exam has no perquisites so we started at the beginning. Asking ourselves “What is a Network?” Todd does a good job in introducing us into these technologies, like understanding what a LAN, WAN is and the difference between these types of logical topologies. We also covered the most common types of network devices such as a workstations, servers, and printers and what function they do on the network. As well as understanding what a peer-to-peer network is and client/server network, when would you use these type of network architectures? We then finally jumped into the type of physical topologies like what a bus, star, ring, are and what are the pros and cons of each? At the end of this chapter you should understand the following:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Know the types of network topologies. For example what is the difference between a logical topology and a physical topology?&lt;/li&gt;
-&lt;li&gt;Know the pros and cons of each topology. For example a Mesh topology vs. a Star topology?&lt;/li&gt;
-&lt;li&gt;Understand the difference between a LANs and WANs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts:&lt;/strong&gt; For this chapter it&#39;s a review if you went over some CCENT/CCNA study materials or have a CCENT, however don’t skip over this chapter. Instead I would check the review questions on page 23, if you do pretty well go over to chapter two. I have of hinted on this before if you have a CCNA or higher it may seem like a review but there are flakes of new material scattered into the exam and just enough to fail you if you decide to skip it. :) I hope this information will be helpful and if you have any questions on chapter one comment below.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22chamambom@gmail.com%22&#34;&gt;Martin&lt;/a&gt; - &lt;time datetime=&#34;2014-01-16 13:55:08&#34;&gt;Jan 4, 2014&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;looking forward to the new cert ,im CCNA certified and didnt want to tek the steep CCNP route just yet as im too busy at work ,this will definitely work for me&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2014-01-16 17:52:36&#34;&gt;Jan 4, 2014&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Martin, You an me are in the same boat :) Ryan&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2014/01/23/640-911-chapter-2/&#34; title=&#34;&#34;&gt;640-911 (Chapter 2) « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2014-01-23 12:15:53&#34;&gt;Jan 4, 2014&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[…] offers and to get an idea of what the Cisco exam would cover. Continuing where we left off from chapter one let’s begin chapter […]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            So I bought the CCNA Data Center Study Guide from Todd Lammle. I have decided it would be a good idea to go over the topics of each chapter of this book in series of blog posts. The idea of this is to work together if on a study group, go over the topics in each chapter of the book, talk about examples and to get an idea of what the exam would cover.
+          
+          
         
       </description>
     </item>
@@ -231,29 +159,10 @@ This chapter goes over what chapter 2 started we get more information on collisi
       <guid>https://ciscoskills.net/2013/09/30/ccna-2-0-whats-new/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/03/exploration.png&#34; alt=&#34;Cisco-Network&#34;&gt;&lt;/a&gt;I brought this topic up in March of this year &lt;a href=&#34;http://ciscoskills.net/2013/03/26/ccna-version-2-0-refresh/&#34; title=&#34;CCNA Version 2.0 Refresh&#34;&gt;(See original post)&lt;/a&gt; but I wanted to re-post it to add some information because as of today this was your last day to pass the older &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; exams. &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has a refreshed all the CCNA Routing and Switching exams. That includes the ICND1 (640-822), the ICND2 (640-816), and the all in wonder exam (640-816). You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track. Starting at the CCNA the refreshed exams are the following, 100-101 ICND1 &lt;strong&gt;(which replaces 640-822 exam)&lt;/strong&gt;, 200-101 ICND2 &lt;strong&gt;(which replaces 640-816 exam)&lt;/strong&gt;, and the all in wonder 200-120 CCNA &lt;strong&gt;(which replaces the all in wonder 640-802 exam)&lt;/strong&gt;. Like I mentioned earlier the last day to take these older exams are September 30th of 2013 so good luck :) What has changed:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The certification was formerly called CCNA  is now called CCNA Routing and Switching with no prerequisites (Like before)&lt;/li&gt;
-&lt;li&gt;If you wish to have advanced technology certifications like the CCNA Security, CCNA Voice, &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Wireless&lt;/a&gt; you must have at least a CCENT or CCNA R&amp;amp;S &lt;strong&gt;(Before you had to have CCNA)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Expect these exams to have Router IOS version 15 instead of versions 12.4, expect more IPv6 &lt;a href=&#34;http://en.wikipedia.org/wiki/Information&#34; title=&#34;Information&#34;&gt;information&lt;/a&gt; as IPv4 is depleted , and IOS licensing.&lt;/li&gt;
-&lt;li&gt;No &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt; version 1 or version 2 :(&lt;/li&gt;
-&lt;li&gt;No &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;WLAN&lt;/a&gt; information&lt;/li&gt;
-&lt;li&gt;Some of the information that was in the ICND2 has shifted to the new ICND1 100-101.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Also check out this MircoNugget with Jeremy Cioara to see some other detail about the new exams: &lt;a href=&#34;http://www.youtube.com/watch?v=Ym3zBF4-2J0&#34;&gt;http://www.youtube.com/watch?v=Ym3zBF4-2J0&lt;/a&gt; You can find more information at &lt;a href=&#34;http://newsroom.cisco.com/press-release-content?type=webcontent&amp;amp;articleId=1156334http://&#34; title=&#34;Cisco Evolves Associate-Level Certifications, Redesigns CCNA Routing and Switching Certification to Support Next-Generation Job Roles&#34;&gt;Cisco&#39;s Newsroom&lt;/a&gt;, along with going to &lt;a href=&#34;http://www.cisco.com/web/learning/certifications/index.html&#34; title=&#34;Training &amp;amp; Certifications&#34;&gt;Cisco&#39;s Training &amp;amp; Certifications site&lt;/a&gt; and looking at the &lt;a href=&#34;http://www.cisco.com/web/learning/certifications/associate/index.html&#34; title=&#34;Associate Certifications&#34;&gt;Associate Certifications area&lt;/a&gt;. What do you think of these changes? I also hope this information is helpful and good luck on the new exams! &lt;strong&gt;Reading material:&lt;/strong&gt; ICND1 100-101 - &lt;a href=&#34;http://www.amazon.com/Cisco-CCENT-ICND1-100-101-Official/dp/1587143852/ref=sr_1_5?ie=UTF8&amp;amp;qid=1373125508&amp;amp;sr=8-5&amp;amp;keywords=CCNA&#34; title=&#34;Cisco CCENT/CCNA ICND1 100-101 Official Cert Guide&#34;&gt;Cisco CCENT/CCNA ICND1 100-101 Official Cert Guide&lt;/a&gt; &lt;strong&gt;Reading material:&lt;/strong&gt; ICND2 200-101 - &lt;a href=&#34;http://www.amazon.com/Cisco-Routing-Switching-200-101-Official/dp/1587143739/ref=sr_1_2?s=books&amp;amp;ie=UTF8&amp;amp;qid=1373126056&amp;amp;sr=1-2&amp;amp;keywords=ICND2&#34; title=&#34;Cisco CCNA Routing and Switching ICND2 200-101 Official Cert Guide&#34;&gt;Cisco CCNA Routing and Switching ICND2 200-101 Official Cert Guide&lt;/a&gt; &lt;strong&gt;Reading material:&lt;/strong&gt; CCNA 200-120, includes ICND1 material and ICND2 material - &lt;a href=&#34;http://www.amazon.com/Routing-Switching-200-120-Official-Library/dp/1587143879/ref=sr_1_4?s=books&amp;amp;ie=UTF8&amp;amp;qid=1373125854&amp;amp;sr=1-4&amp;amp;keywords=CCNA&#34; title=&#34;Cisco CCNA Routing and Switching 200-120 Official Cert Guide Library&#34;&gt;Cisco CCNA Routing and Switching 200-120 Official Cert Guide Library&lt;/a&gt;&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.net-security.org/secworld.php?id=14662&#34;&gt;Cisco redesigns CCNA routing and switching certification&lt;/a&gt; (net-security.org)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2013/03/10/introduction-into-cisco-configuration-professional/&#34;&gt;Introduction into Cisco Configuration Professional&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2013/06/29/passed-640-554/&#34;&gt;Passed 640-554!&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2014/02/03/ccnp-security-refresh/&#34; title=&#34;&#34;&gt;CCNP Security Refresh « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2014-02-03 07:31:29&#34;&gt;Feb 1, 2014&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[…] alignment goes together with the new material of the Associate level exam (CCNA 2.0 Is what I’m calling it ) What is also interesting is Cisco is retiring alot of the Security […]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            I brought this topic up in March of this year (See original post) but I wanted to re-post it to add some information because as of today this was your last day to pass the older CCNA exams. Cisco has a refreshed all the CCNA Routing and Switching exams. That includes the ICND1 (640-822), the ICND2 (640-816), and the all in wonder exam (640-816). You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track.
+          
+          
         
       </description>
     </item>
@@ -266,29 +175,10 @@ This chapter goes over what chapter 2 started we get more information on collisi
       <guid>https://ciscoskills.net/2013/03/26/ccna-version-2.0-refresh/</guid>
       <description>
         
-          &lt;p&gt;I think we knew it was coming at some point and &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has recently announced a refresh for the 640-822 (ICND1), 640-816 (ICND2) and the all in one 640-802 (&lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt;) the last day to take these tests and get certified are September 30th of 2013. You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track. Starting at the CCNA the refreshed exams are the following, 100-101 ICND1 &lt;strong&gt;(which replaces 640-822 exam)&lt;/strong&gt;, 200-101 ICND2 &lt;strong&gt;(which replaces 640-816 exam)&lt;/strong&gt;, and the all in wonder 200-120 CCNA &lt;strong&gt;(which replaces the all in wonder 640-802 exam)&lt;/strong&gt;. Like I mentioned earlier the last day to take these older exams are September 30th of 2013 so good luck :) What has changed:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The certification was formerly called CCNA  is now called CCNA Routing and Switching with no prerequisites (Like before)&lt;/li&gt;
-&lt;li&gt;If you wish to have advanced technology certifications like the CCNA Security, CCNA Voice, &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Wireless&lt;/a&gt; you must have at least a CCENT or CCNA R&amp;amp;S &lt;strong&gt;(Before you had to have CCNA)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Expect these exams to have Router IOS version 15 instead of versions 12.4, expect more IPv6 &lt;a href=&#34;http://en.wikipedia.org/wiki/Information&#34; title=&#34;Information&#34;&gt;information&lt;/a&gt; as IPv4 is depleted , and IOS licensing.&lt;/li&gt;
-&lt;li&gt;No &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt; version 1 or version 2 :(&lt;/li&gt;
-&lt;li&gt;No &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;WLAN&lt;/a&gt; information&lt;/li&gt;
-&lt;li&gt;Some of the information that was in the ICND2 has shifted to the new ICND1 100-101.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You can find more information at &lt;a href=&#34;http://newsroom.cisco.com/press-release-content?type=webcontent&amp;amp;articleId=1156334http://&#34; title=&#34;Cisco Evolves Associate-Level Certifications, Redesigns CCNA Routing and Switching Certification to Support Next-Generation Job Roles&#34;&gt;Cisco&#39;s Newsroom&lt;/a&gt;, along with going to &lt;a href=&#34;http://www.cisco.com/web/learning/certifications/index.html&#34; title=&#34;Training &amp;amp; Certifications&#34;&gt;Cisco&#39;s Training &amp;amp; Certifications site&lt;/a&gt; and looking at the &lt;a href=&#34;http://www.cisco.com/web/learning/certifications/associate/index.html&#34; title=&#34;Associate Certifications&#34;&gt;Associate Certifications area&lt;/a&gt;. What do you think of these changes? If you studying for the older exam don&#39;t worry and continue going for it and get it done before September 30th of 2013! I hope this information is helpful and good luck ;) &lt;strong&gt;Update:&lt;/strong&gt;  New reading material ICND1 100-101 - &lt;a href=&#34;http://www.amazon.com/Cisco-CCENT-ICND1-100-101-Official/dp/1587143852/ref=sr_1_5?ie=UTF8&amp;amp;qid=1373125508&amp;amp;sr=8-5&amp;amp;keywords=CCNA&#34; title=&#34;Cisco CCENT/CCNA ICND1 100-101 Official Cert Guide&#34;&gt;Cisco CCENT/CCNA ICND1 100-101 Official Cert Guide&lt;/a&gt; &lt;strong&gt;Update:&lt;/strong&gt; New reading material ICND2 200-101 - &lt;a href=&#34;http://www.amazon.com/Cisco-Routing-Switching-200-101-Official/dp/1587143739/ref=sr_1_2?s=books&amp;amp;ie=UTF8&amp;amp;qid=1373126056&amp;amp;sr=1-2&amp;amp;keywords=ICND2&#34; title=&#34;Cisco CCNA Routing and Switching ICND2 200-101 Official Cert Guide&#34;&gt;Cisco CCNA Routing and Switching ICND2 200-101 Official Cert Guide&lt;/a&gt; &lt;strong&gt;Update:&lt;/strong&gt; New reading material CCNA 200-120, includes ICND1 material and ICND2 material - &lt;a href=&#34;http://www.amazon.com/Routing-Switching-200-120-Official-Library/dp/1587143879/ref=sr_1_4?s=books&amp;amp;ie=UTF8&amp;amp;qid=1373125854&amp;amp;sr=1-4&amp;amp;keywords=CCNA&#34; title=&#34;Cisco CCNA Routing and Switching 200-120 Official Cert Guide Library&#34;&gt;Cisco CCNA Routing and Switching 200-120 Official Cert Guide Library&lt;/a&gt;&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.net-security.org/secworld.php?id=14662&#34;&gt;Cisco redesigns CCNA routing and switching certification&lt;/a&gt; (net-security.org)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2013/03/10/introduction-into-cisco-configuration-professional/&#34;&gt;Introduction into Cisco Configuration Professional&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2013/06/29/passed-640-554/&#34;&gt;Passed 640-554!&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2013/09/30/ccna-2-0-whats-new/&#34; title=&#34;&#34;&gt;CCNA 2.0 What’s New? « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2013-09-30 18:34:44&#34;&gt;Sep 1, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[…] brought this topic up in March of this year (See original post) but I wanted to re-post it as today was your last day to pass the older CCNA exams. Cisco has a […]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            I think we knew it was coming at some point and Cisco has recently announced a refresh for the 640-822 (ICND1), 640-816 (ICND2) and the all in one 640-802 (CCNA) the last day to take these tests and get certified are September 30th of 2013. You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track.
+          
+          
         
       </description>
     </item>
@@ -301,53 +191,11 @@ This chapter goes over what chapter 2 started we get more information on collisi
       <guid>https://ciscoskills.net/2012/05/14/icnd2-passed/</guid>
       <description>
         
-          &lt;p&gt;So I just passed my ICND2 &lt;a href=&#34;http://en.wikipedia.org/wiki/Test_%28assessment%29&#34; title=&#34;Test (assessment)&#34;&gt;exam&lt;/a&gt;, I&#39;m now &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; certified!&lt;/p&gt;
-&lt;p&gt;This was a long road to travel over a year ago I passed &lt;a href=&#34;http://en.wikipedia.org/wiki/Interconnecting_Cisco_Networking_Devices_Part_1&#34; title=&#34;Interconnecting Cisco Networking Devices Part 1&#34;&gt;ICND1&lt;/a&gt; which I recived the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Certified_Entry_Networking_Technician&#34; title=&#34;Cisco Certified Entry Networking Technician&#34;&gt;CCENT&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Certification&#34; title=&#34;Certification&#34;&gt;certification&lt;/a&gt; but with just general life getting in the way I also saw my chance of getting CCNA status stepping further in the distance. If you read how I passed ICND1 will find that the way I studied for this exam was totally different from studying for the ICND1.  When I finished the ICND2 exam I saw my score and I was proud that I passed but I knew I could have done better but I don&#39;t think I would&#39;ve. Why?&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;I&#39;ve had this exam on my chest for over a year and it drag the matierial became boring and started to dry out because of the consent stop and go style of &lt;a href=&#34;http://en.wikipedia.org/wiki/Study_skills&#34; title=&#34;Study skills&#34;&gt;studying&lt;/a&gt;. (Don&#39;t do THIS!) This type of studying was going on for months until I decided to go with it because I was tired of relearning it. I studied for the upcomming exam about three weeks ago and on average was about eight hours a week. The book I used was &lt;a href=&#34;http://www.amazon.com/ICND2-640-816-Official-Guide-Edition/dp/1587204355/ref=sr_1_1?ie=UTF8&amp;amp;qid=1337044210&amp;amp;sr=8-1&#34; title=&#34;CCNA ICND2 640-816 Official Cert Guide (3rd Edition)&#34;&gt;CCNA ICND2 640-816 Official Cert Guide by Wendell Odom&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;So how did I study for the exam -&lt;/strong&gt;
-Well I studied alone for this one, unlike my ICND1 exam. (That was 50 percent of the battle) The other half of it was I had this exam on my chest for a long time. I would also read the material over and over. Yet I would not take the test because of other issues that would come up. I finally said that I am going to schedule this test and take it no matter if I am ready or not, or I would just keep delaying it. In the ICND1 post I made last year make sure you know the material, you can&#39;t guess at this stuff! You have to know it inside and out. If it is multiple choice I always look at the answers first before reading the question. I looked over the book the night before the exam date and really was asking myself questions that I could see on the exam, like the default AD distance of &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt; is?, Use &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt; to break this network down so it doesn&#39;t waste addresses, etc.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;How long did it take? -&lt;/strong&gt;
-I originally started studying for the exam in April of 2011 so it took over a year for me to take this test. Don&#39;t let that scare you, I could have probably taken it in 4 months or so but could not find the time, and life in general. However I passed, which shows that if you keep going for it you will get where you want to go.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Test Date -&lt;/strong&gt;
-So when I scheduled the test I also scheduled it on my birthday, not sure why I did maybe I felt lucky :). I felt pretty good when I started the exam but that soon changed for the worse. Let&#39;s just say I took the &amp;quot;I&#39;ll study what I think I need&amp;quot; approach. Which worked for me but if you are new to this field I would study everything. Although I passed I was nervous because I spent too much time thinking over the questions and simulations and at the end I had 2 minutes to spare when I finished the exam!&lt;/p&gt;
-&lt;p&gt;To close for comfort! Make a discussion and move on don&#39;t over think it. Looking back at my post &lt;a href=&#34;http://ciscoskills.net/2011/03/21/how-i-passed-the-icnd1-exam/&#34; title=&#34;How I passed the ICND1 Exam&#34;&gt;How I passed the ICND1 exam&lt;/a&gt; I can still say that you need to fully understand how to set up routers and switches and just a general concept of the idea. I really think one of the main reasons I passed was that I fully understood the concepts which for the most part is in the ICND1 exam. Taking the two-part exam help me because it focused on key areas of what to study. I think my next certification I&#39;m looking at is CCNA Security but I&#39;m not sure yet and I&#39;m taking a break first. :) Like always I hope this information is helpful and If you are going for your CCNA I wish you the best because I love the that feeling when you pass, because you know it was totally worth it!!&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://networkingnerd.net/2012/05/14/so-long-to-the-ccip/&#34;&gt;So Long To The CCIP&lt;/a&gt; (networkingnerd.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/02/21/hdlc-vs-ppp/&#34;&gt;HDLC vs. PPP&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/&#34;&gt;Part 2 - The Joys of Subnetttting - VLSM!&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2012/05/28/ccna-security-640-554/&#34; title=&#34;&#34;&gt;CCNA Security – 640-554 | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2012-05-28 11:23:44&#34;&gt;May 1, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://systemstechblog.wordpress.com&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2012-05-21 13:29:37&#34;&gt;May 1, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Thanks Kane, No I don&#39;t have an e-mail address for this site yet, but you can to continue to comment. What&#39;s your question? Ryan&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://systemstechblog.wordpress.com&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2012-09-22 15:20:00&#34;&gt;Sep 6, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Darwin, To be honest the Cisco Academy is what really got me hooked into this stuff. If you can afford it I would go for it. They provided the equipment, practice exams and labs along with access to Packet Tracer which is an awesome simulation tool that beats getting real equipment in the CCNA level. What is also nice is once you leave the Academy you still have access to it. The difference with me is I waited too long after I finished the Academy to feel comfortable taking the test although I still knew this stuff I needed a review and it helped that I took the Academy. Don’t take too long after you finish the Academy to take the test... I wish you luck :) Ryan&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-3&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://twitter.com/dar0d&#34; title=&#34;dar0d@twitter.example.com&#34;&gt;Darwin Rodriguez (@dar0d)&lt;/a&gt; - &lt;time datetime=&#34;2012-09-22 09:52:52&#34;&gt;Sep 6, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;I am in the Cisco Academy right now, CCNA semester 2. Since it took you a year to get ready for the CCNA and passed it studying on your own, do you think it is worth to go to the Cisco Academy? I am thinking in studying it on my own and save some bucks.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-4&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22Kan3@hushmail.com%22&#34;&gt;Kane&lt;/a&gt; - &lt;time datetime=&#34;2012-05-20 12:34:47&#34;&gt;May 0, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Congrats dude. Is there anyway to email / contact you? Thank you.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-5&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22fahdsuleman@gmail.com%22&#34;&gt;namelessone&lt;/a&gt; - &lt;time datetime=&#34;2012-10-09 07:36:58&#34;&gt;Oct 2, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;does the icnd 2 exam recertify your icnd 1? i did my icnd 1 over 2 years ago and am now getting around to icnd 2 - will it recertify my icnd 2&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-6&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://systemstechblog.wordpress.com&#34; title=&#34;&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2012-10-09 18:22:34&#34;&gt;Oct 2, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Namelessone, Yes it will. If you already have your ICND1 and you pass your ICND2 it will renew your ICND1 and also give you CCNA status. :) Going to Cisco&#39;s website also helps for more information: &lt;a href=&#34;http://www.cisco.com/web/learning/le3/learning_career_certifications_and_learning_paths_home.html&#34; title=&#34;IT Certification and Career Paths&#34;&gt;IT Certification and Career Paths&lt;/a&gt; Goodluck, Ryan&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            So I just passed my ICND2 exam, I&#39;m now CCNA certified!
+This was a long road to travel over a year ago I passed ICND1 which I recived the CCENT certification but with just general life getting in the way I also saw my chance of getting CCNA status stepping further in the distance. If you read how I passed ICND1 will find that the way I studied for this exam was totally different from studying for the ICND1.
+          
+          
         
       </description>
     </item>
@@ -360,18 +208,10 @@ So when I scheduled the test I also scheduled it on my birthday, not sure why 
       <guid>https://ciscoskills.net/2011/09/21/welcome-cct-cisco-certified-technician-certification/</guid>
       <description>
         
-          &lt;p&gt;Switching gears for today, Cisco has introduced a &lt;a href=&#34;http://en.wikipedia.org/wiki/Certification&#34; title=&#34;Certification&#34;&gt;certification&lt;/a&gt; for onsite support technicians, who need product-specific technical skills to diagnose, restore, repair, and replace critical Cisco equipment. This certification which was introduced this summer  now has questions about it from CLN (Cisco Learning Network) and other Cisco sites. So what is this new cert and any changes to &lt;a href=&#34;http://en.wikipedia.org/wiki/Interconnecting_Cisco_Networking_Devices_Part_1&#34; title=&#34;Interconnecting Cisco Networking Devices Part 1&#34;&gt;ICND1&lt;/a&gt; or ICND2? Short answer is no, this certification is on par with ICND1 or &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Certified_Entry_Networking_Technician&#34; title=&#34;Cisco Certified Entry Networking Technician&#34;&gt;CCENT&lt;/a&gt; according to Cisco but is focused on &lt;a href=&#34;http://en.wikipedia.org/wiki/Support_group&#34; title=&#34;Support group&#34;&gt;support groups&lt;/a&gt; like TAC (&lt;a href=&#34;http://en.wikipedia.org/wiki/Technical_assistance_center&#34; title=&#34;Technical assistance center&#34;&gt;Technical Assistance Center&lt;/a&gt;), NOC (&lt;a href=&#34;http://en.wikipedia.org/wiki/Network_operations_center&#34; title=&#34;Network operations center&#34;&gt;Network Operations Centers&lt;/a&gt;) and 3rd party support. Also this exam focuses on more hardware products instead of theory like in ICND and ICND2. People who are certified in this area are opened up to more Cisco products and services compared people who take ICND1 and or &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt;. If you do have this certification and a CCNA or CCENT you can renew it by taking the ICND2 or ICND1 and renew the CCT certification. These certs work together but offer a different path to follow the CCT is focused on hot swaps, troubleshooting and working for TACs. Anybody that is interested in taking the CCT course must complete the CCT Routing and Switching first (640-692 RSTECH) and then can choose to either get CCT &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; (640-893 DCTECH)or CCT TelePresence (640-792 TPTECH) or both! You can find more information at the Cisco Learning Network and on Cisco&#39;s main site &lt;a href=&#34;http://www.cisco.com/web/learning/le3/le2/le41/CCT/routing_and_switching/learning_certification_type_home_extra_level.html&#34; title=&#34;CCT Routing &amp;amp; Switching Certification&#34;&gt;CCT Routing &amp;amp; Switching Certification&lt;/a&gt; Questions? Post them below and like always I hope this information is helpful and as always if you have an idea about ICND1 or ICND2 let me know!&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34;&gt;Cisco Discovery Protocol&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/&#34;&gt;The Middle of Layer Two Redundancy&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/&#34;&gt;The Beginnings of Layer Two Redundancy&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/08/31/link-state-protocols/&#34;&gt;Link-State Protocols&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/08/24/the-codes-of-icmp/&#34;&gt;The Codes of ICMP&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.edugeek.net/forums/networks/79867-cisco-test-rig.html&#34;&gt;Cisco Test Rig&lt;/a&gt; (edugeek.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://arstechnica.com/business/news/2011/09/cisco-bringing-virtual-switch-support-to-hyper-v-in-windows-server-8.ars&#34;&gt;Cisco plans virtual switch for Hyper-V in Windows Server 8&lt;/a&gt; (arstechnica.com)&lt;/li&gt;
-&lt;/ul&gt;
-
+          
+            Switching gears for today, Cisco has introduced a certification for onsite support technicians, who need product-specific technical skills to diagnose, restore, repair, and replace critical Cisco equipment. This certification which was introduced this summer now has questions about it from CLN (Cisco Learning Network) and other Cisco sites. So what is this new cert and any changes to ICND1 or ICND2? Short answer is no, this certification is on par with ICND1 or CCENT according to Cisco but is focused on support groups like TAC (Technical Assistance Center), NOC (Network Operations Centers) and 3rd party support.
+          
+          
         
       </description>
     </item>
@@ -384,22 +224,11 @@ So when I scheduled the test I also scheduled it on my birthday, not sure why 
       <guid>https://ciscoskills.net/2011/03/21/how-i-passed-the-icnd1-exam/</guid>
       <description>
         
-          &lt;p&gt;Well my first of the many &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;Cisco certifications&lt;/a&gt; that I plan take in the future was a success! I was able to pass the &lt;a href=&#34;http://en.wikipedia.org/wiki/Interconnecting_Cisco_Networking_Devices_Part_1&#34; title=&#34;Interconnecting Cisco Networking Devices Part 1&#34;&gt;ICND1&lt;/a&gt; exam. This blog post is going to be a little different in that I want to share how I was able to pass this test and talk about my experience.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;Well in January after finishing the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Networking_Academy&#34; title=&#34;Cisco Networking Academy&#34;&gt;Cisco Networking Academy&lt;/a&gt; in the Exploration series I wanted to go ahead and take shot at the ICND1 exam. Now I knew that this was not going to be easy, by looking at online sites like CLN (Cisco Learning Network) and reading the horror stories of people missing by one point, having a hard time &lt;a href=&#34;http://en.wikipedia.org/wiki/Understanding&#34; title=&#34;Understanding&#34;&gt;understanding&lt;/a&gt; the material, not fully prepared, etc. But also reading success stories about how people passed and what they did to pass, really made me jump on the opportunity. Another thing that made me want to try it was the discounted price I was able to get, by going into the Cisco Networking Academy and doing fairly well I was able to apply for a voucher, which helped that determination I had when &lt;a href=&#34;http://en.wikipedia.org/wiki/Study_skills&#34; title=&#34;Study skills&#34;&gt;studying&lt;/a&gt; for the ICND1 exam.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;So what did I do to pass this this exam?&lt;/strong&gt; 
-Well although I finished the Cisco Networking Academy I needed to review the fundamental topics again. So I bought the &lt;a href=&#34;http://www.amazon.com/Official-Certification-Library-640-802-Containing/dp/1587201836/ref=sr_1_1?ie=UTF8&amp;amp;qid=1300551785&amp;amp;sr=8-1&#34;&gt;CCNA Official Exam Certification Library (Exam 640-802), Third Edition (Containing ICND1 and ICND2 Second Edition Exam Certification Guides)&lt;/a&gt; I wanted something that really covered it all in one book, and I am very pleased that I went ahead and got it. But reading a book I don&#39;t think cuts it, you need to fully understand how to set up routers, and switches. That&#39;s where either packet tracer or access to physical equipment comes in. Since I am part of the Cisco Networking Academy I had access to physical and simulation software that I could use. One thing I can agree on is with Cisco &lt;a href=&#34;http://en.wikipedia.org/wiki/Test_%28assessment%29&#34; title=&#34;Test (assessment)&#34;&gt;exams&lt;/a&gt; you want to make sure that you know how a set of commands work and know what they do and when to apply them.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;So how did I study and how long did it take me to study?&lt;/strong&gt;
-Well at first I wanted to study alone I felt that I could get more done. However if possible I would suggest finding a friend that also wants to get certified or at least someone who you can teach the material to. I think I learned a lot more and having discussions with each other and it helped both of us understand the material. For the ICND1 exam it took three months of us studying and preparing for the exam. We mainly used the book from Wendell Odom and did some web searches for ICND1 practice questions. Another thing that helped me was joining the Cisco Learning Network. By asking and answering questions on the discussion pages.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;How can I pass the ICND1 exam?&lt;/strong&gt;
-Make sure you know the material. Its sounds simple but when I was taking the exam the questions I was given were questions that I would&#39;ve failed if I hadn&#39;t went over the book, online practice questions, and discussions. I felt confident in my answers, I was not second guessing myself and I knew the material inside and out. Another thing I did before taking the exam was go over the &lt;a href=&#34;http://www.cisco.com/web/learning/le3/current_exams/640-822.html&#34;&gt;ICND1 exam topics.&lt;/a&gt; I made sure I could explain every topic that was listed.
- 
-In the end it shows as at the end of the exam I received an excellent score! Having said that there is always someone who wants the easy route and one thing I can say that &lt;strong&gt;won&#39;t&lt;/strong&gt; help you is a thing called &lt;a href=&#34;http://en.wikipedia.org/wiki/Brain_dump&#34; title=&#34;Brain dump&#34;&gt;brain dumps&lt;/a&gt;. Which are questions that a person would memorize and some if not all are taken from the official exams. In addition you are violating the &lt;a href=&#34;http://en.wikipedia.org/wiki/Non-disclosure_agreement&#34; title=&#34;Non-disclosure agreement&#34;&gt;non-disclosure agreements&lt;/a&gt;. I don&#39;t understand why people would do this type of thing. To me it sounds like more work than to really just understand the material. It degrades the certification and really does not help anyone. So my advice is don&#39;t pay that amount of money because usually they are about has much as the official exam.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;This is my first time taking the exam what can I expect?&lt;/strong&gt;
-Like you I was nervous so nervous, I reviewed and reviewed and went over everything again and again. I would agree to this which is you are battling with yourself. Relaxing is important and one thing I like when taking the Cisco exams is you start with a tutorial, I think this helps you get into the mode and you start to calm down. You have about 15 minutes to just breathe and get ready to take the exam and don&#39;t over think it! Simple questions usually want a simple answer. Although test taking tips help you have to know the material in the end to pass, you can&#39;t guess at this stuff. Set a goal and take the exam. Looking back I&#39;m glad I did. It showed that I&#39;m in right the career path and shows to employers that I know the material.&lt;/p&gt;
-&lt;p&gt;So what&#39;s next well I&#39;m taking a break this week, and will start again next week with some more Cisco information and tutorials. I&#39;m also going to start reviewing the ICND2 exam soon and currently I&#39;m estimating that this one will take longer than three months. :)&lt;/p&gt;
-&lt;!--adsense--&gt;
-
+          
+            Well my first of the many Cisco certifications that I plan take in the future was a success! I was able to pass the ICND1 exam. This blog post is going to be a little different in that I want to share how I was able to pass this test and talk about my experience.
+Well in January after finishing the Cisco Networking Academy in the Exploration series I wanted to go ahead and take shot at the ICND1 exam.
+          
+          
         
       </description>
     </item>

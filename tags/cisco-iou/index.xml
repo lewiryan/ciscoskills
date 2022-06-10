@@ -14,56 +14,10 @@
       <guid>https://ciscoskills.net/2014/05/10/gns3-alpha-install-and-setup/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/logo_gns3_small.png?w=150&#34; alt=&#34;GNS3-logo&#34;&gt;&lt;/a&gt;So Alpha 3 came out last week with a bunch updates and I decided to give it run this week. I&#39;m not doing anything that difficult with the program so maybe I&#39;m not breaking it in all the way but I also was looking at some installation notes for Ubuntu and other Linux flavors, I figured I’ll try to install it on a Windows machine and not Linux (call me lazy) feel free to follow this guide.   To install GNS3, here is what I had&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Windows 7 Professional x64 bit with the latest Microsoft updates&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://members.gns3.net/&#34; title=&#34;GNS3 Early Release Members Area&#34;&gt;Downloaded GNS3 Early Release 1.0&lt;/a&gt; – Alpha 3 (Must be a member)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34; title=&#34;Download VirtualBox&#34;&gt;Oracle VM Virtual Box installed&lt;/a&gt; (latest version 4.3.10 and only if you are going to use IOU)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://sourceforge.net/projects/gns-3/files/IOU%20VMs/GNS3-1.0-alpha3%20IOU%20VM.ova/download&#34;&gt;Downloaded GNS3-1.0-alpha3&lt;/a&gt; IOU VM (Only if you are going to use IOU)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Since this is an all and one installer it was pretty easy to install, and I decided to install all the components that the all-in-one had to offer.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;WinPCAP 4.1.3&lt;/li&gt;
-&lt;li&gt;Wireshark 1.10.7&lt;/li&gt;
-&lt;li&gt;Dynamips 0.2.12&lt;/li&gt;
-&lt;li&gt;VPCS 0.4b2&lt;/li&gt;
-&lt;li&gt;GNS3&lt;/li&gt;
-&lt;li&gt;SuperPutty 1.4.0.4 beta&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I accepted the default destination folder and installed it, once installed I used by GNS3 membership to activate the software. That&#39;s it you now are running the Alpha version of GNS3. If you wanted to try IOU that is where it can get tricky, remember GNS3 is a platform that can support IOU and Dynampis. IOU are images that Cisco created to run on Unix, the reason IOU is popular is because it supports layer two (switching) functionally. Before GNS3 1.0 only supported layer three (Routing) and very limited layer two (switching) functions. However IOU is not available to the public. Dynampis is an emulation technology that older Cisco router images can run on but you are still in the same situation as you were before which is Cisco does not give public access to these images. The GNS3 team are working on trying to get an IOU image for GNS3 before the end of the year when GNS3 goes public, but since this is an alpha version of GNS3 and only available to members its currently only a problem for members that are testing out IOU. I would suspect towards the end of the year this won&#39;t be an issue. If you have an IOU image feel free to continue the steps below. :) We now need to import the GNS3 IOU VM that we downloaded into virtual box.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Start virtual box&lt;/li&gt;
-&lt;li&gt;Go to File-&amp;gt; Import Appliance&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Browse to the OVF file that you downloaded and select next and accept the defaults by selecting import.  When you first start the VM you may get an error about the network interface accept the warning and make sure the VM is only using the &lt;strong&gt;host-only adapter&lt;/strong&gt;. Once the VM is online we need to do some verification, for the username you will use &lt;strong&gt;root&lt;/strong&gt; and the password is &lt;strong&gt;cisco&lt;/strong&gt;. When at the shell type &lt;strong&gt;ifconfig eth0&lt;/strong&gt; to get the IP address of the VM. Keep note of the IP address. The next step is to import your IOU image into the GNS3 IOU VM.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Type the IP address of the VM into your browser followed by the 8000 port number. (&lt;em&gt;Example http://192.168.1.1:8000/upload&lt;/em&gt; )&lt;/li&gt;
-&lt;li&gt;Browse your local computer for the IOU image file and select upload.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You should get a message of where the file is stored on the Linix VM when the upload is successful, keep note of that location. Open up GNS3 and in the preferences.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Go to Server-&amp;gt;Remote Servers and add the GNS3 IOU VM to the list, the default port number is 8000&lt;/li&gt;
-&lt;li&gt;Select the IOS on UNIX option and browse to the path of your license key (Path to IOURC) which is needed to activate the IOU image.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Finally we need to set the IOU image path that was uploaded to the GNS3 IOU VM.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Select the IOU devices option in the GNS3 preferences and in the IOU path type in the path of the IOU device that you keep note of and select save. (&lt;em&gt;Example:  /home/gns3/Documents/GNS3/images/linux-iou.bin&lt;/em&gt; )&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;you-now-have-a-working-iou-in-gns3-go-ahead-and-try-it-out-if-you-want-moreinformationabout-gns3-or-if-you-are-a-member-and-havingsome-issues-go-check-out-the-gns3-formshttpforumgns3neti-hope-this-information-that-i-provided-helps-as-well&#34;&gt;You now have a working IOU in GNS3, Go ahead and try it out. If you want more information about GNS3 or if you are a member and having some issues go check out the &lt;a href=&#34;http://forum.gns3.net/&#34;&gt;GNS3 forms&lt;/a&gt;. I hope this information that I provided helps as well.&lt;/h2&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;lewiryan@isu.edu&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2014-10-31 21:00:10&#34;&gt;Oct 5, 2014&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Guellord, Did you check to make sure you have the network settings setup in Virtualbox? Not sure what you are using but edit the machine and make sure you are using a host-only adapter. You should not have to login to get an IP address it should be in the login banner if you are using the latest GNS3 IOU. Hope that Helps. Also might want to try looking at this post: &lt;a href=&#34;http://ciscoskills.net/2014/10/28/setting-up-gns3-1-1-on-ubuntu/&#34;&gt;http://ciscoskills.net/2014/10/28/setting-up-gns3-1-1-on-ubuntu/&lt;/a&gt; &lt;img src=&#34;https://systemstechblog.files.wordpress.com/2014/10/gns3-iou-virtual-box.png&#34; alt=&#34;VirtualBox-GNS3 1.1 IOU Network Settings&#34;&gt;&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[GNS3 1.0 Public is Out &amp;laquo; Cisco Skills](http://ciscoskills.net/2014/10/21/gns3-1-0-public-is-out/ &#34;&#34;) - &lt;time datetime=&#34;2014-10-21 14:31:44&#34;&gt;Oct 2, 2014&lt;/time&gt;
-&lt;p&gt;[…] of 2014, which was about getting GNS3 Alpha 3 working on Windows, you can see the full post here: GNS3 Alpha – Install and Setup. I have followed the GNS3 releases throughout the six months of them releasing Alpha and beta […]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Guellord]( &#34;guellokama@gmail.com&#34;) - &lt;time datetime=&#34;2014-10-31 19:45:29&#34;&gt;Oct 5, 2014&lt;/time&gt;
-&lt;p&gt;Hi, i try to use IOU image on gns3 1.1 I follow all these steps as mentioned above,and i log in GNS3 IOU VM as well but i don&#39;t get an IP address when i type ifconfig eth0 i don&#39;t get an IP address, what will be the issue?&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            So Alpha 3 came out last week with a bunch updates and I decided to give it run this week. I&#39;m not doing anything that difficult with the program so maybe I&#39;m not breaking it in all the way but I also was looking at some installation notes for Ubuntu and other Linux flavors, I figured I’ll try to install it on a Windows machine and not Linux (call me lazy) feel free to follow this guide.
+          
+          
         
       </description>
     </item>

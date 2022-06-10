@@ -14,32 +14,10 @@
       <guid>https://ciscoskills.net/2018/10/08/enable-a-restful-asa-api/</guid>
       <description>
         
-          &lt;p&gt;Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he &lt;a href=&#34;https://blog.ipspace.net/2018/09/infrastructure-as-code-netconf-and-rest.html&#34;&gt;points out&lt;/a&gt; there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC. In this post we&#39;ll go through the steps to enable it and you can be the judge, does this RESTful API help?&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;So the first thing we need to grab the RESTful API application and by default is not included so we&#39;ll need to go to cisco.com and download it.  You need look for the Adaptive Security Appliance REST API Plugin and depending on your version of ASA there might be some gotchas on which versions to use so read the release notes. Once we you have the correct version downloaded you need to upload it to the ASA flash. Once uploaded you have to specify the location of the REST API Plugin:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;ASA-HA-1(config)# rest-api image flash:asa-restapi-132325-lfbff-k8.SPA
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Computed Hash   SHA2: 2106d6ac8c4e3c181c4820fb46588b8c
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;                      e104712e13fb783ad8f051e905c21330
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;                      0ad66d0e96a6f050805e1e7dc173f187
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;                      211c87db0c2d440da2e2d8614a210e4c
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Embedded Hash   SHA2: 2106d6ac8c4e3c181c4820fb46588b8c
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;                      e104712e13fb783ad8f051e905c21330
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;                      0ad66d0e96a6f050805e1e7dc173f187
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;                      211c87db0c2d440da2e2d8614a210e4c
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Digital signature validated successfully
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;ASA-HA-1(config)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After that you can enable the REST API:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;ASA-HA-1(config)# rest-api agent\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once enabled if you have ASDM enabled then the HTTP service is running if not you have to enable the HTTP server as well as configure a management rule to tell what interface you will be connecting to.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;http server enable
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;http 0.0.0.0 0.0.0.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After that you can browse to the following link: https://ASAIP/doc/&lt;/p&gt;
-&lt;p&gt;You will get prompt to login with a username and password, so make sure the authentication is configured on the ASA. If you have login successfully you will see a webpage like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/10/asa-api.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;From here you can explore the different HTTP requests that are available and you essentially have another way of configuring and monitoring your ASA. So back my question does this type of RESTful API help you? I have explored this and have used Postman for my poor mans &amp;quot;IaC&amp;quot; but does that count, I feel something is missing? In the end it&#39;s still a process that runs and instead of running this via CLI its a CRUD API... - Ryan&lt;/p&gt;
-
+          
+            Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he points out there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC.
+          
+          
         
       </description>
     </item>

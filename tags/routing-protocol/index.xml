@@ -14,74 +14,10 @@
       <guid>https://ciscoskills.net/2012/02/29/eigrp-the-basics/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/routing_updates.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/routing_updates.png?w=300&#34; alt=&#34;&#34; title=&#34;Routing_Updates&#34;&gt;&lt;/a&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;Enhanced Interior Gateway Routing Protocol&lt;/a&gt; (EIGRP) is an impressive set of features for &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;Routing&lt;/a&gt;, which converges quickly and is on par and sometimes faster than &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;. This &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_protocol&#34; title=&#34;Routing protocol&#34;&gt;routing protocol&lt;/a&gt; requires less processing time, less memory, and less network design than compared to OSPF. What&#39;s the catch? This protocol is Cisco proprietary, if you have a network that uses non-Cisco routers, EIGRP will not and cannot be used on those routers. &lt;em&gt;(Edit:&lt;/em&gt; Cisco has open this up to the IETF but you could still see issues if you found a vendor that supported EIGRP and not all features are supported***) EIGRP does not really fit into a specific spot of either &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;Link-State&lt;/a&gt; or &lt;a href=&#34;http://en.wikipedia.org/wiki/Distance-vector_routing_protocol&#34; title=&#34;Distance-vector routing protocol&#34;&gt;Distance vector&lt;/a&gt;, instead it stands on its own and is called hybrid routing protocol. EIGRP has tree tables it keeps a track of, EIGRP Neighbor, the topology table, and routing table:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;EIGRP Neighbor – EIGRP router sends Hello messages which discover potential neighboring routers that are running EIGRP. This checks that basic parameters to decide which routers should be neighbors. (You can view the neighbors by issuing the command &lt;strong&gt;show ip eigrp neighbor&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Topology_table&#34; title=&#34;Topology table&#34;&gt;Topology Table&lt;/a&gt; – When routers are EIGRP neighbors they exchange full topology tables when they are first neighbors, and then only partial updates as needed when the network topology changes. (You can view the topology table by issuing the command &lt;strong&gt;show ip eigrp topology&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_table&#34; title=&#34;Routing table&#34;&gt;Routing Table&lt;/a&gt; –Each router that has a topology table analyzes its own topology table and chooses the lowest cost value to reach each route that has been advertised. (You can view the routing table by issuing the command &lt;strong&gt;show ip route&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If routers are connected to each other and exchange topology information then the following &lt;strong&gt;must&lt;/strong&gt; be true:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;They pass the authentication process&lt;/li&gt;
-&lt;li&gt;They both uses the same configured AS number&lt;/li&gt;
-&lt;li&gt;The source &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; used by the Hello messages are in the same subnet&lt;/li&gt;
-&lt;li&gt;The EIGRP K Values match&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Some other information about EIGRP is that the hello and update messages that EIGRP sends use a multicast IP address of 224.0.0.10. EIGRP uses metrics called Bandwidth, delay, reliability, and load. By default EIGRP uses bandwidth and delay but these values can be changed and added into EIGRP&#39;s metric calculation. That&#39;s my quick rundown on EIRGP, Check back often as I will have some configuration examples up and go in a little deeper into the EIGRP like talking about successors and feasible successors. I hope this information is helpful and if you have questions please post them. &lt;strong&gt;Summary of EIGRP and OSPF&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;EIGRP&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;OSPF&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Converges Quickly&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Built-in Loop Prevention&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Sends partial routing updates&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Classless, supports manual summarization&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Allows manual summarization at any router&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Sends routing information using IP multicast on LANs&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Uses the concept of a designated router on a LAN&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Flexible network design (no need to create areas)&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Support equal and unequal load balancing&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Metric based on bandwidth delay&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Can advertise IP, IPX and AppleTalk routers&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Public standard&lt;/p&gt;
-&lt;p&gt;YES/NO***&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;** *&lt;em&gt;Some this information was provided by visiting the following link:&lt;/em&gt;&lt;a href=&#34;http://www.cisco.com/en/US/tech/tk365/technologies_white_paper09186a0080094cb7.shtml&#34;&gt;http://www.cisco.com/en/US/tech/tk365/technologies_white_paper09186a0080094cb7.shtml&lt;/a&gt; **&lt;em&gt;Odom, Wendell. CCNA ICND2 Official Exam Certification Guide . 2nd. Indianapolis: Cisco Press, 2008. 380-402. Print.&lt;/em&gt; &lt;em&gt;*** RFC 7868 &lt;a href=&#34;https://tools.ietf.org/html/rfc7868&#34;&gt;https://tools.ietf.org/html/rfc7868&lt;/a&gt; (Informational)&lt;/em&gt;&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34;&gt;Configure Router on a Stick&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://gatestec.wordpress.com/2012/02/22/debugging-a-single-eigrp-neighbor/&#34;&gt;Debugging a single EIGRP neighbor&lt;/a&gt; (gatestec.wordpress.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://learnnetworkingwithme.wordpress.com/2011/11/27/eigrp-basic-concepts/&#34;&gt;EIGRP Basic Concepts&lt;/a&gt; (learnnetworkingwithme.wordpress.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://gatestec.wordpress.com/2012/01/25/when-to-reboot-a-cisco-router/&#34;&gt;When to reboot a Cisco router?&lt;/a&gt; (gatestec.wordpress.com)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://myreviewes.wordpress.com/2012/03/12/networking-types-of-connection-ring-topology-part-2/&#34; title=&#34;&#34;&gt;Networking (Types of Connection, RING TOPOLOGY) Part-2 « myreviews&lt;/a&gt; - &lt;time datetime=&#34;2012-03-12 04:32:39&#34;&gt;Mar 1, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] EIGRP… The Basics (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Routing_Updates Enhanced Interior Gateway Routing Protocol (EIGRP) is an impressive set of features for IP Routing, which converges quickly and is on par and sometimes faster than OSPF. This routing protocol requires less processing time, less memory, and less network design than compared to OSPF. What&#39;s the catch? This protocol is Cisco proprietary, if you have a network that uses non-Cisco routers, EIGRP will not and cannot be used on those routers.
+          
+          
         
       </description>
     </item>
@@ -94,59 +30,10 @@
       <guid>https://ciscoskills.net/2011/06/15/distance-vector-routing/</guid>
       <description>
         
-          &lt;p&gt;Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;router&lt;/a&gt; learns about a route to a different &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network&lt;/a&gt; (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric. The router also knows the next-hop router along with the outgoing interface to use when sending a packet destined to that network and that&#39;s it. You could say that a distance vector protocol does not give a graphical representation of the entire network. Look at the picture below R1 has two routes two the network 192.168.3.0. For distance vector the router chooses the lowest metric if this example was using &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt; the routers metric would be using &lt;a href=&#34;http://en.wikipedia.org/wiki/Hop_count&#34; title=&#34;Hop count&#34;&gt;hop count&lt;/a&gt; and pick the path with the lowest hop count/metric. So although we have multiple routers between R1 and R3, for R1 it only knows and pretty much only cares about the routers that are directly connected to R1 (the red routers) and those are routers are advertising that they have a route reach to R3 (the 192.168.3.0 network.) &lt;a href=&#34;http://ciscoskills.net/2011/06/15/distance-vector-routing/distance-vector/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/05/distance-vector.png?w=300&#34; alt=&#34;Distance Vector Protocol&#34; title=&#34;Distance Vector&#34;&gt;&lt;/a&gt; &lt;em&gt;Which &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_protocol&#34; title=&#34;Routing protocol&#34;&gt;Routing Protocols&lt;/a&gt; use &lt;a href=&#34;http://en.wikipedia.org/wiki/Distance-vector_routing_protocol&#34; title=&#34;Distance-vector routing protocol&#34;&gt;Distance Vector&lt;/a&gt;?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;RIPv1&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;RIPv2&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/IS-IS&#34; title=&#34;IS-IS&#34;&gt;IS-IS&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Classless&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Supports &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;VLSM&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Send Subnet Mask&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Distance Vector&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;No *&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;*EIGRP is considered a hybrid routing protocol (Uses the best of both Distance Vector and Link-State protocols) In some Cisco documentation EIGRP is also referred to as an advance distance vector protocol. That&#39;s my summary of at least Distance Vector routing protocols, there is a lot of other helpful information about distance vector and if you would like to learn simple web search would do. Also check out Cisco.com as they do have this and much more helpful documentation. I hope this information was informative and if you have an idea of the next topic that either deals with ICND1 or ICND2 let me know.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/&#34;&gt;Dynamic Routing Protocols&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34;&gt;Configure Static Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/01/classful-vs-classless-routing/&#34;&gt;Classful vs. Classless Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34; title=&#34;&#34;&gt;Cisco Discovery Protocol | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-07-06 09:47:24&#34;&gt;Jul 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[jjrinehart]( &#34;joe.rinehart@seacug.com&#34;) - &lt;time datetime=&#34;2011-06-20 23:30:52&#34;&gt;Jun 1, 2011&lt;/time&gt;
-&lt;p&gt;I was reading earlier that you passed the ICND1 and that you would be working on ICND2, how is that going?&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://systemstechblog.wordpress.com &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2011-06-21 17:52:40&#34;&gt;Jun 2, 2011&lt;/time&gt;
-&lt;p&gt;I&#39;m getting there, like with everything in life things get in the way but in the end I&#39;ll find time.&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a router learns about a route to a different network (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric.
+          
+          
         
       </description>
     </item>
@@ -159,46 +46,10 @@
       <guid>https://ciscoskills.net/2011/06/01/classful-vs.-classless-routing/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/cloud-computing-icon.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/cloud-computing-icon.png&#34; alt=&#34;&#34; title=&#34;Cloud-Computing-icon&#34;&gt;&lt;/a&gt;Before the internet and general networking become popular into what it is now, there were and still are routing protocols that only do &lt;a href=&#34;http://en.wikipedia.org/wiki/Classful_network&#34; title=&#34;Classful network&#34;&gt;classful routing&lt;/a&gt;. What is classful routing? When I was talking about &lt;a href=&#34;http://en.wikipedia.org/wiki/Adaptive_routing&#34; title=&#34;Adaptive routing&#34;&gt;Dynamic Routing&lt;/a&gt; earlier (See the post &lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/&#34; title=&#34;Dynamic Routing Protocols&#34;&gt;Dynamic Routing Protocols&lt;/a&gt;) I mentioned there was a difference between classful routing and classless routing. So in today&#39;s post let&#39;s focus on these two but important topics when using routing protocols. Let&#39;s first talk about classful routing, which is sometimes called a classful network. If you are using a classful routing protocol then all of your networks are in different classes and are separated by a router. Remember that the useable IPv4 address ranges are dived into classes. Class A 1-126, Class B 128-191, and Class C 192-223. So when we talk about a classful routing protocol it will only look at the &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; class and not the &lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;subnet mask&lt;/a&gt;. This is the problem; if you are using a classful routing protocol you cannot change the subnet mask in any of these networks. You have to use the default subnet mask, so an example is if you have a 172.16.X.X network the default subnet mask is a /16 or 255.255.0.0. So in short you can&#39;t have different size networks when using the same IP address class and a classful routing protocol. Remember  that classful routing does not support subnet information, and therefore lacking support for VLSM (variable length subnet masks). With classless routing if you took a guess that it supports VLSM and different size networks within the same IP address class then you&#39;re catching on ;) Because that is exactly what a classless routing protocol does, so for example we are using a class C address of 192.168.1.0 with a standard subnet mask of 255.255.255.0 or a /24. With a classless routing protocol you can split this network even more instead of having 254 usable hosts in one network; we could have 126 usable hosts with two networks. The ranges for the first network would start at 192.168.1.1 and end at 192.168.1.126, and the second would start at 192.168.1.129 and end at 192.168.1.254. The subnet mask for both of these networks would be 255.255.255.128. With a classful routing protocol it would only look at the class of the address in this case a class &amp;quot;C&amp;quot; and not look at the subnet mask and apply a default subnet mask of 255.255.255.0 causing these addresses to be in the same network which in reality their not. &lt;em&gt;What &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_protocol&#34; title=&#34;Routing protocol&#34;&gt;Routing Protocol&lt;/a&gt; uses Classful and &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;Classless Routing&lt;/a&gt;? Take a guess…&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt;-1&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;RIP-2&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;IS-IS&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Classless&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Supports VLSM&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Send Subnet Mask&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;That&#39;s my summary for classful and classless routing protocols, I wouldn&#39;t say nobody uses a classful routing protocol there&#39;s always someone but they are different and will cause connection problems if set up incorrectly. Like always I hope this information was informative and you can always find more information at Cisco or even a search of RFC 1519 and RFC 1817. Have an idea of the next topic either ICND1 or ICND2 let me know. :)&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/16/how-a-router-routes/&#34;&gt;How a Router Routes&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://thinkup.waldenu.edu/technology/networking/item/11465-why-are-routed-protocols-important-to-networking&amp;amp;sa=U&amp;amp;ei=HYNTTYuiIpKDtgfqrMy5CQ&amp;amp;ved=0CKoBEBYwRzigBg&amp;amp;usg=AFQjCNFSXtq9ycdurVCAL65GXgWu2sg7BA&#34;&gt;Why Are Routed Protocols Important to Networking?&lt;/a&gt; (thinkup.waldenu.edu)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/02/09/configuring-ripv2/&#34; title=&#34;Configuring RIPv2&#34;&gt;Configuring RIPv2&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34;&gt;Configure Static Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/15/distance-vector-routing/&#34; title=&#34;&#34;&gt;Distance Vector Routing | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-06-15 10:32:46&#34;&gt;Jun 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Classful vs. Classless Routing (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Cloud-Computing-icon Before the internet and general networking become popular into what it is now, there were and still are routing protocols that only do classful routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in today&#39;s post let&#39;s focus on these two but important topics when using routing protocols.
+          
+          
         
       </description>
     </item>

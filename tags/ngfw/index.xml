@@ -14,45 +14,10 @@
       <guid>https://ciscoskills.net/2018/09/07/verifying-dns-lists-fmc/</guid>
       <description>
         
-          &lt;p&gt;We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;So this post is already assuming that you have an Access Control Policy deployed on a Firepower Module (ASA) or a FTD. We also are assuming that you have a DNS policy applied to the FM/FTD. These lists get downloaded about every two hours from Cisco and are updated regularly, best to keep it that way. :) However like everything there is always someone, some system, some program that fails to connect and more often than not it&#39;s usually this critical process that worked yesterday but doesn&#39;t today, so how do we check if we are hitting this?&lt;/p&gt;
-&lt;p&gt;There are two ways to check this we can look at the connection events (if you are logging which by default is yes) it will show DNS the events and depending on your policy you&#39;ll see the action taken. In this example we selected to use Domain Not Found for the action. In this example we can see Domain Not Found and we can also see the DNS category its hitting which is DNS Dga.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/07/fmc-dnfee.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; I have edited this screenshot to show example.com instead of the malicious domain&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;We can verify the domain is in this list DNS Dga by connecting to the FMC via SSH and browse to the actual list which is located at /var/sf/sidns_download. When you browse to this location you&#39;ll see something like this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;admin@FMC:/var/sf/sidns_download$ 
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;admin@FMC:/var/sf/sidns_download$ ls
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;032ba433-c295-11e4-a919-d4ae5275b77b  Cisco_DNS_Intelligence_Feed
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;1b117672-7453-478c-be31-b72e89ca2dde  IPRVersion.dat
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;23f2a124-8278-4c03-8c9d-d28fe08b71ab  abdc925f-4f85-4504-90a7-c891979ad82a
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;2CCDA18E-DDFF-4F5C-AF9A-F00985219707  b1df3aa8-2841-4c88-8e64-bfaacec7111f
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;2b15cb6f-a3fc-4e0e-a342-ccc5e5804576  d7d996a6-6b92-4a56-8f10-e8506e432fb8
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;30f9e69c-d64c-479c-821d-0e4edab8348d  health
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;3e2af68e-5fc8-4b1c-b5bc-b4e7cab5abcd  health_status
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;5a0b6d6b-e2c3-436f-b4a1-48248b331d39  health_statuslock
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;5f8148f1-e5e4-427a-aa3b-ee1c2745d663  peers
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;60f4e2ab-d96c-44a0-bd38-830252b65259  rep_dd.yaml
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;6ba968f4-7a25-4793-a2c8-7cc77f1f1074  tmp
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;A27C6AAE-8E52-4174-A81A-47C59FECd3a5
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Each of these UIDs correspond to DNS feed. For example &lt;strong&gt;b1df3aa8-2841-4c88-8e64-bfaacec7111f&lt;/strong&gt; is for DNS Dga category. You can easily figure out which UID is tied to which DNS category by using the more command, notice the top of the file.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; I have replaced these domains with examples instead of the malicious domains&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;admin@FMC:/var/sf/sidns_download$ more b1df3aa8-2841-4c88-8e64-bfaacec7111f
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;#Cisco DNS and URL intelligence feed: DNS Dga
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;example.info
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;example.com
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;example.net
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see in this example that the domain we where trying to resolve is in this blacklist. Usually you&#39;ll have to grep the file to find the domain as these lists can be big, to find a domain follow this command, I&#39;m looking in the DNS Dga category.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;admin@FMC:/var/sf/sidns_download$ more b1df3aa8-2841-4c88-8e64-bfaacec7111f |grep example.com
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;example.com
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;admin@FMC:/var/sf/sidns_download$
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This confirms it and we can can either whitelist it or drop the category and then redeploy polices, unless you run into a bug, which I have ran into with whitelisting as it does not seem to work with some older firepower code. Another upgrade is in the works, in the meantime I dropped the DNS category,  I hope this information is helpful, - Ryan&lt;/p&gt;
-
+          
+            We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.
+          
+          
         
       </description>
     </item>

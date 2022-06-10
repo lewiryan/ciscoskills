@@ -14,14 +14,10 @@
       <guid>https://ciscoskills.net/2014/01/30/640-911-chapter-3/</guid>
       <description>
         
-          &lt;p&gt;Picking up were we left on off on a series of blog posts that follow the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. Feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter two we discussed about internetworking and in chapter three we will learn about Ethernet technologies.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt; 
-This chapter goes over what chapter 2 started we get more information on collision domains, broadcast domains, and introductions into CSMA/CD and the familiarity link between half and full-duplex ethernet. We also looked at the sections of a MAC address and what the IEEE is involved with assignment of these address when giving them to manufactures. We learned about how to convert binary to hexadecimal as well as vice versa. We also looked at the Data link layer and the fields associated with it.(Which part of the OSI model is that?)&lt;/p&gt;
-&lt;p&gt;Chapter 2 hinted on the cabling standards but we now have a list full of them starting from coaxial cable to single-mode fiber cable. (Which goes further?) We also learned which  type of cable connects to what and how they are terminated. (Like devices use a crossover cable and not a straight-through cable) We finally talked about Data encapsulation and had some good examples at the end of the chapter of how a computer sends information on the network and it looks like more information is in Chapter 9 :) .&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts:&lt;/strong&gt; I would read this chapter even if you went through it before there is a lot of information that needs refreshed (at least for me) if you are going to take the exam. Go over the review questions and over the written labs for converting from decimal to binary and from binary to hexadecimal.&lt;/p&gt;
-&lt;p&gt;Could be helpful?: &lt;a href=&#34;http://ciscoskills.net/2011/03/10/crossover-or-straight-through/&#34; title=&#34;Crossover or Straight through?&#34;&gt;Crossover or Straight through?&lt;/a&gt; &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911_dcicn.pdf&#34;&gt;640-911 Exam Topics&lt;/a&gt;(PDF)&lt;/p&gt;
-
+          
+            Picking up were we left on off on a series of blog posts that follow the CCNA Data Center Study Guide from Todd Lammle. Feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter two we discussed about internetworking and in chapter three we will learn about Ethernet technologies.
+          
+          
         
       </description>
     </item>
@@ -34,38 +30,10 @@ This chapter goes over what chapter 2 started we get more information on collisi
       <guid>https://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
       <description>
         
-          &lt;p&gt;In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two &lt;a href=&#34;http://en.wikipedia.org/wiki/Redundancy_%28engineering%29&#34; title=&#34;Redundancy (engineering)&#34;&gt;redundancy&lt;/a&gt; mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (&lt;a href=&#34;http://en.wikipedia.org/wiki/Spanning_Tree_Protocol&#34; title=&#34;Spanning Tree Protocol&#34;&gt;Spanning Tree Protocol&lt;/a&gt;) it works at layer two of the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt;. If more than one path is available in the &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network&lt;/a&gt; the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.) So although there are multiple links connected physically to offer redundancy, logically the switches in the network only see one path that &lt;a href=&#34;http://en.wikipedia.org/wiki/Ethernet_frame&#34; title=&#34;Ethernet frame&#34;&gt;Ethernet frame&lt;/a&gt; can travel. Remember without STP networks would be on the fritz when we introduce redundancy in the environment. STP or &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.1D&#34; title=&#34;IEEE 802.1D&#34;&gt;IEEE 802.1D&lt;/a&gt; is an open standard so it is not just on Cisco equipment but others as well which helps in a multivendor situation. So how does looping occur without the use STP? Looking at the picture below we can see the broadcasts frames are flooding the network which is by design but the thing that changes is these broadcasts will continue to flood the network because there is on &lt;a href=&#34;http://en.wikipedia.org/wiki/Time_to_live&#34; title=&#34;Time to live&#34;&gt;TTL&lt;/a&gt; (Time-To-Live) on the &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_Link_Layer&#34; title=&#34;Data Link Layer&#34;&gt;data link layer&lt;/a&gt; of the OSI model. As more packets are passed and created the network will become slower and slower and eventually devices on the network will become unavailable this called a &lt;a href=&#34;http://en.wikipedia.org/wiki/Broadcast_radiation&#34; title=&#34;Broadcast radiation&#34;&gt;broadcast storm&lt;/a&gt;. [caption id=&amp;quot;attachment_1534&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;584&amp;quot; caption=&amp;quot;STP Loop Example (Broadcast Storm)&amp;quot;]&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/08/stpfl.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/stpfl.png&#34; alt=&#34;An example of an STP loop&#34; title=&#34;STP Loop&#34;&gt;&lt;/a&gt;[/caption] There are also more problems when not using STP besides broadcast storms like the &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt; table becoming unstable in each switch. This causes the MAC table to be unreliable because of the looping frames in the network. These frames are usually sent to the wrong locations in the network. Multiple frames can also be a problem because of looping frames multiple frames appear on the network and if they are delivered to the intended host it can confuse the host and more likly drop the frames. So looking at the same picture but with STP enabled we can see that broadcast frame will travel the network without looping. On S1 one of the ports is in a blocking state and blocks all traffic coming into that port and traffic coming out of that port. [caption id=&amp;quot;attachment_1539&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;584&amp;quot; caption=&amp;quot;STP Enabled&amp;quot;]&lt;a href=&#34;http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/stp-enable/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/stp-enable.png&#34; alt=&#34;STP Enabled&#34; title=&#34;STP Enable&#34;&gt;&lt;/a&gt;[/caption] The magic about STP is when the link between S2 and S3 becomes disconnected it will bring the link between S2 and S1 online and continue to send packets! When the link becomes available again it switch back to blocking on S1. So let&#39;s stop there for now and check back next week to see the last chapter of STP, how does it calculate which switch goes to blocking? What other advantages does STP offer? That&#39;s all next week, I hope this information is helpful and if you have an idea of the next topic that deals with either ICND1 or ICND2 let me hear it!&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/&#34;&gt;The Beginnings of Layer Two Redundancy&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2011/08/03/network_resiliency/&#34;&gt;Belt and braces stop the network falling down&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.avaya.com/blogs/archives/2011/08/resiliency-and-redundancy---not-the-same.html&#34;&gt;Resiliency and Redundancy - NOT the same&lt;/a&gt; (avaya.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://techbookshelf.com/2011/08/31/cisco-nexus-vpc-configuration-and-spanning-tree-elimination/&#34;&gt;Cisco Nexus vPC Configuration and Spanning-Tree Elimination&lt;/a&gt; (techbookshelf.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34;&gt;Cisco Discovery Protocol&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://systemstechblog.wordpress.com&#34; title=&#34;lewiryan@isu.edu&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2011-09-07 18:51:46&#34;&gt;Sep 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Steve do you have any questions? Ryan&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Steve]( &#34;svu@uppertraining.com&#34;) - &lt;time datetime=&#34;2011-09-07 12:27:32&#34;&gt;Sep 3, 2011&lt;/time&gt;
-&lt;p&gt;Awesome Site. Ryan can you please contact me.&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Welcome CCT (Cisco Certified Technician Certification) | Cisco Skills](http://ciscoskills.net/2011/09/21/welcome-cct-cisco-certified-technician/ &#34;&#34;) - &lt;time datetime=&#34;2011-09-21 20:44:38&#34;&gt;Sep 3, 2011&lt;/time&gt;
-&lt;p&gt;[...] The Middle of Layer Two Redundancy (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[The “Ending” of Layer Two Redundancy | Cisco Skills](http://ciscoskills.net/2011/09/14/the-%e2%80%9cending%e2%80%9d-of-layer-two-redundancy/ &#34;&#34;) - &lt;time datetime=&#34;2011-09-14 11:17:26&#34;&gt;Sep 3, 2011&lt;/time&gt;
-&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Store-and-Forward vs. Cut-Through Switching | Cisco Skills](http://ciscoskills.net/2011/10/05/store-and-forward-vs-cut-through-switching/ &#34;&#34;) - &lt;time datetime=&#34;2011-10-05 10:16:16&#34;&gt;Oct 3, 2011&lt;/time&gt;
-&lt;p&gt;[...] The Middle of Layer Two Redundancy (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
         
       </description>
     </item>
@@ -78,48 +46,10 @@ This chapter goes over what chapter 2 started we get more information on collisi
       <guid>https://ciscoskills.net/2011/05/18/basic-wireless-lan-security/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/wirelesssecurity.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/wirelesssecurity.png&#34; alt=&#34;&#34; title=&#34;Wireless-Security-Icon&#34;&gt;&lt;/a&gt;Although having a wireless LAN sounds like a wonderful idea, there are things that need to be implemented like security. A wireless LAN can be uncontrollable has it is just radio waves and anybody can receive them. Having and using good security practices can help you be under control of your wireless LAN.  Not having any security in a wireless LAN environment will cause anybody to have access to the network. Some threats that lead to &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;wireless LANs&lt;/a&gt; can be the following:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;War Drivers – These are people who &amp;quot;drive&amp;quot; around to find open networks that are not secure and looking for free internet access.&lt;/li&gt;
-&lt;li&gt;Hackers – These types of people usually have malicious ideas in mind; this can be anything to entering unauthorized systems and stealing data or even harming the physical system.&lt;/li&gt;
-&lt;li&gt;Employees –Although we may have an excellent defense on the outside of our network, we sometimes forget that the inside of our network needs to be secure as well.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In the original 802.11 standard there were two types of authentication:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Open authentication, which as the name implies has no authentication and will allow anybody to use the network.&lt;/li&gt;
-&lt;li&gt;Shared authentication, which used &lt;a href=&#34;http://en.wikipedia.org/wiki/Wired_Equivalent_Privacy&#34; title=&#34;Wired Equivalent Privacy&#34;&gt;WEP&lt;/a&gt; and is now flawed, The WEP algorithm was weak and WEP was also not very scalable. (See post &lt;a href=&#34;http://ciscoskills.net/2011/03/14/cracking-wep/&#34; title=&#34;Cracking WEP&#34;&gt;Cracking WEP&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Currently there are two enterprise-level encryption methods which are specified in the 802.11i and are certified as &lt;a href=&#34;http://en.wikipedia.org/wiki/Wi-Fi_Protected_Access&#34; title=&#34;Wi-Fi Protected Access&#34;&gt;WPA&lt;/a&gt; and WPA2:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Temporal_Key_Integrity_Protocol&#34; title=&#34;Temporal Key Integrity Protocol&#34;&gt;TKIP&lt;/a&gt; is an encryption method certified has WPA, TKIP supports for legacy WLAN equipment by fixing the flaws with the original 802.11 WEP encryption. TKIP encrypts at the layer 2 (Data Link) payloads and carries a message of integrity check (&lt;a href=&#34;http://en.wikipedia.org/wiki/Message_authentication_code&#34; title=&#34;Message authentication code&#34;&gt;Message Integrity Check&lt;/a&gt;) in the encrypted packet. This helps to make sure the message or packet was not tampered with.&lt;/li&gt;
-&lt;li&gt;AES is an encryption method certified has WPA2, AES has the same functions as TKIP but does use additional data from the MAC header to recognize if the data has been tampered with.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Some steps to check when setting up a wireless LAN is the following:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Check the wired network, like &lt;a href=&#34;http://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol&#34; title=&#34;Dynamic Host Configuration Protocol&#34;&gt;DHCP&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_access&#34; title=&#34;Internet access&#34;&gt;Internet access&lt;/a&gt; before setting up a &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_access_point&#34; title=&#34;Wireless access point&#34;&gt;wireless access point&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Next install the access point but by keeping it away from devices that could case greater interference .&lt;/li&gt;
-&lt;li&gt;Configure the &lt;a href=&#34;http://en.wikipedia.org/wiki/Service_set_%28802.11_network%29&#34; title=&#34;Service set (802.11 network)&#34;&gt;SSID&lt;/a&gt; on the access point. Don&#39;t put security on the access point yet.&lt;/li&gt;
-&lt;li&gt;Configure or install one or two wireless clients. Don&#39;t put security on these devices yet.&lt;/li&gt;
-&lt;li&gt;Verify wireless network operation within the clients. Check to make sure you can get access to network resources and outside the network.&lt;/li&gt;
-&lt;li&gt;Configure &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_security&#34; title=&#34;Wireless security&#34;&gt;wireless security&lt;/a&gt;. Such as WPA2 with PSK .&lt;/li&gt;
-&lt;li&gt;Verify network operation again to make sure that the wireless clients can get access to network resources.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For now that&#39;s my summary for the basic wireless security, this really goes over the concepts but not the configuration. There are a lot of online guides that can go into the configuration aspect of the wireless client and the access point. Like always I hope this information was informative and if you come up with any other ideas that deal with either ICND1 or ICND2 let me know by posting a comment below.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/does-your-small-business-need-a-wireless-lan-controller/&#34;&gt;Does Your Small Business Need a Wireless LAN Controller?&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/&#34;&gt;Basic Wireless Concepts&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/securing-remote-locations-in-3-steps/&#34;&gt;Securing Remote Locations in 3 Steps&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.pcworld.com/article/226857/Home_WiFi_Network_Security_4_Ways_to_Avoid_Big_Trouble.html&#34;&gt;Home Wi-Fi Security: 4 Steps to Avoid Trouble&lt;/a&gt; (pcworld.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.brighthub.com/computing/smb-security/articles/78216.aspx&#34;&gt;Advantages/Disadvantages: WEP/WPA Network Security&lt;/a&gt; (brighthub.com)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://cartesianproduct.wordpress.com/2011/06/11/wired-to-wireless-bridge-in-ubuntu-linux/&#34; title=&#34;&#34;&gt;Wired to wireless bridge in Ubuntu Linux | cartesian product&lt;/a&gt; - &lt;time datetime=&#34;2011-06-11 10:08:04&#34;&gt;Jun 6, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Basic Wireless LAN Security (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Wireless-Security-Icon Although having a wireless LAN sounds like a wonderful idea, there are things that need to be implemented like security. A wireless LAN can be uncontrollable has it is just radio waves and anybody can receive them. Having and using good security practices can help you be under control of your wireless LAN. Not having any security in a wireless LAN environment will cause anybody to have access to the network.
+          
+          
         
       </description>
     </item>
@@ -132,41 +62,10 @@ This chapter goes over what chapter 2 started we get more information on collisi
       <guid>https://ciscoskills.net/2011/04/04/basic-wireless-concepts/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/wireless-connection-icon.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/wireless-connection-icon.png&#34; alt=&#34;&#34; title=&#34;wireless-connection-icon&#34;&gt;&lt;/a&gt;Mobility is now a common thing in a business environment, you no longer are fixed to specific cubicle in the work place anymore. What is also amazing is it will continue to change and become easier for employees to get work done, with their phone, tablet, and laptop computer. But what makes this possible? What is the underlying component? The internet is becoming more available in more locations, coffee shops, airports, and your cell phone service provider, with 3G and 4G speeds. Along with the United States of America which is also moving forward with the &lt;a href=&#34;http://broadband.gov/&#34; title=&#34;National Broadband Plan&#34;&gt;National Broadband Plan&lt;/a&gt;. So today let&#39;s explore the wireless concepts!  Wireless can be a scary as you can&#39;t control it. The signal is transmitted in radio waves and if set up insecurely the WLAN (&lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_LAN&#34; title=&#34;Wireless LAN&#34;&gt;Wireless Local Area Network&lt;/a&gt;) can easily be your weakest link compared to Ethernet &lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;LANs&lt;/a&gt;. There are four organizations that deal with the wireless standards and products:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt; develops the wireless standards (802.11) The IEEE also develops other standards as well.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/ITU-R&#34; title=&#34;ITU-R&#34;&gt;ITU-R&lt;/a&gt; is the worldwide standardization and communications that use and assign different frequencies. This helps you as a consumer if you moved/travel around the world. You are still able to use the 802.11 standard worldwide. Without the need of different devices.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Wi-Fi_Alliance&#34; title=&#34;Wi-Fi Alliance&#34;&gt;Wi-Fi Alliance&lt;/a&gt; is an industry that is worldwide that encourages interoperability of products that use WLAN standards to be certified under the Wi-Fi Alliance program.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Federal_Communications_Commission&#34; title=&#34;Federal Communications Commission&#34;&gt;Federal Communications Commission (FCC)&lt;/a&gt; is the U.S government agency that regulates the usage of various communication frequencies in the U.S.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Currently there are several wireless standards within the 802.11 standard: 802.11a, 802.11b, 802.11g, or 802.11n At least for today this post won&#39;t be going over these standards. There is also encryption and security which in not covered in today&#39;s post but will be covered later on. The wireless 802.11 standard can run in two modes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ad Hoc which uses the &lt;a href=&#34;http://en.wikipedia.org/wiki/Service_set_%28802.11_network%29&#34; title=&#34;Service set (802.11 network)&#34;&gt;independent Basic Service Set&lt;/a&gt; (IBSS) this allows more than two devices to communicate directly with no access point needed or network needed.&lt;/li&gt;
-&lt;li&gt;Infrastructure mode which uses either Basic Service Set (BSS) which uses a single wireless LAN created by one access point and all devices use that access point. Or Extended Service Set (ESS) which uses multiple access points to create one wireless LAN, this allows devices to roam between access points and this covers a larger area compared to the BSS.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;this-is-an-example-of-an-ad-hoc-networkhttpenwikipediaorgwikiwireless_ad_hoc_network-wireless-ad-hoc-network-notice-how-there-is-no-access-point-or-routernetwork-needed-ad-hoc-networkhttpsystemstechblogfileswordpresscom201103ad-hocpng-ad-hochttpciscoskillsnet20110404basic-wireless-conceptsad-hoc-this-is-an-example-of-an-infrastructure-mode-that-uses-bss-notice-how-there-can-only-be-one-access-point-if-you-are-using-the-bss-service-set-basic-service-sethttpsystemstechblogfileswordpresscom201103bsspngw300-bsshttpciscoskillsnet20110404basic-wireless-conceptsbss-this-is-an-example-of-an-infrastructure-mode-that-uses-ess-notice-how-multiple-access-points-can-be-configured-to-allow-roaming-and-a-lager-coverage-area-extended-service-sethttpsystemstechblogfileswordpresscom201103esspngw300-esshttpciscoskillsnet20110404basic-wireless-conceptsess-remember-that-when-using-wireless-it-uses-the-csmaca-algorithm-the-devices-must-listen-to-make-surethat-nobody-is-transmitting-it-will-then-set-a-random-timer-to-reducethe-change-of-a-collision-when-the-timer-expires-the-device-will-listen-again-if-there-is-nobody-transmitting-the-device-will-send-the-frame-when-the-frame-is-sentthe-device-will-listen-of-an-acknowledgment-fromthe-access-point-if-no-acknowledgment-is-receivedthen-the-device-will-resend-the-frame-but-use-the-csmaca-logic-thats-it-at-least-for-now-check-back-later-and-ill-talk-about-the-different-standards-of-80211a-80211b-80211g-or-80211n-i-will-also-go-over-encryption-and-some-best-security-practices-for-wireless-lan-networks-i-hope-this-information-was-informative-and-if-you-have-any-questions-comments-or-other-icnd1or-icnd2-suggestions-let-me-know&#34;&gt;This is an example of an &lt;a href=&#34;http://en.wikipedia.org/wiki/Wireless_ad_hoc_network&#34; title=&#34;Wireless ad hoc network&#34;&gt;Ad Hoc network&lt;/a&gt;, notice how there is no access point or router/network needed. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/ad-hoc/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/ad-hoc.png&#34; alt=&#34;Ad Hoc Network&#34; title=&#34;Ad Hoc&#34;&gt;&lt;/a&gt; This is an example of an infrastructure mode that uses BSS. Notice how there can only be one access point if you are using the BSS service set. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/bss/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/bss.png?w=300&#34; alt=&#34;Basic Service Set&#34; title=&#34;BSS&#34;&gt;&lt;/a&gt; This is an example of an infrastructure mode that uses ESS. Notice how multiple access points can be configured to allow roaming and a lager coverage area. &lt;a href=&#34;http://ciscoskills.net/2011/04/04/basic-wireless-concepts/ess/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/03/ess.png?w=300&#34; alt=&#34;Extended Service Set&#34; title=&#34;ESS&#34;&gt;&lt;/a&gt; Remember that when using wireless it uses the CSMA/CA algorithm the devices must listen to make sure that nobody is transmitting. It will then set a random timer to reduce the change of a collision, when the timer expires the device will listen again, if there is nobody transmitting the device will send the frame. When the frame is sent the device will listen of an acknowledgment from the access point, if no acknowledgment is received then the device will resend the frame but use the CSMA/CA logic. That&#39;s it! At least for now check back later and I&#39;ll talk about the different standards of 802.11a, 802.11b, 802.11g, or 802.11n. I will also go over encryption and some best security practices for wireless LAN networks. I hope this information was informative and if you have any questions, comments or other ICND1 or ICND2 suggestions let me know.&lt;/h2&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/04/05/802-11-legacy/&#34; title=&#34;&#34;&gt;802.11 – Legacy | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-04-05 15:47:23&#34;&gt;Apr 2, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Post navigation ← Previous [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[802.11a | Cisco Skills](http://ciscoskills.net/2011/04/06/802-11a/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-06 12:14:48&#34;&gt;Apr 3, 2011&lt;/time&gt;
-&lt;p&gt;[...] about the IEEE 802.11a standard. On Monday I talked about the Basic Wireless Concepts (See the post Basic Wireless Concepts) in that post I mentioned the wireless standards but did not go further into detail. This post will [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[802.11b | Cisco Skills](http://ciscoskills.net/2011/04/07/802-11b/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-07 11:34:48&#34;&gt;Apr 4, 2011&lt;/time&gt;
-&lt;p&gt;[...] – Legacy) and in the beginning of the week I went over some Basic Wireless Concepts (See the post Basic Wireless Concepts) So now that we are up to speed lets learn about the 802.11b [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[802.11g | Cisco Skills](http://ciscoskills.net/2011/04/08/802-11g/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-08 10:38:41&#34;&gt;Apr 5, 2011&lt;/time&gt;
-&lt;p&gt;[...] and in the beginning of the week I talked about the basic wireless concepts. (See the post Basic Wireless Standards) So on this Friday let’s talk about the 802.11g [...]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[802.11n | Cisco Skills](http://ciscoskills.net/2011/04/11/802-11n/ &#34;&#34;) - &lt;time datetime=&#34;2011-04-11 09:02:50&#34;&gt;Apr 1, 2011&lt;/time&gt;
-&lt;p&gt;[...] and in the beginning of last week I talked about the basic wireless concepts. (See the post Basic Wireless Concepts) So let’s end the discussion and talk about the 802.11n [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            wireless-connection-icon Mobility is now a common thing in a business environment, you no longer are fixed to specific cubicle in the work place anymore. What is also amazing is it will continue to change and become easier for employees to get work done, with their phone, tablet, and laptop computer. But what makes this possible? What is the underlying component? The internet is becoming more available in more locations, coffee shops, airports, and your cell phone service provider, with 3G and 4G speeds.
+          
+          
         
       </description>
     </item>
@@ -179,8 +78,10 @@ This chapter goes over what chapter 2 started we get more information on collisi
       <guid>https://ciscoskills.net/2011/02/21/802.11ac-standard/</guid>
       <description>
         
-          &lt;p&gt;Some things are making news in the wireless world, the &lt;a href=&#34;http://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers&#34; title=&#34;Institute of Electrical and Electronics Engineers&#34;&gt;IEEE&lt;/a&gt; wants another wireless standard in the mix called the  802.11ac, now the fastest standard they have is the &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.11n-2009&#34; title=&#34;IEEE 802.11n-2009&#34;&gt;802.11n&lt;/a&gt;(&lt;a href=&#34;http://en.wikipedia.org/wiki/Speed&#34; title=&#34;Speed&#34;&gt;speeds&lt;/a&gt; up to 300 &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_rate_units&#34; title=&#34;Data rate units&#34;&gt;Mbps&lt;/a&gt;), which was recently published in October of 2009. What is so great about the 802.11ac development? Well one thing is the speed, it is estimated that it will be able to carry up to 1 gigabit per second! The IEEE has been working on 802.11ac in 2009 and wants to put up a draft on it soon (this year). Products are not yet ready but could be around 2012. It is estimated that a billion 802.11ac devices could be expected in 2015. The standard will be using the existing &lt;a href=&#34;http://en.wikipedia.org/wiki/Radio_spectrum&#34; title=&#34;Radio spectrum&#34;&gt;radio spectrum&lt;/a&gt; in ranges below 6GHz and reports say it will have &lt;a href=&#34;http://en.wikipedia.org/wiki/Backward_compatibility&#34; title=&#34;Backward compatibility&#34;&gt;backwards compatibility&lt;/a&gt; for older devices. Frank Dickson said, “The goal of 802.11ac is to provide data speeds faster than 802.11n, with speeds of around 1Gbps,&amp;quot; he continued and said, “The timing for 802.11ac approval is to have a draft standard created by 2011 and have the first 802.11ac products out by the end of 2012.&amp;quot; So what does this mean to the average person? Well for the home user they probably would not see a difference if they were browsing online since &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_service_provider&#34; title=&#34;Internet service provider&#34;&gt;ISP&lt;/a&gt; connection speeds are usually slower than LAN (&lt;a href=&#34;http://en.wikipedia.org/wiki/Local_area_network&#34; title=&#34;Local area network&#34;&gt;Local Area Network&lt;/a&gt;) speeds. If the average person was &lt;a href=&#34;http://en.wikipedia.org/wiki/Streaming_media&#34; title=&#34;Streaming media&#34;&gt;streaming videos&lt;/a&gt; from another computer within his home or transferring large files they would see a difference. This would be more towards businesses that don’t want to run cables to each computer, and would be more geared to &lt;a href=&#34;http://en.wikipedia.org/wiki/Mobile_device&#34; title=&#34;Mobile device&#34;&gt;mobile devices&lt;/a&gt; like tablets, phones, laptops etc. Not much information is available as the 802.11ac is still under development. Which makes room for changing, but if you want to check out more information you can head over to the IEEE site at &lt;a href=&#34;http://www.ieee.org/&#34;&gt;http://www.ieee.org&lt;/a&gt;&lt;/p&gt;
-
+          
+            Some things are making news in the wireless world, the IEEE wants another wireless standard in the mix called the 802.11ac, now the fastest standard they have is the 802.11n(speeds up to 300 Mbps), which was recently published in October of 2009. What is so great about the 802.11ac development? Well one thing is the speed, it is estimated that it will be able to carry up to 1 gigabit per second!
+          
+          
         
       </description>
     </item>

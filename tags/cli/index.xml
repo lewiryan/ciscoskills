@@ -14,79 +14,10 @@
       <guid>https://ciscoskills.net/2017/09/20/enter-cisco-firepower-cli-read-only/</guid>
       <description>
         
-          &lt;p&gt;You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;ul&gt;
-&lt;li&gt;Once logged into the Firepower default prompt type system support diagnostic-cli command.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&amp;gt; system support diagnostic-cli
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Attaching to Diagnostic CLI ... Press &amp;#39;Ctrl+a then d&amp;#39; to detach.
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Type help or &amp;#39;?&amp;#39; for a list of available commands.
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;firepower#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;The other way is to go into expert mode followed by using the sudo lina_cli command.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;host-172-16-1-187 login: admin
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Password:
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Last login: Sun Jul 23 17:30:34 UTC 2017 on ttyS0
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&amp;gt; expert
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;admin@host-172-16-1-187:~$ sudo lina_cli
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;We trust you have received the usual lecture from the local System
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;Administrator. It usually boils down to these three things:
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    #1) Respect the privacy of others.
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;    #2) Think before you type.
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;    #3) With great power comes great responsibility.
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Password:
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;Attaching to Diagnostic CLI ... Press &amp;#39;Ctrl+a then d&amp;#39; to detach.
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Type help or &amp;#39;?&amp;#39; for a list of available commands.
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;firepower&amp;gt; en
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Password: ********
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Invalid password
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;Password:
-&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;firepower#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we look at the show version we can see in this example we are running ASA code with FXOS running with it.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;firepower# show version
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;---------------[ host-172-16-1-187 ]----------------
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Model                     : Cisco Firepower Threat Defense for KVM (75) Version 6.2.0.2 (Build 51)
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;UUID                      : 3b5ca718-6fc3-11e7-a879-c553f010958b
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Rules update version      : 2017-06-07-001-vrt
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;VDB version               : 281
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;----------------------------------------------------
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Cisco Adaptive Security Appliance Software Version 9.7(1)10
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;Firepower Extensible Operating System Version 2.1(1.66)
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;Compiled on Wed 10-May-17 09:41 PDT by builders
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;System image file is &amp;#34;(hd0,0)/asa971-4-smp-k8.bin&amp;#34;
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;Config file at boot was &amp;#34;startup-config&amp;#34;
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;firepower up 37 mins 39 secs
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;Hardware:   ASAv, 8192 MB RAM, CPU Pentium II 3600 MHz, 1 CPU (4 cores)
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Model Id:   ASAv30
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;BIOS Flash Firmware Hub @ 0x0, 0KB
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt; 0: Int: Internal-Data0/0    : address is fa16.3ee6.43df, irq 11
-&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt; 1: Ext: GigabitEthernet0/0  : address is fa16.3ebf.f299, irq 10
-&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt; 2: Ext: GigabitEthernet0/1  : address is fa16.3e8b.53bc, irq 10
-&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt; 3: Int: Internal-Control0/0 : address is 0000.0001.0001, irq 0
-&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt; 4: Int: Internal-Data0/0    : address is 0000.0000.0000, irq 0
-&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt; 5: Ext: Management0/0       : address is fa16.3ee6.43df, irq 0
-&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt; 6: Int: Internal-Data0/1    : address is 0000.0000.0000, irq 0
-&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;Serial Number: 9AXESJTCR3F
-&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;Image type          : Release
-&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;Key version         : A
-&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;Configuration last modified by enable_1 at 18:24:33.151 UTC Sun Jul 23 2017
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you worked in the Cisco ASA world before you might find the CLI a refreshing memory because all of your debugs, show outputs and the packet tracer troubleshooting tool are all there. You might be asking well its good to see the configuration but how do I configure something that may not be in the FMC? Well we can use something called FlexConfig and is available from FMC 6.2.0 and onward.&lt;/p&gt;
-
+          
+            You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:
+          
+          
         
       </description>
     </item>

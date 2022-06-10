@@ -14,48 +14,10 @@
       <guid>https://ciscoskills.net/2018/04/16/wireless-vlans/</guid>
       <description>
         
-          &lt;p&gt;It’s been fun four months of 2018 so far and I’m back to talk about Wireless VLANs. With 802.11ax around the corner (2019) I think we all can agree that “weird” connections although less likely have interference isn’t as mobile as a wireless LAN. Also, with 802.11ax the maximum theoretical throughput is 10Gbps! We’re going to need some serious backend infrastructure available to be able to support that type of bandwidth. So, let’s look at configuring a wireless VLANs for our mobile users!&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;Just like regular weird LANs, we want to separate traffic to be able to have a secure network, because it&#39;s usually not only your employees that will use the wireless network, we could have guest networks, department networks and even infrastructure/IoT networks. Like for security cameras, motion sensors, thermostats, lights, and so much more, just within that list you have at least three wireless networks if not four if you needed to have further separation. So how do you configure wireless to have multiple VLANs attached to it? First you must look at the wireless hardware you are working with. That hardware at least needs to support a trunk link, that’s what makes this magic happen. If supports VLAN trunks, then chances are it comes in two flavors:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Wireless Controller with “lightweight” access points, which essentially tunnel the traffic back to the controller. The controller has a trunk link with all the Wireless VLANs connected to it. The access points don’t need access to all those wireless VLANs, they can join a management network and route/tunnel the traffic back to the controller.&lt;/li&gt;
-&lt;li&gt;Autonomous access points which as the name suggest act on their own they don’t join a controller and therefore would need access to all wireless VLANs that are configured in the network.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Next, if your wireless hardware supports multiple VLANs then it can probably support multiple networks and broadcast multiple SSIDs, which is how you can get multiple wireless networks on the same hardware. Each network can have different restrictions as well as different authentication methods to get on the network. Like using 802.1x (WPA2 Enterprise), WPA2 Personal, and even WPA3 which was certified this year. Once you have all that information and know what type of access point you have the last thing to do is configuring the switchport which is probably the simplest thing when it comes to WLANs. So in this example we have four networks that we want to put on the airwaves.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;(410) - GUEST-WLAN&lt;/li&gt;
-&lt;li&gt;(420) - MARKET-DEPT-WLAN&lt;/li&gt;
-&lt;li&gt;(430) - DEFUALT-EMPLOYEE-WLAN&lt;/li&gt;
-&lt;li&gt;(440) - SECURITY-WLAN&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If we look at &lt;strong&gt;show vlan&lt;/strong&gt; output we can see I have the VLANs created on this switch.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;VLAN Name                             Status    Ports
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;---- -------------------------------- --------- -------------------------------
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;1    default                          active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;                                                Eth2/5
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;410  GUEST-WLAN                       active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;                                                Eth2/5
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;420  MARKET-DEPT-WLAN                 active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;                                                Eth2/5
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;430  DEFUALT-EMPLOYEE-WLAN            active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;                                                Eth2/5
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;440  SECURITY-WLAN                    active    Eth2/1, Eth2/2, Eth2/3, Eth2/4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this example I have a wireless controller connected to ethernet 2/10. I simply need to add a trunk link and only allow these VLANs to the port.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;SW01(config)# interface ethernet 2/10
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;SW01(config-if)# switchport mode trunk
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;SW01(config-if)# switchport trunk allowed vlan 410,420,430,440
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;SW01(config-if)# no shutdown
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I would do the same configuration if I was using an autonomous access point, I would also probably add a management VLAN as well. This configuration would need to be applied to every access point that is connected within the organization. Wireless is going to continue to grow and this is just another side of how much bandwidth wireless is going to take up. I find it hard to imagine that weird networks might be the thing of the past for end-users but it’s moving into the direction, especially when you can get more than 1Gbps out of a wireless connection, that changes things. You now must look at getting switches that support either NBASE-T or even just 10GBASE-T otherwise what’s the point of buying that 802.11ax access point? The silver lining in all of this is it gets cheaper on the switching side :) That’s all I got for now, I hope this information is helpful.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;https://loopedback.com&#34; title=&#34;ande0255@gmail.com&#34;&gt;Loopy&lt;/a&gt; - &lt;time datetime=&#34;2018-08-04 06:13:52&#34;&gt;Aug 4, 2018&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;With the 2500 WLCs, are two physical interfaces REALLY required to securely separate Guest from Internal corporate traffic? I seem to find this a lot in production networks I work on, and it seems to defy the logic of separating networks with VLANs. Could you expand upon the reasoning or benefit of using separate interfaces, or if its necessary at all given your experience? The thing I really don&#39;t get is these traffic flows meet on the switched network anyways, it is beyond me why someone would use two trunks vs a single trunk link in an Active / Active setup to separate traffic from WLC and the wireless network from the wired LAN? I will follow your blog here, look forward to your wireless posts, keep at it :)&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2018-08-06 18:20:07&#34;&gt;Aug 1, 2018&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Loopy, The benefit I see when using an separate interface for guest traffic is if you actually have a separate ISP for your guest network. If you are using the same network as internal people there&#39;s not really a reason to use another interface. Maybe if you are tapping out the bandwidth of that single trunk interface but that would probably be be the only reason for separation. Personally if I did not have an option to run a separate ISP for the guest network and I wasn&#39;t worried about bandwidth, I would just use a single interface until it becomes a problem with bandwidth. Thanks Ryan&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            It’s been fun four months of 2018 so far and I’m back to talk about Wireless VLANs. With 802.11ax around the corner (2019) I think we all can agree that “weird” connections although less likely have interference isn’t as mobile as a wireless LAN. Also, with 802.11ax the maximum theoretical throughput is 10Gbps! We’re going to need some serious backend infrastructure available to be able to support that type of bandwidth.
+          
+          
         
       </description>
     </item>

@@ -14,86 +14,10 @@
       <guid>https://ciscoskills.net/2020/08/08/vtis-with-asa/</guid>
       <description>
         
-          &lt;p&gt;I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago! We only got introduced into this technology with ASA when version 9.7 (2017) and above arrived....&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;In the old days, which wasn&#39;t that long ago.... We were stuck with cryptomaps to interfaces and dealing with &amp;quot;interesting&amp;quot; traffic when working with ASAs...Well time for change no more defining interesting traffic, we route these bits instead! Any traffic we want to go over the tunnel is routed over, we can apply ACLs on the inbound interface just like we do with physical interfaces, so simple...&lt;/p&gt;
-&lt;p&gt;Here is the topology I&#39;m working with:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2020/07/vti-asa.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;This is a pretty standard setup, basically we have two sites and want a tunnel between them. We can setup a VTI Tunnel and route via the next hop address. You can also run a routing protocol over this so this can scale out easy.&lt;/p&gt;
-&lt;p&gt;In this example I got two Cisco ASAs using version 9.12(2), just like the old days, things have to match in order to get a tunnel up. In this example I&#39;m using IKEv2 this policy has to match on both ends:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto ikev2 policy 1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; encryption 3des
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; integrity sha
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; group 2
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; prf sha
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; lifetime seconds 86400
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;:!: Please use a higher encryption than what I have, this is just for demonstration. :) I also found out that NIST will not allow 3DES starting in 2024. &lt;a href=&#34;https://www.comparitech.com/blog/information-security/3des-encryption/#What_is_3DES&#34;&gt;More Information about the 3DES and history&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;We got match a group policy this is configured on both ends, (name could be different)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;group-policy P2P-VPN internal
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;group-policy P2P-VPN attributes
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; vpn-idle-timeout 30
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; vpn-session-timeout none
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; vpn-filter none
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; vpn-tunnel-protocol ikev2 
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; periodic-authentication certificate none
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next we we create the IPSEC part of the tunnel, again these have to match on both ends:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto ipsec ikev2 ipsec-proposal VPN-P2P
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; protocol esp encryption aes-256
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; protocol esp integrity sha-256
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Phase Two of the tunnel for IPSEC Proposal, match them on both ends ;)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;crypto ipsec profile VPN-P2P-IPSEC
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; set ikev2 ipsec-proposal VPN-P2P
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; set pfs group2
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; set security-association lifetime seconds 84600
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On the site one we create a tunnel group to site two. (preshared keys have to match) In this example I&#39;m using local and remote keys, just like you would expect remote key would match the local key on the remote end, and vise versa.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tunnel-group 203.0.113.2 type ipsec-l2l
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;tunnel-group 203.0.113.2 general-attributes
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; default-group-policy P2P-VPN
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;tunnel-group 203.0.113.2 ipsec-attributes
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; ikev2 remote-authentication pre-shared-key *****
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; ikev2 local-authentication pre-shared-key *****
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;On site two we do the same thing, flipping the IP addresses.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tunnel-group 198.51.100.2 type ipsec-l2l
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;tunnel-group 198.51.100.2 general-attributes
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; default-group-policy P2P-VPN
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;tunnel-group 198.51.100.2 ipsec-attributes
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; ikev2 remote-authentication pre-shared-key *****
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; ikev2 local-authentication pre-shared-key *****
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Tunnel is created but in order to bring it up and use we need to create VTI interface on the ASA&#39;s. Here is how site one looks for the the tunnel interface. (tunnel source interface is the direction of how to get to the other site, in this case I&#39;m using the internet)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface Tunnel80
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; nameif VPN-P2P
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; ip address 10.15.161.253 255.255.255.252 
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; tunnel source interface ISP
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; tunnel destination 203.0.113.2
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; tunnel mode ipsec ipv4
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; tunnel protection ipsec profile VPN-P2P-IPSEC
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If we jump over to site two for that tunnel interface configuration (tunnel interfaces don&#39;t have to match in this case)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface Tunnel80
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt; nameif VPN-P2P
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; ip address 10.15.161.254 255.255.255.254 
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt; tunnel source interface ISP
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt; tunnel destination 198.51.100.2
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt; tunnel mode ipsec ipv4
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt; tunnel protection ipsec profile VPN-P2P-CPHX-IPSEC
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see that we created a little point to point network within the tunnel and if we wanted traffic over this tunnel a simple route statement is all we need :)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;route VPN-P2P 172.22.1.0 255.255.255.0 10.15.161.254 1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;A simple show command verifies that the tunnel is up (show crypto isakmp)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;There are no IKEv1 SAs
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;IKEv2 SAs:
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;Session-id:1, Status:UP-ACTIVE, IKE count:1, CHILD count:1
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;Tunnel-id Local                                               Remote                                                  Status         Role
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  3991227 198.51.100.2/500                                    203.0.113.2/500                                          READY    INITIATOR
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;      Encr: 3DES, Hash: SHA96, DH Grp:2, Auth sign: PSK, Auth verify: PSK
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;      Life/Active Time: 86400/3180 sec
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Child sa: local selector  0.0.0.0/0 - 255.255.255.255/65535
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;          remote selector 0.0.0.0/0 - 255.255.255.255/65535
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;          ESP spi in/out: 0x8e25a2bf/0x90b25811 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Just like that you got yourself a flexible tunnel interface that you can send routes down it, don&#39;t need to deal with crypto maps anymore put those next to the history of 3DES ;) These VTIs make it a breeze to configure.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://ciscoskills.net/2020/05/21/the-world-keeps-turning/&#34;&gt;The World Keeps Turning&lt;/a&gt; and we&#39;ll continue to navigate the times as technology plays such a critical piece in making sure communication between people and or systems goes uninterrupted. We as engineers are right in the middle of it... like always I hope this information is helpful, stay calm and carry on!&lt;/p&gt;
-
+          
+            I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago!
+          
+          
         
       </description>
     </item>

@@ -14,70 +14,10 @@
       <guid>https://ciscoskills.net/2019/01/02/oh...spanning-tree/</guid>
       <description>
         
-          &lt;p&gt;It&#39;s the &amp;quot;S&amp;quot; word we don&#39;t like to hear, and often times it has degraded networks or even took them down entirely.  (&lt;a href=&#34;https://ciscoskills.net/files/2019/01/All-Systems-Down.pdf&#34;&gt;All Systems Down&lt;/a&gt; - an older but classic story) It&#39;s also one of those things that nobody really likes, we even had network companies, as well as IEEE &lt;strong&gt;try&lt;/strong&gt; to replace it with something else. Remember the names like TRILL, and IEEE 802.1aq (SPB) or Cisco&#39;s FabicPath technologies? You had all of these different flavors that showed a lot progress, but they never really took off for one reason or another. The funny part is this protocol we are all trying kill off is still alive and doing well, so let&#39;s look at spanning tree in the meantime because you will likely run into it.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;Remember there are multiple types of spanning tree protocols but they all have a common theme to them and in this post we are going to be focusing on those common themes. If you need a refresher about the reasons and basic functions of spanning tree you can check out these posts I did quite a while ago.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/&#34;&gt;The Beginnings of Layer Two Redundancy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/&#34;&gt;The Middle of Layer Two Redundancy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://ciscoskills.net/2011/09/14/the-%e2%80%9cending%e2%80%9d-of-layer-two-redundancy//&#34;&gt;The “Ending” of Layer Two Redundancy&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So we should already know that by default spanning tree is enabled on all ports when the switch has blank config. There are of course tweaks we can do to adjust convergence times like using RSTP, if thirty seconds is too long, using portfast when there is not another switch downstream, lots of customization. Here is a simple topology, two switches two links, one of links will be blocked otherwise expect loops and network inconsistency.
-&lt;img src=&#34;https://ciscoskills.net/images/2018/12/simple-switch.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Out of the box STP will protect you from loops, and a simple way to figure what type of spanning tree protocol is running as well as to figure out who is root you can use this command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;SW2#show spanning-tree 
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;VLAN0001
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Spanning tree enabled protocol rstp
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  Root ID    Priority    32769
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;             Address     aabb.cc00.0200
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;             This bridge is the root
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;             Address     aabb.cc00.0200
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;             Aging Time  300 sec
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;Interface           Role Sts Cost      Prio.Nbr Type
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;------------------- ---- --- --------- -------- ----------------------
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;Et0/0               Desg FWD 100       128.1    P2p
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;Et0/1               Desg FWD 100       128.2    P2p
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Et0/2               Desg FWD 100       128.3    P2p
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Et0/3               Desg FWD 100       128.4    P2p
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see that we are on the root bridge, by looking at &lt;strong&gt;Root ID&lt;/strong&gt; information. This shows information about who is root and in this case we are on the root switch, seeing the message &lt;em&gt;This bridge is the root&lt;/em&gt;, confirms that. We can also see the type of spanning tree protocol we are running, which is RSTP. Running the command on the other switch, that is not root we can the BLK status on one of its ports (Et0/1) which is what we are expecting. We can also see who is root. If we look at the &lt;strong&gt;Bridge ID&lt;/strong&gt; that&#39;s the local switch we are on. Notice when you are the root switch both the Root ID and Bridge match. So our topology looks like something like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2018/12/simple-switch-blk-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;SW1#show spanning-tree 
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;VLAN0001
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  Spanning tree enabled protocol rstp
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  Root ID    Priority    32769
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;             Address     aabb.cc00.0200
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;             Cost        100
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;             Port        1 (Ethernet0/0)
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;             Address     aabb.cc00.0300
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;             Aging Time  300 sec
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;Interface           Role Sts Cost      Prio.Nbr Type
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;------------------- ---- --- --------- -------- ----------------------
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;Et0/0               Root FWD 100       128.1    P2p
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;Et0/1               Altn BLK 100       128.2    P2p
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;Et0/2               Desg FWD 100       128.3    P2p
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;Et0/3               Desg FWD 100       128.4    P2p
-&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So by default spanning tree helped us block a redundant path without us really doing anything. So why bother with it? Well there is always fine tuning like turning on portfast which is used for edge devices, timers for STP to make it converge faster. There are also some protections that should be enabled like using BPDU guard which help guard the spanning tree topology from introducing unauthorized devices from sending BPDUs and usually used on access ports. Another one is Root guard which is used to help protect the root bridge from changing. Root guard is similar to BPDU guard but I like to think this protection is for us network engineers for when we introduce a switch into the network that somehow as a lower priority than the existing root bridge we can protect the network from changing the STP topology.&lt;/p&gt;
-&lt;h2 id=&#34;failures&#34;&gt;Failures&lt;/h2&gt;
-&lt;p&gt;Am I doing a good job of making this protocol shine? Well like everything there is always another side of it and I would say some of the failures can be a misconfiguration, software incompatibilities/bugs (which is more common than you would think) and overgrowth of the STP design. When this happens the STP topology can become disruptive to the entire layer two design while trying to reconverge into a new shape, meanwhile switch CPUs hit all time highs and network availability hits all zeros. Another valid point is its a waste of money, you buy two of everything but you can&#39;t use both at the same time because you can&#39;t have multiple L2 paths. Sure you can add MLAGs/vPCs but spanning tree is still running and if that protocol becomes unstable, or changes the topology it has the potential to still be disruptive. ...and this is why a lot people dislike this technology, It really wasn&#39;t designed for high-availability, multi-path, layer two domains.&lt;/p&gt;
-&lt;h2 id=&#34;move-up-a-layer&#34;&gt;Move up a layer?&lt;/h2&gt;
-&lt;p&gt;Traditionally L2/L3 boundary is at the distribution/aggregation layer of the network, but this traditional design is changing to IP routing at the access layer (Routed Access Layer) to remove spanning tree However this may work well for client/end-user access, this type of design fails at the data center. You may have racks of servers in your data center, you want the maximum amount a flexibility to move hardware around as well as add additional hardware in the future.  If you did a routed access layer at the data center, you start to lock yourself in and although its 2019 a lot applications still operate at a layer two level and even if the apps you are running don&#39;t have that problem you run into scalability issues.&lt;/p&gt;
-&lt;h2 id=&#34;smoke-and-mirrors&#34;&gt;Smoke and Mirrors?&lt;/h2&gt;
-&lt;p&gt;So where&#39;s the magic? How do you use a reliable layer three network like you did in on the client/end-user side but put it in a data center? Think network overlays like VxLAN or BGP EVPN, (EVPN BGP),  (order does not matter, they&#39;re the same thing) 😉 Basically these are network overlay technologies, you have you underlayer network that is running and you put this technology on top of that network, I call it network virtualization but you may have also heard SDN, (Software Define Networking). Whatever you want to call it this is how you kill spanning tree. Spanning tree by default just runs on a layer two network, we saw that from the beginning. So you remove layer two from the entire stack and then overlay an additional network on top of that. Using these type of technologies your applications don&#39;t know the difference. Another helpful post I saw when reading about overlay networks was from David Varnum&#39;s post about how Arista Networks uses BGP EVPN, pretty neat technology, if interested.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://overlaid.net/2018/08/27/arista-bgp-evpn-overview-and-concepts/&#34;&gt;Arista BGP EVPN – Overview and Concepts&lt;/a&gt;&lt;/p&gt;
-
+          
+            It&#39;s the &amp;quot;S&amp;quot; word we don&#39;t like to hear, and often times it has degraded networks or even took them down entirely. (All Systems Down - an older but classic story) It&#39;s also one of those things that nobody really likes, we even had network companies, as well as IEEE try to replace it with something else. Remember the names like TRILL, and IEEE 802.1aq (SPB) or Cisco&#39;s FabicPath technologies? You had all of these different flavors that showed a lot progress, but they never really took off for one reason or another.
+          
+          
         
       </description>
     </item>
@@ -90,15 +30,10 @@
       <guid>https://ciscoskills.net/2016/07/16/cisco-ucs-emulator-3.11epe1/</guid>
       <description>
         
-          &lt;p&gt;If you are studying any Cisco Data Center certs this tool might come in handy for some hands on learning. The Cisco UCS emulator is a VM you can spin up in VMware Workstation,Fusion or in ESXi. This emulator can be helpful in understanding the UCS platform and UCS manager. You are able to push policies and alter configurations and even import/export these configurations into and out of the &amp;quot;real&amp;quot; world to apply them/test them.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;You can download this emulator from Cisco&#39;s Community site: &lt;a href=&#34;https://communities.cisco.com/docs/DOC-67121&#34;&gt;Cisco UCS Platform Emulator 3.1(1ePE1) Downloads&lt;/a&gt; All you need is a Cisco ID to sign in which is free to register and download. Its pretty easy to set up if you are deploying and OVA once the VM is online you just browse to the IP address of the VM . Watch the console of the VM for the IP address and it does take 5 to 10 minutes to boot up before you can hit the emulator. When the system boots it&#39;ll look for a DHCP server if your setup does not have DHCP you can manually add an IP address from the console screen. Follow the prompts its pretty easy to figure out, once you have a valid IP address you can just type that into your browser. You should see the UCS Platform Emulator. This is where you can modify your hardware before going into the UCS Manager.
-&lt;img src=&#34;https://ciscoskills.net/images/2016/07/ucs-e-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;UCS Platform Emulator
-&lt;img src=&#34;https://ciscoskills.net/images/2016/07/ucs-e-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;To login into the UCS manager, I&#39;m using the defualt username and password which is &lt;strong&gt;ucspe&lt;/strong&gt; this is also the same username and password to login into the console of the them VM. Be sure to check out the release notes and user guide information on how to set this up if you need more information.&lt;/p&gt;
-&lt;p&gt;I hope this information is helpful, I&#39;m pretty green to UCS (still a rookie) but this emulator should at least help with some hands on learning with the product just in case you don&#39;t have any real UCS hardware. Main Download page with different versions of UCS. &lt;a href=&#34;https://communities.cisco.com/docs/DOC-37827&#34;&gt;https://communities.cisco.com/docs/DOC-37827&lt;/a&gt;&lt;/p&gt;
-
+          
+            If you are studying any Cisco Data Center certs this tool might come in handy for some hands on learning. The Cisco UCS emulator is a VM you can spin up in VMware Workstation,Fusion or in ESXi. This emulator can be helpful in understanding the UCS platform and UCS manager. You are able to push policies and alter configurations and even import/export these configurations into and out of the &amp;quot;real&amp;quot; world to apply them/test them.
+          
+          
         
       </description>
     </item>
@@ -111,19 +46,10 @@
       <guid>https://ciscoskills.net/2015/05/14/passed-the-640-911-dcicn/</guid>
       <description>
         
-          &lt;p&gt;Cisco started this exam back in 2012 and I have thought/semi-studied about this test for about over a year now, just did not feel comfy about it until recently. I took the test last week and passed, however there were some questions on the exam I noticed that weren&#39;t on the exam blueprint so that kind of surprised me. I was happy to still be able to pass the exam but I was caught off guard. So with that I’ll let you know what I used to study and what areas I think might help so you won&#39;t be as &amp;quot;surprised&amp;quot; as I was.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;Overall the exam did a good job of testing on the NX-OS software and the overall basic networking fundamentals (ICND1 material with touch of Nexus) which is what this test is supposed to be about. However there are questions that surprised me and was not ready because of the lack of information about the test. When I started studying for this exam I read the exam blueprint for the &lt;a href=&#34;https://learningnetwork.cisco.com/community/certifications/ccna_data_center/dcicn/exam-topics&#34;&gt;640-911&lt;/a&gt; to get an idea of what to expect but I feel that some things are missing from that blueprint. What also is interesting is of all the material I read and watched there was no mention of it. So here are some areas that I think you should look at before you take the exam:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Know the models of all the Nexus switches like the 2000, 3000, 5000, 6000, 7000, and 9000 portfolios. Know the basics of what each offers and their limitations. It’s also helpful to know what the popular type of connections to use between servers and these switches. (&lt;strong&gt;Read the data sheets&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Link: &lt;a href=&#34;http://www.cisco.com/c/en/us/products/switches/data-center-switches/index.html#~products-services&#34;&gt;http://www.cisco.com/c/en/us/products/switches/data-center-switches/index.html#~products-services&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Look at buying the CCNA Data Center 640-916 Official Cert Guide, or the &lt;a href=&#34;http://www.amazon.com/Center-Official-Guide-Library-Certification/dp/1587205688/ref=sr_1_2?ie=UTF8&amp;amp;qid=1431488432&amp;amp;sr=8-2&amp;amp;keywords=ccna+data+center&#34;&gt;Cert Library&lt;/a&gt; which includes the 640-911 and 640-916 books because in chapter two of the 640-916 book it talks about the hardware of Nexus switches which is very valuable considering some this is on the 640-911 exam. I noticed this after the fact!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The material I have read/watched: &lt;a href=&#34;http://www.amazon.com/Center-DCICN-640-911-Official-Guide/dp/1587204541/ref=sr_1_1?ie=UTF8&amp;amp;qid=1431488432&amp;amp;sr=8-1&amp;amp;keywords=ccna+data+center&#34;&gt;CCNA Data DCICT 640-911 Offical Cert Guide&lt;/a&gt; - Odom &lt;a href=&#34;http://www.cbtnuggets.com&#34;&gt;CBT Nuggets&lt;/a&gt; - Anthony Sequeira &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/ref=sr_1_4?ie=UTF8&amp;amp;qid=1431487215&amp;amp;sr=8-4&amp;amp;keywords=ccna+data+center&#34;&gt;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide&lt;/a&gt; - Todd Lammle &lt;a href=&#34;https://learningnetwork.cisco.com/groups/ccna-data-center-study-group&#34;&gt;Cisco Learning Network&lt;/a&gt; (CCNA Data Center)&lt;/p&gt;
-&lt;p&gt;I hope this information is helpful and good luck on this exam you’ve been warned :P&lt;/p&gt;
-
+          
+            Cisco started this exam back in 2012 and I have thought/semi-studied about this test for about over a year now, just did not feel comfy about it until recently. I took the test last week and passed, however there were some questions on the exam I noticed that weren&#39;t on the exam blueprint so that kind of surprised me. I was happy to still be able to pass the exam but I was caught off guard.
+          
+          
         
       </description>
     </item>
@@ -136,175 +62,10 @@
       <guid>https://ciscoskills.net/2014/09/10/setting-up-enhanced-vpc-on-nexus-5600/</guid>
       <description>
         
-          &lt;p&gt;So I&#39;ve played around with two Cisco Nexus 5672UP switches which will be in production soon but before that I wanted to see what it took to get enhanced vPC online. Along the way I was into some new territory as I never stood up vPC before, so in this post I have posted some things to keep in mind and running-config examples, all of which I hope is helpful for a reference.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;Before we go into the configuration of vPC I wanted to mentioned that the Nexus 5600 series switch is a newer product in the Cisco Data Center portfolio. I would guess that it would eventually replace the 5500 Nexus switch series but as of this writing Cisco has not put any end of life notice on the 5500 hardware. One of the main differences on the 5600 is the built-in layer 3 capabilities. The 5500 required a layer 3 card that used an expansion slot and only the higher-end Nexus products offered layer 3. To find out more information about the 5600 on Cisco&#39;s website: &lt;a href=&#34;http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/datasheet-c78-730760.html&#34; title=&#34;Cisco Nexus 5600 Platform Switches Data Sheet&#34;&gt;Cisco Nexus 5600 Platform Switches Data Sheet&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;So when I was looking at configuration examples I noticed some confusion between a dual-homed FEX setup and an enhanced vPC setup, so I&#39;ll try to clear the air. The &amp;quot;Enhanced&amp;quot; vPC is able to set up an etherchannel link from two different Nexus switches. The host/server that connects to these two different Nexus switches must support Active/Active NICs. This configuration is almost the same if you were setting up a dual-homed FEX but with just Active/Passive NICs setup on the host/server. So here is a question if the configuration is almost the same what needs to be added to support enhanced vPC? The software I am working with is version 7.0(1)N1(1) and we need to enable the features of vpc, fex and lacp.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;feature vpc
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;feature fex
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;feature lacp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We also need to have some VLANs created on both 5ks. In this example I created 25-35&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vlan 25-35
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We need to start a VPC domain, this must be the same on both switches.&lt;/p&gt;
-&lt;h3 id=&#34;switch-1&#34;&gt;SWITCH 1:&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vpc domain 1 peer-keepalive destination 169.254.1.2 source 169.254.1.1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;switch-2&#34;&gt;SWITCH 2:&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;vpc domain 1 peer-keepalive destination 169.254.1.1 source 169.254.1.2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;A note about the peer-keepalive, the 5500/5600 Nexus has a dedicated management NIC card on the front of the unit. (Where the power is) The reason I did this was I did not want to waste a 10Gb connection for just a keep-alive link. (Although it can be done :/ )  In this example I don&#39;t have a &amp;quot;dedicated&amp;quot; management network so I decided to use the management NIC of both 5ks. By default you have a another vrf context called management on the 5ks running-config. So on both 5ks I give that vrf context an IP address and directly connected both 5ks together.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;switch-1-1&#34;&gt;SWITCH 1:&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface mgmt0 vrf member management ip address 169.254.1.1/24
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;switch-2-1&#34;&gt;SWITCH 2:&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface mgmt0 vrf member management ip address 169.254.1.2/24
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Another helpful tip that I could not find out was if the management NICs would auto MDI/MDIX. So I just plugged in a straight-though and it works, so you don&#39;t need a crossover cable if you don&#39;t have one nearby. :)&lt;/p&gt;
-&lt;p&gt;We now need to create a vPC peer-link between the two Nexus switches. In this example I am using two 10Gb links, which are the same interfaces on both Nexus switches. (Consistency is your friend)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface Ethernet1/31
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;  channel-group 1 mode active
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;interface Ethernet1/32
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  channel-group 1 mode active
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Both switches are referring to port-channel one for interfaces 31 and 32. In the port-channel we will trunk the vlans we have created earlier along with setting this port-channel into a vpc peer-link.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface port-channel1
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;  switchport mode trunk
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  switchport trunk allowed vlan 25-35
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  vpc peer-link
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To keep the config short I am only referring to two FEXes in this example. (Remember so far in this post you would do exactly the same configuration if you just wanted to set up dual-homed FEXes) Starting with FEX 101 on &lt;strong&gt;SWITCH 1:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface Ethernet1/1
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  description FEX-101-PORT-1
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  fex associate 101
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  channel-group 101
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;interface Ethernet1/2
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  description FEX-101-PORT-3
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex associate 101
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  channel-group 101
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;interface port-channel101
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  fex associate 101
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  vpc 101
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Continue with FEX 101 on &lt;strong&gt;SWITCH 2:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface Ethernet1/1
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  description FEX-101-PORT-2
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  fex associate 101
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  channel-group 101
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;interface Ethernet1/2
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  description FEX-101-PORT-4
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex associate 101
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  channel-group 101
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;interface port-channel101
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  fex associate 101
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  vpc 101
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Start with FEX 102 on &lt;strong&gt;SWITCH 1:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface Ethernet1/3
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  description FEX-102-PORT-1
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  fex associate 102
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  channel-group 102
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;interface Ethernet1/4
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  description FEX-102-PORT-3
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex associate 102
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  channel-group 102
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;interface port-channel102
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  fex associate 102
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  vpc 102
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Continue with FEX 102 on &lt;strong&gt;SWITCH 2:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;interface Ethernet1/3
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  description FEX-102-PORT-2
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  fex associate 102
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  channel-group 102
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;interface Ethernet1/4
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  description FEX-102-PORT-4
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex associate 102
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  channel-group 102
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt; 
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;interface port-channel102
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  switchport mode fex-fabric
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  fex associate 102
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  vpc 102
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So we have just setup two dual-homed FEXes on the 5672UP switches, here is where we can kick it up a notch to set up enhanced vPC. If I had a host that plugged into FEX 101 and FEX 102 and I wanted to set up etherchannel so that host could send traffic on out both links I would put the following configuration on &lt;strong&gt;BOTH&lt;/strong&gt; switches:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;interface eth101/1/1, eth101/1/2
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;channel-group 2 mode active
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;interface eth102/1/1, eth102/1/2
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;channel-group 2 mode active
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;interface po2
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;switchport access vlan 25
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here is the result, this is now an enhanced vPC. Some key points of this setup is be consistent with your configuration, it all has to match on both switches otherwise expect problems to arise. Enhanced vPC offers some high level redundancy, by just looking at the picture below you could have multiple failures and servers and applications would still be accessible. This makes this type of setup a common practice if business needs demand it. So I&#39;ll stop it there like before I hope this information is helpful as a reference. Feel free to comment below if you have any questions.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2014/09/vpc-nexus.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://gravatar.com/hostingnuggets&#34; title=&#34;hostingnuggets@gmail.com&#34;&gt;John Naggets&lt;/a&gt; - &lt;time datetime=&#34;2015-04-10 09:49:55&#34;&gt;Apr 5, 2015&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;What about using the QSFP ports instead of the Ethernet1/31 and Ethernet1/32 to connect both switches together using vPC, would that also work?&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2015-04-10 22:06:51&#34;&gt;Apr 5, 2015&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey John, Yes I would think that would work. However I don&#39;t know if I would use the QSFP ports for a vPC link. Those type of ports would be better for uplinks. I don&#39;t think you would be running that much traffic thorough a vPC link unless something is wrong. From what I looked at it seemed like you would want to balance it out. So for example if I had an uplink on 5k-1 to Core-1, I would also want an uplink on 5k-2 going to Core-1. That way the traffic does not need to go through the vPC unless there is a problem. Hope that helps.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22bigstyx@gmail.com%22&#34;&gt;Joel&lt;/a&gt; - &lt;time datetime=&#34;2014-12-16 03:51:59&#34;&gt;Dec 2, 2014&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hello, are you sure of your drawing ? have a look at Fig 6-10 on ^this CISCO page : &lt;a href=&#34;http://www.cisco.com/en/US/docs/switches/datacenter/nexus5000/sw/mkt&#34;&gt;http://www.cisco.com/en/US/docs/switches/datacenter/nexus5000/sw/mkt&lt;/a&gt;_ops_guides/513_n1_1/n5k_enhanced_vpc.html&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-3&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22zakpost@gmail.com%22&#34;&gt;Zak Post&lt;/a&gt; - &lt;time datetime=&#34;2015-01-14 07:04:47&#34;&gt;Jan 3, 2015&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Thanks for this, it was easy to follow up to get a working configuration.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-4&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2015-01-14 19:45:47&#34;&gt;Jan 3, 2015&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Glad you were able to use it. :)&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-5&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22nishanth.tm@gmail.com%22&#34;&gt;Nishant&lt;/a&gt; - &lt;time datetime=&#34;2015-09-04 06:24:45&#34;&gt;Sep 5, 2015&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Thanks, I found your post really helpful. I am in the process of implementing eVPC on 5672 UP. I have few questions with respect to the same, 1.You had mentioned that the host/server that connects to these different Fexes must support Active/Active NICs, does it mean that the host or server should support LACP? What if my host doesn&#39;t support LACP? 2.Can I dual home a VMware ESXi (active-active NICs on route based originating virtual port ID load balancing policy) to the fexes? … 3.Can I configure the fex port channel to static ( mode on) instead of active or lacp ? interface eth101/1/1, eth101/1/2 channel-group 2 mode on interface eth102/1/1, eth102/1/2 channel-group 2 mode on interface po2 switchport access vlan 25 Thanks in advance, Nishant&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-6&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2014-12-16 20:25:43&#34;&gt;Dec 2, 2014&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Joel, Thanks for pointing that out I fixed the image and thanks for the reference.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-7&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2015-01-26 22:17:26&#34;&gt;Jan 1, 2015&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Kerry, Yes you would be able to add 4 ports in a port-channel to the FEXes. You could almost do the same thing with two 5600s without the FEXes if you wanted. Just setup a VPC and port-channel on both 5600s instead of using the FEXes.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-8&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22kerry.maguire@co-opngn.net%22&#34;&gt;Kerry&lt;/a&gt; - &lt;time datetime=&#34;2015-01-26 14:46:53&#34;&gt;Jan 1, 2015&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Thank you for this write up, great information. In my setup the host has 2 10g NICS for a total of 4 uplinks. Would I be able to follow your example here for PO2 but add in all 4 ports? (Ex 101/1/1-4 and 102/1/1-4&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-9&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2015-09-07 21:48:25&#34;&gt;Sep 1, 2015&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey Nishant, You don&#39;t have to have Active/Active on the FEXs, you can have a single uplink from a host to a FEX and treat it like a standard port. The example that I showed is something you could do if you had a host that supported LACP. I also believe you can turn off LACP if you needed to and manually put up a port-channel on the FEX. Here is some more info: (Figure 6-5) &lt;a href=&#34;http://www.cisco.com/en/US/docs/switches/datacenter/nexus5000/sw/mkt&#34;&gt;http://www.cisco.com/en/US/docs/switches/datacenter/nexus5000/sw/mkt&lt;/a&gt;_ops_guides/513_n1_1/n5k_enhanced_vpc.html&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-10&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://gravatar.com/hostingnuggets&#34; title=&#34;hostingnuggets@gmail.com&#34;&gt;John&lt;/a&gt; - &lt;time datetime=&#34;2016-01-30 05:42:16&#34;&gt;Jan 6, 2016&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Does this setup really need 8 network connections between the two nexus 5k and the two nexus 2k? Would it also work with only 4 network connections instead? and in that case would it still be called &amp;quot;dual homed&amp;quot;? I am not sure to understand the advantage of 8 network connections.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-11&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2016-01-30 08:54:29&#34;&gt;Jan 6, 2016&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Hey John, You could use 4 connections instead of 8 you just loose the amount of bandwidth available instead of 40Gbps you would have 20Gbps that is available to the 2ks. It would also still be called a dual homed setup because that 2k switch is connected two different 5k switches. Ryan.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-12&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://couleur3bestof.wordpress.com&#34; title=&#34;hostingnuggets@gmail.com&#34;&gt;hostingnuggets&lt;/a&gt; - &lt;time datetime=&#34;2016-04-24 07:25:51&#34;&gt;Apr 0, 2016&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Ryan, I was wondering when connecting your server redundatly on Po2 shouldn&#39;t you specify a VPC? For instance you have: interface po2 switchport access vlan 25 but as far as I understand shouldn&#39;t it be assigned a VPC, for example: interface po2 switchport access vlan 25 vpc 2 ?&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-13&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2016-04-25 17:45:32&#34;&gt;Apr 1, 2016&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;You are correct if you would have connected the server directly to the 5ks you have to specify a VPC or if you had a single FEX connected to the 5k. In this example however I&#39;m using FEXes which already have a VPC configured from both 5ks and I&#39;m using port-channels off of those FEXes this is called &amp;quot;Enhanced vPC&amp;quot;. There is a difference between them, when you create an Enhanced vPC you don&#39;t specify a VPC on the FEXes because there is already a vPC created upstream. Regular vPC with FEXes: &lt;a href=&#34;http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/configuration_guide_c07-543563.html&#34;&gt;LINK&lt;/a&gt; Enhanced vPC with FEXes: &lt;a href=&#34;http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5000/sw/layer2/513_n1_1/b_Cisco_n5k_layer2_config_gd_rel_513_N1_1/b_Cisco_n5k_layer2_config_gd_rel_513_N1_1_chapter_01010.html&#34;&gt;LINK&lt;/a&gt; Hope that Helps, Ryan&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            So I&#39;ve played around with two Cisco Nexus 5672UP switches which will be in production soon but before that I wanted to see what it took to get enhanced vPC online. Along the way I was into some new territory as I never stood up vPC before, so in this post I have posted some things to keep in mind and running-config examples, all of which I hope is helpful for a reference.
+          
+          
         
       </description>
     </item>
@@ -317,127 +78,10 @@
       <guid>https://ciscoskills.net/2014/03/13/inter-vlan-routing-on-the-nexus-5k/</guid>
       <description>
         
-          &lt;p&gt;I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let&#39;s go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.  In this example I have already configured a FEX port with a 2k check out the my earlier post &lt;a href=&#34;http://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/&#34;&gt;Connecting FEX (5k to 2k)&lt;/a&gt; so let&#39;s start right after that and login into the 5k.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;User Access Verification
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k login: admin
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;Password:
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Cisco Nexus Operating System (NX-OS) Software
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;TAC support: http://www.cisco.com/tac
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;Copyright (c) 2002-2013, Cisco Systems, Inc. All rights reserved.
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;The copyrights to certain works contained in this software are
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;owned by other third parties and used and distributed under
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;license. Certain components of this software are licensed under
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;the GNU General Public License (GPL) version 2.0 or the GNU
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;Lesser General Public License (LGPL) Version 2.1. A copy of each
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;such license is available at
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;http://www.opensource.org/licenses/gpl-2.0.php and
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;http://www.opensource.org/licenses/lgpl-2.1.php
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;demo5k# config t
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now in configuration mode we have to turn on a feature in the NX-OS to enable VLAN Routing, we do this by issuing the “&lt;strong&gt;feature interface-vlan&lt;/strong&gt;” command. The Nexus runs on efficiency and only loads what it needs or configured. This is familiar approach that Linux uses which loads what is installed and nothing else. In the output below we can see all the features that the NX-OS supports followed by the command to turn on Inter-VLAN Routing.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# feature ?
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;  bgp             Enable/Disable Border Gateway Protocol (BGP)
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;  cts             Enable/Disable CTS
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;  dhcp            Enable/Disable DHCP Snooping
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;  dot1x           Enable/Disable dot1x
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;  eigrp           Enable/Disable Enhanced Interior Gateway Routing Protocol
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;                  (EIGRP)
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;  fcoe            Enable/Disable FCoE/FC feature
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;  fcoe-npv        Enable/Disable FCoE NPV feature
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;  fex             Enable/Disable FEX
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;  flexlink        Enable/Disable Flexlink
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;  hsrp            Enable/Disable Hot Standby Router Protocol (HSRP)
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;  http-server     Enable/Disable http-server
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;  interface-vlan  Enable/Disable interface vlan
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;  lacp            Enable/Disable LACP
-&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;  msdp            Enable/Disable Multicast Source Discovery Protocol (MSDP)
-&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;  ntp             Enable/Disable NTP
-&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;  ospf            Enable/Disable Open Shortest Path First Protocol (OSPF)
-&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;  ospfv3          Enable/Disable Open Shortest Path First Version 3 Protocol
-&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;                  (OSPFv3)
-&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;  pim             Enable/Disable Protocol Independent Multicast (PIM)
-&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;  port-security   Enable/Disable port-security
-&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;  private-vlan    Enable/Disable private-vlan
-&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;  privilege       Enable/Disable IOS type privilege level support
-&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;  ptp             Enable/Disable PTP
-&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;  rip             Enable/Disable Routing Information Protocol (RIP)
-&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;  scp-server      Enable/Disable SCP server
-&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;  sftp-server     Enable/Disable SFTP server
-&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;  ssh             Enable/Disable ssh
-&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;  tacacs+         Enable/Disable tacacs+
-&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;  telnet          Enable/Disable telnet
-&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;  udld            Enable/Disable UDLD
-&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;  vpc             Enable/Disable VPC (Virtual Port Channel)
-&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;  vrrp            Enable/Disable Virtual Router Redundancy Protocol (VRRP)
-&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;  vtp             Enable/Disable Vlan Trunking Protocol (VTP)
-&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;demo5k(config)# feature interface-vlan
-&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;demo5k(config)#
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Just like the Catalyst line we are in configuration mode and let&#39;s create two vlans 50 and 60 with IP addresses.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# vlan 50
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-vlan)# name SERVER-A-VLAN
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-vlan)# exit
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;demo5k(config)# interface vlan 50
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;demo5k(config-if)# description SERVER-A-NETWORK
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;demo5k(config-if)# ip address 192.168.50.1 255.255.255.0
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;demo5k(config-if)# no shutdown
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;demo5k(config-if)# exit
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;! Create another Interface VLAN!
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;demo5k(config)# interface vlan 60
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# description SERVER-B-NETWORK
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# ip address 192.168.60.1 255.255.255.0
-&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;demo5k(config-if)# no shutdown
-&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;demo5k(config-if)# exit
-&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;demo5k(config)#exit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s verify our creation by doing a &lt;strong&gt;show interface vlan 60&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show interface vlan 60
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Vlan60 is down (VLAN does not exist), line protocol is down
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is EtherSVI, address is  547f.ee59.a2c1
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Description: SERVER-B-NETWORK
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  Internet Address is 192.168.60.1/24
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&#39;s look at VLAN 50:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show interface vlan 50
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;Vlan60 is down (VLAN is down), line protocol is down
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;  Hardware is EtherSVI, address is  547f.ee59.a2c1
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;  Description: SERVER-A-NETWORK
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;  Internet Address is 192.168.50.1/24
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can also look at the interface brief:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;demo5k# show ip interface brief
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;IP Interface Status for VRF &amp;#34;default&amp;#34;(1)
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;Interface            IP Address      Interface Status
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;Vlan50               192.168.50.1    protocol-down/link-down/admin-up
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;Vlan60               192.168.60.1    protocol-down/link-down/admin-up\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;VLANs have been created and IP addresses assigned to the interfaces, now let&#39;s configure the 2k. In this example I&#39;ve configured two access ports on the 2k one is in VLAN 50 and another is in VLAN 60. Starting with VLAN 50 on port 1 on the 2k&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# interface ethernet 100/1/1
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-if)# switchport access vlan 50
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-if)# spanning-tree port type edge
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Warning: Edge port type (portfast) should only be enabled on ports connected to a single
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt; host. Connecting hubs, concentrators, switches, bridges, etc... to this
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; Use with CAUTION
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/1 but will only
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; have effect when the interface is in a non-trunking mode.
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# no shutdown
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# exit\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You&#39;ll notice the warning when we configure the port as an edge port, in the Catalyst world this is the same as spanning-tree portfast. Let&#39;s next configure port 25 on the same 2k into VLAN 60.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;demo5k(config)# interface ethernet 100/1/25
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;demo5k(config-if)# switchport access vlan 60
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;demo5k(config-if)# spanning-tree port type edge
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;Warning: Edge port type (portfast) should only be enabled on ports connected to a single
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt; host. Connecting hubs, concentrators, switches, bridges, etc... to this
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt; interface  when edge port type (portfast) is enabled, can cause temporary bridging loops.
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt; Use with CAUTION
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;Edge Port Type (Portfast) has been configured on Ethernet100/1/25 but will only
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt; have effect when the interface is in a non-trunking mode.
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;demo5k(config-if)# no shutdown
-&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;demo5k(config-if)# exit\[/code\]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Done and Done, If you hook-up two PCs with correct IP address scheme in the separate VLANs you would be able to ping them. To verify the routing table you would do a &lt;strong&gt;show ip route&lt;/strong&gt;, just like the IOS world :) Like always I hope this information is helpful and comment below if you have any questions.&lt;/p&gt;
-&lt;!--adsense--&gt;
-
+          
+            I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let&#39;s go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.
+          
+          
         
       </description>
     </item>
@@ -450,8 +94,10 @@
       <guid>https://ciscoskills.net/2014/02/27/640-911-chapter-7/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2014/01/640-911-todd-lammle.jpg?w=118&#34; alt=&#34;&#34;&gt;&lt;/a&gt;If you made it past the earlier chapters this one should be interesting, like before I am going through each chapter of the &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. Comment below if you have questions in this chapter, last week we learned about subnetting and in this chapter we will learn about the NX-OS which is Cisco&#39;s Data Center switches. Let&#39;s begin! &lt;strong&gt;Overview&lt;/strong&gt;: This was short chapter in introducing the NX-OS product line and into the virtualized enviroments that data centers are now becoming. In this chapter you will discover that Cisco wants all traffic both SAN and LAN unified on one switch instead of being separate devices. The NX-OS is a Linux system with some pretty neat isolation features with the data and control plane separated and the ability to offload crunching to dedicated CPUs instead of sharing the load. I also liked how the system manger worked, it reminds me of a watchdog making sure everything is running in par and the ability to restart processes with automatic restart thanks to PSS. (Persistent Storage Service) Being able to upgrade the software and still being able to forwarded traffic is also very cool, thanks ISSU (No downtime around here :) ) I hinted on an &lt;a href=&#34;http://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/&#34; title=&#34;Connecting FEX (5k to 2k)&#34;&gt;earlier post&lt;/a&gt; that the Nexus runs on efficiency and only loads what it needs or configured, why load up NTP if you are not going to use it? Know some common process that can run on the NX-OS like STP, CDP, and HSRP. All of these have to be turned on before you can use them. Some other cool things you can do is VRF which separates the routing table for multi-tenancy or for security requirements. Finally being able to a VDC (virtualized dedicated device) which is able run another copy of the NX-OS on the same hardware and depending the model of Nexus hardware you are using you can run up to eight different systems! **My thoughts: **Very cool stuff going on in the Cisco world, if you never heard of the Nexus and this is first time reading this chapter what does this remind you of? We know that servers took a huge movement into virtualization to combat server sprawl. The Nexus is attempting a similar approach to add to their portfolio. What is interesting to me is the Nexus was first introduced in the beginning of 2008, which makes the NX-OS product six years old. For the exam go over the chapter and review questions as always ask questions if you have any by commenting below.&lt;/p&gt;
-
+          
+            If you made it past the earlier chapters this one should be interesting, like before I am going through each chapter of the CCNA Data Center Study Guide from Todd Lammle. Comment below if you have questions in this chapter, last week we learned about subnetting and in this chapter we will learn about the NX-OS which is Cisco&#39;s Data Center switches. Let&#39;s begin! Overview: This was short chapter in introducing the NX-OS product line and into the virtualized enviroments that data centers are now becoming.
+          
+          
         
       </description>
     </item>
@@ -464,12 +110,10 @@
       <guid>https://ciscoskills.net/2014/02/13/640-911-chapter-5/</guid>
       <description>
         
-          &lt;p&gt;Last week we covered chapter four which talked about the TCP/IP and the DoD models and what role they cover in networking as we learned that every application like FTP, DNS, DHCP depend on it. Like always post questions if you have any about the book &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. I&#39;ll continue to cover  topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. Let&#39;s go over chapter five.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt;
-I think we knew it was on the way, in this chapter we opened the door to IPv4 addressing. If this is your first time understanding IP addresses go over it carefully, this exam will cover it. Know the ranges of a Class A, B and C networks, where&#39;s the loopback? Also know the private IP class ranges of A, B and C. (RFC1918) Know the difference between broadcasts, unicast, and multicast addresses. We also got introduced into IPv6, know the address format, the short hand way to write an IPv6 address as well as the types of IPv6 addresses. (link-local, unicast, global unicast addresses, and unique local address)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts:&lt;/strong&gt; If you have been around IPv4 addresses you might be good on this chapter, towards the end of the chapter I would look at IPv6, we don&#39;t talk about subnetting yet that&#39;s next week. :) Pretty short chapter this week post questions below if you have any on this chapter.&lt;/p&gt;
-
+          
+            Last week we covered chapter four which talked about the TCP/IP and the DoD models and what role they cover in networking as we learned that every application like FTP, DNS, DHCP depend on it. Like always post questions if you have any about the book CCNA Data Center Study Guide from Todd Lammle. I&#39;ll continue to cover topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover.
+          
+          
         
       </description>
     </item>
@@ -482,15 +126,10 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2014/02/06/640-911-chapter-4/</guid>
       <description>
         
-          &lt;p&gt;Continuing where we left off on Chapter 3 on &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/&#34;&gt;CCNA Data Center Study Guide from Todd Lammle&lt;/a&gt;. Like before feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter three we discussed about Ethernet Technologies and in chapter four we will learn about the TCP/IP protocol which is fundamentally the protocol that makes the Internet work.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;strong&gt;Overview&lt;/strong&gt;: The chapter started talking about the DoD model and comparing it to the OSI model, remember this and a little history behind it as well as the layers the DoD model shows its relevance with the OSI model. We start talking about applications like Telnet, FTP, SMTP what are these? Know the common applications and their port numbers. The chapter also talked about host-to-host layer protocols like TCP and UDP, know the difference between these two, and some memorization of what the TCP and UDP header looks like. (Which one is unreliable and which one uses acknowledgments and flow control?) We also looked into the Internet layer Protocols, do you know them all and their functions? Also know what the IP header looks like. (What does it include?)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Personal Story&lt;/strong&gt;: I wanted to jump in and talk about my personal experience with TCP/IP protocol mainly the ICMP management of it. I was contracted with a company that had a Cisco Phone System and a 2900 router using SiP as well as Internet on top it. They had this time clock system that would send punches over a VPN to a corporate office and it was setup and working for a while until of course it eventually stopped sending time punches. This took about a week to figure out as the VPN was online and you could contact the device from corporate. With a SPAN port I could see traffic hitting the time clock as well as it coming back. The issue was when the 2900 router was setup, it was set to disregard ICMP (For general network security) because of the way the time clock is designed it would use ICMP to decide the acceptable MTU size before sending time punches. Since it never got a reply it would fail on sending time punches, in the end I enabled the router to accept ICMP to fix the issue. Long story short, ICMP is a management protocol for IP and although it can be used against you, it&#39;s a balancing act between security and functionally and in this case the time clock used ICMP legitimately, lesson learned. :)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts:&lt;/strong&gt; Personally I liked going over this chapter it starts to put some pieces together, I would read it over if you have seen this before just lock down any missing parts. Also post any questions about this chapter below.&lt;/p&gt;
-&lt;p&gt;Could be Helpful? &lt;a href=&#34;https://ciscoskills.net/files/2014/01/640-911_dcicn.pdf&#34;&gt;640-911 Exam Topics&lt;/a&gt; (PDF)&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/02/25/understanding-tcp/&#34; title=&#34;Understanding TCP&#34;&gt;Understanding TCP&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/28/understanding-udp/&#34; title=&#34;Understanding UDP&#34;&gt;Understanding UDP&lt;/a&gt;&lt;/p&gt;
-
+          
+            Continuing where we left off on Chapter 3 on CCNA Data Center Study Guide from Todd Lammle. Like before feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter three we discussed about Ethernet Technologies and in chapter four we will learn about the TCP/IP protocol which is fundamentally the protocol that makes the Internet work.
+          
+          
         
       </description>
     </item>
@@ -503,17 +142,10 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2014/01/23/640-911-chapter-2/</guid>
       <description>
         
-          &lt;p&gt;I am continuing the ongoing of series of blog posts that follow the CCNA Data Center Study Guide from Todd Lammle. I figured that this type of post would help me and anybody else looking at studying for the exam. Feel free to post questions below as if  on a study group, In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. Continuing where we left off from &lt;a href=&#34;http://ciscoskills.net/2014/01/16/640-911-chapter-1/&#34; title=&#34;640-911 (Chapter 1)&#34;&gt;chapter one&lt;/a&gt; let’s begin chapter 2.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Overview:&lt;/strong&gt; Chapter 2 goes over the difference between a broadcast domains and collision domains and how to find them. What does the &amp;quot;Router&amp;quot; do for us when using it in a LAN? What are the advantages of it and the functions it offers? We also were introduced into the OSI model. What is it and what are the advantages of it? Todd also went over each layer of the model with more detail on the Transport layer, Network layer and the Data Link layer. For example in the Transport layer we learned about the TCP and UDP and the difference between those two protocols. Along with understanding TCP&#39;s connection-oriented process, the three-way handshake.  We also looked other features that TCP offers like what does flow control do for us? Along with understanding what windowing and acknowledgments are. Going from layer 4 to layer 3 we were introduced into the network addresses and what they do along with knowing some terminology like routing tables, interfaces, and metrics.  Going down from layer 3 to layer 2 what is a frame vs. a packet and what is the difference between the Media Access Control (802.3) and the Logical Link Control (802.2) Finally at layer 1 this chapter talked a bit about the cabling standards but it lets you know why hubs are a layer 1 device and the difference between switch and a hub.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My thoughts&lt;/strong&gt;: This chapter goes over a lot of material that was somewhat introduced in chapter one but goes further into details. I would study the OSI model and its different layers if you have never used it before. Like on chapter one I would go over the review questions starting on page 54 before skipping this chapter. Like before if you have questions on chapter two comment below and the check back next week for chapter three! I have posted before on this blog some items that would go along with this chapter:&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/30/collision-domains-vs-broadcast-domains/&#34; title=&#34;Collision Domains vs. Broadcast Domains&#34;&gt;Collision Domains vs. Broadcast Domains&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/01/17/the-osi-layer/&#34; title=&#34;The OSI Layer&#34;&gt;The OSI Layer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/02/25/understanding-tcp/&#34; title=&#34;Understanding TCP&#34;&gt;Understanding TCP&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/28/understanding-udp/&#34; title=&#34;Understanding UDP&#34;&gt;Understanding UDP&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
+          
+            I am continuing the ongoing of series of blog posts that follow the CCNA Data Center Study Guide from Todd Lammle. I figured that this type of post would help me and anybody else looking at studying for the exam. Feel free to post questions below as if on a study group, In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover.
+          
+          
         
       </description>
     </item>
@@ -526,31 +158,10 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2013/12/01/connecting-fex-5k-to-2k/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/nexus-pline.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/nexus-pline.png&#34; alt=&#34;Nexus-PLine&#34;&gt;&lt;/a&gt;I was pretty excited to get my hands on some of the &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Nexus_switches&#34; title=&#34;Cisco Nexus switches&#34;&gt;Cisco Nexus&lt;/a&gt; product line which focuses on switching in the data center. The gear I have is an evaluation unit so I made some notes and one thing I was impressed is how easy it is to connect a Nexus 5K to a Nexus 2k also known as a fabric extender. I have kept it simple as the gear I have is a single Nexus 5596 along with a single Nexus 224TP-E who needs redundancy right? So in this post I&#39;ll explain how to connect a 5k Nexus to a 2k extender. Let’s get started! So I needed a couple of SFPs as the only way to connect the 5k to the 2k is a FET-10G SFP along with that was some multimode fiber (OM3) with LC connectors. Looking at the simple diagram below our end goal is to be able to configure the 2k from the 5k. That is the point of the 2k extenders less switches to manage in the data center.&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2013/11/5k-to-2k.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2013/11/5k-to-2k.png&#34; alt=&#34;5k to 2k&#34;&gt;&lt;/a&gt;Once we have made the physical connections lets power both switches on, we won&#39;t need to worry about the 2k switch at all as along we have a physical connection to a parent switch the 5k in our case, but that also could be 7k switch. Just an FYI, I&#39;ve already ran through the simple CLI wizard to setup a username and password but other than that let&#39;s get configuring by entering the familiar command &amp;quot;&lt;strong&gt;config t&lt;/strong&gt;&amp;quot; [code]User Access Verification demo5k login: admin Password: Cisco Nexus Operating System (NX-OS) Software TAC support: &lt;a href=&#34;http://www.cisco.com/tac&#34;&gt;http://www.cisco.com/tac&lt;/a&gt; Copyright (c) 2002-2013, Cisco Systems, Inc. All rights reserved. The copyrights to certain works contained in this software are owned by other third parties and used and distributed under license. Certain components of this software are licensed under the GNU General Public License (GPL) version 2.0 or the GNU Lesser General Public License (LGPL) Version 2.1. A copy of each such license is available at &lt;a href=&#34;http://www.opensource.org/licenses/gpl-2.0.php&#34;&gt;http://www.opensource.org/licenses/gpl-2.0.php&lt;/a&gt; and &lt;a href=&#34;http://www.opensource.org/licenses/lgpl-2.1.php&#34;&gt;http://www.opensource.org/licenses/lgpl-2.1.php&lt;/a&gt; demo5k# config t[/code] Now in configuration mode we have to turn on a feature in the NX-OS to enable FEX, we do this by issuing the &amp;quot;&lt;strong&gt;feature FEX&lt;/strong&gt;&amp;quot; command. The Nexus runs on efficiency and only loads what it needs or configured. This is familiar approach that Linux uses which loads what is installed and nothing else.  In the output below we can see all the features that the NX-OS supports followed by the command to turn on FEX. [code] Enter configuration commands, one per line. End with CNTL/Z. demo5k(config)# feature ? bgp Enable/Disable Border Gateway Protocol (BGP) cts Enable/Disable CTS dhcp Enable/Disable DHCP Snooping dot1x Enable/Disable dot1x eigrp Enable/Disable Enhanced Interior Gateway Routing Protocol (EIGRP) fcoe Enable/Disable FCoE/FC feature fcoe-npv Enable/Disable FCoE NPV feature fex Enable/Disable FEX flexlink Enable/Disable Flexlink hsrp Enable/Disable Hot Standby Router Protocol (HSRP) http-server Enable/Disable http-server interface-vlan Enable/Disable interface vlan lacp Enable/Disable LACP msdp Enable/Disable Multicast Source Discovery Protocol (MSDP) ntp Enable/Disable NTP ospf Enable/Disable Open Shortest Path First Protocol (OSPF) ospfv3 Enable/Disable Open Shortest Path First Version 3 Protocol (OSPFv3) pim Enable/Disable Protocol Independent Multicast (PIM) port-security Enable/Disable port-security private-vlan Enable/Disable private-vlan privilege Enable/Disable IOS type privilege level support ptp Enable/Disable PTP rip Enable/Disable Routing Information Protocol (RIP) scp-server Enable/Disable SCP server sftp-server Enable/Disable SFTP server ssh Enable/Disable ssh tacacs+ Enable/Disable tacacs+ telnet Enable/Disable telnet udld Enable/Disable UDLD vpc Enable/Disable VPC (Virtual Port Channel) vrrp Enable/Disable Virtual Router Redundancy Protocol (VRRP) vtp Enable/Disable Vlan Trunking Protocol (VTP) demo5k(config)# feature fex demo5k(config)#[/code] Now that our FEX feature is active let&#39;s configure the port that has the 2k connected and in this example I have it as ethernet port 48 on our 5k. The commands are petty simple, I first want to go into interface followed by changing the mode of interface and finally giving the interface a FEX associate ID. :!:&lt;strong&gt;NOTE&lt;/strong&gt;: Since this design is a single stack we need to issue the FEX associate command on the physical interface. If you want redundancy you would usually put the FEX associate command with &lt;a href=&#34;http://ciscoskills.net/2014/09/10/setting-up-enhanced-vpc-on-nexus-5600/&#34; title=&#34;Setting up Enhanced vPC on Nexus 5600&#34;&gt;channel-groups and vPCs&lt;/a&gt;. Another helpful FYI is if you have channel-groups you don&#39;t need to put the FEX associate command on the physical interface. [code]demo5k(config)# interface ethernet1/48 demo5k(config-if)# switchport mode fex-fabric demo5k(config-if)# fex associate 100 demo5k(config-if)# exit demo5k(config)#[/code] Give it a couple of minutes and you should see the 2k come online :) [code]2013 Dec 01 07:28:37 demo5k %$ VDC-1 %$ %PFMA-2-FEX_STATUS: Fex 100 is online 2013 Dec 01 07:28:37 demo5k %$ VDC-1 %$ %NOHMS-2-NOHMS_ENV_FEX_ONLINE: FEX-100 On-line 2013 Dec 01 07:28:39 demo5k %$ VDC-1 %$ %PFMA-2-FEX_STATUS: Fex 100 is online[/code] Let&#39;s verify that our FEX is all good by issuing &amp;quot;&lt;strong&gt;show fex 100&lt;/strong&gt;&amp;quot; which shows the FEX and the 5k version. (Notice they match versions) You can also find the serial number, model number, the number links and the status of fabric when using this command. (The 5K) [code]demo5k# show fex 100 FEX: 100 Description: FEX0100 state: Online FEX version: 6.0(2)N1(2) [Switch version: 6.0(2)N1(2)] Extender Serial: SSI153804CQ Extender Model: N2K-C2248TP-E-1GE, Part No: 73-13671-01 Pinning-mode: static Max-links: 1 Fabric port for control traffic: Eth1/48 FCoE Admin: false FCoE Oper: true FCoE FEX AA Configured: false Fabric interface state: Eth1/48 - Interface Up. State: Active demo5k# show fex FEX FEX FEX FEX Number Description State Model Serial ------------------------------------------------------------------------ 100 FEX0100 Online N2K-C2248TP-E-1GE SSI153804CQ[/code] You can also go into detail on the FEX by issuing the &amp;quot;&lt;strong&gt;show fex detail&lt;/strong&gt;&amp;quot; which shows almost the same information has &amp;quot;&lt;strong&gt;show fex&lt;/strong&gt;&amp;quot; but it includes the FEX ports, the status of those FEX ports and what port the fabric is connected. (Also called the 5k) as well as helpful logs for the 2k at the end of command. [code]demo5k# show fex detail FEX: 100 Description: FEX0100 state: Online FEX version: 6.0(2)N1(2) [Switch version: 6.0(2)N1(2)] FEX Interim version: 6.0(2)N1(2) Switch Interim version: 6.0(2)N1(2) Extender Serial: SSI153804CQ Extender Model: N2K-C2248TP-E-1GE, Part No: 73-13671-01 Card Id: 149, Mac Addr: 70:81:05:00:99:42, Num Macs: 64 Module Sw Gen: 12594 [Switch Sw Gen: 21] post level: complete pinning-mode: static Max-links: 1 Fabric port for control traffic: Eth1/48 FCoE Admin: false FCoE Oper: true FCoE FEX AA Configured: false Fabric interface state: Eth1/48 - Interface Up. State: Active Fex Port State Fabric Port Eth100/1/1 Down Eth1/48 Eth100/1/2 Down Eth1/48 Eth100/1/3 Down Eth1/48 Eth100/1/4 Down Eth1/48 Eth100/1/5 Down Eth1/48 Eth100/1/6 Down Eth1/48 Eth100/1/7 Down Eth1/48 Eth100/1/8 Down Eth1/48 Eth100/1/9 Down Eth1/48 Eth100/1/10 Down Eth1/48 Eth100/1/11 Down Eth1/48 Eth100/1/12 Down Eth1/48 Eth100/1/13 Down Eth1/48 Eth100/1/14 Down Eth1/48 Eth100/1/15 Down Eth1/48 Eth100/1/16 Down Eth1/48 Eth100/1/17 Down Eth1/48 Eth100/1/18 Down Eth1/48 Eth100/1/19 Down Eth1/48 Eth100/1/20 Down Eth1/48 Eth100/1/21 Down Eth1/48 Eth100/1/22 Down Eth1/48 Eth100/1/23 Down Eth1/48 Eth100/1/24 Down Eth1/48 Eth100/1/25 Down Eth1/48 Eth100/1/26 Down Eth1/48 Eth100/1/27 Down Eth1/48 Eth100/1/28 Down Eth1/48 Eth100/1/29 Down Eth1/48 Eth100/1/30 Down Eth1/48 Eth100/1/31 Down Eth1/48 Eth100/1/32 Down Eth1/48 Eth100/1/33 Down Eth1/48 Eth100/1/34 Down Eth1/48 Eth100/1/35 Down Eth1/48 Eth100/1/36 Down Eth1/48 Eth100/1/37 Down Eth1/48 Eth100/1/38 Down Eth1/48 Eth100/1/39 Down Eth1/48 Eth100/1/40 Down Eth1/48 Eth100/1/41 Down Eth1/48 Eth100/1/42 Down Eth1/48 Eth100/1/43 Down Eth1/48 Eth100/1/44 Down Eth1/48 Eth100/1/45 Down Eth1/48 Eth100/1/46 Down Eth1/48 Eth100/1/47 Down Eth1/48 Eth100/1/48 Down Eth1/48 Logs: 12/01/2013 07:28:31.344277: Module register received 12/01/2013 07:28:31.347237: Registration response sent 12/01/2013 07:28:31.696577: create module inserted event. 12/01/2013 07:28:31.697697: Module Online Sequence 12/01/2013 07:28:37.285556: Module Online[/code] Believe it or not you now have a working 5k with a connected FEX, you could plug devices in and be ready to roll on a single stack 2k and 5k. One thing I&#39;ve been impressed with the NX-OS it&#39;s that familiar feeling of IOS with some improved differences, Cisco has good documentation on the common and different features when comparing NX-OS and IOS which is below. Like always I hope this post is helpful and I have a couple more Nexus posts in the works but other than that enjoy the remaining of 2013! &lt;a href=&#34;http://docwiki.cisco.com/wiki/Cisco_Nexus_7000_NX-OS/IOS_Comparison_Tech_Notes&#34; title=&#34;Cisco Nexus 7000 NX-OS/IOS Comparison Tech Notes&#34;&gt;Cisco Nexus 7000 NX-OS/IOS Comparison Tech Notes&lt;/a&gt;&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/exploring-the-nexus-1000-v-rest-api/&#34;&gt;Exploring the Nexus 1000 V REST API&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://brasstacksblog.typepad.com/brass-tacks/2012/02/fc-and-fcoe-versus-iscsi-network-centric-versus-end-node-centric-provisioning.html&#34;&gt;FC and FCoE versus iSCSI - &amp;quot;Network-centric&amp;quot; versus &amp;quot;End-Node-centric&amp;quot; provisioning&lt;/a&gt; (brasstacksblog.typepad.com)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://LinkedIn.com/farhane&#34; title=&#34;Interpreter411@gmail.com&#34;&gt;Farhan&lt;/a&gt; - &lt;time datetime=&#34;2013-12-01 10:54:08&#34;&gt;Dec 0, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Quick question: why port 1/48 down? I thought you configured that interface/port?&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Ryan](http://ciscoskills.net/ &#34;lewiryan@isu.edu&#34;) - &lt;time datetime=&#34;2013-12-01 11:25:41&#34;&gt;Dec 0, 2013&lt;/time&gt;
-&lt;p&gt;Hey Farhan, Port 1/48 is not down on the 5k but on the 2k port 100/1/48 is down, this is a 1GB copper port and in the example I had nothing connected to the 2k. The 2k has four FEX ports that can be connected to a 5k or a 7k, however in this example I did not issue a command that shows the FEX port status, I&#39;ll do some digging in finding an example but from what I can tell I think the &amp;quot;show interface fex-fabric&amp;quot; would show what uplink it is connected to and the status of the FEX link. Hope that Helps.&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[Inter-VLAN Routing on the Nexus 5k. &amp;laquo; Cisco Skills](http://ciscoskills.net/2014/03/13/inter-vlan-routing-on-the-nexus-5k/ &#34;&#34;) - &lt;time datetime=&#34;2014-03-13 09:46:28&#34;&gt;Mar 4, 2014&lt;/time&gt;
-&lt;p&gt;[…] this example I have already configured a FEX port with a 2k check out the my earlier post Connecting FEX (5k to 2k) so let’s start right after that and login into the […]&lt;/p&gt;
-&lt;hr /&gt;
-#### 
-[640-911 (Chapter 7) &amp;laquo; Cisco Skills](http://ciscoskills.net/2014/02/27/640-911-chapter-7/ &#34;&#34;) - &lt;time datetime=&#34;2014-02-27 11:02:42&#34;&gt;Feb 4, 2014&lt;/time&gt;
-&lt;p&gt;[…] to forwarded traffic is also very cool, thanks ISSU (No downtime around here ) I hinted on an earlier post that the Nexus runs on efficiency and only loads what it needs or configured, why load up NTP if […]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            I was pretty excited to get my hands on some of the Cisco Nexus product line which focuses on switching in the data center. The gear I have is an evaluation unit so I made some notes and one thing I was impressed is how easy it is to connect a Nexus 5K to a Nexus 2k also known as a fabric extender. I have kept it simple as the gear I have is a single Nexus 5596 along with a single Nexus 224TP-E who needs redundancy right?
+          
+          
         
       </description>
     </item>
@@ -563,32 +174,11 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2013/06/29/passed-640-554/</guid>
       <description>
         
-          &lt;p&gt;Short story, I am proud to say that I passed! I have studied off and on in the beginning of the year but I did set a date to take the exam which was June 28th .As that date was getting closer I buckled down and reviewed the materials again and focused in on some areas that I knew I was weak in.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;So how was the 640-554 exam, what did I use to pass the exam and what exam am I focusing on next?  The 640-554 exam that I took surprised me which left me at the edge of the seat the entire testing period! 8-O There where lot of difficult questions that I would have missed if I hadn’t of re-reviewed the study materials, along with the amount of questions I had to go through to meet the 90 minute deadline, but it was worth it! After I saw my passing score on screen it definitely was a fair score that I received. I did not feel cheated or have any questions that weren’t on the &lt;a href=&#34;http://www.cisco.com/web/learning/exams/list/iins.html#~Topics&#34; title=&#34;640-554 IINS&#34;&gt;exam topic list&lt;/a&gt;, so I was overall pleased with the results.&lt;/p&gt;
-&lt;p&gt;Now to question that is often asked, what materials did I use to pass the exam?  I used the &lt;a href=&#34;http://www.amazon.com/CCNA-Security-640-554-Official-Guide/dp/1587204460/ref=sr_1_1?s=books&amp;amp;ie=UTF8&amp;amp;qid=1372552672&amp;amp;sr=1-1&amp;amp;keywords=ccna+security+640-554+official+cert+guide&#34; title=&#34;CCNA Security 640-554 Official Cert Guide &#34;&gt;CCNA Security 640-554 Official Cert Guide&lt;/a&gt; authored by Keith Barker and Scott Morris which is an excellent study guide. I also used the &lt;a href=&#34;https://secure.cbtnuggets.com/it-training-videos/series/csco_640_554&#34; title=&#34;Cisco CCNA Security 640-554 - Implementing Cisco IOS Network Security (IINS)&#34;&gt;CBT Nugget Series Cisco CCNA Security 640-554&lt;/a&gt; which is also by Keith Barker to at first learn about the material, take some notes on it and then review it in the cert guide by going through the chapters, reviewing the questions that are in the beginning of the chapters, along with using the study material that was included in the book. I also had some lab gear that was helpful in either following along with the CBT videos or just building some test labs. The lab I have follows the one I posted back in September (&lt;a href=&#34;http://ciscoskills.net/2012/09/07/cisco-lab-setup/&#34; title=&#34;Cisco Lab Setup&#34;&gt;Cisco Lab Setup&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;I also recently was able to get two more 2960 &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Catalyst&#34; title=&#34;Cisco Catalyst&#34;&gt;Cisco Catalyst&lt;/a&gt; switches. :) So what is my next plan? Not sure I might look at that new &lt;a href=&#34;http://ciscoskills.net/2012/11/21/ccna-data-center/&#34; title=&#34;CCNA Data Center&#34;&gt;CCNA Data Center&lt;/a&gt; exam which was announced last fall and it also looked like they may have some study material for it, at least for first exam (640-911 DCICN). I might start on the CCNP journey but either way I am still planning on posting on this blog with tutorials, ideas and other stories. I am also happy that I was able to make some changes of the layout and color of this blog, I hope you enjoy the new look and like always I hope this information is helpful and enjoy your summer!&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2013/03/26/ccna-version-2-0-refresh/&#34; title=&#34;&#34;&gt;CCNA Version 2.0 Refresh « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2013-07-06 10:00:01&#34;&gt;Jul 6, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-1&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://systemstechblog.wordpress.com&#34; title=&#34;ryan@ciscoskills.net&#34;&gt;Ryan&lt;/a&gt; - &lt;time datetime=&#34;2013-06-29 23:14:04&#34;&gt;Jun 6, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Thanks, Good Luck on the CCDA, that is another exam I have been looking at as well. Ryan&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-2&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22theos888@live.com%22&#34;&gt;just plain ol&#39; Kev&lt;/a&gt; - &lt;time datetime=&#34;2013-06-30 23:49:02&#34;&gt;Jun 0, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;Good job! Glad you are keeping the blog going. Lammle has a new study guide for CCNA data center that just came out. Kevin&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-3&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;%22yow@yahoo.com%22&#34;&gt;yow&lt;/a&gt; - &lt;time datetime=&#34;2013-06-29 20:35:27&#34;&gt;Jun 6, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;yow! congrats man! I&#39;m gunning for my CCDA also within the year, and let&#39;s hope I get to post something like this too, :)&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h4 id=&#34;heading-4&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2013/09/30/ccna-2-0-whats-new/&#34; title=&#34;&#34;&gt;CCNA 2.0 What’s New? « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2013-09-30 18:35:05&#34;&gt;Sep 1, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Short story, I am proud to say that I passed! I have studied off and on in the beginning of the year but I did set a date to take the exam which was June 28th .As that date was getting closer I buckled down and reviewed the materials again and focused in on some areas that I knew I was weak in.
+So how was the 640-554 exam, what did I use to pass the exam and what exam am I focusing on next?
+          
+          
         
       </description>
     </item>
@@ -601,26 +191,10 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2012/11/21/ccna-data-center/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&lt;/a&gt; has now introduced another associate level &lt;a href=&#34;http://en.wikipedia.org/wiki/Test_%28assessment%29&#34; title=&#34;Test (assessment)&#34;&gt;exam&lt;/a&gt;, the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCNA&#34; title=&#34;CCNA&#34;&gt;CCNA&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; exam. Like the name suggests this exam focuses on the &lt;a href=&#34;http://en.wikipedia.org/wiki/Data_center&#34; title=&#34;Data center&#34;&gt;Data Center&lt;/a&gt; and if passed you can continue up the stack by also taking the CCNP Data Center exam which was also recently introduced as well. Still want more a little more, if you are up for the challenge you can also tackle the &lt;a href=&#34;http://en.wikipedia.org/wiki/CCIE_Certification&#34; title=&#34;CCIE Certification&#34;&gt;CCIE&lt;/a&gt; Data Center which is an exam that was introduced in March of 2012.&lt;/p&gt;
-&lt;p&gt;Looking at the CCNA DC certification requirements, there is no need to get certificated in the regular CCNA &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;Routing&lt;/a&gt; and Switching as it is not required but looking at the renewal options for this certification you have to either get a CCNA concentration exam like &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Career_Certifications&#34; title=&#34;Cisco Career Certifications&#34;&gt;CCNA Wireless&lt;/a&gt;, Security, Voice, SP, SP Ops or a higher certification like CCNP and above.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2012/11/ccna-data-centere1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;An interesting thing I noticed when looking at Cisco&#39;s Career Certifications is that if you passed your CCNA Data Center exam and then later you passed the regular CCNA exam the CCNA Data Center certification would not renew. Unlike if you recived your CCNP Data Center certification and then took the CCNP exam it would renew you CCNP Data Center certification. What makes this exam so different from the rest of Cisco&#39;s certifications? Well to what I can tell this exam focuses on a specific area, meaning you don&#39;t need to have any certifications to back you up before you take the CCNA Data Center exam, and you can continue with CCNP Data Center exam without the need to have any other certifications beside CCNA DC. To pass the CCNA Data Center and receive your certification, you will need to pass two exams. The first exam (640-911 DCICN) looks at how a Data Center network works, along with configuring, verifying and troubleshooting data center switches.&lt;/p&gt;
-&lt;p&gt;This exam also looks at implementing data center &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; schemes and configuring, along with verifying and troubleshooting routing on Nexus switches. The second exam (640-916 DCICT) looks at Cisco&#39;s &lt;a href=&#34;http://en.wikipedia.org/wiki/Fabric_computing&#34; title=&#34;Fabric computing&#34;&gt;Unified Computing&lt;/a&gt; System, and virtualization by talking about the fundamentals. Along with focusing on the data center storage switching and the unified fabric between them. Finally this exam looks at the Data Center Network Services, like such as Cisco ACS and load balancing between servers and management options.&lt;/p&gt;
-&lt;p&gt;Excited? You can find more information by going to &lt;a href=&#34;http://www.cisco.com/web/learning/le3/le2/le0/ccna_dc/index.html&#34; title=&#34;CCNA Data Center Certification&#34;&gt;CCNA Data Center - Career Certifications&lt;/a&gt; and check out the &lt;a href=&#34;https://learningnetwork.cisco.com/community/certifications/ccna_data_center&#34;&gt;The Cisco Learning Network and the section  CCNA Data Center&lt;/a&gt;. Because of this recent announcement there are limited if any Cisco Press books out there, (Let me know if you find one ;) ) but I&#39;m sure that will change within a couple months. Check back to this post to see any updates on reading material as I will be actively looking.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; There is a book available from Todd Lammle - &lt;a href=&#34;http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265&#34; title=&#34;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide&#34;&gt;CCNA Data Center - Introducing Cisco Data Center Networking Study Guide&lt;/a&gt; This title looks like it only covers the 640-911 exam. **UPDATE 2: **Since Cisco has now re-amped the ICND1 (ICND1 100-101) and ICND2 (ICND2 200-101) you can now get the CCNA Data Center cert renewed by passing the any current Associate-level exam except for the ICND1. :)&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/next-generations-data-centers-need-next-generations-skills/&#34;&gt;Next Generations Data Centers Need Next Generation Skills&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.thevarguy.com/2012/11/21/cisco-overhauls-data-center-certifications/&#34;&gt;Cisco Overhauls Data Center Certifications&lt;/a&gt; (thevarguy.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://networkingnerd.net/2012/11/21/vmware-certification-for-cisco-people/&#34;&gt;VMware Certification for Cisco People&lt;/a&gt; (networkingnerd.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;static-comments&#34;&gt;Static Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2013/06/29/passed-640-554/&#34; title=&#34;&#34;&gt;Passed 640-554! « Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2013-06-29 23:51:06&#34;&gt;Jun 6, 2013&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[…] what is my next plan? Not sure I might look at that new CCNA Data Center exam which was announced last fall and it also looked like they may have some study material for […]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Cisco has now introduced another associate level exam, the CCNA Data Center exam. Like the name suggests this exam focuses on the Data Center and if passed you can continue up the stack by also taking the CCNP Data Center exam which was also recently introduced as well. Still want more a little more, if you are up for the challenge you can also tackle the CCIE Data Center which is an exam that was introduced in March of 2012.
+          
+          
         
       </description>
     </item>
@@ -633,15 +207,10 @@ I think we knew it was on the way, in this chapter we opened the door to IPv4 ad
       <guid>https://ciscoskills.net/2012/03/17/what-is-the-nexus-1000v/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2012/03/network_cloud_david_klan_01_svg_med.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2012/03/network_cloud_david_klan_01_svg_med.png&#34; alt=&#34;&#34; title=&#34;network_cloud&#34;&gt;&lt;/a&gt;I have worked with the Nexus 1000v product and wanted to share my thoughts on it. I want to explain in this blog what this product is and what it does.  The Nexus 1000v can be virtual or a hardware appliance and is considered to be a virtual switch that runs in &lt;a href=&#34;http://en.wikipedia.org/wiki/VMware&#34; title=&#34;VMware&#34;&gt;VMware&lt;/a&gt;. The major benefit to this product is the visibly you get when running in a virtual environment. Remember in the virtual environment the network engineer has a cloudy vision of what&#39;s going, because the built-in switch within VMware does not get that technical it just works. This is fine for most people but not all, especially the network technicians we want that visibly and the Nexus 1000v does that and more! The Nexus replaces the built-in switch in VMware and installs a &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_machine&#34; title=&#34;Virtual machine&#34;&gt;virtual machine&lt;/a&gt; called the VSM (Virtual Supervisor Module) and depending on the configuration you can have two VSMs for redundancy. These VSMs can be either virtual or a hardware appliance (Nexus 1010) Depending on how many &lt;a href=&#34;http://en.wikipedia.org/wiki/VMware_ESX&#34; title=&#34;VMware ESX&#34;&gt;ESX&lt;/a&gt; hosts you have in your environment each of them will have VEM (Virtual Ethernet Module) which are the work horses and provide packet forwarding. The VSMs and VEMs make up a single Nexus 1000v switch, which appears to be a single modular switch to the network technician. Each VSM can have a maximum of 64 VEMs (or 64 physical ESX hosts) It has always been that server administrators deal with the operating system and the applications running on that server. While the network administrators manage the switches and related policies. The link between the server and switch usually a cable separates these roles, until virtual came along and smashed these roles together usually the server administrator has to deal with it. With the Nexus 1000v these roles are now separate in the virtual environment with added functionality like PVLANs, receive rate limiting, &lt;a href=&#34;http://en.wikipedia.org/wiki/Quality_of_service&#34; title=&#34;Quality of service&#34;&gt;QoS&lt;/a&gt;, Access Control Lists (&lt;a href=&#34;http://en.wikipedia.org/wiki/Access_control_list&#34; title=&#34;Access control list&#34;&gt;ACLs&lt;/a&gt;), &lt;a href=&#34;http://en.wikipedia.org/wiki/DHCP_snooping&#34; title=&#34;DHCP snooping&#34;&gt;DHCP snooping&lt;/a&gt;, SPAN, ERSPAN, AAA, &lt;a href=&#34;http://en.wikipedia.org/wiki/Netflow&#34; title=&#34;Netflow&#34;&gt;NetFlow&lt;/a&gt;, SNMP and many other features that are not available with the VMware vSwitch. Check out this marketing video that summarizes the Nexus 1000v. [youtube=http://www.youtube.com/watch?v=pgksWMUBmcI] I hope this information is helpful, check back in a couple of weeks or so because I want to go through the process of setting up the Nexus 1000v, understanding some basic terminology of the Nexus 1000v and go over the CLI. Anybody that is familiar with Cisco IOS CLI will find that the &lt;a href=&#34;http://en.wikipedia.org/wiki/NX-OS&#34; title=&#34;NX-OS&#34;&gt;NX-OS&lt;/a&gt; is almost the same. :)&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/nexus-1000v-responding-to-scale-requirements-with-10000-ports-per-virtual-switch/&#34;&gt;Nexus 1000V Responding to Scale Requirements with 10,000+ Ports per Virtual Switch&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2012/02/01/cisco_40ge_100ge_switches/&#34;&gt;Cisco Nexus ports stretched to take 40GE and 100GE loads&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/datacenter/nexus-1000v-updates-bring-scalability-and-cloud-readiness-to-the-network/&#34;&gt;Nexus 1000V Updates Bring Scalability and Cloud Readiness to the Network&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.ioshints.info/2012/02/ibm-launched-nexus-1000v-competitor.html&#34;&gt;IBM launched a Nexus 1000V competitor&lt;/a&gt; (ioshints.info)&lt;/li&gt;
-&lt;/ul&gt;
-
+          
+            network_cloud I have worked with the Nexus 1000v product and wanted to share my thoughts on it. I want to explain in this blog what this product is and what it does. The Nexus 1000v can be virtual or a hardware appliance and is considered to be a virtual switch that runs in VMware. The major benefit to this product is the visibly you get when running in a virtual environment.
+          
+          
         
       </description>
     </item>

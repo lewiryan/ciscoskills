@@ -14,74 +14,10 @@
       <guid>https://ciscoskills.net/2012/02/29/eigrp-the-basics/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/routing_updates.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/routing_updates.png?w=300&#34; alt=&#34;&#34; title=&#34;Routing_Updates&#34;&gt;&lt;/a&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;Enhanced Interior Gateway Routing Protocol&lt;/a&gt; (EIGRP) is an impressive set of features for &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing&#34; title=&#34;Routing&#34;&gt;Routing&lt;/a&gt;, which converges quickly and is on par and sometimes faster than &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;. This &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_protocol&#34; title=&#34;Routing protocol&#34;&gt;routing protocol&lt;/a&gt; requires less processing time, less memory, and less network design than compared to OSPF. What&#39;s the catch? This protocol is Cisco proprietary, if you have a network that uses non-Cisco routers, EIGRP will not and cannot be used on those routers. &lt;em&gt;(Edit:&lt;/em&gt; Cisco has open this up to the IETF but you could still see issues if you found a vendor that supported EIGRP and not all features are supported***) EIGRP does not really fit into a specific spot of either &lt;a href=&#34;http://en.wikipedia.org/wiki/Link-state_routing_protocol&#34; title=&#34;Link-state routing protocol&#34;&gt;Link-State&lt;/a&gt; or &lt;a href=&#34;http://en.wikipedia.org/wiki/Distance-vector_routing_protocol&#34; title=&#34;Distance-vector routing protocol&#34;&gt;Distance vector&lt;/a&gt;, instead it stands on its own and is called hybrid routing protocol. EIGRP has tree tables it keeps a track of, EIGRP Neighbor, the topology table, and routing table:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;EIGRP Neighbor – EIGRP router sends Hello messages which discover potential neighboring routers that are running EIGRP. This checks that basic parameters to decide which routers should be neighbors. (You can view the neighbors by issuing the command &lt;strong&gt;show ip eigrp neighbor&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Topology_table&#34; title=&#34;Topology table&#34;&gt;Topology Table&lt;/a&gt; – When routers are EIGRP neighbors they exchange full topology tables when they are first neighbors, and then only partial updates as needed when the network topology changes. (You can view the topology table by issuing the command &lt;strong&gt;show ip eigrp topology&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_table&#34; title=&#34;Routing table&#34;&gt;Routing Table&lt;/a&gt; –Each router that has a topology table analyzes its own topology table and chooses the lowest cost value to reach each route that has been advertised. (You can view the routing table by issuing the command &lt;strong&gt;show ip route&lt;/strong&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If routers are connected to each other and exchange topology information then the following &lt;strong&gt;must&lt;/strong&gt; be true:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;They pass the authentication process&lt;/li&gt;
-&lt;li&gt;They both uses the same configured AS number&lt;/li&gt;
-&lt;li&gt;The source &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; used by the Hello messages are in the same subnet&lt;/li&gt;
-&lt;li&gt;The EIGRP K Values match&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Some other information about EIGRP is that the hello and update messages that EIGRP sends use a multicast IP address of 224.0.0.10. EIGRP uses metrics called Bandwidth, delay, reliability, and load. By default EIGRP uses bandwidth and delay but these values can be changed and added into EIGRP&#39;s metric calculation. That&#39;s my quick rundown on EIRGP, Check back often as I will have some configuration examples up and go in a little deeper into the EIGRP like talking about successors and feasible successors. I hope this information is helpful and if you have questions please post them. &lt;strong&gt;Summary of EIGRP and OSPF&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;EIGRP&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;OSPF&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Converges Quickly&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Built-in Loop Prevention&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Sends partial routing updates&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Classless, supports manual summarization&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Allows manual summarization at any router&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Sends routing information using IP multicast on LANs&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Uses the concept of a designated router on a LAN&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;Flexible network design (no need to create areas)&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Support equal and unequal load balancing&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Metric based on bandwidth delay&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Can advertise IP, IPX and AppleTalk routers&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;NO&lt;/p&gt;
-&lt;p&gt;Public standard&lt;/p&gt;
-&lt;p&gt;YES/NO***&lt;/p&gt;
-&lt;p&gt;YES&lt;/p&gt;
-&lt;p&gt;** *&lt;em&gt;Some this information was provided by visiting the following link:&lt;/em&gt;&lt;a href=&#34;http://www.cisco.com/en/US/tech/tk365/technologies_white_paper09186a0080094cb7.shtml&#34;&gt;http://www.cisco.com/en/US/tech/tk365/technologies_white_paper09186a0080094cb7.shtml&lt;/a&gt; **&lt;em&gt;Odom, Wendell. CCNA ICND2 Official Exam Certification Guide . 2nd. Indianapolis: Cisco Press, 2008. 380-402. Print.&lt;/em&gt; &lt;em&gt;*** RFC 7868 &lt;a href=&#34;https://tools.ietf.org/html/rfc7868&#34;&gt;https://tools.ietf.org/html/rfc7868&lt;/a&gt; (Informational)&lt;/em&gt;&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2012/01/31/configure-router-on-a-stick/&#34;&gt;Configure Router on a Stick&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://gatestec.wordpress.com/2012/02/22/debugging-a-single-eigrp-neighbor/&#34;&gt;Debugging a single EIGRP neighbor&lt;/a&gt; (gatestec.wordpress.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://learnnetworkingwithme.wordpress.com/2011/11/27/eigrp-basic-concepts/&#34;&gt;EIGRP Basic Concepts&lt;/a&gt; (learnnetworkingwithme.wordpress.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://gatestec.wordpress.com/2012/01/25/when-to-reboot-a-cisco-router/&#34;&gt;When to reboot a Cisco router?&lt;/a&gt; (gatestec.wordpress.com)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://myreviewes.wordpress.com/2012/03/12/networking-types-of-connection-ring-topology-part-2/&#34; title=&#34;&#34;&gt;Networking (Types of Connection, RING TOPOLOGY) Part-2 « myreviews&lt;/a&gt; - &lt;time datetime=&#34;2012-03-12 04:32:39&#34;&gt;Mar 1, 2012&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] EIGRP… The Basics (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Routing_Updates Enhanced Interior Gateway Routing Protocol (EIGRP) is an impressive set of features for IP Routing, which converges quickly and is on par and sometimes faster than OSPF. This routing protocol requires less processing time, less memory, and less network design than compared to OSPF. What&#39;s the catch? This protocol is Cisco proprietary, if you have a network that uses non-Cisco routers, EIGRP will not and cannot be used on those routers.
+          
+          
         
       </description>
     </item>

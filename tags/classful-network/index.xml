@@ -14,46 +14,10 @@
       <guid>https://ciscoskills.net/2011/06/01/classful-vs.-classless-routing/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/04/cloud-computing-icon.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/cloud-computing-icon.png&#34; alt=&#34;&#34; title=&#34;Cloud-Computing-icon&#34;&gt;&lt;/a&gt;Before the internet and general networking become popular into what it is now, there were and still are routing protocols that only do &lt;a href=&#34;http://en.wikipedia.org/wiki/Classful_network&#34; title=&#34;Classful network&#34;&gt;classful routing&lt;/a&gt;. What is classful routing? When I was talking about &lt;a href=&#34;http://en.wikipedia.org/wiki/Adaptive_routing&#34; title=&#34;Adaptive routing&#34;&gt;Dynamic Routing&lt;/a&gt; earlier (See the post &lt;a href=&#34;http://ciscoskills.net/2011/05/04/dynamic-routing-protocols/&#34; title=&#34;Dynamic Routing Protocols&#34;&gt;Dynamic Routing Protocols&lt;/a&gt;) I mentioned there was a difference between classful routing and classless routing. So in today&#39;s post let&#39;s focus on these two but important topics when using routing protocols. Let&#39;s first talk about classful routing, which is sometimes called a classful network. If you are using a classful routing protocol then all of your networks are in different classes and are separated by a router. Remember that the useable IPv4 address ranges are dived into classes. Class A 1-126, Class B 128-191, and Class C 192-223. So when we talk about a classful routing protocol it will only look at the &lt;a href=&#34;http://en.wikipedia.org/wiki/IP_address&#34; title=&#34;IP address&#34;&gt;IP address&lt;/a&gt; class and not the &lt;a href=&#34;http://en.wikipedia.org/wiki/Subnetwork&#34; title=&#34;Subnetwork&#34;&gt;subnet mask&lt;/a&gt;. This is the problem; if you are using a classful routing protocol you cannot change the subnet mask in any of these networks. You have to use the default subnet mask, so an example is if you have a 172.16.X.X network the default subnet mask is a /16 or 255.255.0.0. So in short you can&#39;t have different size networks when using the same IP address class and a classful routing protocol. Remember  that classful routing does not support subnet information, and therefore lacking support for VLSM (variable length subnet masks). With classless routing if you took a guess that it supports VLSM and different size networks within the same IP address class then you&#39;re catching on ;) Because that is exactly what a classless routing protocol does, so for example we are using a class C address of 192.168.1.0 with a standard subnet mask of 255.255.255.0 or a /24. With a classless routing protocol you can split this network even more instead of having 254 usable hosts in one network; we could have 126 usable hosts with two networks. The ranges for the first network would start at 192.168.1.1 and end at 192.168.1.126, and the second would start at 192.168.1.129 and end at 192.168.1.254. The subnet mask for both of these networks would be 255.255.255.128. With a classful routing protocol it would only look at the class of the address in this case a class &amp;quot;C&amp;quot; and not look at the subnet mask and apply a default subnet mask of 255.255.255.0 causing these addresses to be in the same network which in reality their not. &lt;em&gt;What &lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_protocol&#34; title=&#34;Routing protocol&#34;&gt;Routing Protocol&lt;/a&gt; uses Classful and &lt;a href=&#34;http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing&#34; title=&#34;Classless Inter-Domain Routing&#34;&gt;Classless Routing&lt;/a&gt;? Take a guess…&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Routing_Information_Protocol&#34; title=&#34;Routing Information Protocol&#34;&gt;RIP&lt;/a&gt;-1&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;RIP-2&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Enhanced_Interior_Gateway_Routing_Protocol&#34; title=&#34;Enhanced Interior Gateway Routing Protocol&#34;&gt;EIGRP&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Open_Shortest_Path_First&#34; title=&#34;Open Shortest Path First&#34;&gt;OSPF&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;IS-IS&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Classless&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Supports VLSM&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Send Subnet Mask&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;Yes&lt;/p&gt;
-&lt;p&gt;That&#39;s my summary for classful and classless routing protocols, I wouldn&#39;t say nobody uses a classful routing protocol there&#39;s always someone but they are different and will cause connection problems if set up incorrectly. Like always I hope this information was informative and you can always find more information at Cisco or even a search of RFC 1519 and RFC 1817. Have an idea of the next topic either ICND1 or ICND2 let me know. :)&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related Articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/03/16/how-a-router-routes/&#34;&gt;How a Router Routes&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://thinkup.waldenu.edu/technology/networking/item/11465-why-are-routed-protocols-important-to-networking&amp;amp;sa=U&amp;amp;ei=HYNTTYuiIpKDtgfqrMy5CQ&amp;amp;ved=0CKoBEBYwRzigBg&amp;amp;usg=AFQjCNFSXtq9ycdurVCAL65GXgWu2sg7BA&#34;&gt;Why Are Routed Protocols Important to Networking?&lt;/a&gt; (thinkup.waldenu.edu)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/02/09/configuring-ripv2/&#34; title=&#34;Configuring RIPv2&#34;&gt;Configuring RIPv2&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/05/02/configure-static-routing/&#34;&gt;Configure Static Routing&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/06/15/distance-vector-routing/&#34; title=&#34;&#34;&gt;Distance Vector Routing | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-06-15 10:32:46&#34;&gt;Jun 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] Classful vs. Classless Routing (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            Cloud-Computing-icon Before the internet and general networking become popular into what it is now, there were and still are routing protocols that only do classful routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in today&#39;s post let&#39;s focus on these two but important topics when using routing protocols.
+          
+          
         
       </description>
     </item>

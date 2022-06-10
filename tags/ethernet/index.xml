@@ -14,25 +14,10 @@
       <guid>https://ciscoskills.net/2011/08/10/the-beginnings-of-layer-two-redundancy/</guid>
       <description>
         
-          &lt;p&gt;&lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/08/network-diagram.png&#34; alt=&#34;&#34; title=&#34;network-diagram&#34;&gt;&lt;/a&gt;In a perfect world we would never need redundancy on a &lt;a href=&#34;http://en.wikipedia.org/wiki/Network_Layer&#34; title=&#34;Network Layer&#34;&gt;network&lt;/a&gt; infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network. But in the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34; title=&#34;OSI model&#34;&gt;OSI model&lt;/a&gt; there is one layer that can&#39;t have redundancy at least logically and that is &lt;a href=&#34;http://en.wikipedia.org/wiki/Abstraction_layer&#34; title=&#34;Abstraction layer&#34;&gt;Layer&lt;/a&gt; two of the OSI model. If you follow this blog way back when I talked about the OSI model, layer two belongs to the switches and by design the ethernet frame does not support a TTL (&lt;a href=&#34;http://en.wikipedia.org/wiki/Time_to_live&#34; title=&#34;Time to live&#34;&gt;Time-To-Live&lt;/a&gt;) like the &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP packet&lt;/a&gt;. So bring forth STP, the &lt;a href=&#34;http://en.wikipedia.org/wiki/Spanning_Tree_Protocol&#34; title=&#34;Spanning Tree Protocol&#34;&gt;Spanning Tree Protocol&lt;/a&gt; which works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until active link is unavailable (shutdown, disabled, etc.) So although there are multiple links connected physically to offer redundancy, logically the switches in the network only see one path that ethernet frame can travel. &lt;strong&gt;Your Thought:&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Wait...I have plugged into multiple Cisco switches before to create a redundant path and I did not notice anything wrong?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;That&#39;s because by default STP is enabled, to the average person they can plug away and create redundant paths with switches and cause no harm to the network. But if STP has been disabled on those switches or switches that don&#39;t support STP (dumb switches), a Layer 2 loop can occur. A Layer 2 loop is a nightmare if this happens in a production network and can happen in seconds. Loops result in high &lt;a href=&#34;http://en.wikipedia.org/wiki/Central_processing_unit&#34; title=&#34;Central processing unit&#34;&gt;CPU&lt;/a&gt; load on all switches caught in the loop. Because the same frames are constantly being forwarded back and forth between all switches in the loop, the CPU of the switch ends up having to process a lot of data. This slows down performance on the switch when legitimate traffic arrives.  A host caught in a network loop is not accessible to other hosts on the network. Because the &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC address&lt;/a&gt; table is constantly changing with the updates from the broadcast frames, the switch does not know which port to send the unicast frames out to reach the destination. The unicast frames end up looping around the network as well. As more and more frames end up looping on the network, a &lt;a href=&#34;http://en.wikipedia.org/wiki/Broadcast_radiation&#34; title=&#34;Broadcast radiation&#34;&gt;broadcast storm&lt;/a&gt; occurs. What makes this even more fun is if you try connecting to the switches to solve this problem, good luck :). Most of the time you have to physically turn off the switches to kill the broadcast storm and if it happened once expect it to happen again. To make things worse if any end-devices are connected to the switch ports that are experiencing a broadcast storm they too have a hard time keeping up with the mountain of broadcast frames being sent and sometimes malfunction. Usually you would have to disconnect the switch from the redundant links and apply STP to it and then re-connect the redundant links in order for your network to be broadcast storm free. Although I&#39;m just getting started I think by just introducing this topic will help you better understand it later, I will get into more of this STP magic and how this really helps us design a hierarchy network. Like always I hope this information was informative and if you can&#39;t wait a simple search about STP will help. You can also go right to the source for more STP information at &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Systems&#34; title=&#34;Cisco Systems&#34;&gt;Cisco&#39;s&lt;/a&gt; Support and Documentation. Have an idea of the next topic either ICND1 or ICND2 let me know about it.&lt;/p&gt;
-&lt;h6 id=&#34;related-articles&#34;&gt;Related articles&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/07/06/cisco-discovery-protocol/&#34;&gt;Cisco Discovery Protocol&lt;/a&gt; (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blogs.cisco.com/smallbusiness/get-data-to-its-destination-faster/&#34;&gt;Get Data to Its Destination Faster&lt;/a&gt; (blogs.cisco.com)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ciscoskills.net/2011/01/17/the-osi-layer/&#34; title=&#34;The OSI Layer&#34;&gt;The OSI Layer&lt;/a&gt;  (ciscoskills.net)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://go.theregister.com/feed/www.theregister.co.uk/2011/06/16/network_tuning/&#34;&gt;When tuning the server, don&#39;t forget the network&lt;/a&gt; (go.theregister.com)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;comments&#34;&gt;Comments:&lt;/h3&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;http://ciscoskills.net/2011/09/07/the-middle-of-layer-two-redundancy/&#34; title=&#34;&#34;&gt;The Middle of Layer Two Redundancy | Cisco Skills&lt;/a&gt; - &lt;time datetime=&#34;2011-09-07 12:08:56&#34;&gt;Sep 3, 2011&lt;/time&gt;&lt;/p&gt;
-&lt;p&gt;[...] The Beginnings of Layer Two Redundancy (ciscoskills.net) [...]&lt;/p&gt;
-&lt;hr /&gt;
-
+          
+            network-diagram In a perfect world we would never need redundancy on a network infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network.
+          
+          
         
       </description>
     </item>
@@ -45,25 +30,10 @@
       <guid>https://ciscoskills.net/2011/05/11/understanding-vtp/</guid>
       <description>
         
-          &lt;p&gt;Some people hate it, some people love it. It&#39;s the Cisco proprietary &lt;a href=&#34;http://en.wikipedia.org/wiki/VLAN_Trunking_Protocol&#34; title=&#34;VLAN Trunking Protocol&#34;&gt;VLAN Trunking Protocol&lt;/a&gt; (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same &lt;a href=&#34;http://en.wikipedia.org/wiki/Virtual_LAN&#34; title=&#34;Virtual LAN&#34;&gt;VLANs&lt;/a&gt;. I also suggest if you don&#39;t know what a VLAN is check out the post &lt;a href=&#34;http://ciscoskills.net/2011/04/01/creating-vlans/&#34; title=&#34;Creating VLANs&#34;&gt;Creating VLANs&lt;/a&gt; Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information. Take for example if you had 20 switches that need the same VLANs you could do it manually but this runs the risk of human error, with VTP if you configure one switch as a server and all other switches as clients then you can configure all of them. VTP uses Layer two messages to exchange information if a server switch changes or removes VLANS VTP will synchronize all switches so all switches have the same VLANs. &lt;a href=&#34;http://ciscoskills.net/2011/05/11/understanding-vtp/vlan_trunking_protocol_/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/04/vlan_trunking_protocol_.gif?w=300&#34; alt=&#34;VLAN Trunking Protocol&#34; title=&#34;VLAN_Trunking_Protocol&#34;&gt;&lt;/a&gt; The VTP server distributes VLAN configuration changes through VTP messages, sent over &lt;a href=&#34;http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link&#34; title=&#34;Cisco Inter-Switch Link&#34;&gt;ISL&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/IEEE_802.1Q&#34; title=&#34;IEEE 802.1Q&#34;&gt;802.1Q&lt;/a&gt; trunks.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ISL is an older technology along with being Cisco proprietary. ISL also fully encapsulates the &lt;a href=&#34;http://en.wikipedia.org/wiki/Ethernet&#34; title=&#34;Ethernet&#34;&gt;original Ethernet&lt;/a&gt; frame inside the ISL header remain unchanged. Along with using the source and destination &lt;a href=&#34;http://en.wikipedia.org/wiki/MAC_address&#34; title=&#34;MAC address&#34;&gt;MAC addresses&lt;/a&gt; in the ISL header to send and receiving to a switch.&lt;/li&gt;
-&lt;li&gt;802.1Q is an open-standard created by IEEE and uses a different header than ISL to tag frames, with the VLAN number. 802.1Q does not encapsulate the original frame into another &lt;a href=&#34;http://en.wikipedia.org/wiki/Ethernet_frame&#34; title=&#34;Ethernet frame&#34;&gt;Ethernet header&lt;/a&gt; and trailer. 802.1Q inserts and extra 4-byte VLAN header into the original frame&#39;s Ethernet header. The frame still has the original source and destination MAC address unlike ISL. Also because the original header has been expanded 802.1Q forces a FCS (&lt;a href=&#34;http://en.wikipedia.org/wiki/Frame_check_sequence&#34; title=&#34;Frame check sequence&#34;&gt;Frame check sequence&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;By default when a switch is powered on the VTP mode is server, VTP servers and clients can choose whether to react to the received VTP update, by either update their VLAN configuration or ignore it. This is based on the VLAN database configuration revision number. Each time the VTP server modifies its VLAN configuration the VTP server increments the current configuration revision number by 1. If the revision number increases and is higher than a client switch or server switch, it will update its VLAN database. This is where VTP can destroy your network if set up incorrectly or not securely. If you have a &amp;quot;rouge&amp;quot; VTP server that has a higher revision number then the other VTP server, all switches in the domain including the VTP server will change and update the VLAN configuration based on the &amp;quot;rouge&amp;quot; VTP server. There are three VTP Modes&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Server Mode, Servers can create VLANs and distribute VLAN configuration changes through VTP messages.&lt;/li&gt;
-&lt;li&gt;Client Mode, Clients cannot be used to configure VLAN information they only learn about VLANs by VTP servers and only forward VTP messages.&lt;/li&gt;
-&lt;li&gt;Transparent Mode, &lt;a href=&#34;http://en.wikipedia.org/wiki/Transparency_%28computing%29&#34; title=&#34;Transparency (computing)&#34;&gt;Transparent mode&lt;/a&gt; switches never update their VLAN database on incoming VTP messages. Like servers they can however create VLANs, they also will send VTP messages to help out other switches in server or client.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;VTP defines three message types&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Summary advertisements - list the revision number, domain name, and other information but no VLAN information. These are summary advertisements that occur every 5 minutes.&lt;/li&gt;
-&lt;li&gt;Subset advertisements - occur when a new a larger revision number is introduced which is some subset of the VLAN database.&lt;/li&gt;
-&lt;li&gt;Request message - Allows the switch to immediately request VTP messages from a neighboring switch as soon as a trunk comes up.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;VTP does have some other features like VTP Pruning, passwords protection and domains but that all in the configuration side. An interesting side note is that VTP cannot be turned off. There is no disable command in the switch IOS, if you want to turn off VTP on a switch change the mode to transparent. You can find additional information about VTP at Cisco.com along with a web search. Like always I hope this information was informative and if you have a topic that deals with either ICND1 or ICND2 material let me know by commenting below.&lt;/p&gt;
-
+          
+            Some people hate it, some people love it. It&#39;s the Cisco proprietary VLAN Trunking Protocol (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same VLANs. I also suggest if you don&#39;t know what a VLAN is check out the post Creating VLANs Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information.
+          
+          
         
       </description>
     </item>
@@ -76,43 +46,10 @@
       <guid>https://ciscoskills.net/2011/03/10/crossover-or-straight-through/</guid>
       <description>
         
-          &lt;p&gt;The EIA/TIA puts the standards in &lt;a href=&#34;http://en.wikipedia.org/wiki/Twisted_pair&#34; title=&#34;Twisted pair&#34;&gt;UTP cable&lt;/a&gt;, and when cabling a network there are two standards. T568A and T568B these standards are important when deciding to put a &lt;a href=&#34;http://en.wikipedia.org/wiki/Crossover_cable&#34; title=&#34;Crossover cable&#34;&gt;crossover cable&lt;/a&gt; or &lt;a href=&#34;http://en.wikipedia.org/wiki/Electrical_connector&#34; title=&#34;Electrical connector&#34;&gt;straight through cable&lt;/a&gt; This tutorial is going to be talking about when and where to apply these different standards. We are going to be focusing on the UTP cable and with the RJ-45 connectors; in order for the communication to work properly we need to make sure we understand where to put these cables.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;Let&#39;s first look at the &lt;a href=&#34;http://en.wikipedia.org/wiki/RJ45&#34; title=&#34;RJ45&#34;&gt;RJ-45 connector&lt;/a&gt;, this connector has 8 pins and each copper wire.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/02/rj45plug-8p8c.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Each pin in the Rj-45 connector does a different thing. Although not all pins or wires are used, they provide grounding along with helping the signal from becoming weak in the cable. So for the T568A standard the colors of the UTP as follows:&lt;/p&gt;
-&lt;p&gt;In Pin 1: Green/White (Striped Green)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/02/t568a-color.png&#34; alt=&#34;&#34; title=&#34;T568A Color&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;In Pin 2: Green (Solid Green)&lt;/li&gt;
-&lt;li&gt;In Pin 3: Orange/White (Striped Orange)&lt;/li&gt;
-&lt;li&gt;In Pin 4: Blue (Solid Blue)&lt;/li&gt;
-&lt;li&gt;In Pin 5: Blue/White (Striped Blue)&lt;/li&gt;
-&lt;li&gt;In Pin 6: Orange (Solid Orange)&lt;/li&gt;
-&lt;li&gt;In Pin 7: Brown/White (Striped Brown)&lt;/li&gt;
-&lt;li&gt;In Pin 8: Brown (Solid Brown)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For the standard T568B the colors are almost the same but with a few differences.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;In Pin 1: Orange/White (Striped Orange)&lt;/li&gt;
-&lt;li&gt;In Pin 2: Orange (Solid Orange)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/02/t568b1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;In Pin 3: Green/White (Striped Green)&lt;/li&gt;
-&lt;li&gt;In Pin 4: Blue (Solid Blue)&lt;/li&gt;
-&lt;li&gt;In Pin 5: Blue/White (Striped Blue)&lt;/li&gt;
-&lt;li&gt;In Pin 6: Green (Solid Green)&lt;/li&gt;
-&lt;li&gt;In Pin 7: Brown/White (Striped Brown)&lt;/li&gt;
-&lt;li&gt;In Pin 8: Brown (Solid Brown)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These standards are put together for one reason, to make the data or electic signal travel up to 100 meters. Now you could make your own standard and devices would be able to communicate but not has far and it may even cause transmission errors in the cable. Who knows?&lt;/p&gt;
-&lt;p&gt;But for one thing it would make difficult for another person to learn your color code. So when setting up cable the first thing you need to choose is what standard to use. After you picked you standard can you just connect anything and everything with the same pin out? No! One to remember is if it&#39;s a like device now this is not always the case like a &lt;a href=&#34;http://en.wikipedia.org/wiki/Personal_computer&#34; title=&#34;Personal computer&#34;&gt;PC&lt;/a&gt; connected to a &lt;a href=&#34;http://en.wikipedia.org/wiki/Router&#34; title=&#34;Router&#34;&gt;router&lt;/a&gt; would need a crossover but usually a PC to PC, or router to router, switch to switch these will always be a crossover cable.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;What is a crossover cable?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The pins in a crossover cable are switched so one end will have the either T568A or T568B and you will change the pins on the other end. So for example if we had T568A on one end of the cable you could simply put T568B on the other end or vise versa. (That&#39;s another reason they put standards in) :) For Different devices like a PC to a switch, switch to a router, etc. Will usually have a straight through cable. Meaning the pins don&#39;t change. If you have the same standard on one end of the cable keep it same on the other end. So for example if you had T568A on one side put &lt;a href=&#34;http://en.wikipedia.org/wiki/TIA/EIA-568&#34; title=&#34;TIA/EIA-568&#34;&gt;T568A&lt;/a&gt; on the other side of the cable. That&#39;s that! The standards can get confusing if you over think them. There are other sites out there that go over why the different standards and why some devices send and receive on other pins. But the one thing to remember is that the colors don&#39;t really mean anything as long has the pins or pairs match with the other end. Remember this depends on the type of cable, straight through will match the pairs/pins. Crossover will mix pins 1,2,3, and 6.&lt;/p&gt;
-&lt;p&gt;Make it a great day, today!&lt;/p&gt;
-&lt;!--adsense--&gt;
-
+          
+            The EIA/TIA puts the standards in UTP cable, and when cabling a network there are two standards. T568A and T568B these standards are important when deciding to put a crossover cable or straight through cable This tutorial is going to be talking about when and where to apply these different standards. We are going to be focusing on the UTP cable and with the RJ-45 connectors; in order for the communication to work properly we need to make sure we understand where to put these cables.
+          
+          
         
       </description>
     </item>

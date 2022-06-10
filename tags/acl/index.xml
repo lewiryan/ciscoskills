@@ -14,26 +14,10 @@
       <guid>https://ciscoskills.net/2011/02/22/understanding-cbac/</guid>
       <description>
         
-          &lt;p&gt;Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the &lt;a href=&#34;http://www.cisco.com/en/US/products/ps6537/products_ios_sub_category_home.html&#34; title=&#34;Cisco IOS&#34;&gt;Cisco IOS&lt;/a&gt; router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make &lt;a href=&#34;http://en.wikipedia.org/wiki/Context-based_access_control&#34; title=&#34;Context-based access control&#34;&gt;CBAC&lt;/a&gt; possible. CBAC stands for Content-Base-&lt;a href=&#34;http://en.wikipedia.org/wiki/Access_control&#34; title=&#34;Access control&#34;&gt;Access-Control&lt;/a&gt; and uses &lt;a href=&#34;http://en.wikipedia.org/wiki/Access_control_list&#34; title=&#34;Access control list&#34;&gt;ACLs&lt;/a&gt;. (Access Control Lists) Unlike the established TCP session and reflexive ACLs CBAC has several advantages:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Monitors TCP connections, (&lt;a href=&#34;http://en.wikipedia.org/wiki/Transmission_Control_Protocol&#34; title=&#34;Transmission Control Protocol&#34;&gt;Three-way handshake&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Maintains &lt;a href=&#34;http://en.wikipedia.org/wiki/User_Datagram_Protocol&#34; title=&#34;User Datagram Protocol&#34;&gt;UDP&lt;/a&gt; session information&lt;/li&gt;
-&lt;li&gt;Tracks TCP sequence numbers&lt;/li&gt;
-&lt;li&gt;Inspects DNS queries and replies&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Inspection&#34; title=&#34;Inspection&#34;&gt;Inspect&lt;/a&gt; common &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Control_Message_Protocol&#34; title=&#34;Internet Control Message Protocol&#34;&gt;ICMP&lt;/a&gt; messages types&lt;/li&gt;
-&lt;li&gt;Supports applications that rely on multiple connections (FTP)&lt;/li&gt;
-&lt;li&gt;Inspects embedded address&lt;/li&gt;
-&lt;li&gt;Inspects &lt;a href=&#34;http://en.wikipedia.org/wiki/Application_Layer&#34; title=&#34;Application Layer&#34;&gt;Application Layer&lt;/a&gt; information&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;ACLs only look at the network layer and sometimes the transport layer. CBAC is application aware, meaning CBAC is a stateful firewall which keeps track of the state of network connections such as TCP streams, and UDP communication travelling across it. The firewall is programmed to distinguish legitimate packets for different types of connections. Only packets matching a known connection state will be allowed by the firewall; others will be rejected. Because CBAC only matches packets (TCP, UDP and other protocols) it was specified to look at, it will then depend on the ACL if that packet is allowed access or denied. CBAC creates openings in ACLs at the interfaces that inspect the traffic by adding a temporary ACL entry for a specific session. The openings are created when the internal network starts a session with the outside network that would normally be denied. The traffic is only allowed back through the firewall if it is part of the same session and has the correct properties that CBAC is looking for. For example let&#39;s say a user starts an &lt;a href=&#34;http://en.wikipedia.org/wiki/Session_management&#34; title=&#34;Session management&#34;&gt;http session&lt;/a&gt; in the protected network and the packet moves to the outside or unprotected network. CBAC is configured to inspect http traffic and there is an ACL on the inbound (outside interface) blocking http traffic from the unprotected network to the protected network. So the packet is allowed access to the unprotected network because the ACL is on the inbound interface and not the outbound interface. So the ACL does not look at the packet, CBAC however looks at the packet and in the inspection rules the packet is allowed access to the unprotected network, CBAC adds an entry in its state table. Because a new entry is added a dynamic ACL is created on the external interface to the protected network. This dynamic ACL will allow http traffic back into the protected network. This opening is only active it the session is open, once the session closes the ACL is removed. Once removed any traffic that starts from the unprotected network will be denied access to the protected network. This depends on the ACL which checks inbound connections from the unprotected network.&lt;a href=&#34;http://ciscoskills.net/2011/02/22/understanding-cbac/cbac-firewall-config/&#34;&gt;&lt;img src=&#34;http://systemstechblog.files.wordpress.com/2011/02/cbac-firewall-config.png?w=300&#34; alt=&#34;CBAC Firewall&#34; title=&#34;CBAC Firewall-config&#34;&gt;&lt;/a&gt; &lt;a href=&#34;http://systemstechblog.files.wordpress.com/2011/02/cbac-firewall-config.png&#34;&gt;&lt;/a&gt; To configure CBAC there are four steps to set up CBAC efficiently:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Pick an interface of where you want CBAC to be inspecting; this depends on the flow of your network and the amount of interfaces you have installed on your router. (DMZ, Web server, E-mail servers, etc.)&lt;/li&gt;
-&lt;li&gt;Configure IP ACLs at the interface. The network technician must define what type of traffic is allowed and will not be inspected by CBAC and which traffic is blocked and will be inspected by CBAC.&lt;/li&gt;
-&lt;li&gt;Define inspection rules. The network technician should specify each desired application layer to inspect along with generic TCP, ICMP and or UDP fields. Inspection rules are configured by statements each listing a protocol and specifying the inspection rule name.&lt;/li&gt;
-&lt;li&gt;Finally apply the inspection rule to an interface.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;CBAC is considered the &amp;quot;classic&amp;quot; firewall compared to zone based, it is relatively simple to configure and understand. However unlike zone based CBAC can get complex when multiple CBAC configurations on a router exists. Remember CBAC also uses ACLs if configured and implemented poorly these ACLs can block traffic even when CBAC allows them. I hope this tutorial was helpful.&lt;/p&gt;
-
+          
+            Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the Cisco IOS router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make CBAC possible.
+          
+          
         
       </description>
     </item>
@@ -46,88 +30,11 @@
       <guid>https://ciscoskills.net/2011/02/07/access-control-lists/</guid>
       <description>
         
-          &lt;p&gt;Understanding Access Control Lists is an important role for moving up into the CCNA area. ACLs can get confusing and cause network problems if not implemented correctly. I think what I outlined below explains in a nutshell of what you can expect from ACLs.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;I would still read and find more information about ACLs on the web and or reading material (becuase I don&#39;t trust myself!). By securing networks with ACLs you are adding another barrier to your network although ACLs can&#39;t fool-proof your network they add additional level of security from the outside world. The simple definition of an ACL (access control list) is a sequential list of permit or deny statements that apply to the IP address and or upper-layer protocols. ACLs are a powerful way to control network traffic into and out of your network. Packet filtering sometimes called static filtering, controls access to a network by analyzing the incoming and outgoing packets. A router is considered a packet filter when it forwards or denies packets according to filtering rules. Packet filtering works at the network layer of the OSI model. The ACL can get the following information from the packer header:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Source IP address&lt;/li&gt;
-&lt;li&gt;Destination IP address&lt;/li&gt;
-&lt;li&gt;ICMP message type&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;An ACL can also get information from upper-layer protocols:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;TCP/UDP source port&lt;/li&gt;
-&lt;li&gt;TCP/UDP destination port&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Remember the three Ps &lt;strong&gt;P&lt;/strong&gt;er protocol, &lt;strong&gt;P&lt;/strong&gt;er direction, and &lt;strong&gt;P&lt;/strong&gt;er interface&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;One ACL per protocol- To control traffic flow on an interface an ACL must be defined for each protocol enabled on the interface (example IP, IPX, AppleTalk)&lt;/li&gt;
-&lt;li&gt;One ACL per direction- ACLs control traffic in one direction at one time on an interface. You must create two separate ACLs to control traffic in both inbound and outbound connections.&lt;/li&gt;
-&lt;li&gt;One ACL per interface- ACLs control traffic for an interface such as Fast Ethernet.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Types of Cisco ACLs&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Standard ACLs filter packets based on source IP addresses only.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Extended ACLs filter packets based on:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Source and destination IP address&lt;/li&gt;
-&lt;li&gt;Source and destination TCP and UDP ports&lt;/li&gt;
-&lt;li&gt;Protocol type (IP, ICMP, UDP, TCP or protocol number)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Standard ACLs&lt;/strong&gt; Standard ACLs allow you to permit or deny traffic from a source IP address. The packet&#39;s destination and ports involved do not matter. (Example the following ACL statement allows all traffic from the network 192.168.30.0/24&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router(config)#access-list 10 permit 192.168.30.0 0.0.0.255
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Remember there is ALWAYS an implied &amp;quot;deny all&amp;quot; at the end of each ACL statement. (This example is blocking all other network traffic besides what is allowed) Also remember that Standard ACLs are created in global configuration mode.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Extended ACLs&lt;/strong&gt; Extended ACLs filter IP packets based on protocol type, source and destination IP address, source TCP or UDP ports, destination TCP or UDP ports and optional protocol type information for finger granularity control. (Example in the following ACL statement, ACL 103 permits traffic originating from any address on the 192.168.30.0/24 network to any destination host using port 80 (HTTP)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;Router(config)#access-list 103 permit tcp 192.168.30.0 0.0.0.255 any eq 80
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Extended ACLs are created in global configuration mode.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Dynamic ACLs&lt;/strong&gt; Dynamic or lock-and-key ACLs are available for Internet Protocol traffic only. Dynamic ACLs starts with the application of an extended ACL to block traffic through the router. Common reasons to use Dynamic ACLs are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;When you want a specific remote user or group of remote users to access a host within your network.&lt;/li&gt;
-&lt;li&gt;Connecting to the outside of your network (Internet) Lock-and-key authenticates the user and then permits limited access through your firewall router.&lt;/li&gt;
-&lt;li&gt;You want a subset of hosts on a local network to access a host from a remote network that is protected by a firewall.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Lock-and-key requires users to authenticate through an AAA, TACACS server or other security server before it allows access.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Reflexive ACLs&lt;/strong&gt; Reflexive ACLs allow IP packets to be filtered based on upper-layer session information. Generally are used to allow outbound traffic and to limit inbound traffic by using sessions that originate inside the router. When a router sees a new outbound connection it adds an entry to a temporary ACL to allow replies back into the network. Reflexive ACLs can be defined only with an extended named IP ACL. They cannot be defined with numbered or standard named ACLs or with other protocols.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Time-Based ACLs&lt;/strong&gt; Time-Based ACLs are like extended ACLs in function, but they allow access control based on time. To use time-based ACLs you create a time range that defines specific times of the day and days of the week. You use the time range with a name and then refer to it by a function. The time range relies on the router system clock. This feature works with NTP (Network Time Protocol) synchronization, but the router clock can also be used.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Numbered ACL&lt;/strong&gt; You can assign a number based on whether your ACL is standard or extended&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;1 to 99 and 1300 to 1999 are Standard IP ACL&lt;/li&gt;
-&lt;li&gt;100 to 199 and 2000 to 2699 are Extended IP ACL&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You cannot add or delete entries within the ACL (You have to totally delete the ACL in order to edit it)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Named ACL&lt;/strong&gt; You can assign names to the ACL instead of numbers.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Names can contain alphanumeric characters&lt;/li&gt;
-&lt;li&gt;Recommended to type the name in all CAPITAL LETTERS&lt;/li&gt;
-&lt;li&gt;Names cannot contain spaces or punctuation and must begin with an alphabetic character&lt;/li&gt;
-&lt;li&gt;You can add or delete entries within the ACL&lt;/li&gt;
-&lt;li&gt;You can specify whether the ACL is standard or extended&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The remark keyword is used for documentation and makes the access lists easier to understand. Each remark is limited to 100 characters. (Example)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;R1#config t
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;Enter configuration commands one per line. End with CTRL/Z
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;R1(config)#access-list 10 remark Permit hosts from the 192.168.10.0 LAN
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;R1(config)#access-list 10 permit 192.168.10.0
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;R1(config)#exit
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;R1# 
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;*Oct 25 20:34:23:13: %SYS-5-CONFIG\_I: configured from console by console
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;R1# show run Building configuration… 
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;!&amp;lt;output omitted&amp;gt;!
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;access-list 10 remark Permit hosts from the 192.168.10.0 LAN access-list 10 permit 192.168.10.0
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;!&amp;lt;output omitted&amp;gt;!
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Creating a Named ACL&lt;/strong&gt; Naming an ACL makes it easier to understand its function. (Example shows the commands used to configure a standard named ACL on router R1) Keep in mind this is the same command you would use if you wanted an extended ACL just substitute standard for extended. Interface fa0/0 denies hosts on the  192.168.11.10 network access to the 192.168.10.0 network is as follows:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;R1(config)#ip access-list standard NO_ACCESS
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;R1(config-std-nacl)#deny host 192.168.11.10
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;R1(config-std-nacl)#permit 192.168.11.0.0.0.255
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;R1(config-std-nacl)#interface fa0/0
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;R1(config-if)#ip access-group NO_ACCESS out
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That&#39;s my view on Access Control Lists, if you want to have more documentation about ACLs you can check out these two links below from Cisco &lt;a href=&#34;http://www.cisco.com/en/US/products/sw/secursw/ps1018/products_tech_note09186a00800a5b9a.shtml&#34;&gt;Configuring IP Access Lists&lt;/a&gt; &lt;a href=&#34;http://www.cisco.com/en/US/docs/ios/11_3/security/configuration/guide/scacls.html&#34;&gt;Access Control Lists: Overview and Guidelines&lt;/a&gt; I hope this tutorial was helpful.&lt;/p&gt;
-&lt;!--adsense--&gt;
+          
+            Understanding Access Control Lists is an important role for moving up into the CCNA area. ACLs can get confusing and cause network problems if not implemented correctly. I think what I outlined below explains in a nutshell of what you can expect from ACLs.
+I would still read and find more information about ACLs on the web and or reading material (becuase I don&#39;t trust myself!). By securing networks with ACLs you are adding another barrier to your network although ACLs can&#39;t fool-proof your network they add additional level of security from the outside world.
+          
+          
         
       </description>
     </item>

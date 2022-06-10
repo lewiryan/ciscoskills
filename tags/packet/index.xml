@@ -14,20 +14,10 @@
       <guid>https://ciscoskills.net/2011/03/28/understanding-udp/</guid>
       <description>
         
-          &lt;p&gt;Forever ago I talked about TCP (&lt;a href=&#34;http://ciscoskills.net/2011/02/25/understanding-tcp/&#34; title=&#34;Understanding TCP&#34;&gt;Understanding TCP&lt;/a&gt;) and I said that in that post that UDP would be another day, well this is the day where we get to understand UDP, which stands for &lt;a href=&#34;http://en.wikipedia.org/wiki/User_Datagram_Protocol&#34; title=&#34;User Datagram Protocol&#34;&gt;User Datagram Protocol&lt;/a&gt;. UDP is the total opposite of the TCP communication. UDP in short sends information or data without notifying the receiver that its sending data. UDP is considered a &lt;a href=&#34;http://en.wikipedia.org/wiki/Connectionless_protocol&#34; title=&#34;Connectionless protocol&#34;&gt;connectionless protocol&lt;/a&gt;, and does not guarantee the reliability or order the packets like TCP does. Therefor packets may be dropped and are never recovered.&lt;/p&gt;
-&lt;!--adsense--&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/03/udp-communication.png&#34; alt=&#34;The UDP Communication Progress&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Although this may sound like a bad thing, it depends on your network application. Some common network applications that use UDP include: the Domain Name System (&lt;a href=&#34;http://en.wikipedia.org/wiki/Domain_Name_System&#34; title=&#34;Domain Name System&#34;&gt;DNS&lt;/a&gt;), streaming media applications such as &lt;a href=&#34;http://en.wikipedia.org/wiki/IPTV&#34; title=&#34;IPTV&#34;&gt;IPTV&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Voice_over_IP&#34; title=&#34;Voice over IP&#34;&gt;Voice over IP (VoIP)&lt;/a&gt;, &lt;a href=&#34;http://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol&#34; title=&#34;Trivial File Transfer Protocol&#34;&gt;Trivial File Transfer Protocol&lt;/a&gt; (TFTP) and online games. Looking at the UDP header there is a lot less overhead when compared to TCP, this makes UDP faster for routers to route the information with less overhead on processing power.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://ciscoskills.net/images/2011/03/udp-header.png&#34; alt=&#34;The UDP Header Field&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Time-sensitive applications often use UDP because if dropped packets means less delayed information then UDP it is. In connectionless protocols there is no effort made to set up a connection like TCP, UDP just sends the information in one direction from the source address to the destination address and hopes it arrives in complete package but if not, the protocol does not care. So to review:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;UDP is Unreliable - When a message is sent, it cannot or will not know if it will reach its destination; it could get lost along the way. There is no concept of acknowledgment, re-transmission and or timeout like the &lt;a href=&#34;http://en.wikipedia.org/wiki/Transmission_Control_Protocol&#34; title=&#34;Transmission Control Protocol&#34;&gt;TCP protocol&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;UDP is not ordered - If two messages are sent to the same destination, the order in which they arrive cannot be predicted.&lt;/li&gt;
-&lt;li&gt;UDP is lightweight - There is no ordering of messages, any tracking connections, etc. It is a small transport layer designed on top of &lt;a href=&#34;http://en.wikipedia.org/wiki/Internet_Protocol&#34; title=&#34;Internet Protocol&#34;&gt;IP&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Inside UDP &lt;a href=&#34;http://en.wikipedia.org/wiki/Datagram&#34; title=&#34;Datagram&#34;&gt;Datagrams&lt;/a&gt; - &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_%28information_technology%29&#34; title=&#34;Packet (information technology)&#34;&gt;Packets&lt;/a&gt; that are sent individually and are guaranteed to be whole if they arrive. Packets have definite bounds and do not split or merge into data streams. (Meaning that UDP packets are not coherent)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;That&#39;s UDP is in a summary format, I hope this information is useful and like always look at other sources like Cisco.com or do a simple web search. Comments are encourage, so let me know how I&#39;m  doing if you have a topic that is related to the ICND1 or ICND2 let me know about.&lt;/p&gt;
-
+          
+            Forever ago I talked about TCP (Understanding TCP) and I said that in that post that UDP would be another day, well this is the day where we get to understand UDP, which stands for User Datagram Protocol. UDP is the total opposite of the TCP communication. UDP in short sends information or data without notifying the receiver that its sending data. UDP is considered a connectionless protocol, and does not guarantee the reliability or order the packets like TCP does.
+          
+          
         
       </description>
     </item>
