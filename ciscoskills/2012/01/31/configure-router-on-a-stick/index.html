@@ -106,13 +106,6 @@
 </svg>
 
   </a>
-  <a href="https://twitter.com/lewiryan">
-    <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-  </a>
   <a href="https://www.linkedin.com/in/lewiryan">
     <svg class="icon">
   <title>linkedin</title>
@@ -193,17 +186,6 @@
 
     <div class="post_body">
       <p>A while ago I talked about putting different <a href="http://en.wikipedia.org/wiki/Virtual_LAN" title="Virtual LAN">VLANs</a> on a switch, remember a VLAN is virtual network that although physically it may look like on the same network that does not always mean the case. By having VLANs you are segmenting the network and the only way to get to the other side is having a router. I have already configured the Cisco switch as posted in <a href="http://lewiryan.github.io/ciscoskills/2011/04/01/creating-vlans/" title="Creating VLANs">Creating VLANs</a> but in summary I have three VLANs total VLAN 1 which is the <a href="http://en.wikipedia.org/wiki/Cisco_Inter-Switch_Link" title="Cisco Inter-Switch Link">native VLAN</a>, VLAN 2 and VLAN 3 (which is called support. If you like to understand how create VLANs on a switch follow the post above. If you look at the network topology below you can see where Cisco came up with the name &quot;Router on Stick&quot; each PC is on its own network and needs the router in order for traffic to pass between the networks. Like before I have three VLANs total. VLAN 1 which is the native VLAN, VLAN 2 and VLAN 3 (which is called &quot;Support&quot;).</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <p>You have to create sub-interfaces on the router to route between different VLANs these sub-interfaces do not correspond to the VLANs so you could put any number but for manageability usually people use the same sub-interface has the VLAN ID. To create a sub-interface start typing the interface that will be physically connected to the switch at the end add a period and number.</p>
 <p><figure>
   <picture>

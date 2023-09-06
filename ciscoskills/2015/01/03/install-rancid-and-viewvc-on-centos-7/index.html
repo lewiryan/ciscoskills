@@ -106,13 +106,6 @@
 </svg>
 
   </a>
-  <a href="https://twitter.com/lewiryan">
-    <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-  </a>
   <a href="https://www.linkedin.com/in/lewiryan">
     <svg class="icon">
   <title>linkedin</title>
@@ -191,17 +184,6 @@
 
     <div class="post_body">
       <p>In this post I want to walk though the steps to install Rancid on CentOS 7 minimal. Rancid is a great tool to help monitor a device configuration for any changes. It also keeps track of them by using CVS (Concurrent Version System) for backups, so you can go back and compare versions or revert to a previous configuration. Rancid supports multiple hardware from Cisco, HP, Dell, Juniper and more. This is all open-source so you can create custom scripts or add commands to really make this a personal repository that fits your company.  During this install guide several things are required when we install Rancid, I have tired to make this as simple as possible but its not just a type and watch it install. You have to customize some of the scripts to make Rancid work like it should. Read it though and follow along.</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <p>So I'm already assuming that you have CentOS 7 minimal installed, with connection to the internet, and have just the root account with a password. You can pick up the latest CentOS at <a href="http://www.centos.org/">http://www.centos.org/</a> Login as the root account and let's update this thing and accept any updates before we do anything else.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">yum update
 </span></span></code></pre></div><p>We now need to install all the prerequisites needed for Rancid and some other tools we'll need for troubleshooting (if needed)</p>
@@ -464,17 +446,6 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">systemctl start postfix
 </span></span><span class="line"><span class="ln">2</span><span class="cl">systemctl enable postfix
 </span></span></code></pre></div><p>Finished! We have just installed Rancid along with made some helpful tweaks like getting an upfront web page to view the configurations instead of CLI as well as setting up Rancid to email us if anything changes or if there are issues with connecting to any equipment. I'll put the brakes here and in the next post we will go over how to customize rancid to log into devices and grab configurations. I hope this install guide is helpful and let me know if you have any questions. Enjoy New Year! :) If you can't wait for me then you can check Shrubbery at <a href="http://www.shrubbery.net/rancid/">http://www.shrubbery.net/rancid/</a> Read the README file once you download Rancid. You can also check threads from Rancid Discussions at <a href="https://www.gossamer-threads.com/lists/rancid/">www.gossamer-threads.com/lists/rancid/</a></p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <hr>
 <h3 id="static-comments">Static Comments:</h3>
 <h4 id="heading"></h4>

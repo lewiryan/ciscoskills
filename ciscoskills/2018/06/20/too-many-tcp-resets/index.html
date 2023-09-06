@@ -106,13 +106,6 @@
 </svg>
 
   </a>
-  <a href="https://twitter.com/lewiryan">
-    <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-  </a>
   <a href="https://www.linkedin.com/in/lewiryan">
     <svg class="icon">
   <title>linkedin</title>
@@ -189,17 +182,6 @@
 
     <div class="post_body">
       <p>So, recently we enforced some firewall rules on a new environment, we did testing of the environment and everything was working as expected. In about 24 hours a lot of traffic from the web infrastructure was being denied and it continued, at first glance it looked like return traffic was being dropped, the web servers were sourcing at port 443 and the destination ports were using dynamic ports (RFC 6335) No user or application problems were reported when we enforced rules, and we waited additional days to see if anything came up. Nothing came up, the only thing was a spike in amount of syslog messages of dropped traffic coming from the web servers.</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <p>So from that point it really wasn’t an issue, but I thought it would be interesting to see what was going on. I started to look at the firewall logs and enabled debugging to syslog, and as you can see the TCP session is being built and we can also see the TCP Teardown, which should be the end of it, something else was happening instead and it was unexpected.</p>
 <p><em>Wed Jun 20 11:58:46 2018;172.17.70.1; &lt;167&gt;Jun 20 2018 11:58:45 172.17.70.1 : %ASA-7-302013: <code>Built inbound TCP connection 47772320 for OUTSIDE:203.0.113.147/43918 (203.0.113.147/43918) to INSIDE:172.17.77.250/443 (172.17.77.250/443)</code></em></p>
 <p><em>Wed Jun 20 12:00:51 2018;172.17.70.1; &lt;167&gt;Jun 20 2018 12:00:50 172.17.70.1 : %ASA-7-302014: <code>Teardown TCP connection 47772320 for OUTSIDE:203.0.113.147/43918 to INSIDE:172.17.77.250/443 duration 0:02:05 bytes 107244 TCP FINs from INSIDE</code></em></p>
@@ -235,16 +217,6 @@
 <p>I couldn’t investigate the TLS packet because it was encrypted however I think it had something to do with the close notify action of TLS. Not all implementations of SSL/TLS follow that rule even through RFC 5246 seems to imply that a close notify is required. I think this would explain the reason why the server sends RST when it receives both a FIN and RST at the same time from the client, it was unexpected, and we did not close the TLS session properly. When I did the test, I didn’t get any TCP resets. Although we where not seeing any disruptions from this it was helpful to at least figure out what the problem is and then being able to theorize what we could do to fix that problem.</p>
 <p>In this example its related to the client so we can’t do anything on our end. The fact that this is happening at the end of the TCP connection, you are not going to notice anyway because you already have data you requested. We don't really care how the connection closes. I hope this post was helpful in understanding how to dig in the weeds and even through the connection worked, its helpful to understand any anomalies because those could turn into problems in the future.</p>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
     </div>
 <div class="post_comments">
   

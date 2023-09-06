@@ -106,13 +106,6 @@
 </svg>
 
   </a>
-  <a href="https://twitter.com/lewiryan">
-    <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-  </a>
   <a href="https://www.linkedin.com/in/lewiryan">
     <svg class="icon">
   <title>linkedin</title>
@@ -218,17 +211,6 @@
       </div>
     <div class="post_body">
       <p>I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let's go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.  In this example I have already configured a FEX port with a 2k check out the my earlier post <a href="http://lewiryan.github.io/ciscoskills/2013/12/01/connecting-fex-5k-to-2k/">Connecting FEX (5k to 2k)</a> so let's start right after that and login into the 5k.</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln"> 1</span><span class="cl">User Access Verification
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl">demo5k login: admin
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">Password:
@@ -346,17 +328,6 @@
 </span></span><span class="line"><span class="ln">11</span><span class="cl">demo5k(config-if)# no shutdown
 </span></span><span class="line"><span class="ln">12</span><span class="cl">demo5k(config-if)# exit\[/code\]
 </span></span></code></pre></div><p>Done and Done, If you hook-up two PCs with correct IP address scheme in the separate VLANs you would be able to ping them. To verify the routing table you would do a <strong>show ip route</strong>, just like the IOS world :) Like always I hope this information is helpful and comment below if you have any questions.</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
     </div>
 <div class="post_comments">

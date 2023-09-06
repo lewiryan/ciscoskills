@@ -106,13 +106,6 @@
 </svg>
 
   </a>
-  <a href="https://twitter.com/lewiryan">
-    <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-  </a>
   <a href="https://www.linkedin.com/in/lewiryan">
     <svg class="icon">
   <title>linkedin</title>
@@ -211,17 +204,6 @@
       </div>
     <div class="post_body">
       <p>I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we where planning on connecting in additional equipment that only supported SFP+ interfaces. So the solution was to connect to this switch  with QSFP to SFP+ adapters.</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <p>Thinking this would be a simple change because we are just plugging in additional adapters on the QSFP ports we planned our maintenance window and rollback plans but I wasn't expecting a rollback for this one :)   The interfaces were configured in a shutdown status before we plugged in the adapters and cables so didn't see anything out of the ordinary, when it was time to do the maintenance let's bring up the interfaces with the command of no shutdown and we should be up...</p>
 <p>Well not exactly, I first thought it was the other end so I checked that and its reporting the link is down but it was not in a shutdown status. Looking at the Nexus switch interface I see the words &quot;check speed-group config&quot; under the interface and its in a err-disable status and I'll be honest I haven't worked with interfaces that are speed-grouped together so I didn't know that it was even a thing. A quick search to see if I could &quot;break&quot; the speed-group and configure interfaces individually on their own speed turned up nothing.</p>
 <p>We ended up doing a rollback which looked pretty ridiculous because these where just interfaces we couldn't bring online. It become apparent that I was stuck because with the equipment we had I couldn't use that 40Gbps uplink, the hardware only supported one speed for all six ports, hence the name &quot;speed-group&quot;. </p>

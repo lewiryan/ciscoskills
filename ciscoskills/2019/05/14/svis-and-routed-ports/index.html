@@ -106,13 +106,6 @@
 </svg>
 
   </a>
-  <a href="https://twitter.com/lewiryan">
-    <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-  </a>
   <a href="https://www.linkedin.com/in/lewiryan">
     <svg class="icon">
   <title>linkedin</title>
@@ -186,17 +179,6 @@
 
     <div class="post_body">
       <p>So you have a this nice multiplayer switch, and want to take advantages of all of the features it has to offer. Well there are two different types interface ports on these type of switches. SVIs (Switched Virtual Interface) and &quot;routed&quot; ports, fundamentally they are same and clients/users wouldn't be able to tell if you were using/going through an SVI or a &quot;routed&quot; port. However they are different and in this post we'll talk about these two and when and were it would be recommended to place an SVI or a routed port.</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <p>In order to pass traffic between networks we need a router. Switches work in layer two and routers work in layer three, this separation of duties between devices works well. Doing something like <a href="http://lewiryan.github.io/ciscoskills/2012/01/31/configure-router-on-a-stick/">Configuring Router on Stick</a>, is easier to troubleshoot and usually cheaper to implement. It only becomes a problem when we run out of resources like bandwidth.</p>
 <p>Looking on the example below, we have three different networks all branching off of this router. The router has three networks configured on this interface the red network, teal network and the blue network. In order for PC1 to reach PC2 it has use the router even through they are plugged on the same switch, they are on different VLANs, different networks. If PC1 was transferring a lot of data between PC2 it could easily tap out that router's interface. Other devices on those networks like PC3 would become bandwidth starved and struggle to get a good connection for inter-vlan connectivity. <figure>
   <picture>

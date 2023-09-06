@@ -106,13 +106,6 @@
 </svg>
 
   </a>
-  <a href="https://twitter.com/lewiryan">
-    <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-  </a>
   <a href="https://www.linkedin.com/in/lewiryan">
     <svg class="icon">
   <title>linkedin</title>
@@ -214,17 +207,6 @@
 </figure>
 </p>
 <p>We can see in the above diagram we will be using three routers, a loop back connection, two switches (which we will leave them at their default configuration) and two PCs If you are using packet tracer or using real devices than cable the network. The next couple of steps are assuming you already know the material. Next perform Basic Router Configurations (hostname, disable DNS lookup, EXEC password, message-of-the-day banner, and password for console and VTY connections, along with synchronous logging).  After that, configure the interfaces on R1, R2, and R3 (with the IP addresses from the addressing table (remember to include the clock rate on serial DCE interfaces). Make sure that the IP addressing is correct and the interfaces are active by issuing the <em>show ip interface</em> brief command. Test and configure ethernet interfaces on PC1 and PC3 (test by pinging the default gateway)</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <p>OK, now that all devices are connected we can start by configuring OSPF (so that each router knows about each other network). (On the R1 we are going to use the process ID of 1)</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">R1(config)#router ospf 1
 </span></span><span class="line"><span class="ln">2</span><span class="cl">R1(config-router)#network 192.168.10.0 0.0.0.255 area 0
@@ -472,16 +454,6 @@ If you guessed that the link would go down you are correct. But also OSPF would 
 </span></span><span class="line"><span class="ln">9</span><span class="cl">R3(config-if)#
 </span></span></code></pre></div><p>That's that! You know have PPP setup and some authentication. Between R1 and R2 the authentication is PAP and between R2 and R3 the authentication is CHAP. You should be able to ping all the devices within the topology diagram. Hope this tutorial was helpful</p>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
     </div>
 <div class="post_comments">
   

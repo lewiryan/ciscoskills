@@ -106,13 +106,6 @@
 </svg>
 
   </a>
-  <a href="https://twitter.com/lewiryan">
-    <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-  </a>
   <a href="https://www.linkedin.com/in/lewiryan">
     <svg class="icon">
   <title>linkedin</title>
@@ -193,17 +186,6 @@
 
     <div class="post_body">
       <p>Continuing where we left off on Chapter 3 on <a href="http://www.amazon.com/CCNA-Data-Center-Introducing-Networking/dp/1118661265/">CCNA Data Center Study Guide from Todd Lammle</a>. Like before feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter three we discussed about Ethernet Technologies and in chapter four we will learn about the TCP/IP protocol which is fundamentally the protocol that makes the Internet work.</p>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9033188266851547"
-     data-ad-slot="3084884603"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <p><strong>Overview</strong>: The chapter started talking about the DoD model and comparing it to the OSI model, remember this and a little history behind it as well as the layers the DoD model shows its relevance with the OSI model. We start talking about applications like Telnet, FTP, SMTP what are these? Know the common applications and their port numbers. The chapter also talked about host-to-host layer protocols like TCP and UDP, know the difference between these two, and some memorization of what the TCP and UDP header looks like. (Which one is unreliable and which one uses acknowledgments and flow control?) We also looked into the Internet layer Protocols, do you know them all and their functions? Also know what the IP header looks like. (What does it include?)</p>
 <p><strong>Personal Story</strong>: I wanted to jump in and talk about my personal experience with TCP/IP protocol mainly the ICMP management of it. I was contracted with a company that had a Cisco Phone System and a 2900 router using SiP as well as Internet on top it. They had this time clock system that would send punches over a VPN to a corporate office and it was setup and working for a while until of course it eventually stopped sending time punches. This took about a week to figure out as the VPN was online and you could contact the device from corporate. With a SPAN port I could see traffic hitting the time clock as well as it coming back. The issue was when the 2900 router was setup, it was set to disregard ICMP (For general network security) because of the way the time clock is designed it would use ICMP to decide the acceptable MTU size before sending time punches. Since it never got a reply it would fail on sending time punches, in the end I enabled the router to accept ICMP to fix the issue. Long story short, ICMP is a management protocol for IP and although it can be used against you, it's a balancing act between security and functionally and in this case the time clock used ICMP legitimately, lesson learned. :)</p>
 <p><strong>My thoughts:</strong> Personally I liked going over this chapter it starts to put some pieces together, I would read it over if you have seen this before just lock down any missing parts. Also post any questions about this chapter below.</p>
