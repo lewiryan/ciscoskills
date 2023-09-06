@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FTD on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/ftd/</link>
+    <description>Recent content in FTD on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 Jul 2018 13:30:00 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/ftd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco FTD Standalone</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/07/18/cisco-ftd-standalone/</link>
+      <pubDate>Wed, 18 Jul 2018 13:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/07/18/cisco-ftd-standalone/</guid>
+      <description>
+        
+          
+            No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Factory Reset Firepower 2100</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/12/01/factory-reset-firepower-2100/</link>
+      <pubDate>Fri, 01 Dec 2017 16:00:49 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/12/01/factory-reset-firepower-2100/</guid>
+      <description>
+        
+          
+            In this short guide I wanted to walk through the steps to do a factory reset for the Cisco Firepower 2100 series. When doing these resets all configuration and the administrative password are removed, as well as the FTD (Firepower Threat Defense) app-instance. When the unit starts to boot it will reinstall the FTD app-instance to default configuration.
+There are two ways to factory reset these Firepower 2100 units. If you can get into the device you can simply use these commands: connect local-mgmt erase configuration The other method is used for if you are unable to get into the unit because either you don&#39;t know the password or something else has happened to make this appliance unstable enough that a factory reset is needed.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Update Firepower Devices - Manually</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/07/12/update-firepower-devices-manually/</link>
+      <pubDate>Wed, 12 Jul 2017 14:15:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/07/12/update-firepower-devices-manually/</guid>
+      <description>
+        
+          
+            This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

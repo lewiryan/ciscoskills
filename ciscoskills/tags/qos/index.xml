@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QoS on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/qos/</link>
+    <description>Recent content in QoS on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 05 Aug 2014 02:15:54 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/qos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Some QoS Guidelines</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/08/05/some-qos-guidelines/</link>
+      <pubDate>Tue, 05 Aug 2014 02:15:54 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/08/05/some-qos-guidelines/</guid>
+      <description>
+        
+          
+            When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared but it always something being tested on so we know it was there, somewhere… QoS can be a little boring and it does get a reputation of being difficult to understand, like where and how do I implement QoS?
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

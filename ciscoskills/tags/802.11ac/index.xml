@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>802.11ac on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/802.11ac/</link>
+    <description>Recent content in 802.11ac on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 21 Feb 2011 18:00:55 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/802.11ac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>802.11ac Standard</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/21/802.11ac-standard/</link>
+      <pubDate>Mon, 21 Feb 2011 18:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/21/802.11ac-standard/</guid>
+      <description>
+        
+          
+            Some things are making news in the wireless world, the IEEE wants another wireless standard in the mix called the 802.11ac, now the fastest standard they have is the 802.11n(speeds up to 300 Mbps), which was recently published in October of 2009. What is so great about the 802.11ac development? Well one thing is the speed, it is estimated that it will be able to carry up to 1 gigabit per second!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

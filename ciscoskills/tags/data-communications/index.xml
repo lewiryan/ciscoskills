@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Communications on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/data-communications/</link>
+    <description>Recent content in Data Communications on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 30 Oct 2012 03:02:12 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/data-communications/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Network and its Forces</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/10/30/the-network-and-its-forces/</link>
+      <pubDate>Tue, 30 Oct 2012 03:02:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/10/30/the-network-and-its-forces/</guid>
+      <description>
+        
+          
+            communication I have started looking CCDA information and some of it is interesting, towards the beginning the material started out at design methodologies. It talked about the &amp;quot;forces&amp;quot; of a new network framework and in this post I&#39;ll focus on the business forces that make a new framework necessary. I find it interesting when looking at companies because although customer service is important to sustain a company, I also think it will and may already have depend on who embraces the technology wheel, those that do will ultimately win.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Three Tiers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</link>
+      <pubDate>Sat, 21 Jan 2012 19:30:48 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</guid>
+      <description>
+        
+          
+            network_switch Working towards the CCNA Cisco talks about a hierarchical network there are three layers to this design. Access Layer, distribution layer and the core layer. Each of them have their own set of functions and is also considered to be a best practice when the network continues to grow and for redundancy along with just a better way to manage it. The Access layer is the layer that devices connect to, such as PCs, printers, and IP Phones.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Beginnings of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            network-diagram In a perfect world we would never need redundancy on a network infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure IPS (Intrusion Prevention System) via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</link>
+      <pubDate>Fri, 22 Apr 2011 17:30:44 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</guid>
+      <description>
+        
+          
+            Awhile back I talked about the differences between IPS and IDS. (See the post Cisco IDS vs. IPS ) So for today&#39;s post let&#39;s learn how to configure an IPS (Intrusion Prevention System) on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. ( See the post Configure Cisco SDM) Let&#39;s start configuring an IPS with SDM!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Wireless Concepts</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/04/basic-wireless-concepts/</link>
+      <pubDate>Mon, 04 Apr 2011 15:55:39 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/04/basic-wireless-concepts/</guid>
+      <description>
+        
+          
+            wireless-connection-icon Mobility is now a common thing in a business environment, you no longer are fixed to specific cubicle in the work place anymore. What is also amazing is it will continue to change and become easier for employees to get work done, with their phone, tablet, and laptop computer. But what makes this possible? What is the underlying component? The internet is becoming more available in more locations, coffee shops, airports, and your cell phone service provider, with 3G and 4G speeds.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Collision Domains vs Broadcast Domains</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/30/collision-domains-vs-broadcast-domains/</link>
+      <pubDate>Wed, 30 Mar 2011 16:50:16 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/30/collision-domains-vs-broadcast-domains/</guid>
+      <description>
+        
+          
+            These different types of domains mean different things and when designing a LAN both of these domains can harm the performance of your network. If you are not aware of the difference between these two, this tutorial should help you out. If you have a small network at your home there is usually the router/modem that is connected via phone line or cable to the ISP that router/modem is then connected to a switch or they even have a switch built into the device.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

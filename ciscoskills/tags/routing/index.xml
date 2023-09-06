@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Routing on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/routing/</link>
+    <description>Recent content in Routing on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 14 May 2019 19:00:40 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/routing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SVIs and &#34;Routed&#34; Ports</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/05/14/svis-and-routed-ports/</link>
+      <pubDate>Tue, 14 May 2019 19:00:40 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/05/14/svis-and-routed-ports/</guid>
+      <description>
+        
+          
+            So you have a this nice multiplayer switch, and want to take advantages of all of the features it has to offer. Well there are two different types interface ports on these type of switches. SVIs (Switched Virtual Interface) and &amp;quot;routed&amp;quot; ports, fundamentally they are same and clients/users wouldn&#39;t be able to tell if you were using/going through an SVI or a &amp;quot;routed&amp;quot; port. However they are different and in this post we&#39;ll talk about these two and when and were it would be recommended to place an SVI or a routed port.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>GLBP Load Balancing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/08/17/glbp-load-balancing/</link>
+      <pubDate>Thu, 17 Aug 2017 14:15:23 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/08/17/glbp-load-balancing/</guid>
+      <description>
+        
+          
+            We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Inter-VLAN Routing on the Nexus 5k</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/03/13/inter-vlan-routing-on-the-nexus-5k/</link>
+      <pubDate>Thu, 13 Mar 2014 15:45:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/03/13/inter-vlan-routing-on-the-nexus-5k/</guid>
+      <description>
+        
+          
+            I previously had the chance to play around with the 5596UP switch, and made some notes on how to configure inter-vlan routing. Since this was a 5596UP switch I needed a layer 3 card to take advantage of it. The next-generation units the 5600 include layer 3 without a card required along with introducing 40GB uplinks! However in this post let&#39;s go back to the basics and configure inter-vlan routing on a nexus switch and in this case I am using a 5596UP.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>HDLC vs. PPP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/02/22/hdlc-vs.-ppp/</link>
+      <pubDate>Wed, 22 Feb 2012 03:09:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/02/22/hdlc-vs.-ppp/</guid>
+      <description>
+        
+          
+            HDLC and PPP are considered to be in layer 2 of the OSI model. There are some differences between which will be describe in this post, If you would like to learn more about at least the basic configuration of PPP including PAP and CHAP check out the post I wrote about year ago. (Basic PPP Configuration) HDLC was first developed by the ISO Cisco tweaked the protocol sometimes called cHDLC and because of this it only works with Cisco equipment.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Types of WAN Links</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</link>
+      <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</guid>
+      <description>
+        
+          
+            I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Link-State Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/31/link-state-protocols/</link>
+      <pubDate>Wed, 31 Aug 2011 13:00:26 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/31/link-state-protocols/</guid>
+      <description>
+        
+          
+            Network-Cables Weeks ago and maybe months :), I talked about distance vector protocols and with that you probably got the feeling that when using a distance vector protocol it does not give a full network graphical representation of the entire network. Only the directly connected routes can&#39;t remember? Check out this post Distance Vector Routing. Link state protocols are faster to converge network changes compared to distance vector however when compared to distance vector setup they can be harder to set up, maintain, and troubleshoot when problems arise.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Distance Vector Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</link>
+      <pubDate>Wed, 15 Jun 2011 16:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</guid>
+      <description>
+        
+          
+            Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a router learns about a route to a different network (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dynamic Routing Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</link>
+      <pubDate>Wed, 04 May 2011 16:40:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</guid>
+      <description>
+        
+          
+            Dynamic Routing If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get PCs, printers, and other network equipment. That&#39;s where dynamic routing protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post Configure Static Routing) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Static Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</link>
+      <pubDate>Mon, 02 May 2011 16:15:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</guid>
+      <description>
+        
+          
+            Plugging Cisco routers together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic routing protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

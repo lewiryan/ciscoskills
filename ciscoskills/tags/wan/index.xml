@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WAN on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/wan/</link>
+    <description>Recent content in WAN on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Oct 2011 16:30:04 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/wan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Types of WAN Links</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</link>
+      <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</guid>
+      <description>
+        
+          
+            I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dynamic Routing Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</link>
+      <pubDate>Wed, 04 May 2011 16:40:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</guid>
+      <description>
+        
+          
+            Dynamic Routing If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get PCs, printers, and other network equipment. That&#39;s where dynamic routing protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post Configure Static Routing) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Static Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</link>
+      <pubDate>Mon, 02 May 2011 16:15:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</guid>
+      <description>
+        
+          
+            Plugging Cisco routers together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic routing protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring NAT (One to One Mapping)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/01/21/configuring-nat-one-to-one-mapping/</link>
+      <pubDate>Fri, 21 Jan 2011 16:15:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/01/21/configuring-nat-one-to-one-mapping/</guid>
+      <description>
+        
+          
+            In this simple tutorial we are going to be configuring a static NAT which is a one-to-one mapping between an inside IP address and an outside IP address. (One private to one permanent address) Using this type of NAT would be helpful for outside devices accessing your inside devices. (Like a web server) Let&#39;s get started!!
+Looking at the topology above you can see that we have a server inside of are network and want people to access this server outside of are network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring PAT</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/01/19/configuring-pat/</link>
+      <pubDate>Wed, 19 Jan 2011 15:05:01 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/01/19/configuring-pat/</guid>
+      <description>
+        
+          
+            This tutorial will help you configure PAT (Port Address Translation), or sometimes called NAT (Network Address Translation) with overload on a Cisco router. PAT uses multiple private IP addresses and translates them into a single or very few public IP addresses. This is possible because the private IP addresses are mapped to the port number of the PC. Let&#39;s get started!!!
+With the above shown topology we see that we are using two routers called ISP and R1 we also have one switch (default configuration) and a PC connected to R1&#39;s Fa0/0 interface.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic PPP Configuration</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/01/18/basic-ppp-configuration/</link>
+      <pubDate>Tue, 18 Jan 2011 21:00:26 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/01/18/basic-ppp-configuration/</guid>
+      <description>
+        
+          
+            This tutorial will be going over Basic Configuration of PPP (Point-to-Point Protocol). This tutorial includes Basic Configuration tasks on a router, Configuring OSPF routing protocol, and Configuring PPP PAP and CHAP authentication. Let&#39;s get started!
+We can see in the above diagram we will be using three routers, a loop back connection, two switches (which we will leave them at their default configuration) and two PCs If you are using packet tracer or using real devices than cable the network.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

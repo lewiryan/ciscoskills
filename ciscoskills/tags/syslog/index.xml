@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Syslog on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/syslog/</link>
+    <description>Recent content in Syslog on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 05 Feb 2019 17:15:07 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/syslog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FMC Syslog with Graylog Extractor</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/02/05/fmc-syslog-with-graylog-extractor/</link>
+      <pubDate>Tue, 05 Feb 2019 17:15:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/02/05/fmc-syslog-with-graylog-extractor/</guid>
+      <description>
+        
+          
+            Let&#39;s continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I&#39;m using Graylog which is an open source logging platform and although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Install RSYSLOG &amp; LogAnalyzer on CentOS 6-5</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/</link>
+      <pubDate>Wed, 11 Jun 2014 12:00:54 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/</guid>
+      <description>
+        
+          
+            I am looking at rsyslog which is fast syslog system and Loganalyzer as an upfront web GUI for those logs. The Loganalyzer application offers searching of various syslogs, all of which is open source and available to download. In this guide I will go through the steps to get these two applications to work together and in the end of this tutorial we should have a working syslog system ready to take logs!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

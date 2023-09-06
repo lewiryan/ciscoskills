@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ARP on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/arp/</link>
+    <description>Recent content in ARP on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 16 Mar 2011 17:30:42 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/arp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How a Router Routes</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/16/how-a-router-routes/</link>
+      <pubDate>Wed, 16 Mar 2011 17:30:42 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/16/how-a-router-routes/</guid>
+      <description>
+        
+          
+            This tutorial will be going over the basic information of how a router routes IP packets. Routers are used in the OSI layer three or the network layer. These routers have IP addresses and forward IP packets to the proper destination. This guide is somewhat basic and is assuming you have some information of how IP addressing works and along with what routing protocols are. So let&#39;s focus first on how a host or a computer forwards traffic and then look at how a router forwards traffic.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

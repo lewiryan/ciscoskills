@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VLAN Trunking Protocol on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/vlan-trunking-protocol/</link>
+    <description>Recent content in VLAN Trunking Protocol on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 11 May 2011 16:30:14 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/vlan-trunking-protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding VTP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</link>
+      <pubDate>Wed, 11 May 2011 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</guid>
+      <description>
+        
+          
+            Some people hate it, some people love it. It&#39;s the Cisco proprietary VLAN Trunking Protocol (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same VLANs. I also suggest if you don&#39;t know what a VLAN is check out the post Creating VLANs Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

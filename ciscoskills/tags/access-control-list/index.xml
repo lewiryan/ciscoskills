@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Access control list on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/access-control-list/</link>
+    <description>Recent content in Access control list on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 17 Mar 2012 17:46:23 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/access-control-list/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is the Nexus 1000v?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/03/17/what-is-the-nexus-1000v/</link>
+      <pubDate>Sat, 17 Mar 2012 17:46:23 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/03/17/what-is-the-nexus-1000v/</guid>
+      <description>
+        
+          
+            network_cloud I have worked with the Nexus 1000v product and wanted to share my thoughts on it. I want to explain in this blog what this product is and what it does. The Nexus 1000v can be virtual or a hardware appliance and is considered to be a virtual switch that runs in VMware. The major benefit to this product is the visibly you get when running in a virtual environment.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding CBAC</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</link>
+      <pubDate>Tue, 22 Feb 2011 17:00:34 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</guid>
+      <description>
+        
+          
+            Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the Cisco IOS router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make CBAC possible.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

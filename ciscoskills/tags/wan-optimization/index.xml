@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WAN optimization on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/wan-optimization/</link>
+    <description>Recent content in WAN optimization on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Oct 2011 16:30:04 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/wan-optimization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Types of WAN Links</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</link>
+      <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</guid>
+      <description>
+        
+          
+            I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

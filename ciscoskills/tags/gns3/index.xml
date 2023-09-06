@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GNS3 on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/gns3/</link>
+    <description>Recent content in GNS3 on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 17 Aug 2018 14:00:07 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/gns3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing a GNS3 Server</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/08/17/installing-a-gns3-server/</link>
+      <pubDate>Fri, 17 Aug 2018 14:00:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/08/17/installing-a-gns3-server/</guid>
+      <description>
+        
+          
+            Although GNS3 can run local on your computer and you can use VMware Workstation and have the GNS3 appliance. I found it much more stable and predictable to run GNS3 on a dedicated server. Using this type of installation, all the projects, and images are stored on the GNS3 server, so I can install the GNS3 client any computer and get access to the same projects I was working on. You can also have multiple people working on different projects that are on the same server.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Setting up GNS3 1.1 on Ubuntu</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/10/28/setting-up-gns3-1.1-on-ubuntu/</link>
+      <pubDate>Tue, 28 Oct 2014 12:15:59 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/10/28/setting-up-gns3-1.1-on-ubuntu/</guid>
+      <description>
+        
+          
+            It&#39;s only been a week since GNS3 1.0 was released and it&#39;s already been updated to 1.1 so in this post I have Ubuntu 14.04 LTS with the latest updates and its time to set up GNS3. GNS3 is an open source tool that helps network professionals run a virtual network right on their computer, GNS3 is not a simulation program but rather an emulation program. So if you wanted to test a configuration change but did not want to run it on production you can run it in GNS3 instead.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>GNS3 1.0 Public is Out</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/10/21/gns3-1.0-public-is-out/</link>
+      <pubDate>Tue, 21 Oct 2014 20:31:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/10/21/gns3-1.0-public-is-out/</guid>
+      <description>
+        
+          
+            Get your IOS, IOU, XRV, 1000v, HP, Juniper, Arista, and other images ready because that&#39;s the beauty of GNS3, it&#39;s here and ready to download. I&#39;m excited for this release although the last post I did was In May of 2014, which was about getting GNS3 Alpha 3 working on Windows, you can see the full post here: GNS3 Alpha – Install and Setup. I have followed the GNS3 releases throughout the six months of them releasing Alpha and beta releases, as well as looking at changlogs of each release.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>GNS3 Alpha – Install and Setup</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/05/10/gns3-alpha-install-and-setup/</link>
+      <pubDate>Sat, 10 May 2014 01:29:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/05/10/gns3-alpha-install-and-setup/</guid>
+      <description>
+        
+          
+            So Alpha 3 came out last week with a bunch updates and I decided to give it run this week. I&#39;m not doing anything that difficult with the program so maybe I&#39;m not breaking it in all the way but I also was looking at some installation notes for Ubuntu and other Linux flavors, I figured I’ll try to install it on a Windows machine and not Linux (call me lazy) feel free to follow this guide.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>GNS3 1.0 Campaign</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/11/21/gns3-1.0-campaign/</link>
+      <pubDate>Thu, 21 Nov 2013 06:25:01 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/11/21/gns3-1.0-campaign/</guid>
+      <description>
+        
+          
+            It&#39;s been almost 24 hours since GNS3 launched a campaign to bring in funds to support the open source network simulator and bring it up to version 1.0. A lot of new features are on the list, like switching, cloud processing, hassle free configuration, labs/training materials and 3rd party integrations. All of which are in the works for this new version added along with some pretty cool plug-ins. As of writing this post they are at $106,973 dollars which is 300 percent over funded!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Look at GNS3 - New Version</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/07/06/look-at-gns3-new-version/</link>
+      <pubDate>Sat, 06 Jul 2013 18:41:22 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/07/06/look-at-gns3-new-version/</guid>
+      <description>
+        
+          
+            Look at GNS3 - New Version: A new version of GNS3 released on July 5th 2013 is available for download. You can download GNS3 v0.8.4 at gns3.net. This release includes improvements and new features. Some of the important one are:
+Lots of GUI improvements. New hub device. New Idlemax and Idlesleep settings (advanced manipulation of IDLE PC). IOS image and settings test button. New Tool menu to start external scripts/tools. Drag &amp;amp; drop of multiple devices when pressing SHIFT.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Learning Labs is Live!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/13/cisco-learning-labs-is-live/</link>
+      <pubDate>Wed, 13 Apr 2011 14:15:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/13/cisco-learning-labs-is-live/</guid>
+      <description>
+        
+          
+            Yesterday was kind of exciting at least for me when I got an e-mail in the morning about Cisco Learning Labs. Studying for the CCNA, CCNP or CCIP is in itself changeling, but getting that hands-on experience is a another problem! When money is short that last thing you want to do is spend it on routers and switches, and most of them on eBay are used and the risk of failing devices makes it a scary choice.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

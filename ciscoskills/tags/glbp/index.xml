@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GLBP on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/glbp/</link>
+    <description>Recent content in GLBP on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 17 Aug 2017 14:15:23 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/glbp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GLBP Load Balancing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/08/17/glbp-load-balancing/</link>
+      <pubDate>Thu, 17 Aug 2017 14:15:23 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/08/17/glbp-load-balancing/</guid>
+      <description>
+        
+          
+            We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

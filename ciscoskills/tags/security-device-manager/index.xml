@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>security device manager on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/security-device-manager/</link>
+    <description>Recent content in security device manager on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 Apr 2011 15:45:38 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/security-device-manager/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring Zone Based Firewalls via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</link>
+      <pubDate>Wed, 20 Apr 2011 15:45:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</guid>
+      <description>
+        
+          
+            Last month I talked about the fundamentals for understanding zone based firewalls (See the post Understanding Zone Based Firewalls). So for today&#39;s post I want to go ahead and talk about configuring the zone based firewalls but with the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and reduce ownership costs. (See the post Configure Cisco SDM) Instead of talking about what is zone based firewalls lets jump into the configuration of them.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Cisco SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/18/configure-cisco-sdm/</link>
+      <pubDate>Mon, 18 Apr 2011 16:15:03 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/18/configure-cisco-sdm/</guid>
+      <description>
+        
+          
+            Today we will be going over the steps that are required to set up the Cisco SDM (Security Device Manger) The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. SDM is fairly easy to set up but you still need at least some experience in the router command-line to get SDM working. This tutorial is already assuming that the Cisco SDM program has been installed on the PC.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Virtual machine on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/virtual-machine/</link>
+    <description>Recent content in Virtual machine on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 08 Sep 2012 01:52:38 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/virtual-machine/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco Lab Setup</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/09/08/cisco-lab-setup/</link>
+      <pubDate>Sat, 08 Sep 2012 01:52:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/09/08/cisco-lab-setup/</guid>
+      <description>
+        
+          
+            A Cisco Lab When it comes to learning and getting started with Cisco there are some tools that will help out a lot like Packet Tracer, GNS3 and other emulators. These are great tools for that &amp;quot;simulation&amp;quot; of hands on learning, but you can&#39;t always stay in that area. I find it best to get hands on with &amp;quot;real&amp;quot; Cisco Gear and so with this post I&#39;ll go through my current setup of what I have and ask that question when it is a good time to get a lab?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>What is the Nexus 1000v?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/03/17/what-is-the-nexus-1000v/</link>
+      <pubDate>Sat, 17 Mar 2012 17:46:23 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/03/17/what-is-the-nexus-1000v/</guid>
+      <description>
+        
+          
+            network_cloud I have worked with the Nexus 1000v product and wanted to share my thoughts on it. I want to explain in this blog what this product is and what it does. The Nexus 1000v can be virtual or a hardware appliance and is considered to be a virtual switch that runs in VMware. The major benefit to this product is the visibly you get when running in a virtual environment.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

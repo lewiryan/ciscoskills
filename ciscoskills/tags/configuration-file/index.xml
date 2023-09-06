@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Configuration file on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/configuration-file/</link>
+    <description>Recent content in Configuration file on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 16 Aug 2013 03:09:48 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/configuration-file/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Copy Running-Config From PowerShell</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/08/16/copy-running-config-from-powershell/</link>
+      <pubDate>Fri, 16 Aug 2013 03:09:48 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/08/16/copy-running-config-from-powershell/</guid>
+      <description>
+        
+          
+            I will be up front on this I really never had that much experience with power-shell scripts but I wanted a quick way to connect to routers and switches and issue the show run command and have that script output everything into one file. So some searching around I decided to drive into power-shell to see if I could get something to work. One of my first problems was to find a way to have power-shell SSH into my devices I found out about SharpSSH which look interesting but I also found SSH.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Archive your Configuration</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/01/22/archive-your-configuration/</link>
+      <pubDate>Tue, 22 Jan 2013 05:30:42 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/01/22/archive-your-configuration/</guid>
+      <description>
+        
+          
+            It is important to save your router and switch configuration but what happens if the device fails or if you saved a configuration mistake, without having to manually worry about it? Well if your Cisco router or switch has Cisco IOS 12.3T and higher you would be able to set up an auto archive within the flash memory of the unit or you can send that configuration file to a server that does either FTP, HTTP, SCP.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Password Recovery – Cisco IOS Routers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/07/21/password-recovery-cisco-ios-routers/</link>
+      <pubDate>Sat, 21 Jul 2012 16:23:49 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/07/21/password-recovery-cisco-ios-routers/</guid>
+      <description>
+        
+          
+            Secure In this post I want to cover how to recover passwords on a Cisco IOS Router. This is helpful in lab environments as well as production environments. Although this method can be used the correct &amp;quot;legal&amp;quot; way you can also use this method to break into these devices &amp;quot;illegally&amp;quot; if you have physical console access to the device. However to get into it physical power must be turned off first causing a disruption in the environment, let get started!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IOS Commands</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/25/cisco-ios-commands/</link>
+      <pubDate>Wed, 25 May 2011 17:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/25/cisco-ios-commands/</guid>
+      <description>
+        
+          
+            This is the master list of some of the many Cisco IOS Commands that go with the CCNA track. This list also talks about what each command does in brief detail. You may also find that some commands may or may not be used for a CCNA level but offer some important information. If you don&#39;t know what a command does or understand it, I would look at Cisco documentation. Since this is a pretty big list of commands you can see the links to move to the different sections within this page.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

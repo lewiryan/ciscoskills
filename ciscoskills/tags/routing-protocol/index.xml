@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Routing protocol on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/routing-protocol/</link>
+    <description>Recent content in Routing protocol on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 29 Feb 2012 02:21:07 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/routing-protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EIGRP… The Basics</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/02/29/eigrp-the-basics/</link>
+      <pubDate>Wed, 29 Feb 2012 02:21:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/02/29/eigrp-the-basics/</guid>
+      <description>
+        
+          
+            Routing_Updates Enhanced Interior Gateway Routing Protocol (EIGRP) is an impressive set of features for IP Routing, which converges quickly and is on par and sometimes faster than OSPF. This routing protocol requires less processing time, less memory, and less network design than compared to OSPF. What&#39;s the catch? This protocol is Cisco proprietary, if you have a network that uses non-Cisco routers, EIGRP will not and cannot be used on those routers.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Distance Vector Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</link>
+      <pubDate>Wed, 15 Jun 2011 16:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</guid>
+      <description>
+        
+          
+            Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a router learns about a route to a different network (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Classful vs. Classless Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/01/classful-vs.-classless-routing/</link>
+      <pubDate>Wed, 01 Jun 2011 16:50:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/01/classful-vs.-classless-routing/</guid>
+      <description>
+        
+          
+            Cloud-Computing-icon Before the internet and general networking become popular into what it is now, there were and still are routing protocols that only do classful routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in today&#39;s post let&#39;s focus on these two but important topics when using routing protocols.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

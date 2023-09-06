@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installation on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/installation/</link>
+    <description>Recent content in Installation on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 30 Oct 2012 03:02:12 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/installation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Network and its Forces</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/10/30/the-network-and-its-forces/</link>
+      <pubDate>Tue, 30 Oct 2012 03:02:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/10/30/the-network-and-its-forces/</guid>
+      <description>
+        
+          
+            communication I have started looking CCDA information and some of it is interesting, towards the beginning the material started out at design methodologies. It talked about the &amp;quot;forces&amp;quot; of a new network framework and in this post I&#39;ll focus on the business forces that make a new framework necessary. I find it interesting when looking at companies because although customer service is important to sustain a company, I also think it will and may already have depend on who embraces the technology wheel, those that do will ultimately win.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

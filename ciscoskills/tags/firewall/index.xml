@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>firewall on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/firewall/</link>
+    <description>Recent content in firewall on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 07 Sep 2018 14:00:47 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/firewall/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Verifying DNS Lists - FMC</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/09/07/verifying-dns-lists-fmc/</link>
+      <pubDate>Fri, 07 Sep 2018 14:00:47 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/09/07/verifying-dns-lists-fmc/</guid>
+      <description>
+        
+          
+            We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Too Many TCP Resets</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/06/20/too-many-tcp-resets/</link>
+      <pubDate>Wed, 20 Jun 2018 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/06/20/too-many-tcp-resets/</guid>
+      <description>
+        
+          
+            So, recently we enforced some firewall rules on a new environment, we did testing of the environment and everything was working as expected. In about 24 hours a lot of traffic from the web infrastructure was being denied and it continued, at first glance it looked like return traffic was being dropped, the web servers were sourcing at port 443 and the destination ports were using dynamic ports (RFC 6335) No user or application problems were reported when we enforced rules, and we waited additional days to see if anything came up.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco FTDv in Cisco VIRL</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/06/14/cisco-ftdv-in-cisco-virl/</link>
+      <pubDate>Wed, 14 Jun 2017 13:05:11 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/06/14/cisco-ftdv-in-cisco-virl/</guid>
+      <description>
+        
+          
+            Cisco is actively pushing their Firepower Threat Defense software with the new Firepower 2100 units on their way this summer in effort to eventually replace the ASA5525-X, ASA5545-X and ASA5555-X platforms. When using FTD you must also have the Firepower Management Center (FMC) available to manage and configure these devices. This gets difficult especially if you want to test things out because not everyone has Cisco Firepower lying around unused. How are you supposed to test and learn the depths of this product?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Factory Reset Firepower 4100 &amp; 9300</title>
+      <link>https://lewiryan.github.io/ciscoskills/2016/10/19/factory-reset-firepower-4100-9300/</link>
+      <pubDate>Wed, 19 Oct 2016 00:45:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2016/10/19/factory-reset-firepower-4100-9300/</guid>
+      <description>
+        
+          
+            I got my hands on some Cisco Firepower 4100 units and after playing around with them I wanted to reset them to factory settings, essentially erase the &amp;quot;startup-config&amp;quot; on the FXOS. The Firepower units act a little differently than your normal Cisco IOS or ASA and you can&#39;t just erase startup-config and reload the device, that would be too easy.
+(Edit: 7-21-17) After Gabriele made this comment - &amp;quot;connect local-mgmt&amp;quot; and then &amp;quot;erase configuration&amp;quot; it looks like you can.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Cisco ASA Overview</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</link>
+      <pubDate>Sun, 24 Jun 2012 17:14:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</guid>
+      <description>
+        
+          
+            Firewall The Cisco 5500 Series Adaptive Security Appliances are of course an excellent firewall but the ASA also offers (depending on the model) other security services as well, like IPS systems, VPN, content security, unified communications and remote access. These ASA&#39;s can be used as a standalone appliance&#39; that can handle the need for branch offices to enterprise data centers. Or they can be included in high-performance blades that work together with the Cisco Catalyst 6500 Series, and recently new they can also run in a virtual instance which provides tenant isolation for public and private clouds!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Zone Based Firewalls via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</link>
+      <pubDate>Wed, 20 Apr 2011 15:45:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</guid>
+      <description>
+        
+          
+            Last month I talked about the fundamentals for understanding zone based firewalls (See the post Understanding Zone Based Firewalls). So for today&#39;s post I want to go ahead and talk about configuring the zone based firewalls but with the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and reduce ownership costs. (See the post Configure Cisco SDM) Instead of talking about what is zone based firewalls lets jump into the configuration of them.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding Zone Based Firewalls</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/18/understanding-zone-based-firewalls/</link>
+      <pubDate>Fri, 18 Mar 2011 16:00:56 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/18/understanding-zone-based-firewalls/</guid>
+      <description>
+        
+          
+            Earlier we talked about using CBAC (See the post Understanding CBAC) the &amp;quot;classic firewall&amp;quot; and we mention some information about zone based firewalls but not nearly enough. So today we will be talking about zone based firewalls. Why are they different? We also will learn the basics about what is zone based and what are the advantages compared to CBAC. You can think of zone based has making interfaces in a quarantine zone, each interface by default if set up in a zone is denied access to any other interface.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IDS vs. IPS</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</link>
+      <pubDate>Wed, 09 Mar 2011 15:45:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</guid>
+      <description>
+        
+          
+            There are tons of network attacks out there. Using a firewall helps but does look for signature based attacks. Access Control Lists are like firewalls and only look at the protocols like HTTP, FTP POP, etc. Cisco has developed some tools that will help network administrators combat the issue; IDS, (Intrusion Detection System) and IPS. (Intrusion Prevention System) Let&#39;s go into IDS first, Cisco IDS is a physical device and is like an alarm system it will alert you when an attack happens but that&#39;s it, the system won&#39;t block the connection.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding CBAC</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</link>
+      <pubDate>Tue, 22 Feb 2011 17:00:34 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</guid>
+      <description>
+        
+          
+            Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the Cisco IOS router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make CBAC possible.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

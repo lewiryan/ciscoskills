@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Intrusion Detection System on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/intrusion-detection-system/</link>
+    <description>Recent content in Intrusion Detection System on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 22 Apr 2011 17:30:44 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/intrusion-detection-system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure IPS (Intrusion Prevention System) via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</link>
+      <pubDate>Fri, 22 Apr 2011 17:30:44 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</guid>
+      <description>
+        
+          
+            Awhile back I talked about the differences between IPS and IDS. (See the post Cisco IDS vs. IPS ) So for today&#39;s post let&#39;s learn how to configure an IPS (Intrusion Prevention System) on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. ( See the post Configure Cisco SDM) Let&#39;s start configuring an IPS with SDM!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IDS vs. IPS</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</link>
+      <pubDate>Wed, 09 Mar 2011 15:45:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</guid>
+      <description>
+        
+          
+            There are tons of network attacks out there. Using a firewall helps but does look for signature based attacks. Access Control Lists are like firewalls and only look at the protocols like HTTP, FTP POP, etc. Cisco has developed some tools that will help network administrators combat the issue; IDS, (Intrusion Detection System) and IPS. (Intrusion Prevention System) Let&#39;s go into IDS first, Cisco IDS is a physical device and is like an alarm system it will alert you when an attack happens but that&#39;s it, the system won&#39;t block the connection.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

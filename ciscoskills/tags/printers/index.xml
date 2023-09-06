@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Printers on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/printers/</link>
+    <description>Recent content in Printers on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 08 Mar 2011 14:45:26 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/printers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Laser Printing Process</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/08/laser-printing-process/</link>
+      <pubDate>Tue, 08 Mar 2011 14:45:26 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/08/laser-printing-process/</guid>
+      <description>
+        
+          
+            Let&#39;s move away from Cisco for at least a day, So this post will be talking about the six steps in the laser printing process, this is good for technicians who fix or repair printers along with a good learning experience. With my limited knowledge of printers I used this process to at least help diagnose the problem. If you have no idea how a printer works, I would not try to fix it.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

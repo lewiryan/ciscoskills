@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fdm on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/fdm/</link>
+    <description>Recent content in fdm on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 Jul 2018 13:30:00 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/fdm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cisco FTD Standalone</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/07/18/cisco-ftd-standalone/</link>
+      <pubDate>Wed, 18 Jul 2018 13:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/07/18/cisco-ftd-standalone/</guid>
+      <description>
+        
+          
+            No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

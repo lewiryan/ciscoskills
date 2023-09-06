@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Store and forward on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/store-and-forward/</link>
+    <description>Recent content in Store and forward on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Oct 2011 16:10:00 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/store-and-forward/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Store-and-Forward vs. Cut-Through Switching</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/05/store-and-forward-vs.-cut-through-switching/</link>
+      <pubDate>Wed, 05 Oct 2011 16:10:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/05/store-and-forward-vs.-cut-through-switching/</guid>
+      <description>
+        
+          
+            Network-Cable-Color Switching in the network can happen in two ways, these layer-two devices send frames but they can forward them in different ways. These different modes have positive and negative effects which depend on the type of network environment that runs through them! Store-and-forward is just like the name suggests, the switch receives a frame on a port and stores the frame in it&#39;s memory buffer until the frame has been completely received.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

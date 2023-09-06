@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network Layer on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/network-layer/</link>
+    <description>Recent content in Network Layer on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 21 Jan 2012 19:30:48 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/network-layer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Three Tiers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</link>
+      <pubDate>Sat, 21 Jan 2012 19:30:48 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</guid>
+      <description>
+        
+          
+            network_switch Working towards the CCNA Cisco talks about a hierarchical network there are three layers to this design. Access Layer, distribution layer and the core layer. Each of them have their own set of functions and is also considered to be a best practice when the network continues to grow and for redundancy along with just a better way to manage it. The Access layer is the layer that devices connect to, such as PCs, printers, and IP Phones.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Middle of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 07 Sep 2011 18:00:51 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Beginnings of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            network-diagram In a perfect world we would never need redundancy on a network infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Distance Vector Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</link>
+      <pubDate>Wed, 15 Jun 2011 16:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</guid>
+      <description>
+        
+          
+            Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a router learns about a route to a different network (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automation on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/automation/</link>
+    <description>Recent content in Automation on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 13 Nov 2018 15:55:19 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automation Dance</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/11/13/automation-dance/</link>
+      <pubDate>Tue, 13 Nov 2018 15:55:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/11/13/automation-dance/</guid>
+      <description>
+        
+          
+            I keep doing the automation dance, (yeah...that&#39;s me) there are a lot of different tooling products out there. I have been trying to understand a use case around using it with network automation. Recently I have been dancing around with Ansible. My personal belief is that using any type of these tools would be helpful but it can be a steep learning curve if you really don&#39;t have any programming knowledge.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

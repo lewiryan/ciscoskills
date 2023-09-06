@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>subnet masks on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/subnet-masks/</link>
+    <description>Recent content in subnet masks on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 01 Apr 2012 20:25:19 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/subnet-masks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 1 - The Joys of Subnetting!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/04/01/part-1-the-joys-of-subnetting/</link>
+      <pubDate>Sun, 01 Apr 2012 20:25:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/04/01/part-1-the-joys-of-subnetting/</guid>
+      <description>
+        
+          
+            Since network technicians work with IP addressing, it is hugely important to understand subnetting. I remember back when I started to learn subnetting it was confusing and I wanted nothing to do with it. The thing that made me change my mind was after I understood it and how important it is. In the &amp;quot;Cisco world&amp;quot; they don&#39;t cover useless topics...right? ;) there is always a reason why they expect you to know this and it&#39;s not just for the exams.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

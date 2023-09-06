@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RIPv2 on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/ripv2/</link>
+    <description>Recent content in RIPv2 on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 09 Feb 2011 17:30:42 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/ripv2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring RIPv2</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/09/configuring-ripv2/</link>
+      <pubDate>Wed, 09 Feb 2011 17:30:42 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/09/configuring-ripv2/</guid>
+      <description>
+        
+          
+            This guide will go over how to configure RIPv2 on Cisco routers. This guide follows a packet tracer activity that is posted at the end of this tutorial. RIPv2 configuration is pretty simple to understand with really only three required commands to use besides the network command which depends how many networks are connected to your router. RIPv2 Layout So following the packet tracer that is used with this tutorial the first step is to configure the hostname on the routers.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

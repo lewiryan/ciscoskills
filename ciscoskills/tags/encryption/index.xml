@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Encryption on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/encryption/</link>
+    <description>Recent content in Encryption on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 27 Apr 2011 18:00:24 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/encryption/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure a Site-to-Site VPN via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</link>
+      <pubDate>Wed, 27 Apr 2011 18:00:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</guid>
+      <description>
+        
+          
+            So for today&#39;s post let&#39;s learn how to configure a site-to-site VPN on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. (See the post Configuring SDM) Let&#39;s start configuring a site-to-site VPN with SDM! This tutorial is assuming that the configurations to set up Cisco SDM have already been completed.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Telecommuting Services</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/11/telecommuting-services/</link>
+      <pubDate>Fri, 11 Mar 2011 17:15:11 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/11/telecommuting-services/</guid>
+      <description>
+        
+          
+            This post is going to talk about the major technologies that make Teleworking or also called telecommuting possible. This is when an employee performs his or her job away from the office, usually from their home office. By doing this it allows personal convenience, less travel to and from the workplace. At an Organization level it provides continuity of operations, Secure, reliable and manageable access to information, cost-effective integration of data, voice, video and applications.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

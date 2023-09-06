@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CLI on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/cli/</link>
+    <description>Recent content in CLI on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 Sep 2017 11:45:41 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/cli/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enter Cisco Firepower CLI (Read-Only)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/09/20/enter-cisco-firepower-cli-read-only/</link>
+      <pubDate>Wed, 20 Sep 2017 11:45:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/09/20/enter-cisco-firepower-cli-read-only/</guid>
+      <description>
+        
+          
+            You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

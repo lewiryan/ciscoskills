@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/hardware/</link>
+    <description>Recent content in Hardware on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 11 Nov 2011 04:58:25 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Network Troubleshooting</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/11/11/network-troubleshooting/</link>
+      <pubDate>Fri, 11 Nov 2011 04:58:25 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/11/11/network-troubleshooting/</guid>
+      <description>
+        
+          
+            Troubleshooting The thing that makes networks awesome is the fact that once you setup a network you&#39;re not done. That may sound like a drawback but it is excellent job security! Engineers or administrators must watch the performance of an organization&#39;s network to make sure that productivity is not affected. Network outages can have a huge effect on an organization, lost revenue and the cost of unproductive employees can severely damage the organization, Earlier this year I also talked about the troubleshooting process which goes hand in hand with network troubleshooting.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Welcome Super WiFi</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/07/29/welcome-super-wifi/</link>
+      <pubDate>Fri, 29 Jul 2011 15:15:42 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/07/29/welcome-super-wifi/</guid>
+      <description>
+        
+          
+            WiFi_Logo Wow July is almost over and I only posted one topic! Before August comes up I wanted to post at least one more topic which deals with the wireless side of the networking world. Ever heard of Super WiFi? The IEEE has published this standard recently its official number is 802.22. What does Super WiFi bring to the table compared to other WiFi Standards? Well according to IEEE these speeds can bring up to 22Mbps to devices as far has 62 miles!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting Process</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/15/troubleshooting-process/</link>
+      <pubDate>Fri, 15 Apr 2011 18:00:28 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/15/troubleshooting-process/</guid>
+      <description>
+        
+          
+            Troubleshooting Today&#39;s post is going to be talking about troubleshooting and where to start the troubleshooting process. Yes there is an actual process that every technician should be aware of. You can also use this troubleshooting process at home, you may not know how to fix it but at least you know where the issue is and find someone who can. Before we begin if you haven&#39;t seen yet, let me introduce to you the troubleshooting process:
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IDS vs. IPS</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</link>
+      <pubDate>Wed, 09 Mar 2011 15:45:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</guid>
+      <description>
+        
+          
+            There are tons of network attacks out there. Using a firewall helps but does look for signature based attacks. Access Control Lists are like firewalls and only look at the protocols like HTTP, FTP POP, etc. Cisco has developed some tools that will help network administrators combat the issue; IDS, (Intrusion Detection System) and IPS. (Intrusion Prevention System) Let&#39;s go into IDS first, Cisco IDS is a physical device and is like an alarm system it will alert you when an attack happens but that&#39;s it, the system won&#39;t block the connection.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Laser Printing Process</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/08/laser-printing-process/</link>
+      <pubDate>Tue, 08 Mar 2011 14:45:26 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/08/laser-printing-process/</guid>
+      <description>
+        
+          
+            Let&#39;s move away from Cisco for at least a day, So this post will be talking about the six steps in the laser printing process, this is good for technicians who fix or repair printers along with a good learning experience. With my limited knowledge of printers I used this process to at least help diagnose the problem. If you have no idea how a printer works, I would not try to fix it.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Intel Thunderbolt</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/28/intel-thunderbolt/</link>
+      <pubDate>Mon, 28 Feb 2011 15:00:50 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/28/intel-thunderbolt/</guid>
+      <description>
+        
+          
+            Intel announced on Friday (February 25th 2011) the new high speed connector that will coexists with USB 3.0. Apple also announced that it will be appearing first on the MacBook Pros. Thunderbolt known before has Light Peak is a new high-speed PC connection technology. This cable can combine data and high-definition all in one cable running at 10Gbps. So you could say it is like the all in wonder HDMI cable that combines video and audio into one cable.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11ac Standard</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/21/802.11ac-standard/</link>
+      <pubDate>Mon, 21 Feb 2011 18:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/21/802.11ac-standard/</guid>
+      <description>
+        
+          
+            Some things are making news in the wireless world, the IEEE wants another wireless standard in the mix called the 802.11ac, now the fastest standard they have is the 802.11n(speeds up to 300 Mbps), which was recently published in October of 2009. What is so great about the 802.11ac development? Well one thing is the speed, it is estimated that it will be able to carry up to 1 gigabit per second!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

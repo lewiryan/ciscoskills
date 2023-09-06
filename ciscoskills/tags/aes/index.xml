@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AES on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/aes/</link>
+    <description>Recent content in AES on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 May 2011 16:50:52 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/aes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic Wireless LAN Security</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/18/basic-wireless-lan-security/</link>
+      <pubDate>Wed, 18 May 2011 16:50:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/18/basic-wireless-lan-security/</guid>
+      <description>
+        
+          
+            Wireless-Security-Icon Although having a wireless LAN sounds like a wonderful idea, there are things that need to be implemented like security. A wireless LAN can be uncontrollable has it is just radio waves and anybody can receive them. Having and using good security practices can help you be under control of your wireless LAN. Not having any security in a wireless LAN environment will cause anybody to have access to the network.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

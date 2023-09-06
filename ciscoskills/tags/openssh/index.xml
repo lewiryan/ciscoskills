@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSSH on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/openssh/</link>
+    <description>Recent content in OpenSSH on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 03 Mar 2016 02:43:31 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/openssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rancid can’t SSH to older ISRs?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2016/03/03/rancid-cant-ssh-to-older-isrs/</link>
+      <pubDate>Thu, 03 Mar 2016 02:43:31 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2016/03/03/rancid-cant-ssh-to-older-isrs/</guid>
+      <description>
+        
+          
+            Well its 2016 and you still have that one-of-kind Cisco ISR 2811 or 3845 running in the environment? You followed and installed Rancid, all the new stuff works like it should but when you try to connect to that “one-of-kind” 2811 with Rancid it closes the connection... :/
+This is a simple fix and the bug is reported here: LINK. The bug is something with OpenSSH which is installed on your Linux operating system and Rancid rides on top of it.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

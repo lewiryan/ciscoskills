@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cisco Discovery Protocol on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/cisco-discovery-protocol/</link>
+    <description>Recent content in Cisco Discovery Protocol on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Oct 2011 16:10:00 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/cisco-discovery-protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Store-and-Forward vs. Cut-Through Switching</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/05/store-and-forward-vs.-cut-through-switching/</link>
+      <pubDate>Wed, 05 Oct 2011 16:10:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/05/store-and-forward-vs.-cut-through-switching/</guid>
+      <description>
+        
+          
+            Network-Cable-Color Switching in the network can happen in two ways, these layer-two devices send frames but they can forward them in different ways. These different modes have positive and negative effects which depend on the type of network environment that runs through them! Store-and-forward is just like the name suggests, the switch receives a frame on a port and stores the frame in it&#39;s memory buffer until the frame has been completely received.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Discovery Protocol</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</link>
+      <pubDate>Wed, 06 Jul 2011 15:45:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</guid>
+      <description>
+        
+          
+            In today&#39;s post let&#39;s talk about CDP the Cisco Discovery Protocol. This protocol helps us in two ways, it first helps us verify that a connection between router or switch is set up correctly at least up to layer two in the OSI model. This also helps us discover Cisco devices that are in are network and which interfaces these devices are connected too and from are Cisco equipment. The Cisco discovery protocol is Cisco proprietary and before I go any further let me mention that CDP is a security risk because of the detailed information CDP gives out which helps you has a network administrator build a current network infrastructure, this can also hurt you because this information can easily be sniffed by programs that are easily searched on the internet.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

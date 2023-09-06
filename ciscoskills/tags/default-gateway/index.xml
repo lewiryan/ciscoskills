@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Default gateway on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/default-gateway/</link>
+    <description>Recent content in Default gateway on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 01 Dec 2012 16:25:08 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/default-gateway/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure DHCP on a Cisco Router</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/12/01/configure-dhcp-on-a-cisco-router/</link>
+      <pubDate>Sat, 01 Dec 2012 16:25:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/12/01/configure-dhcp-on-a-cisco-router/</guid>
+      <description>
+        
+          
+            Data-connect-computer In this short tutorial let&#39;s configure a DHCP server on a Cisco Router. Why would we want to do that? Well configuring a basic DHCP server on a router is a good idea if this is a branch/satellite office or just a small business. There are some pros and cons of configuring DHCP on a Cisco Router so let&#39;s briefly discuss them and then start configuring. Putting DHCP on a router is pretty easy and that&#39;s one advantage of setting up DHCP no need to setup a Linux or Windows server.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

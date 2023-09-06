@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OSI model on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/osi-model/</link>
+    <description>Recent content in OSI model on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 22 Feb 2012 03:09:12 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/osi-model/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HDLC vs. PPP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/02/22/hdlc-vs.-ppp/</link>
+      <pubDate>Wed, 22 Feb 2012 03:09:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/02/22/hdlc-vs.-ppp/</guid>
+      <description>
+        
+          
+            HDLC and PPP are considered to be in layer 2 of the OSI model. There are some differences between which will be describe in this post, If you would like to learn more about at least the basic configuration of PPP including PAP and CHAP check out the post I wrote about year ago. (Basic PPP Configuration) HDLC was first developed by the ISO Cisco tweaked the protocol sometimes called cHDLC and because of this it only works with Cisco equipment.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Middle of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 07 Sep 2011 18:00:51 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Beginnings of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            network-diagram In a perfect world we would never need redundancy on a network infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

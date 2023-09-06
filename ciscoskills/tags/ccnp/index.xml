@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CCNP on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/ccnp/</link>
+    <description>Recent content in CCNP on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 25 May 2017 12:30:53 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/ccnp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring EIGRP - Named Mode</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/05/25/configuring-eigrp-named-mode/</link>
+      <pubDate>Thu, 25 May 2017 12:30:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/05/25/configuring-eigrp-named-mode/</guid>
+      <description>
+        
+          
+            From its older brother IGRP which was developed in 1980s to overcome the limitations of RIP, EIGRP was an &amp;quot;Enhanced&amp;quot; IGRP protocol. The main purpose of EIGRP was to overcome the limitations of classful networks and make EIGRP a classless routing protocol. During designing of this protocol a different convergence algorithm was used making EIGRP that &amp;quot;hybrid&amp;quot; between distance-vector and link-state routing protocols. In this post we&#39;ll go over a basic design and setup for EIGRP, however instead of using the &amp;quot;classic way&amp;quot; let&#39;s look at configuring EIGRP using named mode which is available in Cisco IOS starting in version 15.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco VIRL is out ... for a price</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/12/05/cisco-virl-is-out-...-for-a-price/</link>
+      <pubDate>Fri, 05 Dec 2014 03:45:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/12/05/cisco-virl-is-out-...-for-a-price/</guid>
+      <description>
+        
+          
+            Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Some QoS Guidelines</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/08/05/some-qos-guidelines/</link>
+      <pubDate>Tue, 05 Aug 2014 02:15:54 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/08/05/some-qos-guidelines/</guid>
+      <description>
+        
+          
+            When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared but it always something being tested on so we know it was there, somewhere… QoS can be a little boring and it does get a reputation of being difficult to understand, like where and how do I implement QoS?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNP Security Refresh</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/02/03/ccnp-security-refresh/</link>
+      <pubDate>Mon, 03 Feb 2014 14:30:27 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/02/03/ccnp-security-refresh/</guid>
+      <description>
+        
+          
+            Cisco recently published its 2014 Annual Security Report, and some interesting data was captured in 2013. One of the details was a talent gap in network security and because of this gap Cisco has a major revision in the CCNP Security certification starting in April. Its estimated that in short term or already present is shortage of more than a million security professionals worldwide! Like mentioned because of this Cisco is reworking the CCNP Security track.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Why Go Professional with Cisco Certs?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/09/14/why-go-professional-with-cisco-certs/</link>
+      <pubDate>Sat, 14 Sep 2013 18:09:46 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/09/14/why-go-professional-with-cisco-certs/</guid>
+      <description>
+        
+          
+            I have had the opportunity to take and thankfully pass Cisco certifications at the associate levels and there is one more associate exam, the CCNA Data Center which hopefully I will get later next year. While looking at the CCNA Data Center exam I also glanced over the professional arena that Cisco offers and if you’re like me I always like learning new things especially in technical field. Getting those “aha moments” once in a while makes it worth it, but beyond just over all knowledge of additional technologies why would you go on taking a professional Cisco cert?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Learning Labs is Live!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/13/cisco-learning-labs-is-live/</link>
+      <pubDate>Wed, 13 Apr 2011 14:15:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/13/cisco-learning-labs-is-live/</guid>
+      <description>
+        
+          
+            Yesterday was kind of exciting at least for me when I got an e-mail in the morning about Cisco Learning Labs. Studying for the CCNA, CCNP or CCIP is in itself changeling, but getting that hands-on experience is a another problem! When money is short that last thing you want to do is spend it on routers and switches, and most of them on eBay are used and the risk of failing devices makes it a scary choice.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interconnecting Cisco Network Devices Part 1 on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/interconnecting-cisco-network-devices-part-1/</link>
+    <description>Recent content in Interconnecting Cisco Network Devices Part 1 on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 30 Sep 2013 00:34:35 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/interconnecting-cisco-network-devices-part-1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CCNA 2-0 What&#39;s New?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/09/30/ccna-2-0-whats-new/</link>
+      <pubDate>Mon, 30 Sep 2013 00:34:35 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/09/30/ccna-2-0-whats-new/</guid>
+      <description>
+        
+          
+            I brought this topic up in March of this year (See original post) but I wanted to re-post it to add some information because as of today this was your last day to pass the older CCNA exams. Cisco has a refreshed all the CCNA Routing and Switching exams. That includes the ICND1 (640-822), the ICND2 (640-816), and the all in wonder exam (640-816). You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA Version 2.0 Refresh</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/03/26/ccna-version-2.0-refresh/</link>
+      <pubDate>Tue, 26 Mar 2013 05:47:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/03/26/ccna-version-2.0-refresh/</guid>
+      <description>
+        
+          
+            I think we knew it was coming at some point and Cisco has recently announced a refresh for the 640-822 (ICND1), 640-816 (ICND2) and the all in one 640-802 (CCNA) the last day to take these tests and get certified are September 30th of 2013. You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

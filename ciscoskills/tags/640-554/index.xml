@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>640-554 on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/640-554/</link>
+    <description>Recent content in 640-554 on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 28 May 2012 16:39:21 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/640-554/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CCNA Security - 640-554</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/05/28/ccna-security-640-554/</link>
+      <pubDate>Mon, 28 May 2012 16:39:21 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/05/28/ccna-security-640-554/</guid>
+      <description>
+        
+          
+            network-security-lock Out with the old and in with new Cisco is updating its well-known certification CCNA Security. Candidates that are studying for the older exam (640-553) are suggested to take it on or before September 30th 2012. What has changed in the exam? For the most part Cisco SDM is no longer covered, as it has reached its &amp;quot;End of Life&amp;quot; and in fact Cisco Engineering stopped covering the product from developing and testing on February 26th 2012.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

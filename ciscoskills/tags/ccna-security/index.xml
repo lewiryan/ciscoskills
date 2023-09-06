@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CCNA Security on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/ccna-security/</link>
+    <description>Recent content in CCNA Security on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 12 Apr 2016 12:55:00 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/ccna-security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RBAC Radius with Microsoft NPS 2012 R2</title>
+      <link>https://lewiryan.github.io/ciscoskills/2016/04/12/rbac-radius-with-microsoft-nps-2012-r2/</link>
+      <pubDate>Tue, 12 Apr 2016 12:55:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2016/04/12/rbac-radius-with-microsoft-nps-2012-r2/</guid>
+      <description>
+        
+          
+            In this configuration I&#39;m at looking at using Microsoft NPS 2012 R2 as radius server and I’m going to skip the installation of NPS because it really is just a next, next, finish installation. In this demo I already have this NPS system connected to a Windows domain, my goal is to create role based access on Cisco IOS routers while using radius to login. I’ll have a couple for active directory accounts each them will represent different types of allowed access to these IOS routers.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA 2-0 What&#39;s New?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/09/30/ccna-2-0-whats-new/</link>
+      <pubDate>Mon, 30 Sep 2013 00:34:35 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/09/30/ccna-2-0-whats-new/</guid>
+      <description>
+        
+          
+            I brought this topic up in March of this year (See original post) but I wanted to re-post it to add some information because as of today this was your last day to pass the older CCNA exams. Cisco has a refreshed all the CCNA Routing and Switching exams. That includes the ICND1 (640-822), the ICND2 (640-816), and the all in wonder exam (640-816). You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Passed 640-554!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/06/29/passed-640-554/</link>
+      <pubDate>Sat, 29 Jun 2013 00:41:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/06/29/passed-640-554/</guid>
+      <description>
+        
+          
+            Short story, I am proud to say that I passed! I have studied off and on in the beginning of the year but I did set a date to take the exam which was June 28th .As that date was getting closer I buckled down and reviewed the materials again and focused in on some areas that I knew I was weak in.
+So how was the 640-554 exam, what did I use to pass the exam and what exam am I focusing on next?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Site-To-Site VPN via CCP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/05/02/site-to-site-vpn-via-ccp/</link>
+      <pubDate>Thu, 02 May 2013 02:45:29 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/05/02/site-to-site-vpn-via-ccp/</guid>
+      <description>
+        
+          
+            I have ran through before on how to create a site-to-site VPN with Cisco SDM which sounds like a repeat but I thought why not bring CCP into light and since I&#39;m studying the newly created CCNA Security (640-554) I figured let&#39;s create a tutorial on it. In this lab I am going to post the running-config of both locations so you can either run it through Packet Tracer or live equipment if you wish.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring AAA – Locally</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/04/04/configuring-aaa-locally/</link>
+      <pubDate>Thu, 04 Apr 2013 01:36:33 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/04/04/configuring-aaa-locally/</guid>
+      <description>
+        
+          
+            A while back I talked about AAA but never put out a post on how configure it until now. In this post I am going to be going over the configuration steps of how to configure AAA locally on a Cisco router, (The same commands would also work on Cisco switch). To review what exactly AAA does check my earlier post Understanding AAA. Like mentioned in my earlier post of Understanding AAA it gets better if you have some type of radius or tacacs+ server.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA Version 2.0 Refresh</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/03/26/ccna-version-2.0-refresh/</link>
+      <pubDate>Tue, 26 Mar 2013 05:47:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/03/26/ccna-version-2.0-refresh/</guid>
+      <description>
+        
+          
+            I think we knew it was coming at some point and Cisco has recently announced a refresh for the 640-822 (ICND1), 640-816 (ICND2) and the all in one 640-802 (CCNA) the last day to take these tests and get certified are September 30th of 2013. You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Introduction into Cisco Configuration Professional</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/03/10/introduction-into-cisco-configuration-professional/</link>
+      <pubDate>Sun, 10 Mar 2013 00:30:35 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/03/10/introduction-into-cisco-configuration-professional/</guid>
+      <description>
+        
+          
+            Let&#39;s walk through the basics with Cisco Configuration Professional as it is a helpful tool to use at the associate levels of the Cisco certification track and needed if you are looking at getting the CCNA Security certification. In this introduction we will introduce CCP and setup a community and then finally discover our devices within CCP. This is not the first GUI tool Cisco has produced to manage individual routers, an older tool called Cisco SDM also helped Network Administrators which supports the ISR Generation 1 routers.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Password Recovery – Cisco IOS Routers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/07/21/password-recovery-cisco-ios-routers/</link>
+      <pubDate>Sat, 21 Jul 2012 16:23:49 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/07/21/password-recovery-cisco-ios-routers/</guid>
+      <description>
+        
+          
+            Secure In this post I want to cover how to recover passwords on a Cisco IOS Router. This is helpful in lab environments as well as production environments. Although this method can be used the correct &amp;quot;legal&amp;quot; way you can also use this method to break into these devices &amp;quot;illegally&amp;quot; if you have physical console access to the device. However to get into it physical power must be turned off first causing a disruption in the environment, let get started!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Upgrade ASA IOS via ASDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/29/upgrade-asa-ios-via-asdm/</link>
+      <pubDate>Fri, 29 Jun 2012 01:20:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/29/upgrade-asa-ios-via-asdm/</guid>
+      <description>
+        
+          
+            In this short but helpful post, I&#39;ll go through the process of upgrading the ASA IOS via the ASDM. This is a pretty painless method if all goes well the only thing you have to do schedule downtime if this box is in production, and grab the ASA IOS image from Cisco. For this post all have been covered let&#39;s get started! First things first is always backup your configuration before upgrading and I always read the release notes that Cisco provides when I download the IOS image, it&#39;s good reading and important because usually new features are introduced and sometime the ASDM can&#39;t paraphrase and parse the new configuration which way I usually upgrade the ASDM first.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Cisco ASA Overview</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</link>
+      <pubDate>Sun, 24 Jun 2012 17:14:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</guid>
+      <description>
+        
+          
+            Firewall The Cisco 5500 Series Adaptive Security Appliances are of course an excellent firewall but the ASA also offers (depending on the model) other security services as well, like IPS systems, VPN, content security, unified communications and remote access. These ASA&#39;s can be used as a standalone appliance&#39; that can handle the need for branch offices to enterprise data centers. Or they can be included in high-performance blades that work together with the Cisco Catalyst 6500 Series, and recently new they can also run in a virtual instance which provides tenant isolation for public and private clouds!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA Security - 640-554</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/05/28/ccna-security-640-554/</link>
+      <pubDate>Mon, 28 May 2012 16:39:21 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/05/28/ccna-security-640-554/</guid>
+      <description>
+        
+          
+            network-security-lock Out with the old and in with new Cisco is updating its well-known certification CCNA Security. Candidates that are studying for the older exam (640-553) are suggested to take it on or before September 30th 2012. What has changed in the exam? For the most part Cisco SDM is no longer covered, as it has reached its &amp;quot;End of Life&amp;quot; and in fact Cisco Engineering stopped covering the product from developing and testing on February 26th 2012.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Middle of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 07 Sep 2011 18:00:51 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding AAA</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/29/understanding-aaa/</link>
+      <pubDate>Fri, 29 Apr 2011 16:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/29/understanding-aaa/</guid>
+      <description>
+        
+          
+            User The wonderful AAA which in the Cisco world means, Authentication, Authorization, and Accounting but what does that really mean? In today&#39;s post that&#39;s what we are going to be talking about. What is AAA and what are the benefits of using it along with what is it? The first &amp;quot;A&amp;quot; of AAA is Authentication which provides the method of identifying users, including login and password dialog, challenge and response, messaging support, and, depending on the security protocol you select, encryption.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure a Site-to-Site VPN via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</link>
+      <pubDate>Wed, 27 Apr 2011 18:00:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</guid>
+      <description>
+        
+          
+            So for today&#39;s post let&#39;s learn how to configure a site-to-site VPN on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. (See the post Configuring SDM) Let&#39;s start configuring a site-to-site VPN with SDM! This tutorial is assuming that the configurations to set up Cisco SDM have already been completed.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure IPS (Intrusion Prevention System) via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</link>
+      <pubDate>Fri, 22 Apr 2011 17:30:44 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</guid>
+      <description>
+        
+          
+            Awhile back I talked about the differences between IPS and IDS. (See the post Cisco IDS vs. IPS ) So for today&#39;s post let&#39;s learn how to configure an IPS (Intrusion Prevention System) on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. ( See the post Configure Cisco SDM) Let&#39;s start configuring an IPS with SDM!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Zone Based Firewalls via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</link>
+      <pubDate>Wed, 20 Apr 2011 15:45:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</guid>
+      <description>
+        
+          
+            Last month I talked about the fundamentals for understanding zone based firewalls (See the post Understanding Zone Based Firewalls). So for today&#39;s post I want to go ahead and talk about configuring the zone based firewalls but with the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and reduce ownership costs. (See the post Configure Cisco SDM) Instead of talking about what is zone based firewalls lets jump into the configuration of them.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Cisco SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/18/configure-cisco-sdm/</link>
+      <pubDate>Mon, 18 Apr 2011 16:15:03 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/18/configure-cisco-sdm/</guid>
+      <description>
+        
+          
+            Today we will be going over the steps that are required to set up the Cisco SDM (Security Device Manger) The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. SDM is fairly easy to set up but you still need at least some experience in the router command-line to get SDM working. This tutorial is already assuming that the Cisco SDM program has been installed on the PC.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Port Security</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/31/configuring-port-security/</link>
+      <pubDate>Thu, 31 Mar 2011 16:00:31 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/31/configuring-port-security/</guid>
+      <description>
+        
+          
+            Secure Today this tutorial is going to be talking about how to configure port security on a Cisco Catalyst switch. Port security is one of the first things you can do to keep your network secure from unauthorized access. Port security can restrict devices so only devices you allow are granted access to network resources. If and when an unauthorized device is connected to a port you can decide what you want the switch to do.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring SSH</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/29/configuring-ssh/</link>
+      <pubDate>Tue, 29 Mar 2011 15:15:39 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/29/configuring-ssh/</guid>
+      <description>
+        
+          
+            Today this tutorial is going be talking about how to configure SSH on a Cisco router or switch. SSH or Secure Shell encrypts the data that is sent from the terminal application to the device. Making if far more safer when it is compared to telnet which sends the data in plain text. To add support for SSH to a Cisco router or switch, the device needs some added information then just passwords.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding Zone Based Firewalls</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/18/understanding-zone-based-firewalls/</link>
+      <pubDate>Fri, 18 Mar 2011 16:00:56 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/18/understanding-zone-based-firewalls/</guid>
+      <description>
+        
+          
+            Earlier we talked about using CBAC (See the post Understanding CBAC) the &amp;quot;classic firewall&amp;quot; and we mention some information about zone based firewalls but not nearly enough. So today we will be talking about zone based firewalls. Why are they different? We also will learn the basics about what is zone based and what are the advantages compared to CBAC. You can think of zone based has making interfaces in a quarantine zone, each interface by default if set up in a zone is denied access to any other interface.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Common Network Attacks</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/17/common-network-attacks/</link>
+      <pubDate>Thu, 17 Mar 2011 16:30:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/17/common-network-attacks/</guid>
+      <description>
+        
+          
+            Network attacks have always been around but they are getting more advanced every day. These attacks are also easy to set up and use. In the past these types of attacks would have to be pulled off by someone who really knew about computers and to know what they are doing. That&#39;s a true hacker, now there are programs that do the same damage and sometimes more with a couple clicks of a mouse, so now anybody can bring down a network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IDS vs. IPS</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</link>
+      <pubDate>Wed, 09 Mar 2011 15:45:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</guid>
+      <description>
+        
+          
+            There are tons of network attacks out there. Using a firewall helps but does look for signature based attacks. Access Control Lists are like firewalls and only look at the protocols like HTTP, FTP POP, etc. Cisco has developed some tools that will help network administrators combat the issue; IDS, (Intrusion Detection System) and IPS. (Intrusion Prevention System) Let&#39;s go into IDS first, Cisco IDS is a physical device and is like an alarm system it will alert you when an attack happens but that&#39;s it, the system won&#39;t block the connection.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding CBAC</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</link>
+      <pubDate>Tue, 22 Feb 2011 17:00:34 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</guid>
+      <description>
+        
+          
+            Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the Cisco IOS router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make CBAC possible.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IOS Routers: Auto Secure</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/17/cisco-ios-routers-auto-secure/</link>
+      <pubDate>Thu, 17 Feb 2011 17:30:40 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/17/cisco-ios-routers-auto-secure/</guid>
+      <description>
+        
+          
+            Auto Secure is good for small business or IT administrators that may know how to configure a router with networking protocols, setting up IP interfaces, and networks but really don&#39;t have an understanding of the security aspect of the router. So what Cisco has done is implemented a script called Auto Secure. Auto Secure is based on the questions you answer from the prompt usually &amp;quot;yes&amp;quot; or &amp;quot;no&amp;quot; answers. Sometimes the script wants a little more information depending on your network configuration.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>TACACS Plus and RADIUS</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/10/tacacs-plus-and-radius/</link>
+      <pubDate>Thu, 10 Feb 2011 15:45:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/10/tacacs-plus-and-radius/</guid>
+      <description>
+        
+          
+            TACACS+ and RADIUS are both used to control access to network resources, but both of these protocols are different in how they operate depending how you want to secure your network. These protocols need to have (AAA) authentication, authorization, and accounting setup on the routers before you can set up these access server protocols. First let&#39;s get some information on why we would need this type of access server protocol setup.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

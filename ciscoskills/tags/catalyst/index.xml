@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Catalyst on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/catalyst/</link>
+    <description>Recent content in Catalyst on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 12 Oct 2013 15:56:48 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/catalyst/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring EtherChannel (PAgb)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/10/12/configuring-etherchannel-pagb/</link>
+      <pubDate>Sat, 12 Oct 2013 15:56:48 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/10/12/configuring-etherchannel-pagb/</guid>
+      <description>
+        
+          
+            Bundling physical links into one logical link is a common practice to up the bandwidth between switches, you may have this also configured on a server to bundle connections as well. In this tutorial I have two 2960 switches both of them trunking all VLANs on two gigabit ports. So in the end game is get 2gbps instead of 1gbps between switches while using Cisco’s proprietary protocol PAgb. It is important to remember that both of these protocols (PAgb and LACP) are link aggregation protocols only, their job is to make sure that EtherChannel is setup correctly by negotiating.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

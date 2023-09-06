@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cisco IOS on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/cisco-ios/</link>
+    <description>Recent content in Cisco IOS on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 13 Aug 2015 11:30:00 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/cisco-ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring OSPF - The Basics</title>
+      <link>https://lewiryan.github.io/ciscoskills/2015/08/13/configuring-ospf-the-basics/</link>
+      <pubDate>Thu, 13 Aug 2015 11:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2015/08/13/configuring-ospf-the-basics/</guid>
+      <description>
+        
+          
+            We have to start somewhere so let’s look at the basics of configuring OSPF. Remember OSPF is an IGP (Interior Gateway Protocol) and allows packet authentication as well as IP multicast when sending and receiving updates. In this post we are configuring OSPF in a single area. In this topology we have four routers and two PCs. The PCs subnet are 172.30.2.0/24 and 172.30.3.0/24. We have point to point connections between each router.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>GNS3 1.0 Public is Out</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/10/21/gns3-1.0-public-is-out/</link>
+      <pubDate>Tue, 21 Oct 2014 20:31:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/10/21/gns3-1.0-public-is-out/</guid>
+      <description>
+        
+          
+            Get your IOS, IOU, XRV, 1000v, HP, Juniper, Arista, and other images ready because that&#39;s the beauty of GNS3, it&#39;s here and ready to download. I&#39;m excited for this release although the last post I did was In May of 2014, which was about getting GNS3 Alpha 3 working on Windows, you can see the full post here: GNS3 Alpha – Install and Setup. I have followed the GNS3 releases throughout the six months of them releasing Alpha and beta releases, as well as looking at changlogs of each release.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>640-911 (Chapter 8 &amp; 9)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/03/30/640-911-chapter-8-9/</link>
+      <pubDate>Sun, 30 Mar 2014 17:50:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/03/30/640-911-chapter-8-9/</guid>
+      <description>
+        
+          
+            Back where we left off, if you have followed I have gone over the CCNA Data Center Study Guide from Todd Lammle and in this post we will cover two chapters 8 and 9. Comment below if you have any questions on these two chapters let&#39;s get started.
+Chapter 8 Overview: We are actually making some progress, we configure the NX-OS with CLI there is not a GUI that I am aware of although SDN could be kind of in there but for this exam it does not even exist.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Look at GNS3 - New Version</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/07/06/look-at-gns3-new-version/</link>
+      <pubDate>Sat, 06 Jul 2013 18:41:22 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/07/06/look-at-gns3-new-version/</guid>
+      <description>
+        
+          
+            Look at GNS3 - New Version: A new version of GNS3 released on July 5th 2013 is available for download. You can download GNS3 v0.8.4 at gns3.net. This release includes improvements and new features. Some of the important one are:
+Lots of GUI improvements. New hub device. New Idlemax and Idlesleep settings (advanced manipulation of IDLE PC). IOS image and settings test button. New Tool menu to start external scripts/tools. Drag &amp;amp; drop of multiple devices when pressing SHIFT.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring AAA – Locally</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/04/04/configuring-aaa-locally/</link>
+      <pubDate>Thu, 04 Apr 2013 01:36:33 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/04/04/configuring-aaa-locally/</guid>
+      <description>
+        
+          
+            A while back I talked about AAA but never put out a post on how configure it until now. In this post I am going to be going over the configuration steps of how to configure AAA locally on a Cisco router, (The same commands would also work on Cisco switch). To review what exactly AAA does check my earlier post Understanding AAA. Like mentioned in my earlier post of Understanding AAA it gets better if you have some type of radius or tacacs+ server.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Archive your Configuration</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/01/22/archive-your-configuration/</link>
+      <pubDate>Tue, 22 Jan 2013 05:30:42 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/01/22/archive-your-configuration/</guid>
+      <description>
+        
+          
+            It is important to save your router and switch configuration but what happens if the device fails or if you saved a configuration mistake, without having to manually worry about it? Well if your Cisco router or switch has Cisco IOS 12.3T and higher you would be able to set up an auto archive within the flash memory of the unit or you can send that configuration file to a server that does either FTP, HTTP, SCP.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Password Recovery – Cisco IOS Routers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/07/21/password-recovery-cisco-ios-routers/</link>
+      <pubDate>Sat, 21 Jul 2012 16:23:49 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/07/21/password-recovery-cisco-ios-routers/</guid>
+      <description>
+        
+          
+            Secure In this post I want to cover how to recover passwords on a Cisco IOS Router. This is helpful in lab environments as well as production environments. Although this method can be used the correct &amp;quot;legal&amp;quot; way you can also use this method to break into these devices &amp;quot;illegally&amp;quot; if you have physical console access to the device. However to get into it physical power must be turned off first causing a disruption in the environment, let get started!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Color Code Your Routers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/11/30/color-code-your-routers/</link>
+      <pubDate>Wed, 30 Nov 2011 17:33:03 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/11/30/color-code-your-routers/</guid>
+      <description>
+        
+          
+            I came across an interesting idea, what if you could color code your devices in command line? So such as if you were operating routers at a core level you could color code the CLI to the color red, and the branch routers green and etc. I wasn&#39;t sure if this would possible but doing some searching through the internet I found a guy Ivan Pepelnjak who wrote how to do this a couple years ago and wrote a couple books as well, check out his blog/website at http://www.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Middle of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 07 Sep 2011 18:00:51 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Discovery Protocol</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</link>
+      <pubDate>Wed, 06 Jul 2011 15:45:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</guid>
+      <description>
+        
+          
+            In today&#39;s post let&#39;s talk about CDP the Cisco Discovery Protocol. This protocol helps us in two ways, it first helps us verify that a connection between router or switch is set up correctly at least up to layer two in the OSI model. This also helps us discover Cisco devices that are in are network and which interfaces these devices are connected too and from are Cisco equipment. The Cisco discovery protocol is Cisco proprietary and before I go any further let me mention that CDP is a security risk because of the detailed information CDP gives out which helps you has a network administrator build a current network infrastructure, this can also hurt you because this information can easily be sniffed by programs that are easily searched on the internet.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Distance Vector Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</link>
+      <pubDate>Wed, 15 Jun 2011 16:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</guid>
+      <description>
+        
+          
+            Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a router learns about a route to a different network (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Classful vs. Classless Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/01/classful-vs.-classless-routing/</link>
+      <pubDate>Wed, 01 Jun 2011 16:50:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/01/classful-vs.-classless-routing/</guid>
+      <description>
+        
+          
+            Cloud-Computing-icon Before the internet and general networking become popular into what it is now, there were and still are routing protocols that only do classful routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in today&#39;s post let&#39;s focus on these two but important topics when using routing protocols.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IOS Commands</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/25/cisco-ios-commands/</link>
+      <pubDate>Wed, 25 May 2011 17:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/25/cisco-ios-commands/</guid>
+      <description>
+        
+          
+            This is the master list of some of the many Cisco IOS Commands that go with the CCNA track. This list also talks about what each command does in brief detail. You may also find that some commands may or may not be used for a CCNA level but offer some important information. If you don&#39;t know what a command does or understand it, I would look at Cisco documentation. Since this is a pretty big list of commands you can see the links to move to the different sections within this page.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding VTP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</link>
+      <pubDate>Wed, 11 May 2011 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</guid>
+      <description>
+        
+          
+            Some people hate it, some people love it. It&#39;s the Cisco proprietary VLAN Trunking Protocol (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same VLANs. I also suggest if you don&#39;t know what a VLAN is check out the post Creating VLANs Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dynamic Routing Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</link>
+      <pubDate>Wed, 04 May 2011 16:40:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</guid>
+      <description>
+        
+          
+            Dynamic Routing If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get PCs, printers, and other network equipment. That&#39;s where dynamic routing protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post Configure Static Routing) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Static Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</link>
+      <pubDate>Mon, 02 May 2011 16:15:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</guid>
+      <description>
+        
+          
+            Plugging Cisco routers together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic routing protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure a Site-to-Site VPN via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</link>
+      <pubDate>Wed, 27 Apr 2011 18:00:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</guid>
+      <description>
+        
+          
+            So for today&#39;s post let&#39;s learn how to configure a site-to-site VPN on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. (See the post Configuring SDM) Let&#39;s start configuring a site-to-site VPN with SDM! This tutorial is assuming that the configurations to set up Cisco SDM have already been completed.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure IPS (Intrusion Prevention System) via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</link>
+      <pubDate>Fri, 22 Apr 2011 17:30:44 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</guid>
+      <description>
+        
+          
+            Awhile back I talked about the differences between IPS and IDS. (See the post Cisco IDS vs. IPS ) So for today&#39;s post let&#39;s learn how to configure an IPS (Intrusion Prevention System) on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. ( See the post Configure Cisco SDM) Let&#39;s start configuring an IPS with SDM!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Zone Based Firewalls via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</link>
+      <pubDate>Wed, 20 Apr 2011 15:45:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</guid>
+      <description>
+        
+          
+            Last month I talked about the fundamentals for understanding zone based firewalls (See the post Understanding Zone Based Firewalls). So for today&#39;s post I want to go ahead and talk about configuring the zone based firewalls but with the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and reduce ownership costs. (See the post Configure Cisco SDM) Instead of talking about what is zone based firewalls lets jump into the configuration of them.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Cisco SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/18/configure-cisco-sdm/</link>
+      <pubDate>Mon, 18 Apr 2011 16:15:03 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/18/configure-cisco-sdm/</guid>
+      <description>
+        
+          
+            Today we will be going over the steps that are required to set up the Cisco SDM (Security Device Manger) The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. SDM is fairly easy to set up but you still need at least some experience in the router command-line to get SDM working. This tutorial is already assuming that the Cisco SDM program has been installed on the PC.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Learning Labs is Live!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/13/cisco-learning-labs-is-live/</link>
+      <pubDate>Wed, 13 Apr 2011 14:15:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/13/cisco-learning-labs-is-live/</guid>
+      <description>
+        
+          
+            Yesterday was kind of exciting at least for me when I got an e-mail in the morning about Cisco Learning Labs. Studying for the CCNA, CCNP or CCIP is in itself changeling, but getting that hands-on experience is a another problem! When money is short that last thing you want to do is spend it on routers and switches, and most of them on eBay are used and the risk of failing devices makes it a scary choice.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Creating VLANs</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/01/creating-vlans/</link>
+      <pubDate>Fri, 01 Apr 2011 17:00:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/01/creating-vlans/</guid>
+      <description>
+        
+          
+            Today this tutorial is going to be talking about creating VLANs (Virtual Local Area Networks) with a Cisco Catalyst switch. By creating a VLAN you are separating the network, why would you do this? There are some several reasons, like separating your production network from a guest network, and separating a test environment from a production network. This all adds security to your network. You can separate core critical network components from the rest of the production network for added security, easier troubleshooting along with separating or segmenting your network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Port Security</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/31/configuring-port-security/</link>
+      <pubDate>Thu, 31 Mar 2011 16:00:31 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/31/configuring-port-security/</guid>
+      <description>
+        
+          
+            Secure Today this tutorial is going to be talking about how to configure port security on a Cisco Catalyst switch. Port security is one of the first things you can do to keep your network secure from unauthorized access. Port security can restrict devices so only devices you allow are granted access to network resources. If and when an unauthorized device is connected to a port you can decide what you want the switch to do.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding CBAC</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</link>
+      <pubDate>Tue, 22 Feb 2011 17:00:34 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</guid>
+      <description>
+        
+          
+            Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the Cisco IOS router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make CBAC possible.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

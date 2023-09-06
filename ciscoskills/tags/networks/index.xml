@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>networks on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/networks/</link>
+    <description>Recent content in networks on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 16 Jan 2014 17:30:45 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/networks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>640-911 (Chapter 1)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/01/16/640-911-chapter-1/</link>
+      <pubDate>Thu, 16 Jan 2014 17:30:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/01/16/640-911-chapter-1/</guid>
+      <description>
+        
+          
+            So I bought the CCNA Data Center Study Guide from Todd Lammle. I have decided it would be a good idea to go over the topics of each chapter of this book in series of blog posts. The idea of this is to work together if on a study group, go over the topics in each chapter of the book, talk about examples and to get an idea of what the exam would cover.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding AAA</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/29/understanding-aaa/</link>
+      <pubDate>Fri, 29 Apr 2011 16:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/29/understanding-aaa/</guid>
+      <description>
+        
+          
+            User The wonderful AAA which in the Cisco world means, Authentication, Authorization, and Accounting but what does that really mean? In today&#39;s post that&#39;s what we are going to be talking about. What is AAA and what are the benefits of using it along with what is it? The first &amp;quot;A&amp;quot; of AAA is Authentication which provides the method of identifying users, including login and password dialog, challenge and response, messaging support, and, depending on the security protocol you select, encryption.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

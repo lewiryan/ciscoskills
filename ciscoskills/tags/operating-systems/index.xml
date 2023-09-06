@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>operating systems on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/operating-systems/</link>
+    <description>Recent content in operating systems on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 11 Nov 2011 04:58:25 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/operating-systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Network Troubleshooting</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/11/11/network-troubleshooting/</link>
+      <pubDate>Fri, 11 Nov 2011 04:58:25 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/11/11/network-troubleshooting/</guid>
+      <description>
+        
+          
+            Troubleshooting The thing that makes networks awesome is the fact that once you setup a network you&#39;re not done. That may sound like a drawback but it is excellent job security! Engineers or administrators must watch the performance of an organization&#39;s network to make sure that productivity is not affected. Network outages can have a huge effect on an organization, lost revenue and the cost of unproductive employees can severely damage the organization, Earlier this year I also talked about the troubleshooting process which goes hand in hand with network troubleshooting.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Discovery Protocol</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</link>
+      <pubDate>Wed, 06 Jul 2011 15:45:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</guid>
+      <description>
+        
+          
+            In today&#39;s post let&#39;s talk about CDP the Cisco Discovery Protocol. This protocol helps us in two ways, it first helps us verify that a connection between router or switch is set up correctly at least up to layer two in the OSI model. This also helps us discover Cisco devices that are in are network and which interfaces these devices are connected too and from are Cisco equipment. The Cisco discovery protocol is Cisco proprietary and before I go any further let me mention that CDP is a security risk because of the detailed information CDP gives out which helps you has a network administrator build a current network infrastructure, this can also hurt you because this information can easily be sniffed by programs that are easily searched on the internet.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure IPS (Intrusion Prevention System) via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</link>
+      <pubDate>Fri, 22 Apr 2011 17:30:44 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</guid>
+      <description>
+        
+          
+            Awhile back I talked about the differences between IPS and IDS. (See the post Cisco IDS vs. IPS ) So for today&#39;s post let&#39;s learn how to configure an IPS (Intrusion Prevention System) on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. ( See the post Configure Cisco SDM) Let&#39;s start configuring an IPS with SDM!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Zone Based Firewalls via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</link>
+      <pubDate>Wed, 20 Apr 2011 15:45:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</guid>
+      <description>
+        
+          
+            Last month I talked about the fundamentals for understanding zone based firewalls (See the post Understanding Zone Based Firewalls). So for today&#39;s post I want to go ahead and talk about configuring the zone based firewalls but with the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and reduce ownership costs. (See the post Configure Cisco SDM) Instead of talking about what is zone based firewalls lets jump into the configuration of them.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting Process</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/15/troubleshooting-process/</link>
+      <pubDate>Fri, 15 Apr 2011 18:00:28 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/15/troubleshooting-process/</guid>
+      <description>
+        
+          
+            Troubleshooting Today&#39;s post is going to be talking about troubleshooting and where to start the troubleshooting process. Yes there is an actual process that every technician should be aware of. You can also use this troubleshooting process at home, you may not know how to fix it but at least you know where the issue is and find someone who can. Before we begin if you haven&#39;t seen yet, let me introduce to you the troubleshooting process:
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding Zone Based Firewalls</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/18/understanding-zone-based-firewalls/</link>
+      <pubDate>Fri, 18 Mar 2011 16:00:56 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/18/understanding-zone-based-firewalls/</guid>
+      <description>
+        
+          
+            Earlier we talked about using CBAC (See the post Understanding CBAC) the &amp;quot;classic firewall&amp;quot; and we mention some information about zone based firewalls but not nearly enough. So today we will be talking about zone based firewalls. Why are they different? We also will learn the basics about what is zone based and what are the advantages compared to CBAC. You can think of zone based has making interfaces in a quarantine zone, each interface by default if set up in a zone is denied access to any other interface.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cracking WEP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/14/cracking-wep/</link>
+      <pubDate>Mon, 14 Mar 2011 12:00:29 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/14/cracking-wep/</guid>
+      <description>
+        
+          
+            BackTrack is Linux network security audit tool for security professionals. This tool is used for testing and penetrating networks. That being said** This tutorial is for educational use only. This is meant only to teach that WEP is an insecure option, and is recommend to use a harder encryption. Using this tutorial on a network that you do not have permission to access or is not yours, could be illegal! ** This was tested on BackTrack version 4 and the steps outlined in this tutorial were successful.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Install BackTrack</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/01/install-backtrack/</link>
+      <pubDate>Tue, 01 Mar 2011 18:15:10 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/01/install-backtrack/</guid>
+      <description>
+        
+          
+            This is a full install of BackTrack 4 this can be in a virtual machine, dual-boot, or the main OS. So you burned the image that you downloaded from http://www.backtrack-linux.org/ and are ready to go! If not I would recommend you do that first. BackTrack is a Linux penetration testing for network security. This is a free tool that IT administrators can use to audit their network. First put the disk into the tray and restart your computer.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Intel Thunderbolt</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/28/intel-thunderbolt/</link>
+      <pubDate>Mon, 28 Feb 2011 15:00:50 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/28/intel-thunderbolt/</guid>
+      <description>
+        
+          
+            Intel announced on Friday (February 25th 2011) the new high speed connector that will coexists with USB 3.0. Apple also announced that it will be appearing first on the MacBook Pros. Thunderbolt known before has Light Peak is a new high-speed PC connection technology. This cable can combine data and high-definition all in one cable running at 10Gbps. So you could say it is like the all in wonder HDMI cable that combines video and audio into one cable.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

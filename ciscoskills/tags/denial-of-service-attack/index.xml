@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Denial-of-service attack on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/denial-of-service-attack/</link>
+    <description>Recent content in Denial-of-service attack on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 24 Aug 2011 17:00:52 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/denial-of-service-attack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Codes of ICMP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/24/the-codes-of-icmp/</link>
+      <pubDate>Wed, 24 Aug 2011 17:00:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/24/the-codes-of-icmp/</guid>
+      <description>
+        
+          
+            In today&#39;s post I wanted to talk about the widely used Ping command. Which is one of the best methods (I think) to begin network troubleshooting. When part of the network goes down it is sometimes hard to figure out why? When you issue the ping command or the extended ping command in a Cisco router several ICMP codes can come up on the router. Let&#39;s discuss them! The first status code &amp;quot;!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Common Network Attacks</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/17/common-network-attacks/</link>
+      <pubDate>Thu, 17 Mar 2011 16:30:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/17/common-network-attacks/</guid>
+      <description>
+        
+          
+            Network attacks have always been around but they are getting more advanced every day. These attacks are also easy to set up and use. In the past these types of attacks would have to be pulled off by someone who really knew about computers and to know what they are doing. That&#39;s a true hacker, now there are programs that do the same damage and sometimes more with a couple clicks of a mouse, so now anybody can bring down a network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IDS vs. IPS</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</link>
+      <pubDate>Wed, 09 Mar 2011 15:45:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</guid>
+      <description>
+        
+          
+            There are tons of network attacks out there. Using a firewall helps but does look for signature based attacks. Access Control Lists are like firewalls and only look at the protocols like HTTP, FTP POP, etc. Cisco has developed some tools that will help network administrators combat the issue; IDS, (Intrusion Detection System) and IPS. (Intrusion Prevention System) Let&#39;s go into IDS first, Cisco IDS is a physical device and is like an alarm system it will alert you when an attack happens but that&#39;s it, the system won&#39;t block the connection.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>WordPress.com Hit by a DoS Attack</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/04/wordpress.com-hit-by-a-dos-attack/</link>
+      <pubDate>Fri, 04 Mar 2011 15:30:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/04/wordpress.com-hit-by-a-dos-attack/</guid>
+      <description>
+        
+          
+            Yesterday, (March 3rd 2011) there was a massive DoS attack that hit WordPress.com. Cisco Skill&#39;s uses WordPress.com has a hosting provider but is not believed to one of the sites hit. There still is no word on who or why they targeted WordPress.com but goes to show that Denial of Service is still a popular type of attack and although simple to set up they can still bring down enterprise networks.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

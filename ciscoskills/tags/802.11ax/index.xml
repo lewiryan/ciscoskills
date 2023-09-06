@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>802.11ax on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/802.11ax/</link>
+    <description>Recent content in 802.11ax on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 16 Apr 2018 13:30:10 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/802.11ax/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wireless VLANs</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/04/16/wireless-vlans/</link>
+      <pubDate>Mon, 16 Apr 2018 13:30:10 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/04/16/wireless-vlans/</guid>
+      <description>
+        
+          
+            It’s been fun four months of 2018 so far and I’m back to talk about Wireless VLANs. With 802.11ax around the corner (2019) I think we all can agree that “weird” connections although less likely have interference isn’t as mobile as a wireless LAN. Also, with 802.11ax the maximum theoretical throughput is 10Gbps! We’re going to need some serious backend infrastructure available to be able to support that type of bandwidth.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

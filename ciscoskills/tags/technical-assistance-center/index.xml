@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Technical Assistance Center on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/technical-assistance-center/</link>
+    <description>Recent content in Technical Assistance Center on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 21 Sep 2011 15:00:02 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/technical-assistance-center/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Welcome CCT (Cisco Certified Technician Certification)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/21/welcome-cct-cisco-certified-technician-certification/</link>
+      <pubDate>Wed, 21 Sep 2011 15:00:02 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/21/welcome-cct-cisco-certified-technician-certification/</guid>
+      <description>
+        
+          
+            Switching gears for today, Cisco has introduced a certification for onsite support technicians, who need product-specific technical skills to diagnose, restore, repair, and replace critical Cisco equipment. This certification which was introduced this summer now has questions about it from CLN (Cisco Learning Network) and other Cisco sites. So what is this new cert and any changes to ICND1 or ICND2? Short answer is no, this certification is on par with ICND1 or CCENT according to Cisco but is focused on support groups like TAC (Technical Assistance Center), NOC (Network Operations Centers) and 3rd party support.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

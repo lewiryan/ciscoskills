@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>STP on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/stp/</link>
+    <description>Recent content in STP on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 02 Jan 2019 15:30:45 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/stp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oh...Spanning Tree</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/01/02/oh...spanning-tree/</link>
+      <pubDate>Wed, 02 Jan 2019 15:30:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/01/02/oh...spanning-tree/</guid>
+      <description>
+        
+          
+            It&#39;s the &amp;quot;S&amp;quot; word we don&#39;t like to hear, and often times it has degraded networks or even took them down entirely. (All Systems Down - an older but classic story) It&#39;s also one of those things that nobody really likes, we even had network companies, as well as IEEE try to replace it with something else. Remember the names like TRILL, and IEEE 802.1aq (SPB) or Cisco&#39;s FabicPath technologies? You had all of these different flavors that showed a lot progress, but they never really took off for one reason or another.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>640-911 (Chapter 12 &amp; 13)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/04/19/640-911-chapter-12-13/</link>
+      <pubDate>Sat, 19 Apr 2014 16:36:39 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/04/19/640-911-chapter-12-13/</guid>
+      <description>
+        
+          
+            We are at the last chapters of the CCNA Data Center 640-911 by Todd Lammle. Chapter 12 talks about redundant switched technologies and chapter 13 talks about security. Just like before I will go over the high-points, so let’s get started!
+Chapter 12 Overview: In this chapter we get to learn about Spanning Tree Protocol and some history with it. With networks we like multiple ways to a destination however in the layer two area redundancy does not play well and that’s where spanning tree can help us.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Middle of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 07 Sep 2011 18:00:51 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

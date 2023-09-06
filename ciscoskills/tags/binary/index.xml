@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>binary on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/binary/</link>
+    <description>Recent content in binary on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 15 Feb 2011 17:30:58 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/binary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Wonders of Binary</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/15/the-wonders-of-binary/</link>
+      <pubDate>Tue, 15 Feb 2011 17:30:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/15/the-wonders-of-binary/</guid>
+      <description>
+        
+          
+            When working with IP addresses and subnet masks you need to have an understanding of how binary works. Binary is still used in computers today, when computers use numbers and letters they use them in a binary format. This guide will be going over numbers, and focusing on the IP addresses in how a computer sees that decimal number. Binary is a relatively easy in understanding and is just another way of looking at numbers.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

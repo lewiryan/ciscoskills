@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Default route on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/default-route/</link>
+    <description>Recent content in Default route on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 02 May 2011 16:15:32 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/default-route/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configure Static Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</link>
+      <pubDate>Mon, 02 May 2011 16:15:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</guid>
+      <description>
+        
+          
+            Plugging Cisco routers together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic routing protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

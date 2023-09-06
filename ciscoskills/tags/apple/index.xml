@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apple on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/apple/</link>
+    <description>Recent content in Apple on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 28 Feb 2011 15:00:50 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/apple/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Intel Thunderbolt</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/28/intel-thunderbolt/</link>
+      <pubDate>Mon, 28 Feb 2011 15:00:50 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/28/intel-thunderbolt/</guid>
+      <description>
+        
+          
+            Intel announced on Friday (February 25th 2011) the new high speed connector that will coexists with USB 3.0. Apple also announced that it will be appearing first on the MacBook Pros. Thunderbolt known before has Light Peak is a new high-speed PC connection technology. This cable can combine data and high-definition all in one cable running at 10Gbps. So you could say it is like the all in wonder HDMI cable that combines video and audio into one cable.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cybercriminals Focusing on Mobile Platforms</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/01/24/cybercriminals-focusing-on-mobile-platforms/</link>
+      <pubDate>Mon, 24 Jan 2011 17:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/01/24/cybercriminals-focusing-on-mobile-platforms/</guid>
+      <description>
+        
+          
+            If I were to tell you four years ago that cybercriminals were going to focus on mobile phones instead of computers would you believe me? This shift in focusing on mobile devices and platforms instead of computers means one thing, it’s easier. What does that mean? Well think of it this way if I was hacker wanting to gain access to somebody’s personal information, and I had a choice between their computer or their mobile phone which one would I choose?
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

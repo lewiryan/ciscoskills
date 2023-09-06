@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ASDM on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/asdm/</link>
+    <description>Recent content in ASDM on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 29 Jun 2012 01:20:32 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/asdm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Upgrade ASA IOS via ASDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/29/upgrade-asa-ios-via-asdm/</link>
+      <pubDate>Fri, 29 Jun 2012 01:20:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/29/upgrade-asa-ios-via-asdm/</guid>
+      <description>
+        
+          
+            In this short but helpful post, I&#39;ll go through the process of upgrading the ASA IOS via the ASDM. This is a pretty painless method if all goes well the only thing you have to do schedule downtime if this box is in production, and grab the ASA IOS image from Cisco. For this post all have been covered let&#39;s get started! First things first is always backup your configuration before upgrading and I always read the release notes that Cisco provides when I download the IOS image, it&#39;s good reading and important because usually new features are introduced and sometime the ASDM can&#39;t paraphrase and parse the new configuration which way I usually upgrade the ASDM first.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Cisco ASA Overview</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</link>
+      <pubDate>Sun, 24 Jun 2012 17:14:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</guid>
+      <description>
+        
+          
+            Firewall The Cisco 5500 Series Adaptive Security Appliances are of course an excellent firewall but the ASA also offers (depending on the model) other security services as well, like IPS systems, VPN, content security, unified communications and remote access. These ASA&#39;s can be used as a standalone appliance&#39; that can handle the need for branch offices to enterprise data centers. Or they can be included in high-performance blades that work together with the Cisco Catalyst 6500 Series, and recently new they can also run in a virtual instance which provides tenant isolation for public and private clouds!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

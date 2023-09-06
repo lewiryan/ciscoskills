@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vPC on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/vpc/</link>
+    <description>Recent content in vPC on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 10 Sep 2014 10:30:12 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/vpc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting up Enhanced vPC on Nexus 5600</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/09/10/setting-up-enhanced-vpc-on-nexus-5600/</link>
+      <pubDate>Wed, 10 Sep 2014 10:30:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/09/10/setting-up-enhanced-vpc-on-nexus-5600/</guid>
+      <description>
+        
+          
+            So I&#39;ve played around with two Cisco Nexus 5672UP switches which will be in production soon but before that I wanted to see what it took to get enhanced vPC online. Along the way I was into some new territory as I never stood up vPC before, so in this post I have posted some things to keep in mind and running-config examples, all of which I hope is helpful for a reference.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

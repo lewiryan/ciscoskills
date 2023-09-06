@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>security on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/security/</link>
+    <description>Recent content in security on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 18:13:30 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fortigate ECMP with BGP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2020/10/11/fortigate-ecmp-with-bgp/</link>
+      <pubDate>Sun, 11 Oct 2020 18:13:30 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2020/10/11/fortigate-ecmp-with-bgp/</guid>
+      <description>
+        
+          
+            It&#39;s like clock work...around this time the seasons are changing..autumn colors are out, and the colder air reminds us that things are changing around here, embrace it! One thing that I&#39;ve been working with is AWS Transit gateways, a common theme this year is all cloud! AWS Transit Gateways make it easier to move towards that!
+AWS Transit gateways relatively new, (couple years old now) so instead of attaching to each AWS VPC environment independently we can connect to the transit gateway and attach VPCs to the gateway.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>VTIs with ASA</title>
+      <link>https://lewiryan.github.io/ciscoskills/2020/08/08/vtis-with-asa/</link>
+      <pubDate>Sat, 08 Aug 2020 15:41:06 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2020/08/08/vtis-with-asa/</guid>
+      <description>
+        
+          
+            I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>FMC Syslog with Graylog Extractor</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/02/05/fmc-syslog-with-graylog-extractor/</link>
+      <pubDate>Tue, 05 Feb 2019 17:15:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/02/05/fmc-syslog-with-graylog-extractor/</guid>
+      <description>
+        
+          
+            Let&#39;s continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I&#39;m using Graylog which is an open source logging platform and although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco FTD Standalone</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/07/18/cisco-ftd-standalone/</link>
+      <pubDate>Wed, 18 Jul 2018 13:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/07/18/cisco-ftd-standalone/</guid>
+      <description>
+        
+          
+            No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Too Many TCP Resets</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/06/20/too-many-tcp-resets/</link>
+      <pubDate>Wed, 20 Jun 2018 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/06/20/too-many-tcp-resets/</guid>
+      <description>
+        
+          
+            So, recently we enforced some firewall rules on a new environment, we did testing of the environment and everything was working as expected. In about 24 hours a lot of traffic from the web infrastructure was being denied and it continued, at first glance it looked like return traffic was being dropped, the web servers were sourcing at port 443 and the destination ports were using dynamic ports (RFC 6335) No user or application problems were reported when we enforced rules, and we waited additional days to see if anything came up.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>VLAN Access Lists (VACLs)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/11/20/vlan-access-lists-vacls/</link>
+      <pubDate>Mon, 20 Nov 2017 14:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/11/20/vlan-access-lists-vacls/</guid>
+      <description>
+        
+          
+            VACLs are another good layer of security to help control who can talk to who, much like access control lists that are in firewalls and routers, however the difference is VACLs operate at layer two of the OSI model. There could be situations where you have multiple hosts on the same LAN and want to block traffic from reaching certain hosts within that same network, how would you go about blocking that type of traffic without using a router or firewall?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Install RSYSLOG &amp; LogAnalyzer on CentOS 6-5</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/</link>
+      <pubDate>Wed, 11 Jun 2014 12:00:54 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/</guid>
+      <description>
+        
+          
+            I am looking at rsyslog which is fast syslog system and Loganalyzer as an upfront web GUI for those logs. The Loganalyzer application offers searching of various syslogs, all of which is open source and available to download. In this guide I will go through the steps to get these two applications to work together and in the end of this tutorial we should have a working syslog system ready to take logs!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNP Security Refresh</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/02/03/ccnp-security-refresh/</link>
+      <pubDate>Mon, 03 Feb 2014 14:30:27 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/02/03/ccnp-security-refresh/</guid>
+      <description>
+        
+          
+            Cisco recently published its 2014 Annual Security Report, and some interesting data was captured in 2013. One of the details was a talent gap in network security and because of this gap Cisco has a major revision in the CCNP Security certification starting in April. Its estimated that in short term or already present is shortage of more than a million security professionals worldwide! Like mentioned because of this Cisco is reworking the CCNP Security track.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Site-To-Site VPN via CCP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/05/02/site-to-site-vpn-via-ccp/</link>
+      <pubDate>Thu, 02 May 2013 02:45:29 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/05/02/site-to-site-vpn-via-ccp/</guid>
+      <description>
+        
+          
+            I have ran through before on how to create a site-to-site VPN with Cisco SDM which sounds like a repeat but I thought why not bring CCP into light and since I&#39;m studying the newly created CCNA Security (640-554) I figured let&#39;s create a tutorial on it. In this lab I am going to post the running-config of both locations so you can either run it through Packet Tracer or live equipment if you wish.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring AAA – Locally</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/04/04/configuring-aaa-locally/</link>
+      <pubDate>Thu, 04 Apr 2013 01:36:33 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/04/04/configuring-aaa-locally/</guid>
+      <description>
+        
+          
+            A while back I talked about AAA but never put out a post on how configure it until now. In this post I am going to be going over the configuration steps of how to configure AAA locally on a Cisco router, (The same commands would also work on Cisco switch). To review what exactly AAA does check my earlier post Understanding AAA. Like mentioned in my earlier post of Understanding AAA it gets better if you have some type of radius or tacacs+ server.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Introduction into Cisco Configuration Professional</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/03/10/introduction-into-cisco-configuration-professional/</link>
+      <pubDate>Sun, 10 Mar 2013 00:30:35 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/03/10/introduction-into-cisco-configuration-professional/</guid>
+      <description>
+        
+          
+            Let&#39;s walk through the basics with Cisco Configuration Professional as it is a helpful tool to use at the associate levels of the Cisco certification track and needed if you are looking at getting the CCNA Security certification. In this introduction we will introduce CCP and setup a community and then finally discover our devices within CCP. This is not the first GUI tool Cisco has produced to manage individual routers, an older tool called Cisco SDM also helped Network Administrators which supports the ISR Generation 1 routers.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Password Recovery – Cisco IOS Routers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/07/21/password-recovery-cisco-ios-routers/</link>
+      <pubDate>Sat, 21 Jul 2012 16:23:49 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/07/21/password-recovery-cisco-ios-routers/</guid>
+      <description>
+        
+          
+            Secure In this post I want to cover how to recover passwords on a Cisco IOS Router. This is helpful in lab environments as well as production environments. Although this method can be used the correct &amp;quot;legal&amp;quot; way you can also use this method to break into these devices &amp;quot;illegally&amp;quot; if you have physical console access to the device. However to get into it physical power must be turned off first causing a disruption in the environment, let get started!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Upgrade ASA IOS via ASDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/29/upgrade-asa-ios-via-asdm/</link>
+      <pubDate>Fri, 29 Jun 2012 01:20:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/29/upgrade-asa-ios-via-asdm/</guid>
+      <description>
+        
+          
+            In this short but helpful post, I&#39;ll go through the process of upgrading the ASA IOS via the ASDM. This is a pretty painless method if all goes well the only thing you have to do schedule downtime if this box is in production, and grab the ASA IOS image from Cisco. For this post all have been covered let&#39;s get started! First things first is always backup your configuration before upgrading and I always read the release notes that Cisco provides when I download the IOS image, it&#39;s good reading and important because usually new features are introduced and sometime the ASDM can&#39;t paraphrase and parse the new configuration which way I usually upgrade the ASDM first.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Cisco ASA Overview</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</link>
+      <pubDate>Sun, 24 Jun 2012 17:14:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</guid>
+      <description>
+        
+          
+            Firewall The Cisco 5500 Series Adaptive Security Appliances are of course an excellent firewall but the ASA also offers (depending on the model) other security services as well, like IPS systems, VPN, content security, unified communications and remote access. These ASA&#39;s can be used as a standalone appliance&#39; that can handle the need for branch offices to enterprise data centers. Or they can be included in high-performance blades that work together with the Cisco Catalyst 6500 Series, and recently new they can also run in a virtual instance which provides tenant isolation for public and private clouds!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA Security - 640-554</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/05/28/ccna-security-640-554/</link>
+      <pubDate>Mon, 28 May 2012 16:39:21 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/05/28/ccna-security-640-554/</guid>
+      <description>
+        
+          
+            network-security-lock Out with the old and in with new Cisco is updating its well-known certification CCNA Security. Candidates that are studying for the older exam (640-553) are suggested to take it on or before September 30th 2012. What has changed in the exam? For the most part Cisco SDM is no longer covered, as it has reached its &amp;quot;End of Life&amp;quot; and in fact Cisco Engineering stopped covering the product from developing and testing on February 26th 2012.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Three Tiers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</link>
+      <pubDate>Sat, 21 Jan 2012 19:30:48 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</guid>
+      <description>
+        
+          
+            network_switch Working towards the CCNA Cisco talks about a hierarchical network there are three layers to this design. Access Layer, distribution layer and the core layer. Each of them have their own set of functions and is also considered to be a best practice when the network continues to grow and for redundancy along with just a better way to manage it. The Access layer is the layer that devices connect to, such as PCs, printers, and IP Phones.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>How to Configure SSH on Dell Power-Connect</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/26/how-to-configure-ssh-on-dell-power-connect/</link>
+      <pubDate>Wed, 26 Oct 2011 15:10:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/26/how-to-configure-ssh-on-dell-power-connect/</guid>
+      <description>
+        
+          
+            keys Although not dealing with Cisco directly Dell switches are around in network closets and with my limited experience with them I thought this would be a perfect blog post to show the differences between Dell and Cisco. I like to think of Dell CLI like a dumb downed version of the Cisco CLI so I had some time to play around with a Dell 6248P switch and wanted to figure out how to get SSH working in the thing.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Middle of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 07 Sep 2011 18:00:51 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Discovery Protocol</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</link>
+      <pubDate>Wed, 06 Jul 2011 15:45:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</guid>
+      <description>
+        
+          
+            In today&#39;s post let&#39;s talk about CDP the Cisco Discovery Protocol. This protocol helps us in two ways, it first helps us verify that a connection between router or switch is set up correctly at least up to layer two in the OSI model. This also helps us discover Cisco devices that are in are network and which interfaces these devices are connected too and from are Cisco equipment. The Cisco discovery protocol is Cisco proprietary and before I go any further let me mention that CDP is a security risk because of the detailed information CDP gives out which helps you has a network administrator build a current network infrastructure, this can also hurt you because this information can easily be sniffed by programs that are easily searched on the internet.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IOS Commands</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/25/cisco-ios-commands/</link>
+      <pubDate>Wed, 25 May 2011 17:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/25/cisco-ios-commands/</guid>
+      <description>
+        
+          
+            This is the master list of some of the many Cisco IOS Commands that go with the CCNA track. This list also talks about what each command does in brief detail. You may also find that some commands may or may not be used for a CCNA level but offer some important information. If you don&#39;t know what a command does or understand it, I would look at Cisco documentation. Since this is a pretty big list of commands you can see the links to move to the different sections within this page.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding AAA</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/29/understanding-aaa/</link>
+      <pubDate>Fri, 29 Apr 2011 16:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/29/understanding-aaa/</guid>
+      <description>
+        
+          
+            User The wonderful AAA which in the Cisco world means, Authentication, Authorization, and Accounting but what does that really mean? In today&#39;s post that&#39;s what we are going to be talking about. What is AAA and what are the benefits of using it along with what is it? The first &amp;quot;A&amp;quot; of AAA is Authentication which provides the method of identifying users, including login and password dialog, challenge and response, messaging support, and, depending on the security protocol you select, encryption.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure a Site-to-Site VPN via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</link>
+      <pubDate>Wed, 27 Apr 2011 18:00:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</guid>
+      <description>
+        
+          
+            So for today&#39;s post let&#39;s learn how to configure a site-to-site VPN on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. (See the post Configuring SDM) Let&#39;s start configuring a site-to-site VPN with SDM! This tutorial is assuming that the configurations to set up Cisco SDM have already been completed.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure IPS (Intrusion Prevention System) via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</link>
+      <pubDate>Fri, 22 Apr 2011 17:30:44 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</guid>
+      <description>
+        
+          
+            Awhile back I talked about the differences between IPS and IDS. (See the post Cisco IDS vs. IPS ) So for today&#39;s post let&#39;s learn how to configure an IPS (Intrusion Prevention System) on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. ( See the post Configure Cisco SDM) Let&#39;s start configuring an IPS with SDM!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Zone Based Firewalls via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</link>
+      <pubDate>Wed, 20 Apr 2011 15:45:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/20/configuring-zone-based-firewalls-via-sdm/</guid>
+      <description>
+        
+          
+            Last month I talked about the fundamentals for understanding zone based firewalls (See the post Understanding Zone Based Firewalls). So for today&#39;s post I want to go ahead and talk about configuring the zone based firewalls but with the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and reduce ownership costs. (See the post Configure Cisco SDM) Instead of talking about what is zone based firewalls lets jump into the configuration of them.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Cisco SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/18/configure-cisco-sdm/</link>
+      <pubDate>Mon, 18 Apr 2011 16:15:03 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/18/configure-cisco-sdm/</guid>
+      <description>
+        
+          
+            Today we will be going over the steps that are required to set up the Cisco SDM (Security Device Manger) The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. SDM is fairly easy to set up but you still need at least some experience in the router command-line to get SDM working. This tutorial is already assuming that the Cisco SDM program has been installed on the PC.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Port Security</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/31/configuring-port-security/</link>
+      <pubDate>Thu, 31 Mar 2011 16:00:31 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/31/configuring-port-security/</guid>
+      <description>
+        
+          
+            Secure Today this tutorial is going to be talking about how to configure port security on a Cisco Catalyst switch. Port security is one of the first things you can do to keep your network secure from unauthorized access. Port security can restrict devices so only devices you allow are granted access to network resources. If and when an unauthorized device is connected to a port you can decide what you want the switch to do.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring SSH</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/29/configuring-ssh/</link>
+      <pubDate>Tue, 29 Mar 2011 15:15:39 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/29/configuring-ssh/</guid>
+      <description>
+        
+          
+            Today this tutorial is going be talking about how to configure SSH on a Cisco router or switch. SSH or Secure Shell encrypts the data that is sent from the terminal application to the device. Making if far more safer when it is compared to telnet which sends the data in plain text. To add support for SSH to a Cisco router or switch, the device needs some added information then just passwords.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding Zone Based Firewalls</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/18/understanding-zone-based-firewalls/</link>
+      <pubDate>Fri, 18 Mar 2011 16:00:56 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/18/understanding-zone-based-firewalls/</guid>
+      <description>
+        
+          
+            Earlier we talked about using CBAC (See the post Understanding CBAC) the &amp;quot;classic firewall&amp;quot; and we mention some information about zone based firewalls but not nearly enough. So today we will be talking about zone based firewalls. Why are they different? We also will learn the basics about what is zone based and what are the advantages compared to CBAC. You can think of zone based has making interfaces in a quarantine zone, each interface by default if set up in a zone is denied access to any other interface.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Common Network Attacks</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/17/common-network-attacks/</link>
+      <pubDate>Thu, 17 Mar 2011 16:30:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/17/common-network-attacks/</guid>
+      <description>
+        
+          
+            Network attacks have always been around but they are getting more advanced every day. These attacks are also easy to set up and use. In the past these types of attacks would have to be pulled off by someone who really knew about computers and to know what they are doing. That&#39;s a true hacker, now there are programs that do the same damage and sometimes more with a couple clicks of a mouse, so now anybody can bring down a network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cracking WEP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/14/cracking-wep/</link>
+      <pubDate>Mon, 14 Mar 2011 12:00:29 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/14/cracking-wep/</guid>
+      <description>
+        
+          
+            BackTrack is Linux network security audit tool for security professionals. This tool is used for testing and penetrating networks. That being said** This tutorial is for educational use only. This is meant only to teach that WEP is an insecure option, and is recommend to use a harder encryption. Using this tutorial on a network that you do not have permission to access or is not yours, could be illegal! ** This was tested on BackTrack version 4 and the steps outlined in this tutorial were successful.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Telecommuting Services</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/11/telecommuting-services/</link>
+      <pubDate>Fri, 11 Mar 2011 17:15:11 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/11/telecommuting-services/</guid>
+      <description>
+        
+          
+            This post is going to talk about the major technologies that make Teleworking or also called telecommuting possible. This is when an employee performs his or her job away from the office, usually from their home office. By doing this it allows personal convenience, less travel to and from the workplace. At an Organization level it provides continuity of operations, Secure, reliable and manageable access to information, cost-effective integration of data, voice, video and applications.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IDS vs. IPS</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</link>
+      <pubDate>Wed, 09 Mar 2011 15:45:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/09/cisco-ids-vs.-ips/</guid>
+      <description>
+        
+          
+            There are tons of network attacks out there. Using a firewall helps but does look for signature based attacks. Access Control Lists are like firewalls and only look at the protocols like HTTP, FTP POP, etc. Cisco has developed some tools that will help network administrators combat the issue; IDS, (Intrusion Detection System) and IPS. (Intrusion Prevention System) Let&#39;s go into IDS first, Cisco IDS is a physical device and is like an alarm system it will alert you when an attack happens but that&#39;s it, the system won&#39;t block the connection.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>WordPress.com Hit by a DoS Attack</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/04/wordpress.com-hit-by-a-dos-attack/</link>
+      <pubDate>Fri, 04 Mar 2011 15:30:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/04/wordpress.com-hit-by-a-dos-attack/</guid>
+      <description>
+        
+          
+            Yesterday, (March 3rd 2011) there was a massive DoS attack that hit WordPress.com. Cisco Skill&#39;s uses WordPress.com has a hosting provider but is not believed to one of the sites hit. There still is no word on who or why they targeted WordPress.com but goes to show that Denial of Service is still a popular type of attack and although simple to set up they can still bring down enterprise networks.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Install BackTrack</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/01/install-backtrack/</link>
+      <pubDate>Tue, 01 Mar 2011 18:15:10 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/01/install-backtrack/</guid>
+      <description>
+        
+          
+            This is a full install of BackTrack 4 this can be in a virtual machine, dual-boot, or the main OS. So you burned the image that you downloaded from http://www.backtrack-linux.org/ and are ready to go! If not I would recommend you do that first. BackTrack is a Linux penetration testing for network security. This is a free tool that IT administrators can use to audit their network. First put the disk into the tray and restart your computer.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding CBAC</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</link>
+      <pubDate>Tue, 22 Feb 2011 17:00:34 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/22/understanding-cbac/</guid>
+      <description>
+        
+          
+            Although using hardware firewalls are an excellent step forward when securing your network. They can cost money and are not cheap to set up and configure. Using CBAC is built-into the Cisco IOS router and helps filter those unwanted protocols that are in your network. When setting up routers as firewalls you have some choices like using CBAC the &amp;quot;Classic&amp;quot; firewall, or zone based policy (ZBF). Today we will talk about CBAC and how to understand the core components of what make CBAC possible.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IOS Routers: Auto Secure</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/17/cisco-ios-routers-auto-secure/</link>
+      <pubDate>Thu, 17 Feb 2011 17:30:40 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/17/cisco-ios-routers-auto-secure/</guid>
+      <description>
+        
+          
+            Auto Secure is good for small business or IT administrators that may know how to configure a router with networking protocols, setting up IP interfaces, and networks but really don&#39;t have an understanding of the security aspect of the router. So what Cisco has done is implemented a script called Auto Secure. Auto Secure is based on the questions you answer from the prompt usually &amp;quot;yes&amp;quot; or &amp;quot;no&amp;quot; answers. Sometimes the script wants a little more information depending on your network configuration.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>TACACS Plus and RADIUS</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/10/tacacs-plus-and-radius/</link>
+      <pubDate>Thu, 10 Feb 2011 15:45:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/10/tacacs-plus-and-radius/</guid>
+      <description>
+        
+          
+            TACACS+ and RADIUS are both used to control access to network resources, but both of these protocols are different in how they operate depending how you want to secure your network. These protocols need to have (AAA) authentication, authorization, and accounting setup on the routers before you can set up these access server protocols. First let&#39;s get some information on why we would need this type of access server protocol setup.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Access Control Lists</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/07/access-control-lists/</link>
+      <pubDate>Mon, 07 Feb 2011 18:05:37 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/07/access-control-lists/</guid>
+      <description>
+        
+          
+            Understanding Access Control Lists is an important role for moving up into the CCNA area. ACLs can get confusing and cause network problems if not implemented correctly. I think what I outlined below explains in a nutshell of what you can expect from ACLs.
+I would still read and find more information about ACLs on the web and or reading material (becuase I don&#39;t trust myself!). By securing networks with ACLs you are adding another barrier to your network although ACLs can&#39;t fool-proof your network they add additional level of security from the outside world.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Common Weaknesses Cybercriminals Exploit</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/01/27/common-weaknesses-cybercriminals-exploit/</link>
+      <pubDate>Thu, 27 Jan 2011 14:05:31 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/01/27/common-weaknesses-cybercriminals-exploit/</guid>
+      <description>
+        
+          
+            While reading the Cisco Annual Report they came up with seven common social engineering attacks that cybercriminals use. Now these types of attacks are common and are not unheard of. You should be familiar with most if not all these weaknesses that cybercriminals use.
+Sex appeal, which means scammers will try to find or put up attractive man or woman. Then tempt the user for information. People should remember if you don&#39;t know the person this will more than likely not be romance but something else.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cybercriminals Focusing on Mobile Platforms</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/01/24/cybercriminals-focusing-on-mobile-platforms/</link>
+      <pubDate>Mon, 24 Jan 2011 17:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/01/24/cybercriminals-focusing-on-mobile-platforms/</guid>
+      <description>
+        
+          
+            If I were to tell you four years ago that cybercriminals were going to focus on mobile phones instead of computers would you believe me? This shift in focusing on mobile devices and platforms instead of computers means one thing, it’s easier. What does that mean? Well think of it this way if I was hacker wanting to gain access to somebody’s personal information, and I had a choice between their computer or their mobile phone which one would I choose?
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

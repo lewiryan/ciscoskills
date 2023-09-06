@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Enhanced Interior Gateway Routing Protocol on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/enhanced-interior-gateway-routing-protocol/</link>
+    <description>Recent content in Enhanced Interior Gateway Routing Protocol on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 29 Feb 2012 02:21:07 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/enhanced-interior-gateway-routing-protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EIGRP… The Basics</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/02/29/eigrp-the-basics/</link>
+      <pubDate>Wed, 29 Feb 2012 02:21:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/02/29/eigrp-the-basics/</guid>
+      <description>
+        
+          
+            Routing_Updates Enhanced Interior Gateway Routing Protocol (EIGRP) is an impressive set of features for IP Routing, which converges quickly and is on par and sometimes faster than OSPF. This routing protocol requires less processing time, less memory, and less network design than compared to OSPF. What&#39;s the catch? This protocol is Cisco proprietary, if you have a network that uses non-Cisco routers, EIGRP will not and cannot be used on those routers.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Link-State Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/31/link-state-protocols/</link>
+      <pubDate>Wed, 31 Aug 2011 13:00:26 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/31/link-state-protocols/</guid>
+      <description>
+        
+          
+            Network-Cables Weeks ago and maybe months :), I talked about distance vector protocols and with that you probably got the feeling that when using a distance vector protocol it does not give a full network graphical representation of the entire network. Only the directly connected routes can&#39;t remember? Check out this post Distance Vector Routing. Link state protocols are faster to converge network changes compared to distance vector however when compared to distance vector setup they can be harder to set up, maintain, and troubleshoot when problems arise.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Distance Vector Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</link>
+      <pubDate>Wed, 15 Jun 2011 16:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</guid>
+      <description>
+        
+          
+            Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a router learns about a route to a different network (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dynamic Routing Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</link>
+      <pubDate>Wed, 04 May 2011 16:40:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</guid>
+      <description>
+        
+          
+            Dynamic Routing If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get PCs, printers, and other network equipment. That&#39;s where dynamic routing protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post Configure Static Routing) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dell on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/dell/</link>
+    <description>Recent content in Dell on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 26 Oct 2011 15:10:53 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/dell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Configure SSH on Dell Power-Connect</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/26/how-to-configure-ssh-on-dell-power-connect/</link>
+      <pubDate>Wed, 26 Oct 2011 15:10:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/26/how-to-configure-ssh-on-dell-power-connect/</guid>
+      <description>
+        
+          
+            keys Although not dealing with Cisco directly Dell switches are around in network closets and with my limited experience with them I thought this would be a perfect blog post to show the differences between Dell and Cisco. I like to think of Dell CLI like a dumb downed version of the Cisco CLI so I had some time to play around with a Dell 6248P switch and wanted to figure out how to get SSH working in the thing.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IEEE 802.1Q on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/ieee-802.1q/</link>
+    <description>Recent content in IEEE 802.1Q on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 11 Feb 2012 22:45:50 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/ieee-802.1q/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trunking Administrative Modes</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/02/11/trunking-administrative-modes/</link>
+      <pubDate>Sat, 11 Feb 2012 22:45:50 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/02/11/trunking-administrative-modes/</guid>
+      <description>
+        
+          
+            cisco-switch-blade When looking at the CCNA it is good idea to get a hold of trunking between switches along with that there are a couple of administrative modes that each physical interface on Cisco switch can be when you are trunking between them. Remember that when we are trunking it usually carries all VLANs (This can be changed) but there are different ways to make trunking between links happen. When you are in an interface on a Cisco switch you can change the operational mode of that interface by issuing the switchport mode command.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Router on a Stick</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/01/31/configure-router-on-a-stick/</link>
+      <pubDate>Tue, 31 Jan 2012 10:45:09 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/01/31/configure-router-on-a-stick/</guid>
+      <description>
+        
+          
+            A while ago I talked about putting different VLANs on a switch, remember a VLAN is virtual network that although physically it may look like on the same network that does not always mean the case. By having VLANs you are segmenting the network and the only way to get to the other side is having a router. I have already configured the Cisco switch as posted in Creating VLANs but in summary I have three VLANs total VLAN 1 which is the native VLAN, VLAN 2 and VLAN 3 (which is called support.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding VTP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</link>
+      <pubDate>Wed, 11 May 2011 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</guid>
+      <description>
+        
+          
+            Some people hate it, some people love it. It&#39;s the Cisco proprietary VLAN Trunking Protocol (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same VLANs. I also suggest if you don&#39;t know what a VLAN is check out the post Creating VLANs Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

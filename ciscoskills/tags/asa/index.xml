@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ASA on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/asa/</link>
+    <description>Recent content in ASA on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 08 Aug 2020 15:41:06 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/asa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VTIs with ASA</title>
+      <link>https://lewiryan.github.io/ciscoskills/2020/08/08/vtis-with-asa/</link>
+      <pubDate>Sat, 08 Aug 2020 15:41:06 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2020/08/08/vtis-with-asa/</guid>
+      <description>
+        
+          
+            I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dual ISP - Cisco ASA HA Active/Standby</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/03/12/dual-isp-cisco-asa-ha-active/standby/</link>
+      <pubDate>Tue, 12 Mar 2019 12:45:56 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/03/12/dual-isp-cisco-asa-ha-active/standby/</guid>
+      <description>
+        
+          
+            So a single ISP isn&#39;t cutting it anymore you need a backup just in case the primary fails and might as well add a second ASA into this design, more redundancy equals more up-time, right? On paper it sounds good but in the &amp;quot;real&amp;quot; world there probably is tipping point, more redundancy increases complexity. In this post we&#39;ll aim to keep it simple, with setting up a Cisco ASA HA active/standby pair and then add in the second ISP.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Enable a RESTful ASA API</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/10/08/enable-a-restful-asa-api/</link>
+      <pubDate>Mon, 08 Oct 2018 13:00:21 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/10/08/enable-a-restful-asa-api/</guid>
+      <description>
+        
+          
+            Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he points out there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>ASA Site to Site VPN (DHCP)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/04/19/asa-site-to-site-vpn-dhcp/</link>
+      <pubDate>Wed, 19 Apr 2017 12:00:46 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/04/19/asa-site-to-site-vpn-dhcp/</guid>
+      <description>
+        
+          
+            If you don’t already know, site to site VPNs can be a cost-effective way for remote sites to connect to HQ resources instead of a lease line like using MPLS or Metro-E circuits. We can instead use a standard internet connection with a static IP, this is usually cheaper than a dedicated circuit. Our next steps are purchasing a firewall for the remote site (assuming you already have one at HQ) and setup a site to site VPN connection to make the connection.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Upgrade ASA IOS via ASDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/29/upgrade-asa-ios-via-asdm/</link>
+      <pubDate>Fri, 29 Jun 2012 01:20:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/29/upgrade-asa-ios-via-asdm/</guid>
+      <description>
+        
+          
+            In this short but helpful post, I&#39;ll go through the process of upgrading the ASA IOS via the ASDM. This is a pretty painless method if all goes well the only thing you have to do schedule downtime if this box is in production, and grab the ASA IOS image from Cisco. For this post all have been covered let&#39;s get started! First things first is always backup your configuration before upgrading and I always read the release notes that Cisco provides when I download the IOS image, it&#39;s good reading and important because usually new features are introduced and sometime the ASDM can&#39;t paraphrase and parse the new configuration which way I usually upgrade the ASDM first.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Cisco ASA Overview</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</link>
+      <pubDate>Sun, 24 Jun 2012 17:14:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</guid>
+      <description>
+        
+          
+            Firewall The Cisco 5500 Series Adaptive Security Appliances are of course an excellent firewall but the ASA also offers (depending on the model) other security services as well, like IPS systems, VPN, content security, unified communications and remote access. These ASA&#39;s can be used as a standalone appliance&#39; that can handle the need for branch offices to enterprise data centers. Or they can be included in high-performance blades that work together with the Cisco Catalyst 6500 Series, and recently new they can also run in a virtual instance which provides tenant isolation for public and private clouds!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

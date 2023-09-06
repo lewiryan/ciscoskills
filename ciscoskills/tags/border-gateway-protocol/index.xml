@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Border Gateway Protocol on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/border-gateway-protocol/</link>
+    <description>Recent content in Border Gateway Protocol on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 May 2011 16:40:24 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/border-gateway-protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dynamic Routing Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</link>
+      <pubDate>Wed, 04 May 2011 16:40:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</guid>
+      <description>
+        
+          
+            Dynamic Routing If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get PCs, printers, and other network equipment. That&#39;s where dynamic routing protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post Configure Static Routing) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

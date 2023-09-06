@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Firewalls on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/firewalls/</link>
+    <description>Recent content in Firewalls on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 Sep 2017 11:45:41 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/firewalls/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enter Cisco Firepower CLI (Read-Only)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/09/20/enter-cisco-firepower-cli-read-only/</link>
+      <pubDate>Wed, 20 Sep 2017 11:45:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/09/20/enter-cisco-firepower-cli-read-only/</guid>
+      <description>
+        
+          
+            You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure a Site-to-Site VPN via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</link>
+      <pubDate>Wed, 27 Apr 2011 18:00:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/27/configure-a-site-to-site-vpn-via-sdm/</guid>
+      <description>
+        
+          
+            So for today&#39;s post let&#39;s learn how to configure a site-to-site VPN on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. (See the post Configuring SDM) Let&#39;s start configuring a site-to-site VPN with SDM! This tutorial is assuming that the configurations to set up Cisco SDM have already been completed.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

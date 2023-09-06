@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Switch on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/switch/</link>
+    <description>Recent content in Switch on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Oct 2011 16:10:00 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/switch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Store-and-Forward vs. Cut-Through Switching</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/05/store-and-forward-vs.-cut-through-switching/</link>
+      <pubDate>Wed, 05 Oct 2011 16:10:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/05/store-and-forward-vs.-cut-through-switching/</guid>
+      <description>
+        
+          
+            Network-Cable-Color Switching in the network can happen in two ways, these layer-two devices send frames but they can forward them in different ways. These different modes have positive and negative effects which depend on the type of network environment that runs through them! Store-and-forward is just like the name suggests, the switch receives a frame on a port and stores the frame in it&#39;s memory buffer until the frame has been completely received.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Beginnings of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            network-diagram In a perfect world we would never need redundancy on a network infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding VTP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</link>
+      <pubDate>Wed, 11 May 2011 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</guid>
+      <description>
+        
+          
+            Some people hate it, some people love it. It&#39;s the Cisco proprietary VLAN Trunking Protocol (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same VLANs. I also suggest if you don&#39;t know what a VLAN is check out the post Creating VLANs Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

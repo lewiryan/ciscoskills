@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VxLAN on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/vxlan/</link>
+    <description>Recent content in VxLAN on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 02 Jan 2019 15:30:45 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/vxlan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oh...Spanning Tree</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/01/02/oh...spanning-tree/</link>
+      <pubDate>Wed, 02 Jan 2019 15:30:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/01/02/oh...spanning-tree/</guid>
+      <description>
+        
+          
+            It&#39;s the &amp;quot;S&amp;quot; word we don&#39;t like to hear, and often times it has degraded networks or even took them down entirely. (All Systems Down - an older but classic story) It&#39;s also one of those things that nobody really likes, we even had network companies, as well as IEEE try to replace it with something else. Remember the names like TRILL, and IEEE 802.1aq (SPB) or Cisco&#39;s FabicPath technologies? You had all of these different flavors that showed a lot progress, but they never really took off for one reason or another.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

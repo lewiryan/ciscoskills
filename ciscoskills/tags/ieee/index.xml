@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IEEE on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/ieee/</link>
+    <description>Recent content in IEEE on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 30 Jan 2014 18:15:11 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/ieee/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>640-911 (Chapter 3)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/01/30/640-911-chapter-3/</link>
+      <pubDate>Thu, 30 Jan 2014 18:15:11 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/01/30/640-911-chapter-3/</guid>
+      <description>
+        
+          
+            Picking up were we left on off on a series of blog posts that follow the CCNA Data Center Study Guide from Todd Lammle. Feel free to post questions below. In these post I am only going over the topics of each chapter of the book, plus any examples the book offers and to get an idea of what the Cisco exam would cover. In chapter two we discussed about internetworking and in chapter three we will learn about Ethernet technologies.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Middle of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 07 Sep 2011 18:00:51 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Wireless LAN Security</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/18/basic-wireless-lan-security/</link>
+      <pubDate>Wed, 18 May 2011 16:50:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/18/basic-wireless-lan-security/</guid>
+      <description>
+        
+          
+            Wireless-Security-Icon Although having a wireless LAN sounds like a wonderful idea, there are things that need to be implemented like security. A wireless LAN can be uncontrollable has it is just radio waves and anybody can receive them. Having and using good security practices can help you be under control of your wireless LAN. Not having any security in a wireless LAN environment will cause anybody to have access to the network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Wireless Concepts</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/04/basic-wireless-concepts/</link>
+      <pubDate>Mon, 04 Apr 2011 15:55:39 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/04/basic-wireless-concepts/</guid>
+      <description>
+        
+          
+            wireless-connection-icon Mobility is now a common thing in a business environment, you no longer are fixed to specific cubicle in the work place anymore. What is also amazing is it will continue to change and become easier for employees to get work done, with their phone, tablet, and laptop computer. But what makes this possible? What is the underlying component? The internet is becoming more available in more locations, coffee shops, airports, and your cell phone service provider, with 3G and 4G speeds.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11ac Standard</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/21/802.11ac-standard/</link>
+      <pubDate>Mon, 21 Feb 2011 18:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/21/802.11ac-standard/</guid>
+      <description>
+        
+          
+            Some things are making news in the wireless world, the IEEE wants another wireless standard in the mix called the 802.11ac, now the fastest standard they have is the 802.11n(speeds up to 300 Mbps), which was recently published in October of 2009. What is so great about the 802.11ac development? Well one thing is the speed, it is estimated that it will be able to carry up to 1 gigabit per second!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

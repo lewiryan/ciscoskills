@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PAT on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/pat/</link>
+    <description>Recent content in PAT on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Jan 2011 15:05:01 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/pat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring PAT</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/01/19/configuring-pat/</link>
+      <pubDate>Wed, 19 Jan 2011 15:05:01 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/01/19/configuring-pat/</guid>
+      <description>
+        
+          
+            This tutorial will help you configure PAT (Port Address Translation), or sometimes called NAT (Network Address Translation) with overload on a Cisco router. PAT uses multiple private IP addresses and translates them into a single or very few public IP addresses. This is possible because the private IP addresses are mapped to the port number of the PC. Let&#39;s get started!!!
+With the above shown topology we see that we are using two routers called ISP and R1 we also have one switch (default configuration) and a PC connected to R1&#39;s Fa0/0 interface.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

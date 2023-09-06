@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TCP on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/tcp/</link>
+    <description>Recent content in TCP on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 Jun 2018 16:30:14 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Too Many TCP Resets</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/06/20/too-many-tcp-resets/</link>
+      <pubDate>Wed, 20 Jun 2018 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/06/20/too-many-tcp-resets/</guid>
+      <description>
+        
+          
+            So, recently we enforced some firewall rules on a new environment, we did testing of the environment and everything was working as expected. In about 24 hours a lot of traffic from the web infrastructure was being denied and it continued, at first glance it looked like return traffic was being dropped, the web servers were sourcing at port 443 and the destination ports were using dynamic ports (RFC 6335) No user or application problems were reported when we enforced rules, and we waited additional days to see if anything came up.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding TCP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/25/understanding-tcp/</link>
+      <pubDate>Fri, 25 Feb 2011 18:10:59 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/25/understanding-tcp/</guid>
+      <description>
+        
+          
+            This tutorial is going to be talking about the TCP protocol. Every time you connect to a website you are using the HTTP protocol, but below that you are also using a TCP protocol. The nature of TCP is to provide error recovery; there are other services or applications that use TCP. HTTP however is a common protocol that is used in online applications. Remember TCP is not the only protocol in the transport layer of the OSI model, there is another called UDP but that&#39;s another day.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

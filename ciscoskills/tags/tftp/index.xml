@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tftp on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/tftp/</link>
+    <description>Recent content in tftp on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 16 Sep 2016 12:30:00 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/tftp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TFTP &amp; FTP Server on Centos 7</title>
+      <link>https://lewiryan.github.io/ciscoskills/2016/09/16/tftp-ftp-server-on-centos-7/</link>
+      <pubDate>Fri, 16 Sep 2016 12:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2016/09/16/tftp-ftp-server-on-centos-7/</guid>
+      <description>
+        
+          
+            If you ever needed a TFTP or an anonymous FTP server to transfer files, logs, or crash debugs to and from your network devices it can be a little tricky if you don&#39;t have anything setup. There are some free quick programs out there if you are in a pinch for one-time transfers but if you ever wanted to have something in infrastructure that is ready to go for this kind of stuff just follow this tutorial below.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

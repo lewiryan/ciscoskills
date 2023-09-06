@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>General on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/general/</link>
+    <description>Recent content in General on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 18:13:30 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/general/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fortigate ECMP with BGP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2020/10/11/fortigate-ecmp-with-bgp/</link>
+      <pubDate>Sun, 11 Oct 2020 18:13:30 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2020/10/11/fortigate-ecmp-with-bgp/</guid>
+      <description>
+        
+          
+            It&#39;s like clock work...around this time the seasons are changing..autumn colors are out, and the colder air reminds us that things are changing around here, embrace it! One thing that I&#39;ve been working with is AWS Transit gateways, a common theme this year is all cloud! AWS Transit Gateways make it easier to move towards that!
+AWS Transit gateways relatively new, (couple years old now) so instead of attaching to each AWS VPC environment independently we can connect to the transit gateway and attach VPCs to the gateway.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The World Keeps Turning</title>
+      <link>https://lewiryan.github.io/ciscoskills/2020/05/21/the-world-keeps-turning/</link>
+      <pubDate>Thu, 21 May 2020 15:37:16 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2020/05/21/the-world-keeps-turning/</guid>
+      <description>
+        
+          
+            Well..couple of things have changed these past months that have had a lasting impact on everyone on this earth. A single reminder that we all share a common home on this place, even though we sometimes think were world&#39;s apart from each other.
+During this time I&#39;ve been working from home, and busier then ever making sure the lights stay on. I like to think of myself as a lighthouse keeper or some type of engineer maintaining a spacecraft floating in space sending &amp;quot;pings&amp;quot; waiting for reply.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Automation Dance</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/11/13/automation-dance/</link>
+      <pubDate>Tue, 13 Nov 2018 15:55:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/11/13/automation-dance/</guid>
+      <description>
+        
+          
+            I keep doing the automation dance, (yeah...that&#39;s me) there are a lot of different tooling products out there. I have been trying to understand a use case around using it with network automation. Recently I have been dancing around with Ansible. My personal belief is that using any type of these tools would be helpful but it can be a steep learning curve if you really don&#39;t have any programming knowledge.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Enter Cisco Firepower CLI (Read-Only)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/09/20/enter-cisco-firepower-cli-read-only/</link>
+      <pubDate>Wed, 20 Sep 2017 11:45:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/09/20/enter-cisco-firepower-cli-read-only/</guid>
+      <description>
+        
+          
+            You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA 2-0 What&#39;s New?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/09/30/ccna-2-0-whats-new/</link>
+      <pubDate>Mon, 30 Sep 2013 00:34:35 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/09/30/ccna-2-0-whats-new/</guid>
+      <description>
+        
+          
+            I brought this topic up in March of this year (See original post) but I wanted to re-post it to add some information because as of today this was your last day to pass the older CCNA exams. Cisco has a refreshed all the CCNA Routing and Switching exams. That includes the ICND1 (640-822), the ICND2 (640-816), and the all in wonder exam (640-816). You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Why Go Professional with Cisco Certs?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/09/14/why-go-professional-with-cisco-certs/</link>
+      <pubDate>Sat, 14 Sep 2013 18:09:46 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/09/14/why-go-professional-with-cisco-certs/</guid>
+      <description>
+        
+          
+            I have had the opportunity to take and thankfully pass Cisco certifications at the associate levels and there is one more associate exam, the CCNA Data Center which hopefully I will get later next year. While looking at the CCNA Data Center exam I also glanced over the professional arena that Cisco offers and if you’re like me I always like learning new things especially in technical field. Getting those “aha moments” once in a while makes it worth it, but beyond just over all knowledge of additional technologies why would you go on taking a professional Cisco cert?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA Version 2.0 Refresh</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/03/26/ccna-version-2.0-refresh/</link>
+      <pubDate>Tue, 26 Mar 2013 05:47:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/03/26/ccna-version-2.0-refresh/</guid>
+      <description>
+        
+          
+            I think we knew it was coming at some point and Cisco has recently announced a refresh for the 640-822 (ICND1), 640-816 (ICND2) and the all in one 640-802 (CCNA) the last day to take these tests and get certified are September 30th of 2013. You will notice some old references no longer mentioned on this refresh, so let&#39;s go over the differences and some of the changes Cisco has made to the associate-level certification track.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA Data Center</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/11/21/ccna-data-center/</link>
+      <pubDate>Wed, 21 Nov 2012 02:30:15 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/11/21/ccna-data-center/</guid>
+      <description>
+        
+          
+            Cisco has now introduced another associate level exam, the CCNA Data Center exam. Like the name suggests this exam focuses on the Data Center and if passed you can continue up the stack by also taking the CCNP Data Center exam which was also recently introduced as well. Still want more a little more, if you are up for the challenge you can also tackle the CCIE Data Center which is an exam that was introduced in March of 2012.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Network and its Forces</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/10/30/the-network-and-its-forces/</link>
+      <pubDate>Tue, 30 Oct 2012 03:02:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/10/30/the-network-and-its-forces/</guid>
+      <description>
+        
+          
+            communication I have started looking CCDA information and some of it is interesting, towards the beginning the material started out at design methodologies. It talked about the &amp;quot;forces&amp;quot; of a new network framework and in this post I&#39;ll focus on the business forces that make a new framework necessary. I find it interesting when looking at companies because although customer service is important to sustain a company, I also think it will and may already have depend on who embraces the technology wheel, those that do will ultimately win.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Lab Setup</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/09/08/cisco-lab-setup/</link>
+      <pubDate>Sat, 08 Sep 2012 01:52:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/09/08/cisco-lab-setup/</guid>
+      <description>
+        
+          
+            A Cisco Lab When it comes to learning and getting started with Cisco there are some tools that will help out a lot like Packet Tracer, GNS3 and other emulators. These are great tools for that &amp;quot;simulation&amp;quot; of hands on learning, but you can&#39;t always stay in that area. I find it best to get hands on with &amp;quot;real&amp;quot; Cisco Gear and so with this post I&#39;ll go through my current setup of what I have and ask that question when it is a good time to get a lab?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Cisco ASA Overview</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</link>
+      <pubDate>Sun, 24 Jun 2012 17:14:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/06/24/basic-cisco-asa-overview/</guid>
+      <description>
+        
+          
+            Firewall The Cisco 5500 Series Adaptive Security Appliances are of course an excellent firewall but the ASA also offers (depending on the model) other security services as well, like IPS systems, VPN, content security, unified communications and remote access. These ASA&#39;s can be used as a standalone appliance&#39; that can handle the need for branch offices to enterprise data centers. Or they can be included in high-performance blades that work together with the Cisco Catalyst 6500 Series, and recently new they can also run in a virtual instance which provides tenant isolation for public and private clouds!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>CCNA Security - 640-554</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/05/28/ccna-security-640-554/</link>
+      <pubDate>Mon, 28 May 2012 16:39:21 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/05/28/ccna-security-640-554/</guid>
+      <description>
+        
+          
+            network-security-lock Out with the old and in with new Cisco is updating its well-known certification CCNA Security. Candidates that are studying for the older exam (640-553) are suggested to take it on or before September 30th 2012. What has changed in the exam? For the most part Cisco SDM is no longer covered, as it has reached its &amp;quot;End of Life&amp;quot; and in fact Cisco Engineering stopped covering the product from developing and testing on February 26th 2012.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>ICND2 - Passed!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/05/14/icnd2-passed/</link>
+      <pubDate>Mon, 14 May 2012 16:31:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/05/14/icnd2-passed/</guid>
+      <description>
+        
+          
+            So I just passed my ICND2 exam, I&#39;m now CCNA certified!
+This was a long road to travel over a year ago I passed ICND1 which I recived the CCENT certification but with just general life getting in the way I also saw my chance of getting CCNA status stepping further in the distance. If you read how I passed ICND1 will find that the way I studied for this exam was totally different from studying for the ICND1.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Part 2 – The Joys of Subnetttting – VLSM!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</link>
+      <pubDate>Mon, 23 Apr 2012 02:06:15 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</guid>
+      <description>
+        
+          
+            So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff, and the fact that I mispelled subnetting! (Really? 4Ts) It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the CCNA test.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>What is the Nexus 1000v?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/03/17/what-is-the-nexus-1000v/</link>
+      <pubDate>Sat, 17 Mar 2012 17:46:23 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/03/17/what-is-the-nexus-1000v/</guid>
+      <description>
+        
+          
+            network_cloud I have worked with the Nexus 1000v product and wanted to share my thoughts on it. I want to explain in this blog what this product is and what it does. The Nexus 1000v can be virtual or a hardware appliance and is considered to be a virtual switch that runs in VMware. The major benefit to this product is the visibly you get when running in a virtual environment.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>EIGRP… The Basics</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/02/29/eigrp-the-basics/</link>
+      <pubDate>Wed, 29 Feb 2012 02:21:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/02/29/eigrp-the-basics/</guid>
+      <description>
+        
+          
+            Routing_Updates Enhanced Interior Gateway Routing Protocol (EIGRP) is an impressive set of features for IP Routing, which converges quickly and is on par and sometimes faster than OSPF. This routing protocol requires less processing time, less memory, and less network design than compared to OSPF. What&#39;s the catch? This protocol is Cisco proprietary, if you have a network that uses non-Cisco routers, EIGRP will not and cannot be used on those routers.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>HDLC vs. PPP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/02/22/hdlc-vs.-ppp/</link>
+      <pubDate>Wed, 22 Feb 2012 03:09:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/02/22/hdlc-vs.-ppp/</guid>
+      <description>
+        
+          
+            HDLC and PPP are considered to be in layer 2 of the OSI model. There are some differences between which will be describe in this post, If you would like to learn more about at least the basic configuration of PPP including PAP and CHAP check out the post I wrote about year ago. (Basic PPP Configuration) HDLC was first developed by the ISO Cisco tweaked the protocol sometimes called cHDLC and because of this it only works with Cisco equipment.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Trunking Administrative Modes</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/02/11/trunking-administrative-modes/</link>
+      <pubDate>Sat, 11 Feb 2012 22:45:50 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/02/11/trunking-administrative-modes/</guid>
+      <description>
+        
+          
+            cisco-switch-blade When looking at the CCNA it is good idea to get a hold of trunking between switches along with that there are a couple of administrative modes that each physical interface on Cisco switch can be when you are trunking between them. Remember that when we are trunking it usually carries all VLANs (This can be changed) but there are different ways to make trunking between links happen. When you are in an interface on a Cisco switch you can change the operational mode of that interface by issuing the switchport mode command.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Three Tiers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</link>
+      <pubDate>Sat, 21 Jan 2012 19:30:48 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</guid>
+      <description>
+        
+          
+            network_switch Working towards the CCNA Cisco talks about a hierarchical network there are three layers to this design. Access Layer, distribution layer and the core layer. Each of them have their own set of functions and is also considered to be a best practice when the network continues to grow and for redundancy along with just a better way to manage it. The Access layer is the layer that devices connect to, such as PCs, printers, and IP Phones.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Understanding of EtherChannel</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/01/04/basic-understanding-of-etherchannel/</link>
+      <pubDate>Wed, 04 Jan 2012 17:00:21 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/01/04/basic-understanding-of-etherchannel/</guid>
+      <description>
+        
+          
+            network cables Let&#39;s start the New Year with understanding EtherChannel which is having more than one link connected to a server, switch, or router and treating it like one logical link. This is a fault-tolerant technique that is becoming a common setup in highly available, core devices. Cisco has come up with their own proprietary version call EtherChannel. The open standard that IEEE approved is 802.3ad which works with other venders and is often called LAG for short.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Color Code Your Routers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/11/30/color-code-your-routers/</link>
+      <pubDate>Wed, 30 Nov 2011 17:33:03 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/11/30/color-code-your-routers/</guid>
+      <description>
+        
+          
+            I came across an interesting idea, what if you could color code your devices in command line? So such as if you were operating routers at a core level you could color code the CLI to the color red, and the branch routers green and etc. I wasn&#39;t sure if this would possible but doing some searching through the internet I found a guy Ivan Pepelnjak who wrote how to do this a couple years ago and wrote a couple books as well, check out his blog/website at http://www.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Network Troubleshooting</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/11/11/network-troubleshooting/</link>
+      <pubDate>Fri, 11 Nov 2011 04:58:25 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/11/11/network-troubleshooting/</guid>
+      <description>
+        
+          
+            Troubleshooting The thing that makes networks awesome is the fact that once you setup a network you&#39;re not done. That may sound like a drawback but it is excellent job security! Engineers or administrators must watch the performance of an organization&#39;s network to make sure that productivity is not affected. Network outages can have a huge effect on an organization, lost revenue and the cost of unproductive employees can severely damage the organization, Earlier this year I also talked about the troubleshooting process which goes hand in hand with network troubleshooting.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>OSPF...What a Protocol!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/11/02/ospf...what-a-protocol/</link>
+      <pubDate>Wed, 02 Nov 2011 18:15:36 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/11/02/ospf...what-a-protocol/</guid>
+      <description>
+        
+          
+            For today let&#39;s discuss a routing protocol that was being thought of in 1987 by the Internet Engineering Task Force (IETF). OSPF currently has three versions and the first version was in the 1980s when the internet was still being used for research. What is interesting about the first version of OSPF is although one version ran on routers the other type of version ran on UNIX computers. When OSPFv2 come out in the 1990s the International Organization for Standardization (ISO) was working on another routing protocol called IS-IS (Intermediate System-to-Intermediate System).
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>How to Configure SSH on Dell Power-Connect</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/26/how-to-configure-ssh-on-dell-power-connect/</link>
+      <pubDate>Wed, 26 Oct 2011 15:10:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/26/how-to-configure-ssh-on-dell-power-connect/</guid>
+      <description>
+        
+          
+            keys Although not dealing with Cisco directly Dell switches are around in network closets and with my limited experience with them I thought this would be a perfect blog post to show the differences between Dell and Cisco. I like to think of Dell CLI like a dumb downed version of the Cisco CLI so I had some time to play around with a Dell 6248P switch and wanted to figure out how to get SSH working in the thing.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Types of WAN Links</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</link>
+      <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</guid>
+      <description>
+        
+          
+            I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Windows 8 Developer Preview</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/12/windows-8-developer-preview/</link>
+      <pubDate>Wed, 12 Oct 2011 17:15:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/12/windows-8-developer-preview/</guid>
+      <description>
+        
+          
+            Changing topics for today, I want to talk about the Windows 8 Developer Preview which was released on September 13th. I had the time to install it under virtual box and was pleasantly surprised! About how fast it installed the easy to understand install prompts and the new &amp;quot;Metro&amp;quot; UI which is aimed at touched devices. Also the ability to switch to the standard Windows operating system. This is an alpha build so it&#39;s not even on at the beta stages yet, Take a look for yourself!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Store-and-Forward vs. Cut-Through Switching</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/05/store-and-forward-vs.-cut-through-switching/</link>
+      <pubDate>Wed, 05 Oct 2011 16:10:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/05/store-and-forward-vs.-cut-through-switching/</guid>
+      <description>
+        
+          
+            Network-Cable-Color Switching in the network can happen in two ways, these layer-two devices send frames but they can forward them in different ways. These different modes have positive and negative effects which depend on the type of network environment that runs through them! Store-and-forward is just like the name suggests, the switch receives a frame on a port and stores the frame in it&#39;s memory buffer until the frame has been completely received.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Welcome CCT (Cisco Certified Technician Certification)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/21/welcome-cct-cisco-certified-technician-certification/</link>
+      <pubDate>Wed, 21 Sep 2011 15:00:02 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/21/welcome-cct-cisco-certified-technician-certification/</guid>
+      <description>
+        
+          
+            Switching gears for today, Cisco has introduced a certification for onsite support technicians, who need product-specific technical skills to diagnose, restore, repair, and replace critical Cisco equipment. This certification which was introduced this summer now has questions about it from CLN (Cisco Learning Network) and other Cisco sites. So what is this new cert and any changes to ICND1 or ICND2? Short answer is no, this certification is on par with ICND1 or CCENT according to Cisco but is focused on support groups like TAC (Technical Assistance Center), NOC (Network Operations Centers) and 3rd party support.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Middle of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 07 Sep 2011 18:00:51 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/09/07/the-middle-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            In the month of August I talked about the &amp;quot;beginnings&amp;quot; of layer two redundancy mainly looking at the basic foundations and fundamentals of having layer two redundancy. Let&#39;s continue are discussion about redundancy in the layer two environment. To review what STP does (Spanning Tree Protocol) it works at layer two of the OSI model. If more than one path is available in the network the STP algorithm basically shutdowns the redundant links until the active link is unavailable (shutdown, disabled, etc.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Link-State Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/31/link-state-protocols/</link>
+      <pubDate>Wed, 31 Aug 2011 13:00:26 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/31/link-state-protocols/</guid>
+      <description>
+        
+          
+            Network-Cables Weeks ago and maybe months :), I talked about distance vector protocols and with that you probably got the feeling that when using a distance vector protocol it does not give a full network graphical representation of the entire network. Only the directly connected routes can&#39;t remember? Check out this post Distance Vector Routing. Link state protocols are faster to converge network changes compared to distance vector however when compared to distance vector setup they can be harder to set up, maintain, and troubleshoot when problems arise.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Codes of ICMP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/24/the-codes-of-icmp/</link>
+      <pubDate>Wed, 24 Aug 2011 17:00:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/24/the-codes-of-icmp/</guid>
+      <description>
+        
+          
+            In today&#39;s post I wanted to talk about the widely used Ping command. Which is one of the best methods (I think) to begin network troubleshooting. When part of the network goes down it is sometimes hard to figure out why? When you issue the ping command or the extended ping command in a Cisco router several ICMP codes can come up on the router. Let&#39;s discuss them! The first status code &amp;quot;!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Beginnings of Layer Two Redundancy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</link>
+      <pubDate>Wed, 10 Aug 2011 17:00:58 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/08/10/the-beginnings-of-layer-two-redundancy/</guid>
+      <description>
+        
+          
+            network-diagram In a perfect world we would never need redundancy on a network infrastructure, but as you know as well as I know we don&#39;t live in a perfect world. Hardware will eventually fail, bottlenecks will appear, and the speed of our network will become slower when we max the bandwidth on links. So having redundancy in routers, connections, and having a hierarchy network is one of best choices to make when improving the efficiently of the network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Welcome Super WiFi</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/07/29/welcome-super-wifi/</link>
+      <pubDate>Fri, 29 Jul 2011 15:15:42 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/07/29/welcome-super-wifi/</guid>
+      <description>
+        
+          
+            WiFi_Logo Wow July is almost over and I only posted one topic! Before August comes up I wanted to post at least one more topic which deals with the wireless side of the networking world. Ever heard of Super WiFi? The IEEE has published this standard recently its official number is 802.22. What does Super WiFi bring to the table compared to other WiFi Standards? Well according to IEEE these speeds can bring up to 22Mbps to devices as far has 62 miles!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Discovery Protocol</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</link>
+      <pubDate>Wed, 06 Jul 2011 15:45:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/07/06/cisco-discovery-protocol/</guid>
+      <description>
+        
+          
+            In today&#39;s post let&#39;s talk about CDP the Cisco Discovery Protocol. This protocol helps us in two ways, it first helps us verify that a connection between router or switch is set up correctly at least up to layer two in the OSI model. This also helps us discover Cisco devices that are in are network and which interfaces these devices are connected too and from are Cisco equipment. The Cisco discovery protocol is Cisco proprietary and before I go any further let me mention that CDP is a security risk because of the detailed information CDP gives out which helps you has a network administrator build a current network infrastructure, this can also hurt you because this information can easily be sniffed by programs that are easily searched on the internet.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Distance Vector Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</link>
+      <pubDate>Wed, 15 Jun 2011 16:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/15/distance-vector-routing/</guid>
+      <description>
+        
+          
+            Couple weeks ago I talked about routing protocols and in the post I mentioned two routing protocol features distance vector and link state. Although these protocols fundamentally do the same thing by getting information on remote networks they get this information in a different way. For today let&#39;s introduce distance vector routing. With a distance vector routing protocol, a router learns about a route to a different network (that&#39;s the purpose of a routing protocol) the router only knows the &amp;quot;distance&amp;quot; to get there this is usually called the metric.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>World IPv6 Day!!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/08/world-ipv6-day/</link>
+      <pubDate>Wed, 08 Jun 2011 18:10:36 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/08/world-ipv6-day/</guid>
+      <description>
+        
+          
+            IPv6 So what is IPv6 day? Today major companies like Google, Facebook, Yahoo and ISPs (Internet Service Providers) test their IPv6 deployments. Why is this important? Well if you follow IPv4 news you might already know that IPv4 addresses have been exhausted and the need to move to different address space is critical, if new web services are to be deployed. The question is can we run both? Although running two different IP addressing protocols is likely, by &amp;quot;stacking&amp;quot; them that is one reason the Internet Society wanted major sites and ISPs to test out the IPv6 address space.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Classful vs. Classless Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/01/classful-vs.-classless-routing/</link>
+      <pubDate>Wed, 01 Jun 2011 16:50:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/01/classful-vs.-classless-routing/</guid>
+      <description>
+        
+          
+            Cloud-Computing-icon Before the internet and general networking become popular into what it is now, there were and still are routing protocols that only do classful routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in today&#39;s post let&#39;s focus on these two but important topics when using routing protocols.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco IOS Commands</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/25/cisco-ios-commands/</link>
+      <pubDate>Wed, 25 May 2011 17:30:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/25/cisco-ios-commands/</guid>
+      <description>
+        
+          
+            This is the master list of some of the many Cisco IOS Commands that go with the CCNA track. This list also talks about what each command does in brief detail. You may also find that some commands may or may not be used for a CCNA level but offer some important information. If you don&#39;t know what a command does or understand it, I would look at Cisco documentation. Since this is a pretty big list of commands you can see the links to move to the different sections within this page.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Basic Wireless LAN Security</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/18/basic-wireless-lan-security/</link>
+      <pubDate>Wed, 18 May 2011 16:50:52 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/18/basic-wireless-lan-security/</guid>
+      <description>
+        
+          
+            Wireless-Security-Icon Although having a wireless LAN sounds like a wonderful idea, there are things that need to be implemented like security. A wireless LAN can be uncontrollable has it is just radio waves and anybody can receive them. Having and using good security practices can help you be under control of your wireless LAN. Not having any security in a wireless LAN environment will cause anybody to have access to the network.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding VTP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</link>
+      <pubDate>Wed, 11 May 2011 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/11/understanding-vtp/</guid>
+      <description>
+        
+          
+            Some people hate it, some people love it. It&#39;s the Cisco proprietary VLAN Trunking Protocol (VTP) which in short means that Cisco switches can exchange VLAN configuration, instead of manually configuring each switch with the same VLANs. I also suggest if you don&#39;t know what a VLAN is check out the post Creating VLANs Let&#39;s get right into understanding VTP. The thing that makes VTP shine is what it does, although simple to understand it saves time by automatically distributing VLAN information.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dynamic Routing Protocols</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</link>
+      <pubDate>Wed, 04 May 2011 16:40:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/04/dynamic-routing-protocols/</guid>
+      <description>
+        
+          
+            Dynamic Routing If you ever wanted to set up a network manually, you will quickly find how much overhead is required to get PCs, printers, and other network equipment. That&#39;s where dynamic routing protocols come into play although they are helpful I strongly urge you to understand static routing first. (See the post Configure Static Routing) So for today&#39;s post let&#39;s get the foundation of understanding dynamic routing protocols. By definition a routing protocol is a set of messages, rules and algorithms used by routers for the overall purpose of learning routes to other networks not physically connected to it.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Understanding AAA</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/29/understanding-aaa/</link>
+      <pubDate>Fri, 29 Apr 2011 16:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/29/understanding-aaa/</guid>
+      <description>
+        
+          
+            User The wonderful AAA which in the Cisco world means, Authentication, Authorization, and Accounting but what does that really mean? In today&#39;s post that&#39;s what we are going to be talking about. What is AAA and what are the benefits of using it along with what is it? The first &amp;quot;A&amp;quot; of AAA is Authentication which provides the method of identifying users, including login and password dialog, challenge and response, messaging support, and, depending on the security protocol you select, encryption.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting Process</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/15/troubleshooting-process/</link>
+      <pubDate>Fri, 15 Apr 2011 18:00:28 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/15/troubleshooting-process/</guid>
+      <description>
+        
+          
+            Troubleshooting Today&#39;s post is going to be talking about troubleshooting and where to start the troubleshooting process. Yes there is an actual process that every technician should be aware of. You can also use this troubleshooting process at home, you may not know how to fix it but at least you know where the issue is and find someone who can. Before we begin if you haven&#39;t seen yet, let me introduce to you the troubleshooting process:
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco Learning Labs is Live!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/13/cisco-learning-labs-is-live/</link>
+      <pubDate>Wed, 13 Apr 2011 14:15:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/13/cisco-learning-labs-is-live/</guid>
+      <description>
+        
+          
+            Yesterday was kind of exciting at least for me when I got an e-mail in the morning about Cisco Learning Labs. Studying for the CCNA, CCNP or CCIP is in itself changeling, but getting that hands-on experience is a another problem! When money is short that last thing you want to do is spend it on routers and switches, and most of them on eBay are used and the risk of failing devices makes it a scary choice.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11n</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/11/802.11n/</link>
+      <pubDate>Mon, 11 Apr 2011 15:00:18 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/11/802.11n/</guid>
+      <description>
+        
+          
+            On this Monday let&#39;s wrap up the 802.11 wireless standards, Friday I talked about the 802.11g (See the post 802.11g) and before that I talked about the 802.11b (See the post 802.11b ) I also talked about 802.11a, (See the post 802.11a) I even talked about the 802.11 –Legacy (See the post 802.11 –Legacy) and in the beginning of last week I talked about the basic wireless concepts. (See the post Basic Wireless Concepts) So let&#39;s end the discussion and talk about the 802.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11g</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/08/802.11g/</link>
+      <pubDate>Fri, 08 Apr 2011 16:30:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/08/802.11g/</guid>
+      <description>
+        
+          
+            Well again we are continuing the discussion about the wireless standards. Yesterday I talked about 802.11b (See the post 802.11b), and before that I talked about 802.11a,(See the post 802.11a) I even talked about the 802.11 –Legacy (See the post 802.11 –Legacy) and in the beginning of the week I talked about the basic wireless concepts. (See the post Basic Wireless Standards) So on this Friday let&#39;s talk about the 802.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11b</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/07/802.11b/</link>
+      <pubDate>Thu, 07 Apr 2011 17:18:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/07/802.11b/</guid>
+      <description>
+        
+          
+            Continuing where we left off the discussion, todays post will be talking about 802.11b wireless standard that was developed by IEEE. Yesterday&#39;s post we talked about the 802.11a standard. (See the post 802.11a) We also we talked about the 802.11 – Legacy standard (See the post 802.11 – Legacy) and in the beginning of the week I went over some Basic Wireless Concepts (See the post Basic Wireless Concepts) So now that we are up to speed lets learn about the 802.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11a</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/06/802.11a/</link>
+      <pubDate>Wed, 06 Apr 2011 18:00:22 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/06/802.11a/</guid>
+      <description>
+        
+          
+            Continuing the discussion about wireless standards we talked about the 802.11 – Legacy standard (See the post 802.11 – Legacy) Today&#39;s post will be talking about the IEEE 802.11a standard. On Monday I talked about the Basic Wireless Concepts (See the post Basic Wireless Concepts) in that post I mentioned the wireless standards but did not go further into detail. This post will be going over the second standard 802.11a out of the five standards that make up the 802.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11 - Legacy</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/05/802.11-legacy/</link>
+      <pubDate>Tue, 05 Apr 2011 15:15:06 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/05/802.11-legacy/</guid>
+      <description>
+        
+          
+            Yesterday we talked about the wireless concepts (See the post Basic Wireless Concepts) in that post I mentioned the wireless standards but did not go further into detail. This post one of the five standards that make up the 802.11. The 802.11 – Legacy has its called now and is not in use anymore by manufactures and is now obsolete was the first wireless standard available for consumer laptops. When the 802.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Telecommuting Services</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/11/telecommuting-services/</link>
+      <pubDate>Fri, 11 Mar 2011 17:15:11 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/11/telecommuting-services/</guid>
+      <description>
+        
+          
+            This post is going to talk about the major technologies that make Teleworking or also called telecommuting possible. This is when an employee performs his or her job away from the office, usually from their home office. By doing this it allows personal convenience, less travel to and from the workplace. At an Organization level it provides continuity of operations, Secure, reliable and manageable access to information, cost-effective integration of data, voice, video and applications.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Laser Printing Process</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/08/laser-printing-process/</link>
+      <pubDate>Tue, 08 Mar 2011 14:45:26 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/08/laser-printing-process/</guid>
+      <description>
+        
+          
+            Let&#39;s move away from Cisco for at least a day, So this post will be talking about the six steps in the laser printing process, this is good for technicians who fix or repair printers along with a good learning experience. With my limited knowledge of printers I used this process to at least help diagnose the problem. If you have no idea how a printer works, I would not try to fix it.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>WordPress.com Hit by a DoS Attack</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/04/wordpress.com-hit-by-a-dos-attack/</link>
+      <pubDate>Fri, 04 Mar 2011 15:30:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/04/wordpress.com-hit-by-a-dos-attack/</guid>
+      <description>
+        
+          
+            Yesterday, (March 3rd 2011) there was a massive DoS attack that hit WordPress.com. Cisco Skill&#39;s uses WordPress.com has a hosting provider but is not believed to one of the sites hit. There still is no word on who or why they targeted WordPress.com but goes to show that Denial of Service is still a popular type of attack and although simple to set up they can still bring down enterprise networks.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>802.11ac Standard</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/21/802.11ac-standard/</link>
+      <pubDate>Mon, 21 Feb 2011 18:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/21/802.11ac-standard/</guid>
+      <description>
+        
+          
+            Some things are making news in the wireless world, the IEEE wants another wireless standard in the mix called the 802.11ac, now the fastest standard they have is the 802.11n(speeds up to 300 Mbps), which was recently published in October of 2009. What is so great about the 802.11ac development? Well one thing is the speed, it is estimated that it will be able to carry up to 1 gigabit per second!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>IPv4 Meet IPv6</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/02/03/ipv4-meet-ipv6/</link>
+      <pubDate>Thu, 03 Feb 2011 13:50:47 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/02/03/ipv4-meet-ipv6/</guid>
+      <description>
+        
+          
+            IPv4 maybe on its last leg with only a few blocks of IPv4 addresses available, computer estimates say that the IANA address depletion was January 27, 2011. Also the calculations for all central IPv4 pool addresses will be depleted by July 25, 2012.
+These are estimates and may change as of writing this post. I&#39;ll be sure to update if needed, but the thing to understand is that IPv4 won&#39;t be available within weeks if not months.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Common Weaknesses Cybercriminals Exploit</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/01/27/common-weaknesses-cybercriminals-exploit/</link>
+      <pubDate>Thu, 27 Jan 2011 14:05:31 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/01/27/common-weaknesses-cybercriminals-exploit/</guid>
+      <description>
+        
+          
+            While reading the Cisco Annual Report they came up with seven common social engineering attacks that cybercriminals use. Now these types of attacks are common and are not unheard of. You should be familiar with most if not all these weaknesses that cybercriminals use.
+Sex appeal, which means scammers will try to find or put up attractive man or woman. Then tempt the user for information. People should remember if you don&#39;t know the person this will more than likely not be romance but something else.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VACL on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/vacl/</link>
+    <description>Recent content in VACL on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 20 Nov 2017 14:00:55 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/vacl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VLAN Access Lists (VACLs)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/11/20/vlan-access-lists-vacls/</link>
+      <pubDate>Mon, 20 Nov 2017 14:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/11/20/vlan-access-lists-vacls/</guid>
+      <description>
+        
+          
+            VACLs are another good layer of security to help control who can talk to who, much like access control lists that are in firewalls and routers, however the difference is VACLs operate at layer two of the OSI model. There could be situations where you have multiple hosts on the same LAN and want to block traffic from reaching certain hosts within that same network, how would you go about blocking that type of traffic without using a router or firewall?
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

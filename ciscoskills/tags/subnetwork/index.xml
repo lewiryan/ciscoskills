@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Subnetwork on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/subnetwork/</link>
+    <description>Recent content in Subnetwork on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 23 Apr 2012 02:06:15 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/subnetwork/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 2 – The Joys of Subnetttting – VLSM!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</link>
+      <pubDate>Mon, 23 Apr 2012 02:06:15 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/04/23/part-2-the-joys-of-subnetttting-vlsm/</guid>
+      <description>
+        
+          
+            So here we are on Part 2 of subnetting. What makes me laugh is that I really think a lot of people over think this stuff, and the fact that I mispelled subnetting! (Really? 4Ts) It&#39;s really not the complicated and it should not scare you. Another thing to mention is that usually in the real world you usually have calculators and another pair of eyes to double-check your work unlike the exam you will need to fully understand it if you would like to pass the ICND2 or the CCNA test.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Part 1 - The Joys of Subnetting!</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/04/01/part-1-the-joys-of-subnetting/</link>
+      <pubDate>Sun, 01 Apr 2012 20:25:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/04/01/part-1-the-joys-of-subnetting/</guid>
+      <description>
+        
+          
+            Since network technicians work with IP addressing, it is hugely important to understand subnetting. I remember back when I started to learn subnetting it was confusing and I wanted nothing to do with it. The thing that made me change my mind was after I understood it and how important it is. In the &amp;quot;Cisco world&amp;quot; they don&#39;t cover useless topics...right? ;) there is always a reason why they expect you to know this and it&#39;s not just for the exams.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Router on a Stick</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/01/31/configure-router-on-a-stick/</link>
+      <pubDate>Tue, 31 Jan 2012 10:45:09 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/01/31/configure-router-on-a-stick/</guid>
+      <description>
+        
+          
+            A while ago I talked about putting different VLANs on a switch, remember a VLAN is virtual network that although physically it may look like on the same network that does not always mean the case. By having VLANs you are segmenting the network and the only way to get to the other side is having a router. I have already configured the Cisco switch as posted in Creating VLANs but in summary I have three VLANs total VLAN 1 which is the native VLAN, VLAN 2 and VLAN 3 (which is called support.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Classful vs. Classless Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/06/01/classful-vs.-classless-routing/</link>
+      <pubDate>Wed, 01 Jun 2011 16:50:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/06/01/classful-vs.-classless-routing/</guid>
+      <description>
+        
+          
+            Cloud-Computing-icon Before the internet and general networking become popular into what it is now, there were and still are routing protocols that only do classful routing. What is classful routing? When I was talking about Dynamic Routing earlier (See the post Dynamic Routing Protocols) I mentioned there was a difference between classful routing and classless routing. So in today&#39;s post let&#39;s focus on these two but important topics when using routing protocols.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure Static Routing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</link>
+      <pubDate>Mon, 02 May 2011 16:15:32 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/05/02/configure-static-routing/</guid>
+      <description>
+        
+          
+            Plugging Cisco routers together and hoping they work out of the box is not something you should hope for. A router can learn about networks in two ways, manually from configured static routers which we will talk about today and dynamic routing protocols which will talk about on Wednesday. Let&#39;s get started! Static routes are not that uncommon they at first need some attention to get set up but after it is working nothing needs to change.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>How a Router Routes</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/16/how-a-router-routes/</link>
+      <pubDate>Wed, 16 Mar 2011 17:30:42 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/16/how-a-router-routes/</guid>
+      <description>
+        
+          
+            This tutorial will be going over the basic information of how a router routes IP packets. Routers are used in the OSI layer three or the network layer. These routers have IP addresses and forward IP packets to the proper destination. This guide is somewhat basic and is assuming you have some information of how IP addressing works and along with what routing protocols are. So let&#39;s focus first on how a host or a computer forwards traffic and then look at how a router forwards traffic.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

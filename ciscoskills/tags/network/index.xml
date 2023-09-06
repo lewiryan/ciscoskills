@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/network/</link>
+    <description>Recent content in Network on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 Oct 2020 18:13:30 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fortigate ECMP with BGP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2020/10/11/fortigate-ecmp-with-bgp/</link>
+      <pubDate>Sun, 11 Oct 2020 18:13:30 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2020/10/11/fortigate-ecmp-with-bgp/</guid>
+      <description>
+        
+          
+            It&#39;s like clock work...around this time the seasons are changing..autumn colors are out, and the colder air reminds us that things are changing around here, embrace it! One thing that I&#39;ve been working with is AWS Transit gateways, a common theme this year is all cloud! AWS Transit Gateways make it easier to move towards that!
+AWS Transit gateways relatively new, (couple years old now) so instead of attaching to each AWS VPC environment independently we can connect to the transit gateway and attach VPCs to the gateway.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>VTIs with ASA</title>
+      <link>https://lewiryan.github.io/ciscoskills/2020/08/08/vtis-with-asa/</link>
+      <pubDate>Sat, 08 Aug 2020 15:41:06 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2020/08/08/vtis-with-asa/</guid>
+      <description>
+        
+          
+            I&#39;ve been stuck in more ways then one this year...working from home indefinitely seems to be the status quo right now, and I&#39;m in &amp;quot;tunnel&amp;quot; mode for most part. Most of these projects I&#39;m working on all of common theme.. connect on-premise to more cloud resources! One way to do that is using VTIs. (Virtual Tunnel Interfaces) VTIs which are not new...been around for a bit, Cisco IOS had the feature available like 10+ years ago!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>SVIs and &#34;Routed&#34; Ports</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/05/14/svis-and-routed-ports/</link>
+      <pubDate>Tue, 14 May 2019 19:00:40 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/05/14/svis-and-routed-ports/</guid>
+      <description>
+        
+          
+            So you have a this nice multiplayer switch, and want to take advantages of all of the features it has to offer. Well there are two different types interface ports on these type of switches. SVIs (Switched Virtual Interface) and &amp;quot;routed&amp;quot; ports, fundamentally they are same and clients/users wouldn&#39;t be able to tell if you were using/going through an SVI or a &amp;quot;routed&amp;quot; port. However they are different and in this post we&#39;ll talk about these two and when and were it would be recommended to place an SVI or a routed port.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Passed 300-115</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/04/02/passed-300-115/</link>
+      <pubDate>Tue, 02 Apr 2019 15:05:28 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/04/02/passed-300-115/</guid>
+      <description>
+        
+          
+            Just a short post about my recent Cisco exam, I was able to pass the 300-115 to renew all my lower CCNA certifications. The last time I took a Cisco exam was almost 3 years ago when I passed the CCNA Data Center certification. Overall the exam was fair although you will need multiple study resources to make sure you cover all the exam objectives. The primary reason for doing this exam first instead of ROUTE or TSHOOT was I felt it was maybe the hardest one?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Dual ISP - Cisco ASA HA Active/Standby</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/03/12/dual-isp-cisco-asa-ha-active/standby/</link>
+      <pubDate>Tue, 12 Mar 2019 12:45:56 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/03/12/dual-isp-cisco-asa-ha-active/standby/</guid>
+      <description>
+        
+          
+            So a single ISP isn&#39;t cutting it anymore you need a backup just in case the primary fails and might as well add a second ASA into this design, more redundancy equals more up-time, right? On paper it sounds good but in the &amp;quot;real&amp;quot; world there probably is tipping point, more redundancy increases complexity. In this post we&#39;ll aim to keep it simple, with setting up a Cisco ASA HA active/standby pair and then add in the second ISP.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>FMC Syslog with Graylog Extractor</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/02/05/fmc-syslog-with-graylog-extractor/</link>
+      <pubDate>Tue, 05 Feb 2019 17:15:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/02/05/fmc-syslog-with-graylog-extractor/</guid>
+      <description>
+        
+          
+            Let&#39;s continue to talk about the Cisco Firepower Management Center, in this post we are going to look at sending connection events over to syslog. In this example I&#39;m using Graylog which is an open source logging platform and although any syslog server would work, one of the problems with syslogs is there is little uniformity when you have different systems sending these logs. One of the things that Graylog can to do is extract the raw message and put each part of message into a separate searchable field.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Oh...Spanning Tree</title>
+      <link>https://lewiryan.github.io/ciscoskills/2019/01/02/oh...spanning-tree/</link>
+      <pubDate>Wed, 02 Jan 2019 15:30:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2019/01/02/oh...spanning-tree/</guid>
+      <description>
+        
+          
+            It&#39;s the &amp;quot;S&amp;quot; word we don&#39;t like to hear, and often times it has degraded networks or even took them down entirely. (All Systems Down - an older but classic story) It&#39;s also one of those things that nobody really likes, we even had network companies, as well as IEEE try to replace it with something else. Remember the names like TRILL, and IEEE 802.1aq (SPB) or Cisco&#39;s FabicPath technologies? You had all of these different flavors that showed a lot progress, but they never really took off for one reason or another.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Automation Dance</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/11/13/automation-dance/</link>
+      <pubDate>Tue, 13 Nov 2018 15:55:19 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/11/13/automation-dance/</guid>
+      <description>
+        
+          
+            I keep doing the automation dance, (yeah...that&#39;s me) there are a lot of different tooling products out there. I have been trying to understand a use case around using it with network automation. Recently I have been dancing around with Ansible. My personal belief is that using any type of these tools would be helpful but it can be a steep learning curve if you really don&#39;t have any programming knowledge.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Enable a RESTful ASA API</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/10/08/enable-a-restful-asa-api/</link>
+      <pubDate>Mon, 08 Oct 2018 13:00:21 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/10/08/enable-a-restful-asa-api/</guid>
+      <description>
+        
+          
+            Starting from ASA 9.3(2) and onward the 5500-X hardware supports a RESTful API as an additional method for configuration/monitoring ASA hardware. Infrastructure as code as they call it, not anything new but I was reading a post that Ivan Pepelnjak wrote and as he points out there are two types of styles when we are dealing with IaC, the data model or CRUD. When reading information about the ASA RESTful API it was interesting what the ASA falls into, CRUD is the method it uses and although this method works, I have similar feeling to what Ivan posted, it wonders me if this is really a step forward into IaC.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Verifying DNS Lists - FMC</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/09/07/verifying-dns-lists-fmc/</link>
+      <pubDate>Fri, 07 Sep 2018 14:00:47 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/09/07/verifying-dns-lists-fmc/</guid>
+      <description>
+        
+          
+            We are back with another post about Cisco&#39;s Firepower Management Center and this time we are working with the DNS list which if you have a protect license you can have your Firepower modules or your FTD (Firepower Threat Defense) devices look at DNS requests and deny the requests if they are malicious. These have to be applied on your access control policy to be able to use it and in this post we are going verify some of the domain names that are in this lists.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Installing a GNS3 Server</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/08/17/installing-a-gns3-server/</link>
+      <pubDate>Fri, 17 Aug 2018 14:00:07 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/08/17/installing-a-gns3-server/</guid>
+      <description>
+        
+          
+            Although GNS3 can run local on your computer and you can use VMware Workstation and have the GNS3 appliance. I found it much more stable and predictable to run GNS3 on a dedicated server. Using this type of installation, all the projects, and images are stored on the GNS3 server, so I can install the GNS3 client any computer and get access to the same projects I was working on. You can also have multiple people working on different projects that are on the same server.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco FTD Standalone</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/07/18/cisco-ftd-standalone/</link>
+      <pubDate>Wed, 18 Jul 2018 13:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/07/18/cisco-ftd-standalone/</guid>
+      <description>
+        
+          
+            No management centers here, sometimes a standalone firewall is all you need. In this post I have a FTD appliance and there really isn’t a need tie this into Cisco’s Firepower Management Center. So we’ll configure appliance in standalone mode and go through the initial first steps that are required to get it online and walk through Firepower Device Manager. If you worked with Cisco FMC you’ll find its pretty similar, so with introductions out-of-the-way let’s get started!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Too Many TCP Resets</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/06/20/too-many-tcp-resets/</link>
+      <pubDate>Wed, 20 Jun 2018 16:30:14 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/06/20/too-many-tcp-resets/</guid>
+      <description>
+        
+          
+            So, recently we enforced some firewall rules on a new environment, we did testing of the environment and everything was working as expected. In about 24 hours a lot of traffic from the web infrastructure was being denied and it continued, at first glance it looked like return traffic was being dropped, the web servers were sourcing at port 443 and the destination ports were using dynamic ports (RFC 6335) No user or application problems were reported when we enforced rules, and we waited additional days to see if anything came up.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Layer Three EtherChannel</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/05/07/configuring-layer-three-etherchannel/</link>
+      <pubDate>Mon, 07 May 2018 13:15:02 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/05/07/configuring-layer-three-etherchannel/</guid>
+      <description>
+        
+          
+            When you want more speed all you need is EtherChannel, EtherChannel can be configured as a layer three logical interface instead of just sitting at layer two. This is very helpful if we are running layer three down to the access layer switches, instead of at the distribution layer. You also could see this in a collapsed core design, we also don’t have to worry too much about STP when we configure EtherChannel’s.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Wireless VLANs</title>
+      <link>https://lewiryan.github.io/ciscoskills/2018/04/16/wireless-vlans/</link>
+      <pubDate>Mon, 16 Apr 2018 13:30:10 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2018/04/16/wireless-vlans/</guid>
+      <description>
+        
+          
+            It’s been fun four months of 2018 so far and I’m back to talk about Wireless VLANs. With 802.11ax around the corner (2019) I think we all can agree that “weird” connections although less likely have interference isn’t as mobile as a wireless LAN. Also, with 802.11ax the maximum theoretical throughput is 10Gbps! We’re going to need some serious backend infrastructure available to be able to support that type of bandwidth.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Factory Reset Firepower 2100</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/12/01/factory-reset-firepower-2100/</link>
+      <pubDate>Fri, 01 Dec 2017 16:00:49 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/12/01/factory-reset-firepower-2100/</guid>
+      <description>
+        
+          
+            In this short guide I wanted to walk through the steps to do a factory reset for the Cisco Firepower 2100 series. When doing these resets all configuration and the administrative password are removed, as well as the FTD (Firepower Threat Defense) app-instance. When the unit starts to boot it will reinstall the FTD app-instance to default configuration.
+There are two ways to factory reset these Firepower 2100 units. If you can get into the device you can simply use these commands: connect local-mgmt erase configuration The other method is used for if you are unable to get into the unit because either you don&#39;t know the password or something else has happened to make this appliance unstable enough that a factory reset is needed.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>VLAN Access Lists (VACLs)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/11/20/vlan-access-lists-vacls/</link>
+      <pubDate>Mon, 20 Nov 2017 14:00:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/11/20/vlan-access-lists-vacls/</guid>
+      <description>
+        
+          
+            VACLs are another good layer of security to help control who can talk to who, much like access control lists that are in firewalls and routers, however the difference is VACLs operate at layer two of the OSI model. There could be situations where you have multiple hosts on the same LAN and want to block traffic from reaching certain hosts within that same network, how would you go about blocking that type of traffic without using a router or firewall?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Enable the NX-OS API</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/10/18/enable-the-nx-os-api/</link>
+      <pubDate>Wed, 18 Oct 2017 13:18:42 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/10/18/enable-the-nx-os-api/</guid>
+      <description>
+        
+          
+            So what has changed in the past 20 years? Take for example the network equipment that was manufactured in 1997, how did you configure that equipment? I would imagine it involved a serial port, HyperTerminal and trusty command line. Was API even a thing back in 1997, was it common to have an API interface in network equipment like today? Why do we even need an API on the equipment in the first place?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Enter Cisco Firepower CLI (Read-Only)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/09/20/enter-cisco-firepower-cli-read-only/</link>
+      <pubDate>Wed, 20 Sep 2017 11:45:41 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/09/20/enter-cisco-firepower-cli-read-only/</guid>
+      <description>
+        
+          
+            You have the FMC installed and connect to FTD device with configuration deployed but for what ever reason there is a problem and you need to enter the CLI on the Firepower device to troubleshoot the equipment and although you can&#39;t configure anything you can do show and debug commands to troubleshoot via the CLI. We have to enter the Diagnostic CLI and we can do this in two ways:
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>GLBP Load Balancing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/08/17/glbp-load-balancing/</link>
+      <pubDate>Thu, 17 Aug 2017 14:15:23 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/08/17/glbp-load-balancing/</guid>
+      <description>
+        
+          
+            We could use HSRP or VRRP to have a redundant default gateway for our PC/server networks. Although this works well we now have hardware powered-on and just sitting around waiting for its counterpart to fail, we are not actively using it. We could split up networks or use multiple default gateways within the same network but who does that? Well if your router or layer three switch happens to have that Cisco logo on it and a software release of at least 12.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Update Firepower Devices - Manually</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/07/12/update-firepower-devices-manually/</link>
+      <pubDate>Wed, 12 Jul 2017 14:15:38 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/07/12/update-firepower-devices-manually/</guid>
+      <description>
+        
+          
+            This is short and hopefully helpful post on how to manually update Cisco Firepower Devices. I have run into this problem a couple of times which is pushing this update with the FMC sometimes just fails and it never really seems to download the update to the Firepower sensor. On the FMC it will stay on &amp;quot;Initializing&amp;quot; for an hour and timeout so here are the steps to manually update your Firepower Sensor:
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco FTDv in Cisco VIRL</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/06/14/cisco-ftdv-in-cisco-virl/</link>
+      <pubDate>Wed, 14 Jun 2017 13:05:11 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/06/14/cisco-ftdv-in-cisco-virl/</guid>
+      <description>
+        
+          
+            Cisco is actively pushing their Firepower Threat Defense software with the new Firepower 2100 units on their way this summer in effort to eventually replace the ASA5525-X, ASA5545-X and ASA5555-X platforms. When using FTD you must also have the Firepower Management Center (FMC) available to manage and configure these devices. This gets difficult especially if you want to test things out because not everyone has Cisco Firepower lying around unused. How are you supposed to test and learn the depths of this product?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring EIGRP - Named Mode</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/05/25/configuring-eigrp-named-mode/</link>
+      <pubDate>Thu, 25 May 2017 12:30:53 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/05/25/configuring-eigrp-named-mode/</guid>
+      <description>
+        
+          
+            From its older brother IGRP which was developed in 1980s to overcome the limitations of RIP, EIGRP was an &amp;quot;Enhanced&amp;quot; IGRP protocol. The main purpose of EIGRP was to overcome the limitations of classful networks and make EIGRP a classless routing protocol. During designing of this protocol a different convergence algorithm was used making EIGRP that &amp;quot;hybrid&amp;quot; between distance-vector and link-state routing protocols. In this post we&#39;ll go over a basic design and setup for EIGRP, however instead of using the &amp;quot;classic way&amp;quot; let&#39;s look at configuring EIGRP using named mode which is available in Cisco IOS starting in version 15.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>ASA Site to Site VPN (DHCP)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/04/19/asa-site-to-site-vpn-dhcp/</link>
+      <pubDate>Wed, 19 Apr 2017 12:00:46 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/04/19/asa-site-to-site-vpn-dhcp/</guid>
+      <description>
+        
+          
+            If you don’t already know, site to site VPNs can be a cost-effective way for remote sites to connect to HQ resources instead of a lease line like using MPLS or Metro-E circuits. We can instead use a standard internet connection with a static IP, this is usually cheaper than a dedicated circuit. Our next steps are purchasing a firewall for the remote site (assuming you already have one at HQ) and setup a site to site VPN connection to make the connection.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>ASA Site to Site VPN (PATed)</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/03/08/asa-site-to-site-vpn-pated/</link>
+      <pubDate>Wed, 08 Mar 2017 14:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/03/08/asa-site-to-site-vpn-pated/</guid>
+      <description>
+        
+          
+            If you ever needed to hide multiple systems behind a single IP address you would use PAT. (Port Address Translation) besides using this to connect to the internet when using an RFC 1918 address, you can configure PAT for VPN connections. The benefit is the same, hide multiple systems behind a single IP address with the advantage being you can have many systems on one side of the VPN tunnel all using that single IP.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco VIRL and Windows VMs</title>
+      <link>https://lewiryan.github.io/ciscoskills/2017/01/08/cisco-virl-and-windows-vms/</link>
+      <pubDate>Sun, 08 Jan 2017 01:53:55 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2017/01/08/cisco-virl-and-windows-vms/</guid>
+      <description>
+        
+          
+            One of the neat features of Cisco VIRL is it runs on an open platform, with OpenStack as the orchestration program running on top of an Ubuntu operating system. This gives VIRL additional flexibly by being able to run third-party VMs with KVM begin the hypervisor. In this guide I’ll walk through some of the steps I took to get Windows XP up and running in VIRL. :) If you have a more recent version of Windows that&#39;s in the current decade following this guide is pretty much the same just adjust the disk space and RAM to fit the requirements.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Don&#39;t get stuck with &#34;speed-groups&#34;</title>
+      <link>https://lewiryan.github.io/ciscoskills/2016/12/21/dont-get-stuck-with-speed-groups/</link>
+      <pubDate>Wed, 21 Dec 2016 03:29:44 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2016/12/21/dont-get-stuck-with-speed-groups/</guid>
+      <description>
+        
+          
+            I was working with a Cisco 9372TX switch, and on it I had two 40Gbps uplinks that we where using out of the available four. Talking with our VAR because we where planning on connecting in additional equipment that only supported SFP+ interfaces. So the solution was to connect to this switch with QSFP to SFP+ adapters.
+Thinking this would be a simple change because we are just plugging in additional adapters on the QSFP ports we planned our maintenance window and rollback plans but I wasn&#39;t expecting a rollback for this one :) The interfaces were configured in a shutdown status before we plugged in the adapters and cables so didn&#39;t see anything out of the ordinary, when it was time to do the maintenance let&#39;s bring up the interfaces with the command of no shutdown and we should be up.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>TFTP &amp; FTP Server on Centos 7</title>
+      <link>https://lewiryan.github.io/ciscoskills/2016/09/16/tftp-ftp-server-on-centos-7/</link>
+      <pubDate>Fri, 16 Sep 2016 12:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2016/09/16/tftp-ftp-server-on-centos-7/</guid>
+      <description>
+        
+          
+            If you ever needed a TFTP or an anonymous FTP server to transfer files, logs, or crash debugs to and from your network devices it can be a little tricky if you don&#39;t have anything setup. There are some free quick programs out there if you are in a pinch for one-time transfers but if you ever wanted to have something in infrastructure that is ready to go for this kind of stuff just follow this tutorial below.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>iPerf Throughput Testing</title>
+      <link>https://lewiryan.github.io/ciscoskills/2016/02/12/iperf-throughput-testing/</link>
+      <pubDate>Fri, 12 Feb 2016 19:00:34 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2016/02/12/iperf-throughput-testing/</guid>
+      <description>
+        
+          
+            Testing a network’s throughput is a good move, if you are testing a new service you stood up or making sure you getting what you paid for. iPerf is good free open source tool when there isn’t really a need to use commercial more expensive tools. In this short tutorial I’ll go over how to configure iPerf which is a CLI tool so let’s get started.
+iPerf needs client and server on each end of the connection in order to test the throughput.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco VIRL – Update</title>
+      <link>https://lewiryan.github.io/ciscoskills/2015/11/18/cisco-virl-update/</link>
+      <pubDate>Wed, 18 Nov 2015 13:15:24 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2015/11/18/cisco-virl-update/</guid>
+      <description>
+        
+          
+            Cisco released VIRL almost a year ago and it’s not at the 1.0 version yet but it’s getting close as they have done some good work towards the product since it first lunched. Cisco VIRL is like GNS3 which is simulation platform that runs Cisco’s current operating systems so instead of buying used Cisco hardware you can run this program on your computer. This software is geared towards proof-of-concept designs, for personal and training on Cisco Certifications.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Converting Hexadecimal to Decimal and Binary</title>
+      <link>https://lewiryan.github.io/ciscoskills/2015/04/22/converting-hexadecimal-to-decimal-and-binary/</link>
+      <pubDate>Wed, 22 Apr 2015 02:22:45 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2015/04/22/converting-hexadecimal-to-decimal-and-binary/</guid>
+      <description>
+        
+          
+            The purpose of this post is to reference the CCNA Data Center (640-911) exam. This exam starts the conversation of IPv6 and since IPv6 is hexadecimal this post starts the talk about how we look at a hexadecimal values and learn how to convert them to binary and decimal. If you know subnetting skills then this won’t be that difficult. If you are new then check out The Wonders of Binary post as well as Part 1 and Part 2 of subnetting.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configuring Rancid</title>
+      <link>https://lewiryan.github.io/ciscoskills/2015/02/27/configuring-rancid/</link>
+      <pubDate>Fri, 27 Feb 2015 22:30:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2015/02/27/configuring-rancid/</guid>
+      <description>
+        
+          
+            In my last post I talked about Installing Rancid on Centos 7 so be sure to check that out. In this post we now want to actually use Rancid so I’ll walk through on how to setup Rancid to login into network equipment and get configurations.
+To recap: Rancid is a great tool to help monitor a device configuration for any changes. It also keeps track of them by using CVS (Concurrent Version System) for backups, so you can go back and compare versions or revert to a previous configuration.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Install Rancid and ViewVC on Centos 7</title>
+      <link>https://lewiryan.github.io/ciscoskills/2015/01/03/install-rancid-and-viewvc-on-centos-7/</link>
+      <pubDate>Sat, 03 Jan 2015 19:00:00 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2015/01/03/install-rancid-and-viewvc-on-centos-7/</guid>
+      <description>
+        
+          
+            In this post I want to walk though the steps to install Rancid on CentOS 7 minimal. Rancid is a great tool to help monitor a device configuration for any changes. It also keeps track of them by using CVS (Concurrent Version System) for backups, so you can go back and compare versions or revert to a previous configuration. Rancid supports multiple hardware from Cisco, HP, Dell, Juniper and more. This is all open-source so you can create custom scripts or add commands to really make this a personal repository that fits your company.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Cisco VIRL is out ... for a price</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/12/05/cisco-virl-is-out-...-for-a-price/</link>
+      <pubDate>Fri, 05 Dec 2014 03:45:43 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/12/05/cisco-virl-is-out-...-for-a-price/</guid>
+      <description>
+        
+          
+            Just wanted to put this up has Cisco has recently released VIRL. This is a network simulation platform that you can run Cisco operating systems on which are the same operating systems that run on Cisco hardware so anything you do in this simulation environment would be realistic if it was running on dedicated hardware. You would be able to test your changes before throwing them in production. Some things that are different between VIRL and CML (Cisco Modeling Labs)
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Setting up Enhanced vPC on Nexus 5600</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/09/10/setting-up-enhanced-vpc-on-nexus-5600/</link>
+      <pubDate>Wed, 10 Sep 2014 10:30:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/09/10/setting-up-enhanced-vpc-on-nexus-5600/</guid>
+      <description>
+        
+          
+            So I&#39;ve played around with two Cisco Nexus 5672UP switches which will be in production soon but before that I wanted to see what it took to get enhanced vPC online. Along the way I was into some new territory as I never stood up vPC before, so in this post I have posted some things to keep in mind and running-config examples, all of which I hope is helpful for a reference.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Some QoS Guidelines</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/08/05/some-qos-guidelines/</link>
+      <pubDate>Tue, 05 Aug 2014 02:15:54 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/08/05/some-qos-guidelines/</guid>
+      <description>
+        
+          
+            When I started taking classes from the Cisco CCNA Discover books years ago, I remember for the first part of the book it talked about QoS and the theory behind it. To me QoS was a very interesting but after a chapter or two we never mentioned it again or really knew how to configure it. It seemed like it disappeared but it always something being tested on so we know it was there, somewhere… QoS can be a little boring and it does get a reputation of being difficult to understand, like where and how do I implement QoS?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Install RSYSLOG &amp; LogAnalyzer on CentOS 6-5</title>
+      <link>https://lewiryan.github.io/ciscoskills/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/</link>
+      <pubDate>Wed, 11 Jun 2014 12:00:54 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2014/06/11/install-rsyslog-loganalyzer-on-centos-6-5/</guid>
+      <description>
+        
+          
+            I am looking at rsyslog which is fast syslog system and Loganalyzer as an upfront web GUI for those logs. The Loganalyzer application offers searching of various syslogs, all of which is open source and available to download. In this guide I will go through the steps to get these two applications to work together and in the end of this tutorial we should have a working syslog system ready to take logs!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Why Go Professional with Cisco Certs?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/09/14/why-go-professional-with-cisco-certs/</link>
+      <pubDate>Sat, 14 Sep 2013 18:09:46 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/09/14/why-go-professional-with-cisco-certs/</guid>
+      <description>
+        
+          
+            I have had the opportunity to take and thankfully pass Cisco certifications at the associate levels and there is one more associate exam, the CCNA Data Center which hopefully I will get later next year. While looking at the CCNA Data Center exam I also glanced over the professional arena that Cisco offers and if you’re like me I always like learning new things especially in technical field. Getting those “aha moments” once in a while makes it worth it, but beyond just over all knowledge of additional technologies why would you go on taking a professional Cisco cert?
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure DHCP on a Cisco Router</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/12/01/configure-dhcp-on-a-cisco-router/</link>
+      <pubDate>Sat, 01 Dec 2012 16:25:08 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/12/01/configure-dhcp-on-a-cisco-router/</guid>
+      <description>
+        
+          
+            Data-connect-computer In this short tutorial let&#39;s configure a DHCP server on a Cisco Router. Why would we want to do that? Well configuring a basic DHCP server on a router is a good idea if this is a branch/satellite office or just a small business. There are some pros and cons of configuring DHCP on a Cisco Router so let&#39;s briefly discuss them and then start configuring. Putting DHCP on a router is pretty easy and that&#39;s one advantage of setting up DHCP no need to setup a Linux or Windows server.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Network and its Forces</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/10/30/the-network-and-its-forces/</link>
+      <pubDate>Tue, 30 Oct 2012 03:02:12 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/10/30/the-network-and-its-forces/</guid>
+      <description>
+        
+          
+            communication I have started looking CCDA information and some of it is interesting, towards the beginning the material started out at design methodologies. It talked about the &amp;quot;forces&amp;quot; of a new network framework and in this post I&#39;ll focus on the business forces that make a new framework necessary. I find it interesting when looking at companies because although customer service is important to sustain a company, I also think it will and may already have depend on who embraces the technology wheel, those that do will ultimately win.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Why IPv6?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/08/22/why-ipv6/</link>
+      <pubDate>Wed, 22 Aug 2012 01:03:46 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/08/22/why-ipv6/</guid>
+      <description>
+        
+          
+            Although this protocol has been around since 1996 it has been anticipated that IPv4 would one day be exhausted. In February 2011 the Internet Assigned Numbers Authority (IANA) assigned the last /8 address blocks to the Regional Internet Registries so time is getting close but you have heard this warning before right? Let&#39;s go over IPv6 at least just an overview some the features and changes compared to IPv4 because one day it will happen it&#39;s just a matter of when.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>The Three Tiers</title>
+      <link>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</link>
+      <pubDate>Sat, 21 Jan 2012 19:30:48 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2012/01/21/the-three-tiers/</guid>
+      <description>
+        
+          
+            network_switch Working towards the CCNA Cisco talks about a hierarchical network there are three layers to this design. Access Layer, distribution layer and the core layer. Each of them have their own set of functions and is also considered to be a best practice when the network continues to grow and for redundancy along with just a better way to manage it. The Access layer is the layer that devices connect to, such as PCs, printers, and IP Phones.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Types of WAN Links</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</link>
+      <pubDate>Wed, 19 Oct 2011 16:30:04 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/10/19/types-of-wan-links/</guid>
+      <description>
+        
+          
+            I&#39;ve found this table that I created a while ago and it lists common WAN connections that businesses use. I have used this table like a reference guide to familiar myself into other protocols. People don&#39;t think of it much but the WAN is a different beast compared the LAN as it uses different protocols besides Ethernet. The WAN or wide area network is what connects us to remote locations within a organization.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Configure IPS (Intrusion Prevention System) via SDM</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</link>
+      <pubDate>Fri, 22 Apr 2011 17:30:44 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/04/22/configure-ips-intrusion-prevention-system-via-sdm/</guid>
+      <description>
+        
+          
+            Awhile back I talked about the differences between IPS and IDS. (See the post Cisco IDS vs. IPS ) So for today&#39;s post let&#39;s learn how to configure an IPS (Intrusion Prevention System) on a router using the Cisco SDM (Security Device Manger). The Cisco SDM is a Web-based device management tool a GUI for Cisco routers this can simplify router deployments and cut ownership costs. ( See the post Configure Cisco SDM) Let&#39;s start configuring an IPS with SDM!
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

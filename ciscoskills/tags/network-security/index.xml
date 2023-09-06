@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network security on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/network-security/</link>
+    <description>Recent content in Network security on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 14 Mar 2011 12:00:29 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/network-security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cracking WEP</title>
+      <link>https://lewiryan.github.io/ciscoskills/2011/03/14/cracking-wep/</link>
+      <pubDate>Mon, 14 Mar 2011 12:00:29 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2011/03/14/cracking-wep/</guid>
+      <description>
+        
+          
+            BackTrack is Linux network security audit tool for security professionals. This tool is used for testing and penetrating networks. That being said** This tutorial is for educational use only. This is meant only to teach that WEP is an insecure option, and is recommend to use a harder encryption. Using this tutorial on a network that you do not have permission to access or is not yours, could be illegal! ** This was tested on BackTrack version 4 and the steps outlined in this tutorial were successful.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

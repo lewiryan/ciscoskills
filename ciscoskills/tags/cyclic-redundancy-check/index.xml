@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cyclic redundancy check on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/cyclic-redundancy-check/</link>
+    <description>Recent content in Cyclic redundancy check on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 19 Jul 2013 01:51:13 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/cyclic-redundancy-check/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Is Your Network Healthy?</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/07/19/is-your-network-healthy/</link>
+      <pubDate>Fri, 19 Jul 2013 01:51:13 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/07/19/is-your-network-healthy/</guid>
+      <description>
+        
+          
+            Networks are becoming more &amp;quot;borderless&amp;quot; as Cisco likes to call it and it&#39;s definitely true. Having the ability to get access to resources remotely without having to be at our office physically is a nice touch, you may even notice higher productivity and who doesn&#39;t want that! Networks have to be in a healthy state in order for people remotely and people at the office to get their work done.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

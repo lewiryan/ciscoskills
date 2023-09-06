@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dynamips on Cisco Skills</title>
+    <link>https://lewiryan.github.io/ciscoskills/tags/dynamips/</link>
+    <description>Recent content in Dynamips on Cisco Skills</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 21 Nov 2013 06:25:01 +0000</lastBuildDate><atom:link href="https://lewiryan.github.io/ciscoskills/tags/dynamips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GNS3 1.0 Campaign</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/11/21/gns3-1.0-campaign/</link>
+      <pubDate>Thu, 21 Nov 2013 06:25:01 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/11/21/gns3-1.0-campaign/</guid>
+      <description>
+        
+          
+            It&#39;s been almost 24 hours since GNS3 launched a campaign to bring in funds to support the open source network simulator and bring it up to version 1.0. A lot of new features are on the list, like switching, cloud processing, hassle free configuration, labs/training materials and 3rd party integrations. All of which are in the works for this new version added along with some pretty cool plug-ins. As of writing this post they are at $106,973 dollars which is 300 percent over funded!
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Look at GNS3 - New Version</title>
+      <link>https://lewiryan.github.io/ciscoskills/2013/07/06/look-at-gns3-new-version/</link>
+      <pubDate>Sat, 06 Jul 2013 18:41:22 +0000</pubDate>
+      
+      <guid>https://lewiryan.github.io/ciscoskills/2013/07/06/look-at-gns3-new-version/</guid>
+      <description>
+        
+          
+            Look at GNS3 - New Version: A new version of GNS3 released on July 5th 2013 is available for download. You can download GNS3 v0.8.4 at gns3.net. This release includes improvements and new features. Some of the important one are:
+Lots of GUI improvements. New hub device. New Idlemax and Idlesleep settings (advanced manipulation of IDLE PC). IOS image and settings test button. New Tool menu to start external scripts/tools. Drag &amp;amp; drop of multiple devices when pressing SHIFT.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
